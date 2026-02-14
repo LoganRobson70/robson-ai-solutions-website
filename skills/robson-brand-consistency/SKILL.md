@@ -13,7 +13,7 @@ Use only these asset files for production branding usage.
 
 ### Logos
 
-- `assets/logo-simple-r.svg` as the primary logo mark.
+- `assets/logo-simple-r.svg` as the primary logo mark source of truth.
 - `assets/logo-constructed-r.svg` as the secondary logo mark.
 
 ### Derived raster asset
@@ -31,10 +31,12 @@ Enforce these asset rules:
 ## Non-negotiable rules
 
 - Never show both logo variants together in one context.
-- Use `assets/logo-simple-r.svg` for website header, navigation contexts, favicon, app icon contexts, and small-size UI placements.
+- Use `assets/logo-simple-r.svg` as the master primary mark source for all exports and vector-first contexts.
+- Use `assets/robson-ai-icon.png` for website header image, navigation icon contexts, favicon, apple-touch-icon, and other small-size raster UI placements.
 - Use `assets/logo-constructed-r.svg` only for corporate emphasis contexts such as report covers or statement panels.
 - Default to the simple logo when unsure.
 - Use the primary mark only for iPhone `AppIcon`; never use the secondary mark or wordmark in the app icon.
+- Build iPhone `AppIcon` PNG outputs from `assets/logo-simple-r.svg`; do not repurpose the secondary mark or external logo files.
 - Keep the primary mark centred with clear padding in icon canvases so it does not look squeezed.
 - Never place the primary mark inside an additional white rounded-square tile unless explicitly required by the task.
 - Ensure the primary mark stays a single solid form with flat colour only and no segmentation.

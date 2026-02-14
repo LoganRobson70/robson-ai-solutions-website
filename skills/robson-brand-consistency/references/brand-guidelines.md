@@ -15,38 +15,29 @@ Avoid gimmicks, trend-driven styling, and decorative AI visuals.
 
 ## 2. Logo system (critical)
 
-Canonical logo source files in this website repository:
+Canonical logo files in this website repository:
 
-- `assets/logo-simple-r.svg` (primary)
+- `assets/logo-simple-r.svg` (primary source)
 - `assets/logo-constructed-r.svg` (secondary)
+- `assets/robson-ai-icon.png` (approved raster derivative of the primary source)
 
-Usage rule:
+Source-of-truth policy:
 
-- Always reference these files directly for production logo usage.
-- Never replace with externally sourced logos, generated variants, or renamed duplicates.
+- Treat `assets/logo-simple-r.svg` as the master artwork for the primary mark.
+- Use `assets/robson-ai-icon.png` for live website delivery where raster output is used:
+  - Website header logo image
+  - Navigation icon contexts
+  - Favicon and apple-touch-icon
+  - Other small raster UI placements
+- Use `assets/logo-simple-r.svg` as the export source for iPhone app icon outputs in `AppIcon.appiconset`.
 
-### Primary logo (website and app)
+Rules:
 
-Use the simple monolithic `R` mark.
-
-Required characteristics:
-
-- Single solid form
-- Flat colour
-- No segmentation
-- No gradients, shadows, or effects
-
-Use this logo for:
-
-- Website header
-- Navigation bar
-- Favicon
-- App icons
-- UI elements
-
-Rule:
-
-- If instant recognition or small-size clarity is needed, use the simple `R` only.
+- Never replace canonical files with externally sourced logos, generated variants, or renamed duplicates.
+- Never redraw primary mark geometry in derivatives.
+- Keep the primary mark as a single solid form with flat colour only.
+- Do not add gradients, shadows, extra tiles, or effects to logos.
+- If unsure, default to the primary mark.
 
 ### Secondary logo (corporate emphasis)
 
@@ -190,7 +181,7 @@ When generating or editing pages, enforce all of the following:
 
 ## 9. Decision summary
 
-- If clarity and usability are the priority: use simple `R`.
+- If clarity and usability are the priority: use simple `R` (SVG source, PNG derivative where raster delivery is required).
 - If corporate emphasis or statement context is the priority: use constructed `R`.
 - If unsure: default to simple `R`.
 

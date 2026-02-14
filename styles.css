@@ -151,6 +151,12 @@ p {
   text-decoration: none;
 }
 
+.brand:focus-visible {
+  outline: none;
+  border-radius: 10px;
+  box-shadow: var(--focus-ring);
+}
+
 .brand-logo {
   width: 46px;
   height: 46px;
@@ -282,6 +288,10 @@ p {
 
 .site-main {
   padding-block: 0.4rem 0;
+}
+
+:where(#home, #services, #process, #contact, #main-content) {
+  scroll-margin-top: 5.8rem;
 }
 
 .surface {
@@ -608,7 +618,7 @@ h1 {
 }
 
 .process-shell .section-label {
-  color: #5e7f85;
+  color: #58767c;
 }
 
 .process-copy p {
@@ -761,6 +771,10 @@ h1 {
 
   .btn-sm {
     display: none;
+  }
+
+  :where(#home, #services, #process, #contact, #main-content) {
+    scroll-margin-top: 8.2rem;
   }
 
   .hero-stats,

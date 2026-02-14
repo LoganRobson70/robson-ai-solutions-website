@@ -8,18 +8,25 @@ Apply these rules to every page, component, and content update in this repositor
 - Avoid gimmicks, novelty effects, and decorative "AI" styling.
 
 ## 2. Logo System
-- Primary mark: `assets/logo-simple-r.svg`
+- Primary mark (source of truth): `assets/logo-simple-r.svg`
 - Rules for primary mark:
   - single solid form
   - flat colour only
   - no segmentation
   - no gradients, shadows, or effects
-- Use primary mark for:
-  - website header
-  - navigation contexts
-  - favicon
-  - app icon contexts
-  - small-size UI placements
+- Approved raster derivative: `assets/robson-ai-icon.png`
+- Rules for raster derivative:
+  - must be exported from `assets/logo-simple-r.svg`
+  - no geometry redraw
+  - no extra tiles, gradients, shadows, or effects
+- Use `assets/robson-ai-icon.png` for:
+  - website header logo image
+  - navigation icon contexts
+  - favicon and apple-touch-icon
+  - small-size raster UI placements
+- Use `assets/logo-simple-r.svg` for:
+  - master source and vector-first contexts
+  - app icon generation source
 - Secondary mark: `assets/logo-constructed-r.svg`
 - Use secondary mark only for corporate emphasis contexts such as report covers or statement panels.
 - Never display both logo versions together.
