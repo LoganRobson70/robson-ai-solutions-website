@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Robson AI Solutions helps teams automate workflows, reduce repetitive work, and deploy practical AI systems that produce measurable outcomes."
+      content="Robson AI Solutions helps construction and asset teams automate workflows, improve compliance visibility, and deploy evidence-based AI systems with measurable outcomes."
     />
     <title>Robson AI Solutions | Practical AI Operations</title>
-    <link rel="icon" type="image/png" href="./assets/robson-ai-icon.png?v=20260208d" />
-    <link rel="shortcut icon" href="./assets/robson-ai-icon.png?v=20260208d" />
-    <link rel="apple-touch-icon" href="./assets/robson-ai-icon.png?v=20260208d" />
+    <link rel="icon" type="image/png" href="./assets/robson-ai-icon.png?v=20260214a" />
+    <link rel="shortcut icon" href="./assets/robson-ai-icon.png?v=20260214a" />
+    <link rel="apple-touch-icon" href="./assets/robson-ai-icon.png?v=20260214a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&family=Poppins:wght@500;600&display=swap"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -21,7 +27,7 @@
         <a class="brand" href="#home" aria-label="Robson AI Solutions home">
           <img
             class="brand-logo"
-            src="./assets/robson-ai-icon.png?v=20260208d"
+            src="./assets/robson-ai-icon.png?v=20260214a"
             alt="Robson AI Solutions logo mark"
           />
           <span class="brand-text">
@@ -30,208 +36,297 @@
           </span>
         </a>
 
-        <nav class="site-nav" aria-label="Primary">
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
-          <a href="#contact">Contact</a>
-        </nav>
+        <div class="header-actions">
+          <nav class="site-nav" aria-label="Primary" data-open="false">
+            <button
+              class="nav-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-nav-links"
+            >
+              Menu
+            </button>
+            <div class="site-nav-links" id="site-nav-links">
+              <a href="#about">About</a>
+              <a href="#services">Services</a>
+              <a href="#use-cases">Use Cases</a>
+              <a href="#resources">Resources</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </nav>
 
-        <a class="btn btn-outline btn-sm" href="#contact">Start Project</a>
+          <a class="btn btn-outline header-cta" href="#contact">Start Project</a>
+        </div>
       </div>
     </header>
 
-    <main id="home" class="site-main">
-      <section class="section hero" aria-labelledby="hero-title">
-        <div class="container surface hero-surface reveal" id="main-content" data-delay="0.02">
-          <div class="hero-grid">
-            <div class="hero-copy reveal" data-delay="0.08">
-              <p class="eyebrow">AI Operations Studio</p>
-              <h1 id="hero-title">Production-ready AI workflows for modern teams.</h1>
-              <p class="lead">
-                Robson AI Solutions designs and deploys practical systems that cut
-                repetitive work, improve visibility, and scale with clear governance.
-              </p>
+    <main id="main-content" class="site-main">
+      <section class="section hero" id="home" aria-labelledby="hero-title">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal" data-delay="0.02">
+            <p class="eyebrow">AI Operations Studio</p>
+            <h1 id="hero-title">Production-ready AI workflows for modern teams.</h1>
+            <p class="lead">
+              Robson AI Solutions designs and deploys practical systems that reduce repetitive
+              work, strengthen compliance confidence, and improve operational decision support.
+            </p>
 
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="#contact">Start Your AI Roadmap</a>
-                <a class="btn btn-ghost" href="#services">Explore Services</a>
-              </div>
-
-              <ul class="hero-stats" aria-label="Performance highlights">
-                <li>
-                  <span>38%</span>
-                  Average reduction in repetitive admin effort.
-                </li>
-                <li>
-                  <span>4-8 weeks</span>
-                  Typical pilot timeline from audit to deployment.
-                </li>
-                <li>
-                  <span>92%</span>
-                  Typical automation execution reliability.
-                </li>
-              </ul>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact">Start Your AI Roadmap</a>
+              <a class="btn btn-ghost" href="#services">Explore Services</a>
             </div>
 
-            <aside class="hero-panel reveal" aria-label="AI control tower snapshot" data-delay="0.16">
-              <p class="panel-kicker">Program Control Tower</p>
-
-              <div class="panel-score">
-                <p class="panel-label">Automation Readiness</p>
-                <p class="score" aria-label="Readiness score 89 out of 100">89</p>
-                <p class="panel-note">
-                  High deployment confidence across intake, routing, and reporting
-                  operations.
-                </p>
-              </div>
-
-              <div class="status-grid" aria-label="Workflow status blocks">
-                <article class="status-card">
-                  <h2>Intake</h2>
-                  <p>Connected</p>
-                </article>
-                <article class="status-card">
-                  <h2>Task Routing</h2>
-                  <p>Automated</p>
-                </article>
-                <article class="status-card">
-                  <h2>Reporting</h2>
-                  <p>Live Sync</p>
-                </article>
-              </div>
-
-              <div class="health-block">
-                <div class="health-row">
-                  <span>Execution Line Health</span>
-                  <strong>92%</strong>
-                </div>
-                <div class="track" aria-hidden="true">
-                  <span style="--fill: 92%"></span>
-                </div>
-              </div>
-            </aside>
+            <ul class="hero-stats" aria-label="Performance highlights">
+              <li>
+                <span>38%</span>
+                Average reduction in repetitive administration.
+              </li>
+              <li>
+                <span>4-8 weeks</span>
+                Typical pilot timeline from audit to production rollout.
+              </li>
+              <li>
+                <span>92%</span>
+                Typical workflow execution reliability in monitored pilots.
+              </li>
+            </ul>
           </div>
+
+          <aside class="hero-panel reveal" aria-label="Engagement snapshot" data-delay="0.08">
+            <h2>Programme snapshot</h2>
+            <p class="panel-intro">
+              Each engagement starts with measurable baseline checks and a compliance-focused
+              implementation plan.
+            </p>
+            <dl class="snapshot-list">
+              <div>
+                <dt>Initial discovery</dt>
+                <dd>Workflow mapping, risk review, data readiness.</dd>
+              </div>
+              <div>
+                <dt>Build phase</dt>
+                <dd>Controlled automation rollout with governance checks.</dd>
+              </div>
+              <div>
+                <dt>Operational handover</dt>
+                <dd>Documented ownership, reporting cadence, and support model.</dd>
+              </div>
+            </dl>
+          </aside>
         </div>
       </section>
 
-      <section class="section capabilities" id="services" aria-labelledby="services-title">
-        <div class="container capabilities-shell reveal" data-delay="0.02">
-          <div class="section-head reveal" data-delay="0.08">
-            <p class="section-label">Core Services</p>
-            <h2 class="section-title" id="services-title">
-              Practical services that move from strategy to execution fast
+      <section class="section about" id="about" aria-labelledby="about-title">
+        <div class="container about-shell reveal" data-delay="0.04">
+          <div class="section-head">
+            <p class="section-label">About</p>
+            <h2 class="section-title" id="about-title">
+              Evidence-led delivery for construction and asset operations
             </h2>
           </div>
 
-          <div class="capability-grid" aria-label="Service capabilities">
-            <article class="capability-card reveal" data-delay="0.1">
-              <div class="card-top">
-                <span class="card-icon" aria-hidden="true">01</span>
-                <span class="card-arrow" aria-hidden="true">-></span>
-              </div>
+          <div class="about-grid">
+            <p>
+              We work with operations, maintenance, and compliance teams that need practical AI
+              outcomes, not experiments. Every project is structured around baseline metrics,
+              implementation controls, and clear accountability.
+            </p>
+            <ul class="trust-list" aria-label="Credibility highlights">
+              <li>
+                <h3>Compliance-focused governance</h3>
+                <p>Policies, approvals, and reporting are designed into the workflow from day one.</p>
+              </li>
+              <li>
+                <h3>Measured delivery model</h3>
+                <p>Scope, timing, and outcomes are tracked against explicit success criteria.</p>
+              </li>
+              <li>
+                <h3>Operational handover</h3>
+                <p>Teams receive documented processes, role ownership, and adoption guidance.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section services" id="services" aria-labelledby="services-title">
+        <div class="container reveal" data-delay="0.04">
+          <div class="section-head">
+            <p class="section-label">Services</p>
+            <h2 class="section-title" id="services-title">
+              Practical services that move from strategy to execution quickly
+            </h2>
+          </div>
+
+          <div class="card-grid" aria-label="Service capabilities">
+            <article class="service-card reveal" data-delay="0.06">
               <h3>AI Opportunity Audit</h3>
-              <p>Identify automation opportunities, rank by ROI, and build an implementation roadmap.</p>
+              <p>Identify and prioritise opportunities by operational impact and implementation risk.</p>
             </article>
-
-            <article class="capability-card reveal" data-delay="0.14">
-              <div class="card-top">
-                <span class="card-icon" aria-hidden="true">02</span>
-                <span class="card-arrow" aria-hidden="true">-></span>
-              </div>
+            <article class="service-card reveal" data-delay="0.08">
               <h3>Workflow Automation Build</h3>
-              <p>Connect systems and deploy robust AI-driven process automation into production workflows.</p>
+              <p>Design and deploy reliable automation across intake, routing, and reporting workflows.</p>
             </article>
-
-            <article class="capability-card reveal" data-delay="0.18">
-              <div class="card-top">
-                <span class="card-icon" aria-hidden="true">03</span>
-                <span class="card-arrow" aria-hidden="true">-></span>
-              </div>
+            <article class="service-card reveal" data-delay="0.1">
               <h3>Reporting and Insights</h3>
-              <p>Replace fragmented reporting with live dashboards and executive-ready performance signals.</p>
+              <p>Replace fragmented updates with structured dashboards and decision-ready metrics.</p>
             </article>
-
-            <article class="capability-card reveal" data-delay="0.22">
-              <div class="card-top">
-                <span class="card-icon" aria-hidden="true">04</span>
-                <span class="card-arrow" aria-hidden="true">-></span>
-              </div>
+            <article class="service-card reveal" data-delay="0.12">
               <h3>Adoption and Training</h3>
-              <p>Enable team adoption with role-specific workflows, guides, and practical operating playbooks.</p>
+              <p>Equip teams with role-specific guidance and operating standards for sustained uptake.</p>
             </article>
-
-            <article class="capability-card reveal" data-delay="0.26">
-              <div class="card-top">
-                <span class="card-icon" aria-hidden="true">05</span>
-                <span class="card-arrow" aria-hidden="true">-></span>
-              </div>
+            <article class="service-card reveal" data-delay="0.14">
               <h3>AI Governance</h3>
-              <p>Introduce controls, security checks, and clear policy standards across all automation systems.</p>
+              <p>Implement compliance controls and governance checkpoints across all automation flows.</p>
             </article>
+            <article class="service-card reveal" data-delay="0.16">
+              <h3>Continuous Optimisation</h3>
+              <p>Review performance data and iterate workflows for reliability and measurable value.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-            <article class="capability-card reveal" data-delay="0.3">
-              <div class="card-top">
-                <span class="card-icon" aria-hidden="true">06</span>
-                <span class="card-arrow" aria-hidden="true">-></span>
+      <section class="section use-cases" id="use-cases" aria-labelledby="use-cases-title">
+        <div class="container reveal" data-delay="0.04">
+          <div class="section-head">
+            <p class="section-label">Use Cases</p>
+            <h2 class="section-title" id="use-cases-title">Examples of measurable operational outcomes</h2>
+          </div>
+
+          <div class="card-grid" aria-label="Use case examples">
+            <article class="case-card reveal" data-delay="0.06">
+              <p class="case-metric">38%</p>
+              <h3>Maintenance admin reduction</h3>
+              <p>
+                Automated intake, triage, and task routing reduced repetitive administration in a
+                pilot environment.
+              </p>
+            </article>
+            <article class="case-card reveal" data-delay="0.08">
+              <p class="case-metric">4-8 weeks</p>
+              <h3>Faster pilot deployment</h3>
+              <p>
+                Structured discovery and implementation controls enabled rapid rollout from audit to
+                live workflow.
+              </p>
+            </article>
+            <article class="case-card reveal" data-delay="0.1">
+              <p class="case-metric">92%</p>
+              <h3>Reliable workflow execution</h3>
+              <p>
+                Monitoring and governance checks improved execution reliability across recurring
+                automation tasks.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section resources" id="resources" aria-labelledby="resources-title">
+        <div class="container reveal" data-delay="0.04">
+          <div class="section-head">
+            <p class="section-label">Resources</p>
+            <h2 class="section-title" id="resources-title">Structured guidance for leadership and delivery teams</h2>
+          </div>
+
+          <div class="card-grid" aria-label="Resource highlights">
+            <article class="resource-card reveal" data-delay="0.06">
+              <h3>AI Readiness Checklist</h3>
+              <p>Assess process maturity, data quality, governance, and delivery readiness.</p>
+              <a href="#contact">Request checklist</a>
+            </article>
+            <article class="resource-card reveal" data-delay="0.08">
+              <h3>Compliance Planning Brief</h3>
+              <p>Define controls and responsibilities before automation is introduced at scale.</p>
+              <a href="#contact">Request brief</a>
+            </article>
+            <article class="resource-card reveal" data-delay="0.1">
+              <h3>Pilot KPI Template</h3>
+              <p>Track baseline, target, and realised outcomes for clear executive reporting.</p>
+              <a href="#contact">Request template</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact" aria-labelledby="contact-title">
+        <div class="container contact-shell reveal" data-delay="0.04">
+          <div class="section-head">
+            <p class="section-label">Contact</p>
+            <h2 class="section-title" id="contact-title">Start a practical AI implementation plan</h2>
+            <p class="contact-intro">
+              Share your current workflow challenge and we will respond with a structured next-step
+              plan.
+            </p>
+          </div>
+
+          <p id="contact-success" class="form-status form-status-success" tabindex="-1" role="status" aria-live="polite">
+            Thanks. Your enquiry has been received and our team will respond shortly.
+          </p>
+          <p id="contact-form-status" class="form-status" role="status" aria-live="polite"></p>
+
+          <form
+            class="contact-form"
+            name="contact"
+            method="POST"
+            action="/#contact-success"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            data-lead-form
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="visually-hidden">
+              <label>
+                Do not fill this field if you are human
+                <input name="bot-field" />
+              </label>
+            </p>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="full-name">Full name</label>
+                <input id="full-name" name="full_name" type="text" autocomplete="name" required />
+                <p class="field-error" id="error-full-name"></p>
               </div>
-              <h3>Continuous Optimization</h3>
-              <p>Monitor outcomes, tune workflows, and iterate for sustained reliability and business value.</p>
-            </article>
-          </div>
-        </div>
-      </section>
 
-      <section class="section process" id="process" aria-labelledby="process-title">
-        <div class="container process-shell reveal" data-delay="0.04">
-          <div class="process-copy reveal" data-delay="0.08">
-            <p class="section-label">Delivery Model</p>
-            <h2 class="section-title" id="process-title">A focused three-phase rollout</h2>
-            <p>
-              Every engagement follows a structured model to accelerate delivery without
-              compromising reliability or governance.
-            </p>
-          </div>
+              <div class="form-field">
+                <label for="work-email">Work email</label>
+                <input id="work-email" name="work_email" type="email" autocomplete="email" required />
+                <p class="field-error" id="error-work-email"></p>
+              </div>
 
-          <ol class="process-steps" aria-label="Implementation process">
-            <li class="reveal" data-delay="0.12">
-              <p class="step-tag">Phase 1</p>
-              <h3>Discover</h3>
-              <p>Baseline workflows, define success metrics, and map clear execution scope.</p>
-            </li>
-            <li class="reveal" data-delay="0.16">
-              <p class="step-tag">Phase 2</p>
-              <h3>Build</h3>
-              <p>Deliver prototypes, connect systems, and launch production-ready automations.</p>
-            </li>
-            <li class="reveal" data-delay="0.2">
-              <p class="step-tag">Phase 3</p>
-              <h3>Scale</h3>
-              <p>Expand adoption, monitor outcomes, and continuously optimize performance.</p>
-            </li>
-          </ol>
-        </div>
-      </section>
+              <div class="form-field">
+                <label for="company-name">Company</label>
+                <input id="company-name" name="company" type="text" autocomplete="organization" required />
+                <p class="field-error" id="error-company-name"></p>
+              </div>
 
-      <section class="section cta-section" id="contact" aria-labelledby="cta-title">
-        <div class="container surface cta-shell reveal" data-delay="0.06">
-          <div class="cta-copy">
-            <p class="section-label">Get Started</p>
-            <h2 id="cta-title">Ready to operationalize AI with confidence?</h2>
-            <p>
-              Send us your current workflow challenges and we will map a practical,
-              measurable implementation plan.
-            </p>
-          </div>
+              <div class="form-field form-field-full">
+                <label for="challenge">Primary workflow challenge</label>
+                <textarea id="challenge" name="challenge" rows="5" required></textarea>
+                <p class="field-error" id="error-challenge"></p>
+              </div>
 
-          <div class="cta-actions">
-            <a
-              class="btn btn-primary"
-              href="mailto:robson.ai.solutions@gmail.com?subject=Website%20Enquiry%20-%20Robson%20AI%20Solutions"
-            >
-              Email Robson AI
-            </a>
-            <a class="btn btn-ghost" href="#services">View Services</a>
-          </div>
+              <div class="form-field form-field-full form-check">
+                <input id="consent" name="consent" type="checkbox" required />
+                <label for="consent">
+                  I confirm Robson AI Solutions may contact me about this enquiry.
+                </label>
+                <p class="field-error" id="error-consent"></p>
+              </div>
+            </div>
+
+            <div class="contact-actions">
+              <button class="btn btn-primary" type="submit">Send Enquiry</button>
+              <a
+                class="btn btn-ghost"
+                href="mailto:robson.ai.solutions@gmail.com?subject=Website%20Enquiry%20-%20Robson%20AI%20Solutions"
+              >
+                Email instead
+              </a>
+            </div>
+          </form>
         </div>
       </section>
     </main>
@@ -245,73 +340,204 @@
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      if (!prefersReducedMotion) {
-        const revealItems = document.querySelectorAll(".reveal");
+      const revealItems = document.querySelectorAll(".reveal");
+      if (reduceMotion) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      } else {
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const delay = entry.target.dataset.delay || "0";
-                entry.target.style.transitionDelay = `${delay}s`;
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
+              if (!entry.isIntersecting) {
+                return;
               }
+
+              const delay = entry.target.dataset.delay || "0";
+              entry.target.style.transitionDelay = `${delay}s`;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
             });
           },
-          { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+          { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
         );
 
         revealItems.forEach((item) => observer.observe(item));
-
-        const heroPanel = document.querySelector(".hero-panel");
-        if (heroPanel) {
-          window.addEventListener("mousemove", (event) => {
-            const x = (event.clientX / window.innerWidth - 0.5) * 6;
-            const y = (event.clientY / window.innerHeight - 0.5) * -6;
-            heroPanel.style.transform = `perspective(900px) rotateX(${y}deg) rotateY(${x}deg)`;
-          });
-
-          window.addEventListener("mouseleave", () => {
-            heroPanel.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
-          });
-        }
-      } else {
-        document.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
       }
-    </script>
-    <script
-      type="text/javascript"
-      async
-      src="https://cdn.reamaze.com/assets/reamaze-godaddy-loader.js"
-    ></script>
-    <script type="text/javascript">
-      var _support = _support || { ui: {}, user: {} };
-      _support.account = "3fdcb29c-c3d7-414a-b833-618f19461b16";
-      _support.ui.contactMode = "default";
-      _support.ui.enableKb = "false";
-      _support.ui.mailbox = "73998528";
-      _support.ui.styles = {
-        widgetColor: "#969696",
+
+      const nav = document.querySelector(".site-nav");
+      const navToggle = document.querySelector(".nav-toggle");
+      if (nav && navToggle) {
+        const setNavOpen = (isOpen) => {
+          nav.dataset.open = isOpen ? "true" : "false";
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+        };
+
+        navToggle.addEventListener("click", () => {
+          setNavOpen(nav.dataset.open !== "true");
+        });
+
+        nav.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => setNavOpen(false));
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            setNavOpen(false);
+          }
+        });
+
+        document.addEventListener("click", (event) => {
+          if (nav.dataset.open === "true" && !nav.contains(event.target) && event.target !== navToggle) {
+            setNavOpen(false);
+          }
+        });
+      }
+
+      const form = document.querySelector("[data-lead-form]");
+      const formStatus = document.getElementById("contact-form-status");
+      const successStatus = document.getElementById("contact-success");
+
+      const setFieldError = (field, message) => {
+        const errorId = `error-${field.id}`;
+        const errorNode = document.getElementById(errorId);
+        if (!errorNode) {
+          return;
+        }
+
+        errorNode.textContent = message;
+        errorNode.classList.add("is-visible");
+        field.setAttribute("aria-invalid", "true");
+        field.setAttribute("aria-describedby", errorId);
       };
-      _support.ui.shoutboxFacesMode = "brand-avatar";
-      _support.ui.widget = {
-        icon: "webChat",
-        slug: "robson-ai-solutions",
-        label: {
-          text: "Let me know if you have any questions!",
-          mode: "notification",
-          delay: 10,
-        },
-        position: "bottom-right",
+
+      const clearFieldError = (field) => {
+        const errorId = `error-${field.id}`;
+        const errorNode = document.getElementById(errorId);
+        if (!errorNode) {
+          return;
+        }
+
+        errorNode.textContent = "";
+        errorNode.classList.remove("is-visible");
+        field.removeAttribute("aria-invalid");
+        field.removeAttribute("aria-describedby");
       };
-      _support.ui.overrides = _support.ui.overrides || {};
-      _support.ui.overrides.confirmationMessage =
-        "Thanks! Your message has been submitted. We'll get back to you here or via email.";
-      _support.ui.user = {
-        authpath: "/m/api/reamaze/v2/customers/auth?brand=36925999",
+
+      const trackLeadSuccess = () => {
+        if (Array.isArray(window.dataLayer)) {
+          window.dataLayer.push({ event: "lead_submit_success", method: "contact_form" });
+        }
+
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "lead_submit_success", { method: "contact_form" });
+        }
       };
+
+      if (form) {
+        const fields = form.querySelectorAll("input[required], textarea[required]");
+
+        form.addEventListener(
+          "invalid",
+          (event) => {
+            event.preventDefault();
+            if (!(event.target instanceof HTMLElement)) {
+              return;
+            }
+
+            const target = event.target;
+            if ("validationMessage" in target) {
+              setFieldError(target, target.validationMessage);
+            }
+          },
+          true
+        );
+
+        fields.forEach((field) => {
+          field.addEventListener("input", () => {
+            if (field.checkValidity()) {
+              clearFieldError(field);
+            }
+          });
+        });
+
+        form.addEventListener("submit", (event) => {
+          let firstInvalid = null;
+
+          fields.forEach((field) => {
+            if (!field.checkValidity()) {
+              setFieldError(field, field.validationMessage);
+              firstInvalid = firstInvalid || field;
+            } else {
+              clearFieldError(field);
+            }
+          });
+
+          if (firstInvalid) {
+            event.preventDefault();
+            formStatus.textContent = "Please correct the highlighted fields and try again.";
+            formStatus.classList.add("is-visible", "is-error");
+            firstInvalid.focus();
+            return;
+          }
+
+          formStatus.textContent = "Submitting your enquiry...";
+          formStatus.classList.remove("is-error");
+          formStatus.classList.add("is-visible");
+        });
+      }
+
+      if (window.location.hash === "#contact-success") {
+        successStatus.classList.add("is-visible");
+        successStatus.focus();
+        trackLeadSuccess();
+      }
+
+      const loadSupportWidget = () => {
+        if (window.__supportWidgetLoaded) {
+          return;
+        }
+
+        window.__supportWidgetLoaded = true;
+
+        var _support = (window._support = window._support || { ui: {}, user: {} });
+        _support.account = "3fdcb29c-c3d7-414a-b833-618f19461b16";
+        _support.ui.contactMode = "default";
+        _support.ui.enableKb = "false";
+        _support.ui.mailbox = "73998528";
+        _support.ui.styles = {
+          widgetColor: "#969696",
+        };
+        _support.ui.shoutboxFacesMode = "brand-avatar";
+        _support.ui.widget = {
+          icon: "webChat",
+          slug: "robson-ai-solutions",
+          label: {
+            text: "Let me know if you have any questions!",
+            mode: "notification",
+            delay: 10,
+          },
+          position: "bottom-right",
+        };
+        _support.ui.overrides = _support.ui.overrides || {};
+        _support.ui.overrides.confirmationMessage =
+          "Thanks! Your message has been submitted. We'll get back to you here or via email.";
+        _support.ui.user = {
+          authpath: "/m/api/reamaze/v2/customers/auth?brand=36925999",
+        };
+
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = "https://cdn.reamaze.com/assets/reamaze-godaddy-loader.js";
+        document.body.appendChild(script);
+      };
+
+      const supportInitEvents = ["pointerdown", "keydown", "touchstart", "scroll"];
+      supportInitEvents.forEach((eventName) => {
+        window.addEventListener(eventName, loadSupportWidget, { once: true, passive: true });
+      });
+
+      window.setTimeout(loadSupportWidget, 10000);
     </script>
   </body>
 </html>
