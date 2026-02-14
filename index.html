@@ -8,15 +8,12 @@
       content="Robson AI Solutions helps construction and asset teams automate workflows, improve compliance visibility, and deploy evidence-based AI systems with measurable outcomes."
     />
     <title>Robson AI Solutions | Practical AI Operations</title>
-    <link rel="icon" type="image/png" href="./assets/robson-ai-icon.png?v=20260214a" />
-    <link rel="shortcut icon" href="./assets/robson-ai-icon.png?v=20260214a" />
-    <link rel="apple-touch-icon" href="./assets/robson-ai-icon.png?v=20260214a" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&family=Poppins:wght@500;600&display=swap"
-    />
+    <link rel="icon" type="image/png" href="./assets/robson-ai-icon.png?v=20260214b" />
+    <link rel="shortcut icon" href="./assets/robson-ai-icon.png?v=20260214b" />
+    <link rel="apple-touch-icon" href="./assets/robson-ai-icon.png?v=20260214b" />
+    <link rel="preload" href="./assets/fonts/Montserrat-SemiBold.ttf" as="font" type="font/ttf" />
+    <link rel="preload" href="./assets/fonts/OpenSans-Regular.ttf" as="font" type="font/ttf" />
+    <link rel="preload" href="./assets/fonts/Poppins-Medium.ttf" as="font" type="font/ttf" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -27,7 +24,7 @@
         <a class="brand" href="#home" aria-label="Robson AI Solutions home">
           <img
             class="brand-logo"
-            src="./assets/robson-ai-icon.png?v=20260214a"
+            src="./assets/robson-ai-icon.png?v=20260214b"
             alt="Robson AI Solutions logo mark"
           />
           <span class="brand-text">
@@ -55,7 +52,9 @@
             </div>
           </nav>
 
-          <a class="btn btn-outline header-cta" href="#contact">Start Project</a>
+          <a class="btn btn-outline header-cta" href="#contact" data-cta-source="header-primary"
+            >Start Enquiry</a
+          >
         </div>
       </div>
     </header>
@@ -67,13 +66,15 @@
             <p class="eyebrow">AI Operations Studio</p>
             <h1 id="hero-title">Production-ready AI workflows for modern teams.</h1>
             <p class="lead">
-              Robson AI Solutions designs and deploys practical systems that reduce repetitive
-              work, strengthen compliance confidence, and improve operational decision support.
+              Robson AI Solutions designs and deploys practical systems that reduce repetitive work,
+              strengthen compliance confidence, and improve operational decision support.
             </p>
 
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Start Your AI Roadmap</a>
-              <a class="btn btn-ghost" href="#services">Explore Services</a>
+              <a class="btn btn-primary" href="#contact" data-cta-source="hero-primary"
+                >Start Enquiry</a
+              >
+              <a class="btn btn-ghost" href="#services">View Services</a>
             </div>
 
             <ul class="hero-stats" aria-label="Performance highlights">
@@ -101,11 +102,11 @@
             <dl class="snapshot-list">
               <div>
                 <dt>Initial discovery</dt>
-                <dd>Workflow mapping, risk review, data readiness.</dd>
+                <dd>Workflow mapping, risk review, and data readiness checks.</dd>
               </div>
               <div>
                 <dt>Build phase</dt>
-                <dd>Controlled automation rollout with governance checks.</dd>
+                <dd>Controlled automation rollout with governance controls.</dd>
               </div>
               <div>
                 <dt>Operational handover</dt>
@@ -117,7 +118,7 @@
       </section>
 
       <section class="section about" id="about" aria-labelledby="about-title">
-        <div class="container about-shell reveal" data-delay="0.04">
+        <div class="container reveal" data-delay="0.04">
           <div class="section-head">
             <p class="section-label">About</p>
             <h2 class="section-title" id="about-title">
@@ -142,7 +143,7 @@
               </li>
               <li>
                 <h3>Operational handover</h3>
-                <p>Teams receive documented processes, role ownership, and adoption guidance.</p>
+                <p>Teams receive documented workflows, role ownership, and adoption guidance.</p>
               </li>
             </ul>
           </div>
@@ -162,26 +163,52 @@
             <article class="service-card reveal" data-delay="0.06">
               <h3>AI Opportunity Audit</h3>
               <p>Identify and prioritise opportunities by operational impact and implementation risk.</p>
+              <a href="#contact" class="card-cta" data-service="ai-opportunity-audit" data-cta-source="service-card"
+                >Start Enquiry</a
+              >
             </article>
             <article class="service-card reveal" data-delay="0.08">
               <h3>Workflow Automation Build</h3>
               <p>Design and deploy reliable automation across intake, routing, and reporting workflows.</p>
+              <a
+                href="#contact"
+                class="card-cta"
+                data-service="workflow-automation-build"
+                data-cta-source="service-card"
+                >Start Enquiry</a
+              >
             </article>
             <article class="service-card reveal" data-delay="0.1">
               <h3>Reporting and Insights</h3>
               <p>Replace fragmented updates with structured dashboards and decision-ready metrics.</p>
+              <a href="#contact" class="card-cta" data-service="reporting-insights" data-cta-source="service-card"
+                >Start Enquiry</a
+              >
             </article>
             <article class="service-card reveal" data-delay="0.12">
               <h3>Adoption and Training</h3>
               <p>Equip teams with role-specific guidance and operating standards for sustained uptake.</p>
+              <a href="#contact" class="card-cta" data-service="adoption-training" data-cta-source="service-card"
+                >Start Enquiry</a
+              >
             </article>
             <article class="service-card reveal" data-delay="0.14">
               <h3>AI Governance</h3>
-              <p>Implement compliance controls and governance checkpoints across all automation flows.</p>
+              <p>Implement compliance controls and governance checkpoints across automation workflows.</p>
+              <a href="#contact" class="card-cta" data-service="ai-governance" data-cta-source="service-card"
+                >Start Enquiry</a
+              >
             </article>
             <article class="service-card reveal" data-delay="0.16">
               <h3>Continuous Optimisation</h3>
               <p>Review performance data and iterate workflows for reliability and measurable value.</p>
+              <a
+                href="#contact"
+                class="card-cta"
+                data-service="continuous-optimisation"
+                data-cta-source="service-card"
+                >Start Enquiry</a
+              >
             </article>
           </div>
         </div>
@@ -197,7 +224,7 @@
           <div class="card-grid" aria-label="Use case examples">
             <article class="case-card reveal" data-delay="0.06">
               <p class="case-metric">38%</p>
-              <h3>Maintenance admin reduction</h3>
+              <h3>Maintenance administration reduction</h3>
               <p>
                 Automated intake, triage, and task routing reduced repetitive administration in a
                 pilot environment.
@@ -234,17 +261,35 @@
             <article class="resource-card reveal" data-delay="0.06">
               <h3>AI Readiness Checklist</h3>
               <p>Assess process maturity, data quality, governance, and delivery readiness.</p>
-              <a href="#contact">Request checklist</a>
+              <a
+                href="#contact"
+                class="card-cta"
+                data-resource="ai-readiness-checklist"
+                data-cta-source="resource-card"
+                >Start Enquiry</a
+              >
             </article>
             <article class="resource-card reveal" data-delay="0.08">
               <h3>Compliance Planning Brief</h3>
               <p>Define controls and responsibilities before automation is introduced at scale.</p>
-              <a href="#contact">Request brief</a>
+              <a
+                href="#contact"
+                class="card-cta"
+                data-resource="compliance-planning-brief"
+                data-cta-source="resource-card"
+                >Start Enquiry</a
+              >
             </article>
             <article class="resource-card reveal" data-delay="0.1">
               <h3>Pilot KPI Template</h3>
               <p>Track baseline, target, and realised outcomes for clear executive reporting.</p>
-              <a href="#contact">Request template</a>
+              <a
+                href="#contact"
+                class="card-cta"
+                data-resource="pilot-kpi-template"
+                data-cta-source="resource-card"
+                >Start Enquiry</a
+              >
             </article>
           </div>
         </div>
@@ -256,8 +301,7 @@
             <p class="section-label">Contact</p>
             <h2 class="section-title" id="contact-title">Start a practical AI implementation plan</h2>
             <p class="contact-intro">
-              Share your current workflow challenge and we will respond with a structured next-step
-              plan.
+              Share your workflow challenge and we will respond with a structured next-step plan.
             </p>
           </div>
 
@@ -270,12 +314,17 @@
             class="contact-form"
             name="contact"
             method="POST"
-            action="/#contact-success"
+            action="/"
             data-netlify="true"
             netlify-honeypot="bot-field"
             data-lead-form
+            novalidate
           >
             <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" id="service-interest" name="service_interest" value="" />
+            <input type="hidden" id="resource-source" name="resource_source" value="" />
+            <input type="hidden" id="cta-source" name="cta_source" value="direct" />
+
             <p class="visually-hidden">
               <label>
                 Do not fill this field if you are human
@@ -302,28 +351,70 @@
                 <p class="field-error" id="error-company-name"></p>
               </div>
 
+              <div class="form-field">
+                <label for="team-size">Team size (optional)</label>
+                <select id="team-size" name="team_size">
+                  <option value="">Select</option>
+                  <option value="1-10">1-10</option>
+                  <option value="11-50">11-50</option>
+                  <option value="51-200">51-200</option>
+                  <option value="201+">201+</option>
+                </select>
+              </div>
+
               <div class="form-field form-field-full">
                 <label for="challenge">Primary workflow challenge</label>
-                <textarea id="challenge" name="challenge" rows="5" required></textarea>
+                <p id="challenge-hint" class="field-hint">
+                  Include current process, key blockers, process volume, and target outcome.
+                </p>
+                <textarea id="challenge" name="challenge" rows="5" aria-describedby="challenge-hint" required></textarea>
                 <p class="field-error" id="error-challenge"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="systems">Current systems (optional)</label>
+                <input
+                  id="systems"
+                  name="current_systems"
+                  type="text"
+                  placeholder="Example: SharePoint, Excel, CMMS"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="timeline">Target timeline (optional)</label>
+                <select id="timeline" name="target_timeline">
+                  <option value="">Select</option>
+                  <option value="0-3-months">0-3 months</option>
+                  <option value="3-6-months">3-6 months</option>
+                  <option value="6-12-months">6-12 months</option>
+                  <option value="12-plus-months">12+ months</option>
+                </select>
               </div>
 
               <div class="form-field form-field-full form-check">
                 <input id="consent" name="consent" type="checkbox" required />
-                <label for="consent">
-                  I confirm Robson AI Solutions may contact me about this enquiry.
-                </label>
+                <div>
+                  <label for="consent">
+                    I confirm Robson AI Solutions may contact me about this enquiry.
+                  </label>
+                  <p class="form-meta">
+                    We only use these details to respond to your enquiry. Typical response time is one business day.
+                    See our <a href="./privacy.html">privacy notice</a>.
+                  </p>
+                </div>
                 <p class="field-error" id="error-consent"></p>
               </div>
             </div>
 
             <div class="contact-actions">
-              <button class="btn btn-primary" type="submit">Send Enquiry</button>
+              <button class="btn btn-primary" type="submit">Submit Enquiry</button>
+              <button class="btn btn-outline chat-trigger" id="open-chat" type="button">Open Chat</button>
               <a
                 class="btn btn-ghost"
                 href="mailto:robson.ai.solutions@gmail.com?subject=Website%20Enquiry%20-%20Robson%20AI%20Solutions"
               >
-                Email instead
+                Email Instead
               </a>
             </div>
           </form>
@@ -341,6 +432,34 @@
       document.getElementById("year").textContent = new Date().getFullYear();
 
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const mobileNav = window.matchMedia("(max-width: 760px)");
+
+      const nav = document.querySelector(".site-nav");
+      const navToggle = document.querySelector(".nav-toggle");
+      const navLinks = document.getElementById("site-nav-links");
+      const main = document.getElementById("main-content");
+      const footer = document.querySelector(".site-footer");
+      const form = document.querySelector("[data-lead-form]");
+      const formStatus = document.getElementById("contact-form-status");
+      const successStatus = document.getElementById("contact-success");
+      const chatButton = document.getElementById("open-chat");
+
+      const serviceInterestInput = document.getElementById("service-interest");
+      const resourceSourceInput = document.getElementById("resource-source");
+      const ctaSourceInput = document.getElementById("cta-source");
+
+      const trackEvent = (eventName, payload = {}) => {
+        if (Array.isArray(window.dataLayer)) {
+          window.dataLayer.push({ event: eventName, ...payload });
+        }
+
+        if (typeof window.gtag === "function") {
+          window.gtag("event", eventName, payload);
+        }
+
+        window.__leadEvents = window.__leadEvents || [];
+        window.__leadEvents.push({ event: eventName, payload, ts: Date.now() });
+      };
 
       const revealItems = document.querySelectorAll(".reveal");
       if (reduceMotion) {
@@ -365,38 +484,136 @@
         revealItems.forEach((item) => observer.observe(item));
       }
 
-      const nav = document.querySelector(".site-nav");
-      const navToggle = document.querySelector(".nav-toggle");
-      if (nav && navToggle) {
-        const setNavOpen = (isOpen) => {
-          nav.dataset.open = isOpen ? "true" : "false";
-          navToggle.setAttribute("aria-expanded", String(isOpen));
-        };
+      const setBackgroundInteractivity = (isLocked) => {
+        document.body.classList.toggle("nav-locked", isLocked);
+
+        if ("inert" in HTMLElement.prototype) {
+          if (main) {
+            main.inert = isLocked;
+          }
+          if (footer) {
+            footer.inert = isLocked;
+          }
+        }
+      };
+
+      const isMobileNav = () => mobileNav.matches;
+
+      const syncNavVisibility = () => {
+        if (!nav || !navLinks || !navToggle) {
+          return;
+        }
+
+        if (isMobileNav()) {
+          const open = nav.dataset.open === "true";
+          navLinks.hidden = !open;
+        } else {
+          nav.dataset.open = "false";
+          navToggle.setAttribute("aria-expanded", "false");
+          navLinks.hidden = false;
+          setBackgroundInteractivity(false);
+        }
+      };
+
+      const setNavOpen = (isOpen) => {
+        if (!nav || !navToggle || !navLinks) {
+          return;
+        }
+
+        nav.dataset.open = isOpen ? "true" : "false";
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+
+        if (isMobileNav()) {
+          navLinks.hidden = !isOpen;
+          setBackgroundInteractivity(isOpen);
+          if (isOpen) {
+            const firstLink = navLinks.querySelector("a");
+            if (firstLink) {
+              firstLink.focus();
+            }
+          }
+        }
+      };
+
+      if (nav && navToggle && navLinks) {
+        syncNavVisibility();
 
         navToggle.addEventListener("click", () => {
           setNavOpen(nav.dataset.open !== "true");
         });
 
-        nav.querySelectorAll("a").forEach((link) => {
+        navLinks.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", () => setNavOpen(false));
         });
 
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") {
+        document.addEventListener("click", (event) => {
+          if (nav.dataset.open !== "true") {
+            return;
+          }
+
+          if (!nav.contains(event.target) && event.target !== navToggle) {
             setNavOpen(false);
+            navToggle.focus();
           }
         });
 
-        document.addEventListener("click", (event) => {
-          if (nav.dataset.open === "true" && !nav.contains(event.target) && event.target !== navToggle) {
-            setNavOpen(false);
+        document.addEventListener("keydown", (event) => {
+          if (nav.dataset.open !== "true") {
+            return;
           }
+
+          if (event.key === "Escape") {
+            setNavOpen(false);
+            navToggle.focus();
+            return;
+          }
+
+          if (event.key !== "Tab") {
+            return;
+          }
+
+          const focusables = [navToggle, ...navLinks.querySelectorAll("a")];
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        });
+
+        mobileNav.addEventListener("change", () => {
+          setNavOpen(false);
+          syncNavVisibility();
         });
       }
 
-      const form = document.querySelector("[data-lead-form]");
-      const formStatus = document.getElementById("contact-form-status");
-      const successStatus = document.getElementById("contact-success");
+      const setLeadContext = ({ service = null, resource = null, ctaSource = null } = {}) => {
+        if (service !== null && serviceInterestInput) {
+          serviceInterestInput.value = service;
+        }
+
+        if (resource !== null && resourceSourceInput) {
+          resourceSourceInput.value = resource;
+        }
+
+        if (ctaSource !== null && ctaSourceInput) {
+          ctaSourceInput.value = ctaSource;
+        }
+      };
+
+      document.querySelectorAll("[data-service], [data-resource], [data-cta-source]").forEach((node) => {
+        node.addEventListener("click", () => {
+          setLeadContext({
+            service: node.dataset.service ?? null,
+            resource: node.dataset.resource ?? null,
+            ctaSource: node.dataset.ctaSource ?? null,
+          });
+        });
+      });
 
       const setFieldError = (field, message) => {
         const errorId = `error-${field.id}`;
@@ -421,79 +638,183 @@
         errorNode.textContent = "";
         errorNode.classList.remove("is-visible");
         field.removeAttribute("aria-invalid");
-        field.removeAttribute("aria-describedby");
+
+        if (field.id === "challenge") {
+          field.setAttribute("aria-describedby", "challenge-hint");
+        } else {
+          field.removeAttribute("aria-describedby");
+        }
       };
 
-      const trackLeadSuccess = () => {
-        if (Array.isArray(window.dataLayer)) {
-          window.dataLayer.push({ event: "lead_submit_success", method: "contact_form" });
+      const setFormMessage = (text, isError = false) => {
+        if (!formStatus) {
+          return;
         }
 
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "lead_submit_success", { method: "contact_form" });
+        formStatus.textContent = text;
+        formStatus.classList.add("is-visible");
+        formStatus.classList.toggle("is-error", isError);
+      };
+
+      const clearFormMessage = () => {
+        if (!formStatus) {
+          return;
         }
+
+        formStatus.textContent = "";
+        formStatus.classList.remove("is-visible", "is-error");
+      };
+
+      let leadStarted = false;
+      let leadSubmitted = false;
+      let leadAbandonTracked = false;
+
+      const formHasUserInput = () => {
+        if (!form) {
+          return false;
+        }
+
+        const inputs = form.querySelectorAll(
+          "input:not([type='hidden']):not([type='checkbox']), textarea, select"
+        );
+        for (const input of inputs) {
+          if ((input.value || "").trim().length > 0) {
+            return true;
+          }
+        }
+
+        const consent = document.getElementById("consent");
+        return Boolean(consent && consent.checked);
       };
 
       if (form) {
-        const fields = form.querySelectorAll("input[required], textarea[required]");
+        const requiredFields = form.querySelectorAll("input[required], textarea[required], select[required]");
+        const startLead = () => {
+          if (leadStarted) {
+            return;
+          }
 
-        form.addEventListener(
-          "invalid",
-          (event) => {
-            event.preventDefault();
-            if (!(event.target instanceof HTMLElement)) {
-              return;
-            }
+          leadStarted = true;
+          trackEvent("lead_form_start", { source: ctaSourceInput ? ctaSourceInput.value : "direct" });
+        };
 
-            const target = event.target;
-            if ("validationMessage" in target) {
-              setFieldError(target, target.validationMessage);
-            }
-          },
-          true
-        );
-
-        fields.forEach((field) => {
+        requiredFields.forEach((field) => {
+          field.addEventListener("focus", startLead, { once: true });
           field.addEventListener("input", () => {
+            startLead();
             if (field.checkValidity()) {
               clearFieldError(field);
             }
           });
         });
 
-        form.addEventListener("submit", (event) => {
-          let firstInvalid = null;
+        form.addEventListener(
+          "invalid",
+          (event) => {
+            event.preventDefault();
+            const field = event.target;
+            if (!(field instanceof HTMLElement) || !("validationMessage" in field)) {
+              return;
+            }
 
-          fields.forEach((field) => {
+            const message = field.validationMessage;
+            setFieldError(field, message);
+            setFormMessage("Please correct the highlighted fields and try again.", true);
+            trackEvent("lead_form_error", {
+              source: ctaSourceInput ? ctaSourceInput.value : "direct",
+              type: "validation",
+              field: field.id || field.name || "unknown",
+            });
+          },
+          true
+        );
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          startLead();
+
+          if (successStatus) {
+            successStatus.classList.remove("is-visible");
+          }
+
+          let firstInvalid = null;
+          requiredFields.forEach((field) => {
             if (!field.checkValidity()) {
-              setFieldError(field, field.validationMessage);
-              firstInvalid = firstInvalid || field;
+              const message = field.validationMessage || "This field is required.";
+              setFieldError(field, message);
+              if (!firstInvalid) {
+                firstInvalid = field;
+              }
             } else {
               clearFieldError(field);
             }
           });
 
           if (firstInvalid) {
-            event.preventDefault();
-            formStatus.textContent = "Please correct the highlighted fields and try again.";
-            formStatus.classList.add("is-visible", "is-error");
+            setFormMessage("Please correct the highlighted fields and try again.", true);
             firstInvalid.focus();
             return;
           }
 
-          formStatus.textContent = "Submitting your enquiry...";
-          formStatus.classList.remove("is-error");
-          formStatus.classList.add("is-visible");
+          clearFormMessage();
+          setFormMessage("Submitting your enquiry...");
+
+          try {
+            const formData = new FormData(form);
+            const response = await fetch("/", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams(formData).toString(),
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}`);
+            }
+
+            leadSubmitted = true;
+            clearFormMessage();
+            if (successStatus) {
+              successStatus.classList.add("is-visible");
+              successStatus.focus();
+            }
+
+            trackEvent("lead_submit_success", {
+              source: ctaSourceInput ? ctaSourceInput.value : "direct",
+              service: serviceInterestInput ? serviceInterestInput.value : "",
+              resource: resourceSourceInput ? resourceSourceInput.value : "",
+            });
+
+            form.reset();
+            setLeadContext({ service: "", resource: "" });
+          } catch (error) {
+            setFormMessage(
+              "Submission failed. Please try again or use the email option below.",
+              true
+            );
+            trackEvent("lead_form_error", {
+              source: ctaSourceInput ? ctaSourceInput.value : "direct",
+              type: "submit_failure",
+            });
+          }
         });
       }
 
-      if (window.location.hash === "#contact-success") {
-        successStatus.classList.add("is-visible");
-        successStatus.focus();
-        trackLeadSuccess();
-      }
+      document.addEventListener("visibilitychange", () => {
+        if (
+          document.visibilityState === "hidden" &&
+          leadStarted &&
+          !leadSubmitted &&
+          !leadAbandonTracked &&
+          formHasUserInput()
+        ) {
+          leadAbandonTracked = true;
+          trackEvent("lead_form_abandon", {
+            source: ctaSourceInput ? ctaSourceInput.value : "direct",
+          });
+        }
+      });
 
-      const loadSupportWidget = () => {
+      const loadSupportWidget = (source) => {
         if (window.__supportWidgetLoaded) {
           return;
         }
@@ -530,14 +851,21 @@
         script.async = true;
         script.src = "https://cdn.reamaze.com/assets/reamaze-godaddy-loader.js";
         document.body.appendChild(script);
+
+        trackEvent("chat_widget_loaded", { source });
       };
 
-      const supportInitEvents = ["pointerdown", "keydown", "touchstart", "scroll"];
-      supportInitEvents.forEach((eventName) => {
-        window.addEventListener(eventName, loadSupportWidget, { once: true, passive: true });
-      });
+      if (chatButton) {
+        chatButton.addEventListener("click", () => {
+          loadSupportWidget("manual");
+        });
+      }
 
-      window.setTimeout(loadSupportWidget, 10000);
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => loadSupportWidget("idle"), { timeout: 15000 });
+      } else {
+        window.setTimeout(() => loadSupportWidget("idle-timeout"), 18000);
+      }
     </script>
   </body>
 </html>
