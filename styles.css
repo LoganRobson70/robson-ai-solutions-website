@@ -152,10 +152,10 @@ p {
 }
 
 .brand-logo {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  box-shadow: 0 12px 18px rgba(8, 30, 33, 0.2);
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 10px rgba(8, 30, 33, 0.2));
 }
 
 .brand-text {
