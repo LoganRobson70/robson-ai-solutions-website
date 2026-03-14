@@ -1,4 +1,0 @@
-interface:
-  display_name: "Robson Brand Consistency"
-  short_description: "Apply Robson brand rules to web and iOS UI"
-  default_prompt: "Use $robson-brand-consistency to enforce Robson AI Solutions logo, colour, typography, layout, icon, and tone rules across website and iPhone app updates."
