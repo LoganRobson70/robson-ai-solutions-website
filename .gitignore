@@ -3,3 +3,7 @@
 
 # macOS metadata
 .DS_Store
+
+# Local browser evidence and review artefacts
+.playwright-cli/
+output/
