@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-30 12:32 Europe/London
+Last updated: 2026-05-30 12:43 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/professionalize-website`
@@ -18,40 +18,37 @@ Success means:
 
 ## 2. Active Tranche
 
-Tranche name: `rotate-preview-password-and-verify-netlify-preview`
+Tranche name: `repo-instructions-dirty-assessment-and-pr`
 Status: complete
-Started: 2026-05-30 12:14 Europe/London
-Completed: 2026-05-30 12:27 Europe/London
+Started: 2026-05-30 12:36 Europe/London
+Completed: 2026-05-30 12:43 Europe/London
 
 Scope:
 
-- Rotate the Netlify preview Basic Auth password.
-- Store the rotated preview credential in macOS Keychain without printing it in chat or files.
-- Re-set Netlify `production`, `deploy-preview`, and CLI alias `branch-deploy` preview-auth env vars.
-- Create a non-production Netlify alias deploy for preview/auth verification.
-- Verify protected routes reject unauthenticated access and accept the Keychain-stored credential.
-- Update tracker with validation evidence and remaining release gates.
+- Add root `AGENTS.md` with Robson AI/Codex repo working rules.
+- Add root `README.md` with project, command, preview-auth, and deployment baseline.
+- Assess remaining dirty website/UI files without staging them into the baseline PR.
+- Commit and push the repo-instruction/assessment docs.
+- Create a draft GitHub PR for the baseline/auth/docs branch.
 
 Out of scope:
 
-- Production deploy, public launch, product redesign, contact form implementation, analytics enablement, Git cleanup, commits, PRs, or unrelated file changes.
+- Production deploy, public launch, staging broad dirty website/UI files, product redesign, contact form implementation, analytics enablement, or destructive git cleanup.
 - Any customer data handling, payments, Apple signing/submission, or external messages.
 
 Permission envelope:
 
-- Wayne approved: `rotate-preview-password-store-in-macos-keychain` and a Netlify deploy-preview/auth verification pass.
-- Codex may do: rotate the preview password, store it in Keychain, update approved Netlify env vars, create a non-production Netlify deploy/alias, run safe local and live auth validation, update this tracker.
-- Codex must ask before: production deploys, changing domain/DNS, enabling GA4, sending external messages, broad account access, destructive git actions, commits, pushes, or PRs.
+- Wayne approved all three options: `create-pr-for-baseline-auth`, `assess-dirty-website-release-files`, and `add-root-agents-readme`.
+- Codex may do: add docs, inspect dirty files, commit scoped docs, push branch, and create draft PR.
+- Codex must ask before: production deploys, staging the broad dirty website/UI release files, changing domain/DNS, enabling GA4, sending external messages, destructive git actions, or merging PRs.
 
 Done criteria:
 
-- `npm run qa:preview-auth` passes.
-- `npm run qa:measurement:local` passes before preview deployment.
-- Netlify env vars are re-set after rotation and verified present without printing secret values.
-- macOS Keychain can retrieve the rotated preview password for local verification.
-- Non-production Netlify deploy URL is captured.
-- Live protected route returns `401` without credentials and `200` with the Keychain credential.
-- Tracker is updated with evidence and next action.
+- `AGENTS.md` exists at repo root.
+- `README.md` exists at repo root.
+- `docs/codex/DIRTY_RELEASE_ASSESSMENT.md` exists and recommends a separate release tranche.
+- Scoped docs are committed and pushed.
+- Draft PR is created.
 
 ## 3. Now / Next / Later
 
@@ -62,12 +59,13 @@ Done criteria:
 - Preview password was rotated and stored in macOS Keychain under service `Robson AI Website Preview Auth`, account `robson-preview`.
 - Netlify preview-auth env vars are set for `production`, `deploy-preview`, and `branch-deploy`.
 - Non-production Netlify alias preview is verified: `https://preview-auth-check--robson-ai-website.netlify.app`.
+- Root `AGENTS.md`, root `README.md`, and dirty-release assessment are being added to the pushed baseline branch.
 
 ### Next
 
-- Stage and commit the completed baseline/auth documentation and QA support files after Wayne approval.
-- Add root-level repo instructions such as `AGENTS.md` and a short `README.md` if Wayne wants this project to match the other Robson AI repos more closely.
-- Decide separately whether the broader dirty website/UI files should be staged into a release commit.
+- Review the draft PR once created.
+- Decide whether to run the separate `website-release-candidate-review` tranche for the remaining dirty website/UI files.
+- Keep production deploy/public launch separate and approval-gated.
 
 ### Later
 
@@ -101,6 +99,7 @@ Done criteria:
 | 2026-05-30 | CLI alias preview deploys use `branch-deploy` context | Netlify deploy metadata reported `context: branch-deploy` for alias `preview-auth-check` | Preview-auth vars must also exist in `branch-deploy` for CLI preview verification | If moving to GitHub PR deploy previews |
 | 2026-05-30 | Edge Function reads `Netlify.env.get()` directly first | Netlify docs show direct `Netlify.env.get()` for Edge runtime; local fallback remains for tests | Slightly broader env-reader fallback logic | If Netlify Edge runtime API changes |
 | 2026-05-30 | Stage and commit scoped baseline/auth files only | Wayne approved `stage-and-commit-baseline-auth-docs`; repo still has broad unrelated dirty website/UI state | This commit intentionally leaves broader dirty site changes unstaged | When Wayne approves a wider release commit |
+| 2026-05-30 | Keep dirty website/UI files out of baseline PR | Remaining dirty files form a broad website release candidate | Requires separate review/validation tranche before staging | If Wayne approves `website-release-candidate-review` |
 
 ## 6. Risks And Watch Items
 
@@ -177,6 +176,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | `npx --no-install netlify deploy --context branch-deploy --alias preview-auth-check --json` | pass | Non-production alias deploy ready: `https://preview-auth-check--robson-ai-website.netlify.app`, deploy id `6a1ac942b9543e1a0abef940`, deploy context `branch-deploy`, Edge Function present. |
 | 2026-05-30 | Live auth matrix on alias preview | pass | `/index.html`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html` return `401` without/wrong credentials and `200` with Keychain credential. `/` remains public holding page with `200`. |
 | 2026-05-30 | `git diff --check` | pass | No whitespace errors reported after tracker/release/auth updates. |
+| 2026-05-30 | Dirty website/UI assessment | pass | `docs/codex/DIRTY_RELEASE_ASSESSMENT.md` recommends a separate `website-release-candidate-review` tranche and keeps broad dirty files out of the baseline PR. |
 
 ## 11. Release / Deployment Notes
 
