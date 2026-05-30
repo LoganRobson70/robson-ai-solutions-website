@@ -74,7 +74,7 @@ For CLI alias previews, Netlify classifies the deploy as `branch-deploy` even wh
 - `deploy-preview`
 - `branch-deploy`
 
-The current rotated preview password is stored in macOS Keychain as service `Robson AI Website Preview Auth`, account `robson-preview`. Do not print it in chat, shell logs, docs, or source files.
+The current rotated preview credential is stored in macOS Keychain under service `Robson AI Website Preview Auth`. Do not print the preview username or password in chat, shell logs, docs, or source files.
 
 ## Netlify workflow
 

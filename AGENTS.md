@@ -62,8 +62,8 @@ Ask before:
   - `ROBSON_PREVIEW_PASSWORD`
 - Current preview credential is stored in macOS Keychain:
   - service: `Robson AI Website Preview Auth`
-  - account: `robson-preview`
-- Do not print preview passwords in chat, shell logs, docs, source, or PR descriptions.
+  - account label: stored in Keychain; do not commit or print it
+- Do not print preview usernames or passwords in chat, shell logs, docs, source, or PR descriptions.
 - CLI alias deploys are classified by Netlify as `branch-deploy`; keep preview auth vars set for `production`, `deploy-preview`, and `branch-deploy`.
 - Do not production deploy without explicit approval.
 

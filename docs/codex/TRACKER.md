@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-30 15:42 Europe/London
+Last updated: 2026-05-30 15:52 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/professionalize-website`
@@ -18,16 +18,16 @@ Success means:
 
 ## 2. Active Tranche
 
-Tranche name: `stage-commit-push-website-release-candidate`
+Tranche name: `fix-netlify-preview-secret-scan`
 Status: complete
 Started: 2026-05-30 14:58 Europe/London
-Completed: 2026-05-30 15:43 Europe/London
+Completed: 2026-05-30 15:52 Europe/London
 
 Scope:
 
-- Stage only the validated website release-candidate files.
-- Commit the release candidate separately from the earlier baseline/auth commit.
-- Push the existing PR branch so PR #1 contains the reviewed release-candidate state.
+- Inspect the failed Netlify PR deploy-preview check after pushing the release-candidate commit.
+- Remove the committed preview username value from docs so Netlify secret scanning no longer sees it.
+- Commit and push the scoped documentation fix to the existing PR branch.
 - Leave production deploy, public launch, merge, and DNS/domain changes approval-gated.
 
 Out of scope:
@@ -37,15 +37,15 @@ Out of scope:
 
 Permission envelope:
 
-- Wayne approved option 1: `stage-commit-push-website-release-candidate`.
-- Codex may do: stage the validated release-candidate files, run staged checks, commit, push the existing branch, and update docs/tracker with findings.
+- Wayne approved option 1: `stage-commit-push-website-release-candidate`; this follow-up is a bounded fix for the PR deploy-preview failure caused by Netlify secret scanning.
+- Codex may do: remove the committed preview username value from docs, run staged checks, commit, push the existing branch, and update docs/tracker with findings.
 - Codex must ask before: production deploys, public launch, staging/committing files outside the approved release-candidate set, changing domain/DNS, enabling GA4, sending external messages, destructive git actions, or merging PRs.
 
 Done criteria:
 
-- Release-candidate files are staged explicitly.
+- Failed deploy-preview cause is identified.
 - Staged diff passes whitespace and secret-safety checks.
-- Commit is created and pushed to `codex/professionalize-website`.
+- Fix commit is created and pushed to `codex/professionalize-website`.
 - Tracker is updated with evidence and Wayne's next recommended decision.
 
 ## 3. Now / Next / Later
@@ -54,13 +54,14 @@ Done criteria:
 
 - Local QA baseline is restored.
 - Preview-auth code reads Netlify environment variables and fails closed if they are missing.
-- Preview password was rotated and stored in macOS Keychain under service `Robson AI Website Preview Auth`, account `robson-preview`.
+- Preview credential was rotated and stored in macOS Keychain under service `Robson AI Website Preview Auth`; do not commit or print the credential values.
 - Netlify preview-auth env vars are set for `production`, `deploy-preview`, and `branch-deploy`.
 - Non-production Netlify alias preview is verified: `https://preview-auth-check--robson-ai-website.netlify.app`.
 - Root `AGENTS.md`, root `README.md`, and dirty-release assessment are being added to the pushed baseline branch.
 - Draft PR created: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/1`.
 - Website release candidate review passed after targeted CSS fixes; non-production alias verified: `https://release-candidate-check--robson-ai-website.netlify.app`.
 - Wayne approved staging/committing/pushing the validated website release candidate to the existing PR branch.
+- GitHub PR deploy-preview initially failed because Netlify secret scanning detected the committed preview username value in docs; the value is being removed from docs.
 
 ### Next
 
@@ -172,7 +173,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Netlify CLI env presence re-check | missing vars | User asked to verify after setup. Required preview-auth env vars were still missing in `dev`, `production`, `deploy-preview`, and `branch-deploy`. Secret values were not printed. |
 | 2026-05-30 | `npx --no-install netlify env:set ... --context production/deploy-preview --secret --force` | pass | Standard site env vars set for `ROBSON_PREVIEW_USERNAME` and `ROBSON_PREVIEW_PASSWORD`. Granular `--scope runtime` was not used because it did not persist on the current Netlify plan. Secret password was generated locally and not printed. |
 | 2026-05-30 | `npx --no-install netlify env:list --json --context production/deploy-preview/dev/branch-deploy` | pass | Required vars present in `production` and `deploy-preview`; absent in `dev` and `branch-deploy`. Secret values were not printed. |
-| 2026-05-30 | `security add-generic-password -U ...` | pass | Rotated preview password stored in macOS Keychain under service `Robson AI Website Preview Auth`, account `robson-preview`. Secret value was not printed. |
+| 2026-05-30 | `security add-generic-password -U ...` | pass | Rotated preview credential stored in macOS Keychain under service `Robson AI Website Preview Auth`. Credential values were not printed. |
 | 2026-05-30 | `npm run qa:preview-auth` | pass | Local Edge Function auth smoke still passes after direct `Netlify.env.get()` reader update. |
 | 2026-05-30 | `npm run qa:measurement:local` | pass | Pre-deploy local measurement gate passed. Artifact: `output/measurement/smoke-2026-05-30T11-15-17-945Z`. |
 | 2026-05-30 | `npx --no-install netlify deploy --context branch-deploy --alias preview-auth-check --json` | pass | Non-production alias deploy ready: `https://preview-auth-check--robson-ai-website.netlify.app`, deploy id `6a1ac942b9543e1a0abef940`, deploy context `branch-deploy`, Edge Function present. |
@@ -190,6 +191,9 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Live release-candidate browser root check | pass | Desktop and mobile root checks had correct title/H1, no hidden links, no console errors/warnings, and no horizontal overflow. |
 | 2026-05-30 | `git diff --cached --check` before release-candidate commit | pass | Explicitly staged release-candidate files only; no whitespace errors reported. |
 | 2026-05-30 | staged secret-pattern scan before release-candidate commit | pass | No preview password, generated-placeholder password, or obvious committed secret assignment found in the staged diff. |
+| 2026-05-30 | GitHub PR Netlify deploy-preview for commit `9e51501` | fail | Netlify reported build-stage exit code 2 and deploy validation matched the committed preview username value in docs. Password was not printed. |
+| 2026-05-30 | Docs credential hygiene fix | pass | Removed the literal preview username value from repo docs; Keychain service name remains documented. |
+| 2026-05-30 | `npx --no-install netlify build` after docs credential fix | pass | Local Netlify build still packages the `preview-auth` Edge Function successfully. |
 
 ## 11. Release / Deployment Notes
 
@@ -204,4 +208,4 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. The measurement QA baseline passes locally. Preview auth now reads `ROBSON_PREVIEW_USERNAME` / `ROBSON_PREVIEW_PASSWORD` from Netlify env vars using the Edge runtime `Netlify.env.get()` path with local fallbacks. The preview password is stored in macOS Keychain under service `Robson AI Website Preview Auth`, account `robson-preview`. Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`. Draft PR #1 exists at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/1`. Website release candidate review passed after CSS fixes; non-production alias `https://release-candidate-check--robson-ai-website.netlify.app` verified `/` is public holding-only and hidden routes return `401` without/wrong credentials and `200` with the Keychain credential. Wayne approved staging/committing/pushing the validated release candidate to the PR branch. Do not production deploy, merge, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. The measurement QA baseline passes locally. Preview auth now reads `ROBSON_PREVIEW_USERNAME` / `ROBSON_PREVIEW_PASSWORD` from Netlify env vars using the Edge runtime `Netlify.env.get()` path with local fallbacks. The preview credential is stored in macOS Keychain under service `Robson AI Website Preview Auth`; do not print the credential values. Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`. Draft PR #1 exists at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/1`. Website release candidate review passed after CSS fixes; non-production alias `https://release-candidate-check--robson-ai-website.netlify.app` verified `/` is public holding-only and hidden routes return `401` without/wrong credentials and `200` with the Keychain credential. Wayne approved staging/committing/pushing the validated release candidate to the PR branch. Do not production deploy, merge, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.

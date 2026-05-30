@@ -68,9 +68,9 @@ Preview auth uses Netlify environment variables:
 The current rotated preview password is stored in macOS Keychain:
 
 - service: `Robson AI Website Preview Auth`
-- account: `robson-preview`
+- account label: stored in Keychain; do not commit or print it
 
-Do not print, commit, or paste the password.
+Do not print, commit, or paste the preview username or password.
 
 ## Deployment Notes
 
