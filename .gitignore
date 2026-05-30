@@ -4,6 +4,9 @@
 # macOS metadata
 .DS_Store
 
+# Local Node tooling
+node_modules/
+
 # Local browser evidence and review artefacts
 .playwright-cli/
 output/

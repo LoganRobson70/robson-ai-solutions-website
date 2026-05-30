@@ -1,0 +1,18 @@
+{
+  "name": "robson-ai-solutions-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "qa:preview-auth": "node --test scripts/preview-auth-smoke.mjs",
+    "qa:measurement:local": "node scripts/measurement-smoke.mjs",
+    "qa:measurement:preview": "node scripts/measurement-smoke.mjs --mode=preview --base-url=\"$QA_BASE_URL\"",
+    "qa:measurement:evidence": "node scripts/measurement-evidence.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/cli": "^4.11.0",
+    "browser-driver-manager": "^2.0.1",
+    "html-validate": "^10.4.0",
+    "lighthouse": "^12.8.2",
+    "playwright": "^1.53.2"
+  }
+}

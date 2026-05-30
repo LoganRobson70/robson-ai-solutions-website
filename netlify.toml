@@ -1,8 +1,41 @@
-# example netlify.toml
 [build]
-  command = "# no build command"
-  functions = "netlify/functions"
-  publish = ""
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/holding.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/preview.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[edge_functions]]
+  function = "preview-auth"
+  path = "/index.html"
+
+[[edge_functions]]
+  function = "preview-auth"
+  path = "/building-analyst.html"
+
+[[edge_functions]]
+  function = "preview-auth"
+  path = "/who-its-for.html"
+
+[[edge_functions]]
+  function = "preview-auth"
+  path = "/privacy.html"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), geolocation=(), microphone=()"
 
 [[headers]]
   for = "/favicon.ico"
@@ -31,19 +64,3 @@
     Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
     Pragma = "no-cache"
     Expires = "0"
-
-  ## Uncomment to use this redirect for Single Page Applications like create-react-app.
-  ## Not needed for static site generators.
-  #[[redirects]]
-  #  from = "/*"
-  #  to = "/index.html"
-  #  status = 200
-
-  ## (optional) Settings for Netlify Dev
-  ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
-  #[dev]
-  #  command = "yarn start" # Command to start your dev server
-  #  port = 3000 # Port that the dev server will be listening on
-  #  publish = "dist" # Folder with the static content for _redirect file
-
-  ## more info on configuring this file: https://ntl.fyi/file-based-build-config
