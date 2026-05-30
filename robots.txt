@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /index.html
+Disallow: /building-analyst.html
+Disallow: /who-its-for.html
+Disallow: /privacy.html
+Disallow: /preview.html
+
+Sitemap: https://robsonai.co.uk/sitemap.xml

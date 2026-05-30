@@ -93,3 +93,48 @@ Out of scope:
 1. Recommended: run `website-release-candidate-review` before staging any of these dirty files.
 2. Do not mix these files into the Codex baseline/auth PR.
 3. Do not production deploy from this dirty worktree until the release candidate review passes and Wayne approves production release.
+
+## Review Result - 2026-05-30
+
+Status: passed with targeted CSS fixes.
+
+Changes made during review:
+
+- Moved the consent banner on hidden preview/product pages so it no longer covers desktop hero text.
+- Moved the holding-page desktop consent banner so it no longer covers the hero visual text.
+- Fixed mobile horizontal overflow on the hidden fuller-site page.
+- Bumped the stylesheet query string on release pages to `styles.css?v=20260530a` so corrected CSS is fetched on preview/deploy.
+
+Validation evidence:
+
+- `npm run qa:measurement:local` passed.
+  - Artifact: `output/measurement/smoke-2026-05-30T14-08-10-518Z`
+- `npm run qa:measurement:evidence` passed.
+  - Artifact: `output/measurement/evidence-2026-05-30T14-08-22-954Z`
+  - Lighthouse median run: performance `80`, accessibility `100`, best practices `100`, SEO `66`
+- `npx html-validate --rule doctype-style:off --rule void-style:off holding.html index.html preview.html privacy.html building-analyst.html who-its-for.html` passed.
+- `git diff --check` passed.
+- Asset reference scan found no missing local asset references.
+- Non-production Netlify alias deploy passed:
+  - URL: `https://release-candidate-check--robson-ai-website.netlify.app`
+  - Deploy id: `6a1aef9300af4ff50eff277f`
+  - `/` returned public holding page, no hidden fuller-site links.
+  - `/index.html`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html` returned `401` without/wrong credentials and `200` with the Keychain preview credential.
+- Browser checks passed:
+  - Desktop holding root: correct title/H1, no hidden links, no console errors/warnings, no horizontal overflow.
+  - Mobile holding root at `390x844`: no hidden links, no console errors/warnings, no horizontal overflow.
+  - Hidden fuller-site desktop: consent banner no longer overlaps the H1 or hero visual.
+  - Hidden fuller-site mobile at `390x844`: no horizontal overflow.
+
+Remaining known limitations:
+
+- Production deploy/public launch remains out of scope.
+- GA4 remains intentionally inert because the Measurement ID is empty.
+- Lighthouse SEO remains `66`, expected while hidden/private pages are `noindex` and the public root is a holding page.
+- Local HTTP browser clipboard can show fallback copy behaviour; the Playwright smoke validates the copy success path using a clipboard stub.
+
+Release recommendation:
+
+1. Recommended: stage and commit the release candidate files as a separate website release commit.
+2. Keep PR #1 as draft until this release candidate commit is either added to it intentionally or split into a separate PR.
+3. Do not production deploy until Wayne explicitly approves production release after reviewing the non-production alias.
