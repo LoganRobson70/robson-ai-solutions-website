@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-30 15:52 Europe/London
+Last updated: 2026-05-30 15:51 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/professionalize-website`
@@ -61,7 +61,8 @@ Done criteria:
 - Draft PR created: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/1`.
 - Website release candidate review passed after targeted CSS fixes; non-production alias verified: `https://release-candidate-check--robson-ai-website.netlify.app`.
 - Wayne approved staging/committing/pushing the validated website release candidate to the existing PR branch.
-- GitHub PR deploy-preview initially failed because Netlify secret scanning detected the committed preview username value in docs; the value is being removed from docs.
+- GitHub PR deploy-preview initially failed because Netlify secret scanning detected the committed preview username value in docs; the value has been removed from docs.
+- Official PR deploy preview is ready: `https://deploy-preview-1--robson-ai-website.netlify.app`.
 
 ### Next
 
@@ -194,6 +195,8 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | GitHub PR Netlify deploy-preview for commit `9e51501` | fail | Netlify reported build-stage exit code 2 and deploy validation matched the committed preview username value in docs. Password was not printed. |
 | 2026-05-30 | Docs credential hygiene fix | pass | Removed the literal preview username value from repo docs; Keychain service name remains documented. |
 | 2026-05-30 | `npx --no-install netlify build` after docs credential fix | pass | Local Netlify build still packages the `preview-auth` Edge Function successfully. |
+| 2026-05-30 | GitHub PR Netlify deploy-preview after docs credential fix | pass | Official preview is ready at `https://deploy-preview-1--robson-ai-website.netlify.app`. |
+| 2026-05-30 | Live official PR preview auth/root matrix | pass | `/` returned `200` with no hidden links; hidden routes returned `401` without/wrong credentials and `200` with the Keychain credential. |
 
 ## 11. Release / Deployment Notes
 
