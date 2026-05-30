@@ -1,9 +1,9 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-30 16:32 Europe/London
+Last updated: 2026-05-30 16:46 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Current branch: `codex/professionalize-website`
+Current branch: `main`
 
 ## 1. Current Objective
 
@@ -18,17 +18,16 @@ Success means:
 
 ## 2. Active Tranche
 
-Tranche name: `production-release-preflight-and-merge-deploy`
+Tranche name: `post-launch-observation-and-cleanup`
 Status: complete
-Started: 2026-05-30 16:08 Europe/London
-Completed: 2026-05-30 16:32 Europe/London
+Started: 2026-05-30 16:42 Europe/London
+Completed: 2026-05-30 16:46 Europe/London
 
 Scope:
 
-- Run final production preflight.
-- Merge PR #1 into `main`.
-- Watch the Netlify production deploy.
-- Verify `https://robsonai.co.uk` after deploy.
+- Re-check production after the release and tracker-only deploy.
+- Confirm GitHub PR #1, Netlify production deploy, and local branch state.
+- Tidy tracker wording so it reflects the deployed production reality.
 - Preserve the intended release state: public `/` holding page, fuller routes protected by preview auth.
 
 Out of scope:
@@ -38,44 +37,35 @@ Out of scope:
 
 Permission envelope:
 
-- Wayne approved option 1: `production-release-preflight-and-merge-deploy`.
-- Codex may do: run final checks, merge PR #1, monitor Netlify production deploy, verify production routes, and update docs/tracker with release evidence.
+- Wayne approved option 1: `post-launch-observation-and-cleanup`.
+- Codex may do: inspect GitHub/Netlify state, run live production checks, update docs/tracker with findings, and commit/push the tracker closeout.
 - Codex must ask before: changing domain/DNS, enabling GA4, adding forms, sending external messages, destructive git actions, or unrelated post-launch changes.
 
 Done criteria:
 
-- PR #1 is merged into `main`.
-- Netlify production deploy is ready.
-- Production route/auth and browser checks pass.
-- Tracker records deploy evidence and Wayne's next recommended decision.
+- GitHub/Netlify/local branch state is confirmed.
+- Final production route/auth and browser checks pass.
+- Tracker stale pre-merge wording is removed or updated.
 - Tracker is updated with evidence and Wayne's next recommended decision.
 
 ## 3. Now / Next / Later
 
 ### Now
 
-- Local QA baseline is restored.
-- Preview-auth code reads Netlify environment variables and fails closed if they are missing.
-- Preview credential was rotated and stored in macOS Keychain under service `Robson AI Website Preview Auth`; do not commit or print the credential values.
+- Local QA baseline is restored and documented.
+- Preview auth reads Netlify environment variables and fails closed if they are missing.
+- Preview credential is stored in macOS Keychain under service `Robson AI Website Preview Auth`; do not commit or print credential values.
 - Netlify preview-auth env vars are set for `production`, `deploy-preview`, and `branch-deploy`.
-- Non-production Netlify alias preview is verified: `https://preview-auth-check--robson-ai-website.netlify.app`.
-- Root `AGENTS.md`, root `README.md`, and dirty-release assessment are being added to the pushed baseline branch.
-- Draft PR created: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/1`.
-- Website release candidate review passed after targeted CSS fixes; non-production alias verified: `https://release-candidate-check--robson-ai-website.netlify.app`.
-- Wayne approved staging/committing/pushing the validated website release candidate to the existing PR branch.
-- GitHub PR deploy-preview initially failed because Netlify secret scanning detected the committed preview username value in docs; the value has been removed from docs.
-- Official PR deploy preview is ready: `https://deploy-preview-1--robson-ai-website.netlify.app`.
-- PR #1 title/body have been updated to reflect baseline docs, preview auth, and the website release candidate.
-- PR #1 is marked ready-for-review.
-- PR #1 was merged into `main`.
-- Netlify production deploy is ready for merge commit `a3ffe59`.
+- PR #1 was merged into `main`: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/1`.
+- Netlify production deploy is ready for tracker closeout commit `a7afc4d`.
 - Production `https://robsonai.co.uk/` serves the public holding page.
 - Production hidden routes are protected by preview auth.
+- Post-launch observation pass completed with no production issues found.
 
 ### Next
 
-- Run a short post-launch observation window and decide whether to keep the current holding-page production stance.
-- Decide whether to plan the public full-site launch separately.
+- Decide whether to keep the holding-page production stance or plan the public full-site launch.
+- Decide whether to add automated post-launch monitoring/check reminders.
 
 ### Later
 
@@ -117,10 +107,10 @@ Done criteria:
 
 | Risk | Severity | Owner | Mitigation | Status |
 | --- | --- | --- | --- | --- |
-| Dirty working tree with many modified/untracked files | high | Wayne/Codex | Do not clean or revert. Scope future edits tightly and use a worktree for larger implementation. | open |
+| Dirty working tree with many modified/untracked files | high | Wayne/Codex | Merged and deployed through PR #1. Continue using `git status` and scoped branches/worktrees for future tranches. | closed |
 | `npm run qa:measurement:local` currently fails | high | Codex | Fixed in local tranche; keep command passing before deploy. | closed |
 | Hard-coded preview Basic Auth credential in `netlify/edge-functions/preview-auth.js` | high | Wayne/Codex | Code now reads Netlify env vars. Password rotated into Keychain and Netlify vars verified in relevant contexts. | closed |
-| No root `README.md`, `AGENTS.md`, or `CLAUDE.md` in this repo | medium | Codex | Add concise project instructions after Wayne approves. | open |
+| No root `README.md`, `AGENTS.md`, or `CLAUDE.md` in this repo | medium | Codex | Root `README.md` and `AGENTS.md` are now deployed; add `CLAUDE.md` only if Wayne wants Claude-specific instructions. | mostly closed |
 | Hidden/full website and public holding page can drift | medium | Codex | Keep release notes, robots/sitemap, auth, and QA harness aligned. | monitoring |
 | Email-only conversion path may lose enquiries | medium | Wayne/Codex | Parked for conversion tranche; requires privacy/spam decision. | parked |
 | GA4 Measurement ID is empty | low | Wayne | Intentional until analytics approval. Keep measurement QA in place. | monitoring |
@@ -218,18 +208,21 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Netlify production deploy | pass | Deploy `6a1b02a24f408c00080a2463` ready for `main` at merge commit `a3ffe59`; Edge Function present. |
 | 2026-05-30 | Production route/auth matrix | pass | `/` returned `200` with no hidden links; hidden routes returned `401` without/wrong credentials and `200` with the Keychain credential. |
 | 2026-05-30 | Production browser smoke | pass | Public root desktop/mobile had no console issues or horizontal overflow; authenticated `index.html` loaded with no console issues when using HTTP credentials. |
+| 2026-05-30 | Post-launch GitHub/Netlify/local state check | pass | PR #1 is merged; latest production deploy `6a1b0359c4363b0008ce0a09` is ready for commit `a7afc4d`; local branch is clean on `main`. |
+| 2026-05-30 | Post-launch production route/auth matrix | pass | `/`, `/robots.txt`, and `/sitemap.xml` are public; hidden routes require preview auth and return `200` with Keychain credential. |
+| 2026-05-30 | Post-launch browser smoke | pass | Public root desktop/mobile and authenticated `index.html` had no console issues and no horizontal overflow. |
 
 ## 11. Release / Deployment Notes
 
-- Current environment: local repo plus Netlify-linked site.
+- Current environment: local repo on `main` plus Netlify-linked production site.
 - Public production URL documented in existing handover: `https://robsonai.co.uk`.
 - Current production stance from `docs/release-handover.md`: `/` serves the holding page; fuller pages are hidden and protected.
 - Release risk: lower after production verification; public root remains holding-only and hidden routes are protected.
 - Privacy/security checks needed: confirm Netlify preview-auth env vars, consent/GA4 review, privacy notice review if contact forms are added, no invented proof claims.
-- Rollback plan: Netlify deploy rollback through Netlify UI/CLI after Wayne approval; local file rollback through Git once changes are cleanly scoped.
+- Rollback plan: Netlify deploy rollback through Netlify UI/CLI after Wayne approval; local file rollback through Git if a code/doc revert is needed.
 
 ## 12. Resume Prompt
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. PR #1 was merged into `main` and deployed to production on 2026-05-30. Production deploy `6a1b02a24f408c00080a2463` is ready for merge commit `a3ffe59`. `https://robsonai.co.uk/` serves the public holding page, and hidden routes are protected by Netlify Edge preview auth. Preview auth reads `ROBSON_PREVIEW_USERNAME` / `ROBSON_PREVIEW_PASSWORD` from Netlify env vars using `Netlify.env.get()` with local fallbacks. The preview credential is stored in macOS Keychain under service `Robson AI Website Preview Auth`; do not print credential values. Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`. Latest preflight and production route/auth/browser checks passed. Do not change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. PR #1 was merged into `main` and deployed to production on 2026-05-30. Latest production deploy `6a1b0359c4363b0008ce0a09` is ready for commit `a7afc4d`. `https://robsonai.co.uk/` serves the public holding page, and hidden routes are protected by Netlify Edge preview auth. Preview auth reads `ROBSON_PREVIEW_USERNAME` / `ROBSON_PREVIEW_PASSWORD` from Netlify env vars using `Netlify.env.get()` with local fallbacks. The preview credential is stored in macOS Keychain under service `Robson AI Website Preview Auth`; do not print credential values. Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`. Latest post-launch route/auth/browser checks passed. Do not change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
