@@ -1,6 +1,6 @@
 # Public Full-Site Launch Readiness
 
-Last updated: 2026-05-30 17:12 Europe/London
+Last updated: 2026-05-30 17:56 Europe/London
 Branch: `codex/public-full-site-launch-readiness`
 Status: preview-readiness branch, not production launch
 
@@ -54,6 +54,30 @@ Browser checks passed:
 - No console issues found.
 - No horizontal overflow found.
 
+Netlify preview:
+
+- URL: `https://public-launch-readiness--robson-ai-website.netlify.app`
+- Deploy ID: `6a1b167adff97530bcd449b4`
+- Context: `branch-deploy`
+- State: ready
+
+Preview route matrix passed:
+
+| Route | Expected | Actual |
+| --- | --- | --- |
+| `/` | public fuller homepage | `200`, `index, follow` |
+| `/index.html` | public fuller homepage | `200`, `index, follow` |
+| `/building-analyst.html` | public page | `200`, `index, follow` |
+| `/who-its-for.html` | public page | `200`, `index, follow` |
+| `/privacy.html` | public page | `200`, `index, follow` |
+| `/holding.html` | fallback only | `200`, `noindex, nofollow` |
+| `/robots.txt` | public | `200` |
+| `/sitemap.xml` | public | `200` |
+
+Preview smoke passed:
+
+- Artifact: `output/measurement/smoke-2026-05-30T16-55-46-464Z`
+
 Latest artifacts:
 
 - Local smoke: `output/measurement/smoke-2026-05-30T16-51-16-235Z`
@@ -75,3 +99,5 @@ Before production launch, Wayne should confirm:
 - App Store or product URL, if available.
 - Whether GA4 should remain inert or be enabled with a real Measurement ID.
 - Whether the holding page should remain as `/holding.html`, redirect to `/`, or be removed after launch.
+
+Production remains unchanged until Wayne explicitly approves launch.

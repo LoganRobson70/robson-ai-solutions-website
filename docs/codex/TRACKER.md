@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-30 17:52 Europe/London
+Last updated: 2026-05-30 17:56 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/public-full-site-launch-readiness`
@@ -21,7 +21,7 @@ Success means:
 Tranche name: `public-full-site-launch-readiness`
 Status: in progress
 Started: 2026-05-30 17:03 Europe/London
-Completed: TBD
+Completed: 2026-05-30 17:56 Europe/London
 
 Scope:
 
@@ -67,11 +67,13 @@ Done criteria:
 - Public full-site launch remains gated on iOS app status, approved screenshots/App Store links, and Wayne's explicit launch approval.
 - Public launch-readiness branch is being prepared at `codex/public-full-site-launch-readiness`.
 - Local launch-readiness gates passed before Netlify preview.
+- Non-production launch-readiness preview is ready: `https://public-launch-readiness--robson-ai-website.netlify.app`.
+- Production remains unchanged: holding page public, fuller site protected.
 
 ### Next
 
-- Deploy and verify the non-production launch-readiness Netlify preview.
-- Keep current production stance unchanged: holding page public, fuller site protected.
+- Decide whether to open a PR for review, keep this as a preview branch, or hold until iOS app screenshots/App Store link are available.
+- Keep current production stance unchanged unless Wayne explicitly approves public launch.
 
 ### Later
 
@@ -222,6 +224,9 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Launch-readiness local route changes | pass | On branch `codex/public-full-site-launch-readiness`, `/` serves the fuller site, launch pages are public, holding is noindex fallback, and robots/sitemap are launch-ready. |
 | 2026-05-30 | Launch-readiness local QA | pass | `git diff --check`, HTML validation, `npm run qa:preview-auth`, `npm run qa:measurement:local`, `npm run qa:measurement:evidence`, and `npx --no-install netlify build` passed. Evidence artifact: `output/measurement/evidence-2026-05-30T16-51-27-647Z`. |
 | 2026-05-30 | Launch-readiness local browser smoke | pass | Desktop/mobile `/`, desktop `building-analyst.html`, mobile `who-its-for.html`, and mobile `privacy.html` had no console issues and no horizontal overflow. |
+| 2026-05-30 | Launch-readiness Netlify preview deploy | pass | Non-production alias preview ready at `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a1b167adff97530bcd449b4`. |
+| 2026-05-30 | Launch-readiness preview route matrix | pass | Public launch pages returned `200` and `index, follow`; `holding.html` returned `200` and `noindex, nofollow`. |
+| 2026-05-30 | Launch-readiness preview smoke/browser | pass | `QA_BASE_URL=https://public-launch-readiness--robson-ai-website.netlify.app npm run qa:measurement:preview` passed. Preview desktop/mobile browser checks had no console issues or horizontal overflow. |
 
 ## 11. Release / Deployment Notes
 
@@ -236,4 +241,4 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is being prepared so `/` serves the fuller site in preview, public pages are crawlable, and holding remains a noindex fallback. Wayne clarified that public launch should wait until the iOS app is live and approved screenshots/App Store links can be used for advertising. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. Wayne clarified that public launch should wait until the iOS app is live and approved screenshots/App Store links can be used for advertising. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
