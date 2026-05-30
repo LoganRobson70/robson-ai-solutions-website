@@ -60,6 +60,7 @@ Done criteria:
 - Netlify preview-auth env vars are set for `production`, `deploy-preview`, and `branch-deploy`.
 - Non-production Netlify alias preview is verified: `https://preview-auth-check--robson-ai-website.netlify.app`.
 - Root `AGENTS.md`, root `README.md`, and dirty-release assessment are being added to the pushed baseline branch.
+- Draft PR created: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/1`.
 
 ### Next
 
@@ -177,6 +178,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Live auth matrix on alias preview | pass | `/index.html`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html` return `401` without/wrong credentials and `200` with Keychain credential. `/` remains public holding page with `200`. |
 | 2026-05-30 | `git diff --check` | pass | No whitespace errors reported after tracker/release/auth updates. |
 | 2026-05-30 | Dirty website/UI assessment | pass | `docs/codex/DIRTY_RELEASE_ASSESSMENT.md` recommends a separate `website-release-candidate-review` tranche and keeps broad dirty files out of the baseline PR. |
+| 2026-05-30 | Draft GitHub PR creation | pass | PR #1 created for `codex/professionalize-website`: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/1`. |
 
 ## 11. Release / Deployment Notes
 
