@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-30 15:51 Europe/London
+Last updated: 2026-05-30 15:53 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/professionalize-website`
@@ -18,16 +18,16 @@ Success means:
 
 ## 2. Active Tranche
 
-Tranche name: `fix-netlify-preview-secret-scan`
+Tranche name: `prepare-pr-for-review`
 Status: complete
-Started: 2026-05-30 14:58 Europe/London
-Completed: 2026-05-30 15:52 Europe/London
+Started: 2026-05-30 15:52 Europe/London
+Completed: 2026-05-30 15:53 Europe/London
 
 Scope:
 
-- Inspect the failed Netlify PR deploy-preview check after pushing the release-candidate commit.
-- Remove the committed preview username value from docs so Netlify secret scanning no longer sees it.
-- Commit and push the scoped documentation fix to the existing PR branch.
+- Inspect PR #1 metadata, branch diff, commits, and checks.
+- Update stale PR title/body so it reflects the current baseline plus website release-candidate scope.
+- Confirm whether PR #1 is ready for Wayne to mark ready-for-review.
 - Leave production deploy, public launch, merge, and DNS/domain changes approval-gated.
 
 Out of scope:
@@ -37,15 +37,15 @@ Out of scope:
 
 Permission envelope:
 
-- Wayne approved option 1: `stage-commit-push-website-release-candidate`; this follow-up is a bounded fix for the PR deploy-preview failure caused by Netlify secret scanning.
-- Codex may do: remove the committed preview username value from docs, run staged checks, commit, push the existing branch, and update docs/tracker with findings.
+- Wayne approved option 1: `prepare-pr-for-review`.
+- Codex may do: inspect PR metadata/diff/checks, update PR title/body, update docs/tracker with findings, and commit/push the tracker closeout.
 - Codex must ask before: production deploys, public launch, staging/committing files outside the approved release-candidate set, changing domain/DNS, enabling GA4, sending external messages, destructive git actions, or merging PRs.
 
 Done criteria:
 
-- Failed deploy-preview cause is identified.
-- Staged diff passes whitespace and secret-safety checks.
-- Fix commit is created and pushed to `codex/professionalize-website`.
+- PR title/body accurately describe current scope.
+- PR checks are passing.
+- Tracker records the recommendation and Wayne's next decision.
 - Tracker is updated with evidence and Wayne's next recommended decision.
 
 ## 3. Now / Next / Later
@@ -63,10 +63,11 @@ Done criteria:
 - Wayne approved staging/committing/pushing the validated website release candidate to the existing PR branch.
 - GitHub PR deploy-preview initially failed because Netlify secret scanning detected the committed preview username value in docs; the value has been removed from docs.
 - Official PR deploy preview is ready: `https://deploy-preview-1--robson-ai-website.netlify.app`.
+- PR #1 title/body have been updated to reflect baseline docs, preview auth, and the website release candidate.
 
 ### Next
 
-- Decide whether PR #1 should remain draft for review or be prepared for ready-for-review.
+- Decide whether to mark PR #1 ready for review, keep it draft, or move to a production-release plan.
 - Keep production deploy/public launch separate and approval-gated.
 
 ### Later
@@ -197,6 +198,8 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | `npx --no-install netlify build` after docs credential fix | pass | Local Netlify build still packages the `preview-auth` Edge Function successfully. |
 | 2026-05-30 | GitHub PR Netlify deploy-preview after docs credential fix | pass | Official preview is ready at `https://deploy-preview-1--robson-ai-website.netlify.app`. |
 | 2026-05-30 | Live official PR preview auth/root matrix | pass | `/` returned `200` with no hidden links; hidden routes returned `401` without/wrong credentials and `200` with the Keychain credential. |
+| 2026-05-30 | PR #1 metadata/diff/check review | pass | PR has 42 changed files, 6 commits before tracker closeout, and a passing Netlify deploy-preview check. |
+| 2026-05-30 | PR #1 title/body update | pass | PR title/body now describe baseline docs, preview auth, website release candidate, validation, and release boundaries. |
 
 ## 11. Release / Deployment Notes
 
