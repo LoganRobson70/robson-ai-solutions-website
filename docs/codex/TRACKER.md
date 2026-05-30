@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-30 16:46 Europe/London
+Last updated: 2026-05-30 17:01 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -18,17 +18,17 @@ Success means:
 
 ## 2. Active Tranche
 
-Tranche name: `post-launch-observation-and-cleanup`
+Tranche name: `public-full-site-launch-plan`
 Status: complete
-Started: 2026-05-30 16:42 Europe/London
-Completed: 2026-05-30 16:46 Europe/London
+Started: 2026-05-30 16:58 Europe/London
+Completed: 2026-05-30 17:01 Europe/London
 
 Scope:
 
-- Re-check production after the release and tracker-only deploy.
-- Confirm GitHub PR #1, Netlify production deploy, and local branch state.
-- Tidy tracker wording so it reflects the deployed production reality.
-- Preserve the intended release state: public `/` holding page, fuller routes protected by preview auth.
+- Create a plan for making the fuller website public later.
+- Preserve Wayne's clarification that the public front end currently says the site is getting ready, while the protected fuller site is ready to go public when the iOS app is live.
+- Document route/auth, screenshots, advertising, QA, deploy, and rollback steps.
+- Do not perform the public full-site launch.
 
 Out of scope:
 
@@ -37,15 +37,15 @@ Out of scope:
 
 Permission envelope:
 
-- Wayne approved option 1: `post-launch-observation-and-cleanup`.
-- Codex may do: inspect GitHub/Netlify state, run live production checks, update docs/tracker with findings, and commit/push the tracker closeout.
+- Wayne approved option 1: `public-full-site-launch-plan`.
+- Codex may do: inspect current route/docs context, create launch planning docs, update tracker, and commit/push documentation.
 - Codex must ask before: changing domain/DNS, enabling GA4, adding forms, sending external messages, destructive git actions, or unrelated post-launch changes.
 
 Done criteria:
 
-- GitHub/Netlify/local branch state is confirmed.
-- Final production route/auth and browser checks pass.
-- Tracker stale pre-merge wording is removed or updated.
+- Launch plan exists and reflects the iOS app timing.
+- Plan distinguishes planning from public launch execution.
+- Plan includes route/auth, screenshots/assets, QA gates, deployment, and rollback.
 - Tracker is updated with evidence and Wayne's next recommended decision.
 
 ## 3. Now / Next / Later
@@ -61,11 +61,13 @@ Done criteria:
 - Production `https://robsonai.co.uk/` serves the public holding page.
 - Production hidden routes are protected by preview auth.
 - Post-launch observation pass completed with no production issues found.
+- Public full-site launch plan created at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`.
+- Public full-site launch remains gated on iOS app status, approved screenshots/App Store links, and Wayne's explicit launch approval.
 
 ### Next
 
-- Decide whether to keep the holding-page production stance or plan the public full-site launch.
-- Decide whether to add automated post-launch monitoring/check reminders.
+- Decide whether to start `public-full-site-launch-readiness`, which prepares a launch branch and preview without launching production.
+- Keep current production stance until launch readiness is explicitly approved: holding page public, fuller site protected.
 
 ### Later
 
@@ -80,7 +82,7 @@ Done criteria:
 | --- | --- | --- | --- | --- |
 | 2026-05-30 | Embedded contact form or booked intro CTA | UI/UX review | later | Useful conversion improvement, but not part of documentation baseline. Requires privacy, spam, and Netlify Forms or backend decision. |
 | 2026-05-30 | Production GA4 Measurement ID enablement | Existing QA docs | later | Analytics is currently intentionally inert. Needs explicit approval and privacy check. |
-| 2026-05-30 | Public launch of fuller website | Release handover | later | Current public root is a holding page. Fuller pages remain hidden/private. |
+| 2026-05-30 | Public launch of fuller website | Release handover | next | Plan exists in `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`; execution should wait until iOS app/screenshot/advertising readiness is approved. |
 | 2026-05-30 | Secret rotation and env-var based preview auth | Codex audit | done | Edge Function now reads Netlify env vars; password was rotated into Keychain; Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`; live alias preview verified. |
 | 2026-05-30 | Weekly website health automation | Capability checklist | later | Could run smoke/QA reminders, but only after the QA command is back to passing. |
 
@@ -102,6 +104,7 @@ Done criteria:
 | 2026-05-30 | Keep dirty website/UI files out of baseline PR | Remaining dirty files form a broad website release candidate | Requires separate review/validation tranche before staging | If Wayne approves `website-release-candidate-review` |
 | 2026-05-30 | Consent banner must not cover first-viewport hero text | Browser QA found desktop overlap on hidden fuller-site hero and holding visual | Applied targeted CSS placement fixes and stylesheet cache-bump | Before staging release candidate |
 | 2026-05-30 | Stage and commit validated release candidate as a separate commit | Wayne approved option 1 after the release-candidate review passed | PR #1 will contain both baseline/auth work and the website release candidate; production deploy remains separate | Before marking PR ready or launching production |
+| 2026-05-30 | Full public website launch waits for iOS app readiness | Wayne clarified the current public front end should say the site is getting ready while the protected fuller site is ready for launch timing | Avoids advertising or screenshot-led public launch before the iOS app is live | When app live status, screenshots, and links are ready |
 
 ## 6. Risks And Watch Items
 
@@ -211,6 +214,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Post-launch GitHub/Netlify/local state check | pass | PR #1 is merged; latest production deploy `6a1b0359c4363b0008ce0a09` is ready for commit `a7afc4d`; local branch is clean on `main`. |
 | 2026-05-30 | Post-launch production route/auth matrix | pass | `/`, `/robots.txt`, and `/sitemap.xml` are public; hidden routes require preview auth and return `200` with Keychain credential. |
 | 2026-05-30 | Post-launch browser smoke | pass | Public root desktop/mobile and authenticated `index.html` had no console issues and no horizontal overflow. |
+| 2026-05-30 | Public full-site launch plan | pass | Created `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`; no route/auth changes or launch performed. |
 
 ## 11. Release / Deployment Notes
 
@@ -225,4 +229,4 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. PR #1 was merged into `main` and deployed to production on 2026-05-30. Latest production deploy `6a1b0359c4363b0008ce0a09` is ready for commit `a7afc4d`. `https://robsonai.co.uk/` serves the public holding page, and hidden routes are protected by Netlify Edge preview auth. Preview auth reads `ROBSON_PREVIEW_USERNAME` / `ROBSON_PREVIEW_PASSWORD` from Netlify env vars using `Netlify.env.get()` with local fallbacks. The preview credential is stored in macOS Keychain under service `Robson AI Website Preview Auth`; do not print credential values. Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`. Latest post-launch route/auth/browser checks passed. Do not change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. PR #1 was merged into `main` and deployed to production on 2026-05-30. Latest production deploy `6a1b0359c4363b0008ce0a09` is ready for commit `a7afc4d`. `https://robsonai.co.uk/` serves the public holding page, and hidden routes are protected by Netlify Edge preview auth. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. Wayne clarified that the public front end should currently say the site is getting ready, while the protected fuller site is the ready-to-go version for when the iOS app is live and approved screenshots/App Store links can be used for advertising. Preview auth reads `ROBSON_PREVIEW_USERNAME` / `ROBSON_PREVIEW_PASSWORD` from Netlify env vars using `Netlify.env.get()` with local fallbacks. The preview credential is stored in macOS Keychain under service `Robson AI Website Preview Auth`; do not print credential values. Do not make the fuller site public, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
