@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-30 17:56 Europe/London
+Last updated: 2026-05-31 09:48 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/public-full-site-launch-readiness`
@@ -69,6 +69,7 @@ Done criteria:
 - Local launch-readiness gates passed before Netlify preview.
 - Non-production launch-readiness preview is ready: `https://public-launch-readiness--robson-ai-website.netlify.app`.
 - Production remains unchanged: holding page public, fuller site protected.
+- Future tranches should consider agents/background threads when they are useful for parallel QA, independent review, research, or split implementation tasks.
 
 ### Next
 
@@ -111,6 +112,7 @@ Done criteria:
 | 2026-05-30 | Consent banner must not cover first-viewport hero text | Browser QA found desktop overlap on hidden fuller-site hero and holding visual | Applied targeted CSS placement fixes and stylesheet cache-bump | Before staging release candidate |
 | 2026-05-30 | Stage and commit validated release candidate as a separate commit | Wayne approved option 1 after the release-candidate review passed | PR #1 will contain both baseline/auth work and the website release candidate; production deploy remains separate | Before marking PR ready or launching production |
 | 2026-05-30 | Full public website launch waits for iOS app readiness | Wayne clarified the current public front end should say the site is getting ready while the protected fuller site is ready for launch timing | Avoids advertising or screenshot-led public launch before the iOS app is live | When app live status, screenshots, and links are ready |
+| 2026-05-31 | Use agents/background threads when useful | Wayne asked that the tracker remember agents should be used where required | Adds a lightweight decision point before larger work; avoid using agents for tiny edits where setup overhead is higher than benefit | At the start of serious tranches, QA sweeps, research, or parallel implementation |
 
 ## 6. Risks And Watch Items
 
@@ -149,7 +151,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | Browser | available/recommended | Needed for local site QA, mobile checks, console/network evidence. | Start local static server or use QA scripts. | Capture screenshots, console/network issues, and interaction evidence. |
 | Computer use/Appshots | optional | Useful if Wayne needs Codex to inspect a UI state outside repo files. | Wayne attaches an appshot or approves desktop interaction. | Diagnose visual/state issues not visible from files. |
 | Skills/plugins | available/recommended | Robson AI brand, web app, Netlify, GitHub, security, validation skills all apply. | Use relevant skill per tranche. | Follow consistent project workflows. |
-| Agents/background threads | optional | Useful for separate QA/accessibility/security sweeps. | Wayne authorizes background threads/agents for split work. | Run independent audits while main work continues. |
+| Agents/background threads | recommended when useful | Useful for parallel QA, accessibility/security sweeps, research, code review, or independent implementation subtasks. | Wayne authorizes background threads/agents for split work when a tranche would benefit. | Run independent audits, compare findings, or progress split tasks while main work continues. |
 | Automations | optional | Useful once QA is passing. | Wayne approves schedule and scope. | Weekly smoke/release-readiness reminders or checks. |
 
 ## 9. Capability Refresh Log
@@ -227,6 +229,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Launch-readiness Netlify preview deploy | pass | Non-production alias preview ready at `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a1b167adff97530bcd449b4`. |
 | 2026-05-30 | Launch-readiness preview route matrix | pass | Public launch pages returned `200` and `index, follow`; `holding.html` returned `200` and `noindex, nofollow`. |
 | 2026-05-30 | Launch-readiness preview smoke/browser | pass | `QA_BASE_URL=https://public-launch-readiness--robson-ai-website.netlify.app npm run qa:measurement:preview` passed. Preview desktop/mobile browser checks had no console issues or horizontal overflow. |
+| 2026-05-31 | Tracker agent-use rule | pass | Added a standing decision to consider agents/background threads for serious tranches, parallel QA, independent review, research, or split implementation tasks. |
 
 ## 11. Release / Deployment Notes
 
@@ -241,4 +244,4 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. Wayne clarified that public launch should wait until the iOS app is live and approved screenshots/App Store links can be used for advertising. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. Wayne clarified that public launch should wait until the iOS app is live and approved screenshots/App Store links can be used for advertising. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
