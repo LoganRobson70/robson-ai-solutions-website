@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-31 09:48 Europe/London
+Last updated: 2026-05-31 10:02 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/public-full-site-launch-readiness`
@@ -83,6 +83,26 @@ Done criteria:
 - Add CI or pre-handoff hooks for measurement smoke, HTML validation, accessibility, and tracker update checks.
 - Run a full browser/mobile QA and visual polish pass before public launch.
 
+### Post-PRD full app review task series
+
+Run this only after the relevant current-state PRD is complete and accepted. For this website repo, do not let this review expand the current public-launch-readiness tranche unless Wayne explicitly approves a new tranche.
+
+1. Confirm the PRD is complete enough to govern review: current scope, target users, architecture, risks, privacy/security, deployment path, validation commands, in-scope next work, and out-of-scope items.
+2. Define the review outcome in plain English: problem, users, success criteria, constraints, and explicit non-goals.
+3. Ask Codex/agents to analyse first with no code changes: implementation shape, risks, gaps, and recommended remediation plan.
+4. Challenge the plan with independent roles where useful: senior UX designer, product/domain lead, senior front-end engineer, security/QA reviewer, and devil's advocate.
+5. Run user-journey review across the current product surface.
+6. Run UI/UX and visual consistency review against Robson AI brand rules and existing design behaviour.
+7. Run governance/domain review for relevant workflows, audit needs, terminology, compliance, and release constraints.
+8. Run data model and integration review where the app has persisted data, APIs, tenancy, or workflow handoffs.
+9. Run security review for authentication, authorisation, tenant isolation, secrets, API exposure, injection risks, dependency risks, and audit trail gaps.
+10. Run accessibility, mobile, browser, and responsive QA review.
+11. Run cross-workspace or cross-product consistency review where the app spans modules such as service desk, work orders, projects, compliance, governance, WAIS, Building Analyst, or BuildScan.
+12. Convert findings into a ranked remediation plan: critical, high, medium, low, parked.
+13. Execute only approved, bounded Codex implementation tranches with rollback notes and validation commands.
+14. Validate after each tranche with build, lint, tests, accessibility, mobile, browser, security, and regression checks appropriate to the repo.
+15. Hold a release gate: Wayne reviews product logic, UX, security, data governance, domain fit, public claims, and deployment timing before merge or production release.
+
 ## 4. Parking Lot
 
 | Date | Idea | Source | Suggested timing | Notes |
@@ -92,6 +112,7 @@ Done criteria:
 | 2026-05-30 | Public launch of fuller website | Release handover | next | Plan exists in `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`; execution should wait until iOS app/screenshot/advertising readiness is approved. |
 | 2026-05-30 | Secret rotation and env-var based preview auth | Codex audit | done | Edge Function now reads Netlify env vars; password was rotated into Keychain; Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`; live alias preview verified. |
 | 2026-05-30 | Weekly website health automation | Capability checklist | later | Could run smoke/QA reminders, but only after the QA command is back to passing. |
+| 2026-05-31 | Post-PRD full app review workflow | Wayne/process note | after relevant PRD completion | Use the task series in section 3 to run analysis-first, multi-role, security, UX, governance, QA, and release-gate review before broad implementation. |
 
 ## 5. Decisions
 
@@ -113,6 +134,7 @@ Done criteria:
 | 2026-05-30 | Stage and commit validated release candidate as a separate commit | Wayne approved option 1 after the release-candidate review passed | PR #1 will contain both baseline/auth work and the website release candidate; production deploy remains separate | Before marking PR ready or launching production |
 | 2026-05-30 | Full public website launch waits for iOS app readiness | Wayne clarified the current public front end should say the site is getting ready while the protected fuller site is ready for launch timing | Avoids advertising or screenshot-led public launch before the iOS app is live | When app live status, screenshots, and links are ready |
 | 2026-05-31 | Use agents/background threads when useful | Wayne asked that the tracker remember agents should be used where required | Adds a lightweight decision point before larger work; avoid using agents for tiny edits where setup overhead is higher than benefit | At the start of serious tranches, QA sweeps, research, or parallel implementation |
+| 2026-05-31 | Queue full app review after PRD completion | Wayne asked whether the AI delivery process should be used for full review or tracked as tasks | Keeps the review governed and sequenced after the PRD instead of expanding current scope | When the relevant PRD is accepted and Wayne approves a review tranche |
 
 ## 6. Risks And Watch Items
 
@@ -230,6 +252,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Launch-readiness preview route matrix | pass | Public launch pages returned `200` and `index, follow`; `holding.html` returned `200` and `noindex, nofollow`. |
 | 2026-05-30 | Launch-readiness preview smoke/browser | pass | `QA_BASE_URL=https://public-launch-readiness--robson-ai-website.netlify.app npm run qa:measurement:preview` passed. Preview desktop/mobile browser checks had no console issues or horizontal overflow. |
 | 2026-05-31 | Tracker agent-use rule | pass | Added a standing decision to consider agents/background threads for serious tranches, parallel QA, independent review, research, or split implementation tasks. |
+| 2026-05-31 | Tracker post-PRD review workflow | pass | Added a post-PRD full app review task series covering analysis, multi-role challenge, UX, governance, data, security, accessibility/mobile, remediation, validation, and release gate. |
 
 ## 11. Release / Deployment Notes
 
@@ -244,4 +267,4 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. Wayne clarified that public launch should wait until the iOS app is live and approved screenshots/App Store links can be used for advertising. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. Wayne clarified that public launch should wait until the iOS app is live and approved screenshots/App Store links can be used for advertising. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. After any relevant current-state PRD is completed and accepted, use the tracker's post-PRD full app review task series before broad implementation. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
