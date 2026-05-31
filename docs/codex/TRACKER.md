@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-31 10:02 Europe/London
+Last updated: 2026-05-31 10:08 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/public-full-site-launch-readiness`
@@ -73,7 +73,7 @@ Done criteria:
 
 ### Next
 
-- Decide whether to open a PR for review, keep this as a preview branch, or hold until iOS app screenshots/App Store link are available.
+- Keep the launch-readiness branch as a preview until iOS app status, approved screenshots, and App Store/public link timing are ready.
 - Keep current production stance unchanged unless Wayne explicitly approves public launch.
 
 ### Later
@@ -135,6 +135,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | 2026-05-30 | Full public website launch waits for iOS app readiness | Wayne clarified the current public front end should say the site is getting ready while the protected fuller site is ready for launch timing | Avoids advertising or screenshot-led public launch before the iOS app is live | When app live status, screenshots, and links are ready |
 | 2026-05-31 | Use agents/background threads when useful | Wayne asked that the tracker remember agents should be used where required | Adds a lightweight decision point before larger work; avoid using agents for tiny edits where setup overhead is higher than benefit | At the start of serious tranches, QA sweeps, research, or parallel implementation |
 | 2026-05-31 | Queue full app review after PRD completion | Wayne asked whether the AI delivery process should be used for full review or tracked as tasks | Keeps the review governed and sequenced after the PRD instead of expanding current scope | When the relevant PRD is accepted and Wayne approves a review tranche |
+| 2026-05-31 | Keep launch-readiness as preview, not PR/production launch yet | Wayne selected option 1 after review of next-step choices | The fuller site remains ready to inspect without changing production or opening launch pressure before app materials are ready | When iOS app status, approved screenshots, and App Store/public link timing are ready |
 
 ## 6. Risks And Watch Items
 
@@ -253,6 +254,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Launch-readiness preview smoke/browser | pass | `QA_BASE_URL=https://public-launch-readiness--robson-ai-website.netlify.app npm run qa:measurement:preview` passed. Preview desktop/mobile browser checks had no console issues or horizontal overflow. |
 | 2026-05-31 | Tracker agent-use rule | pass | Added a standing decision to consider agents/background threads for serious tranches, parallel QA, independent review, research, or split implementation tasks. |
 | 2026-05-31 | Tracker post-PRD review workflow | pass | Added a post-PRD full app review task series covering analysis, multi-role challenge, UX, governance, data, security, accessibility/mobile, remediation, validation, and release gate. |
+| 2026-05-31 | Tracker launch-readiness hold decision | pass | Recorded Wayne's decision to keep the launch-readiness branch as a preview until iOS/app launch materials are ready. |
 
 ## 11. Release / Deployment Notes
 
