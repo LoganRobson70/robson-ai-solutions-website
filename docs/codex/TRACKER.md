@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-31 10:18 Europe/London
+Last updated: 2026-06-08 21:40 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/public-full-site-launch-readiness`
@@ -50,6 +50,22 @@ Done criteria:
 - Launch blockers are documented.
 - Tracker is updated with evidence and Wayne's next recommended decision.
 
+Follow-on tranche:
+
+- Tranche name: `website-rg5-local-qa-runner-parity`
+- Status: completed
+- Started: 2026-06-01 06:03 Europe/London
+- Completed: 2026-06-01 06:08 Europe/London
+- Scope: re-run local measurement smoke/evidence in an environment that allows loopback bind and attach fresh proof artifacts to this tracker.
+
+Follow-on tranche:
+
+- Tranche name: `website-post-wwdc-positioning-refresh`
+- Status: completed
+- Started: 2026-06-08 20:30 Europe/London
+- Completed: 2026-06-08 21:37 Europe/London
+- Scope: update website narrative and launch-readiness copy after WWDC26 so Building Analyst is framed as a professional surveying/reporting product with cautious Apple-native intelligence direction where relevant. No production deploy, no app implementation, no vendor-provider strategy changes.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -70,12 +86,15 @@ Done criteria:
 - Non-production launch-readiness preview is ready: `https://public-launch-readiness--robson-ai-website.netlify.app`.
 - Production remains unchanged: holding page public, fuller site protected.
 - Future tranches should consider agents/background threads when they are useful for parallel QA, independent review, research, or split implementation tasks.
-- This website branch and the related iOS app thread are both at a wait-until-WWDC gate. Apple WWDC 2026 runs June 8-12, 2026; no launch-facing website or iOS decisions should be forced before then unless Wayne explicitly reopens the scope.
+- This website branch and the related iOS app thread are both at a wait-until-WWDC gate. Apple WWDC 2026 runs June 8-12, 2026; no launch-facing website or iOS decisions should be forced before 2026-06-08 unless Wayne explicitly reopens the scope.
+- `website-rg5-local-qa-runner-parity` is complete: local smoke/evidence suite now passes with fresh 2026-06-01 artifacts and removes the prior local bind blocker from the website-only PRD gate evidence.
+- `website-post-wwdc-positioning-refresh` is complete: homepage, Building Analyst, who-it-fits, holding page and website narrative copy now favour professional surveying software, reporting workflows, building intelligence and cautious Apple-native direction over generic AI/chatbot/provider language.
 
 ### Next
 
-- Keep the launch-readiness branch as a preview until after WWDC 2026 and until iOS app status, approved screenshots, and App Store/public link timing are ready.
+- Keep the launch-readiness branch as a preview until iOS app status, approved screenshots, and App Store/public link timing are ready.
 - Keep current production stance unchanged unless Wayne explicitly approves public launch.
+- Decide whether to create a PR for the post-WWDC copy refresh, continue with preview/browser QA, or wait for app screenshots/App Store link.
 
 ### Later
 
@@ -114,6 +133,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | 2026-05-30 | Secret rotation and env-var based preview auth | Codex audit | done | Edge Function now reads Netlify env vars; password was rotated into Keychain; Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`; live alias preview verified. |
 | 2026-05-30 | Weekly website health automation | Capability checklist | later | Could run smoke/QA reminders, but only after the QA command is back to passing. |
 | 2026-05-31 | Post-PRD full app review workflow | Wayne/process note | after relevant PRD completion | Use the task series in section 3 to run analysis-first, multi-role, security, UX, governance, QA, and release-gate review before broad implementation. |
+| 2026-06-01 | Codex web development/design skill library expansion | Wayne skill request | done | Created 28 focused local Codex skills under `~/.codex/skills` for frontend, web design, backend, full-stack, and code-quality work. This is tooling support and does not reopen the WWDC-held website launch tranche. |
 
 ## 5. Decisions
 
@@ -138,6 +158,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | 2026-05-31 | Queue full app review after PRD completion | Wayne asked whether the AI delivery process should be used for full review or tracked as tasks | Keeps the review governed and sequenced after the PRD instead of expanding current scope | When the relevant PRD is accepted and Wayne approves a review tranche |
 | 2026-05-31 | Keep launch-readiness as preview, not PR/production launch yet | Wayne selected option 1 after review of next-step choices | The fuller site remains ready to inspect without changing production or opening launch pressure before app materials are ready | When iOS app status, approved screenshots, and App Store/public link timing are ready |
 | 2026-05-31 | Treat website and iOS work as wait-until-WWDC | Wayne clarified both this website thread and the iOS chat are at the WWDC wait stage | Avoids premature public launch, screenshots, claims, or platform decisions before Apple announcements are known | After WWDC 2026 begins on June 8, 2026, or when Wayne explicitly reopens the scope |
+| 2026-06-08 | Refresh website positioning after WWDC26 without implementation scope | Wayne selected option 1 after the post-WWDC briefing | Aligns public/preview copy with Apple-native/device-first Building Analyst direction while avoiding overclaims about unreleased or unimplemented Apple features | When app screenshots, App Store link, or implemented Apple Intelligence features are ready to reference publicly |
 
 ## 6. Risks And Watch Items
 
@@ -258,6 +279,18 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-31 | Tracker post-PRD review workflow | pass | Added a post-PRD full app review task series covering analysis, multi-role challenge, UX, governance, data, security, accessibility/mobile, remediation, validation, and release gate. |
 | 2026-05-31 | Tracker launch-readiness hold decision | pass | Recorded Wayne's decision to keep the launch-readiness branch as a preview until iOS/app launch materials are ready. |
 | 2026-05-31 | Tracker WWDC wait gate | pass | Recorded Wayne's clarification that both website launch-readiness and the related iOS app thread should wait until WWDC. WWDC 2026 date checked against Apple's newsroom: June 8-12, 2026. |
+| 2026-06-01 | `npm run qa:preview-auth` | pass | 3/3 preview-auth smoke tests passed. |
+| 2026-06-01 | `npm run qa:measurement:local` | pass | Artifact: `output/measurement/smoke-2026-06-01T06-04-17-890Z`. Route matrix, consent flows, and required event contract passed. |
+| 2026-06-01 | `npm run qa:measurement:evidence` | pass | Artifact: `output/measurement/evidence-2026-06-01T06-04-26-480Z`. HTML validation, axe checks, smoke, and Lighthouse runs completed. |
+| 2026-06-01 | `git diff --check` | pass | No whitespace errors after website-only tracker update. |
+| 2026-06-01 | `quick_validate.py` across generated local Codex skills | pass | 28/28 generated skills validated using `/usr/bin/python3`; default Homebrew and Codex runtime Python lacked `PyYAML`, so no package installation was performed. |
+| 2026-06-08 | post-WWDC wording scan | pass | Public pages no longer contain stale `surveying-led AI software`, `AI-led`, `AI-assisted`, or `AI-supported` phrasing. Remaining BYO/vendor mentions are narrative guardrails only. |
+| 2026-06-08 | `git diff --check` | pass | No whitespace errors after post-WWDC copy refresh. |
+| 2026-06-08 | `npx html-validate --rule doctype-style:off --rule void-style:off holding.html index.html preview.html privacy.html building-analyst.html who-its-for.html` | pass | HTML validation passed for launch-readiness pages. |
+| 2026-06-08 | `npm run qa:preview-auth` | pass | 3/3 preview-auth smoke tests passed. |
+| 2026-06-08 | `npm run qa:measurement:local` | pass | Artifact: `output/measurement/smoke-2026-06-08T20-36-10-711Z`. Contact mailto now uses professional surveying software/building intelligence wording. |
+| 2026-06-08 | `npm run qa:measurement:evidence` | pass | Artifact: `output/measurement/evidence-2026-06-08T20-36-21-494Z`. Lighthouse median: performance 94, accessibility 100, best practices 100, SEO 100. |
+| 2026-06-08 | Local Playwright browser smoke | pass | Desktop and mobile checks for `/`, `/building-analyst.html`, and `/who-its-for.html` found no console warnings/errors, no horizontal overflow, and no stale generic AI phrases in visible body text. |
 
 ## 11. Release / Deployment Notes
 
@@ -272,4 +305,40 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. Wayne clarified that this website thread and the related iOS app thread are both at a wait-until-WWDC stage; Apple WWDC 2026 runs June 8-12, 2026. Public launch should still wait until the iOS app is live and approved screenshots/App Store links can be used for advertising. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. After any relevant current-state PRD is completed and accepted, use the tracker's post-PRD full app review task series before broad implementation. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. The post-WWDC26 copy refresh is complete: public/preview copy now frames Building Analyst as a professional surveying/reporting product with cautious Apple-native intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. Public launch should still wait until the iOS app is live and approved screenshots/App Store links can be used for advertising. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. After any relevant current-state PRD is completed and accepted, use the tracker's post-PRD full app review task series before broad implementation. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+
+## 13. PRD Gate Execution Log (2026-06-01)
+
+### Nightly PRD Gate Steps 1-5 (User Journey, UI/UX, Governance, Data Model, Security)
+
+Scope:
+- Ran the requested steps 1-5 review process across current RobsonAI workspaces assigned to automation.
+- Read each workspace's project instructions and current `docs/codex/PRD.md` + `docs/codex/TRACKER.md` where present.
+- Kept work local-only, no deploys, no external live system changes.
+
+Ranked findings for this website workspace:
+1. `resolved` - Governance/Testability local-runner blocker is cleared:
+   previous local bind failure is no longer present in this environment; both local smoke and full evidence runs passed on 2026-06-01.
+2. `medium` - User journey release hold remains intentional:
+   tracker and launch docs still show public root as holding-first while fuller launch route stays intentionally delayed pending iOS launch timing.
+3. `low` - Data model remains static-content only:
+   no backend/database schema is present by design for current website scope; this is acceptable for holding/marketing mode but constrains richer conversion flows.
+4. `low` - Security controls remain aligned with PRD:
+   preview auth reads Netlify env vars in `netlify/edge-functions/preview-auth.js`; no hard-coded preview credential literals were found in the scanned security path.
+
+Validation commands and checks:
+- `npm run qa:preview-auth` -> pass (3/3 tests)
+- `npm run qa:measurement:local` -> pass (artifact: `output/measurement/smoke-2026-06-01T06-04-17-890Z`)
+- `npm run qa:measurement:evidence` -> pass (artifact: `output/measurement/evidence-2026-06-01T06-04-26-480Z`)
+- `git diff --check` -> pass
+- Targeted source inspection:
+  - `netlify/edge-functions/preview-auth.js`
+  - `netlify.toml`
+  - `script.js`
+  - `docs/codex/PRD.md`
+
+Release-readiness verdict for this workspace:
+- Steps 1-5 outcome: ready from a website-only evidence standpoint (journey/UI/security/governance checks revalidated locally); business launch timing remains intentionally held for WWDC/iOS readiness decisions.
+
+Recommended next remediation tranche:
+- `website-wwdc-hold-monitor`: keep launch-readiness unchanged and perform a short post-WWDC decision review when app-link/screenshot readiness is known.

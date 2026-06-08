@@ -4,13 +4,13 @@
 
 The website should introduce Robson AI Solutions as a surveying-led technology business, not as a single finished product page.
 
-Robson AI Solutions uses building surveying knowledge and practical professional experience to explore AI tools, techniques and software that help surveyors and property professionals work more productively.
+Robson AI Solutions uses building surveying knowledge and practical professional experience to build professional software for evidence capture, reporting workflows and building intelligence.
 
 The narrative should feel early, credible and ambitious: a self-starting business building useful technology from real building-related workflows.
 
 ## Core Story
 
-Robson AI Solutions is building practical AI-enabled software for building-related work.
+Robson AI Solutions is building practical professional software for building-related work, with AI and Apple-native intelligence used only where they improve real surveying and reporting workflows.
 
 The work starts from building surveying experience: capturing observations, organising evidence, analysing information and helping clients understand building matters more clearly.
 
@@ -18,14 +18,15 @@ The aim is not to replace professional judgement. The aim is to improve producti
 
 ## Product Work In Progress
 
-- Building Analyst: early app work across multiple platforms for building assessment capture, evidence organisation and AI-supported analysis.
+- Building Analyst: Apple-platform-first product work for building assessment capture, evidence organisation, report preparation and professional review support.
 - 3D modelling software: development work for external building drone surveying, visual inspection support and spatial understanding.
 - Property operations software: early CAFM-style system exploration for building and facilities workflows.
-- AI methods: applied use of AI tools, techniques and automation where they can reduce repetition, improve consistency or make evidence easier to review.
+- Intelligence methods: applied use of AI, Apple-native capabilities and automation where they can reduce repetition, improve consistency or make evidence easier to review.
 
 ## Say This
 
-- Surveying-led AI software.
+- Professional surveying software.
+- Apple-native building intelligence where relevant and supportable.
 - Building surveying knowledge applied to practical technology.
 - Capture, analyse and build a stronger evidence base.
 - Support clients on building-related matters.
@@ -41,6 +42,9 @@ The aim is not to replace professional judgement. The aim is to improve producti
 - Do not rely on screenshots of unfinished app screens as the main proof.
 - Do not over-claim finished product capability, customer adoption or production readiness.
 - Do not use generic “AI transformation” language without building surveying context.
+- Do not present BYO API keys, external model providers or generic chatbots as the product goal for Building Analyst.
+- Do not over-claim Apple Intelligence, Siri, App Intents, Foundation Models or other Apple APIs unless the specific capability is implemented, testable and available to the intended users.
+- Keep Apple-native product direction separate from Microsoft, Google, OpenAI, Anthropic or other vendor AI strategies.
 
 ## Visual Content Guidance
 
