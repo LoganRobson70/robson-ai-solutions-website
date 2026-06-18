@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-08 21:40 Europe/London
+Last updated: 2026-06-18 19:53 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/public-full-site-launch-readiness`
@@ -66,6 +66,14 @@ Follow-on tranche:
 - Completed: 2026-06-08 21:37 Europe/London
 - Scope: update website narrative and launch-readiness copy after WWDC26 so Building Analyst is framed as a professional surveying/reporting product with cautious Apple-native intelligence direction where relevant. No production deploy, no app implementation, no vendor-provider strategy changes.
 
+Follow-on tranche:
+
+- Tranche name: `website-agent-polish-preview-refresh`
+- Status: completed
+- Started: 2026-06-18 18:40 Europe/London
+- Completed: 2026-06-18 19:53 Europe/London
+- Scope: use an independent read-only agent review plus Browser/Netlify tooling to tighten post-WWDC copy/docs, refresh the non-production Netlify launch-readiness preview, and validate the live preview. No production deploy, no domain/DNS changes, no app implementation.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -89,12 +97,14 @@ Follow-on tranche:
 - This website branch and the related iOS app thread are both at a wait-until-WWDC gate. Apple WWDC 2026 runs June 8-12, 2026; no launch-facing website or iOS decisions should be forced before 2026-06-08 unless Wayne explicitly reopens the scope.
 - `website-rg5-local-qa-runner-parity` is complete: local smoke/evidence suite now passes with fresh 2026-06-01 artifacts and removes the prior local bind blocker from the website-only PRD gate evidence.
 - `website-post-wwdc-positioning-refresh` is complete: homepage, Building Analyst, who-it-fits, holding page and website narrative copy now favour professional surveying software, reporting workflows, building intelligence and cautious Apple-native direction over generic AI/chatbot/provider language.
+- `website-agent-polish-preview-refresh` is complete: stale privacy/PRD/release wording was aligned, Building Analyst now says "Assessment capture and report-ready evidence", Apple-platform language is cautious, the launch plan separates a professional/product-direction launch from an app-availability launch, and the Netlify preview has been refreshed.
+- Latest non-production preview: `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a343e07af7c92bd1d67c724`, state `ready`.
 
 ### Next
 
 - Keep the launch-readiness branch as a preview until iOS app status, approved screenshots, and App Store/public link timing are ready.
 - Keep current production stance unchanged unless Wayne explicitly approves public launch.
-- Decide whether to create a PR for the post-WWDC copy refresh, continue with preview/browser QA, or wait for app screenshots/App Store link.
+- Decide whether to open/update a PR for the launch-readiness branch, continue visual/content polish, or hold the branch as a preview while app screenshots/App Store link decisions mature.
 
 ### Later
 
@@ -159,6 +169,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | 2026-05-31 | Keep launch-readiness as preview, not PR/production launch yet | Wayne selected option 1 after review of next-step choices | The fuller site remains ready to inspect without changing production or opening launch pressure before app materials are ready | When iOS app status, approved screenshots, and App Store/public link timing are ready |
 | 2026-05-31 | Treat website and iOS work as wait-until-WWDC | Wayne clarified both this website thread and the iOS chat are at the WWDC wait stage | Avoids premature public launch, screenshots, claims, or platform decisions before Apple announcements are known | After WWDC 2026 begins on June 8, 2026, or when Wayne explicitly reopens the scope |
 | 2026-06-08 | Refresh website positioning after WWDC26 without implementation scope | Wayne selected option 1 after the post-WWDC briefing | Aligns public/preview copy with Apple-native/device-first Building Analyst direction while avoiding overclaims about unreleased or unimplemented Apple features | When app screenshots, App Store link, or implemented Apple Intelligence features are ready to reference publicly |
+| 2026-06-18 | App screenshots/App Store links are conditional launch assets | Independent review found the old launch plan could unnecessarily block a truthful professional/product-direction website launch | Website can launch without app-store claims if copy stays honest; screenshots/links remain required if app availability is claimed or shown | When Wayne decides whether launch is professional/product-direction only or app-availability led |
 
 ## 6. Risks And Watch Items
 
@@ -291,6 +302,16 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-08 | `npm run qa:measurement:local` | pass | Artifact: `output/measurement/smoke-2026-06-08T20-36-10-711Z`. Contact mailto now uses professional surveying software/building intelligence wording. |
 | 2026-06-08 | `npm run qa:measurement:evidence` | pass | Artifact: `output/measurement/evidence-2026-06-08T20-36-21-494Z`. Lighthouse median: performance 94, accessibility 100, best practices 100, SEO 100. |
 | 2026-06-08 | Local Playwright browser smoke | pass | Desktop and mobile checks for `/`, `/building-analyst.html`, and `/who-its-for.html` found no console warnings/errors, no horizontal overflow, and no stale generic AI phrases in visible body text. |
+| 2026-06-18 | Independent agent copy/release-risk review | pass | Read-only agent found stale privacy footer/PRD/release wording, one over-strong Apple-native phrase, a narrow Building Analyst H1, and an over-rigid App Store/screenshot gate. Findings were applied in scoped files. |
+| 2026-06-18 | post-polish wording scan | pass | Public pages no longer contain stale `surveying-led AI software`, `AI-led`, `AI-assisted`, `AI-supported`, or `AI tools and practical software` phrasing. BYO/vendor mentions remain guardrails only. |
+| 2026-06-18 | `git diff --check` | pass | No whitespace errors after agent-review polish. |
+| 2026-06-18 | `npx html-validate --rule doctype-style:off --rule void-style:off holding.html index.html preview.html privacy.html building-analyst.html who-its-for.html` | pass | HTML validation passed for launch-readiness pages. |
+| 2026-06-18 | `npm run qa:preview-auth` | pass | 3/3 preview-auth smoke tests passed. |
+| 2026-06-18 | `npm run qa:measurement:local` | pass | Artifact: `output/measurement/smoke-2026-06-18T18-45-47-003Z`. Route matrix, consent flows, contact mailto and event contract passed. |
+| 2026-06-18 | `npm run qa:measurement:evidence` | pass | Artifact: `output/measurement/evidence-2026-06-18T18-46-35-548Z`. Lighthouse median: performance 83, accessibility 100, best practices 100, SEO 100. |
+| 2026-06-18 | Netlify non-production preview deploy | pass | Alias `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a343e07af7c92bd1d67c724`, state `ready`, context `branch-deploy`. Production unchanged. |
+| 2026-06-18 | `QA_BASE_URL=https://public-launch-readiness--robson-ai-website.netlify.app npm run qa:measurement:preview` | pass | Artifact: `output/measurement/smoke-2026-06-18T18-51-50-890Z`. Public routes returned 200 and contact mailto uses professional surveying/building intelligence wording. |
+| 2026-06-18 | Browser plugin live preview checks | pass | Browser opened live preview homepage, Building Analyst, and Privacy pages on desktop; homepage and Building Analyst were also checked at mobile width. Titles reflected updated post-WWDC positioning. |
 
 ## 11. Release / Deployment Notes
 
@@ -305,7 +326,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. The post-WWDC26 copy refresh is complete: public/preview copy now frames Building Analyst as a professional surveying/reporting product with cautious Apple-native intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. Public launch should still wait until the iOS app is live and approved screenshots/App Store links can be used for advertising. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. After any relevant current-state PRD is completed and accepted, use the tracker's post-PRD full app review task series before broad implementation. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a refreshed non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a343e07af7c92bd1d67c724`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. The post-WWDC26 copy refresh and agent-review polish are complete: public/preview copy now frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for a truthful professional/product-direction website launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. After any relevant current-state PRD is completed and accepted, use the tracker's post-PRD full app review task series before broad implementation. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
 
 ## 13. PRD Gate Execution Log (2026-06-01)
 
