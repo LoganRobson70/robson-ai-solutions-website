@@ -323,6 +323,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-18 | `QA_BASE_URL=https://public-launch-readiness--robson-ai-website.netlify.app npm run qa:measurement:preview` | pass | Artifact: `output/measurement/smoke-2026-06-18T18-51-50-890Z`. Public routes returned 200 and contact mailto uses professional surveying/building intelligence wording. |
 | 2026-06-18 | Browser plugin live preview checks | pass | Browser opened live preview homepage, Building Analyst, and Privacy pages on desktop; homepage and Building Analyst were also checked at mobile width. Titles reflected updated post-WWDC positioning. |
 | 2026-06-18 | GitHub draft PR creation | pass | Draft PR #2 opened: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`. Head `codex/public-full-site-launch-readiness`, base `main`, 16 changed files, 9 commits. |
+| 2026-06-18 | `QA_BASE_URL=https://deploy-preview-2--robson-ai-website.netlify.app npm run qa:measurement:preview` | pass | GitHub PR Netlify deploy-preview smoke passed. Artifact: `output/measurement/smoke-2026-06-18T19-00-42-691Z`. |
 
 ## 11. Release / Deployment Notes
 
