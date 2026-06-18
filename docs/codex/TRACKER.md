@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-18 19:58 Europe/London
+Last updated: 2026-06-18 20:51 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/public-full-site-launch-readiness`
@@ -82,6 +82,14 @@ Follow-on tranche:
 - Completed: 2026-06-18 19:58 Europe/London
 - Scope: open a draft GitHub PR for the validated launch-readiness branch so the work enters formal review without merging or production deployment.
 
+Follow-on tranche:
+
+- Tranche name: `website-launch-readiness-pr-ready`
+- Status: completed
+- Started: 2026-06-18 20:51 Europe/London
+- Completed: 2026-06-18 20:51 Europe/London
+- Scope: mark the already validated launch-readiness PR ready for review after Wayne approval, verify the PR check, and keep merge/production launch approval separate.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -107,13 +115,14 @@ Follow-on tranche:
 - `website-post-wwdc-positioning-refresh` is complete: homepage, Building Analyst, who-it-fits, holding page and website narrative copy now favour professional surveying software, reporting workflows, building intelligence and cautious Apple-native direction over generic AI/chatbot/provider language.
 - `website-agent-polish-preview-refresh` is complete: stale privacy/PRD/release wording was aligned, Building Analyst now says "Assessment capture and report-ready evidence", Apple-platform language is cautious, the launch plan separates a professional/product-direction launch from an app-availability launch, and the Netlify preview has been refreshed.
 - Latest non-production preview: `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a343e07af7c92bd1d67c724`, state `ready`.
-- Draft PR #2 is open for review: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`.
+- PR #2 is open and ready for review: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`.
+- PR #2 is not approval to merge or production deploy; production remains unchanged.
 
 ### Next
 
 - Keep the launch-readiness branch as a preview until iOS app status, approved screenshots, and App Store/public link timing are ready.
 - Keep current production stance unchanged unless Wayne explicitly approves public launch.
-- Review draft PR #2, decide whether to keep it draft for more polish, mark it ready for review, or hold until launch timing is confirmed.
+- Review ready-for-review PR #2 and decide whether to hold, request final polish, merge later, or approve a separate production launch tranche.
 
 ### Later
 
@@ -180,6 +189,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | 2026-06-08 | Refresh website positioning after WWDC26 without implementation scope | Wayne selected option 1 after the post-WWDC briefing | Aligns public/preview copy with Apple-native/device-first Building Analyst direction while avoiding overclaims about unreleased or unimplemented Apple features | When app screenshots, App Store link, or implemented Apple Intelligence features are ready to reference publicly |
 | 2026-06-18 | App screenshots/App Store links are conditional launch assets | Independent review found the old launch plan could unnecessarily block a truthful professional/product-direction website launch | Website can launch without app-store claims if copy stays honest; screenshots/links remain required if app availability is claimed or shown | When Wayne decides whether launch is professional/product-direction only or app-availability led |
 | 2026-06-18 | Open launch-readiness PR as draft | Wayne asked Codex to continue after PR was recommended | Formalizes review without implying merge or production launch approval | When Wayne decides to mark ready for review, merge, or hold |
+| 2026-06-18 | Mark PR #2 ready for review | Wayne approved the recommended ready-for-review step | Makes the validated branch formally reviewable while keeping merge and production launch as separate approvals | When Wayne approves merge, final polish, hold, or production launch tranche |
 
 ## 6. Risks And Watch Items
 
@@ -324,6 +334,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-18 | Browser plugin live preview checks | pass | Browser opened live preview homepage, Building Analyst, and Privacy pages on desktop; homepage and Building Analyst were also checked at mobile width. Titles reflected updated post-WWDC positioning. |
 | 2026-06-18 | GitHub draft PR creation | pass | Draft PR #2 opened: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`. Head `codex/public-full-site-launch-readiness`, base `main`, 16 changed files, 9 commits. |
 | 2026-06-18 | `QA_BASE_URL=https://deploy-preview-2--robson-ai-website.netlify.app npm run qa:measurement:preview` | pass | GitHub PR Netlify deploy-preview smoke passed. Artifact: `output/measurement/smoke-2026-06-18T19-00-42-691Z`. |
+| 2026-06-18 | PR #2 ready-for-review update | pass | PR #2 is no longer draft and remains open: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`. Netlify deploy-preview check passed at `https://deploy-preview-2--robson-ai-website.netlify.app`. |
 
 ## 11. Release / Deployment Notes
 
@@ -338,7 +349,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a refreshed non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a343e07af7c92bd1d67c724`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. Draft PR #2 is open at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`; it is not approval to merge or production deploy. The post-WWDC26 copy refresh and agent-review polish are complete: public/preview copy now frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for a truthful professional/product-direction website launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. After any relevant current-state PRD is completed and accepted, use the tracker's post-PRD full app review task series before broad implementation. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a refreshed non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a343e07af7c92bd1d67c724`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. PR #2 is open and ready for review at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`; it is not approval to merge or production deploy. The post-WWDC26 copy refresh and agent-review polish are complete: public/preview copy now frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for a truthful professional/product-direction website launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. After any relevant current-state PRD is completed and accepted, use the tracker's post-PRD full app review task series before broad implementation. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
 
 ## 13. PRD Gate Execution Log (2026-06-01)
 
