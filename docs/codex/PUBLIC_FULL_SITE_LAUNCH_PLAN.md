@@ -13,7 +13,7 @@ Current intended behaviour:
 - `/` serves the public holding page from `holding.html`.
 - `index.html`, `building-analyst.html`, `who-its-for.html`, and `privacy.html` are deployed and ready behind Netlify Edge preview auth.
 - The public message says the website is getting ready to go live.
-- The fuller website is the launch-ready version to expose when the iOS app is live and Robson AI is ready to show screenshots, advertise properly, and send people to product pages.
+- The fuller website is the launch-ready version to expose when Robson AI is ready to publish a truthful professional-services/product-direction site. App screenshots and App Store links are required only if the public page claims app availability or shows app-specific launch assets.
 - Analytics is still inert because the GA4 Measurement ID is empty.
 
 This plan should not be executed until Wayne explicitly approves the public launch.
@@ -22,9 +22,9 @@ This plan should not be executed until Wayne explicitly approves the public laun
 
 Recommended launch trigger:
 
-- The iOS app is live or has a clearly approved public release date.
-- App screenshots are approved for public use.
-- Any App Store / product URL needed by the site is known.
+- The iOS app is live or has a clearly approved public release date if the site will claim app availability.
+- App screenshots are approved for public use if the site will show app screenshots.
+- Any App Store / product URL needed by the site is known if the site links to an app/product listing.
 - Marketing language is final enough to advertise without over-claiming.
 - Wayne approves moving from holding-page mode to public fuller-site mode.
 
@@ -37,7 +37,7 @@ Make the fuller Robson AI Solutions website public while preserving a controlled
 Public launch should:
 
 - Make the fuller site the public front door at `/`.
-- Show Building Analyst/product screenshots where approved.
+- Show Building Analyst/product screenshots only where approved and only if the launch claim needs them.
 - Keep claims grounded in current product reality.
 - Keep privacy, robots, sitemap, consent, and analytics behaviour aligned.
 - Remove preview auth only from pages intended to be public.
@@ -62,7 +62,7 @@ Expected route/config changes:
 - Update `sitemap.xml` to include public pages.
 - Update page-level `<meta name="robots">` values from `noindex, nofollow` to public indexing where appropriate.
 - Update canonical URLs if `index.html` becomes the public homepage.
-- Add approved app/screenshots assets and references.
+- Add approved app/screenshots assets and references only where the public launch scope includes app-specific launch material.
 - Add App Store/product links only when the target is live and approved.
 
 ## 5. Content Checks Before Launch
@@ -79,8 +79,8 @@ Check for:
 
 - No invented testimonials, customer logos, adoption metrics, or procurement-ready claims.
 - Clear stage language around Building Analyst and related Robson AI products.
-- Screenshots are approved and match the live/current app.
-- Any iOS/App Store language matches the app's real status.
+- Screenshots are approved and match the live/current app if screenshots are used.
+- Any iOS/App Store language matches the app's real status if app availability is claimed.
 - Email/contact path is still correct.
 - Privacy notice matches actual data collection.
 - Optional analytics language matches the GA4 setup at launch time.
@@ -162,9 +162,9 @@ Prepare the exact public-launch branch without deploying it.
 
 Scope:
 
-- Confirm iOS app release status and allowed screenshots/links.
+- Confirm whether this launch is a professional/product-direction website launch or an app-availability launch.
 - Update route/auth/robots/sitemap plan into code.
-- Add only approved screenshots/assets.
+- Add only approved screenshots/assets if the launch scope includes them.
 - Keep copy honest and aligned with Robson AI brand rules.
 - Run all QA gates and produce a Netlify preview.
 - Stop before production launch for Wayne approval.

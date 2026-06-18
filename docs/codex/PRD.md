@@ -7,7 +7,7 @@ Status: current-state baseline, not a rewrite specification
 
 ## 1. What The Project Is
 
-This project is the Robson AI Solutions public website and private fuller-site preview. It presents Robson AI Solutions as a surveying-led technology business developing practical AI-enabled software for building-related work.
+This project is the Robson AI Solutions public website and private fuller-site preview. It presents Robson AI Solutions as a surveying-led technology business developing professional surveying/reporting software and building intelligence for building-related work.
 
 Current deployment stance is inferred from `netlify.toml` and `docs/release-handover.md`:
 
@@ -24,7 +24,7 @@ Current target users are inferred from page content and `docs/website-narrative.
 - Facilities/property operations teams.
 - Compliance and inspection teams.
 - People interested in drone capture, 3D modelling, visual inspection, and spatial building context.
-- Potential collaborators or early conversations around surveying-led AI software.
+- Potential collaborators or early conversations around professional surveying software, reporting workflows, building intelligence, and building-related product ideas.
 
 ## 3. Current Product Scope
 
@@ -84,7 +84,7 @@ Netlify routing:
 
 - Public holding page with direct email CTA and copy-email support.
 - Fuller hidden site with sections for focus, products in development, method, credibility, and contact.
-- Building Analyst page describing early assessment capture, evidence organisation, and AI-supported analysis.
+- Building Analyst page describing early assessment capture, evidence organisation, report-ready analysis, and professional review support.
 - Who-it-is-for page qualifying likely fit and non-fit audiences.
 - Privacy page and holding-page inline privacy notice.
 - Consent banner with default-off analytics behavior.

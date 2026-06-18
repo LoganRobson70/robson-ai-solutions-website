@@ -25,7 +25,7 @@ This repo now represents a temporary live holding page for Robson AI Solutions, 
 - Use `docs/website-narrative.md` as the current copy direction for the fuller website.
 - Trust comes from specificity:
   - narrow company focus
-  - surveying-led AI software narrative covering evidence capture, analysis, 3D modelling and early property operations tooling
+  - professional surveying/reporting software narrative covering evidence capture, report-ready analysis, building intelligence, 3D modelling and early property operations tooling
   - clear explanation of where the product fits and does not fit
   - explicit statement of what is still being validated
 - Avoid positioning the company as only Building Analyst or as a handover/report tool.
