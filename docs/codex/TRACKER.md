@@ -1,9 +1,9 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-05-30 17:01 Europe/London
+Last updated: 2026-06-20 10:08 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Current branch: `main`
+Current branch: `codex/public-full-site-launch-readiness`
 
 ## 1. Current Objective
 
@@ -18,17 +18,18 @@ Success means:
 
 ## 2. Active Tranche
 
-Tranche name: `public-full-site-launch-plan`
-Status: complete
-Started: 2026-05-30 16:58 Europe/London
-Completed: 2026-05-30 17:01 Europe/London
+Tranche name: `public-full-site-launch-readiness`
+Status: in progress
+Started: 2026-05-30 17:03 Europe/London
+Completed: 2026-05-30 17:56 Europe/London
 
 Scope:
 
-- Create a plan for making the fuller website public later.
-- Preserve Wayne's clarification that the public front end currently says the site is getting ready, while the protected fuller site is ready to go public when the iOS app is live.
-- Document route/auth, screenshots, advertising, QA, deploy, and rollback steps.
-- Do not perform the public full-site launch.
+- Prepare a separate launch-readiness branch and Netlify preview.
+- Make `/` serve the fuller site on the readiness branch.
+- Make intended public pages anonymous/public on the readiness branch.
+- Keep missing iOS/App Store screenshots and links marked as blockers, not invented content.
+- Do not launch production.
 
 Out of scope:
 
@@ -37,16 +38,81 @@ Out of scope:
 
 Permission envelope:
 
-- Wayne approved option 1: `public-full-site-launch-plan`.
-- Codex may do: inspect current route/docs context, create launch planning docs, update tracker, and commit/push documentation.
-- Codex must ask before: changing domain/DNS, enabling GA4, adding forms, sending external messages, destructive git actions, or unrelated post-launch changes.
+- Wayne approved option 2: `public-full-site-launch-readiness`.
+- Codex may do: create a branch, make route/auth/robots/sitemap/meta readiness changes, run local QA, deploy a non-production Netlify preview, update docs/tracker, commit/push the branch.
+- Codex must ask before: merging to `main`, production launch/deploy, changing domain/DNS, enabling GA4, adding forms, sending external messages, destructive git actions, or unrelated post-launch changes.
 
 Done criteria:
 
-- Launch plan exists and reflects the iOS app timing.
-- Plan distinguishes planning from public launch execution.
-- Plan includes route/auth, screenshots/assets, QA gates, deployment, and rollback.
+- Readiness branch exists and is pushed.
+- Local QA gates pass.
+- Non-production Netlify preview is deployed and verified.
+- Launch blockers are documented.
 - Tracker is updated with evidence and Wayne's next recommended decision.
+
+Follow-on tranche:
+
+- Tranche name: `website-rg5-local-qa-runner-parity`
+- Status: completed
+- Started: 2026-06-01 06:03 Europe/London
+- Completed: 2026-06-01 06:08 Europe/London
+- Scope: re-run local measurement smoke/evidence in an environment that allows loopback bind and attach fresh proof artifacts to this tracker.
+
+Follow-on tranche:
+
+- Tranche name: `website-post-wwdc-positioning-refresh`
+- Status: completed
+- Started: 2026-06-08 20:30 Europe/London
+- Completed: 2026-06-08 21:37 Europe/London
+- Scope: update website narrative and launch-readiness copy after WWDC26 so Building Analyst is framed as a professional surveying/reporting product with cautious Apple-native intelligence direction where relevant. No production deploy, no app implementation, no vendor-provider strategy changes.
+
+Follow-on tranche:
+
+- Tranche name: `website-agent-polish-preview-refresh`
+- Status: completed
+- Started: 2026-06-18 18:40 Europe/London
+- Completed: 2026-06-18 19:53 Europe/London
+- Scope: use an independent read-only agent review plus Browser/Netlify tooling to tighten post-WWDC copy/docs, refresh the non-production Netlify launch-readiness preview, and validate the live preview. No production deploy, no domain/DNS changes, no app implementation.
+
+Follow-on tranche:
+
+- Tranche name: `website-launch-readiness-pr`
+- Status: completed
+- Started: 2026-06-18 19:54 Europe/London
+- Completed: 2026-06-18 19:58 Europe/London
+- Scope: open a draft GitHub PR for the validated launch-readiness branch so the work enters formal review without merging or production deployment.
+
+Follow-on tranche:
+
+- Tranche name: `website-launch-readiness-pr-ready`
+- Status: completed
+- Started: 2026-06-18 20:51 Europe/London
+- Completed: 2026-06-18 20:51 Europe/London
+- Scope: mark the already validated launch-readiness PR ready for review after Wayne approval, verify the PR check, and keep merge/production launch approval separate.
+
+Follow-on tranche:
+
+- Tranche name: `website-merge-readiness-gate`
+- Status: completed
+- Started: 2026-06-18 21:39 Europe/London
+- Completed: 2026-06-18 21:39 Europe/London
+- Scope: assess Wayne's option 1 response as merge-readiness approval without production launch approval, verify PR #2 checks, and hold the merge because this Netlify project deploys from `main`.
+
+Follow-on tranche:
+
+- Tranche name: `production-launch-preflight`
+- Status: completed - no-go
+- Started: 2026-06-18 21:42 Europe/London
+- Completed: 2026-06-18 21:46 Europe/London
+- Scope: run final QA against PR #2 deploy-preview, confirm production is unchanged, check launch routes/SEO/privacy/measurement, and return a production launch go/no-go without merging or deploying.
+
+Follow-on tranche:
+
+- Tranche name: `who-it-fits-contrast-fix-and-retest`
+- Status: completed
+- Started: 2026-06-20 10:02 Europe/London
+- Completed: 2026-06-20 10:08 Europe/London
+- Scope: fix the `who-its-for.html` dark hero/card contrast blocker, retest local desktop/mobile rendering, push the fix to PR #2, validate the Netlify deploy-preview, and confirm production remains unchanged. No merge or production deploy.
 
 ## 3. Now / Next / Later
 
@@ -63,11 +129,27 @@ Done criteria:
 - Post-launch observation pass completed with no production issues found.
 - Public full-site launch plan created at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`.
 - Public full-site launch remains gated on iOS app status, approved screenshots/App Store links, and Wayne's explicit launch approval.
+- Public launch-readiness branch is being prepared at `codex/public-full-site-launch-readiness`.
+- Local launch-readiness gates passed before Netlify preview.
+- Non-production launch-readiness preview is ready: `https://public-launch-readiness--robson-ai-website.netlify.app`.
+- Production remains unchanged: holding page public, fuller site protected.
+- Future tranches should consider agents/background threads when they are useful for parallel QA, independent review, research, or split implementation tasks.
+- This website branch and the related iOS app thread are both at a wait-until-WWDC gate. Apple WWDC 2026 runs June 8-12, 2026; no launch-facing website or iOS decisions should be forced before 2026-06-08 unless Wayne explicitly reopens the scope.
+- `website-rg5-local-qa-runner-parity` is complete: local smoke/evidence suite now passes with fresh 2026-06-01 artifacts and removes the prior local bind blocker from the website-only PRD gate evidence.
+- `website-post-wwdc-positioning-refresh` is complete: homepage, Building Analyst, who-it-fits, holding page and website narrative copy now favour professional surveying software, reporting workflows, building intelligence and cautious Apple-native direction over generic AI/chatbot/provider language.
+- `website-agent-polish-preview-refresh` is complete: stale privacy/PRD/release wording was aligned, Building Analyst now says "Assessment capture and report-ready evidence", Apple-platform language is cautious, the launch plan separates a professional/product-direction launch from an app-availability launch, and the Netlify preview has been refreshed.
+- Latest non-production preview: `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a343e07af7c92bd1d67c724`, state `ready`.
+- PR #2 is open and ready for review: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`.
+- PR #2 is not approval to merge or production deploy; production remains unchanged.
+- Wayne selected the recommended merge-readiness option, but Codex did not merge because merging PR #2 to `main` would very likely trigger a Netlify production deploy and make the fuller website public.
+- `production-launch-preflight` no-go blocker is fixed: `who-its-for.html` now renders white hero text on the dark hero background and dark headings on white hero cards.
+- PR #2 deploy-preview is passing after commit `afe0aba`, and the live preview contrast checks pass on desktop and mobile.
 
 ### Next
 
-- Decide whether to start `public-full-site-launch-readiness`, which prepares a launch branch and preview without launching production.
-- Keep current production stance until launch readiness is explicitly approved: holding page public, fuller site protected.
+- Keep the launch-readiness branch as a preview until iOS app status, approved screenshots, and App Store/public link timing are ready.
+- Keep current production stance unchanged unless Wayne explicitly approves public launch.
+- Decide whether to explicitly approve the production launch merge/deploy for PR #2, or hold the launch-readiness PR open.
 
 ### Later
 
@@ -75,6 +157,26 @@ Done criteria:
 - Prepare a GA4 enablement pack only after Wayne approves a real Measurement ID and analytics governance.
 - Add CI or pre-handoff hooks for measurement smoke, HTML validation, accessibility, and tracker update checks.
 - Run a full browser/mobile QA and visual polish pass before public launch.
+
+### Post-PRD full app review task series
+
+Run this only after the relevant current-state PRD is complete and accepted. For this website repo, do not let this review expand the current public-launch-readiness tranche unless Wayne explicitly approves a new tranche.
+
+1. Confirm the PRD is complete enough to govern review: current scope, target users, architecture, risks, privacy/security, deployment path, validation commands, in-scope next work, and out-of-scope items.
+2. Define the review outcome in plain English: problem, users, success criteria, constraints, and explicit non-goals.
+3. Ask Codex/agents to analyse first with no code changes: implementation shape, risks, gaps, and recommended remediation plan.
+4. Challenge the plan with independent roles where useful: senior UX designer, product/domain lead, senior front-end engineer, security/QA reviewer, and devil's advocate.
+5. Run user-journey review across the current product surface.
+6. Run UI/UX and visual consistency review against Robson AI brand rules and existing design behaviour.
+7. Run governance/domain review for relevant workflows, audit needs, terminology, compliance, and release constraints.
+8. Run data model and integration review where the app has persisted data, APIs, tenancy, or workflow handoffs.
+9. Run security review for authentication, authorisation, tenant isolation, secrets, API exposure, injection risks, dependency risks, and audit trail gaps.
+10. Run accessibility, mobile, browser, and responsive QA review.
+11. Run cross-workspace or cross-product consistency review where the app spans modules such as service desk, work orders, projects, compliance, governance, WAIS, Building Analyst, or BuildScan.
+12. Convert findings into a ranked remediation plan: critical, high, medium, low, parked.
+13. Execute only approved, bounded Codex implementation tranches with rollback notes and validation commands.
+14. Validate after each tranche with build, lint, tests, accessibility, mobile, browser, security, and regression checks appropriate to the repo.
+15. Hold a release gate: Wayne reviews product logic, UX, security, data governance, domain fit, public claims, and deployment timing before merge or production release.
 
 ## 4. Parking Lot
 
@@ -85,6 +187,8 @@ Done criteria:
 | 2026-05-30 | Public launch of fuller website | Release handover | next | Plan exists in `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`; execution should wait until iOS app/screenshot/advertising readiness is approved. |
 | 2026-05-30 | Secret rotation and env-var based preview auth | Codex audit | done | Edge Function now reads Netlify env vars; password was rotated into Keychain; Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`; live alias preview verified. |
 | 2026-05-30 | Weekly website health automation | Capability checklist | later | Could run smoke/QA reminders, but only after the QA command is back to passing. |
+| 2026-05-31 | Post-PRD full app review workflow | Wayne/process note | after relevant PRD completion | Use the task series in section 3 to run analysis-first, multi-role, security, UX, governance, QA, and release-gate review before broad implementation. |
+| 2026-06-01 | Codex web development/design skill library expansion | Wayne skill request | done | Created 28 focused local Codex skills under `~/.codex/skills` for frontend, web design, backend, full-stack, and code-quality work. This is tooling support and does not reopen the WWDC-held website launch tranche. |
 
 ## 5. Decisions
 
@@ -105,6 +209,17 @@ Done criteria:
 | 2026-05-30 | Consent banner must not cover first-viewport hero text | Browser QA found desktop overlap on hidden fuller-site hero and holding visual | Applied targeted CSS placement fixes and stylesheet cache-bump | Before staging release candidate |
 | 2026-05-30 | Stage and commit validated release candidate as a separate commit | Wayne approved option 1 after the release-candidate review passed | PR #1 will contain both baseline/auth work and the website release candidate; production deploy remains separate | Before marking PR ready or launching production |
 | 2026-05-30 | Full public website launch waits for iOS app readiness | Wayne clarified the current public front end should say the site is getting ready while the protected fuller site is ready for launch timing | Avoids advertising or screenshot-led public launch before the iOS app is live | When app live status, screenshots, and links are ready |
+| 2026-05-31 | Use agents/background threads when useful | Wayne asked that the tracker remember agents should be used where required | Adds a lightweight decision point before larger work; avoid using agents for tiny edits where setup overhead is higher than benefit | At the start of serious tranches, QA sweeps, research, or parallel implementation |
+| 2026-05-31 | Queue full app review after PRD completion | Wayne asked whether the AI delivery process should be used for full review or tracked as tasks | Keeps the review governed and sequenced after the PRD instead of expanding current scope | When the relevant PRD is accepted and Wayne approves a review tranche |
+| 2026-05-31 | Keep launch-readiness as preview, not PR/production launch yet | Wayne selected option 1 after review of next-step choices | The fuller site remains ready to inspect without changing production or opening launch pressure before app materials are ready | When iOS app status, approved screenshots, and App Store/public link timing are ready |
+| 2026-05-31 | Treat website and iOS work as wait-until-WWDC | Wayne clarified both this website thread and the iOS chat are at the WWDC wait stage | Avoids premature public launch, screenshots, claims, or platform decisions before Apple announcements are known | After WWDC 2026 begins on June 8, 2026, or when Wayne explicitly reopens the scope |
+| 2026-06-08 | Refresh website positioning after WWDC26 without implementation scope | Wayne selected option 1 after the post-WWDC briefing | Aligns public/preview copy with Apple-native/device-first Building Analyst direction while avoiding overclaims about unreleased or unimplemented Apple features | When app screenshots, App Store link, or implemented Apple Intelligence features are ready to reference publicly |
+| 2026-06-18 | App screenshots/App Store links are conditional launch assets | Independent review found the old launch plan could unnecessarily block a truthful professional/product-direction website launch | Website can launch without app-store claims if copy stays honest; screenshots/links remain required if app availability is claimed or shown | When Wayne decides whether launch is professional/product-direction only or app-availability led |
+| 2026-06-18 | Open launch-readiness PR as draft | Wayne asked Codex to continue after PR was recommended | Formalizes review without implying merge or production launch approval | When Wayne decides to mark ready for review, merge, or hold |
+| 2026-06-18 | Mark PR #2 ready for review | Wayne approved the recommended ready-for-review step | Makes the validated branch formally reviewable while keeping merge and production launch as separate approvals | When Wayne approves merge, final polish, hold, or production launch tranche |
+| 2026-06-18 | Do not merge PR #2 without explicit production launch approval | Wayne selected merge-readiness but also previously required no production deploy without separate approval; Netlify deploys from `main` | PR #2 remains open and ready instead of being merged | When Wayne explicitly approves production launch merge/deploy, or chooses to hold the preview |
+| 2026-06-18 | Hold production launch after preflight | Browser QA found a launch-blocking visual contrast issue on `who-its-for.html` despite automated checks passing | Requires a small CSS fix and rerun before merge/deploy | When Wayne approves the contrast-fix tranche |
+| 2026-06-20 | Clear `who-its-for.html` contrast blocker | Wayne approved the recommended contrast-fix-and-retest tranche | The only known visual launch blocker is resolved; production launch still requires explicit approval | When Wayne approves merge/deploy or requests another hold |
 
 ## 6. Risks And Watch Items
 
@@ -115,6 +230,8 @@ Done criteria:
 | Hard-coded preview Basic Auth credential in `netlify/edge-functions/preview-auth.js` | high | Wayne/Codex | Code now reads Netlify env vars. Password rotated into Keychain and Netlify vars verified in relevant contexts. | closed |
 | No root `README.md`, `AGENTS.md`, or `CLAUDE.md` in this repo | medium | Codex | Root `README.md` and `AGENTS.md` are now deployed; add `CLAUDE.md` only if Wayne wants Claude-specific instructions. | mostly closed |
 | Hidden/full website and public holding page can drift | medium | Codex | Keep release notes, robots/sitemap, auth, and QA harness aligned. | monitoring |
+| Merging PR #2 likely publishes the fuller site | high | Wayne/Codex | Treat merge approval and production launch approval as the same release gate unless Netlify production auto-deploy is paused or changed. | active |
+| `who-its-for.html` hero/card contrast is launch-blocking | high | Codex | Fixed in `styles.css`; local and PR-preview desktop/mobile checks pass. | closed |
 | Email-only conversion path may lose enquiries | medium | Wayne/Codex | Parked for conversion tranche; requires privacy/spam decision. | parked |
 | GA4 Measurement ID is empty | low | Wayne | Intentional until analytics approval. Keep measurement QA in place. | monitoring |
 
@@ -143,7 +260,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | Browser | available/recommended | Needed for local site QA, mobile checks, console/network evidence. | Start local static server or use QA scripts. | Capture screenshots, console/network issues, and interaction evidence. |
 | Computer use/Appshots | optional | Useful if Wayne needs Codex to inspect a UI state outside repo files. | Wayne attaches an appshot or approves desktop interaction. | Diagnose visual/state issues not visible from files. |
 | Skills/plugins | available/recommended | Robson AI brand, web app, Netlify, GitHub, security, validation skills all apply. | Use relevant skill per tranche. | Follow consistent project workflows. |
-| Agents/background threads | optional | Useful for separate QA/accessibility/security sweeps. | Wayne authorizes background threads/agents for split work. | Run independent audits while main work continues. |
+| Agents/background threads | recommended when useful | Useful for parallel QA, accessibility/security sweeps, research, code review, or independent implementation subtasks. | Wayne authorizes background threads/agents for split work when a tranche would benefit. | Run independent audits, compare findings, or progress split tasks while main work continues. |
 | Automations | optional | Useful once QA is passing. | Wayne approves schedule and scope. | Weekly smoke/release-readiness reminders or checks. |
 
 ## 9. Capability Refresh Log
@@ -215,6 +332,49 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-05-30 | Post-launch production route/auth matrix | pass | `/`, `/robots.txt`, and `/sitemap.xml` are public; hidden routes require preview auth and return `200` with Keychain credential. |
 | 2026-05-30 | Post-launch browser smoke | pass | Public root desktop/mobile and authenticated `index.html` had no console issues and no horizontal overflow. |
 | 2026-05-30 | Public full-site launch plan | pass | Created `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`; no route/auth changes or launch performed. |
+| 2026-05-30 | Launch-readiness local route changes | pass | On branch `codex/public-full-site-launch-readiness`, `/` serves the fuller site, launch pages are public, holding is noindex fallback, and robots/sitemap are launch-ready. |
+| 2026-05-30 | Launch-readiness local QA | pass | `git diff --check`, HTML validation, `npm run qa:preview-auth`, `npm run qa:measurement:local`, `npm run qa:measurement:evidence`, and `npx --no-install netlify build` passed. Evidence artifact: `output/measurement/evidence-2026-05-30T16-51-27-647Z`. |
+| 2026-05-30 | Launch-readiness local browser smoke | pass | Desktop/mobile `/`, desktop `building-analyst.html`, mobile `who-its-for.html`, and mobile `privacy.html` had no console issues and no horizontal overflow. |
+| 2026-05-30 | Launch-readiness Netlify preview deploy | pass | Non-production alias preview ready at `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a1b167adff97530bcd449b4`. |
+| 2026-05-30 | Launch-readiness preview route matrix | pass | Public launch pages returned `200` and `index, follow`; `holding.html` returned `200` and `noindex, nofollow`. |
+| 2026-05-30 | Launch-readiness preview smoke/browser | pass | `QA_BASE_URL=https://public-launch-readiness--robson-ai-website.netlify.app npm run qa:measurement:preview` passed. Preview desktop/mobile browser checks had no console issues or horizontal overflow. |
+| 2026-05-31 | Tracker agent-use rule | pass | Added a standing decision to consider agents/background threads for serious tranches, parallel QA, independent review, research, or split implementation tasks. |
+| 2026-05-31 | Tracker post-PRD review workflow | pass | Added a post-PRD full app review task series covering analysis, multi-role challenge, UX, governance, data, security, accessibility/mobile, remediation, validation, and release gate. |
+| 2026-05-31 | Tracker launch-readiness hold decision | pass | Recorded Wayne's decision to keep the launch-readiness branch as a preview until iOS/app launch materials are ready. |
+| 2026-05-31 | Tracker WWDC wait gate | pass | Recorded Wayne's clarification that both website launch-readiness and the related iOS app thread should wait until WWDC. WWDC 2026 date checked against Apple's newsroom: June 8-12, 2026. |
+| 2026-06-01 | `npm run qa:preview-auth` | pass | 3/3 preview-auth smoke tests passed. |
+| 2026-06-01 | `npm run qa:measurement:local` | pass | Artifact: `output/measurement/smoke-2026-06-01T06-04-17-890Z`. Route matrix, consent flows, and required event contract passed. |
+| 2026-06-01 | `npm run qa:measurement:evidence` | pass | Artifact: `output/measurement/evidence-2026-06-01T06-04-26-480Z`. HTML validation, axe checks, smoke, and Lighthouse runs completed. |
+| 2026-06-01 | `git diff --check` | pass | No whitespace errors after website-only tracker update. |
+| 2026-06-01 | `quick_validate.py` across generated local Codex skills | pass | 28/28 generated skills validated using `/usr/bin/python3`; default Homebrew and Codex runtime Python lacked `PyYAML`, so no package installation was performed. |
+| 2026-06-08 | post-WWDC wording scan | pass | Public pages no longer contain stale `surveying-led AI software`, `AI-led`, `AI-assisted`, or `AI-supported` phrasing. Remaining BYO/vendor mentions are narrative guardrails only. |
+| 2026-06-08 | `git diff --check` | pass | No whitespace errors after post-WWDC copy refresh. |
+| 2026-06-08 | `npx html-validate --rule doctype-style:off --rule void-style:off holding.html index.html preview.html privacy.html building-analyst.html who-its-for.html` | pass | HTML validation passed for launch-readiness pages. |
+| 2026-06-08 | `npm run qa:preview-auth` | pass | 3/3 preview-auth smoke tests passed. |
+| 2026-06-08 | `npm run qa:measurement:local` | pass | Artifact: `output/measurement/smoke-2026-06-08T20-36-10-711Z`. Contact mailto now uses professional surveying software/building intelligence wording. |
+| 2026-06-08 | `npm run qa:measurement:evidence` | pass | Artifact: `output/measurement/evidence-2026-06-08T20-36-21-494Z`. Lighthouse median: performance 94, accessibility 100, best practices 100, SEO 100. |
+| 2026-06-08 | Local Playwright browser smoke | pass | Desktop and mobile checks for `/`, `/building-analyst.html`, and `/who-its-for.html` found no console warnings/errors, no horizontal overflow, and no stale generic AI phrases in visible body text. |
+| 2026-06-18 | Independent agent copy/release-risk review | pass | Read-only agent found stale privacy footer/PRD/release wording, one over-strong Apple-native phrase, a narrow Building Analyst H1, and an over-rigid App Store/screenshot gate. Findings were applied in scoped files. |
+| 2026-06-18 | post-polish wording scan | pass | Public pages no longer contain stale `surveying-led AI software`, `AI-led`, `AI-assisted`, `AI-supported`, or `AI tools and practical software` phrasing. BYO/vendor mentions remain guardrails only. |
+| 2026-06-18 | `git diff --check` | pass | No whitespace errors after agent-review polish. |
+| 2026-06-18 | `npx html-validate --rule doctype-style:off --rule void-style:off holding.html index.html preview.html privacy.html building-analyst.html who-its-for.html` | pass | HTML validation passed for launch-readiness pages. |
+| 2026-06-18 | `npm run qa:preview-auth` | pass | 3/3 preview-auth smoke tests passed. |
+| 2026-06-18 | `npm run qa:measurement:local` | pass | Artifact: `output/measurement/smoke-2026-06-18T18-45-47-003Z`. Route matrix, consent flows, contact mailto and event contract passed. |
+| 2026-06-18 | `npm run qa:measurement:evidence` | pass | Artifact: `output/measurement/evidence-2026-06-18T18-46-35-548Z`. Lighthouse median: performance 83, accessibility 100, best practices 100, SEO 100. |
+| 2026-06-18 | Netlify non-production preview deploy | pass | Alias `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a343e07af7c92bd1d67c724`, state `ready`, context `branch-deploy`. Production unchanged. |
+| 2026-06-18 | `QA_BASE_URL=https://public-launch-readiness--robson-ai-website.netlify.app npm run qa:measurement:preview` | pass | Artifact: `output/measurement/smoke-2026-06-18T18-51-50-890Z`. Public routes returned 200 and contact mailto uses professional surveying/building intelligence wording. |
+| 2026-06-18 | Browser plugin live preview checks | pass | Browser opened live preview homepage, Building Analyst, and Privacy pages on desktop; homepage and Building Analyst were also checked at mobile width. Titles reflected updated post-WWDC positioning. |
+| 2026-06-18 | GitHub draft PR creation | pass | Draft PR #2 opened: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`. Head `codex/public-full-site-launch-readiness`, base `main`, 16 changed files, 9 commits. |
+| 2026-06-18 | `QA_BASE_URL=https://deploy-preview-2--robson-ai-website.netlify.app npm run qa:measurement:preview` | pass | GitHub PR Netlify deploy-preview smoke passed. Artifact: `output/measurement/smoke-2026-06-18T19-00-42-691Z`. |
+| 2026-06-18 | PR #2 ready-for-review update | pass | PR #2 is no longer draft and remains open: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`. Netlify deploy-preview check passed at `https://deploy-preview-2--robson-ai-website.netlify.app`. |
+| 2026-06-18 | PR #2 merge-readiness gate | guarded | PR #2 is open, not draft, and deploy-preview check passes. Merge was not performed because `main` is the Netlify production branch and PR #2 changes public launch routing. |
+| 2026-06-18 | Production launch preflight automated gates | pass | `npm run qa:preview-auth`, `npm run qa:measurement:local`, HTML validation, `git diff --check`, `npm run qa:measurement:evidence`, and PR-preview measurement smoke passed. Latest artifacts: `output/measurement/smoke-2026-06-18T20-42-44-167Z`, `output/measurement/smoke-2026-06-18T20-43-01-777Z`, `output/measurement/evidence-2026-06-18T20-43-01-777Z`. Lighthouse median: performance 81, accessibility 100, best practices 100, SEO 100. |
+| 2026-06-18 | Production unchanged check | pass | `https://robsonai.co.uk/` returned `200`; `https://robsonai.co.uk/index.html` returned `401` without credentials. No production deploy performed. |
+| 2026-06-18 | Browser production launch preflight | no-go | Desktop/mobile route checks had no console errors, no horizontal overflow, correct page titles/descriptions/robots, and no stale AI claims. Launch blocked because `who-its-for.html` rendered dark navy H1 text over a dark hero background and white card headings over white cards. Source points to broad `body[data-page-type="who-its-for"] h1` and hero/card color overrides in `styles.css`. |
+| 2026-06-20 | `who-its-for.html` contrast fix local checks | pass | Scoped CSS fix in `styles.css` restores white hero text and dark hero-card headings. Local computed checks passed on desktop 1280x720 and mobile 390x844; screenshots captured at `/tmp/robson-who-contrast-desktop-clean.png` and `/tmp/robson-who-contrast-mobile-clean.png`. |
+| 2026-06-20 | Post-fix automated evidence | pass | `git diff --check`, HTML validation, `npm run qa:preview-auth`, `npm run qa:measurement:local`, and `npm run qa:measurement:evidence` passed. Latest artifacts: `output/measurement/smoke-2026-06-20T09-06-00-469Z`, `output/measurement/evidence-2026-06-20T09-06-22-235Z`. Lighthouse median: performance 83, accessibility 100, best practices 100, SEO 100. |
+| 2026-06-20 | PR #2 deploy-preview post-fix checks | pass | Netlify deploy-preview passed after commit `afe0aba`; `QA_BASE_URL=https://deploy-preview-2--robson-ai-website.netlify.app npm run qa:measurement:preview` passed with artifact `output/measurement/smoke-2026-06-20T09-08-28-262Z`. Live preview computed checks pass on desktop and mobile: hero H1 `rgb(255, 255, 255)`, card heading `rgb(6, 19, 61)`, no horizontal overflow, no stale AI claims. |
+| 2026-06-20 | Production unchanged check | pass | `https://robsonai.co.uk/` returned `200`; `https://robsonai.co.uk/index.html` returned `401` without credentials. No production deploy performed. |
 
 ## 11. Release / Deployment Notes
 
@@ -229,4 +389,40 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. PR #1 was merged into `main` and deployed to production on 2026-05-30. Latest production deploy `6a1b0359c4363b0008ce0a09` is ready for commit `a7afc4d`. `https://robsonai.co.uk/` serves the public holding page, and hidden routes are protected by Netlify Edge preview auth. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. Wayne clarified that the public front end should currently say the site is getting ready, while the protected fuller site is the ready-to-go version for when the iOS app is live and approved screenshots/App Store links can be used for advertising. Preview auth reads `ROBSON_PREVIEW_USERNAME` / `ROBSON_PREVIEW_PASSWORD` from Netlify env vars using `Netlify.env.get()` with local fallbacks. The preview credential is stored in macOS Keychain under service `Robson AI Website Preview Auth`; do not print credential values. Do not make the fuller site public, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` still serves the holding page and protects hidden fuller routes. Public launch planning lives at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`. A launch-readiness branch `codex/public-full-site-launch-readiness` is pushed and has a refreshed non-production preview at `https://public-launch-readiness--robson-ai-website.netlify.app`, deploy `6a343e07af7c92bd1d67c724`; in that preview `/` serves the fuller site, public pages are crawlable, and holding remains a noindex fallback. PR #2 is open and ready for review at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/2`. Wayne selected the merge-readiness option, but Codex did not merge because `main` is Netlify production-connected and PR #2 changes public launch routing; treat merge approval as production launch approval unless Netlify auto-deploy is deliberately paused. The 2026-06-18 production launch preflight no-go blocker is fixed as of 2026-06-20: `who-its-for.html` now has readable white hero text on the dark hero and dark headings on white hero cards; local evidence and PR deploy-preview checks pass. Production remains unchanged. The post-WWDC26 copy refresh and agent-review polish are complete: public/preview copy now frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for a truthful professional/product-direction website launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. After any relevant current-state PRD is completed and accepted, use the tracker's post-PRD full app review task series before broad implementation. Do not merge this branch, make the fuller site public in production, change domain/DNS, enable GA4, add forms, handle customer data, or broaden product scope without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
+
+## 13. PRD Gate Execution Log (2026-06-01)
+
+### Nightly PRD Gate Steps 1-5 (User Journey, UI/UX, Governance, Data Model, Security)
+
+Scope:
+- Ran the requested steps 1-5 review process across current RobsonAI workspaces assigned to automation.
+- Read each workspace's project instructions and current `docs/codex/PRD.md` + `docs/codex/TRACKER.md` where present.
+- Kept work local-only, no deploys, no external live system changes.
+
+Ranked findings for this website workspace:
+1. `resolved` - Governance/Testability local-runner blocker is cleared:
+   previous local bind failure is no longer present in this environment; both local smoke and full evidence runs passed on 2026-06-01.
+2. `medium` - User journey release hold remains intentional:
+   tracker and launch docs still show public root as holding-first while fuller launch route stays intentionally delayed pending iOS launch timing.
+3. `low` - Data model remains static-content only:
+   no backend/database schema is present by design for current website scope; this is acceptable for holding/marketing mode but constrains richer conversion flows.
+4. `low` - Security controls remain aligned with PRD:
+   preview auth reads Netlify env vars in `netlify/edge-functions/preview-auth.js`; no hard-coded preview credential literals were found in the scanned security path.
+
+Validation commands and checks:
+- `npm run qa:preview-auth` -> pass (3/3 tests)
+- `npm run qa:measurement:local` -> pass (artifact: `output/measurement/smoke-2026-06-01T06-04-17-890Z`)
+- `npm run qa:measurement:evidence` -> pass (artifact: `output/measurement/evidence-2026-06-01T06-04-26-480Z`)
+- `git diff --check` -> pass
+- Targeted source inspection:
+  - `netlify/edge-functions/preview-auth.js`
+  - `netlify.toml`
+  - `script.js`
+  - `docs/codex/PRD.md`
+
+Release-readiness verdict for this workspace:
+- Steps 1-5 outcome: ready from a website-only evidence standpoint (journey/UI/security/governance checks revalidated locally); business launch timing remains intentionally held for WWDC/iOS readiness decisions.
+
+Recommended next remediation tranche:
+- `website-wwdc-hold-monitor`: keep launch-readiness unchanged and perform a short post-WWDC decision review when app-link/screenshot readiness is known.

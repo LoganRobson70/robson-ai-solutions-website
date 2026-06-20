@@ -15,7 +15,7 @@ const REQUIRED_EVENT_NAMES = [
   "proof_interaction"
 ];
 
-const APP_ENTRY_PATH = "/index.html";
+const APP_ENTRY_PATH = "/";
 
 const REQUIRED_PATHS = [
   "/",
@@ -139,7 +139,7 @@ async function runDeclineFlow(browser, baseUrl, artifactDir) {
     assert(bannerHiddenAfterReload, "Consent banner should stay hidden after decline and reload.");
 
     await page.locator('[data-analytics-id="nav-start-conversation"]').click();
-    assert(page.url().endsWith("/index.html#contact"), "Primary contact navigation should land on the preview contact hash.");
+    assert(page.url().endsWith("/#contact"), "Primary contact navigation should land on the preview contact hash.");
 
     await page.getByRole("button", { name: "Copy email address" }).click();
     const copyFeedback = (await page.locator("[data-copy-feedback]").textContent())?.trim() || "";

@@ -7,7 +7,7 @@ import { runMeasurementSmoke } from "./measurement-smoke.mjs";
 import { startStaticServer } from "./lib/static-server.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
-const APP_ENTRY_PATH = "/index.html";
+const APP_ENTRY_PATH = "/";
 const HTML_VALIDATE_RULES = ["doctype-style:off", "void-style:off"];
 const HTML_FILES = ["holding.html", "index.html", "preview.html", "privacy.html", "building-analyst.html", "who-its-for.html"];
 const A11Y_PATHS = ["/", "/index.html", "/privacy.html", "/building-analyst.html", "/who-its-for.html"];

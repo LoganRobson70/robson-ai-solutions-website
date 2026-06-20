@@ -2,32 +2,10 @@
   publish = "."
 
 [[redirects]]
-  from = "/"
-  to = "/holding.html"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/preview.html"
   to = "/"
   status = 301
   force = true
-
-[[edge_functions]]
-  function = "preview-auth"
-  path = "/index.html"
-
-[[edge_functions]]
-  function = "preview-auth"
-  path = "/building-analyst.html"
-
-[[edge_functions]]
-  function = "preview-auth"
-  path = "/who-its-for.html"
-
-[[edge_functions]]
-  function = "preview-auth"
-  path = "/privacy.html"
 
 [[headers]]
   for = "/*"
