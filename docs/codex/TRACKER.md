@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-20 14:32 Europe/London
+Last updated: 2026-06-20 18:12 Europe/London
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -122,6 +122,14 @@ Follow-on tranche:
 - Completed: 2026-06-20 14:32 Europe/London
 - Scope: merge PR #2 to `main`, verify Netlify production deploy, validate live routes/metadata/consent smoke, confirm visual contrast on live production, record rollback target, and update tracker. No domain/DNS, GA4, forms, customer data, or external messaging changes.
 
+Follow-on tranche:
+
+- Tranche name: `website-post-launch-observation-pass`
+- Status: completed
+- Started: 2026-06-20 18:10 Europe/London
+- Completed: 2026-06-20 18:12 Europe/London
+- Scope: observed the live production website after launch by checking Netlify deploy health, route availability, metadata/social preview assets, consent/contact behaviour, crawlability, visible desktop/mobile rendering, and obvious stale-public-copy risk. No deploys, DNS, GA4, forms, rollback, customer data, or external messaging changes.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -134,7 +142,7 @@ Follow-on tranche:
 - Netlify production deploy is ready for tracker closeout commit `a7afc4d`.
 - Production `https://robsonai.co.uk/` now serves the full public website.
 - Production public routes `/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, `/privacy.html`, `/robots.txt`, and `/sitemap.xml` return `200`.
-- Post-launch observation pass completed with no production issues found.
+- Post-launch observation pass completed with no live production failures found; external search results may still show the old holding-page snippet until recrawled.
 - Public full-site launch plan created at `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`.
 - Public full-site launch was approved by Wayne and completed on 2026-06-20.
 - Public launch-readiness branch is being prepared at `codex/public-full-site-launch-readiness`.
@@ -152,7 +160,7 @@ Follow-on tranche:
 
 ### Next
 
-- Run a short post-launch observation pass after caches/search/social scrapers have had time to settle.
+- Monitor stale external search/social cache previews and recheck after crawlers have had more time to recrawl the live metadata.
 - Keep GA4 disabled until Wayne approves analytics governance and a real Measurement ID.
 - Decide whether to add launch assets such as app screenshots/App Store links only when the iOS app is ready to claim publicly.
 
@@ -238,6 +246,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | Hidden/full website and public holding page can drift | medium | Codex | Keep release notes, robots/sitemap, auth, and QA harness aligned. | monitoring |
 | Merging PR #2 likely publishes the fuller site | high | Wayne/Codex | Treat merge approval and production launch approval as the same release gate unless Netlify production auto-deploy is paused or changed. | active |
 | `who-its-for.html` hero/card contrast is launch-blocking | high | Codex | Fixed in `styles.css`; local and PR-preview desktop/mobile checks pass. | closed |
+| External search result may temporarily show old holding-page snippet | low | Wayne/Codex | Live metadata, sitemap, robots, and holding-page noindex are correct; monitor recrawl and optionally use Search Console URL inspection if available. | monitoring |
 | Email-only conversion path may lose enquiries | medium | Wayne/Codex | Parked for conversion tranche; requires privacy/spam decision. | parked |
 | GA4 Measurement ID is empty | low | Wayne | Intentional until analytics approval. Keep measurement QA in place. | monitoring |
 
@@ -386,13 +395,19 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-20 | Live production route/metadata check | pass | `/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, `/privacy.html`, `/robots.txt`, and `/sitemap.xml` returned `200`. Public root title is `Robson Ai | Surveying software, evidence and building intelligence`. Robots and sitemap are public. |
 | 2026-06-20 | Live production measurement smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed. Artifact: `output/measurement/smoke-2026-06-20T13-30-51-416Z`. Consent decline/accept flows, contact mailto, route matrix, and no-GA-with-empty-ID checks passed. |
 | 2026-06-20 | Live production rendered checks | pass | Desktop `/` and `/who-its-for.html`, mobile `/building-analyst.html` and `/privacy.html` had correct titles/H1s, `index, follow`, no console warnings/errors, no horizontal overflow, no framework overlay, and no stale AI claims. `who-its-for.html` live contrast passed: hero H1 `rgb(255, 255, 255)`, hero-card heading `rgb(6, 19, 61)`. |
+| 2026-06-20 | Post-launch Netlify deploy observation | pass | Latest production deploy `6a36970484e43f000821454d` is `ready` for commit `8cc0501ff224e749a727c7132b656f95204ef739`; secret scan reported zero standard and enhanced matches. |
+| 2026-06-20 | Post-launch live route/metadata/crawlability observation | pass | `/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html` returned `200` with correct titles, descriptions, canonicals, `index, follow`, Open Graph image, Twitter card metadata, and no stale AI/provider wording matches. `robots.txt`, `sitemap.xml`, sitemap URLs, and the OG image all returned `200`. |
+| 2026-06-20 | Post-launch measurement/contact observation | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed. Artifact: `output/measurement/smoke-2026-06-20T17-11-22-647Z`. Consent decline/accept, copy email feedback, contact `mailto:`, route matrix, and no-GA-with-empty-ID checks passed. |
+| 2026-06-20 | Post-launch rendered browser observation | pass | Playwright checked desktop `/` and `/who-its-for.html`, mobile `/building-analyst.html` and `/privacy.html`. No console warnings/errors, no horizontal overflow, `index, follow`, correct titles/H1s, and no stale wording matches. Artifact: `output/playwright/post-launch-2026-06-20T17-11-45-326Z`. |
+| 2026-06-20 | Post-launch headers/link/fallback observation | pass | Live HTML routes return security headers `nosniff`, `DENY`, strict referrer policy, and disabled camera/geolocation/microphone permissions. `/preview.html` redirects to `/`. `/holding.html` remains accessible as a fallback but is `noindex, nofollow`, and internal links returned `200`. |
+| 2026-06-20 | External search cache observation | watch | External search still surfaced an old holding-page snippet for `robsonai.co.uk` shortly after launch. Live site metadata/sitemap/robots are correct, so this is treated as a cache/recrawl watch item rather than a code failure. |
 
 ## 11. Release / Deployment Notes
 
 - Current environment: local repo on `main` plus Netlify-linked production site.
 - Public production URL documented in existing handover: `https://robsonai.co.uk`.
 - Current production stance: full public website is live at `/`; launch pages are public and crawlable.
-- Release risk: lower after production verification; monitor live site, enquiries, search indexing, and any stale external cache previews.
+- Release risk: lower after production verification and post-launch observation; monitor live site, enquiries, search indexing, and any stale external cache previews.
 - Privacy/security checks needed: confirm Netlify preview-auth env vars, consent/GA4 review, privacy notice review if contact forms are added, no invented proof claims.
 - Rollback plan: after Wayne approval, restore previous production deploy `6a1b0a3ecb6e5300081351d6` in Netlify or revert merge commit `d695eba11e2878840d31984ab9f1646e62dd3358` and push `main`. Previous deploy permalink: `https://6a1b0a3ecb6e5300081351d6--robson-ai-website.netlify.app`.
 
@@ -400,7 +415,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` now serves the full public website. PR #2 was merged to `main` on 2026-06-20 at merge commit `d695eba11e2878840d31984ab9f1646e62dd3358`; Netlify production deploy `6a3695c3b9eca200087f4c36` is ready and verified. Live production route, metadata, consent/measurement smoke, and rendered desktop/mobile checks passed. The previous production deploy for rollback is `6a1b0a3ecb6e5300081351d6`. The post-WWDC26 copy refresh and agent-review polish are complete: public copy frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for the current professional/product-direction launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not change domain/DNS, enable GA4, add forms, handle customer data, send external messages, or perform rollback without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` now serves the full public website. PR #2 was merged to `main` on 2026-06-20 at merge commit `d695eba11e2878840d31984ab9f1646e62dd3358`; latest verified Netlify production deploy is `6a36970484e43f000821454d` for tracker closeout commit `8cc0501ff224e749a727c7132b656f95204ef739`. Live production route, metadata, consent/measurement smoke, rendered desktop/mobile, security header, sitemap, Open Graph image, and internal-link checks passed. External search may still show the old holding-page snippet until crawlers recrawl the updated metadata; treat this as a watch item, not a code failure. The previous production deploy for rollback is `6a1b0a3ecb6e5300081351d6`. The post-WWDC26 copy refresh and agent-review polish are complete: public copy frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for the current professional/product-direction launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not change domain/DNS, enable GA4, add forms, handle customer data, send external messages, or perform rollback without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
 
 ## 13. PRD Gate Execution Log (2026-06-01)
 
