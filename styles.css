@@ -4210,6 +4210,23 @@ body[data-page-type="who-its-for"] .page-list-item {
   box-shadow: 0 24px 70px rgba(6, 19, 61, 0.06);
 }
 
+body[data-page-type="who-its-for"] .page-hero-fit h1 {
+  color: #ffffff;
+}
+
+body[data-page-type="who-its-for"] .page-hero-fit .hero-tagline,
+body[data-page-type="who-its-for"] .page-hero-fit .hero-support {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+body[data-page-type="who-its-for"] .page-hero-fit .page-card {
+  color: #06133d;
+}
+
+body[data-page-type="who-its-for"] .page-hero-fit .page-card h3 {
+  color: #06133d;
+}
+
 body[data-page-type="preview"] .home-priority-pill,
 body[data-page-type="building-analyst"] .analyst-summary-pill {
   background: rgba(47, 91, 211, 0.08);
