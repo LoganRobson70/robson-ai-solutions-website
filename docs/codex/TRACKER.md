@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-21 10:08 BST
+Last updated: 2026-06-21 10:22 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -154,6 +154,13 @@ Follow-on tranche:
 - Completed: 2026-06-21 10:08 BST
 - Scope: verified the local redesigned pages and links, committed the scoped redesign work to `main`, pushed to GitHub, verified Netlify production deploy, and validated the live public website. No DNS changes, GA4 enablement, forms, customer data, external messages, destructive git actions, or rollback.
 
+Follow-on tranche:
+
+- Tranche name: `website-modern-motion-graphics-polish`
+- Status: completed locally; production deployment pending
+- Started: 2026-06-21 10:14 BST
+- Scope: researched current professional motion/microinteraction patterns, added scoped cursor-responsive graphical polish and panel motion to the existing public website, and validated locally before production deployment. The implementation is dependency-free, accessible, reduced-motion aware, and inside the existing Robson AI product narrative. No DNS changes, GA4 enablement, forms, customer data, external messages, destructive git actions, or product-claim expansion.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -182,6 +189,7 @@ Follow-on tranche:
 - `production-launch-preflight` no-go blocker is fixed: `who-its-for.html` now renders white hero text on the dark hero background and dark headings on white hero cards.
 - Live production contrast checks pass on desktop and mobile.
 - `website-professional-redesign-production-deploy` is complete: production `https://robsonai.co.uk/` is deployed from commit `c0863348c7b036f02bcbe0144372c85a17b5424b`.
+- `website-modern-motion-graphics-polish` is locally validated and ready for commit/deploy: homepage and Building Analyst hero panels now have cursor-responsive technical motion fields, selected cards/panels have pointer-depth motion, and reduced-motion/mobile coarse-pointer contexts disable pointer motion.
 
 ### Next
 
@@ -274,6 +282,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | `who-its-for.html` hero/card contrast is launch-blocking | high | Codex | Fixed in `styles.css`; local and PR-preview desktop/mobile checks pass. | closed |
 | External search result may temporarily show old holding-page snippet | low | Wayne/Codex | Live metadata, sitemap, robots, and holding-page noindex are correct; monitor recrawl and optionally use Search Console URL inspection if available. | monitoring |
 | Professional redesign is local/uncommitted | medium | Wayne/Codex | Committed in `c0863348c7b036f02bcbe0144372c85a17b5424b`, pushed to `main`, and deployed to production. | closed |
+| Motion polish could distract or harm accessibility/performance | medium | Codex | Kept motion subtle, dependency-free, pointer-fine only, and disabled under `prefers-reduced-motion` and coarse-pointer mobile contexts; validate with Playwright and Lighthouse before deploy. | monitoring |
 | Email-only conversion path may lose enquiries | medium | Wayne/Codex | Parked for conversion tranche; requires privacy/spam decision. | parked |
 | GA4 Measurement ID is empty | low | Wayne | Intentional until analytics approval. Keep measurement QA in place. | monitoring |
 
@@ -442,6 +451,10 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-21 | Professional redesign live measurement smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed. Artifact: `output/measurement/smoke-2026-06-21T09-07-17-423Z`. Live route matrix, consent decline/accept, no-GA-with-empty-ID checks, copy email feedback, and contact `mailto:` passed. |
 | 2026-06-21 | Professional redesign live rendered QA | pass | Playwright checked live desktop and mobile homepage, Building Analyst, who-it-fits, privacy, and mobile interactive workflow/lens states. No console warnings/errors, no framework overlay, no horizontal overflow, no clipped text, `index, follow` present, and interactive panels switched correctly. Artifact: `output/playwright/live-professional-redesign-2026-06-21T09-07-51-486Z`. |
 | 2026-06-21 | Professional redesign live link sweep | pass | Live Playwright link sweep checked 39 links/anchors across `/`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html`; no missing anchors or `4xx/5xx` internal routes. `mailto:` links were identified and left as mail actions. |
+| 2026-06-21 | Motion polish research | pass | Reviewed current public references for selective microinteractions, cursor/dynamic motion and motion restraint/accessibility, including Figma web design trends, Awwwards animation/microinteraction galleries, and Nielsen Norman Group guidance to keep animation unobtrusive, purposeful and reduced-motion aware. |
+| 2026-06-21 | Motion polish static checks | pass | `git diff --check`, `node --check script.js`, and HTML validation for all public pages passed after adding dependency-free cursor-responsive motion fields and depth surfaces. |
+| 2026-06-21 | Motion polish local smoke/evidence | pass | `npm run qa:preview-auth`, `npm run qa:measurement:local`, and `npm run qa:measurement:evidence` passed. Latest artifacts: `output/measurement/smoke-2026-06-21T09-18-43-173Z`, `output/measurement/evidence-2026-06-21T09-18-53-995Z`. Lighthouse median: performance 76, accessibility 100, best practices 100, SEO 100, CLS about 0.0001. |
+| 2026-06-21 | Motion polish rendered QA | pass | Playwright verified desktop homepage and Building Analyst pointer motion: ambient CSS variables changed after mouse movement, motion fields rendered, selected panels tilted/responded, no console warnings/errors, and no horizontal overflow. Mobile/touch contexts had no horizontal overflow and did not enable pointer motion; reduced-motion context did not enable pointer motion. Artifact: `output/playwright/motion-polish-2026-06-21T09-20-32-479Z`. |
 
 ## 11. Release / Deployment Notes
 

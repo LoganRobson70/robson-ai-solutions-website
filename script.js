@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupInteractivePanels();
   setupNavState();
   setupPrivacyNotice();
+  setupAmbientMotion();
   setupSectionReveal();
 });
 
@@ -634,4 +635,91 @@ function setupSectionReveal() {
     target.style.setProperty("--reveal-index", String(index % 4));
     observer.observe(target);
   });
+}
+
+function setupAmbientMotion() {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const finePointer = window.matchMedia("(pointer: fine)");
+
+  if (reducedMotion.matches || !finePointer.matches) {
+    return;
+  }
+
+  const root = document.documentElement;
+  const depthSurfaces = document.querySelectorAll(
+    ".home-signal-board, .analyst-summary-card, .home-problem-card, .home-workflow-step, .home-contact-panel, .analyst-core-card, .analyst-flow-card, .analyst-fit-card, .page-card, .fit-card"
+  );
+
+  document.body.classList.add("motion-pointer-ready");
+
+  let pointerX = window.innerWidth / 2;
+  let pointerY = window.innerHeight / 2;
+  let frameRequested = false;
+
+  const setGlobalMotion = () => {
+    const width = Math.max(window.innerWidth, 1);
+    const height = Math.max(window.innerHeight, 1);
+    const normalizedX = (pointerX / width - 0.5) * 2;
+    const normalizedY = (pointerY / height - 0.5) * 2;
+
+    root.style.setProperty("--ambient-x", `${(normalizedX * 18).toFixed(2)}px`);
+    root.style.setProperty("--ambient-y", `${(normalizedY * 14).toFixed(2)}px`);
+    root.style.setProperty("--ambient-x-soft", `${(normalizedX * 9).toFixed(2)}px`);
+    root.style.setProperty("--ambient-y-soft", `${(normalizedY * 7).toFixed(2)}px`);
+    root.style.setProperty("--ambient-x-soft-neg", `${(normalizedX * -9).toFixed(2)}px`);
+    root.style.setProperty("--ambient-y-soft-neg", `${(normalizedY * -7).toFixed(2)}px`);
+    root.style.setProperty("--ambient-rotate", `${(normalizedX * 1.4).toFixed(2)}deg`);
+    frameRequested = false;
+  };
+
+  const requestGlobalMotion = () => {
+    if (frameRequested) {
+      return;
+    }
+
+    frameRequested = true;
+    window.requestAnimationFrame(setGlobalMotion);
+  };
+
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      requestGlobalMotion();
+    },
+    { passive: true }
+  );
+
+  depthSurfaces.forEach((surface) => {
+    surface.classList.add("motion-depth-surface");
+
+    surface.addEventListener(
+      "pointermove",
+      (event) => {
+        const rect = surface.getBoundingClientRect();
+        const localX = (event.clientX - rect.left) / Math.max(rect.width, 1);
+        const localY = (event.clientY - rect.top) / Math.max(rect.height, 1);
+        const tiltX = (localX - 0.5) * 5;
+        const tiltY = (0.5 - localY) * 5;
+
+        surface.classList.add("is-motion-active");
+        surface.style.setProperty("--tilt-x", `${tiltX.toFixed(2)}deg`);
+        surface.style.setProperty("--tilt-y", `${tiltY.toFixed(2)}deg`);
+        surface.style.setProperty("--surface-lift-x", `${((localX - 0.5) * 3).toFixed(2)}px`);
+        surface.style.setProperty("--surface-lift-y", `${((localY - 0.5) * 3).toFixed(2)}px`);
+      },
+      { passive: true }
+    );
+
+    surface.addEventListener("pointerleave", () => {
+      surface.classList.remove("is-motion-active");
+      surface.style.setProperty("--tilt-x", "0deg");
+      surface.style.setProperty("--tilt-y", "0deg");
+      surface.style.setProperty("--surface-lift-x", "0px");
+      surface.style.setProperty("--surface-lift-y", "0px");
+    });
+  });
+
+  setGlobalMotion();
 }
