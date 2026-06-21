@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-21 11:30 BST
+Last updated: 2026-06-21 11:38 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -165,10 +165,10 @@ Follow-on tranche:
 Follow-on tranche:
 
 - Tranche name: `website-basic-mistakes-and-conversion-polish`
-- Status: completed locally; production deployment pending
+- Status: completed and deployed
 - Started: 2026-06-21 10:31 BST
-- Completed: 2026-06-21 10:41 BST
-- Scope: performed a blunt product/design/conversion audit using current local evidence and the attached screenshot, fixed obvious local website mistakes and contact-path friction, created a concise team recommendation memo, and validated locally. Production deploy remains a separate approval. No DNS changes, GA4 enablement, customer data, external messages, destructive git actions, or product-claim expansion.
+- Completed: 2026-06-21 11:38 BST
+- Scope: performed a blunt product/design/conversion audit using current local evidence and the attached screenshot, fixed obvious local website mistakes and contact-path friction, created a concise team recommendation memo, validated locally, committed to `main`, pushed to GitHub, and verified the Netlify production deploy. No DNS changes, GA4 enablement, customer data, external messages, destructive git actions, or product-claim expansion.
 
 Follow-on tranche:
 
@@ -181,10 +181,18 @@ Follow-on tranche:
 Follow-on tranche:
 
 - Tranche name: `website-professional-design-signature-pass`
-- Status: completed locally; production deployment pending
+- Status: completed and deployed
 - Started: 2026-06-21 11:21 BST
-- Completed: 2026-06-21 11:30 BST
-- Scope: reviewed current modern SaaS/B2B/motion/typography references, then added a local professional design signature pass using the bundled Fraunces display font, editorial section-label rails, sharper product/card accents, and non-clipped mobile navigation. Preserved current product claims, Robson AI brand assets, analytics contracts, contact path, reduced-motion assumptions, and no-form privacy stance. No production deploy, DNS changes, GA4 enablement, customer data, external messages, destructive git actions, commits, pushes, or rollback.
+- Completed: 2026-06-21 11:38 BST
+- Scope: reviewed current modern SaaS/B2B/motion/typography references, then added a professional design signature pass using the bundled Fraunces display font, editorial section-label rails, sharper product/card accents, and non-clipped mobile navigation. Preserved current product claims, Robson AI brand assets, analytics contracts, contact path, reduced-motion assumptions, and no-form privacy stance. Committed to `main`, pushed to GitHub, and verified the Netlify production deploy. No DNS changes, GA4 enablement, customer data, external messages, destructive git actions, or rollback.
+
+Follow-on tranche:
+
+- Tranche name: `website-conversion-design-signature-production-deploy`
+- Status: completed
+- Started: 2026-06-21 11:32 BST
+- Completed: 2026-06-21 11:38 BST
+- Scope: after Wayne approval, committed the conversion/contact/design-signature polish bundle, pushed `main`, verified Netlify production deploy `6a37be74ace5eb0008361ef4` for commit `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1`, and ran live measurement plus rendered Browser QA. No DNS changes, GA4 enablement, forms, customer data, external messages, destructive git actions, or rollback.
 
 ## 3. Now / Next / Later
 
@@ -215,15 +223,15 @@ Follow-on tranche:
 - Live production contrast checks pass on desktop and mobile.
 - `website-professional-redesign-production-deploy` is complete: production `https://robsonai.co.uk/` is deployed from commit `c0863348c7b036f02bcbe0144372c85a17b5424b`.
 - `website-modern-motion-graphics-polish` is complete: production `https://robsonai.co.uk/` is deployed from commit `0c3a9f5b5dfa9179b937c47a8d4028cdca6194f9`; homepage and Building Analyst hero panels now have cursor-responsive technical motion fields, selected cards/panels have pointer-depth motion, and reduced-motion/mobile coarse-pointer contexts disable pointer motion.
-- `website-basic-mistakes-and-conversion-polish` is complete locally and not yet deployed: fixed homepage credibility contrast, removed the amateur white paragraph strip from the credibility cards, improved homepage/Building Analyst/who-it-fits email-first contact paths, added multi-panel copy-email support, and created `docs/codex/CONVERSION_CONTACT_AUDIT_2026-06-21.md`.
-- `website-professional-design-signature-pass` is complete locally and not yet deployed: added stronger editorial typography, section-label rail detailing, product/card accent surfaces, and a wrapped mobile nav so the site feels less generic while keeping the product-led software signal.
+- `website-basic-mistakes-and-conversion-polish` is deployed to production: fixed homepage credibility contrast, removed the amateur white paragraph strip from the credibility cards, improved homepage/Building Analyst/who-it-fits email-first contact paths, added multi-panel copy-email support, and created `docs/codex/CONVERSION_CONTACT_AUDIT_2026-06-21.md`.
+- `website-professional-design-signature-pass` is deployed to production: added stronger editorial typography, section-label rail detailing, product/card accent surfaces, and a wrapped mobile nav so the site feels less generic while keeping the product-led software signal.
+- Production `https://robsonai.co.uk/` is deployed from commit `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1`; Netlify production deploy `6a37be74ace5eb0008361ef4` is ready and published.
 - `project-list-analysis-dashboard` is complete locally: dashboard artifact is `output/project-analysis/robson-project-dashboard.html`; default project view includes 976 valid project rows, excludes 78 budget/non-project rows, and holds 14 naming exceptions for review. Source workbook data must not be added to public website routes or deployed without an explicit privacy/release review.
 
 ### Next
 
 - Review `output/project-analysis/robson-project-dashboard.html` locally and decide whether to correct the 14 naming exceptions in the source workbook before using it for project-only reporting.
-- Review the live redesigned website at `https://robsonai.co.uk/`; next changes should be handled as a new bounded tranche.
-- Review the local conversion/contact/design-signature polish and decide whether to commit/deploy it to production.
+- Review the live conversion/contact/design-signature release at `https://robsonai.co.uk/`; next changes should be handled as a new bounded tranche.
 - Monitor stale external search/social cache previews and recheck after crawlers have had more time to recrawl the live metadata.
 - Keep GA4 disabled until Wayne approves analytics governance and a real Measurement ID.
 - Decide whether to add launch assets such as app screenshots/App Store links only when the iOS app is ready to claim publicly.
@@ -505,21 +513,25 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-21 | Design-signature Browser QA | pass | In-app Browser verified local homepage page identity, empty-error console, no horizontal overflow, Fraunces headline rendering, homepage hero next-section hint on desktop, transparent credibility-card paragraph backgrounds, non-clipped mobile navigation, and visible mobile primary CTAs on homepage and Building Analyst. Screenshots: `output/playwright/professional-design-signature-2026-06-21/desktop-home.png`, `output/playwright/professional-design-signature-2026-06-21/mobile-home.png`, and `output/playwright/professional-design-signature-2026-06-21/mobile-building-analyst.png`. |
 | 2026-06-21 | Design-signature static and smoke checks | pass | `git diff --check`, `node --check script.js`, HTML validation for all public pages, `npm run qa:preview-auth`, and `npm run qa:measurement:local` passed. Measurement smoke artifact: `output/measurement/smoke-2026-06-21T10-28-38-928Z`. |
 | 2026-06-21 | Design-signature accessibility/evidence suite | pass | `npm run qa:measurement:evidence` passed. Artifact: `output/measurement/evidence-2026-06-21T10-29-02-819Z`. Axe reports generated for home, index, privacy, Building Analyst and who-it-fits; Lighthouse median: performance 74, accessibility 100, best practices 100, SEO 100, CLS 0. |
+| 2026-06-21 | Conversion/design signature commit and production deploy | pass | Committed approved polish bundle as `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1` (`Polish website conversion and design signature`) and pushed `main`. Netlify production deploy `6a37be74ace5eb0008361ef4` is `ready`, branch `main`, context `production`, published at 2026-06-21 10:35 UTC. |
+| 2026-06-21 | Conversion/design signature live route/header smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` confirmed `/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, `/privacy.html`, `/robots.txt`, `/sitemap.xml`, and `/assets/og/robsonai-cover-1200x630.png` returned `200`. Root response returned production headers including `nosniff`, `DENY`, strict referrer policy, and disabled camera/geolocation/microphone permissions. |
+| 2026-06-21 | Conversion/design signature live measurement smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed. Artifact: `output/measurement/smoke-2026-06-21T10-36-29-349Z`. Live route matrix, consent decline/accept, no-GA-with-empty-ID checks, copy email feedback, and prompted contact `mailto:` passed. |
+| 2026-06-21 | Conversion/design signature live rendered QA | pass | In-app Browser verified live desktop homepage and mobile homepage/Building Analyst: page identity correct, nonblank DOM, no console warnings/errors, no framework overlay, no horizontal overflow, Fraunces headline rendering, homepage next-section hint, transparent credibility-card paragraph backgrounds, non-clipped mobile navigation, and visible mobile primary CTAs. Screenshots: `output/playwright/live-design-signature-2026-06-21/desktop-home.png`, `output/playwright/live-design-signature-2026-06-21/mobile-home.png`, and `output/playwright/live-design-signature-2026-06-21/mobile-building-analyst.png`. |
 
 ## 11. Release / Deployment Notes
 
 - Current environment: local repo on `main` plus Netlify-linked production site.
 - Public production URL documented in existing handover: `https://robsonai.co.uk`.
-- Current production stance: full public website is live at `/`; launch pages are public and crawlable.
+- Current production stance: full public website is live at `/`; launch pages are public and crawlable. Latest verified production commit is `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1`; latest verified Netlify production deploy is `6a37be74ace5eb0008361ef4`.
 - Release risk: lower after production verification and post-launch observation; monitor live site, enquiries, search indexing, and any stale external cache previews.
 - Privacy/security checks needed: confirm Netlify preview-auth env vars, consent/GA4 review, privacy notice review if contact forms are added, no invented proof claims.
-- Rollback plan: after Wayne approval, restore previous production deploy `6a1b0a3ecb6e5300081351d6` in Netlify or revert merge commit `d695eba11e2878840d31984ab9f1646e62dd3358` and push `main`. Previous deploy permalink: `https://6a1b0a3ecb6e5300081351d6--robson-ai-website.netlify.app`.
+- Rollback plan: after Wayne approval, restore previous production deploy `6a37adcc09337e0008eb8ef1` in Netlify or revert commit `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1` and push `main`. Previous deploy permalink: `https://6a37adcc09337e0008eb8ef1--robson-ai-website.netlify.app`.
 
 ## 12. Resume Prompt
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` now serves the full public website. PR #2 was merged to `main` on 2026-06-20 at merge commit `d695eba11e2878840d31984ab9f1646e62dd3358`; latest verified Netlify production deploy is `6a36970484e43f000821454d` for tracker closeout commit `8cc0501ff224e749a727c7132b656f95204ef739`. Live production route, metadata, consent/measurement smoke, rendered desktop/mobile, security header, sitemap, Open Graph image, and internal-link checks passed. External search may still show the old holding-page snippet until crawlers recrawl the updated metadata; treat this as a watch item, not a code failure. The previous production deploy for rollback is `6a1b0a3ecb6e5300081351d6`. The post-WWDC26 copy refresh and agent-review polish are complete: public copy frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for the current professional/product-direction launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not change domain/DNS, enable GA4, add forms, handle customer data, send external messages, or perform rollback without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` now serves the full public website. Latest verified production commit is `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1` (`Polish website conversion and design signature`); latest verified Netlify production deploy is `6a37be74ace5eb0008361ef4`. Live production route, consent/measurement smoke, rendered desktop/mobile, security header, sitemap, Open Graph image, contact/copy-email path, Fraunces headline rendering, credibility-card contrast, and non-clipped mobile nav checks passed. The previous production deploy for rollback is `6a37adcc09337e0008eb8ef1`. The post-WWDC26 copy refresh and agent-review polish are complete: public copy frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for the current professional/product-direction launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not change domain/DNS, enable GA4, add forms, handle customer data, send external messages, or perform rollback without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
 
 ## 13. PRD Gate Execution Log (2026-06-01)
 
