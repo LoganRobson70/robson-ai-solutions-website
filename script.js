@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupConsentBanner(analytics);
   setupCopyEmail(analytics);
   setupInteractionTracking(analytics);
+  setupInteractivePanels();
   setupNavState();
   setupPrivacyNotice();
   setupSectionReveal();
@@ -332,6 +333,89 @@ function setupInteractionTracking(analytics) {
   });
 }
 
+function setupInteractivePanels() {
+  const interactivePanels = document.querySelectorAll("[data-interactive-panel]");
+
+  if (!interactivePanels.length) {
+    return;
+  }
+
+  interactivePanels.forEach((component) => {
+    const triggers = Array.from(component.querySelectorAll("[data-panel-trigger]"));
+    const panes = Array.from(component.querySelectorAll("[data-panel-pane]"));
+
+    if (!triggers.length || !panes.length) {
+      return;
+    }
+
+    const activatePanel = (panelId, shouldFocus = false) => {
+      const activeTrigger = triggers.find((trigger) => trigger.dataset.panelTrigger === panelId);
+      const activePane = panes.find((pane) => pane.dataset.panelPane === panelId);
+
+      if (!activeTrigger || !activePane) {
+        return;
+      }
+
+      triggers.forEach((trigger) => {
+        const isActive = trigger === activeTrigger;
+        trigger.classList.toggle("is-active", isActive);
+        trigger.setAttribute("aria-selected", String(isActive));
+        trigger.tabIndex = isActive ? 0 : -1;
+      });
+
+      panes.forEach((pane) => {
+        pane.hidden = pane !== activePane;
+      });
+
+      component.dataset.activePanel = panelId;
+
+      if (shouldFocus) {
+        activeTrigger.focus();
+      }
+    };
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener("click", () => {
+        activatePanel(trigger.dataset.panelTrigger);
+      });
+
+      trigger.addEventListener("keydown", (event) => {
+        const keyActions = {
+          ArrowDown: 1,
+          ArrowRight: 1,
+          ArrowUp: -1,
+          ArrowLeft: -1
+        };
+
+        if (event.key === "Home") {
+          event.preventDefault();
+          activatePanel(triggers[0].dataset.panelTrigger, true);
+          return;
+        }
+
+        if (event.key === "End") {
+          event.preventDefault();
+          activatePanel(triggers[triggers.length - 1].dataset.panelTrigger, true);
+          return;
+        }
+
+        if (!(event.key in keyActions)) {
+          return;
+        }
+
+        event.preventDefault();
+
+        const nextIndex = (index + keyActions[event.key] + triggers.length) % triggers.length;
+        activatePanel(triggers[nextIndex].dataset.panelTrigger, true);
+      });
+    });
+
+    const selectedTrigger =
+      triggers.find((trigger) => trigger.getAttribute("aria-selected") === "true") || triggers[0];
+    activatePanel(selectedTrigger.dataset.panelTrigger);
+  });
+}
+
 function setupNavState() {
   const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
 
@@ -520,7 +604,7 @@ function setupSectionReveal() {
   }
 
   const revealTargets = document.querySelectorAll(
-    ".home-hero-copy, .home-hero-stage, .home-section-intro, .home-focus-manifesto, .home-product-map, .home-method-grid, .home-belief-panel, .home-contact-panel"
+    ".home-hero-copy, .home-hero-stage, .home-section-intro, .home-focus-manifesto, .home-product-map, .workflow-finder-board, .home-method-grid, .home-belief-panel, .home-contact-panel, .assessment-lens-board"
   );
 
   if (!revealTargets.length) {

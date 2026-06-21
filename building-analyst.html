@@ -32,22 +32,27 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20260214d">
     <link rel="shortcut icon" href="/favicon.ico?v=20260214d">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260214d">
-    <link rel="stylesheet" href="./styles.css?v=20260530a">
+    <link rel="stylesheet" href="./styles.css?v=20260620b">
   </head>
   <body data-page-type="building-analyst">
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header">
       <div class="container topbar">
-        <a class="brand brand-icon-link" href="/" aria-label="Robson Ai home">
+        <a class="brand brand-lockup-link" href="/" aria-label="Robson Ai home">
           <span class="brand-icon-only" aria-hidden="true">
             <img class="brand-logo" src="./assets/robson-ai-icon-v3.png?v=20260509" alt="">
+          </span>
+          <span class="brand-lockup-text" aria-hidden="true">
+            <span>Robson AI</span>
+            <small>Building Analyst</small>
           </span>
         </a>
 
         <nav class="site-nav" aria-label="Primary">
           <a href="/" data-analytics-id="nav-home-problem">Home</a>
           <a href="#issue-model" data-analytics-id="nav-issue-model">Assessment model</a>
+          <a href="#assessment-lens" data-analytics-id="nav-assessment-lens">Workflow lens</a>
           <a href="#fit-boundaries" data-analytics-id="nav-fit-boundaries">Fit</a>
           <a href="#contact" data-analytics-id="nav-start-conversation">Start a conversation</a>
         </nav>
@@ -135,6 +140,143 @@
               <h3>Decision context</h3>
               <p>Risk, urgency and possible next steps can be reviewed with the evidence close by.</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section analyst-section analyst-section-lens" id="assessment-lens" data-section="assessment-lens" data-proof-surface>
+        <div class="container assessment-lens-shell" data-interactive-panel="assessment-lens">
+          <div class="analyst-section-intro">
+            <p class="section-label">Workflow lens</p>
+            <h2 class="section-title">Same record, different professional questions.</h2>
+            <p class="section-intro section-intro-dark">
+              Building Analyst is being shaped around a shared evidence record that can support different review needs without losing source context.
+            </p>
+          </div>
+
+          <div class="assessment-lens-board">
+            <div class="interactive-tabs interactive-tabs-vertical" role="tablist" aria-label="Assessment review lenses">
+              <button
+                class="interactive-tab is-active"
+                id="lens-tab-surveyor"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="lens-panel-surveyor"
+                data-panel-trigger="surveyor"
+                data-analytics-id="assessment-lens-surveyor"
+              >
+                <span class="interactive-tab-icon" aria-hidden="true">SV</span>
+                <span>Surveyor review</span>
+              </button>
+              <button
+                class="interactive-tab"
+                id="lens-tab-manager"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="lens-panel-manager"
+                tabindex="-1"
+                data-panel-trigger="manager"
+                data-analytics-id="assessment-lens-manager"
+              >
+                <span class="interactive-tab-icon" aria-hidden="true">MG</span>
+                <span>Manager triage</span>
+              </button>
+              <button
+                class="interactive-tab"
+                id="lens-tab-client"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="lens-panel-client"
+                tabindex="-1"
+                data-panel-trigger="client"
+                data-analytics-id="assessment-lens-client"
+              >
+                <span class="interactive-tab-icon" aria-hidden="true">CL</span>
+                <span>Client explanation</span>
+              </button>
+            </div>
+
+            <div class="assessment-lens-panels">
+              <div
+                class="assessment-lens-panel"
+                id="lens-panel-surveyor"
+                role="tabpanel"
+                aria-labelledby="lens-tab-surveyor"
+                data-panel-pane="surveyor"
+              >
+                <p class="home-card-label">Professional question</p>
+                <h3>What did I see, where is the evidence, and what judgement is supported?</h3>
+                <dl class="assessment-lens-list">
+                  <div>
+                    <dt>Record focus</dt>
+                    <dd>Observation, condition, location, photographs, readings and access constraints.</dd>
+                  </div>
+                  <div>
+                    <dt>Useful output</dt>
+                    <dd>A report-ready evidence trail that is easier to review and defend.</dd>
+                  </div>
+                  <div>
+                    <dt>Boundary</dt>
+                    <dd>The product can structure and support review; it does not remove professional responsibility.</dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div
+                class="assessment-lens-panel"
+                id="lens-panel-manager"
+                role="tabpanel"
+                aria-labelledby="lens-tab-manager"
+                data-panel-pane="manager"
+                hidden
+              >
+                <p class="home-card-label">Professional question</p>
+                <h3>What needs attention, why does it matter, and what is blocked?</h3>
+                <dl class="assessment-lens-list">
+                  <div>
+                    <dt>Record focus</dt>
+                    <dd>Priority, risk, next action, responsibility and evidence strength.</dd>
+                  </div>
+                  <div>
+                    <dt>Useful output</dt>
+                    <dd>A clearer triage view for estate, FM or surveying team decisions.</dd>
+                  </div>
+                  <div>
+                    <dt>Boundary</dt>
+                    <dd>Operational workflows need governance before live integration with customer systems.</dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div
+                class="assessment-lens-panel"
+                id="lens-panel-client"
+                role="tabpanel"
+                aria-labelledby="lens-tab-client"
+                data-panel-pane="client"
+                hidden
+              >
+                <p class="home-card-label">Professional question</p>
+                <h3>How do we explain the issue clearly without losing the evidence trail?</h3>
+                <dl class="assessment-lens-list">
+                  <div>
+                    <dt>Record focus</dt>
+                    <dd>Plain-language summary, evidence references, options and recommended next steps.</dd>
+                  </div>
+                  <div>
+                    <dt>Useful output</dt>
+                    <dd>Material that can support better client understanding while staying reviewable.</dd>
+                  </div>
+                  <div>
+                    <dt>Boundary</dt>
+                    <dd>Client-facing wording still needs human approval before being relied on.</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -308,13 +450,13 @@
 
             <a
               class="contact-link"
-              href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20conversation&body=I%20would%20like%20to%20speak%20about%20surveying-led%20assessment%20and%20evidence%20workflows."
+              href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20conversation&body=I%20would%20like%20to%20speak%20about%20professional%20assessment%20and%20evidence%20workflows."
               data-analytics-id="building-analyst-mailto-link"
               data-cta-location="building-analyst-contact"
             >hello@robsonai.co.uk</a>
 
             <div class="contact-actions">
-              <a class="btn btn-primary" href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20conversation&body=I%20would%20like%20to%20speak%20about%20surveying-led%20assessment%20and%20evidence%20workflows." data-analytics-id="building-analyst-contact-email" data-cta-location="building-analyst-contact">Email Robson Ai</a>
+              <a class="btn btn-primary" href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20conversation&body=I%20would%20like%20to%20speak%20about%20professional%20assessment%20and%20evidence%20workflows." data-analytics-id="building-analyst-contact-email" data-cta-location="building-analyst-contact">Email Robson Ai</a>
               <a class="btn btn-outline" href="/" data-analytics-id="building-analyst-homepage" data-cta-location="building-analyst-contact">Back to Home</a>
             </div>
           </div>
@@ -360,10 +502,10 @@
       </div>
     </footer>
 
-    <div class="consent-banner" data-consent-banner hidden>
+    <div class="consent-banner" data-consent-banner role="region" aria-labelledby="analytics-consent-title" hidden>
       <div class="consent-copy">
         <p class="consent-kicker">Optional analytics</p>
-        <h2 class="consent-title">Optional analytics?</h2>
+        <h2 class="consent-title" id="analytics-consent-title">Optional analytics?</h2>
         <p class="consent-text">
           No marketing cookies. Analytics only runs if you accept.
         </p>

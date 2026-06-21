@@ -32,17 +32,20 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20260214d">
     <link rel="shortcut icon" href="/favicon.ico?v=20260214d">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260214d">
-    <link rel="stylesheet" href="./styles.css?v=20260530a">
+    <link rel="stylesheet" href="./styles.css?v=20260620b">
   </head>
   <body data-page-type="holding">
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header">
       <div class="container topbar topbar-holding">
-        <a class="brand" href="/" aria-label="Robson Ai home">
-          <span class="brand-wordmark" aria-hidden="true">
-            <span>Robson</span>
-            <span class="brand-wordmark-ai">A<span class="brand-wordmark-i"><span class="brand-i-stem"></span></span></span>
+        <a class="brand brand-lockup-link" href="/" aria-label="Robson Ai home">
+          <span class="brand-icon-only" aria-hidden="true">
+            <img class="brand-logo" src="./assets/robson-ai-icon-v3.png?v=20260509" alt="">
+          </span>
+          <span class="brand-lockup-text" aria-hidden="true">
+            <span>Robson AI</span>
+            <small>Solutions</small>
           </span>
         </a>
         <nav class="holding-header-nav" aria-label="Holding page">
@@ -150,12 +153,12 @@
       </div>
     </footer>
 
-    <div class="consent-banner" data-consent-banner hidden>
+    <div class="consent-banner" data-consent-banner role="region" aria-labelledby="analytics-consent-title" hidden>
       <div class="consent-copy">
         <p class="consent-kicker">Optional analytics</p>
-        <h2 class="consent-title">Allow lightweight website analytics?</h2>
+        <h2 class="consent-title" id="analytics-consent-title">Optional analytics?</h2>
         <p class="consent-text">
-          Robson AI Solutions only measures site use after you explicitly accept. No marketing cookies, and no analytics requests before consent.
+          No marketing cookies. Analytics only runs if you accept.
         </p>
       </div>
       <div class="consent-actions">

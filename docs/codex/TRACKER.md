@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-20 18:12 Europe/London
+Last updated: 2026-06-21 09:44 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -130,6 +130,22 @@ Follow-on tranche:
 - Completed: 2026-06-20 18:12 Europe/London
 - Scope: observed the live production website after launch by checking Netlify deploy health, route availability, metadata/social preview assets, consent/contact behaviour, crawlability, visible desktop/mobile rendering, and obvious stale-public-copy risk. No deploys, DNS, GA4, forms, rollback, customer data, or external messaging changes.
 
+Follow-on tranche:
+
+- Tranche name: `website-professional-interactive-polish`
+- Status: completed locally
+- Started: 2026-06-20 20:27 Europe/London
+- Completed: 2026-06-20 20:44 Europe/London
+- Scope: reviewed the current public website and added scoped professional interactive sections where useful, focused on visitor workflow exploration and Building Analyst assessment framing. Added accessible tab behaviour, compact mobile navigation, and consent-banner landmark fixes. No production deploy, DNS, GA4, forms, customer data, external messages, or rollback.
+
+Follow-on tranche:
+
+- Tranche name: `website-professional-redesign-local`
+- Status: completed locally
+- Started: 2026-06-21 09:10 BST
+- Completed: 2026-06-21 09:44 BST
+- Scope: broadened the local website design pass using the Robson icon and colour palette as fixed brand anchors while improving layout, typography, component geometry, hero hierarchy, mobile behaviour, consent banner compactness, and local-font performance. Preserved existing product facts, measurement hooks, contact paths, preview auth assumptions, and public-claim caution. No production deploy, DNS, GA4, forms, customer data, external messages, commits, pushes, or rollback.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -157,9 +173,11 @@ Follow-on tranche:
 - Production deploy `6a3695c3b9eca200087f4c36` is ready for merge commit `d695eba11e2878840d31984ab9f1646e62dd3358`.
 - `production-launch-preflight` no-go blocker is fixed: `who-its-for.html` now renders white hero text on the dark hero background and dark headings on white hero cards.
 - Live production contrast checks pass on desktop and mobile.
+- `website-professional-redesign-local` is completed locally with uncommitted changes. Local preview server: `http://127.0.0.1:8123/index.html`.
 
 ### Next
 
+- Review the local professional redesign at `http://127.0.0.1:8123/index.html`, then decide whether to approve staging/commit and a non-production Netlify preview.
 - Monitor stale external search/social cache previews and recheck after crawlers have had more time to recrawl the live metadata.
 - Keep GA4 disabled until Wayne approves analytics governance and a real Measurement ID.
 - Decide whether to add launch assets such as app screenshots/App Store links only when the iOS app is ready to claim publicly.
@@ -247,6 +265,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | Merging PR #2 likely publishes the fuller site | high | Wayne/Codex | Treat merge approval and production launch approval as the same release gate unless Netlify production auto-deploy is paused or changed. | active |
 | `who-its-for.html` hero/card contrast is launch-blocking | high | Codex | Fixed in `styles.css`; local and PR-preview desktop/mobile checks pass. | closed |
 | External search result may temporarily show old holding-page snippet | low | Wayne/Codex | Live metadata, sitemap, robots, and holding-page noindex are correct; monitor recrawl and optionally use Search Console URL inspection if available. | monitoring |
+| Professional redesign is local/uncommitted | medium | Wayne/Codex | Review local preview first; stage, commit, and deploy only after explicit approval. | active |
 | Email-only conversion path may lose enquiries | medium | Wayne/Codex | Parked for conversion tranche; requires privacy/spam decision. | parked |
 | GA4 Measurement ID is empty | low | Wayne | Intentional until analytics approval. Keep measurement QA in place. | monitoring |
 
@@ -401,6 +420,15 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-20 | Post-launch rendered browser observation | pass | Playwright checked desktop `/` and `/who-its-for.html`, mobile `/building-analyst.html` and `/privacy.html`. No console warnings/errors, no horizontal overflow, `index, follow`, correct titles/H1s, and no stale wording matches. Artifact: `output/playwright/post-launch-2026-06-20T17-11-45-326Z`. |
 | 2026-06-20 | Post-launch headers/link/fallback observation | pass | Live HTML routes return security headers `nosniff`, `DENY`, strict referrer policy, and disabled camera/geolocation/microphone permissions. `/preview.html` redirects to `/`. `/holding.html` remains accessible as a fallback but is `noindex, nofollow`, and internal links returned `200`. |
 | 2026-06-20 | External search cache observation | watch | External search still surfaced an old holding-page snippet for `robsonai.co.uk` shortly after launch. Live site metadata/sitemap/robots are correct, so this is treated as a cache/recrawl watch item rather than a code failure. |
+| 2026-06-20 | Interactive polish static checks | pass | `git diff --check`, HTML validation for all public pages, `npm run qa:preview-auth`, and stale wording scan passed. The scan found no `surveying-led AI software`, `AI-led`, `AI-assisted`, `AI-supported`, `BYO API key`, `bring your own API`, `generic chatbot`, or `surveying-led assessment` matches in public pages/scripts/styles. |
+| 2026-06-20 | Interactive polish measurement smoke | pass | `npm run qa:measurement:local` passed. Artifact: `output/measurement/smoke-2026-06-20T19-42-57-759Z`. Route matrix, consent flows, no-GA-with-empty-ID checks, contact mailto, and required analytics event contract passed. |
+| 2026-06-20 | Interactive polish rendered interaction QA | pass | Playwright verified the new homepage workflow finder and Building Analyst workflow lens on desktop and mobile. Click and keyboard tab changes updated visible panels and ARIA state. No console warnings/errors, no stale wording matches, and no horizontal overflow. Final artifact: `output/playwright/interactive-polish-final-2026-06-20T19-35-40-195Z`; mobile header recheck artifact: `output/playwright/interactive-mobile-header-2026-06-20T19-37-46-319Z`. |
+| 2026-06-20 | Interactive polish accessibility/evidence suite | pass | `npm run qa:measurement:evidence` passed after fixing `tabpanel` element semantics, consent-banner landmark labelling, and reveal-animation contrast impact. Artifact: `output/measurement/evidence-2026-06-20T19-42-57-901Z`. Axe: 0 violations on home, index, privacy, Building Analyst, and who-it-fits. Lighthouse median: performance 80, accessibility 100, best practices 100, SEO 100. |
+| 2026-06-21 | Professional redesign static checks | pass | `git diff --check`, HTML validation for all public pages, `npm run qa:preview-auth`, and stale-claim scan passed. The scan found no negative `letter-spacing`, BYO API, generic chatbot, or stale AI-provider/product-positioning matches in edited public files. |
+| 2026-06-21 | Professional redesign rendered QA | pass | Playwright checked homepage and Building Analyst first viewports plus mobile workflow/lens interactions. No console warnings/errors, no framework overlay, no horizontal overflow, no clipped text, and interactive tabs updated the visible panels. Main artifact: `output/playwright/professional-redesign-final-2026-06-21T08-34-51-027Z`; Building Analyst compactness recheck: `output/playwright/professional-redesign-ba-check-2026-06-21T08-41-04-107Z`. |
+| 2026-06-21 | Professional redesign measurement smoke | pass | `npm run qa:measurement:local` passed. Artifact: `output/measurement/smoke-2026-06-21T08-41-49-796Z`. Route matrix, consent flows, no-GA-with-empty-ID checks, contact mailto, and required analytics event contract passed. |
+| 2026-06-21 | Professional redesign local link sweep | pass | Local Playwright link sweep checked 39 links/anchors across `/index.html`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html`; no missing anchors or `4xx/5xx` internal routes. `mailto:` links were identified and left as mail actions. |
+| 2026-06-21 | Professional redesign accessibility/evidence suite | pass | `npm run qa:measurement:evidence` passed after final local adjustments. Artifact: `output/measurement/evidence-2026-06-21T09-03-43-407Z`. Axe: 0 violations on home, index, privacy, Building Analyst, and who-it-fits. Lighthouse median: performance 77, accessibility 100, best practices 100, SEO 100, CLS about 0.0001. |
 
 ## 11. Release / Deployment Notes
 

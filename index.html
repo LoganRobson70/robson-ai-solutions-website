@@ -32,7 +32,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20260214d">
     <link rel="shortcut icon" href="/favicon.ico?v=20260214d">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260214d">
-    <link rel="stylesheet" href="./styles.css?v=20260530a">
+    <link rel="stylesheet" href="./styles.css?v=20260620b">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -50,16 +50,20 @@
 
     <header class="site-header">
       <div class="container topbar">
-        <a class="brand brand-wordmark-link" href="/" aria-label="Robson Ai home">
-          <span class="brand-wordmark" aria-hidden="true">
-            <span>Robson</span>
-            <span class="brand-wordmark-ai">A<span class="brand-wordmark-i"><span class="brand-i-stem"></span></span></span>
+        <a class="brand brand-lockup-link" href="/" aria-label="Robson Ai home">
+          <span class="brand-icon-only" aria-hidden="true">
+            <img class="brand-logo" src="./assets/robson-ai-icon-v3.png?v=20260509" alt="">
+          </span>
+          <span class="brand-lockup-text" aria-hidden="true">
+            <span>Robson AI</span>
+            <small>Solutions</small>
           </span>
         </a>
 
         <nav class="site-nav" aria-label="Primary">
           <a href="#focus" data-analytics-id="nav-focus">Focus</a>
-          <a href="#work" data-analytics-id="nav-work">Products</a>
+          <a href="#work" data-analytics-id="nav-work">Workstreams</a>
+          <a href="#workflow-finder" data-analytics-id="nav-workflow-finder">Finder</a>
           <a href="#method" data-analytics-id="nav-method">Method</a>
           <a href="#contact" data-analytics-id="nav-start-conversation">Discuss a workflow</a>
         </nav>
@@ -70,8 +74,8 @@
       <section class="hero home-hero" id="top" data-section="hero">
         <div class="container home-hero-grid">
           <div class="home-hero-copy">
-            <p class="home-kicker">Robson Ai Solutions</p>
-            <h1>Building surveying knowledge turned into professional software.</h1>
+            <p class="home-kicker">Robson AI Solutions</p>
+            <h1>Professional building intelligence.</h1>
             <p class="home-hero-lead">
               We are developing tools for surveyors to capture evidence, structure assessment records and prepare clearer reporting, with Apple-native intelligence explored where it can support professional review.
             </p>
@@ -90,6 +94,9 @@
           </div>
 
           <div class="home-hero-stage" role="group" aria-label="Robson AI Solutions product architecture">
+            <div class="home-hero-mark" aria-hidden="true">
+              <img src="./assets/robson-ai-icon-v3-transparent.png?v=20260510" alt="">
+            </div>
             <div class="home-signal-board">
               <div class="home-scan-orbit" aria-hidden="true">
                 <span></span>
@@ -98,8 +105,8 @@
               </div>
 
               <div class="home-signal-panel home-signal-panel-primary">
-                <p>Surveying knowledge</p>
-                <strong>Inspection, condition, evidence, risk and client context.</strong>
+                <p>Product direction</p>
+                <strong>Capture evidence, structure records and support professional review.</strong>
               </div>
 
               <div class="home-signal-flow" aria-hidden="true">
@@ -136,7 +143,7 @@
         <div class="container home-section-grid">
           <div class="home-section-intro">
             <p class="section-label">Focus</p>
-            <h2 class="section-title">Surveyors need sharper tools, not more admin.</h2>
+            <h2 class="section-title">Sharper tools for skilled building work.</h2>
             <p class="section-intro section-intro-dark">
               Robson AI Solutions exists to turn building knowledge into useful digital capability.
             </p>
@@ -182,6 +189,134 @@
               <h3>Operational software.</h3>
               <p>Early CAFM-style system thinking for building, maintenance and facilities workflows.</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section home-section home-section-explorer" id="workflow-finder" data-section="workflow-finder" data-proof-surface>
+        <div class="container workflow-finder-shell" data-interactive-panel="workflow-finder">
+          <div class="home-section-intro workflow-finder-intro">
+            <p class="section-label">Workflow finder</p>
+            <h2 class="section-title">Start with the building problem.</h2>
+            <p class="section-intro section-intro-dark">
+              Select the closest workflow to see how the current Robson AI product directions map to practical building work.
+            </p>
+          </div>
+
+          <div class="workflow-finder-board">
+            <div class="interactive-tabs" role="tablist" aria-label="Building workflow options">
+              <button
+                class="interactive-tab is-active"
+                id="workflow-tab-assessment"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="workflow-panel-assessment"
+                data-panel-trigger="assessment"
+                data-analytics-id="workflow-finder-assessment"
+              >
+                <span class="interactive-tab-icon" aria-hidden="true">01</span>
+                <span>Assessment records</span>
+              </button>
+              <button
+                class="interactive-tab"
+                id="workflow-tab-visual"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="workflow-panel-visual"
+                tabindex="-1"
+                data-panel-trigger="visual"
+                data-analytics-id="workflow-finder-visual"
+              >
+                <span class="interactive-tab-icon" aria-hidden="true">02</span>
+                <span>External visual capture</span>
+              </button>
+              <button
+                class="interactive-tab"
+                id="workflow-tab-operations"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="workflow-panel-operations"
+                tabindex="-1"
+                data-panel-trigger="operations"
+                data-analytics-id="workflow-finder-operations"
+              >
+                <span class="interactive-tab-icon" aria-hidden="true">03</span>
+                <span>Property operations</span>
+              </button>
+            </div>
+
+            <div class="workflow-finder-panels">
+              <div
+                class="workflow-finder-panel"
+                id="workflow-panel-assessment"
+                role="tabpanel"
+                aria-labelledby="workflow-tab-assessment"
+                data-panel-pane="assessment"
+              >
+                <div>
+                  <p class="home-card-label">Best fit</p>
+                  <h3>Building Analyst</h3>
+                  <p>
+                    For surveyors who need issue records, evidence packs, notes, review context and reporting material held together.
+                  </p>
+                </div>
+                <ul class="workflow-finder-checks">
+                  <li>Useful when observations, photos and recommendations become separated.</li>
+                  <li>Supports professional judgement instead of replacing it.</li>
+                  <li>Apple-platform-first direction where device-native intelligence can help review.</li>
+                </ul>
+                <a class="text-link" href="./building-analyst.html" data-analytics-id="workflow-finder-building-analyst" data-cta-location="workflow-finder">Explore Building Analyst</a>
+              </div>
+
+              <div
+                class="workflow-finder-panel"
+                id="workflow-panel-visual"
+                role="tabpanel"
+                aria-labelledby="workflow-tab-visual"
+                data-panel-pane="visual"
+                hidden
+              >
+                <div>
+                  <p class="home-card-label">Best fit</p>
+                  <h3>Drone-to-3D exploration</h3>
+                  <p>
+                    For external building capture, visual inspection support and 3D model thinking where photographs alone do not tell the whole story.
+                  </p>
+                </div>
+                <ul class="workflow-finder-checks">
+                  <li>Useful for facades, roofs, access constraints and visual evidence trails.</li>
+                  <li>Still an exploration stream, not a finished public product claim.</li>
+                  <li>Works best when the output helps a human reviewer understand the building.</li>
+                </ul>
+                <a class="text-link" href="#contact" data-analytics-id="workflow-finder-drone-contact" data-cta-location="workflow-finder">Discuss visual capture</a>
+              </div>
+
+              <div
+                class="workflow-finder-panel"
+                id="workflow-panel-operations"
+                role="tabpanel"
+                aria-labelledby="workflow-tab-operations"
+                data-panel-pane="operations"
+                hidden
+              >
+                <div>
+                  <p class="home-card-label">Best fit</p>
+                  <h3>Property operations thinking</h3>
+                  <p>
+                    For estates, FM and building teams trying to make maintenance, compliance, evidence and decision records easier to use.
+                  </p>
+                </div>
+                <ul class="workflow-finder-checks">
+                  <li>Useful where issue queues, evidence, decisions and responsibilities become fragmented.</li>
+                  <li>Relevant to WAIS-style estate intelligence and CAFM-adjacent workflows.</li>
+                  <li>Needs careful governance before any real customer-system integration.</li>
+                </ul>
+                <a class="text-link" href="#contact" data-analytics-id="workflow-finder-operations-contact" data-cta-location="workflow-finder">Discuss operations workflow</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -349,10 +484,10 @@
       </div>
     </footer>
 
-    <div class="consent-banner" data-consent-banner hidden>
+    <div class="consent-banner" data-consent-banner role="region" aria-labelledby="analytics-consent-title" hidden>
       <div class="consent-copy">
         <p class="consent-kicker">Optional analytics</p>
-        <h2 class="consent-title">Optional analytics?</h2>
+        <h2 class="consent-title" id="analytics-consent-title">Optional analytics?</h2>
         <p class="consent-text">
           No marketing cookies. Analytics only runs if you accept.
         </p>
