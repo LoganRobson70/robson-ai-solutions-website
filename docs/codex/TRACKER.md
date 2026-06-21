@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-21 10:24 BST
+Last updated: 2026-06-21 11:30 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -162,6 +162,30 @@ Follow-on tranche:
 - Completed: 2026-06-21 10:24 BST
 - Scope: researched current professional motion/microinteraction patterns, added scoped cursor-responsive graphical polish and panel motion to the existing public website, validated locally and live, committed to `main`, pushed to GitHub, and verified the Netlify production deploy. The implementation is dependency-free, accessible, reduced-motion aware, and inside the existing Robson AI product narrative. No DNS changes, GA4 enablement, forms, customer data, external messages, destructive git actions, or product-claim expansion.
 
+Follow-on tranche:
+
+- Tranche name: `website-basic-mistakes-and-conversion-polish`
+- Status: completed locally; production deployment pending
+- Started: 2026-06-21 10:31 BST
+- Completed: 2026-06-21 10:41 BST
+- Scope: performed a blunt product/design/conversion audit using current local evidence and the attached screenshot, fixed obvious local website mistakes and contact-path friction, created a concise team recommendation memo, and validated locally. Production deploy remains a separate approval. No DNS changes, GA4 enablement, customer data, external messages, destructive git actions, or product-claim expansion.
+
+Follow-on tranche:
+
+- Tranche name: `project-list-analysis-dashboard`
+- Status: completed locally
+- Started: 2026-06-21 10:32 BST
+- Completed: 2026-06-21 10:41 BST
+- Scope: analysed `/Users/wayne/Downloads/Master Project list by Wayne Robson.xlsx`, inferred the project naming convention, excluded budget/non-project rows from default project views, and created a local-only dynamic chart dashboard under ignored `output/` artifacts. No production deploy, public website route, customer-system integration, commits, pushes, or external messages.
+
+Follow-on tranche:
+
+- Tranche name: `website-professional-design-signature-pass`
+- Status: completed locally; production deployment pending
+- Started: 2026-06-21 11:21 BST
+- Completed: 2026-06-21 11:30 BST
+- Scope: reviewed current modern SaaS/B2B/motion/typography references, then added a local professional design signature pass using the bundled Fraunces display font, editorial section-label rails, sharper product/card accents, and non-clipped mobile navigation. Preserved current product claims, Robson AI brand assets, analytics contracts, contact path, reduced-motion assumptions, and no-form privacy stance. No production deploy, DNS changes, GA4 enablement, customer data, external messages, destructive git actions, commits, pushes, or rollback.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -191,10 +215,15 @@ Follow-on tranche:
 - Live production contrast checks pass on desktop and mobile.
 - `website-professional-redesign-production-deploy` is complete: production `https://robsonai.co.uk/` is deployed from commit `c0863348c7b036f02bcbe0144372c85a17b5424b`.
 - `website-modern-motion-graphics-polish` is complete: production `https://robsonai.co.uk/` is deployed from commit `0c3a9f5b5dfa9179b937c47a8d4028cdca6194f9`; homepage and Building Analyst hero panels now have cursor-responsive technical motion fields, selected cards/panels have pointer-depth motion, and reduced-motion/mobile coarse-pointer contexts disable pointer motion.
+- `website-basic-mistakes-and-conversion-polish` is complete locally and not yet deployed: fixed homepage credibility contrast, removed the amateur white paragraph strip from the credibility cards, improved homepage/Building Analyst/who-it-fits email-first contact paths, added multi-panel copy-email support, and created `docs/codex/CONVERSION_CONTACT_AUDIT_2026-06-21.md`.
+- `website-professional-design-signature-pass` is complete locally and not yet deployed: added stronger editorial typography, section-label rail detailing, product/card accent surfaces, and a wrapped mobile nav so the site feels less generic while keeping the product-led software signal.
+- `project-list-analysis-dashboard` is complete locally: dashboard artifact is `output/project-analysis/robson-project-dashboard.html`; default project view includes 976 valid project rows, excludes 78 budget/non-project rows, and holds 14 naming exceptions for review. Source workbook data must not be added to public website routes or deployed without an explicit privacy/release review.
 
 ### Next
 
+- Review `output/project-analysis/robson-project-dashboard.html` locally and decide whether to correct the 14 naming exceptions in the source workbook before using it for project-only reporting.
 - Review the live redesigned website at `https://robsonai.co.uk/`; next changes should be handled as a new bounded tranche.
+- Review the local conversion/contact/design-signature polish and decide whether to commit/deploy it to production.
 - Monitor stale external search/social cache previews and recheck after crawlers have had more time to recrawl the live metadata.
 - Keep GA4 disabled until Wayne approves analytics governance and a real Measurement ID.
 - Decide whether to add launch assets such as app screenshots/App Store links only when the iOS app is ready to claim publicly.
@@ -284,6 +313,8 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | External search result may temporarily show old holding-page snippet | low | Wayne/Codex | Live metadata, sitemap, robots, and holding-page noindex are correct; monitor recrawl and optionally use Search Console URL inspection if available. | monitoring |
 | Professional redesign is local/uncommitted | medium | Wayne/Codex | Committed in `c0863348c7b036f02bcbe0144372c85a17b5424b`, pushed to `main`, and deployed to production. | closed |
 | Motion polish could distract or harm accessibility/performance | medium | Codex | Kept motion subtle, dependency-free, pointer-fine only, and disabled under `prefers-reduced-motion` and coarse-pointer mobile contexts; validate with Playwright and Lighthouse before deploy. | monitoring |
+| Spreadsheet-derived dashboard could expose project/business data if published | high | Wayne/Codex | Kept dashboard and support files under ignored `output/`; do not move into public root, commit, push, or deploy without a privacy/release review. | active |
+| Display-font redesign could hurt readability or mobile fit | medium | Codex | Used the already bundled local Fraunces font only for major headings, tightened homepage hero scale, added Browser desktop/mobile checks, and kept Manrope for body/UI text. | monitoring |
 | Email-only conversion path may lose enquiries | medium | Wayne/Codex | Parked for conversion tranche; requires privacy/spam decision. | parked |
 | GA4 Measurement ID is empty | low | Wayne | Intentional until analytics approval. Keep measurement QA in place. | monitoring |
 
@@ -460,6 +491,20 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-21 | Motion polish live route smoke | pass | `https://robsonai.co.uk/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, `/privacy.html`, `/robots.txt`, `/sitemap.xml`, and `/assets/og/robsonai-cover-1200x630.png` all returned `200`. |
 | 2026-06-21 | Motion polish live measurement smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed. Artifact: `output/measurement/smoke-2026-06-21T09-23-01-605Z`. Live route matrix, consent decline/accept, no-GA-with-empty-ID checks, copy email feedback, and contact `mailto:` passed. |
 | 2026-06-21 | Motion polish live rendered QA | pass | Playwright verified deployed desktop homepage and Building Analyst pointer motion: ambient CSS variables changed after mouse movement, motion fields rendered, selected panels tilted/responded, no console warnings/errors, and no horizontal overflow. Reduced-motion context did not enable pointer motion. Artifact: `output/playwright/live-motion-polish-2026-06-21T09-23-32-236Z`. |
+| 2026-06-21 | Project list workbook profile and naming-rule inference | pass | Source workbook `Master Project list by Wayne Robson.xlsx`, `Sheet1`, header row 3, contained 1,068 nonblank rows. Inferred default project convention: `Project` starts with `CM### -` or `C## -` after dash normalisation. Result: 976 valid project rows, 14 naming exceptions, 78 budget/non-project rows. |
+| 2026-06-21 | Local project dashboard artifact generation | pass | Generated local-only ignored artifact `output/project-analysis/robson-project-dashboard.html` plus summary `output/project-analysis/project-analysis-summary.json`. Email/contact-email columns were deliberately excluded from the embedded dashboard data. |
+| 2026-06-21 | Project dashboard syntax and source reconciliation | pass | Extracted embedded script for `node --check`, then source reconciliation script, email regex scan, `git diff --check`, and `npx --no-install html-validate --rule doctype-style:off --rule void-style:off output/project-analysis/robson-project-dashboard.html` passed. Reconciliation confirmed 1,068 source rows, 976 valid projects, 14 naming exceptions, 78 budget/non-project rows, and 137 active valid projects. |
+| 2026-06-21 | Project dashboard Playwright QA | pass | Local server at `http://127.0.0.1:8132/robson-project-dashboard.html` passed assertions for default counts, naming-exception toggle, all-row mode, budget-row search exclusion, active-only filter, construction-stage filter, CSV download, no console errors, and no mobile page-level horizontal overflow. Screenshots: `output/playwright/project-dashboard-2026-06-21/desktop-default.png` and `output/playwright/project-dashboard-2026-06-21/mobile-default.png`. |
+| 2026-06-21 | Conversion/contact baseline audit | fail found | Attached screenshot and local Playwright baseline confirmed the homepage credibility section rendered dark text on a dark panel. Baseline audit artifact: `output/playwright/conversion-audit-baseline-2026-06-21T09-32-27-305Z`. |
+| 2026-06-21 | Conversion/contact static checks | pass | `git diff --check`, `node --check script.js`, and HTML validation for all public pages passed after local fixes. |
+| 2026-06-21 | Conversion/contact smoke checks | pass | `npm run qa:preview-auth` and `npm run qa:measurement:local` passed. Measurement artifact: `output/measurement/smoke-2026-06-21T09-37-29-604Z`. |
+| 2026-06-21 | Conversion/contact rendered QA | pass | Playwright verified the fixed credibility section, homepage contact, Building Analyst contact, who-it-fits contact, copy-email feedback, direct mailto CTAs, privacy links, desktop console cleanliness, and mobile overflow. Final artifact: `output/playwright/conversion-contact-polish-rerun-2026-06-21T09-39-54-732Z`. |
+| 2026-06-21 | Credibility card strip fix | pass | Playwright verified the paragraph background is transparent in all three homepage credibility cards and captured a fresh local screenshot with no white text strip. Artifact: `output/playwright/credibility-card-strip-fix-2026-06-21T10-19-29-058Z/home-belief-panel-fixed.png`. |
+| 2026-06-21 | Conversion/contact accessibility/evidence suite | pass | `npm run qa:measurement:evidence` passed. Artifact: `output/measurement/evidence-2026-06-21T09-40-30-285Z`. Lighthouse median: performance 76, accessibility 100, best practices 100, SEO 100. |
+| 2026-06-21 | Design-signature reference review | pass | Reviewed current SaaS/B2B/motion/typography sources and translated the pattern into a restrained local direction: clarity, proof, friction removal, product-led visuals, subtle motion, distinctive type and non-generic brand character. |
+| 2026-06-21 | Design-signature Browser QA | pass | In-app Browser verified local homepage page identity, empty-error console, no horizontal overflow, Fraunces headline rendering, homepage hero next-section hint on desktop, transparent credibility-card paragraph backgrounds, non-clipped mobile navigation, and visible mobile primary CTAs on homepage and Building Analyst. Screenshots: `output/playwright/professional-design-signature-2026-06-21/desktop-home.png`, `output/playwright/professional-design-signature-2026-06-21/mobile-home.png`, and `output/playwright/professional-design-signature-2026-06-21/mobile-building-analyst.png`. |
+| 2026-06-21 | Design-signature static and smoke checks | pass | `git diff --check`, `node --check script.js`, HTML validation for all public pages, `npm run qa:preview-auth`, and `npm run qa:measurement:local` passed. Measurement smoke artifact: `output/measurement/smoke-2026-06-21T10-28-38-928Z`. |
+| 2026-06-21 | Design-signature accessibility/evidence suite | pass | `npm run qa:measurement:evidence` passed. Artifact: `output/measurement/evidence-2026-06-21T10-29-02-819Z`. Axe reports generated for home, index, privacy, Building Analyst and who-it-fits; Lighthouse median: performance 74, accessibility 100, best practices 100, SEO 100, CLS 0. |
 
 ## 11. Release / Deployment Notes
 

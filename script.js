@@ -240,38 +240,46 @@ function setupConsentBanner(analytics) {
 }
 
 function setupCopyEmail(analytics) {
-  const copyButton = document.querySelector("[data-copy-email]");
-  const feedback = document.querySelector("[data-copy-feedback]");
+  const copyButtons = document.querySelectorAll("[data-copy-email]");
 
-  if (!copyButton || !feedback) {
+  if (!copyButtons.length) {
     return;
   }
 
-  const emailAddress = copyButton.getAttribute("data-copy-value");
+  copyButtons.forEach((copyButton) => {
+    const emailAddress = copyButton.getAttribute("data-copy-value");
 
-  if (!emailAddress) {
-    return;
-  }
-
-  const setFeedback = (message) => {
-    feedback.textContent = message;
-  };
-
-  copyButton.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(emailAddress);
-      setFeedback("Email address copied.");
-      analytics.track("email_copy", {
-        analytics_id: copyButton.dataset.analyticsId || "contact-copy-email",
-        outcome: "success"
-      });
-    } catch (error) {
-      setFeedback("Copy failed. Please use hello@robsonai.co.uk.");
-      analytics.track("email_copy", {
-        analytics_id: copyButton.dataset.analyticsId || "contact-copy-email",
-        outcome: "failed"
-      });
+    if (!emailAddress) {
+      return;
     }
+
+    const feedback =
+      copyButton
+        .closest(".home-contact-panel, .analyst-contact-card, .contact-panel, .holding-panel, .holding-copy, .footer-nav-group")
+        ?.querySelector("[data-copy-feedback]") || document.querySelector("[data-copy-feedback]");
+
+    const setFeedback = (message) => {
+      if (feedback) {
+        feedback.textContent = message;
+      }
+    };
+
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(emailAddress);
+        setFeedback("Email address copied.");
+        analytics.track("email_copy", {
+          analytics_id: copyButton.dataset.analyticsId || "contact-copy-email",
+          outcome: "success"
+        });
+      } catch (error) {
+        setFeedback("Copy failed. Please use hello@robsonai.co.uk.");
+        analytics.track("email_copy", {
+          analytics_id: copyButton.dataset.analyticsId || "contact-copy-email",
+          outcome: "failed"
+        });
+      }
+    });
   });
 }
 
