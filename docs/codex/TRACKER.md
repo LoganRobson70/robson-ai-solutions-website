@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-21 09:44 BST
+Last updated: 2026-06-21 10:08 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -146,6 +146,14 @@ Follow-on tranche:
 - Completed: 2026-06-21 09:44 BST
 - Scope: broadened the local website design pass using the Robson icon and colour palette as fixed brand anchors while improving layout, typography, component geometry, hero hierarchy, mobile behaviour, consent banner compactness, and local-font performance. Preserved existing product facts, measurement hooks, contact paths, preview auth assumptions, and public-claim caution. No production deploy, DNS, GA4, forms, customer data, external messages, commits, pushes, or rollback.
 
+Follow-on tranche:
+
+- Tranche name: `website-professional-redesign-production-deploy`
+- Status: completed
+- Started: 2026-06-21 10:02 BST
+- Completed: 2026-06-21 10:08 BST
+- Scope: verified the local redesigned pages and links, committed the scoped redesign work to `main`, pushed to GitHub, verified Netlify production deploy, and validated the live public website. No DNS changes, GA4 enablement, forms, customer data, external messages, destructive git actions, or rollback.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -173,11 +181,11 @@ Follow-on tranche:
 - Production deploy `6a3695c3b9eca200087f4c36` is ready for merge commit `d695eba11e2878840d31984ab9f1646e62dd3358`.
 - `production-launch-preflight` no-go blocker is fixed: `who-its-for.html` now renders white hero text on the dark hero background and dark headings on white hero cards.
 - Live production contrast checks pass on desktop and mobile.
-- `website-professional-redesign-local` is completed locally with uncommitted changes. Local preview server: `http://127.0.0.1:8123/index.html`.
+- `website-professional-redesign-production-deploy` is complete: production `https://robsonai.co.uk/` is deployed from commit `c0863348c7b036f02bcbe0144372c85a17b5424b`.
 
 ### Next
 
-- Review the local professional redesign at `http://127.0.0.1:8123/index.html`, then decide whether to approve staging/commit and a non-production Netlify preview.
+- Review the live redesigned website at `https://robsonai.co.uk/`; next changes should be handled as a new bounded tranche.
 - Monitor stale external search/social cache previews and recheck after crawlers have had more time to recrawl the live metadata.
 - Keep GA4 disabled until Wayne approves analytics governance and a real Measurement ID.
 - Decide whether to add launch assets such as app screenshots/App Store links only when the iOS app is ready to claim publicly.
@@ -265,7 +273,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | Merging PR #2 likely publishes the fuller site | high | Wayne/Codex | Treat merge approval and production launch approval as the same release gate unless Netlify production auto-deploy is paused or changed. | active |
 | `who-its-for.html` hero/card contrast is launch-blocking | high | Codex | Fixed in `styles.css`; local and PR-preview desktop/mobile checks pass. | closed |
 | External search result may temporarily show old holding-page snippet | low | Wayne/Codex | Live metadata, sitemap, robots, and holding-page noindex are correct; monitor recrawl and optionally use Search Console URL inspection if available. | monitoring |
-| Professional redesign is local/uncommitted | medium | Wayne/Codex | Review local preview first; stage, commit, and deploy only after explicit approval. | active |
+| Professional redesign is local/uncommitted | medium | Wayne/Codex | Committed in `c0863348c7b036f02bcbe0144372c85a17b5424b`, pushed to `main`, and deployed to production. | closed |
 | Email-only conversion path may lose enquiries | medium | Wayne/Codex | Parked for conversion tranche; requires privacy/spam decision. | parked |
 | GA4 Measurement ID is empty | low | Wayne | Intentional until analytics approval. Keep measurement QA in place. | monitoring |
 
@@ -429,6 +437,11 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-21 | Professional redesign measurement smoke | pass | `npm run qa:measurement:local` passed. Artifact: `output/measurement/smoke-2026-06-21T08-41-49-796Z`. Route matrix, consent flows, no-GA-with-empty-ID checks, contact mailto, and required analytics event contract passed. |
 | 2026-06-21 | Professional redesign local link sweep | pass | Local Playwright link sweep checked 39 links/anchors across `/index.html`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html`; no missing anchors or `4xx/5xx` internal routes. `mailto:` links were identified and left as mail actions. |
 | 2026-06-21 | Professional redesign accessibility/evidence suite | pass | `npm run qa:measurement:evidence` passed after final local adjustments. Artifact: `output/measurement/evidence-2026-06-21T09-03-43-407Z`. Axe: 0 violations on home, index, privacy, Building Analyst, and who-it-fits. Lighthouse median: performance 77, accessibility 100, best practices 100, SEO 100, CLS about 0.0001. |
+| 2026-06-21 | Professional redesign commit and production deploy | pass | Committed scoped redesign work as `c0863348c7b036f02bcbe0144372c85a17b5424b` (`Polish Robson AI website design`) and pushed `main`. Netlify production deploy `6a37a995b9eca200080c9aea` is `ready`, branch `main`, context `production`, published at 2026-06-21 09:06 UTC, with secret scan reporting zero standard/enhanced matches. |
+| 2026-06-21 | Professional redesign live route/header smoke | pass | `https://robsonai.co.uk/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, `/privacy.html`, `/robots.txt`, `/sitemap.xml`, and `/assets/og/robsonai-cover-1200x630.png` all returned `200`. Root response includes Netlify production headers including `nosniff`, `DENY`, strict referrer policy, and disabled camera/geolocation/microphone permissions. |
+| 2026-06-21 | Professional redesign live measurement smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed. Artifact: `output/measurement/smoke-2026-06-21T09-07-17-423Z`. Live route matrix, consent decline/accept, no-GA-with-empty-ID checks, copy email feedback, and contact `mailto:` passed. |
+| 2026-06-21 | Professional redesign live rendered QA | pass | Playwright checked live desktop and mobile homepage, Building Analyst, who-it-fits, privacy, and mobile interactive workflow/lens states. No console warnings/errors, no framework overlay, no horizontal overflow, no clipped text, `index, follow` present, and interactive panels switched correctly. Artifact: `output/playwright/live-professional-redesign-2026-06-21T09-07-51-486Z`. |
+| 2026-06-21 | Professional redesign live link sweep | pass | Live Playwright link sweep checked 39 links/anchors across `/`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html`; no missing anchors or `4xx/5xx` internal routes. `mailto:` links were identified and left as mail actions. |
 
 ## 11. Release / Deployment Notes
 
