@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-21 10:22 BST
+Last updated: 2026-06-21 10:24 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -157,9 +157,10 @@ Follow-on tranche:
 Follow-on tranche:
 
 - Tranche name: `website-modern-motion-graphics-polish`
-- Status: completed locally; production deployment pending
+- Status: completed
 - Started: 2026-06-21 10:14 BST
-- Scope: researched current professional motion/microinteraction patterns, added scoped cursor-responsive graphical polish and panel motion to the existing public website, and validated locally before production deployment. The implementation is dependency-free, accessible, reduced-motion aware, and inside the existing Robson AI product narrative. No DNS changes, GA4 enablement, forms, customer data, external messages, destructive git actions, or product-claim expansion.
+- Completed: 2026-06-21 10:24 BST
+- Scope: researched current professional motion/microinteraction patterns, added scoped cursor-responsive graphical polish and panel motion to the existing public website, validated locally and live, committed to `main`, pushed to GitHub, and verified the Netlify production deploy. The implementation is dependency-free, accessible, reduced-motion aware, and inside the existing Robson AI product narrative. No DNS changes, GA4 enablement, forms, customer data, external messages, destructive git actions, or product-claim expansion.
 
 ## 3. Now / Next / Later
 
@@ -189,7 +190,7 @@ Follow-on tranche:
 - `production-launch-preflight` no-go blocker is fixed: `who-its-for.html` now renders white hero text on the dark hero background and dark headings on white hero cards.
 - Live production contrast checks pass on desktop and mobile.
 - `website-professional-redesign-production-deploy` is complete: production `https://robsonai.co.uk/` is deployed from commit `c0863348c7b036f02bcbe0144372c85a17b5424b`.
-- `website-modern-motion-graphics-polish` is locally validated and ready for commit/deploy: homepage and Building Analyst hero panels now have cursor-responsive technical motion fields, selected cards/panels have pointer-depth motion, and reduced-motion/mobile coarse-pointer contexts disable pointer motion.
+- `website-modern-motion-graphics-polish` is complete: production `https://robsonai.co.uk/` is deployed from commit `0c3a9f5b5dfa9179b937c47a8d4028cdca6194f9`; homepage and Building Analyst hero panels now have cursor-responsive technical motion fields, selected cards/panels have pointer-depth motion, and reduced-motion/mobile coarse-pointer contexts disable pointer motion.
 
 ### Next
 
@@ -455,6 +456,10 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-21 | Motion polish static checks | pass | `git diff --check`, `node --check script.js`, and HTML validation for all public pages passed after adding dependency-free cursor-responsive motion fields and depth surfaces. |
 | 2026-06-21 | Motion polish local smoke/evidence | pass | `npm run qa:preview-auth`, `npm run qa:measurement:local`, and `npm run qa:measurement:evidence` passed. Latest artifacts: `output/measurement/smoke-2026-06-21T09-18-43-173Z`, `output/measurement/evidence-2026-06-21T09-18-53-995Z`. Lighthouse median: performance 76, accessibility 100, best practices 100, SEO 100, CLS about 0.0001. |
 | 2026-06-21 | Motion polish rendered QA | pass | Playwright verified desktop homepage and Building Analyst pointer motion: ambient CSS variables changed after mouse movement, motion fields rendered, selected panels tilted/responded, no console warnings/errors, and no horizontal overflow. Mobile/touch contexts had no horizontal overflow and did not enable pointer motion; reduced-motion context did not enable pointer motion. Artifact: `output/playwright/motion-polish-2026-06-21T09-20-32-479Z`. |
+| 2026-06-21 | Motion polish commit and production deploy | pass | Committed scoped motion polish as `0c3a9f5b5dfa9179b937c47a8d4028cdca6194f9` (`Add motion graphics polish`) and pushed `main`. Netlify production deploy `6a37ad5ed7bc6c00087485aa` is `ready`, branch `main`, context `production`, published at 2026-06-21 09:22 UTC. |
+| 2026-06-21 | Motion polish live route smoke | pass | `https://robsonai.co.uk/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, `/privacy.html`, `/robots.txt`, `/sitemap.xml`, and `/assets/og/robsonai-cover-1200x630.png` all returned `200`. |
+| 2026-06-21 | Motion polish live measurement smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed. Artifact: `output/measurement/smoke-2026-06-21T09-23-01-605Z`. Live route matrix, consent decline/accept, no-GA-with-empty-ID checks, copy email feedback, and contact `mailto:` passed. |
+| 2026-06-21 | Motion polish live rendered QA | pass | Playwright verified deployed desktop homepage and Building Analyst pointer motion: ambient CSS variables changed after mouse movement, motion fields rendered, selected panels tilted/responded, no console warnings/errors, and no horizontal overflow. Reduced-motion context did not enable pointer motion. Artifact: `output/playwright/live-motion-polish-2026-06-21T09-23-32-236Z`. |
 
 ## 11. Release / Deployment Notes
 
