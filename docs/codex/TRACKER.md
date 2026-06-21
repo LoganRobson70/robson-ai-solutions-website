@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-21 11:38 BST
+Last updated: 2026-06-21 14:02 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -194,6 +194,14 @@ Follow-on tranche:
 - Completed: 2026-06-21 11:38 BST
 - Scope: after Wayne approval, committed the conversion/contact/design-signature polish bundle, pushed `main`, verified Netlify production deploy `6a37be74ace5eb0008361ef4` for commit `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1`, and ran live measurement plus rendered Browser QA. No DNS changes, GA4 enablement, forms, customer data, external messages, destructive git actions, or rollback.
 
+Follow-on tranche:
+
+- Tranche name: `building-analyst-proof-assets-and-workflow-story`
+- Status: publish in progress
+- Started: 2026-06-21 12:03 BST
+- Scope: add a release-safe Building Analyst product-proof/workflow-story section without using old Building Analyst screenshots, remove Wayne-deleted legacy assets from Git, repoint public icon links to the remaining `assets/robson-ai-icon-v3.png`, preserve cautious Apple-native and release-stage claims, update navigation where useful, run validation, commit, push `main`, and verify Netlify production publish.
+- Out of scope: iOS/macOS/Android implementation, App Store claims, new product claims, customer data, form handling, GA4 enablement, Netlify/DNS changes, or rollback.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -227,11 +235,12 @@ Follow-on tranche:
 - `website-professional-design-signature-pass` is deployed to production: added stronger editorial typography, section-label rail detailing, product/card accent surfaces, and a wrapped mobile nav so the site feels less generic while keeping the product-led software signal.
 - Production `https://robsonai.co.uk/` is deployed from commit `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1`; Netlify production deploy `6a37be74ace5eb0008361ef4` is ready and published.
 - `project-list-analysis-dashboard` is complete locally: dashboard artifact is `output/project-analysis/robson-project-dashboard.html`; default project view includes 976 valid project rows, excludes 78 budget/non-project rows, and holds 14 naming exceptions for review. Source workbook data must not be added to public website routes or deployed without an explicit privacy/release review.
+- `building-analyst-proof-assets-and-workflow-story` is publish-approved: Wayne approved option 1 after the Product Design audit, clarified that existing old Building Analyst screenshots must not be used, confirmed the removed local assets should be removed from Git, and requested publish. Current tranche uses no-old-screenshots workflow storytelling and keeps approved screenshots as a later asset gate.
 
 ### Next
 
 - Review `output/project-analysis/robson-project-dashboard.html` locally and decide whether to correct the 14 naming exceptions in the source workbook before using it for project-only reporting.
-- Review the live conversion/contact/design-signature release at `https://robsonai.co.uk/`; next changes should be handled as a new bounded tranche.
+- Publish `building-analyst-proof-assets-and-workflow-story`, verify the Netlify production deploy, then record production evidence and next step.
 - Monitor stale external search/social cache previews and recheck after crawlers have had more time to recrawl the live metadata.
 - Keep GA4 disabled until Wayne approves analytics governance and a real Measurement ID.
 - Decide whether to add launch assets such as app screenshots/App Store links only when the iOS app is ready to claim publicly.
@@ -517,6 +526,9 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-21 | Conversion/design signature live route/header smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` confirmed `/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, `/privacy.html`, `/robots.txt`, `/sitemap.xml`, and `/assets/og/robsonai-cover-1200x630.png` returned `200`. Root response returned production headers including `nosniff`, `DENY`, strict referrer policy, and disabled camera/geolocation/microphone permissions. |
 | 2026-06-21 | Conversion/design signature live measurement smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed. Artifact: `output/measurement/smoke-2026-06-21T10-36-29-349Z`. Live route matrix, consent decline/accept, no-GA-with-empty-ID checks, copy email feedback, and prompted contact `mailto:` passed. |
 | 2026-06-21 | Conversion/design signature live rendered QA | pass | In-app Browser verified live desktop homepage and mobile homepage/Building Analyst: page identity correct, nonblank DOM, no console warnings/errors, no framework overlay, no horizontal overflow, Fraunces headline rendering, homepage next-section hint, transparent credibility-card paragraph backgrounds, non-clipped mobile navigation, and visible mobile primary CTAs. Screenshots: `output/playwright/live-design-signature-2026-06-21/desktop-home.png`, `output/playwright/live-design-signature-2026-06-21/mobile-home.png`, and `output/playwright/live-design-signature-2026-06-21/mobile-building-analyst.png`. |
+| 2026-06-21 | Building Analyst proof-story Product Design QA | pass | Added a no-old-screenshots Product proof section to `building-analyst.html`; Browser rendered desktop and mobile checks found no horizontal overflow, no console warnings/errors, four workflow cards, two status cards, and no references to `building-analyst-output-generate.png` or `building-analyst-draft-view.png`. Screenshots: `output/playwright/building-analyst-proof-story-2026-06-21/desktop-workflow-proof-final.png` and `output/playwright/building-analyst-proof-story-2026-06-21/mobile-workflow-proof-final.png`. |
+| 2026-06-21 | Intentional legacy asset removal cleanup | pass | Wayne confirmed removed local assets should be removed from Git. Public favicon/apple-touch links now point at `/assets/robson-ai-icon-v3.png`; stale Netlify header rules for deleted root icon files were removed; deployable file scan found no references to the removed asset filenames. |
+| 2026-06-21 | Building Analyst proof-story pre-publish gates | pass | Missing-asset deployable scan, `git diff --check`, `node --check script.js`, HTML validation, `npm run qa:preview-auth`, `npm run qa:measurement:local`, `npm run qa:measurement:evidence`, and `npx --no-install netlify build` passed. Latest artifacts: `output/measurement/smoke-2026-06-21T13-01-49-044Z` and `output/measurement/evidence-2026-06-21T13-01-49-044Z`. Lighthouse median: performance 72, accessibility 100, best practices 100, SEO 100, CLS 0. |
 
 ## 11. Release / Deployment Notes
 
