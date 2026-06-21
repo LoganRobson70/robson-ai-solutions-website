@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-21 14:02 BST
+Last updated: 2026-06-21 14:07 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -197,8 +197,9 @@ Follow-on tranche:
 Follow-on tranche:
 
 - Tranche name: `building-analyst-proof-assets-and-workflow-story`
-- Status: publish in progress
+- Status: completed and deployed
 - Started: 2026-06-21 12:03 BST
+- Completed: 2026-06-21 14:07 BST
 - Scope: add a release-safe Building Analyst product-proof/workflow-story section without using old Building Analyst screenshots, remove Wayne-deleted legacy assets from Git, repoint public icon links to the remaining `assets/robson-ai-icon-v3.png`, preserve cautious Apple-native and release-stage claims, update navigation where useful, run validation, commit, push `main`, and verify Netlify production publish.
 - Out of scope: iOS/macOS/Android implementation, App Store claims, new product claims, customer data, form handling, GA4 enablement, Netlify/DNS changes, or rollback.
 
@@ -235,12 +236,12 @@ Follow-on tranche:
 - `website-professional-design-signature-pass` is deployed to production: added stronger editorial typography, section-label rail detailing, product/card accent surfaces, and a wrapped mobile nav so the site feels less generic while keeping the product-led software signal.
 - Production `https://robsonai.co.uk/` is deployed from commit `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1`; Netlify production deploy `6a37be74ace5eb0008361ef4` is ready and published.
 - `project-list-analysis-dashboard` is complete locally: dashboard artifact is `output/project-analysis/robson-project-dashboard.html`; default project view includes 976 valid project rows, excludes 78 budget/non-project rows, and holds 14 naming exceptions for review. Source workbook data must not be added to public website routes or deployed without an explicit privacy/release review.
-- `building-analyst-proof-assets-and-workflow-story` is publish-approved: Wayne approved option 1 after the Product Design audit, clarified that existing old Building Analyst screenshots must not be used, confirmed the removed local assets should be removed from Git, and requested publish. Current tranche uses no-old-screenshots workflow storytelling and keeps approved screenshots as a later asset gate.
+- `building-analyst-proof-assets-and-workflow-story` is deployed: Building Analyst now has a no-old-screenshots Product proof section, public icon links use `assets/robson-ai-icon-v3.png`, Wayne-deleted legacy assets were removed from Git, and production was verified from commit `53d19da9620b4926258cfa9e0f20767f0c3d207d` with Netlify deploy `6a37e1c1f001a300081cbcd7`.
 
 ### Next
 
 - Review `output/project-analysis/robson-project-dashboard.html` locally and decide whether to correct the 14 naming exceptions in the source workbook before using it for project-only reporting.
-- Publish `building-analyst-proof-assets-and-workflow-story`, verify the Netlify production deploy, then record production evidence and next step.
+- Review the live Building Analyst proof section at `https://robsonai.co.uk/building-analyst.html#workflow-proof`; next changes should be handled as a new bounded tranche.
 - Monitor stale external search/social cache previews and recheck after crawlers have had more time to recrawl the live metadata.
 - Keep GA4 disabled until Wayne approves analytics governance and a real Measurement ID.
 - Decide whether to add launch assets such as app screenshots/App Store links only when the iOS app is ready to claim publicly.
@@ -529,21 +530,24 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-21 | Building Analyst proof-story Product Design QA | pass | Added a no-old-screenshots Product proof section to `building-analyst.html`; Browser rendered desktop and mobile checks found no horizontal overflow, no console warnings/errors, four workflow cards, two status cards, and no references to `building-analyst-output-generate.png` or `building-analyst-draft-view.png`. Screenshots: `output/playwright/building-analyst-proof-story-2026-06-21/desktop-workflow-proof-final.png` and `output/playwright/building-analyst-proof-story-2026-06-21/mobile-workflow-proof-final.png`. |
 | 2026-06-21 | Intentional legacy asset removal cleanup | pass | Wayne confirmed removed local assets should be removed from Git. Public favicon/apple-touch links now point at `/assets/robson-ai-icon-v3.png`; stale Netlify header rules for deleted root icon files were removed; deployable file scan found no references to the removed asset filenames. |
 | 2026-06-21 | Building Analyst proof-story pre-publish gates | pass | Missing-asset deployable scan, `git diff --check`, `node --check script.js`, HTML validation, `npm run qa:preview-auth`, `npm run qa:measurement:local`, `npm run qa:measurement:evidence`, and `npx --no-install netlify build` passed. Latest artifacts: `output/measurement/smoke-2026-06-21T13-01-49-044Z` and `output/measurement/evidence-2026-06-21T13-01-49-044Z`. Lighthouse median: performance 72, accessibility 100, best practices 100, SEO 100, CLS 0. |
+| 2026-06-21 | Building Analyst proof-story production deploy | pass | Committed proof story and intentional legacy asset removal as `51e655f34f78ea8eda3baa5ed7fc7146795c46e5`, then bumped the stylesheet cache version in `53d19da9620b4926258cfa9e0f20767f0c3d207d`; Netlify production deploy `6a37e1c1f001a300081cbcd7` is ready and published for commit `53d19da9620b4926258cfa9e0f20767f0c3d207d`. |
+| 2026-06-21 | Building Analyst proof-story live route/asset smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed with artifact `output/measurement/smoke-2026-06-21T13-06-51-543Z`; live `/`, `/building-analyst.html`, `/who-its-for.html`, `/privacy.html`, `/assets/robson-ai-icon-v3.png`, and `/assets/og/robsonai-cover-1200x630.png` returned `200`; deleted root icon files returned `404` as expected. |
+| 2026-06-21 | Building Analyst proof-story live rendered QA | pass | In-app Browser verified live desktop/mobile `building-analyst.html#workflow-proof`: heading `Proof starts with the workflow.`, stylesheet `./styles.css?v=20260621b`, icon `/assets/robson-ai-icon-v3.png?v=20260509`, four proof cards, two status cards, no old asset references, no horizontal overflow, and no console warnings/errors. Screenshots: `output/playwright/live-building-analyst-proof-story-2026-06-21/desktop-workflow-proof.png` and `output/playwright/live-building-analyst-proof-story-2026-06-21/mobile-workflow-proof.png`. |
 
 ## 11. Release / Deployment Notes
 
 - Current environment: local repo on `main` plus Netlify-linked production site.
 - Public production URL documented in existing handover: `https://robsonai.co.uk`.
-- Current production stance: full public website is live at `/`; launch pages are public and crawlable. Latest verified production commit is `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1`; latest verified Netlify production deploy is `6a37be74ace5eb0008361ef4`.
+- Current production stance: full public website is live at `/`; launch pages are public and crawlable. Latest verified production commit is `53d19da9620b4926258cfa9e0f20767f0c3d207d`; latest verified Netlify production deploy is `6a37e1c1f001a300081cbcd7`.
 - Release risk: lower after production verification and post-launch observation; monitor live site, enquiries, search indexing, and any stale external cache previews.
 - Privacy/security checks needed: confirm Netlify preview-auth env vars, consent/GA4 review, privacy notice review if contact forms are added, no invented proof claims.
-- Rollback plan: after Wayne approval, restore previous production deploy `6a37adcc09337e0008eb8ef1` in Netlify or revert commit `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1` and push `main`. Previous deploy permalink: `https://6a37adcc09337e0008eb8ef1--robson-ai-website.netlify.app`.
+- Rollback plan: after Wayne approval, restore previous production deploy `6a37bfaaab25aa0007769b3f` in Netlify or revert commits `51e655f34f78ea8eda3baa5ed7fc7146795c46e5` and `53d19da9620b4926258cfa9e0f20767f0c3d207d`, then push `main`. Previous deploy permalink: `https://6a37bfaaab25aa0007769b3f--robson-ai-website.netlify.app`.
 
 ## 12. Resume Prompt
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` now serves the full public website. Latest verified production commit is `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1` (`Polish website conversion and design signature`); latest verified Netlify production deploy is `6a37be74ace5eb0008361ef4`. Live production route, consent/measurement smoke, rendered desktop/mobile, security header, sitemap, Open Graph image, contact/copy-email path, Fraunces headline rendering, credibility-card contrast, and non-clipped mobile nav checks passed. The previous production deploy for rollback is `6a37adcc09337e0008eb8ef1`. The post-WWDC26 copy refresh and agent-review polish are complete: public copy frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for the current professional/product-direction launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not change domain/DNS, enable GA4, add forms, handle customer data, send external messages, or perform rollback without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` now serves the full public website. Latest verified production commit is `53d19da9620b4926258cfa9e0f20767f0c3d207d` (`Bump website stylesheet cache`), with the Building Analyst proof-story/site asset cleanup in commit `51e655f34f78ea8eda3baa5ed7fc7146795c46e5`; latest verified Netlify production deploy is `6a37e1c1f001a300081cbcd7`. Live production route, consent/measurement smoke, rendered desktop/mobile, security header, sitemap, Open Graph image, contact/copy-email path, Fraunces headline rendering, credibility-card contrast, non-clipped mobile nav, no-old-screenshot Building Analyst proof section, and remaining icon asset checks passed. The previous production deploy for rollback is `6a37bfaaab25aa0007769b3f`. The post-WWDC26 copy refresh and agent-review polish are complete: public copy frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for the current professional/product-direction launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not change domain/DNS, enable GA4, add forms, handle customer data, send external messages, or perform rollback without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
 
 ## 13. PRD Gate Execution Log (2026-06-01)
 
