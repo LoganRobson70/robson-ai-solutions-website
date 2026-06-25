@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-25 19:33 BST
+Last updated: 2026-06-25 19:37 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -248,10 +248,12 @@ Follow-on tranche:
 Follow-on tranche:
 
 - Tranche name: `website-buildscan-ludgershall-production-deploy`
-- Status: in progress
+- Status: completed
 - Started: 2026-06-25 19:33 BST
+- Completed: 2026-06-25 19:37 BST
 - Scope: commit the approved Ludgershall BuildScan homepage visual, push `main`, allow Netlify production deployment, and verify the live public website.
 - Permission envelope: Wayne approved option 1 on 2026-06-25: public use of the Ludgershall model screenshot plus commit, push, and Netlify production deploy.
+- Output: committed `178cac0885aea8b9d813d4c50ac18cb0c68ce7cb` (`Add BuildScan Ludgershall model view`), pushed `main`, and verified Netlify production deploy `6a3d74cb38ad980008340f42` on `https://robsonai.co.uk`.
 - Out of scope: DNS changes, GA4 enablement, form/backend changes, BuildScan app code changes, GLB/model file commits, customer data beyond the approved screenshot, external messages, destructive git actions, or rollback unless needed for an urgent live failure.
 
 ## 3. Now / Next / Later
@@ -605,21 +607,24 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-25 | BuildScan Ludgershall production approval | pass | Wayne approved option 1: public use of the Ludgershall model screenshot plus commit, push, and Netlify production deploy. |
 | 2026-06-25 | BuildScan Ludgershall release gates | pass | `git diff --check`, `npx --no-install html-validate index.html building-analyst.html who-its-for.html privacy.html holding.html`, `npm run qa:measurement:local`, and `npx --no-install netlify build` passed before commit. Latest measurement artifact: `output/measurement/smoke-2026-06-25T18-32-25-459Z`. |
 | 2026-06-25 | BuildScan Ludgershall release rendered QA | pass | Playwright verified local desktop and mobile `#buildscan-model-view`: the Ludgershall image loaded at `1680x1020`, no horizontal overflow, no visible text overflow, no console messages, and the section title cleared the sticky header. Screenshots: `output/playwright/buildscan-ludgershall-release-2026-06-25/desktop-buildscan-ludgershall-section.png` and `output/playwright/buildscan-ludgershall-release-2026-06-25/mobile-buildscan-ludgershall-section.png`. |
+| 2026-06-25 | BuildScan Ludgershall production deploy | pass | Commit `178cac0885aea8b9d813d4c50ac18cb0c68ce7cb` (`Add BuildScan Ludgershall model view`) was pushed to `main`; Netlify production deploy `6a3d74cb38ad980008340f42` is `ready`, published at 2026-06-25 18:35 UTC, context `production`, branch `main`, with no Netlify secret-scan matches. |
+| 2026-06-25 | BuildScan Ludgershall live route/asset smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed with artifact `output/measurement/smoke-2026-06-25T18-36-16-824Z`. `curl -I https://robsonai.co.uk/assets/showcase/buildscan-ludgershall-model-view.png` returned `200`, `content-type: image/png`, and `content-length: 414491`; live `index.html` references `./styles.css?v=20260624a` and `./assets/showcase/buildscan-ludgershall-model-view.png`. |
+| 2026-06-25 | BuildScan Ludgershall live rendered QA | pass | Playwright verified live desktop and mobile `#buildscan-model-view`: image loaded at `1680x1020`, stylesheet cache key was `20260624a`, no horizontal overflow, no visible text overflow, no console messages, and the section title cleared the sticky header. Screenshots: `output/playwright/live-buildscan-ludgershall-2026-06-25/desktop-buildscan-ludgershall-section.png` and `output/playwright/live-buildscan-ludgershall-2026-06-25/mobile-buildscan-ludgershall-section.png`. |
 
 ## 11. Release / Deployment Notes
 
 - Current environment: local repo on `main` plus Netlify-linked production site.
 - Public production URL documented in existing handover: `https://robsonai.co.uk`.
-- Current production stance: full public website is live at `/`; launch pages are public and crawlable. Latest verified production commit is `53d19da9620b4926258cfa9e0f20767f0c3d207d`; latest verified Netlify production deploy is `6a37e1c1f001a300081cbcd7`.
+- Current production stance: full public website is live at `/`; launch pages are public and crawlable. Latest verified public-content production commit is `178cac0885aea8b9d813d4c50ac18cb0c68ce7cb`; latest verified Netlify production deploy for that content is `6a3d74cb38ad980008340f42`.
 - Release risk: lower after production verification and post-launch observation; monitor live site, enquiries, search indexing, and any stale external cache previews.
 - Privacy/security checks needed: confirm Netlify preview-auth env vars, consent/GA4 review, privacy notice review if contact forms are added, no invented proof claims.
-- Rollback plan: after Wayne approval, restore previous production deploy `6a37bfaaab25aa0007769b3f` in Netlify or revert commits `51e655f34f78ea8eda3baa5ed7fc7146795c46e5` and `53d19da9620b4926258cfa9e0f20767f0c3d207d`, then push `main`. Previous deploy permalink: `https://6a37bfaaab25aa0007769b3f--robson-ai-website.netlify.app`.
+- Rollback plan: after Wayne approval, restore previous production deploy `6a37e26ea4fa5700094ad18a` in Netlify or revert commit `178cac0885aea8b9d813d4c50ac18cb0c68ce7cb`, then push `main`. Previous deploy permalink: `https://6a37e26ea4fa5700094ad18a--robson-ai-website.netlify.app`.
 
 ## 12. Resume Prompt
 
 Use this to resume in a new Codex thread:
 
-> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` now serves the full public website. Latest verified production commit is `53d19da9620b4926258cfa9e0f20767f0c3d207d` (`Bump website stylesheet cache`), with the Building Analyst proof-story/site asset cleanup in commit `51e655f34f78ea8eda3baa5ed7fc7146795c46e5`; latest verified Netlify production deploy is `6a37e1c1f001a300081cbcd7`. Live production route, consent/measurement smoke, rendered desktop/mobile, security header, sitemap, Open Graph image, contact/copy-email path, Fraunces headline rendering, credibility-card contrast, non-clipped mobile nav, no-old-screenshot Building Analyst proof section, and remaining icon asset checks passed. The previous production deploy for rollback is `6a37bfaaab25aa0007769b3f`. The post-WWDC26 copy refresh and agent-review polish are complete: public copy frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for the current professional/product-direction launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not change domain/DNS, enable GA4, add forms, handle customer data, send external messages, or perform rollback without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
+> We are working on the Robson AI Solutions Website for Wayne Robson / Robson AI Solutions. Read `docs/codex/TRACKER.md`, inspect git status and existing docs, then continue the next tranche. Production `https://robsonai.co.uk/` now serves the full public website. Latest verified public-content production commit is `178cac0885aea8b9d813d4c50ac18cb0c68ce7cb` (`Add BuildScan Ludgershall model view`); latest verified Netlify production deploy for that content is `6a3d74cb38ad980008340f42`. Live production route, consent/measurement smoke, rendered desktop/mobile, security header, sitemap, Open Graph image, contact/copy-email path, Fraunces headline rendering, credibility-card contrast, non-clipped mobile nav, no-old-screenshot Building Analyst proof section, remaining icon asset checks, and the live BuildScan Ludgershall GLB model-view image passed. The previous production deploy for rollback is `6a37e26ea4fa5700094ad18a`. The post-WWDC26 copy refresh and agent-review polish are complete: public copy frames Building Analyst as a professional surveying/reporting product with cautious Apple-platform-first intelligence direction where relevant, not as a generic chatbot, BYO-key product, or external-provider AI strategy. App screenshots/App Store links are conditional launch assets: required if app availability is claimed or shown, not mandatory for the current professional/product-direction launch. Consider agents/background threads at the start of serious tranches, especially for parallel QA, independent review, research, or split implementation tasks. Do not change domain/DNS, enable GA4, add forms, handle customer data, send external messages, or perform rollback without explicit approval. Validate before claiming completion, tell Wayne exactly what decision/action is needed next using numbered options with a publish-readiness percentage, and update the tracker at the end.
 
 ## 13. PRD Gate Execution Log (2026-06-01)
 
