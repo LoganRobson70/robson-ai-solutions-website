@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-21 14:07 BST
+Last updated: 2026-06-25 19:33 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `main`
@@ -203,6 +203,57 @@ Follow-on tranche:
 - Scope: add a release-safe Building Analyst product-proof/workflow-story section without using old Building Analyst screenshots, remove Wayne-deleted legacy assets from Git, repoint public icon links to the remaining `assets/robson-ai-icon-v3.png`, preserve cautious Apple-native and release-stage claims, update navigation where useful, run validation, commit, push `main`, and verify Netlify production publish.
 - Out of scope: iOS/macOS/Android implementation, App Store claims, new product claims, customer data, form handling, GA4 enablement, Netlify/DNS changes, or rollback.
 
+Follow-on tranche:
+
+- Tranche name: `design-system-consolidation-audit`
+- Status: completed locally
+- Started: 2026-06-21 17:40 BST
+- Completed: 2026-06-21 17:40 BST
+- Scope: inspect the standalone `/Users/wayne/Documents/RobsonAI/Robson AI Design System` folder, compare it with the current public website styling/copy and the Building Analyst Apple `App/DesignSystem`, document canonical source-of-truth boundaries, and recommend the next cleanup tranche.
+- Output: `docs/codex/DESIGN_SYSTEM_CONSOLIDATION_AUDIT.md`.
+- Out of scope: live website restyling, production deploys, design-system source-folder edits, app implementation, provider/payment/auth decisions, asset publishing, or brand redesign.
+
+Follow-on tranche:
+
+- Tranche name: `design-system-source-of-truth-cleanup`
+- Status: completed locally, uncommitted
+- Started: 2026-06-21 21:20 BST
+- Completed: 2026-06-21 21:20 BST
+- Scope: initialise the standalone Robson AI Design System folder as a local Git workspace, add source-of-truth/changelog/governance files, update stale provider/payment/auth references into legacy-context or guardrail language, and keep product/website/Apple platform boundaries explicit.
+- Output: `/Users/wayne/Documents/RobsonAI/Robson AI Design System/SOURCE_OF_TRUTH.md`, `/Users/wayne/Documents/RobsonAI/Robson AI Design System/CHANGELOG.md`, `/Users/wayne/Documents/RobsonAI/Robson AI Design System/.gitignore`, plus targeted updates to `readme.md`, `SKILL.md`, `ui_kits/building-analyst/`, `components/core/Button.prompt.md`, and `tokens/fonts.css`.
+- Out of scope: design-system commit, remote creation, package publication, live website restyling, production deploys, app implementation, payment/auth/provider changes, or asset publishing.
+
+Follow-on tranche:
+
+- Tranche name: `website-buildscan-model-view-proof`
+- Status: completed locally, uncommitted
+- Started: 2026-06-24 19:24 BST
+- Completed: 2026-06-24 19:41 BST
+- Scope: add a release-safe BuildScan visual to the Robson AI Solutions homepage using a representative model-view panel and synthetic geometry, update the Drone-to-3D wording to explicitly include BuildScan, add a navigation/workflow path to the new section, and clear nearby semantic HTML validator issues discovered during QA.
+- Output: updated `index.html` and `styles.css` with a responsive BuildScan model-view section and cautious public-facing copy; bumped the shared stylesheet cache key to `20260624a`; changed shared consent banners from generic `div role="region"` markup to native `section` markup; removed invalid `aria-label` usage from proof-board containers.
+- Out of scope: BuildScan app implementation, real customer/site capture imagery, claims that BuildScan is a finished public product, old/deleted screenshots, production deploys, commits, pushes, Netlify/DNS changes, customer data, or external messages.
+
+Follow-on tranche:
+
+- Tranche name: `website-buildscan-ludgershall-glb-shot`
+- Status: approved for public use and production deployment
+- Started: 2026-06-24 19:45 BST
+- Completed: 2026-06-24 20:03 BST
+- Scope: open RobsonAI BuildScan locally, load the latest Ludgershall 2026-06-02 GLB, rotate/render it to a clearer isometric model-view capture, add the resulting PNG to the website, and replace the synthetic BuildScan homepage illustration with the real GLB capture.
+- Output: `assets/showcase/buildscan-ludgershall-model-view.png`; updated homepage BuildScan section copy and app-frame visual to use the captured GLB model view.
+- Evidence: BuildScan app-window capture proved the real Ludgershall GLB loaded in RobsonAI BuildScan; clean headed-Chromium render from BuildScan's generated viewer HTML captured `output/playwright/buildscan-ludgershall-capture-2026-06-24/ludgershall-buildscan-canvas-clean.png`.
+- Out of scope: BuildScan app code changes, GLB/model file commits, production deploys, commits, pushes, Netlify/DNS changes, customer data beyond Wayne's explicitly requested Ludgershall model-view capture, or external messages.
+- Publication note: Wayne approved public use of the Ludgershall model-view screenshot and approved commit/push/Netlify production deploy on 2026-06-25.
+
+Follow-on tranche:
+
+- Tranche name: `website-buildscan-ludgershall-production-deploy`
+- Status: in progress
+- Started: 2026-06-25 19:33 BST
+- Scope: commit the approved Ludgershall BuildScan homepage visual, push `main`, allow Netlify production deployment, and verify the live public website.
+- Permission envelope: Wayne approved option 1 on 2026-06-25: public use of the Ludgershall model screenshot plus commit, push, and Netlify production deploy.
+- Out of scope: DNS changes, GA4 enablement, form/backend changes, BuildScan app code changes, GLB/model file commits, customer data beyond the approved screenshot, external messages, destructive git actions, or rollback unless needed for an urgent live failure.
+
 ## 3. Now / Next / Later
 
 ### Now
@@ -237,9 +288,13 @@ Follow-on tranche:
 - Production `https://robsonai.co.uk/` is deployed from commit `6e275f9e3e4f56a293c2bd5401a8af55f13f2dc1`; Netlify production deploy `6a37be74ace5eb0008361ef4` is ready and published.
 - `project-list-analysis-dashboard` is complete locally: dashboard artifact is `output/project-analysis/robson-project-dashboard.html`; default project view includes 976 valid project rows, excludes 78 budget/non-project rows, and holds 14 naming exceptions for review. Source workbook data must not be added to public website routes or deployed without an explicit privacy/release review.
 - `building-analyst-proof-assets-and-workflow-story` is deployed: Building Analyst now has a no-old-screenshots Product proof section, public icon links use `assets/robson-ai-icon-v3.png`, Wayne-deleted legacy assets were removed from Git, and production was verified from commit `53d19da9620b4926258cfa9e0f20767f0c3d207d` with Netlify deploy `6a37e1c1f001a300081cbcd7`.
+- `design-system-consolidation-audit` is complete locally: the standalone Robson AI Design System is useful as a brand/product UI reference, but is not in Git and contains stale Google/Gemini/Stripe/Product Professional references that should not override the current post-WWDC26 website/product direction.
+- `design-system-source-of-truth-cleanup` is complete locally: the standalone Robson AI Design System folder now has local Git metadata, source-of-truth/changelog/governance files, provider-neutral Building Analyst prototype wording, and explicit public website/product UI/Apple platform boundaries. No design-system commit has been created.
 
 ### Next
 
+- Approve or defer an initial local commit inside `/Users/wayne/Documents/RobsonAI/Robson AI Design System`; recommended next step is to commit the source-of-truth cleanup locally, without pushing or publishing.
+- Refresh older PRD/README/release-state docs so they no longer describe the public website as holding/hidden-first, while keeping the live site unchanged.
 - Review `output/project-analysis/robson-project-dashboard.html` locally and decide whether to correct the 14 naming exceptions in the source workbook before using it for project-only reporting.
 - Review the live Building Analyst proof section at `https://robsonai.co.uk/building-analyst.html#workflow-proof`; next changes should be handled as a new bounded tranche.
 - Monitor stale external search/social cache previews and recheck after crawlers have had more time to recrawl the live metadata.
@@ -249,6 +304,7 @@ Follow-on tranche:
 ### Later
 
 - Improve conversion path beyond `mailto:` once the hidden site is ready for public launch.
+- Decide whether the public website keeps its Manrope/Fraunces editorial type system as a marketing-site exception or migrates later toward the Inter-only product design-system rule.
 - Prepare a GA4 enablement pack only after Wayne approves a real Measurement ID and analytics governance.
 - Add CI or pre-handoff hooks for measurement smoke, HTML validation, accessibility, and tracker update checks.
 - Run a full browser/mobile QA and visual polish pass before public launch.
@@ -284,6 +340,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | 2026-05-30 | Weekly website health automation | Capability checklist | later | Could run smoke/QA reminders, but only after the QA command is back to passing. |
 | 2026-05-31 | Post-PRD full app review workflow | Wayne/process note | after relevant PRD completion | Use the task series in section 3 to run analysis-first, multi-role, security, UX, governance, QA, and release-gate review before broad implementation. |
 | 2026-06-01 | Codex web development/design skill library expansion | Wayne skill request | done | Created 28 focused local Codex skills under `~/.codex/skills` for frontend, web design, backend, full-stack, and code-quality work. This is tooling support and does not reopen the WWDC-held website launch tranche. |
+| 2026-06-21 | Design-system source-of-truth cleanup | Design-system audit | done locally | Standalone design-system folder now has local Git metadata, source-of-truth/changelog files, and provider-neutral canonical guidance. Initial commit still needs Wayne approval. |
 
 ## 5. Decisions
 
@@ -316,6 +373,8 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | 2026-06-18 | Hold production launch after preflight | Browser QA found a launch-blocking visual contrast issue on `who-its-for.html` despite automated checks passing | Requires a small CSS fix and rerun before merge/deploy | When Wayne approves the contrast-fix tranche |
 | 2026-06-20 | Clear `who-its-for.html` contrast blocker | Wayne approved the recommended contrast-fix-and-retest tranche | The only known visual launch blocker is resolved; production launch still requires explicit approval | When Wayne approves merge/deploy or requests another hold |
 | 2026-06-20 | Launch the full public site | Wayne approved `production-launch-merge-and-verify` | PR #2 was merged to `main`, triggering Netlify production deploy | If rollback, urgent content issue, or post-launch QA finding appears |
+| 2026-06-21 | Treat the standalone Robson AI Design System as a reference, not a silent production dependency | Audit found useful tokens/assets/components, but also stale Google/Gemini/Stripe references, non-Git status, and typography/orange-use drift from the live website | Future work must decide source-of-truth boundaries before migrating website or app UI | When Wayne approves `design-system-source-of-truth-cleanup` |
+| 2026-06-21 | Initialise design-system Git locally, but do not commit without approval | Wayne approved source-of-truth cleanup; repo instructions still require approval before commits/pushes | Folder has local Git metadata and cleaned source files but no commit history yet | When Wayne approves initial design-system commit |
 
 ## 6. Risks And Watch Items
 
@@ -333,6 +392,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | Motion polish could distract or harm accessibility/performance | medium | Codex | Kept motion subtle, dependency-free, pointer-fine only, and disabled under `prefers-reduced-motion` and coarse-pointer mobile contexts; validate with Playwright and Lighthouse before deploy. | monitoring |
 | Spreadsheet-derived dashboard could expose project/business data if published | high | Wayne/Codex | Kept dashboard and support files under ignored `output/`; do not move into public root, commit, push, or deploy without a privacy/release review. | active |
 | Display-font redesign could hurt readability or mobile fit | medium | Codex | Used the already bundled local Fraunces font only for major headings, tightened homepage hero scale, added Browser desktop/mobile checks, and kept Manrope for body/UI text. | monitoring |
+| Standalone design-system folder can drift from current product direction | medium | Wayne/Codex | Completed `docs/codex/DESIGN_SYSTEM_CONSOLIDATION_AUDIT.md` and local source-of-truth cleanup; next recommended step is an approved local initial commit. | monitoring |
 | Email-only conversion path may lose enquiries | medium | Wayne/Codex | Parked for conversion tranche; requires privacy/spam decision. | parked |
 | GA4 Measurement ID is empty | low | Wayne | Intentional until analytics approval. Keep measurement QA in place. | monitoring |
 
@@ -533,6 +593,18 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 | 2026-06-21 | Building Analyst proof-story production deploy | pass | Committed proof story and intentional legacy asset removal as `51e655f34f78ea8eda3baa5ed7fc7146795c46e5`, then bumped the stylesheet cache version in `53d19da9620b4926258cfa9e0f20767f0c3d207d`; Netlify production deploy `6a37e1c1f001a300081cbcd7` is ready and published for commit `53d19da9620b4926258cfa9e0f20767f0c3d207d`. |
 | 2026-06-21 | Building Analyst proof-story live route/asset smoke | pass | `QA_BASE_URL=https://robsonai.co.uk npm run qa:measurement:preview` passed with artifact `output/measurement/smoke-2026-06-21T13-06-51-543Z`; live `/`, `/building-analyst.html`, `/who-its-for.html`, `/privacy.html`, `/assets/robson-ai-icon-v3.png`, and `/assets/og/robsonai-cover-1200x630.png` returned `200`; deleted root icon files returned `404` as expected. |
 | 2026-06-21 | Building Analyst proof-story live rendered QA | pass | In-app Browser verified live desktop/mobile `building-analyst.html#workflow-proof`: heading `Proof starts with the workflow.`, stylesheet `./styles.css?v=20260621b`, icon `/assets/robson-ai-icon-v3.png?v=20260509`, four proof cards, two status cards, no old asset references, no horizontal overflow, and no console warnings/errors. Screenshots: `output/playwright/live-building-analyst-proof-story-2026-06-21/desktop-workflow-proof.png` and `output/playwright/live-building-analyst-proof-story-2026-06-21/mobile-workflow-proof.png`. |
+| 2026-06-21 | Design-system consolidation audit | pass | Created `docs/codex/DESIGN_SYSTEM_CONSOLIDATION_AUDIT.md` after inspecting the standalone Robson AI Design System folder, live website CSS/copy, `docs/website-narrative.md`, and the Building Analyst Apple `App/DesignSystem`; updated tracker with source-of-truth boundary, risk, and next cleanup recommendation. `git diff --check` passed. |
+| 2026-06-21 | Design-system source-of-truth cleanup | pass | Initialised `/Users/wayne/Documents/RobsonAI/Robson AI Design System` as a local Git workspace, added `SOURCE_OF_TRUTH.md`, `CHANGELOG.md`, and `.gitignore`, updated stale provider/payment/auth examples into guardrails or provider-neutral prototype wording, confirmed exact stale phrases no longer appear in source/prototype text, and `node --check _ds_bundle.js` passed. Direct whitespace scan only reported existing Markdown hard-break spacing in brand guideline source docs, which was left unchanged. |
+| 2026-06-24 | BuildScan model-view local static checks | pass | `git diff --check` passed. `npx --no-install html-validate index.html building-analyst.html who-its-for.html privacy.html holding.html` passed after replacing invalid proof-container labels and shared consent-banner `div role="region"` markup with validator-clean semantics. |
+| 2026-06-24 | BuildScan model-view local measurement smoke | pass | `npm run qa:measurement:local` passed. Latest artifact: `output/measurement/smoke-2026-06-24T18-43-26-677Z`. Route matrix, consent decline/accept, no-GA-with-empty-ID checks, copy email feedback, prompted contact `mailto:`, and measurement contract events passed. |
+| 2026-06-24 | BuildScan model-view rendered QA | pass | Playwright checked desktop and mobile homepage navigation to `#buildscan-model-view`: no horizontal overflow, no visible text overflow, BuildScan anchor active, and the section title cleared the sticky header after root scroll-padding fix. Screenshots: `output/playwright/buildscan-model-view-2026-06-24/desktop-anchor-final.png` and `output/playwright/buildscan-model-view-2026-06-24/mobile-anchor-final.png`. |
+| 2026-06-24 | BuildScan Ludgershall GLB app load | pass | Launched RobsonAI BuildScan via `/Users/wayne/Documents/RobsonAI/BuildScan/script/build_and_run.sh buildscan --verify`, opened the latest Ludgershall 2026-06-02 GLB, and captured app-window evidence showing the file loaded in BuildScan. Evidence: temp screenshots `codex-shot-2026-06-24_19-51-30-w1639.png` and `codex-shot-2026-06-24_19-51-30-w1638.png`. BuildScan was closed after capture. |
+| 2026-06-24 | BuildScan Ludgershall clean model capture | pass | Used BuildScan's generated WebKit viewer HTML/cache output for the loaded GLB, rendered headed Chromium with WebGL enabled, switched to Orbit and Iso view, hid the viewer toolbar/status, and captured a clean model screenshot. Website asset: `assets/showcase/buildscan-ludgershall-model-view.png`; source capture: `output/playwright/buildscan-ludgershall-capture-2026-06-24/ludgershall-buildscan-canvas-clean.png`. |
+| 2026-06-24 | BuildScan Ludgershall website validation | pass | After replacing the synthetic BuildScan visual with the real GLB screenshot, `git diff --check`, HTML validation for all public HTML files, and `npm run qa:measurement:local` passed. Latest measurement artifact: `output/measurement/smoke-2026-06-24T19-02-20-144Z`. |
+| 2026-06-24 | BuildScan Ludgershall rendered website QA | pass | Playwright verified local desktop and mobile `#buildscan-model-view`: image loaded (`1680x1020`), no horizontal overflow, no visible text overflow, no console messages, and the section title cleared the sticky header. Screenshots: `output/playwright/buildscan-ludgershall-website-2026-06-24/desktop-buildscan-ludgershall-section.png` and `output/playwright/buildscan-ludgershall-website-2026-06-24/mobile-buildscan-ludgershall-section.png`. |
+| 2026-06-25 | BuildScan Ludgershall production approval | pass | Wayne approved option 1: public use of the Ludgershall model screenshot plus commit, push, and Netlify production deploy. |
+| 2026-06-25 | BuildScan Ludgershall release gates | pass | `git diff --check`, `npx --no-install html-validate index.html building-analyst.html who-its-for.html privacy.html holding.html`, `npm run qa:measurement:local`, and `npx --no-install netlify build` passed before commit. Latest measurement artifact: `output/measurement/smoke-2026-06-25T18-32-25-459Z`. |
+| 2026-06-25 | BuildScan Ludgershall release rendered QA | pass | Playwright verified local desktop and mobile `#buildscan-model-view`: the Ludgershall image loaded at `1680x1020`, no horizontal overflow, no visible text overflow, no console messages, and the section title cleared the sticky header. Screenshots: `output/playwright/buildscan-ludgershall-release-2026-06-25/desktop-buildscan-ludgershall-section.png` and `output/playwright/buildscan-ludgershall-release-2026-06-25/mobile-buildscan-ludgershall-section.png`. |
 
 ## 11. Release / Deployment Notes
 

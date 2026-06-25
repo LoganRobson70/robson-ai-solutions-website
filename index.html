@@ -29,7 +29,7 @@
     <meta name="twitter:image" content="https://robsonai.co.uk/assets/og/robsonai-cover-1200x630.png">
     <link rel="icon" type="image/png" href="/assets/robson-ai-icon-v3.png?v=20260509">
     <link rel="apple-touch-icon" href="/assets/robson-ai-icon-v3.png?v=20260509">
-    <link rel="stylesheet" href="./styles.css?v=20260621b">
+    <link rel="stylesheet" href="./styles.css?v=20260624a">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -61,6 +61,7 @@
           <a href="#focus" data-analytics-id="nav-focus">Focus</a>
           <a href="#work" data-analytics-id="nav-work">Workstreams</a>
           <a href="#workflow-finder" data-analytics-id="nav-workflow-finder">Finder</a>
+          <a href="#buildscan-model-view" data-analytics-id="nav-buildscan-model">BuildScan</a>
           <a href="#method" data-analytics-id="nav-method">Method</a>
           <a href="#contact" data-analytics-id="nav-start-conversation">Discuss a workflow</a>
         </nav>
@@ -185,9 +186,9 @@
             </article>
             <article class="home-problem-card">
               <span>02</span>
-              <p class="home-step-label">Drone-to-3D</p>
+              <p class="home-step-label">BuildScan / Drone-to-3D</p>
               <h3>External modelling.</h3>
-              <p>Software exploration for drone-based external capture, 3D modelling and visual inspection support.</p>
+              <p>BuildScan exploration for drone-based external capture, 3D model viewing and visual inspection support.</p>
             </article>
             <article class="home-problem-card">
               <span>03</span>
@@ -297,7 +298,10 @@
                   <li>Still an exploration stream, not a finished public product claim.</li>
                   <li>Works best when the output helps a human reviewer understand the building.</li>
                 </ul>
-                <a class="text-link" href="#contact" data-analytics-id="workflow-finder-drone-contact" data-cta-location="workflow-finder">Discuss visual capture</a>
+                <div class="workflow-finder-actions">
+                  <a class="text-link" href="#buildscan-model-view" data-analytics-id="workflow-finder-buildscan-model" data-cta-location="workflow-finder">See BuildScan model view</a>
+                  <a class="text-link" href="#contact" data-analytics-id="workflow-finder-drone-contact" data-cta-location="workflow-finder">Discuss visual capture</a>
+                </div>
               </div>
 
               <div
@@ -324,6 +328,67 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="section home-section home-section-buildscan" id="buildscan-model-view" data-section="buildscan-model-view" data-proof-surface>
+        <div class="container buildscan-showcase">
+          <div class="home-section-intro buildscan-showcase-copy">
+            <p class="section-label">BuildScan exploration</p>
+            <h2 class="section-title">Model views make external capture easier to review.</h2>
+            <p class="section-intro section-intro-dark">
+              BuildScan is being explored as a local workflow for turning external capture material into inspectable building models. The view below is captured from a GLB loaded through the BuildScan model viewer, showing how site context can be reviewed as a 3D asset.
+            </p>
+            <div class="buildscan-proof-list">
+              <article>
+                <span>01</span>
+                <strong>Open GLB</strong>
+                <p>Bring a model output into a focused BuildScan viewer instead of leaving it buried in a processing folder.</p>
+              </article>
+              <article>
+                <span>02</span>
+                <strong>Review context</strong>
+                <p>Inspect the model as a site asset, with surrounding roads, roofs and external context visible in one place.</p>
+              </article>
+              <article>
+                <span>03</span>
+                <strong>Prepare evidence</strong>
+                <p>Use the model as a review aid for visual communication, not as a substitute for professional judgement.</p>
+              </article>
+            </div>
+          </div>
+
+          <figure class="buildscan-app-shot" aria-labelledby="buildscan-shot-caption">
+            <div class="buildscan-window" role="img" aria-label="Representative BuildScan app model-view panel with a synthetic building model">
+              <div class="buildscan-window-bar">
+                <div class="buildscan-window-title">
+                  <span class="buildscan-window-controls" aria-hidden="true"><span></span><span></span><span></span></span>
+                  <strong>RobsonAI BuildScan</strong>
+                </div>
+                <span class="buildscan-window-mode">Model review</span>
+              </div>
+              <div class="buildscan-toolbar" aria-hidden="true">
+                <span>GLB model capture</span>
+                <span>OBJ / GLB</span>
+                <span>Local preview</span>
+              </div>
+              <div class="buildscan-model-viewport">
+                <img class="buildscan-model-image" src="./assets/showcase/buildscan-ludgershall-model-view.png" alt="BuildScan GLB model view showing a drone-generated site model">
+                <div class="buildscan-view-badge">
+                  <span>3D model view</span>
+                  <strong>BuildScan GLB capture</strong>
+                </div>
+                <div class="buildscan-view-status" aria-hidden="true">
+                  <span>Orbit</span>
+                  <span>Zoom</span>
+                  <span>Review</span>
+                </div>
+              </div>
+            </div>
+            <figcaption id="buildscan-shot-caption">
+              BuildScan model-view capture from a local GLB, shown as product evidence for the external visual-capture workflow.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -495,7 +560,7 @@
       </div>
     </footer>
 
-    <div class="consent-banner" data-consent-banner role="region" aria-labelledby="analytics-consent-title" hidden>
+    <section class="consent-banner" data-consent-banner aria-labelledby="analytics-consent-title" hidden>
       <div class="consent-copy">
         <p class="consent-kicker">Optional analytics</p>
         <h2 class="consent-title" id="analytics-consent-title">Optional analytics?</h2>
@@ -509,7 +574,7 @@
         <a class="btn btn-outline" href="./privacy.html">Privacy Notice</a>
       </div>
       <p class="consent-status" data-consent-status aria-live="polite"></p>
-    </div>
+    </section>
 
     <script src="./script.js?v=20260621a"></script>
   </body>
