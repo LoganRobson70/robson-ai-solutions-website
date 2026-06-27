@@ -252,7 +252,11 @@ async function runMobileConsentAndHomepage(browser, baseUrl, artifactDir) {
     const banner = await expectVisible(page, "[data-consent-banner]", "Mobile consent banner");
     await expectVisible(page, "[data-consent-accept]", "Mobile consent accept button");
     await expectVisible(page, "[data-consent-decline]", "Mobile consent decline button");
-    await expectVisible(page, '[data-consent-banner] a[href="./privacy.html"]', "Mobile consent privacy link");
+    await expectVisible(
+      page,
+      '[data-consent-banner] a[href="./privacy.html"], [data-consent-banner] a[href="/privacy"], [data-consent-banner] a[href="/privacy.html"]',
+      "Mobile consent privacy link"
+    );
 
     const bannerBox = await banner.boundingBox();
     assert(bannerBox && bannerBox.height <= 260, `Mobile consent banner should stay compact; actual height ${bannerBox?.height}.`);
