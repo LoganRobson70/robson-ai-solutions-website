@@ -8,6 +8,7 @@ const execFileAsync = promisify(execFile);
 
 const ALLOWED_DIRTY_PATTERNS = [
   /^404\.html$/,
+  /^\.netlifyignore$/,
   /^AGENTS\.md$/,
   /^README\.md$/,
   /^building-analyst\.html$/,

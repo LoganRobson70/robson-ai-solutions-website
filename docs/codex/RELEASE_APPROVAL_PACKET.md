@@ -1,9 +1,9 @@
 # Release Approval Packet - BuildScan Interactive Preview Candidate
 
-Last updated: 2026-06-27 23:40 BST
+Last updated: 2026-06-27 23:55 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: Wayne approved option `1`; preview-only tranche is in progress on `codex/buildscan-interactive-preview-release-candidate`; production deploy is not approved
+Status: Wayne approved option `1`; preview-only tranche is in progress on `codex/buildscan-interactive-preview-release-candidate`; first deployed preview exposed a CSP blocker in the interactive viewer; production deploy is not approved
 
 ## 1. Recommended Decision
 
@@ -185,6 +185,13 @@ Latest browser coverage advisory:
 - Chromium passed across 7 release routes, including the direct BuildScan viewer.
 - Firefox and WebKit are unavailable in this local Playwright cache, so strict mode fails as expected until those browser binaries are installed or another QA environment supplies them.
 - `npm run qa:browser-coverage:strict` is available for a hard cross-browser gate when Wayne approves browser installation or another environment is used.
+
+Preview deployment note:
+
+- Commit `a15f7128c3b38ecfd39bf999f87d2b28aff2e21a` was pushed to `origin/codex/buildscan-interactive-preview-release-candidate`.
+- Clean draft URL created from committed files only: `https://6a4053b5f59c19174d72f4f4--robson-ai-website.netlify.app`.
+- The first deployed preview gate passed source inventory, dependency advisory, security source posture, deployed headers, and source-path denies, then failed at the deployed BuildScan viewer.
+- Root cause: deployed CSP blocked Meshopt WebAssembly compilation and GLB texture blob loading. Scoped fix underway: allow `wasm-unsafe-eval`, `blob:` image/connect handling, and `worker-src 'self' blob:` for the viewer runtime; add `.netlifyignore` so CLI draft deploys do not upload local evidence/tooling folders.
 
 Latest preview-gate safety checks after adding dependency audit advisory:
 

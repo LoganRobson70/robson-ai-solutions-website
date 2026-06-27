@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-27 23:40 BST
+Last updated: 2026-06-27 23:55 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/buildscan-interactive-preview-release-candidate`
@@ -21,7 +21,7 @@ Success means:
 ## 2. Active Tranche
 
 Tranche name: `buildscan-interactive-preview-release-candidate`
-Status: in progress; branch created, 62 manifest paths staged, full local pre-commit release gate passed; Luffu/Steno/Unfold motion reference parked for next tranche; commit/push/Netlify deploy-preview still pending
+Status: in progress; branch `codex/buildscan-interactive-preview-release-candidate` pushed; clean Netlify draft deploy created; deployed preview gate found BuildScan viewer CSP blocker; scoped CSP/deploy-ignore follow-up fix underway; production deploy still not approved
 Started: 2026-06-27 23:25 BST
 
 Scope:
@@ -71,6 +71,12 @@ Validation evidence:
 - Rendered release smoke inside the full local gate wrote `output/playwright/rendered-release-smoke-2026-06-27T22-38-23-090Z`.
 - Browser coverage advisory inside the full local gate wrote `output/browser-coverage/smoke-2026-06-27T22-38-15-359Z/browser-coverage-smoke.json`: Chromium passed; Firefox/WebKit unavailable locally and warning-only.
 - Measurement evidence artifact `output/measurement/evidence-2026-06-27T22-38-51-062Z` reports Lighthouse performance 100, accessibility 97, best practices 100, SEO 100, LCP about 1.73 seconds, and CLS 0.
+- Commit `a15f7128c3b38ecfd39bf999f87d2b28aff2e21a` (`Prepare BuildScan interactive preview candidate`) was created and pushed to `origin/codex/buildscan-interactive-preview-release-candidate`.
+- Initial local-root `npx netlify deploy` failed during upload with Netlify API `422 no records matched` after trying to hash local `node_modules`/`output`; no production deploy occurred.
+- Clean committed-file draft deploy from a temporary `git archive` directory succeeded: `https://6a4053b5f59c19174d72f4f4--robson-ai-website.netlify.app`.
+- `QA_BASE_URL=https://6a4053b5f59c19174d72f4f4--robson-ai-website.netlify.app npm run qa:release:preview` passed release inventory, dependency advisory, security source posture, and deployed headers/source-path-deny checks, then failed at deployed BuildScan viewer.
+- Preview diagnostic found CSP blocked `WebAssembly.instantiate()` because `script-src` lacked `wasm-unsafe-eval`, and blocked GLB texture blob loads because `connect-src`/`img-src` lacked `blob:`.
+- Follow-up fix scope: add `.netlifyignore` for CLI draft deploy hygiene; update CSP to include `script-src 'wasm-unsafe-eval'`, `img-src blob:`, `connect-src blob:`, and `worker-src 'self' blob:`; update header smoke expectations.
 
 Previous tranche:
 

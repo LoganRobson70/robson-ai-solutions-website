@@ -1,0 +1,11 @@
+# Local-only folders and files should never be uploaded by CLI draft deploys.
+.git/
+.netlify/
+.playwright-cli/
+node_modules/
+output/
+.DS_Store
+
+# Local environment/secrets remain outside Netlify deploy bundles.
+.env
+.env.*
