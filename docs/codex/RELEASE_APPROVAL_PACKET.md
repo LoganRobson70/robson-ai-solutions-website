@@ -1,0 +1,295 @@
+# Release Approval Packet - BuildScan Interactive Preview Candidate
+
+Last updated: 2026-06-27 23:40 BST
+Owner: Wayne Robson / Robson AI Solutions
+Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
+Status: Wayne approved option `1`; preview-only tranche is in progress on `codex/buildscan-interactive-preview-release-candidate`; production deploy is not approved
+
+## 1. Recommended Decision
+
+Recommended option 1 was approved by Wayne:
+
+Approve `buildscan-interactive-preview-release-candidate`.
+
+That approval means Wayne approves Codex to:
+
+1. Accept the current residual dev-tooling dependency posture for preview: production footprint zero, 17 moderate Lighthouse/Sentry/OpenTelemetry findings, 0 high, 0 critical.
+2. Stage only the scoped local release candidate listed in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+3. Create a commit for this local candidate.
+4. Push a branch.
+5. Create a Netlify deploy-preview only.
+6. Run `QA_BASE_URL=<preview> npm run qa:release:preview`.
+7. Review the deployed preview in Browser on desktop and mobile.
+8. Return to Wayne with the preview URL, deployed evidence, risks, and rollback path before any production decision.
+
+This approval does not approve production deploy.
+
+Use `docs/codex/PUBLISH_READINESS_AUDIT.md` as the single gate checklist before any preview or production publish decision.
+
+Recommended option 2:
+
+Run the full Codex Security workspace scan before preview, then continue with option 1 if no blocker is found.
+
+## 2. What The Candidate Adds
+
+The candidate turns the current public site into a stronger release-grade website by adding:
+
+- Interactive BuildScan GLB proof with opt-in loading and static fallback.
+- A real Ludgershall model-view asset path, optimised WebP image variants, and an optimised public-preview GLB.
+- Stronger homepage proof for property operations / WAIS-style workflows.
+- Improved audience and contact segmentation.
+- Corrected `who-its-for.html` contrast defects found during rendered screenshot review.
+- Upgraded `404.html` from a sparse fallback into a noindex Robson AI recovery page with header, navigation, useful route cards, Open Graph/Twitter metadata, footer and clear return/contact paths.
+- Updated `holding.html` so the noindex fallback no longer contradicts the current live public-site state.
+- Added release-gate checks so stale holding/private-site wording is caught in source and rendered browser validation.
+- Added BuildScan viewer keyboard-accessibility smoke coverage for toolbar focus and keyboard activation.
+- Added site keyboard release smoke coverage for public keyboard journeys and wired it into local and deployed-preview release gates.
+- Added semantic/SEO release smoke coverage for metadata, crawl posture, landmarks, image semantics, social metadata, homepage structured data, sitemap/robots, and current `Robson AI` casing.
+- Added responsive route matrix smoke coverage across mobile, tablet, and desktop for release routes, wired into local and deployed-preview release gates.
+- Added visual-polish smoke coverage across release routes to guard against large high-opacity text-level backgrounds, including the white-box-behind-text failure mode.
+- Added browser coverage advisory across Chromium, Firefox, and WebKit launch paths; Chromium currently passes locally and missing Firefox/WebKit binaries are recorded as warnings unless strict mode is requested.
+- Corrected the standalone BuildScan viewer route so it exposes a semantic `main` landmark and H1 while keeping the visual 3D viewer unchanged.
+- Corrected current public metadata and contact/ARIA labels from stale mixed-case brand text to `Robson AI`.
+- Updated the website excellence programme with the Robson brand standard: precise, modern, intelligent, practical, trusted, calm rather than flashy, and clean rather than decorative.
+- Added the bold/cinematic influence rule: concrete options/mockups and Wayne approval are required before any Hero Studios-style or similar treatment is implemented.
+- Performance recovery from the earlier Lighthouse 72 / LCP about 10.95s state to Lighthouse 100 / LCP about 1.73s locally.
+- HSTS, CSP, source-path deny rules, GLB MIME/cache checks, release inventory, privacy/security smoke, rendered smoke, visual-polish smoke, browser coverage advisory, local release gate, and deployed-preview release gate.
+- A read-only dependency audit summary command so production-footprint risk, dev/release tooling risk, dry-run remediation impact, and strict-mode failure are repeatable evidence instead of one-off terminal output.
+- The local and deployed-preview release gates now run the dependency audit advisory, so passing gates also confirm production-footprint audit status and record the known dev/release tooling warning.
+- A release staging-manifest smoke check so the manifest file lists and explicit `git add -- <paths>` command must match the current dirty release candidate before any staging/commit path.
+- A read-only production verification gate, `npm run qa:release:production`, which refuses to run without `QA_PRODUCTION_URL` and an explicit production confirmation flag.
+- An explicit release staging manifest so the preview commit uses a reviewed file list and never relies on `git add .`.
+- Non-force dependency remediation that removed all high/critical dev-tooling audit findings without using `npm audit fix --force`.
+- Updated tracker, PRD, release handover, measurement QA, capability and excellence docs.
+
+## 3. Explicitly Not Approved By This Packet
+
+The following still need separate approval:
+
+- Production deploy.
+- Domain or DNS changes.
+- GA4 Measurement ID setup or analytics enablement.
+- Contact forms or customer-data capture.
+- Secret rotation.
+- External messages.
+- Apple signing/submission.
+- Payments.
+- Destructive git operations.
+- Full Codex Security scan completion, unless Wayne starts the Codex Security workspace.
+- `npm audit fix --force`; that remains separately approval-gated even inside the dependency remediation tranche.
+
+## 4. Public Model Approval Point
+
+The main product/security decision is the BuildScan GLB:
+
+- File: `assets/showcase/buildscan-ludgershall-public.glb`
+- Current size: 1,354,404 bytes.
+- Current inventory result: binary glTF 2.0, one mesh, 118 materials, 118 images, zero external URI references.
+- Release implication: once previewed or published, the model is public downloadable website data.
+
+Wayne approval of `buildscan-interactive-preview-release-candidate` includes approval to expose this optimised GLB on a Netlify preview only. Production exposure still requires a later production decision.
+
+## 5. Current Local Evidence
+
+Latest full local release gate after staging:
+
+- `output/release-local-gate/gate-2026-06-27T22-37-04-773Z/release-local-gate.json`
+- Result: pass, 37 steps.
+- Includes staging-manifest drift check, dependency audit advisory, visual-polish smoke, browser coverage advisory, and production-verification gate syntax check.
+
+Latest evidence pack:
+
+- `output/measurement/evidence-2026-06-27T22-38-51-062Z`
+- Lighthouse performance: 100.
+- Accessibility: 97.
+- Best practices: 100.
+- SEO: 100.
+- CLS: 0.
+- LCP: about 1.73 seconds.
+
+Latest release inventory inside the full local gate:
+
+- `output/release-inventory/inventory-2026-06-27T22-37-11-182Z/release-candidate-inventory.json`
+- Dirty candidate files: 62.
+- Budgeted files: 14.
+- Scanned files: 72.
+- Secret findings: 0.
+- GLB external URI references: 0.
+
+Latest staging-manifest drift check:
+
+- `output/release-staging-manifest/smoke-2026-06-27T22-37-11-410Z/release-staging-manifest-smoke.json`
+- Result: pass.
+- Modified tracked files: 25.
+- Untracked candidate files: 37.
+- Explicit staging command paths: 62.
+
+The staging-manifest smoke was tightened during pre-commit validation so it checks the same approved 25 modified / 37 new file boundary before and after staging by classifying candidate paths against `HEAD`.
+
+Latest BuildScan viewer smoke:
+
+- `output/buildscan-viewer/smoke-2026-06-27T22-11-14-107Z`
+- Result: pass.
+- Direct viewer confirms WebGL/canvas/model-ready state.
+- Keyboard interaction confirms Tab focus reaches Orbit and keyboard activation works for Pan, Top view, Zoom In, and Reset with status and pressed-state updates.
+- Embedded viewer confirms the GLB does not load before opt-in and marks loaded only after the child viewer reports model-ready.
+
+Latest keyboard release smoke:
+
+- `output/playwright/keyboard-release-smoke-2026-06-27T22-11-22-013Z`
+- Result: pass.
+- Homepage journey confirms skip-link focus, consent decline, workflow tab keyboard navigation, copy-email feedback, and keyboard-triggered BuildScan model-ready state.
+- Building Analyst journey confirms lens tab keyboard navigation and copy-email feedback.
+
+Latest semantic/SEO release smoke:
+
+- `output/semantic-seo/smoke-2026-06-27T22-11-26-910Z/semantic-seo-smoke.json`
+- Result: pass.
+- Public pages confirm `en-GB`, unique useful titles/descriptions, canonicals, `index, follow`, one `main`, meaningful H1s, primary nav, skip links, image alt/dimensions, Open Graph/Twitter metadata, homepage Organization JSON-LD, sitemap/robots alignment, and current `Robson AI` casing.
+- Noindex pages confirm `noindex,nofollow` and no stale mixed-case brand text in current source.
+
+Latest rendered smoke:
+
+- `output/playwright/rendered-release-smoke-2026-06-27T22-12-22-685Z`
+- Result: pass, with source-level and rendered-browser checks guarding the current-state holding fallback.
+
+Latest product/design acceptance gate:
+
+- Evidence artifact: `output/product-design-acceptance/smoke-2026-06-27T22-11-34-468Z/product-design-acceptance-smoke.json`
+- Result: pass locally for current-state website quality, now wired into `qa:release:local` and `qa:release:preview`, with release-gated caveats.
+- First viewport: pass. Desktop and mobile hero show the company, professional building-intelligence proposition, surveyor/evidence/reporting focus, primary CTA, secondary workstream CTA, and product card proof without visual overlap.
+- Proof status: pass with caveat. Building Analyst, BuildScan static model image, and WAIS/property operations proof are visible and labelled. The interactive BuildScan GLB remains local/approval-gated.
+- Release-stage labels: pass locally. Source and screenshots show early/exploratory/product-direction language and avoid finished-product, customer-integration, autonomous-diagnosis, or public-GLB claims.
+- Audience paths: pass. Surveying/estates, property operations, compliance/inspection, drone/3D capture, and early workflow conversations are visible in homepage and `who-its-for.html` paths.
+- CTA hierarchy: pass. Email-first route, segmented workflow mailto links, copy-email fallback, privacy notice, and no-form privacy stance are present.
+- Trust proof: pass with caveat. Professional judgement boundaries, early-stage scope, privacy posture, approved/static proof, and not-a-finished-suite boundaries are visible. Formal external credentials/case studies remain a future proof gap.
+- Motion and interaction: pass locally. Fresh rendered smoke reports no horizontal overflow, no visible text overflow, no console messages, no failed requests, and model-ready BuildScan state after opt-in. Keyboard, responsive route, and BuildScan viewer smoke also remain part of the local gate.
+- Release agreement: partial. Docs now agree that dependency remediation, public GLB approval, Netlify preview validation, exact rollback target, and production approval remain open gates.
+
+Latest responsive route smoke:
+
+- Evidence artifact: `output/responsive-route/smoke-2026-06-27T22-11-40-124Z/responsive-route-smoke.json`
+- Result: pass locally across 7 routes and 3 viewport classes, 21 route/viewport checks total.
+- Coverage: HTTP 200 status, route-specific current-state copy, horizontal overflow, obvious nowrap text overflow, primary control sizing, console/page errors, failed requests, and BuildScan viewer title/toolbar/status/model-ready posture.
+
+Latest visual-polish smoke:
+
+- Evidence artifact: `output/visual-polish/smoke-2026-06-27T22-12-00-763Z/visual-polish-smoke.json`
+- Result: pass locally across 7 routes and 2 viewport classes, 14 route/viewport checks total.
+- Coverage: no large rendered `h1`, `h2`, `h3`, `p`, or `li` text blocks carry high-opacity text-level backgrounds unless they are explicit controls, labels, tokens or status elements; no horizontal overflow, console/page errors, or blocking failed requests.
+
+Latest browser coverage advisory:
+
+- Evidence artifact: `output/browser-coverage/smoke-2026-06-27T22-38-15-359Z/browser-coverage-smoke.json`
+- Result: warning, not failure.
+- Chromium passed across 7 release routes, including the direct BuildScan viewer.
+- Firefox and WebKit are unavailable in this local Playwright cache, so strict mode fails as expected until those browser binaries are installed or another QA environment supplies them.
+- `npm run qa:browser-coverage:strict` is available for a hard cross-browser gate when Wayne approves browser installation or another environment is used.
+
+Latest preview-gate safety checks after adding dependency audit advisory:
+
+- `env -u QA_BASE_URL npm run qa:release:preview` fails closed.
+- `QA_BASE_URL=https://robsonai.co.uk npm run qa:release:preview` rejects production by default.
+- `env -u QA_BASE_URL npm run qa:responsive:preview` fails closed.
+- `QA_BASE_URL=https://robsonai.co.uk npm run qa:responsive:preview` rejects production by default.
+- `env -u QA_BASE_URL npm run qa:browser-coverage:preview` fails closed.
+- `QA_BASE_URL=https://robsonai.co.uk npm run qa:browser-coverage:preview` rejects production by default.
+- `npm run qa:release:production` now exists but has not been run against production. Guardrail checks passed locally: missing `QA_PRODUCTION_URL` fails closed, production URL without confirmation fails closed, non-production URL with confirmation is rejected, and `qa:release:preview` still rejects production by default.
+
+Dependency audit status after approved remediation:
+
+- Production-footprint audit: zero vulnerabilities.
+- Full dev/release-tooling audit: 17 moderate findings, 0 high, 0 critical.
+- Repeatable advisory summary from the full local gate: `output/dependency-audit/summary-2026-06-27T22-37-11-587Z/dependency-audit-summary.json`.
+- Repeatable strict summary: `npm run qa:dependency-audit:strict` exits without blockers now that high/critical findings are removed. Latest targeted artifact: `output/dependency-audit/summary-2026-06-27T22-10-47-660Z/dependency-audit-summary.json`.
+- The remaining findings are in local dev/release tooling dependencies, not browser-shipped website assets. They are the Lighthouse/Sentry/OpenTelemetry chain and should be treated as residual dev-tooling risk unless Wayne separately approves a force/downgrade path.
+
+Dependency remediation performed:
+
+- `npm audit fix` was run without `--force`.
+- Result: 2 packages added, 1 removed, and 14 transitive packages changed in `package-lock.json`.
+- The post-remediation dry-run reports 0 further non-force package changes and still reports 17 moderate findings.
+- The dry-run still reports unreviewed install scripts for local QA-tool dependencies `chromedriver@146.0.3` and `fsevents@2.3.2`; these are not browser-shipped production website code.
+- Read-only `npm audit fix --force --dry-run` warns that protections are disabled and proposes changing Lighthouse to `12.6.1`; it would add 20 packages, remove 74, and change 23. This path is not recommended and remains separately approval-gated.
+
+## 6. Files Expected In The Candidate
+
+The exact staged set should be controlled by `npm run qa:release-inventory` and `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+
+Candidate groups:
+
+- Public pages and routes: `index.html`, `building-analyst.html`, `who-its-for.html`, `privacy.html`, `holding.html`, `preview.html`, `404.html`, `buildscan-viewer.html`.
+- Styling and behaviour: `styles.css`, `script.js`.
+- Release config: `netlify.toml`, `package.json`, `package-lock.json`.
+- QA scripts: `scripts/measurement-smoke.mjs`, `scripts/measurement-evidence.mjs`, `scripts/lib/static-server.mjs`, `scripts/buildscan-viewer-smoke.mjs`, `scripts/browser-coverage-smoke.mjs`, `scripts/dependency-audit-summary.mjs`, `scripts/rendered-release-smoke.mjs`, `scripts/semantic-seo-smoke.mjs`, `scripts/product-design-acceptance-smoke.mjs`, `scripts/responsive-route-smoke.mjs`, `scripts/visual-polish-smoke.mjs`, `scripts/release-candidate-inventory.mjs`, `scripts/release-header-smoke.mjs`, `scripts/release-security-smoke.mjs`, `scripts/release-staging-manifest-smoke.mjs`, `scripts/release-local-gate.mjs`, `scripts/release-preview-gate.mjs`, `scripts/release-production-gate.mjs`, and `scripts/keyboard-release-smoke.mjs`.
+- Assets: Robson AI icon variants, BuildScan WebP variants, BuildScan public-preview GLB, and vendored Three.js files with license.
+- Docs: tracker, PRD, release handover, measurement QA, capability audit, launch/readiness docs, first tranche, dirty-release assessment, product IA/proof map, publish-readiness audit, design-system audit, release staging manifest, website excellence programme, README, AGENTS.
+
+Do not stage `output/`, `.env*`, `.netlify/`, `node_modules/`, `.DS_Store`, secrets, or unreviewed generated files.
+
+## 7. Preview Procedure After Approval
+
+After Wayne approves `buildscan-interactive-preview-release-candidate`:
+
+1. Treat dependency remediation as complete for preview, with residual moderate dev-tooling risk recorded above.
+2. Re-run `npm run qa:release:local`.
+3. Confirm `npm run qa:release-staging-manifest` passes.
+4. Stage only the scoped candidate files listed in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+5. Commit the candidate.
+6. Push a branch.
+7. Create a Netlify deploy-preview only.
+8. Run:
+
+```bash
+QA_BASE_URL="https://<netlify-preview-url>" npm run qa:release:preview
+```
+
+This deployed-preview gate includes the dependency audit advisory before deployed route/browser checks. The staging-manifest drift check is intentionally local/pre-commit only, because after the approved candidate is committed and pushed the local dirty tree may be clean.
+
+9. Review the preview in Browser on desktop and mobile.
+10. Report preview URL, evidence artifacts, risks, rollback path, and ask for a separate production decision.
+
+## 8. Production Gate
+
+Production can only be considered after:
+
+- Netlify preview URL passes `qa:release:preview`.
+- Browser review confirms the deployed homepage, Building Analyst page, Who it fits, Privacy, 404, holding fallback, and BuildScan viewer are visually correct.
+- Wayne accepts public GLB exposure for production.
+- Wayne separately approves production deploy.
+
+After a separately approved production deploy, Codex must run:
+
+```bash
+QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
+```
+
+This is a read-only production verification gate. It does not deploy, approve deployment, rotate secrets, change DNS, or alter Netlify configuration.
+
+## 9. Rollback
+
+Rollback target must be re-verified before any production approval.
+
+Known references in docs:
+
+- Current verified static BuildScan production deploy from the tracker: `6a3d74cb38ad980008340f42`
+- Older previous production deploy reference retained in this packet: `6a37e26ea4fa5700094ad18a`
+- Older previous deploy permalink: `https://6a37e26ea4fa5700094ad18a--robson-ai-website.netlify.app`
+
+Pre-production hard gate:
+
+- Before any production deploy, Codex must verify the current live Netlify production deploy ID and Wayne must choose the exact rollback target for the release packet.
+
+Rollback options after production approval/deploy:
+
+1. Restore the previous Netlify deploy.
+2. Revert the release commit and push `main`.
+3. If the GLB is rejected after preview but before production, remove/defer `buildscan-viewer.html`, `assets/showcase/buildscan-ludgershall-public.glb`, and `assets/vendor/three-0.164.1/`, then rerun local gates.
+
+## 10. Recommended Next Step
+
+Recommended option 1:
+
+Approve `buildscan-interactive-preview-release-candidate`.
+
+That moves this local candidate to a Netlify deploy-preview only. It still does not approve production. If Wayne wants the full Codex Security scan before preview, press Start scan in the Codex Security workspace and continue in Codex.

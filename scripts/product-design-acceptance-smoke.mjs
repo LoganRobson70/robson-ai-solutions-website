@@ -1,0 +1,390 @@
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { chromium } from "playwright";
+
+import { startStaticServer } from "./lib/static-server.mjs";
+
+const PUBLIC_ROUTES = ["/", "/building-analyst.html", "/who-its-for.html", "/privacy.html", "/404.html", "/holding.html"];
+
+function parseArgs(argv) {
+  const parsed = {};
+
+  argv.forEach((argument) => {
+    if (!argument.startsWith("--")) {
+      return;
+    }
+
+    const [rawKey, rawValue] = argument.slice(2).split("=");
+    parsed[rawKey] = rawValue ?? "true";
+  });
+
+  return parsed;
+}
+
+function timestampLabel() {
+  return new Date().toISOString().replace(/[:.]/g, "-");
+}
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+function normalizeText(value) {
+  return (value || "").replace(/\s+/g, " ").trim();
+}
+
+function includesAll(text, phrases) {
+  const lowerText = text.toLowerCase();
+  return phrases.every((phrase) => lowerText.includes(phrase.toLowerCase()));
+}
+
+function productionVerificationAllowed() {
+  return process.env.ROBSON_ALLOW_PRODUCTION_QA === "true";
+}
+
+function resolvePreviewUrl(input) {
+  if (!input) {
+    throw new Error("Product/design acceptance preview smoke requires QA_BASE_URL or --base-url; refusing to fall back to production or local.");
+  }
+
+  let url;
+  try {
+    url = new URL(input);
+  } catch {
+    throw new Error(`Product/design acceptance preview smoke requires a valid absolute URL; received ${JSON.stringify(input)}.`);
+  }
+
+  if (url.protocol !== "https:") {
+    throw new Error(`Product/design acceptance preview smoke requires an https URL; received ${url.href}.`);
+  }
+
+  const host = url.hostname.toLowerCase();
+  if ((host === "robsonai.co.uk" || host === "www.robsonai.co.uk") && !productionVerificationAllowed()) {
+    throw new Error("Product/design acceptance preview smoke was given the production host. Use a Netlify preview URL.");
+  }
+
+  return url.href.replace(/\/$/, "");
+}
+
+async function readRenderedText(page) {
+  return page.evaluate(() => document.body.innerText || "");
+}
+
+async function readViewportText(page) {
+  return page.evaluate(() => {
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
+    const visibleText = [];
+
+    while (walker.nextNode()) {
+      const element = walker.currentNode;
+      const rect = element.getBoundingClientRect();
+      const style = window.getComputedStyle(element);
+      const text = element.innerText?.trim();
+
+      if (!text || style.visibility === "hidden" || style.display === "none") {
+        continue;
+      }
+
+      if (rect.bottom <= 0 || rect.top >= viewportHeight || rect.right <= 0 || rect.left >= viewportWidth) {
+        continue;
+      }
+
+      visibleText.push(text);
+    }
+
+    return visibleText.join(" ");
+  });
+}
+
+async function readLinksAndControls(page) {
+  return page.evaluate(() => {
+    const links = [...document.querySelectorAll("a")].map((link) => ({
+      text: link.textContent?.trim() || "",
+      href: link.getAttribute("href") || "",
+      analyticsId: link.getAttribute("data-analytics-id") || "",
+      ctaLocation: link.getAttribute("data-cta-location") || ""
+    }));
+    const buttons = [...document.querySelectorAll("button")].map((button) => ({
+      text: button.textContent?.trim() || "",
+      analyticsId: button.getAttribute("data-analytics-id") || ""
+    }));
+
+    return { links, buttons };
+  });
+}
+
+async function collectRoute(browser, baseUrl, route) {
+  const page = await browser.newPage({
+    viewport: route === "/" ? { width: 1440, height: 900 } : { width: 1366, height: 900 }
+  });
+  const diagnostics = {
+    consoleMessages: [],
+    failedRequests: [],
+    responses: []
+  };
+
+  page.on("console", (message) => {
+    diagnostics.consoleMessages.push({ type: message.type(), text: message.text() });
+  });
+  page.on("pageerror", (error) => {
+    diagnostics.consoleMessages.push({ type: "pageerror", text: error.message });
+  });
+  page.on("requestfailed", (request) => {
+    diagnostics.failedRequests.push({ url: request.url(), error: request.failure()?.errorText || "" });
+  });
+  page.on("response", (response) => {
+    if (!response.url().startsWith("blob:")) {
+      diagnostics.responses.push({ url: response.url(), status: response.status() });
+    }
+  });
+
+  try {
+    const response = await page.goto(new URL(route, baseUrl).toString(), { waitUntil: "networkidle" });
+    assert(response?.status() === 200, `${route} should return HTTP 200.`);
+
+    return {
+      route,
+      title: await page.title(),
+      text: normalizeText(await readRenderedText(page)),
+      viewportText: normalizeText(await readViewportText(page)),
+      controls: await readLinksAndControls(page),
+      diagnostics
+    };
+  } finally {
+    await page.close();
+  }
+}
+
+function assertNoBlockingDiagnostics(routeResult) {
+  assert(routeResult.diagnostics.consoleMessages.length === 0, `${routeResult.route} should not emit console/page errors: ${JSON.stringify(routeResult.diagnostics.consoleMessages)}.`);
+  assert(routeResult.diagnostics.failedRequests.length === 0, `${routeResult.route} should not have failed requests: ${JSON.stringify(routeResult.diagnostics.failedRequests)}.`);
+}
+
+function assertFirstViewport(home) {
+  assert(includesAll(home.viewportText, [
+    "Robson AI Solutions",
+    "Professional building intelligence",
+    "surveyors",
+    "capture evidence",
+    "reporting",
+    "Discuss a Workflow",
+    "See the Workstreams"
+  ]), `Homepage first viewport should explain brand, audience, workflow problem and next actions. Actual viewport text: ${home.viewportText}`);
+}
+
+function assertProofStatus(home, buildingAnalyst) {
+  assert(includesAll(home.text, [
+    "Building Analyst",
+    "BuildScan",
+    "Property operations",
+    "Workflow proof live",
+    "Approved model image live",
+    "The interactive 3D model remains a local candidate until public-model and preview gates are approved",
+    "This is a workflow proof pattern only"
+  ]), "Homepage should label active workstream proof and the BuildScan interactive candidate state.");
+
+  assert(includesAll(buildingAnalyst.text, [
+    "early professional product direction",
+    "Not a finished product screenshot",
+    "Not autonomous diagnosis",
+    "not a substitute for professional judgement"
+  ]), "Building Analyst should label maturity, example status and judgement boundaries.");
+}
+
+function assertReleaseStageClaims(allText) {
+  const requiredCaution = [
+    "early",
+    "exploration",
+    "local candidate",
+    "not a finished suite",
+    "not replacing judgement",
+    "does not claim live council",
+    "no website form"
+  ];
+
+  requiredCaution.forEach((phrase) => {
+    assert(allText.toLowerCase().includes(phrase), `Public copy should include cautious release-stage or privacy boundary phrase: ${phrase}.`);
+  });
+
+  const forbiddenClaims = [
+    "autonomous diagnosis platform",
+    "replaces professional judgement",
+    "live council integration",
+    "live tenant integration",
+    "live microsoft integration",
+    "app store now available",
+    "procurement-ready and deployed",
+    "finished enterprise suite"
+  ];
+
+  forbiddenClaims.forEach((phrase) => {
+    assert(!allText.toLowerCase().includes(phrase), `Public copy should not make unsupported claim: ${phrase}.`);
+  });
+}
+
+function assertAudiencePaths(home, who) {
+  const combinedLinks = [...home.controls.links, ...who.controls.links];
+  const linkText = combinedLinks.map((link) => `${link.text} ${link.href}`).join(" ");
+
+  assert(includesAll(linkText, [
+    "Explore Building Analyst",
+    "View operations path",
+    "Discuss inspection evidence",
+    "See BuildScan model view",
+    "Email the Workflow"
+  ]), "Homepage/Who It Fits should provide one-click paths for surveyors, operations, inspection, 3D capture and workflow conversations.");
+}
+
+function assertCtaHierarchy(home, buildingAnalyst, who, privacy, notFound, holding) {
+  const routes = [home, buildingAnalyst, who, privacy, notFound, holding];
+  const allLinks = routes.flatMap((route) => route.controls.links.map((link) => ({ ...link, route: route.route })));
+  const allButtons = routes.flatMap((route) => route.controls.buttons.map((button) => ({ ...button, route: route.route })));
+
+  assert(allLinks.some((link) => link.href.startsWith("mailto:hello@robsonai.co.uk")), "Public routes should include an email-first contact route.");
+  assert(allButtons.some((button) => /copy email/i.test(button.text)), "Public routes should include a copy-email fallback.");
+  assert(allLinks.some((link) => /privacy/i.test(link.text) || link.href.includes("privacy.html")), "Public routes should expose the privacy notice.");
+
+  ["/", "/building-analyst.html", "/who-its-for.html", "/privacy.html", "/404.html", "/holding.html"].forEach((route) => {
+    const routeLinks = allLinks.filter((link) => link.route === route);
+    const hasContactPath = routeLinks.some((link) => link.href.includes("#contact") || link.href.startsWith("mailto:hello@robsonai.co.uk"));
+    assert(hasContactPath, `${route} should not dead-end; it needs a contact path.`);
+  });
+
+  const segmentedSubjects = allLinks
+    .filter((link) => link.href.startsWith("mailto:hello@robsonai.co.uk"))
+    .map((link) => decodeURIComponent(link.href).toLowerCase());
+  ["assessment", "buildscan", "property operations", "inspection"].forEach((subject) => {
+    assert(segmentedSubjects.some((href) => href.includes(subject)), `Contact routes should include a segmented ${subject} mailto path.`);
+  });
+}
+
+function assertTrustProof(home, privacy, who) {
+  const combined = `${home.text} ${privacy.text} ${who.text}`;
+  assert(includesAll(combined, [
+    "building surveying",
+    "professional judgement",
+    "not a finished suite",
+    "early-stage",
+    "Optional analytics stays inactive until a real GA4 Measurement ID is configured",
+    "does not use a contact form",
+    "customer data store"
+  ]), "Public copy should expose professional context, judgement boundaries, maturity boundaries and privacy posture before contact.");
+}
+
+function assertMotionAndInteraction(stylesText, home) {
+  assert(stylesText.includes("prefers-reduced-motion"), "Stylesheet should include reduced-motion support.");
+  assert(home.text.includes("Loads an optimised preview model only when requested"), "BuildScan interactive proof should remain opt-in with static fallback language.");
+}
+
+async function writeJson(filePath, value) {
+  await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+export async function runProductDesignAcceptanceSmoke({
+  artifactDir = path.resolve("output/product-design-acceptance", `smoke-${timestampLabel()}`),
+  baseUrl,
+  mode = "local"
+} = {}) {
+  const server = mode === "local" ? await startStaticServer(process.cwd()) : null;
+  const resolvedBaseUrl = mode === "local" ? server.baseUrl : resolvePreviewUrl(baseUrl);
+  const browser = await chromium.launch({ channel: "chrome", headless: true });
+
+  try {
+    const results = {};
+    for (const route of PUBLIC_ROUTES) {
+      results[route] = await collectRoute(browser, resolvedBaseUrl, route);
+      assertNoBlockingDiagnostics(results[route]);
+    }
+
+    const stylesText = await readFile(path.resolve("styles.css"), "utf8");
+    const allText = Object.values(results).map((result) => result.text).join(" ");
+
+    assertFirstViewport(results["/"]);
+    assertProofStatus(results["/"], results["/building-analyst.html"]);
+    assertReleaseStageClaims(allText);
+    assertAudiencePaths(results["/"], results["/who-its-for.html"]);
+    assertCtaHierarchy(
+      results["/"],
+      results["/building-analyst.html"],
+      results["/who-its-for.html"],
+      results["/privacy.html"],
+      results["/404.html"],
+      results["/holding.html"]
+    );
+    assertTrustProof(results["/"], results["/privacy.html"], results["/who-its-for.html"]);
+    assertMotionAndInteraction(stylesText, results["/"]);
+
+    await mkdir(artifactDir, { recursive: true });
+    const summary = {
+      status: "pass",
+      mode,
+      baseUrl: resolvedBaseUrl,
+      checkedRoutes: PUBLIC_ROUTES,
+      acceptanceChecks: [
+        "first viewport",
+        "proof status",
+        "release-stage claims",
+        "audience paths",
+        "CTA hierarchy",
+        "trust proof",
+        "motion and interaction"
+      ],
+      caveats: [
+        "Interactive BuildScan GLB remains approval-gated for preview/production exposure.",
+        "Deployed preview validation is still required before production.",
+        "This smoke checks rendered copy/structure; it complements, not replaces, visual screenshot review."
+      ],
+      routes: Object.fromEntries(Object.entries(results).map(([route, result]) => [
+        route,
+        {
+          title: result.title,
+          linkCount: result.controls.links.length,
+          buttonCount: result.controls.buttons.length,
+          textLength: result.text.length
+        }
+      ]))
+    };
+    const summaryPath = path.join(artifactDir, "product-design-acceptance-smoke.json");
+    await writeJson(summaryPath, summary);
+
+    return {
+      ...summary,
+      summaryPath
+    };
+  } finally {
+    await browser.close();
+    if (server) {
+      await server.stop();
+    }
+  }
+}
+
+const executedDirectly = process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href;
+
+if (executedDirectly) {
+  const args = parseArgs(process.argv.slice(2));
+  const mode = args.mode || "local";
+
+  runProductDesignAcceptanceSmoke({
+    artifactDir: args["artifact-dir"],
+    baseUrl: args["base-url"] || process.env.QA_BASE_URL,
+    mode
+  })
+    .then((summary) => {
+      console.log(JSON.stringify({
+        status: summary.status,
+        mode: summary.mode,
+        baseUrl: summary.baseUrl,
+        checkedRoutes: summary.checkedRoutes,
+        summaryPath: summary.summaryPath
+      }, null, 2));
+    })
+    .catch((error) => {
+      console.error(error instanceof Error ? error.message : String(error));
+      process.exitCode = 1;
+    });
+}

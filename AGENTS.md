@@ -55,8 +55,11 @@ Ask before:
 ## Netlify And Preview Auth
 
 - Public production URL: `https://robsonai.co.uk`.
-- Public root currently serves the holding page.
-- Fuller site routes are protected by Netlify Edge Function preview auth.
+- Public root currently serves the full public website.
+- `index.html`, `building-analyst.html`, `who-its-for.html`, and `privacy.html` are public pages.
+- `holding.html` remains as a noindex fallback/historical page.
+- Preview auth is retained for future private/staging routes and local validation, but current public pages are not protected by Netlify Edge Function preview auth.
+- The local BuildScan interactive GLB candidate is uncommitted and approval-gated; do not commit, push, preview deploy, or production deploy it without Wayne's explicit approval.
 - Preview auth env vars:
   - `ROBSON_PREVIEW_USERNAME`
   - `ROBSON_PREVIEW_PASSWORD`
@@ -73,12 +76,19 @@ Use the narrowest relevant checks:
 
 ```bash
 npm run qa:preview-auth
+npm run qa:buildscan-viewer
+npm run qa:rendered
+npm run qa:release-inventory
+npm run qa:release-security
+npm run qa:release-headers
+npm run qa:release:local
+npm run qa:release:preview
 npm run qa:measurement:local
 npm run qa:measurement:evidence
 git diff --check
 ```
 
-For live preview auth checks, use the Keychain credential and do not print it.
+For live preview auth checks, use the Keychain credential and do not print it. Run `npm run qa:release:local` before commit/preview approval when the interactive BuildScan viewer candidate is in scope. After Wayne approves a Netlify preview deploy, run `QA_BASE_URL=<preview> npm run qa:release:preview`; it must not fall back to production or local URLs and rejects production by default.
 
 ## Git Discipline
 

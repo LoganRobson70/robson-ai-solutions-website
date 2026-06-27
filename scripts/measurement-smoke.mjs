@@ -20,15 +20,27 @@ const APP_ENTRY_PATH = "/";
 const REQUIRED_PATHS = [
   "/",
   "/index.html",
+  "/buildscan-viewer.html",
   "/privacy.html",
   "/building-analyst.html",
   "/who-its-for.html",
   "/robots.txt",
   "/sitemap.xml",
-  "/assets/og/robsonai-cover-1200x630.png"
+  "/assets/og/robsonai-cover-1200x630.png",
+  "/assets/robson-ai-icon-v3-32.png",
+  "/assets/robson-ai-icon-v3-180.png",
+  "/assets/robson-ai-icon-v3-128.webp",
+  "/assets/robson-ai-icon-v3-transparent-320.webp",
+  "/assets/showcase/buildscan-ludgershall-model-view-420.webp",
+  "/assets/showcase/buildscan-ludgershall-model-view-840.webp",
+  "/assets/showcase/buildscan-ludgershall-public.glb",
+  "/assets/vendor/three-0.164.1/build/three.module.js",
+  "/assets/vendor/three-0.164.1/examples/jsm/loaders/GLTFLoader.js",
+  "/assets/vendor/three-0.164.1/examples/jsm/controls/OrbitControls.js",
+  "/assets/vendor/three-0.164.1/examples/jsm/libs/meshopt_decoder.module.js",
+  "/assets/vendor/three-0.164.1/examples/jsm/utils/BufferGeometryUtils.js"
 ];
 
-const DEFAULT_PREVIEW_URL = "https://robsonai.co.uk/";
 const __filename = fileURLToPath(import.meta.url);
 
 function parseArgs(argv) {
@@ -272,13 +284,13 @@ export async function runMeasurementSmoke(options = {}) {
   let server;
   let baseUrl = options.baseUrl;
 
+  if (mode === "preview" && !baseUrl) {
+    throw new Error("Preview measurement smoke requires QA_BASE_URL or --base-url; refusing to fall back to production.");
+  }
+
   if (!baseUrl) {
-    if (mode === "preview") {
-      baseUrl = DEFAULT_PREVIEW_URL;
-    } else {
-      server = await startStaticServer(process.cwd());
-      baseUrl = server.baseUrl;
-    }
+    server = await startStaticServer(process.cwd());
+    baseUrl = server.baseUrl;
   }
 
   const browser = await chromium.launch({ headless: true });

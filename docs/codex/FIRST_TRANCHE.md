@@ -1,9 +1,25 @@
 # First Recommended Autonomous Codex Work Block
 
-Last updated: 2026-05-30 11:30 Europe/London
+Last updated: 2026-06-27 11:42 BST
 Project: Robson AI Solutions Website
 Recommended tranche name: `measurement-qa-and-preview-auth-baseline`
-Status: complete locally; Netlify env var setup/rotation remains approval-gated.
+Status: historical baseline tranche; complete
+
+## Current Status Note
+
+This document records the first Codex baseline tranche from 2026-05-30.
+
+It is no longer the recommended next work block. The public full website is now live, preview auth is retained for future private/staging routes, and the current approval-gated release candidate is the interactive BuildScan GLB preview.
+
+Current planning sources:
+
+- `docs/codex/TRACKER.md`
+- `docs/codex/PRD.md`
+- `docs/release-handover.md`
+- `docs/codex/WEBSITE_EXCELLENCE_PROGRAMME.md`
+- `docs/codex/PRODUCT_IA_PROOF_MAP.md`
+
+Use the tranche detail below as historical evidence only.
 
 ## Objective
 

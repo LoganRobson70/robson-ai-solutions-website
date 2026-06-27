@@ -9,8 +9,24 @@ import { startStaticServer } from "./lib/static-server.mjs";
 const __filename = fileURLToPath(import.meta.url);
 const APP_ENTRY_PATH = "/";
 const HTML_VALIDATE_RULES = ["doctype-style:off", "void-style:off"];
-const HTML_FILES = ["holding.html", "index.html", "preview.html", "privacy.html", "building-analyst.html", "who-its-for.html"];
-const A11Y_PATHS = ["/", "/index.html", "/privacy.html", "/building-analyst.html", "/who-its-for.html"];
+const HTML_FILES = [
+  "holding.html",
+  "index.html",
+  "preview.html",
+  "privacy.html",
+  "building-analyst.html",
+  "who-its-for.html",
+  "buildscan-viewer.html"
+];
+const A11Y_PATHS = ["/", "/index.html", "/privacy.html", "/building-analyst.html", "/who-its-for.html", "/buildscan-viewer.html"];
+const LIGHTHOUSE_BUDGETS = {
+  accessibilityMin: 95,
+  bestPracticesMin: 100,
+  clsMax: 0.1,
+  lcpMax: 2500,
+  performanceMin: 90,
+  seoMin: 100
+};
 
 function timestampLabel() {
   return new Date().toISOString().replace(/[:.]/g, "-");
@@ -136,6 +152,58 @@ async function runLighthouse(artifactDir, baseUrl) {
   };
 }
 
+function assertLighthouseBudget(lighthouse) {
+  const medianRun = lighthouse.runs.find((run) => run.run === lighthouse.medianPerformanceRun);
+
+  if (!medianRun) {
+    throw new Error("Lighthouse budget failed: median run was not found.");
+  }
+
+  const failures = [];
+
+  if (medianRun.performance < LIGHTHOUSE_BUDGETS.performanceMin) {
+    failures.push(`performance ${medianRun.performance} < ${LIGHTHOUSE_BUDGETS.performanceMin}`);
+  }
+
+  if (medianRun.accessibility < LIGHTHOUSE_BUDGETS.accessibilityMin) {
+    failures.push(`accessibility ${medianRun.accessibility} < ${LIGHTHOUSE_BUDGETS.accessibilityMin}`);
+  }
+
+  if (medianRun.bestPractices < LIGHTHOUSE_BUDGETS.bestPracticesMin) {
+    failures.push(`best practices ${medianRun.bestPractices} < ${LIGHTHOUSE_BUDGETS.bestPracticesMin}`);
+  }
+
+  if (medianRun.seo < LIGHTHOUSE_BUDGETS.seoMin) {
+    failures.push(`SEO ${medianRun.seo} < ${LIGHTHOUSE_BUDGETS.seoMin}`);
+  }
+
+  if (medianRun.lcp > LIGHTHOUSE_BUDGETS.lcpMax) {
+    failures.push(`LCP ${Math.round(medianRun.lcp)} ms > ${LIGHTHOUSE_BUDGETS.lcpMax} ms`);
+  }
+
+  if (medianRun.cls > LIGHTHOUSE_BUDGETS.clsMax) {
+    failures.push(`CLS ${medianRun.cls} > ${LIGHTHOUSE_BUDGETS.clsMax}`);
+  }
+
+  if (failures.length) {
+    throw new Error(`Lighthouse budget failed:\n- ${failures.join("\n- ")}`);
+  }
+
+  return {
+    actual: {
+      accessibility: medianRun.accessibility,
+      bestPractices: medianRun.bestPractices,
+      cls: medianRun.cls,
+      lcp: medianRun.lcp,
+      performance: medianRun.performance,
+      seo: medianRun.seo
+    },
+    medianPerformanceRun: medianRun.run,
+    passed: true,
+    thresholds: LIGHTHOUSE_BUDGETS
+  };
+}
+
 async function main() {
   const artifactDir = path.resolve("output/measurement", `evidence-${timestampLabel()}`);
   await mkdir(artifactDir, { recursive: true });
@@ -152,6 +220,7 @@ async function main() {
     });
     const axe = await runAxe(artifactDir, server.baseUrl);
     const lighthouse = await runLighthouse(artifactDir, server.baseUrl);
+    const lighthouseBudget = assertLighthouseBudget(lighthouse);
 
     const summary = {
       artifactDir,
@@ -159,6 +228,7 @@ async function main() {
       browserDriver,
       htmlValidate,
       lighthouse,
+      lighthouseBudget,
       smoke
     };
 

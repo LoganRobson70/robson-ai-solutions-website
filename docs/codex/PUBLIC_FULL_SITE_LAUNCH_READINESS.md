@@ -1,8 +1,29 @@
 # Public Full-Site Launch Readiness
 
-Last updated: 2026-05-30 17:56 Europe/London
+Last updated: 2026-06-27 11:39 BST
 Branch: `codex/public-full-site-launch-readiness`
-Status: preview-readiness branch, not production launch
+Status: historical preview-readiness record; public full-site launch has since been completed
+
+## Current Status And Supersession Note
+
+This document records the launch-readiness preview branch from 2026-05-30.
+
+It is no longer the active production posture:
+
+- The public full-site launch was completed on 2026-06-20.
+- Production `https://robsonai.co.uk` now serves the full public website.
+- Current public pages are `/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html`.
+- `holding.html` remains as a noindex fallback/historical page.
+
+Current release state is governed by:
+
+- `docs/codex/TRACKER.md`
+- `docs/codex/PRD.md`
+- `docs/release-handover.md`
+- `docs/codex/WEBSITE_EXCELLENCE_PROGRAMME.md`
+- `docs/codex/PRODUCT_IA_PROOF_MAP.md`
+
+Use the validation evidence below as historical proof of the launch-readiness branch, not as a current deployment instruction.
 
 ## What This Branch Prepares
 

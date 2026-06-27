@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>BuildScan interactive model viewer</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/robson-ai-icon-v3-32.png?v=20260627">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./assets/vendor/three-0.164.1/build/three.module.js",
+          "three/addons/": "./assets/vendor/three-0.164.1/examples/jsm/"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --panel: rgba(18, 18, 20, 0.88);
+        --line: rgba(255, 255, 255, 0.14);
+        --text: rgba(255, 255, 255, 0.88);
+        --muted: rgba(255, 255, 255, 0.66);
+        --accent: #7da0ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #151515;
+      }
+
+      body {
+        font-family: Inter, Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .viewer-shell {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        cursor: grab;
+        touch-action: none;
+      }
+
+      canvas:active {
+        cursor: grabbing;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      .viewer-toolbar {
+        position: absolute;
+        right: 14px;
+        top: 14px;
+        z-index: 3;
+        display: flex;
+        max-width: min(38rem, calc(100vw - 28px));
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: flex-end;
+        padding: 6px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--panel);
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(16px);
+      }
+
+      .viewer-group {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 4px;
+        padding: 5px 6px 6px;
+        border: 1px solid rgba(125, 160, 255, 0.18);
+        border-radius: 8px;
+        background: rgba(125, 160, 255, 0.08);
+      }
+
+      .viewer-group span {
+        color: var(--muted);
+        font-size: 9px;
+        font-weight: 820;
+        letter-spacing: 0;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+      button {
+        min-width: 34px;
+        min-height: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 7px;
+        background: rgba(255, 255, 255, 0.09);
+        color: var(--text);
+        cursor: pointer;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 760;
+      }
+
+      button:hover,
+      button:focus-visible,
+      button[aria-pressed="true"] {
+        border-color: rgba(125, 160, 255, 0.55);
+        background: rgba(125, 160, 255, 0.35);
+        color: #ffffff;
+        outline: none;
+      }
+
+      .status {
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
+        z-index: 3;
+        max-width: min(34rem, calc(100vw - 32px));
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.62);
+        color: var(--text);
+        font-size: 12px;
+        font-weight: 660;
+        line-height: 1.3;
+      }
+
+      .status:empty {
+        display: none;
+      }
+
+      @media (max-width: 560px) {
+        .viewer-toolbar {
+          left: 10px;
+          right: 10px;
+          justify-content: flex-start;
+        }
+
+        .viewer-group {
+          padding: 6px;
+        }
+
+        button {
+          min-width: 42px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="viewer-shell" aria-label="BuildScan interactive model viewer">
+      <h1 class="sr-only">BuildScan interactive model viewer</h1>
+      <div class="viewer-toolbar" role="toolbar" aria-label="BuildScan model viewer controls">
+        <div class="viewer-group">
+          <span>Navigate</span>
+          <div class="button-row">
+            <button type="button" data-tool="orbit" aria-pressed="true">Orbit</button>
+            <button type="button" data-tool="pan" aria-pressed="false">Pan</button>
+          </div>
+        </div>
+        <div class="viewer-group">
+          <span>View</span>
+          <div class="button-row">
+            <button type="button" data-view="top" aria-pressed="false">Top</button>
+            <button type="button" data-view="front" aria-pressed="false">Front</button>
+            <button type="button" data-view="right" aria-pressed="false">Right</button>
+            <button type="button" data-view="iso" aria-pressed="true">Iso</button>
+            <button type="button" data-action="spin" aria-pressed="false">Spin</button>
+          </div>
+        </div>
+        <div class="viewer-group">
+          <span>Zoom</span>
+          <div class="button-row">
+            <button type="button" data-action="zoom-in">In</button>
+            <button type="button" data-action="zoom-out">Out</button>
+            <button type="button" data-action="reset">Reset</button>
+          </div>
+        </div>
+      </div>
+      <p class="sr-only" id="viewerDescription">
+        Interactive BuildScan model preview. Use the toolbar buttons for orbit, pan, preset views, zoom and reset. Pointer users can drag to orbit and scroll or pinch to zoom.
+      </p>
+      <div class="status" id="viewerStatus" role="status" aria-live="polite">Loading optimised model...</div>
+    </main>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+      import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+      import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
+
+      const status = document.querySelector("#viewerStatus");
+      const viewerShell = document.querySelector(".viewer-shell");
+      const viewButtons = Array.from(document.querySelectorAll("[data-view]"));
+      const toolButtons = Array.from(document.querySelectorAll("[data-tool]"));
+      const spinButton = document.querySelector('[data-action="spin"]');
+      const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      let loadedModel = null;
+      let currentTool = "orbit";
+      let animationFrameId = 0;
+      let renderUntil = 0;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x151515);
+
+      const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100000);
+      let renderer;
+
+      try {
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+      } catch (error) {
+        setViewerError("Interactive 3D is unavailable in this browser. The static image remains available on the page.", error);
+        throw error;
+      }
+
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1;
+      renderer.domElement.setAttribute("aria-describedby", "viewerDescription viewerStatus");
+      renderer.domElement.setAttribute("aria-label", "Interactive BuildScan GLB model preview");
+      renderer.domElement.setAttribute("role", "img");
+      viewerShell.append(renderer.domElement);
+
+      renderer.domElement.addEventListener("webglcontextlost", (event) => {
+        event.preventDefault();
+        setViewerError("The browser ran out of graphics resources while loading the model.");
+      });
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.screenSpacePanning = true;
+      controls.mouseButtons = {
+        LEFT: THREE.MOUSE.ROTATE,
+        MIDDLE: THREE.MOUSE.DOLLY,
+        RIGHT: THREE.MOUSE.PAN
+      };
+
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x303030, 2.2));
+      const sun = new THREE.DirectionalLight(0xffffff, 1.8);
+      sun.position.set(4, 6, 8);
+      scene.add(sun);
+
+      const loader = new GLTFLoader();
+      loader.setMeshoptDecoder(MeshoptDecoder);
+      loader.load(
+        "./assets/showcase/buildscan-ludgershall-public.glb",
+        (gltf) => {
+          const model = gltf.scene || gltf.scenes?.[0];
+          if (!model) {
+            setViewerError("The model loaded, but no 3D scene was available.");
+            return;
+          }
+
+          model.traverse((child) => {
+            if (!child.isMesh) return;
+            child.frustumCulled = false;
+            const materials = Array.isArray(child.material) ? child.material : [child.material];
+            materials.forEach((material) => {
+              if (!material) return;
+              material.side = THREE.DoubleSide;
+              if (material.map) {
+                material.map.colorSpace = THREE.SRGBColorSpace;
+                material.map.anisotropy = renderer.capabilities.getMaxAnisotropy();
+              }
+            });
+          });
+
+          loadedModel = model;
+          scene.add(model);
+          setViewPreset("iso");
+          setViewerReady("Drag to orbit. Scroll or pinch to zoom.");
+          window.__buildscanViewerReady = true;
+          requestRender(1200);
+        },
+        (event) => {
+          if (event.lengthComputable) {
+            const progress = Math.round((event.loaded / event.total) * 100);
+            setStatus(`Loading optimised model... ${progress}%`);
+            postViewerState("loading", { progress });
+          }
+        },
+        (error) => {
+          setViewerError("Could not load the optimised model. The static image remains available on the page.", error);
+        }
+      );
+
+      toolButtons.forEach((button) => {
+        button.addEventListener("click", () => setTool(button.dataset.tool));
+      });
+
+      viewButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          setSpin(false);
+          setViewPreset(button.dataset.view);
+        });
+      });
+
+      spinButton.addEventListener("click", () => setSpin(!controls.autoRotate));
+
+      document.querySelector('[data-action="zoom-in"]').addEventListener("click", () => zoomModel(0.82));
+      document.querySelector('[data-action="zoom-out"]').addEventListener("click", () => zoomModel(1.18));
+      document.querySelector('[data-action="reset"]').addEventListener("click", () => {
+        setSpin(false);
+        setViewPreset("iso");
+      });
+
+      renderer.domElement.addEventListener("pointerdown", () => {
+        if (controls.autoRotate) {
+          setSpin(false);
+          status.textContent = "Manual orbit. Spin paused.";
+        }
+        requestRender(1600);
+      });
+      renderer.domElement.addEventListener("pointermove", () => requestRender(800));
+      renderer.domElement.addEventListener("wheel", () => requestRender(1200), { passive: true });
+      renderer.domElement.addEventListener("touchmove", () => requestRender(1200), { passive: true });
+
+      controls.addEventListener("change", () => requestRender(300));
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          cancelRenderLoop();
+          return;
+        }
+
+        requestRender(400);
+      });
+
+      function setTool(tool) {
+        currentTool = tool === "pan" ? "pan" : "orbit";
+        controls.enableRotate = currentTool === "orbit";
+        controls.enablePan = true;
+        controls.mouseButtons = currentTool === "pan"
+          ? { LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.ROTATE }
+          : { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+        toolButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.tool === currentTool)));
+        setStatus(currentTool === "pan" ? "Pan mode. Drag to move across the model." : "Orbit mode. Drag to rotate the model.");
+        requestRender(600);
+      }
+
+      function setSpin(enabled) {
+        if (enabled && reduceMotionQuery.matches) {
+          controls.autoRotate = false;
+          spinButton.setAttribute("aria-pressed", "false");
+          setStatus("Spin is off because reduced motion is enabled.");
+          requestRender(400);
+          return;
+        }
+
+        controls.autoRotate = Boolean(enabled);
+        controls.autoRotateSpeed = 1.25;
+        spinButton.setAttribute("aria-pressed", String(controls.autoRotate));
+        setStatus(controls.autoRotate ? "Spin on. Drag to take over the view." : "Spin off.");
+        requestRender(controls.autoRotate ? 0 : 400);
+      }
+
+      function setViewPreset(view) {
+        if (!loadedModel) return;
+        const box = new THREE.Box3().setFromObject(loadedModel);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z) || 1;
+        const distance = maxDim / (2 * Math.tan((camera.fov * Math.PI / 180) / 2)) * 1.35;
+        const offsets = {
+          top: new THREE.Vector3(0, distance, 0.001),
+          front: new THREE.Vector3(0, 0, distance),
+          right: new THREE.Vector3(distance, 0, 0),
+          iso: new THREE.Vector3(distance * 0.62, distance * 0.62, distance * 0.82)
+        };
+        const upVectors = {
+          top: new THREE.Vector3(0, 0, -1),
+          front: new THREE.Vector3(0, 1, 0),
+          right: new THREE.Vector3(0, 1, 0),
+          iso: new THREE.Vector3(0, 1, 0)
+        };
+        const selectedView = offsets[view] ? view : "iso";
+        camera.up.copy(upVectors[selectedView]);
+        camera.position.copy(center).add(offsets[selectedView]);
+        camera.near = Math.max(maxDim / 10000, 0.01);
+        camera.far = Math.max(maxDim * 100, 1000);
+        camera.lookAt(center);
+        camera.updateProjectionMatrix();
+        controls.target.copy(center);
+        controls.update();
+        viewButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.view === selectedView)));
+        setStatus(`${selectedView === "iso" ? "Isometric" : selectedView.charAt(0).toUpperCase() + selectedView.slice(1)} view.`);
+        requestRender(700);
+      }
+
+      function zoomModel(scale) {
+        if (!loadedModel) return;
+        const direction = camera.position.clone().sub(controls.target);
+        direction.multiplyScalar(scale);
+        camera.position.copy(controls.target).add(direction);
+        camera.updateProjectionMatrix();
+        controls.update();
+        setStatus(scale < 1 ? "Zoomed in." : "Zoomed out.");
+        requestRender(700);
+      }
+
+      function resize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        requestRender(700);
+      }
+
+      window.addEventListener("resize", resize);
+
+      function setStatus(message) {
+        status.textContent = message;
+      }
+
+      function postViewerState(state, detail = {}) {
+        window.parent?.postMessage(
+          {
+            source: "buildscan-viewer",
+            state,
+            ...detail
+          },
+          window.location.origin
+        );
+      }
+
+      function setViewerReady(message) {
+        setStatus(message);
+        postViewerState("ready", { message });
+      }
+
+      function setViewerError(message, error) {
+        setStatus(message);
+        window.__buildscanViewerError = error?.message || message;
+        postViewerState("error", {
+          message,
+          error: window.__buildscanViewerError
+        });
+      }
+
+      function requestRender(duration = 600) {
+        if (document.hidden) {
+          return;
+        }
+
+        if (duration > 0) {
+          renderUntil = Math.max(renderUntil, performance.now() + duration);
+        }
+
+        if (!animationFrameId) {
+          animationFrameId = requestAnimationFrame(animate);
+        }
+      }
+
+      function cancelRenderLoop() {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = 0;
+        }
+      }
+
+      function animate(timestamp) {
+        animationFrameId = 0;
+
+        if (document.hidden) {
+          return;
+        }
+
+        controls.update();
+        renderer.render(scene, camera);
+
+        if (controls.autoRotate || timestamp < renderUntil) {
+          animationFrameId = requestAnimationFrame(animate);
+        }
+      }
+    </script>
+  </body>
+</html>

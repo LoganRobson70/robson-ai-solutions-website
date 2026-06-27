@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCopyEmail(analytics);
   setupInteractionTracking(analytics);
   setupInteractivePanels();
+  setupBuildScanInteractiveModel(analytics);
   setupNavState();
   setupPrivacyNotice();
   setupAmbientMotion();
@@ -425,6 +426,116 @@ function setupInteractivePanels() {
   });
 }
 
+function setupBuildScanInteractiveModel(analytics) {
+  const viewers = document.querySelectorAll("[data-buildscan-interactive]");
+
+  if (!viewers.length) {
+    return;
+  }
+
+  viewers.forEach((viewer) => {
+    const button = viewer.querySelector("[data-buildscan-load-model]");
+    const frame = viewer.querySelector(".buildscan-model-frame");
+    const image = viewer.querySelector(".buildscan-model-image");
+    const loadStatus = viewer.querySelector("[data-buildscan-load-status]");
+
+    if (!button || !frame) {
+      return;
+    }
+
+    let loadTimeout = 0;
+
+    const setLoadStatus = (message) => {
+      if (loadStatus) {
+        loadStatus.textContent = message;
+      }
+    };
+
+    const resetLoadingState = (message) => {
+      window.clearTimeout(loadTimeout);
+      viewer.classList.remove("is-loading");
+      viewer.classList.add("is-error");
+      viewer.setAttribute("aria-busy", "false");
+      button.disabled = false;
+      button.removeAttribute("aria-busy");
+      button.textContent = "Retry interactive model";
+      setLoadStatus(message);
+      frame.removeAttribute("src");
+    };
+
+    const markModelReady = () => {
+      window.clearTimeout(loadTimeout);
+      viewer.classList.remove("is-loading", "is-error");
+      viewer.classList.add("is-loaded");
+      viewer.setAttribute("aria-busy", "false");
+      button.removeAttribute("aria-busy");
+      button.textContent = "Interactive model loaded";
+      if (image) {
+        image.setAttribute("aria-hidden", "true");
+      }
+      setLoadStatus("Interactive model loaded.");
+      analytics.track("proof_interaction", {
+        analytics_id: button.dataset.analyticsId || "buildscan-load-interactive-model",
+        section: viewer.closest("[data-section]")?.dataset.section || "buildscan-model-view",
+        interaction_type: "interactive_model_loaded"
+      });
+    };
+
+    window.addEventListener("message", (event) => {
+      if (event.origin !== window.location.origin || event.source !== frame.contentWindow) {
+        return;
+      }
+
+      const data = event.data || {};
+
+      if (data.source !== "buildscan-viewer") {
+        return;
+      }
+
+      if (data.state === "loading" && Number.isFinite(data.progress)) {
+        setLoadStatus(`Loading interactive model... ${data.progress}%`);
+        return;
+      }
+
+      if (data.state === "ready") {
+        markModelReady();
+        return;
+      }
+
+      if (data.state === "error") {
+        resetLoadingState(data.message || "Interactive model could not load. The approved image remains available.");
+        analytics.track("proof_interaction", {
+          analytics_id: button.dataset.analyticsId || "buildscan-load-interactive-model",
+          section: viewer.closest("[data-section]")?.dataset.section || "buildscan-model-view",
+          interaction_type: "interactive_model_error"
+        });
+      }
+    });
+
+    button.addEventListener("click", () => {
+      const src = frame.dataset.src;
+
+      if (!src || viewer.classList.contains("is-loaded") || viewer.classList.contains("is-loading")) {
+        return;
+      }
+
+      viewer.classList.remove("is-error");
+      viewer.classList.add("is-loading");
+      viewer.setAttribute("aria-busy", "true");
+      button.disabled = true;
+      button.setAttribute("aria-busy", "true");
+      button.textContent = "Loading interactive model...";
+      setLoadStatus("Loading interactive model...");
+
+      loadTimeout = window.setTimeout(() => {
+        resetLoadingState("Interactive model timed out. The approved image remains available.");
+      }, 30000);
+
+      frame.src = src;
+    });
+  });
+}
+
 function setupNavState() {
   const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
 
@@ -613,7 +724,7 @@ function setupSectionReveal() {
   }
 
   const revealTargets = document.querySelectorAll(
-    ".home-hero-copy, .home-hero-stage, .home-section-intro, .home-focus-manifesto, .home-product-map, .workflow-finder-board, .home-method-grid, .home-belief-panel, .home-contact-panel, .assessment-lens-board"
+    ".home-hero-stage, .home-section-intro, .home-focus-manifesto, .home-product-map, .workflow-finder-board, .home-method-grid, .home-belief-panel, .home-contact-panel, .assessment-lens-board"
   );
 
   if (!revealTargets.length) {

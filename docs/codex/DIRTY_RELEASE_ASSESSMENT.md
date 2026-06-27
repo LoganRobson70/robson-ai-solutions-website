@@ -3,6 +3,19 @@
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Branch: `codex/professionalize-website`
 
+## Current Status Note - 2026-06-27
+
+This document is a historical assessment of the 2026-05-30 dirty release candidate.
+
+It is not the current release posture:
+
+- The public full-site launch has since been completed.
+- Production `https://robsonai.co.uk` now serves the full public website.
+- Current release state is governed by `docs/codex/TRACKER.md`, `docs/codex/PRD.md`, `docs/release-handover.md`, `docs/codex/WEBSITE_EXCELLENCE_PROGRAMME.md`, and `docs/codex/PRODUCT_IA_PROOF_MAP.md`.
+- The current dirty candidate is the approval-gated BuildScan interactive GLB release candidate plus website-excellence docs/routing changes.
+
+The content below is retained as historical evidence only.
+
 ## Summary
 
 The remaining dirty worktree is a broad website release candidate, not part of the Codex baseline/auth PR.

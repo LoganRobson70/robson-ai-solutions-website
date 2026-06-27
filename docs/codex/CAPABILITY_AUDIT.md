@@ -1,9 +1,19 @@
 # Codex Capability Audit - Robson AI Solutions Website
 
-Last updated: 2026-05-30 11:30 Europe/London
+Last updated: 2026-06-27 11:43 BST
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Branch: `codex/professionalize-website`
+Branch: historical audit originally run on `codex/professionalize-website`; current active checkout is `main`
 Audit type: project-specific capability baseline using `codex-full-capability-checklist.md`
+
+## Current Status Note
+
+This audit remains useful as a capability baseline, but the project state has moved on:
+
+- The public full website is now live at `https://robsonai.co.uk`.
+- Preview auth is retained for future private/staging routes and unit smoke testing, not for the current public pages.
+- Current release work is governed by `docs/codex/TRACKER.md`, `docs/codex/PRD.md`, `docs/release-handover.md`, `docs/codex/WEBSITE_EXCELLENCE_PROGRAMME.md`, and `docs/codex/PRODUCT_IA_PROOF_MAP.md`.
+- The current dirty release candidate is the approval-gated BuildScan interactive GLB preview and associated QA/header/docs work.
+- Any recommendations below that refer to the first baseline/auth tranche should be treated as historical unless repeated in the current tracker.
 
 ## 1. Audit Scope
 

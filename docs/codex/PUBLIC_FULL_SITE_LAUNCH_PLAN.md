@@ -1,10 +1,31 @@
 # Public Full-Site Launch Plan
 
-Last updated: 2026-05-30 17:01 Europe/London
+Last updated: 2026-06-27 11:39 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: plan only; no public full-site launch has been performed
+Status: historical plan; public full-site launch has since been completed
+
+## 0. Current Status And Supersession Note
+
+This document records the original public full-site launch plan from 2026-05-30.
+
+It is no longer the active release plan:
+
+- The public full-site launch was completed on 2026-06-20.
+- Production `https://robsonai.co.uk` now serves the full public website.
+- `/`, `/index.html`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html` are public.
+- `holding.html` remains as a noindex fallback/historical page.
+- Current release state is governed by:
+  - `docs/codex/TRACKER.md`
+  - `docs/codex/PRD.md`
+  - `docs/release-handover.md`
+  - `docs/codex/WEBSITE_EXCELLENCE_PROGRAMME.md`
+  - `docs/codex/PRODUCT_IA_PROOF_MAP.md`
+
+Use this document for historical context only. Do not treat its holding/private-preview assumptions as current.
 
 ## 1. Current Production Stance
+
+Historical 2026-05-30 stance:
 
 Production is live at `https://robsonai.co.uk`.
 
