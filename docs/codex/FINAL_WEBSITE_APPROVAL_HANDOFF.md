@@ -1,56 +1,54 @@
 # Final Website Approval Handoff - Robson AI Solutions Website
 
-Last updated: 2026-06-28 17:30 BST
+Last updated: 2026-06-28 18:20 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: current local visual-refinement candidate ready for Wayne review; no commit, preview deploy, or production deploy approved
+Status: approved visual-refinement release is live and production-gated
 
 ## 1. Purpose
 
-This handoff presents the current Robson AI Solutions website candidate for Wayne's review before any commit, Netlify preview, or future live deployment.
+This handoff records the approved Robson AI Solutions website release now live at production after the `website-visual-refinement-proof-surface-polish` tranche.
 
 Important current-state note:
 
-- The public production website is already live at `https://robsonai.co.uk`.
-- Latest live production deploy before this local candidate: `6a4110fe34f4b66db778e4bb`.
-- Current local candidate: `website-visual-refinement-proof-surface-polish`.
-- Local review URL: `http://127.0.0.1:8130/`.
-- This document does not approve staging, commit, branch push, Netlify preview, production verification, production deploy, DNS/domain work, analytics, forms, customer data handling, or external messages.
+- Public production website: `https://robsonai.co.uk`
+- Netlify production deploy: `6a415725a6f69e52078a74df`
+- Unique deploy URL: `https://6a415725a6f69e52078a74df--robson-ai-website.netlify.app`
+- Production release gate: `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`
+- Rollback candidate before this publish: `6a4110fe34f4b66db778e4bb`
 
-## 2. What Changed In The Local Candidate
+This document does not approve branch push, GitHub PR, DNS/domain work, analytics, forms, customer data handling, external messages, or further production deploys.
 
-The candidate addresses Wayne's visual review comments:
+## 2. What Changed In The Release
 
-- The awkward floating homepage hero logo is removed.
-- Finder, Operations, Method, Credibility, and Contact are tightened from word-heavy panels into clearer product/proof surfaces.
-- Existing reduced-motion-aware pointer-depth behaviour is extended to the refined proof surfaces.
-- BuildScan remains opt-in with a static fallback and cautious public wording.
-- Property operations remains workflow proof, not a live customer-system integration claim.
-- Email-first contact remains in place with no website form or customer-data store.
+The release addresses Wayne's visual review comments:
 
-## 3. Review Links
+- Removed the awkward floating homepage hero logo.
+- Tightened Finder, Operations, Method, Credibility, and Contact from word-heavy panels into clearer product/proof surfaces.
+- Extended existing reduced-motion-aware pointer-depth behaviour to refined proof surfaces.
+- Kept BuildScan opt-in with a static fallback and cautious public wording.
+- Kept property operations as workflow proof, not a live customer-system integration claim.
+- Kept email-first contact with no website form or customer-data store.
 
-Review the local candidate first:
+## 3. Live Review Links
 
-1. Home: `http://127.0.0.1:8130/`
-2. Building Analyst: `http://127.0.0.1:8130/building-analyst.html`
-3. Who it is for: `http://127.0.0.1:8130/who-its-for.html`
-4. Privacy: `http://127.0.0.1:8130/privacy.html`
-5. BuildScan viewer: `http://127.0.0.1:8130/buildscan-viewer.html`
-6. 404 recovery page: `http://127.0.0.1:8130/404.html`
-7. Holding fallback: `http://127.0.0.1:8130/holding.html`
+Review production:
 
-Production comparison, not the candidate:
-
-- `https://robsonai.co.uk`
+1. Home: `https://robsonai.co.uk/`
+2. Building Analyst: `https://robsonai.co.uk/building-analyst.html`
+3. Who it is for: `https://robsonai.co.uk/who-its-for.html`
+4. Privacy: `https://robsonai.co.uk/privacy.html`
+5. BuildScan viewer: `https://robsonai.co.uk/buildscan-viewer.html`
+6. 404 recovery page: `https://robsonai.co.uk/404.html`
+7. Holding fallback: `https://robsonai.co.uk/holding.html`
 
 Review checklist:
 
 - `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`
 
-## 4. Product Direction To Approve
+## 4. Product Direction Confirmed
 
-Approve the candidate only if it accurately represents Robson AI Solutions as:
+The live website represents Robson AI Solutions as:
 
 - Professional building intelligence for surveying, evidence, reporting, and property operations thinking.
 - A practical workflow-led product direction, not a generic chatbot.
@@ -63,37 +61,40 @@ Approve the candidate only if it accurately represents Robson AI Solutions as:
 - Professional boundaries and proof over claims: the site should not imply autonomous diagnosis, finished customer integrations, or live customer/council system connectivity.
 - Email-first contact, with no contact form or customer-data capture on the current website.
 
-## 5. Latest Local Evidence
+## 5. Release Evidence
 
-Full local release gate:
+Local release gate:
 
 - Command: `npm run qa:release:local`
 - Result: pass, 37 steps.
-- Artifact: `output/release-local-gate/gate-2026-06-28T16-26-01-341Z/release-local-gate.json`.
+- Artifact: `output/release-local-gate/gate-2026-06-28T16-54-23-455Z/release-local-gate.json`.
 
-Current local evidence:
+Preview release gate:
 
-- Release inventory: `output/release-inventory/inventory-2026-06-28T16-26-10-244Z/release-candidate-inventory.json`.
-- Staging manifest: `output/release-staging-manifest/smoke-2026-06-28T16-26-10-596Z/release-staging-manifest-smoke.json`.
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T16-27-41-612Z`.
-- Measurement evidence: `output/measurement/evidence-2026-06-28T16-28-27-073Z`.
-- Product/design: `output/product-design-acceptance/smoke-2026-06-28T16-26-39-864Z/product-design-acceptance-smoke.json`.
-- Visual polish: `output/visual-polish/smoke-2026-06-28T16-27-09-578Z/visual-polish-smoke.json`.
-- Responsive route smoke: `output/responsive-route/smoke-2026-06-28T16-26-46-604Z/responsive-route-smoke.json`.
-- Keyboard: `output/playwright/keyboard-release-smoke-2026-06-28T16-26-24-503Z`.
+- Preview URL: `https://visual-proof-surface-polish--robson-ai-website.netlify.app`
+- Result: pass, 14 steps.
+- Artifact: `output/release-preview-gate/gate-2026-06-28T17-00-40-765Z/release-preview-gate.json`.
 
-Measurement result:
+Production release gate:
 
-- Lighthouse performance 99.
-- Accessibility 100.
-- Best practices 100.
-- SEO 100.
-- LCP about 1.65 seconds.
-- CLS 0.
+- Command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
+- Result: pass, 14 steps.
+- Artifact: `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`.
+
+Production evidence:
+
+- Release inventory: `output/release-inventory/inventory-2026-06-28T17-18-10-215Z/release-candidate-inventory.json`.
+- BuildScan viewer: `output/buildscan-viewer/smoke-2026-06-28T17-18-17-990Z`.
+- Semantic SEO: `output/semantic-seo/smoke-2026-06-28T17-18-29-999Z/semantic-seo-smoke.json`.
+- Product/design: `output/product-design-acceptance/smoke-2026-06-28T17-18-38-578Z/product-design-acceptance-smoke.json`.
+- Responsive route: `output/responsive-route/smoke-2026-06-28T17-18-45-615Z/responsive-route-smoke.json`.
+- Visual polish: `output/visual-polish/smoke-2026-06-28T17-19-06-367Z/visual-polish-smoke.json`.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T17-19-35-062Z`.
+- Measurement: `output/measurement/smoke-2026-06-28T17-19-46-704Z`.
 
 ## 6. Known Residuals
 
-- The candidate is local only, uncommitted, unpushed, not preview-deployed, and not production-deployed.
+- Source control is not yet aligned with the live archive deploy. Local commit `8e32faf` is live, but the branch has not been pushed and `main` may not match production.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains at 17 moderate findings, 0 high, 0 critical; production footprint remains zero.
 - Full Codex Security workspace scan is not complete.
@@ -101,9 +102,6 @@ Measurement result:
 
 ## 7. Approval Options
 
-1. Recommended: reply `approve local visual refinement`.
-   - Codex will then stage only the manifest-approved files, commit, create a Netlify preview, and run `QA_BASE_URL=<preview> npm run qa:release:preview`.
-2. Reply with exact page/section changes to make before preview.
-3. Reply `hold local only` to keep production as-is and stop before commit/preview.
-
-Production publish remains a later, separate approval after a preview has passed.
+1. Recommended: approve source-control alignment for the live release so GitHub/main can be brought back into line with production using an explicit, low-risk path.
+2. Hold source control for now and run a 24-hour production observation check.
+3. Start a separate post-launch design/motion tranche after source control is aligned.

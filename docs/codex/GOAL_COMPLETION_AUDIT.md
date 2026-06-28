@@ -1,113 +1,93 @@
 # Goal Completion Audit - Robson AI Solutions Website
 
-Last updated: 2026-06-28 17:30 BST
+Last updated: 2026-06-28 18:20 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: active goal not complete; current visual-refinement candidate is local release-gated and ready for Wayne approval before commit, preview, or publish
+Status: complete for the approved "best website it can be" release goal; live production deploy passed the production release gate
 
-## 1. Current Goal
+## 1. Completed Goal
 
-Active Codex goal:
+Completed Codex goal:
 
 > Make the Robson AI Solutions website the best releasable version it can be: polished, professional, responsive, accessible, evidence-led, brand-consistent, cautious about product maturity, validated locally and ready for preview/publish approval.
 
-This audit checks the current goal against the current worktree and evidence. It does not mark the goal complete because the latest improvement candidate has not yet been approved by Wayne, committed, preview-deployed, preview-gated, or production-published.
+The goal is complete for the approved release scope because the visual-refinement candidate was locally validated, committed, preview-deployed, preview-gated, explicitly approved for production, production-deployed, and production-gated.
 
-## 2. Current State
-
-Current branch:
-
-- `codex/docs-evidence-preservation-no-production-deploy`
+## 2. Current Production State
 
 Current live production site:
 
 - URL: `https://robsonai.co.uk`
-- Latest production deploy already live before this candidate: `6a4110fe34f4b66db778e4bb`
-- Production gate passed for that prior live deploy: `output/release-production-gate/gate-2026-06-28T12-18-19-900Z/release-preview-gate.json`
+- Production deploy: `6a415725a6f69e52078a74df`
+- Unique deploy URL: `https://6a415725a6f69e52078a74df--robson-ai-website.netlify.app`
+- Netlify logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a415725a6f69e52078a74df`
+- Production release gate: `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`
+- Rollback candidate before this publish: Netlify production deploy `6a4110fe34f4b66db778e4bb`
 
-Current local candidate:
+Source-control note:
 
-- Candidate name: `website-visual-refinement-proof-surface-polish`
-- Status: local release-gated
-- Commit: not created
-- Branch push: not performed
-- Netlify preview deploy: not performed
-- Production deploy: not approved or performed
-
-Current dirty candidate files:
-
-```text
-docs/codex/GOAL_COMPLETION_AUDIT.md
-docs/codex/RELEASE_STAGING_MANIFEST.md
-docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md
-docs/codex/TRACKER.md
-docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md
-index.html
-script.js
-scripts/product-design-acceptance-smoke.mjs
-scripts/visual-polish-smoke.mjs
-styles.css
-```
+- Local commit `8e32faf` (`Polish website proof surfaces`) contains the live website code.
+- The branch `codex/docs-evidence-preservation-no-production-deploy` has not been pushed.
+- `main`/GitHub may therefore not yet match the current live archive deploy. Aligning source control is a separate approval-gated action because pushing may trigger Netlify.
 
 ## 3. Requirement Audit
 
-| Requirement | Current evidence | Status | Remaining gap |
-| --- | --- | --- | --- |
-| Polished and professional | Rendered homepage screenshots in `output/playwright/rendered-release-smoke-2026-06-28T16-27-41-612Z`; product/design acceptance smoke pass | locally proved enough for review | Wayne visual approval still required |
-| Responsive | `npm run qa:responsive` pass inside full gate; artifact `output/responsive-route/smoke-2026-06-28T16-26-46-604Z/responsive-route-smoke.json` | locally complete | preview/live validation still required after deploy |
-| Accessible | `npm run qa:keyboard` pass; measurement evidence Lighthouse accessibility 100; axe reports generated under `output/measurement/evidence-2026-06-28T16-28-27-073Z` | locally complete for current release gate | full manual WCAG audit and Firefox/WebKit parity remain optional |
-| Evidence-led | Homepage keeps Building Analyst, BuildScan, property operations, workflow proof, BuildScan static/interactive model proof, and no-form contact path | locally complete | preview and production evidence still required if shipped |
-| Brand-consistent | Tracker, PRD/excellence programme, product/design smoke, and current copy preserve professional building intelligence positioning | locally complete | Wayne final judgement still required |
-| Cautious about product maturity | Product/design smoke checks release-stage language; copy keeps BuildScan opt-in/static fallback and property operations as workflow direction | locally complete | monitor future edits |
-| Privacy/security | Release security/header smokes pass; release inventory reports zero secret findings; no contact form/customer data store added | locally complete | production verification required after any production deploy |
-| Performance | Measurement evidence reports Lighthouse performance 99, accessibility 100, best practices 100, SEO 100, LCP about 1.65s, CLS 0 | locally complete | deployed preview and production measurement required after deployment |
-| Local validation | `npm run qa:release:local` passed all 37 steps at `output/release-local-gate/gate-2026-06-28T16-26-01-341Z/release-local-gate.json` | complete at time of audit | must rerun if candidate file scope changes |
-| Ready for preview/publish approval | Staging manifest records candidate scope and approval gates; local server available for Wayne review | ready for Wayne decision | needs explicit approval before stage/commit/preview/publish |
+| Requirement | Evidence | Status |
+| --- | --- | --- |
+| Polished and professional | Visual-refinement polish is live; visual-polish smoke passed at `output/visual-polish/smoke-2026-06-28T17-19-06-367Z/visual-polish-smoke.json` | complete for approved scope |
+| Responsive | Production responsive route smoke passed at `output/responsive-route/smoke-2026-06-28T17-18-45-615Z/responsive-route-smoke.json` | complete |
+| Accessible | Keyboard smoke and measurement gate passed on production; rendered and measurement artifacts were generated | complete for release gate |
+| Evidence-led | Homepage, Building Analyst, BuildScan, operations, method, credibility and contact are live with proof-led/cautious wording | complete |
+| Brand-consistent | Current copy keeps professional building intelligence positioning and avoids generic chatbot/BYO-provider framing | complete |
+| Cautious about product maturity | Product/design acceptance smoke passed at `output/product-design-acceptance/smoke-2026-06-28T17-18-38-578Z/product-design-acceptance-smoke.json` | complete |
+| Privacy/security | Release security/header checks passed; no form/customer-data store was added | complete for release gate |
+| Performance/SEO | Semantic SEO and measurement smokes passed on production | complete for release gate |
+| Local validation | `npm run qa:release:local` passed at `output/release-local-gate/gate-2026-06-28T16-54-23-455Z/release-local-gate.json` | complete |
+| Preview validation | Preview passed at `output/release-preview-gate/gate-2026-06-28T17-00-40-765Z/release-preview-gate.json` | complete |
+| Production validation | Production passed at `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json` | complete |
 
-## 4. Why The Goal Is Not Complete Yet
+## 4. Release Evidence
 
-The current local candidate improves the website toward the active goal, but the full goal is not yet proven complete because:
-
-1. Wayne has not approved the latest local visual-refinement candidate.
-2. The candidate has not been committed.
-3. No Netlify preview deploy exists for this candidate.
-4. `QA_BASE_URL=<preview> npm run qa:release:preview` has not been run for this candidate.
-5. The candidate has not been production deployed.
-6. `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` has not been run for this candidate.
-
-The correct status is therefore:
-
-- Local quality/readiness: strong and release-gated.
-- Preview readiness: waiting for Wayne approval.
-- Production readiness: not yet, because preview and production approval gates remain.
-
-## 5. Current Evidence
-
-Latest local full gate:
+Local gate:
 
 - Command: `npm run qa:release:local`
-- Artifact: `output/release-local-gate/gate-2026-06-28T16-26-01-341Z/release-local-gate.json`
 - Result: pass, 37 steps
+- Artifact: `output/release-local-gate/gate-2026-06-28T16-54-23-455Z/release-local-gate.json`
 
-Key evidence from that gate:
+Preview gate:
 
-- Release inventory: `output/release-inventory/inventory-2026-06-28T16-26-10-244Z/release-candidate-inventory.json`
-- Staging manifest: `output/release-staging-manifest/smoke-2026-06-28T16-26-10-596Z/release-staging-manifest-smoke.json`
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T16-27-41-612Z`
-- Measurement evidence: `output/measurement/evidence-2026-06-28T16-28-27-073Z`
-- Product/design smoke: `output/product-design-acceptance/smoke-2026-06-28T16-26-39-864Z/product-design-acceptance-smoke.json`
-- Visual-polish smoke: `output/visual-polish/smoke-2026-06-28T16-27-09-578Z/visual-polish-smoke.json`
-- Responsive route smoke: `output/responsive-route/smoke-2026-06-28T16-26-46-604Z/responsive-route-smoke.json`
-- Keyboard smoke: `output/playwright/keyboard-release-smoke-2026-06-28T16-26-24-503Z`
+- Preview URL: `https://visual-proof-surface-polish--robson-ai-website.netlify.app`
+- Result: pass, 14 steps
+- Artifact: `output/release-preview-gate/gate-2026-06-28T17-00-40-765Z/release-preview-gate.json`
 
-Known residuals:
+Production gate:
 
-- Browser coverage remains Chromium plus warning-only Firefox/WebKit unavailable locally.
-- Dev/release tooling dependency audit still reports 17 moderate findings; production footprint remains zero vulnerabilities.
-- BuildScan GLB remains a public-downloadable opt-in model asset.
-- Current candidate is uncommitted and unpreviewed.
+- Command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
+- Result: pass, 14 steps
+- Artifact: `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`
+
+Production evidence from the gate:
+
+- Release inventory: `output/release-inventory/inventory-2026-06-28T17-18-10-215Z/release-candidate-inventory.json`; dirtyCount 0, zero secret findings, GLB externalUriCount 0.
+- Dependency advisory: `output/dependency-audit/summary-2026-06-28T17-18-10-481Z/dependency-audit-summary.json`; production vulnerabilities 0; dev/release tooling 17 moderate advisories.
+- BuildScan viewer: `output/buildscan-viewer/smoke-2026-06-28T17-18-17-990Z`.
+- Semantic SEO: `output/semantic-seo/smoke-2026-06-28T17-18-29-999Z/semantic-seo-smoke.json`.
+- Product/design: `output/product-design-acceptance/smoke-2026-06-28T17-18-38-578Z/product-design-acceptance-smoke.json`.
+- Responsive: `output/responsive-route/smoke-2026-06-28T17-18-45-615Z/responsive-route-smoke.json`.
+- Visual polish: `output/visual-polish/smoke-2026-06-28T17-19-06-367Z/visual-polish-smoke.json`.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T17-19-35-062Z`.
+- Measurement: `output/measurement/smoke-2026-06-28T17-19-46-704Z`.
+
+## 5. Known Residuals
+
+- Source-control alignment remains outstanding because the production deploy used a clean archive of local commit `8e32faf`; the branch has not been pushed.
+- Chromium browser coverage passed; Firefox and WebKit Playwright binaries are unavailable locally and warning-only.
+- Dev/release tooling audit still reports 17 moderate advisories; production footprint remains zero vulnerabilities.
+- Full Codex Security workspace scan is not complete.
+- Public BuildScan GLB downloadability is intentional for the current public proof asset, but should be reconsidered before exposing any new model.
+- No DNS changes, analytics enablement, forms, customer-data handling, external messages, or app-platform implementation work were performed.
 
 ## 6. Recommended Next Action
 
-1. Recommended: Wayne reviews `http://127.0.0.1:8130/` and replies `approve local visual refinement`.
-2. After approval, stage only the manifest-approved files, commit, create a Netlify preview, and run `QA_BASE_URL=<preview> npm run qa:release:preview`.
-3. Only after preview approval, ask Wayne for explicit production-publish approval and run the production release gate after deploy.
+1. Recommended: approve a source-control alignment tranche so Codex can push the live commit path safely or prepare an explicit PR/merge path without accidentally triggering another unreviewed production change.
+2. Keep production as-is and run a 24-hour post-launch observation check only.
+3. Start a separate post-launch design tranche for motion/visual improvements after source control is aligned.

@@ -1,37 +1,38 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-06-28 17:30 BST
+Last updated: 2026-06-28 18:20 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: local visual-refinement review checklist; no commit, preview deploy, or production deploy approved
+Status: live post-publish review checklist for production deploy `6a415725a6f69e52078a74df`
 
 ## 1. Purpose
 
-Use this checklist to review the current local Robson AI Solutions website candidate before approving the next action.
+Use this checklist to review the live Robson AI Solutions website after the approved visual-refinement production publish.
 
 Important:
 
-- Local candidate: `http://127.0.0.1:8130/`.
+- Production site: `https://robsonai.co.uk`.
+- Production deploy: `6a415725a6f69e52078a74df`.
 - Candidate name: `website-visual-refinement-proof-surface-polish`.
-- Production comparison: `https://robsonai.co.uk`.
-- This checklist does not approve staging, commit, preview deploy, production verification, production deploy, analytics, forms, DNS/domain work, or external messages.
-- Latest local evidence is recorded in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`.
+- Production release gate passed at `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`.
+- This checklist does not approve branch push, GitHub PR, another production deploy, analytics, forms, DNS/domain work, or external messages.
+- Latest release evidence is recorded in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`.
 
 ## 2. Review Sequence
 
-Review these local pages in order on desktop and mobile:
+Review these production pages in order on desktop and mobile:
 
-1. Home: `http://127.0.0.1:8130/`
-2. Building Analyst: `http://127.0.0.1:8130/building-analyst.html`
-3. Who it is for: `http://127.0.0.1:8130/who-its-for.html`
-4. BuildScan viewer: `http://127.0.0.1:8130/buildscan-viewer.html`
-5. Privacy: `http://127.0.0.1:8130/privacy.html`
-6. 404 recovery page: `http://127.0.0.1:8130/404.html`
-7. Holding fallback: `http://127.0.0.1:8130/holding.html`
+1. Home: `https://robsonai.co.uk/`
+2. Building Analyst: `https://robsonai.co.uk/building-analyst.html`
+3. Who it is for: `https://robsonai.co.uk/who-its-for.html`
+4. BuildScan viewer: `https://robsonai.co.uk/buildscan-viewer.html`
+5. Privacy: `https://robsonai.co.uk/privacy.html`
+6. 404 recovery page: `https://robsonai.co.uk/404.html`
+7. Holding fallback: `https://robsonai.co.uk/holding.html`
 
-Screenshot evidence from the latest local rendered smoke:
+Screenshot evidence from the production rendered smoke:
 
-- `output/playwright/rendered-release-smoke-2026-06-28T16-27-41-612Z`
+- `output/playwright/rendered-release-smoke-2026-06-28T17-19-35-062Z`
 
 ## 3. What To Approve Or Flag
 
@@ -79,8 +80,8 @@ Flag if:
 Approve if:
 
 - The public 3D model preview helps explain visual building context.
-- The instructions make it clear visitors can move, orbit, pan, zoom, reset, and view the model without implying a finished app workflow.
-- The public model exposure is acceptable because the GLB is downloadable website data by design.
+- Visitors can move, orbit, pan, zoom, reset, and view the model without the site implying a finished app workflow.
+- Public model exposure remains acceptable because the GLB is downloadable website data by design.
 
 Flag if:
 
@@ -94,7 +95,7 @@ Approve if:
 
 - The contact path remains email-first.
 - The current site does not collect form submissions.
-- Privacy language remains consistent with the current website behaviour.
+- Privacy language remains consistent with current website behaviour.
 - The contact section feels like a practical action area rather than a block of words.
 
 Flag if:
@@ -114,37 +115,34 @@ Flag if:
 
 ## 4. Evidence To Keep In Mind
 
-Latest local release gate:
+Production release gate:
 
-- Command: `npm run qa:release:local`
-- Result: pass, 37 steps.
-- Artifact: `output/release-local-gate/gate-2026-06-28T16-26-01-341Z/release-local-gate.json`.
+- Command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
+- Result: pass, 14 steps.
+- Artifact: `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`.
 
-Latest local evidence pack:
+Production evidence pack:
 
-- Release inventory: `output/release-inventory/inventory-2026-06-28T16-26-10-244Z/release-candidate-inventory.json`.
-- Staging manifest: `output/release-staging-manifest/smoke-2026-06-28T16-26-10-596Z/release-staging-manifest-smoke.json`.
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T16-27-41-612Z`.
-- Measurement evidence: `output/measurement/evidence-2026-06-28T16-28-27-073Z`.
-- Product/design: `output/product-design-acceptance/smoke-2026-06-28T16-26-39-864Z/product-design-acceptance-smoke.json`.
-- Visual polish: `output/visual-polish/smoke-2026-06-28T16-27-09-578Z/visual-polish-smoke.json`.
-- Responsive route smoke: `output/responsive-route/smoke-2026-06-28T16-26-46-604Z/responsive-route-smoke.json`.
-- Keyboard: `output/playwright/keyboard-release-smoke-2026-06-28T16-26-24-503Z`.
+- Release inventory: `output/release-inventory/inventory-2026-06-28T17-18-10-215Z/release-candidate-inventory.json`.
+- BuildScan viewer: `output/buildscan-viewer/smoke-2026-06-28T17-18-17-990Z`.
+- Product/design: `output/product-design-acceptance/smoke-2026-06-28T17-18-38-578Z/product-design-acceptance-smoke.json`.
+- Responsive route smoke: `output/responsive-route/smoke-2026-06-28T17-18-45-615Z/responsive-route-smoke.json`.
+- Visual polish: `output/visual-polish/smoke-2026-06-28T17-19-06-367Z/visual-polish-smoke.json`.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T17-19-35-062Z`.
+- Measurement: `output/measurement/smoke-2026-06-28T17-19-46-704Z`.
 
 Known residuals:
 
+- Source control is not yet aligned with production because the production deploy used a clean archive of local commit `8e32faf`.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains 17 moderate, 0 high, 0 critical; production footprint remains zero.
 - Full Codex Security scan is not complete.
 - Public BuildScan GLB downloadability is intentional but should be reconsidered before exposing any new model.
-- The candidate is not yet committed, previewed, or deployed.
 
-## 5. Approval Response
+## 5. Next Decision
 
 Use one of these responses:
 
-1. Recommended: `approve local visual refinement`
-2. `Approved, except change:` followed by the exact wording, page, model view, or section to change.
-3. `hold local only` if production should stay as-is and no preview should be created.
-
-If option 1 is given, Codex will stage only the manifest-approved files, create a local commit, create a Netlify preview, and run the deployed preview gate. Production approval will still be asked separately after the preview passes.
+1. Recommended: `approve source-control alignment`
+2. `hold and monitor production for 24 hours`
+3. `start a new design tranche` followed by the exact page or section to improve.

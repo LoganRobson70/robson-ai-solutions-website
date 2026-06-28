@@ -1,13 +1,13 @@
 # Release Staging Manifest - Website Visual Refinement Candidate
 
-Last updated: 2026-06-28 17:50 BST
+Last updated: 2026-06-28 18:20 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: Wayne approved local visual refinement option `1`; commit and Netlify preview deploy are approved; production verification and production deploy are not approved
+Status: completed release manifest for live production deploy `6a415725a6f69e52078a74df`
 
 ## 1. Purpose
 
-This manifest defines the intended file scope for the current approval-gated candidate:
+This manifest records the file scope for the approved and published candidate:
 
 `website-visual-refinement-proof-surface-polish`
 
@@ -19,35 +19,44 @@ This candidate:
 - tightens visible copy in the flagged homepage sections
 - turns word-heavy sections into clearer product/proof surfaces
 - extends existing reduced-motion-aware pointer-depth behaviour to the newly refined proof surfaces
-- updates local visual/product QA expectations to match the current truthful BuildScan state
-- updates the active goal completion audit so it no longer claims the new visual-refinement goal is complete before Wayne approval, preview, and production gates
-- updates the final handoff and page-by-page review checklist so Wayne reviews the current local candidate rather than the older live site
-- updates tracker and this manifest so release gates describe the real candidate
+- updates visual/product QA expectations to match the current truthful BuildScan state
+- updates the goal completion audit with the final live release outcome
+- updates the final handoff and page-by-page review checklist so Wayne reviews the live production release
+- updates tracker and this manifest so release records describe the real published candidate
 
-Historical note: the previous hero-logo aspect/anchor manifest and the earlier BuildScan interactive preview manifest are preserved in git history and summarised in `docs/codex/TRACKER.md`. The active manifest must match the dirty worktree so `npm run qa:release-staging-manifest` remains a useful safety gate.
+Historical note: the previous hero-logo aspect/anchor manifest and the earlier BuildScan interactive preview manifest are preserved in git history and summarised in `docs/codex/TRACKER.md`. Future implementation tranches should update this manifest before staging so `npm run qa:release-staging-manifest` remains a useful safety gate.
 
-Do not run `git add .` for this candidate.
+Do not run `git add .` for future candidates.
 
-## 2. Approval Boundary
+## 2. Approval Boundary And Release Outcome
 
 Wayne approved option `1` on 2026-06-28, meaning Codex may stage the manifest-approved files, create a local commit, create a Netlify preview deploy, and run the deployed preview gate.
 
-Wayne must explicitly approve before Codex performs any of these actions:
+Wayne later approved option `1` for production publish after the preview passed. Production deploy and verification are complete:
+
+- Local commit: `8e32faf` (`Polish website proof surfaces`)
+- Preview URL: `https://visual-proof-surface-polish--robson-ai-website.netlify.app`
+- Preview gate: `output/release-preview-gate/gate-2026-06-28T17-00-40-765Z/release-preview-gate.json`
+- Production URL: `https://robsonai.co.uk`
+- Production deploy: `6a415725a6f69e52078a74df`
+- Production gate: `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`
+
+Wayne must explicitly approve before Codex performs any future actions:
 
 - push a branch
-- run production verification with confirmation
-- production deploy
+- create a GitHub PR
+- production deploy another change
+- DNS/domain changes
+- analytics, forms, customer data handling, or external messages
 
-This candidate does not approve production deployment.
+## 3. Release Scope At Commit
 
-## 3. Current Dirty Scope
-
-Latest inspected status:
+Release scope at local commit `8e32faf`:
 
 - 10 modified tracked files.
 - 0 untracked candidate files.
 - Total dirty candidate files: 10.
-- This manifest itself is intentionally included in the modified tracked file count.
+- This manifest itself was intentionally included in the modified tracked file count.
 
 Current validation evidence:
 
@@ -129,9 +138,9 @@ raw 125 MB Ludgershall GLB source files
 secrets, credentials, keys, certificates, profiles, or generated screenshots
 ```
 
-## 8. Staging Command After Approval Only
+## 8. Staging Command Used For The Release
 
-After Wayne approves this visual refinement candidate, use an explicit path list rather than `git add .`.
+This explicit path list was used for the approved release. Use an updated manifest and explicit path list for future candidates rather than `git add .`.
 
 ```bash
 git add -- \
@@ -147,9 +156,9 @@ git add -- \
   styles.css
 ```
 
-## 9. Required Checks Before Commit
+## 9. Required Checks Before Any Future Commit
 
-Run these after staging and before commit:
+Run these after staging and before any future commit:
 
 ```bash
 git status --short --branch
@@ -157,19 +166,19 @@ git diff --cached --check
 npm run qa:release:local
 ```
 
-Then confirm the staged file set matches this manifest before committing.
+Then confirm the staged file set matches the updated manifest before committing.
 
-## 10. Required Checks After Preview Deploy
+## 10. Required Checks After Future Preview Deploy
 
-After Wayne approves a Netlify preview deploy, run:
+After Wayne approves a future Netlify preview deploy, run:
 
 ```bash
 QA_BASE_URL="https://<netlify-preview-url>" npm run qa:release:preview
 ```
 
-## 11. Required Checks After Production Deploy
+## 11. Required Checks After Future Production Deploy
 
-Only after Wayne explicitly approves production deployment, run:
+Only after Wayne explicitly approves a future production deployment, run:
 
 ```bash
 QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
@@ -177,4 +186,4 @@ QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true 
 
 ## 12. Rollback Path
 
-If the refinement causes a visual or interaction regression, revert the ten files in this candidate to the previous committed state and rerun the local release gate before any preview or production decision.
+If this refinement causes a visual or interaction regression, rollback to Netlify production deploy `6a4110fe34f4b66db778e4bb` or revert local commit `8e32faf` in source control, then rerun the local and production gates before another publish decision.
