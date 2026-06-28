@@ -89,6 +89,10 @@ Known residuals:
 
 These are candidates for planning only. They are not approved implementation or deployment scope.
 
+Detailed planning baseline:
+
+- `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md`
+
 1. BuildScan interaction polish.
    - Improve affordances around orbit, pan, zoom, reset, and model-loading state.
    - Consider clearer public-model guidance once any new public-model gate is approved.
@@ -114,6 +118,6 @@ These are candidates for planning only. They are not approved implementation or 
 ## 7. Approval Options
 
 1. Recommended: Wayne reviews the full website links and replies `Approved current live website` or lists required changes.
-2. Approve a next-phase planning tranche only, with no code changes and no deploy.
+2. Approve `website-refinement-planning-no-deploy`, using `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md` as the baseline.
 3. Approve a scoped preview-only change tranche after review comments are captured.
 4. Hold all website changes and keep production as-is.

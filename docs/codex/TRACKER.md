@@ -24,6 +24,7 @@ Success means:
 - Work proceeds through small, reversible tranches with evidence and explicit approval gates for commits, pushes, previews, and production deploys.
 - Serious closeouts report publish-readiness progress as a percentage and always end with the single recommended next action as numbered option `1`, plus alternatives when Wayne needs to decide.
 - Full website approval handoff is recorded in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`; use it before any future live deploy.
+- Next-phase refinement planning baseline is recorded in `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md`; it is not implementation or deployment approval.
 - Side ideas are parked instead of expanding the active tranche.
 - Luffu/Steno/Unfold motion references are captured as `docs/codex/MOTION_REFERENCE_BRIEF.md`; they are not approved implementation scope unless Wayne chooses the motion-polish alternative.
 - Completion status is audited in `docs/codex/GOAL_COMPLETION_AUDIT.md`; the production release goal is complete as of Netlify production deploy `6a40ed1d6073460008b7d3b7` and production gate pass `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
@@ -125,6 +126,7 @@ Validation evidence:
 - Live metadata/cache spot check passed: `/`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html` returned `200` with canonical URLs, `index, follow`, OG image, and `summary_large_image`; `/robots.txt` returned `200`, references sitemap, and disallows `holding.html`; `/sitemap.xml` returned `200` with 4 public locs; OG image, BuildScan GLB, `styles.css`, and `script.js` returned `200` with expected content types/cache headers.
 - Docs evidence preservation branch created locally on 2026-06-28: `codex/docs-evidence-preservation-no-production-deploy`. Purpose: preserve final release and post-launch observation evidence without pushing `main`, creating a PR, or triggering a Netlify production deploy.
 - Final website approval handoff added in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`. It presents the full website links, approval questions, product-direction criteria, evidence, residual risks, and next-phase refinement candidates. No deploy is approved by this handoff.
+- Next-phase refinement plan added in `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md`. It identifies candidate refinements for BuildScan interaction polish, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment. It is planning-only and does not approve code changes, preview deploys, production deploys, analytics, forms, or new public-model exposure.
 
 Previous tranche:
 
@@ -1135,13 +1137,13 @@ Use this to resume in a new Codex thread:
 >
 > Post-launch observation check completed read-only on 2026-06-28 11:30 BST. Production remained on deploy `6a40ed1d6073460008b7d3b7`. Passing artifacts include headers/source-deny `output/release-headers/smoke-2026-06-28T10-27-25-060Z/release-header-smoke.json`, SEO/social metadata `output/semantic-seo/smoke-2026-06-28T10-27-33-517Z/semantic-seo-smoke.json`, measurement `output/measurement/smoke-2026-06-28T10-27-33-522Z`, rendered screenshots `output/playwright/rendered-release-smoke-2026-06-28T10-27-48-468Z`, BuildScan viewer `output/buildscan-viewer/smoke-2026-06-28T10-28-08-942Z`, responsive `output/responsive-route/smoke-2026-06-28T10-28-43-063Z/responsive-route-smoke.json`, visual polish `output/visual-polish/smoke-2026-06-28T10-29-14-071Z/visual-polish-smoke.json`, product/design `output/product-design-acceptance/smoke-2026-06-28T10-29-14-071Z/product-design-acceptance-smoke.json`, keyboard `output/playwright/keyboard-release-smoke-2026-06-28T10-29-14-071Z`, and browser coverage advisory `output/browser-coverage/smoke-2026-06-28T10-29-37-496Z/browser-coverage-smoke.json`.
 >
-> Final website approval handoff is available at `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`. It presents the full public website to Wayne for approval before any future live deploy.
+> Final website approval handoff is available at `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`. It presents the full public website to Wayne for approval before any future live deploy. Next-phase planning baseline is available at `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md`.
 >
 > Current local branch is `codex/docs-evidence-preservation-no-production-deploy`, created to preserve final evidence, observation notes, and final approval handoff without pushing `main` or triggering a production deploy. Do not run `npm audit fix --force`, install browser binaries, push, create a PR, production verification with confirmation, or production deploy again without Wayne approval.
 >
 > Full Codex Security scan is not complete. Use the Codex Security workspace only if Wayne chooses the security-first hold option.
 >
-> Recommended option 1 is for Wayne to review the full website links in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and reply `Approved current live website` or list required changes. After that, start a scoped next-phase planning pass for content/design refinements: BuildScan interaction polish when public-model gates are approved, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment.
+> Recommended option 1 is for Wayne to review the full website links in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and reply `Approved current live website` or list required changes. After that, use `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md` to approve or reject a scoped next-phase planning tranche.
 
 ## 13. PRD Gate Execution Log (2026-06-01)
 
