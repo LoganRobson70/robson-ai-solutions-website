@@ -1,6 +1,6 @@
 # Final Website Approval Handoff - Robson AI Solutions Website
 
-Last updated: 2026-06-28 11:55 BST
+Last updated: 2026-06-28 12:01 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Status: presented for Wayne review; no further production deploy approved
@@ -30,6 +30,12 @@ Wayne should review these public pages:
 7. Holding fallback: `https://robsonai.co.uk/holding.html`
 
 The review should cover desktop and mobile.
+
+Review checklist:
+
+- `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`
+
+This checklist gives Wayne the page-by-page approval criteria, latest evidence paths, and the exact response needed to approve or hold the current website.
 
 ## 3. Product Direction To Approve
 
@@ -79,6 +85,10 @@ Post-launch observation:
 - Keyboard: `output/playwright/keyboard-release-smoke-2026-06-28T10-29-14-071Z`.
 - Browser coverage advisory: `output/browser-coverage/smoke-2026-06-28T10-29-37-496Z/browser-coverage-smoke.json`.
 
+Approval checklist:
+
+- `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`.
+
 Known residuals:
 
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally, so strict local browser parity is not proved on this machine.
@@ -117,7 +127,7 @@ Detailed planning baseline:
 
 ## 7. Approval Options
 
-1. Recommended: Wayne reviews the full website links and replies `Approved current live website` or lists required changes.
+1. Recommended: Wayne reviews `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md` and the full website links, then replies `Approved current live website` or lists required changes.
 2. Approve `website-refinement-planning-no-deploy`, using `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md` as the baseline.
 3. Approve a scoped preview-only change tranche after review comments are captured.
 4. Hold all website changes and keep production as-is.
