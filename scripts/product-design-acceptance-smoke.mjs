@@ -182,9 +182,9 @@ function assertProofStatus(home, buildingAnalyst) {
     "BuildScan",
     "Property operations",
     "Workflow proof live",
-    "Approved model image live",
-    "The interactive 3D model remains a local candidate until public-model and preview gates are approved",
-    "This is a workflow proof pattern only"
+    "Interactive model live",
+    "Opt-in 3D model preview with static fallback",
+    "Workflow proof only"
   ]), "Homepage should label active workstream proof and the BuildScan interactive candidate state.");
 
   assert(includesAll(buildingAnalyst.text, [
@@ -199,11 +199,11 @@ function assertReleaseStageClaims(allText) {
   const requiredCaution = [
     "early",
     "exploration",
-    "local candidate",
+    "opt-in 3d model",
     "not a finished suite",
     "not replacing judgement",
     "does not claim live council",
-    "no website form"
+    "no contact form"
   ];
 
   requiredCaution.forEach((phrase) => {
@@ -334,7 +334,7 @@ export async function runProductDesignAcceptanceSmoke({
         "motion and interaction"
       ],
       caveats: [
-        "Interactive BuildScan GLB remains approval-gated for preview/production exposure.",
+        "Interactive BuildScan GLB remains opt-in and must keep static fallback language.",
         "Deployed preview validation is still required before production.",
         "This smoke checks rendered copy/structure; it complements, not replaces, visual screenshot review."
       ],

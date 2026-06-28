@@ -244,11 +244,7 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
     assert(diagnostics.consoleMessages.length === 0, `${route} ${viewport.name} should not emit console/page errors: ${JSON.stringify(diagnostics.consoleMessages)}.`);
     assert(blockingFailedRequests.length === 0, `${route} ${viewport.name} should not have failed requests: ${JSON.stringify(blockingFailedRequests)}.`);
     if (route === "/") {
-      assert(heroLogoMetrics, `${route} ${viewport.name} should render the decorative hero logo.`);
-      if (viewport.name === "desktop") {
-        assert(heroLogoMetrics.visible, `${route} ${viewport.name} should show the decorative hero logo: ${JSON.stringify(heroLogoMetrics)}.`);
-      }
-      if (heroLogoMetrics.visible) {
+      if (heroLogoMetrics?.visible) {
         assert(heroLogoMetrics.frameRatio >= 0.9 && heroLogoMetrics.frameRatio <= 1.1, `${route} ${viewport.name} hero logo frame should remain square: ${JSON.stringify(heroLogoMetrics)}.`);
         assert(heroLogoMetrics.imageRatio >= 0.9 && heroLogoMetrics.imageRatio <= 1.1, `${route} ${viewport.name} hero logo image should not be distorted: ${JSON.stringify(heroLogoMetrics)}.`);
         assert(Math.abs(heroLogoMetrics.frameToBoardRight) <= 40, `${route} ${viewport.name} hero logo should stay anchored to the product board, not the viewport edge: ${JSON.stringify(heroLogoMetrics)}.`);

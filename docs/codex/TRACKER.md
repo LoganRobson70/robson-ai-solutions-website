@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-28 13:20 BST
+Last updated: 2026-06-28 17:50 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/docs-evidence-preservation-no-production-deploy`
@@ -11,10 +11,10 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Preserve final documentation evidence without triggering a redeploy.
-- Keep repository records up to date and discoverable.
-- Present the full website to Wayne for final approval before any future live deployment.
-- Prepare the next phase by identifying content/design refinements while keeping all implementation and deployment separately approval-gated.
+- Keep the single active Codex goal focused on making the website the best releasable version it can be.
+- Present the current local visual-refinement candidate to Wayne before commit, preview, or production action.
+- Keep repository records, approval handoff, checklist, and release evidence aligned with the current 10-file candidate.
+- Prepare the commit and Netlify preview path only after Wayne explicitly approves the local candidate.
 
 Success means:
 
@@ -32,6 +32,56 @@ Success means:
 - Production release execution is defined in `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the 2026-06-28 publish was executed after Wayne approved option `1`.
 
 ## 2. Active Tranche
+
+Tranche name: `website-visual-refinement-proof-surface-polish`
+Status: Wayne approved option `1`; staging, local commit, Netlify preview deploy, and preview gate are in progress; production remains unapproved
+Started: 2026-06-28 16:00 BST
+Completed: not complete; waiting for Wayne approval before commit/preview
+
+Scope:
+
+- Remove the awkward floating homepage hero logo that continued to look wrong.
+- Improve the sections Wayne flagged as too word-heavy: Finder, Property operations, Method, Credibility, and Contact.
+- Keep the website professional, evidence-led, brand-consistent, responsive, accessible, and cautious about current product maturity.
+- Preserve the current email-first/no-form privacy posture and the BuildScan opt-in 3D model proof.
+- Update QA scripts and Codex documentation so the candidate, evidence paths, approval checklist, and tracker all describe the same 10-file local candidate.
+
+Out of scope:
+
+- Production deploy, preview deploy, branch push, GitHub PR, DNS/domain changes, GA4, forms/customer data, external messages, BuildScan app implementation, Apple signing/submission, payments, destructive git actions, browser installation for strict Firefox/WebKit coverage, dependency remediation, or full redesign beyond Wayne's flagged sections.
+
+Permission envelope:
+
+- Wayne has approved safe local work for the single "best website it can be" goal.
+- Wayne approved option `1` on 2026-06-28 17:50 BST: stage only the manifest-approved files, create a local commit, create a Netlify preview deploy, and run the deployed preview gate.
+- Wayne has not approved branch push, production verification with confirmation, production deploy, DNS/domain changes, analytics, forms, external messages, or further scope changes for this visual-refinement candidate.
+
+Done criteria for this tranche:
+
+- Local candidate is served for Wayne review.
+- Dirty scope matches `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+- `npm run qa:release:local` passes for the current 10-file candidate.
+- Approval handoff and review checklist point to the current local candidate and fresh evidence.
+- Wayne receives a numbered next action with option `1` recommended.
+
+Validation evidence:
+
+- Current local URL: `http://127.0.0.1:8130/`.
+- `npm run qa:release:local` passed all 37 steps for the 10-file candidate; artifact `output/release-local-gate/gate-2026-06-28T16-26-01-341Z/release-local-gate.json`.
+- Release inventory inside the gate: `output/release-inventory/inventory-2026-06-28T16-26-10-244Z/release-candidate-inventory.json`; dirtyCount 10, 79 scanned files, zero secret findings, GLB externalUriCount 0.
+- Staging manifest smoke inside the gate: `output/release-staging-manifest/smoke-2026-06-28T16-26-10-596Z/release-staging-manifest-smoke.json`; 10 modified tracked files, 0 untracked candidate files, 10 staging command paths.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T16-27-41-612Z`.
+- Measurement evidence: `output/measurement/evidence-2026-06-28T16-28-27-073Z`; Lighthouse performance 99, accessibility 100, best practices 100, SEO 100, LCP about 1.65 seconds, CLS 0.
+- Product/design smoke: `output/product-design-acceptance/smoke-2026-06-28T16-26-39-864Z/product-design-acceptance-smoke.json`.
+- Visual polish smoke: `output/visual-polish/smoke-2026-06-28T16-27-09-578Z/visual-polish-smoke.json`.
+- Responsive route smoke: `output/responsive-route/smoke-2026-06-28T16-26-46-604Z/responsive-route-smoke.json`.
+- Keyboard smoke: `output/playwright/keyboard-release-smoke-2026-06-28T16-26-24-503Z`.
+- Browser coverage advisory remains warning-only for Firefox/WebKit binaries unavailable locally; Chromium passed.
+- After the documentation evidence paths were updated, `git diff --check`, `npm run qa:release-staging-manifest`, `npm run qa:release-inventory`, and `curl -I http://127.0.0.1:8130/` passed; the local review URL returned HTTP 200.
+- Follow-up local-review health check confirmed `http://127.0.0.1:8130/` still returns HTTP 200 from the repo shell and is served by local Python process `71014`. The MCP Browser tool could not access that loopback URL from its own environment, so use the user's in-app browser or normal local browser for review.
+- Follow-up targeted QA also passed: `npm run qa:visual-polish` with artifact `output/visual-polish/smoke-2026-06-28T16-42-32-331Z/visual-polish-smoke.json`, `npm run qa:responsive` with artifact `output/responsive-route/smoke-2026-06-28T16-42-32-331Z/responsive-route-smoke.json`, and `git diff --check`.
+
+## 3. Previous Major Release Tranche
 
 Tranche name: `buildscan-interactive-preview-release-candidate`
 Status: completed and production-gated; branch `codex/buildscan-interactive-preview-release-candidate` and `main` are pushed at `568259e`; follow-on local commit `5994de8` was deployed by approved CLI production deploy; Netlify production deploy `6a4110fe34f4b66db778e4bb` is live on `https://robsonai.co.uk`; production release gate passed
@@ -138,6 +188,13 @@ Validation evidence:
 - Production release gate passed: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-06-28T12-18-19-900Z/release-preview-gate.json`; result pass, 14 steps.
 - Production evidence from the gate: release inventory `output/release-inventory/inventory-2026-06-28T12-18-20-027Z/release-candidate-inventory.json` with dirtyCount 0, 79 scanned files, zero secret findings, and GLB externalUriCount 0; visual polish `output/visual-polish/smoke-2026-06-28T12-19-16-916Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-06-28T12-19-45-394Z`; measurement smoke `output/measurement/smoke-2026-06-28T12-19-56-164Z`; BuildScan viewer `output/buildscan-viewer/smoke-2026-06-28T12-18-28-654Z`; semantic SEO `output/semantic-seo/smoke-2026-06-28T12-18-40-596Z/semantic-seo-smoke.json`; product/design `output/product-design-acceptance/smoke-2026-06-28T12-18-49-095Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-06-28T12-18-56-116Z/responsive-route-smoke.json`; keyboard `output/playwright/keyboard-release-smoke-2026-06-28T12-18-35-864Z`; browser coverage advisory `output/browser-coverage/smoke-2026-06-28T12-19-37-587Z/browser-coverage-smoke.json`.
 - Residual advisories after the hero-logo production fix: production dependency footprint remains zero vulnerabilities; dev/release tooling audit remains at 17 moderate advisories; Chromium browser coverage passed while Firefox/WebKit are unavailable locally and warning-only.
+- Wayne then flagged six live visual review comments on 2026-06-28: the homepage hero floating logo still looked wrong, and the Finder, Property operations, Method, Credibility, and Contact sections felt word-heavy and not aesthetically pleasing.
+- Local-only visual refinement candidate added in response. `index.html` removes the awkward floating hero logo, tightens visible copy in the flagged sections, and keeps cautious product/privacy/integration boundaries. `styles.css` adds a final visual refinement layer that turns Finder, Operations, Method, Credibility, and Contact into tighter product/proof surfaces with stronger composition, less pale text-panel weight, better action grouping, responsive layouts, and restrained proof-surface depth. `script.js` extends the existing reduced-motion-aware pointer-depth behaviour to the newly refined proof surfaces. `scripts/visual-polish-smoke.mjs` now allows the better design decision where no decorative hero logo is rendered. `scripts/product-design-acceptance-smoke.mjs` now checks the current truthful BuildScan state: the opt-in 3D model preview is live with static fallback language. `docs/codex/RELEASE_STAGING_MANIFEST.md` now describes the current 10-file visual-refinement candidate rather than the previous hero-logo bugfix.
+- Local validation for this candidate passed: `node --check script.js`, `node --check scripts/visual-polish-smoke.mjs`, `node --check scripts/product-design-acceptance-smoke.mjs`, `npx --no-install html-validate index.html`, `git diff --check`, `npm run qa:product-design` with artifact `output/product-design-acceptance/smoke-2026-06-28T16-12-19-636Z/product-design-acceptance-smoke.json`, `npm run qa:visual-polish` with artifact `output/visual-polish/smoke-2026-06-28T16-12-49-729Z/visual-polish-smoke.json`, `npm run qa:responsive` with artifact `output/responsive-route/smoke-2026-06-28T16-12-26-256Z/responsive-route-smoke.json`, `npm run qa:keyboard` with artifact `output/playwright/keyboard-release-smoke-2026-06-28T16-12-05-148Z`, and `npm run qa:rendered` with screenshots in `output/playwright/rendered-release-smoke-2026-06-28T16-13-23-954Z`.
+- Full local release gate passed after the manifest was updated to match the 10-file candidate: `npm run qa:release:local`; artifact `output/release-local-gate/gate-2026-06-28T16-26-01-341Z/release-local-gate.json`; result pass, 37 steps. The gate included release inventory `output/release-inventory/inventory-2026-06-28T16-26-10-244Z/release-candidate-inventory.json` with dirtyCount 10, zero secret findings, and GLB externalUriCount 0; staging manifest `output/release-staging-manifest/smoke-2026-06-28T16-26-10-596Z/release-staging-manifest-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-06-28T16-27-41-612Z`; measurement evidence `output/measurement/evidence-2026-06-28T16-28-27-073Z`; Lighthouse performance 99, accessibility 100, best practices 100, SEO 100, LCP about 1.65 seconds, CLS 0.
+- `docs/codex/GOAL_COMPLETION_AUDIT.md` was updated for the current active goal. It now records the correct state: the current visual-refinement candidate is local-only and not complete until Wayne approves it, it is committed, preview-deployed, preview-gated, production-approved, production-deployed, and production-gated.
+- `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md` were updated so Wayne's review path points at the current local candidate `http://127.0.0.1:8130/`, not the previous production-only handoff.
+- Current state of this visual refinement: the current 10-file candidate is locally release-gated, uncommitted, unpushed, not preview-deployed, and not production-deployed. Wayne needs to review the local version before any commit, Netlify preview, or production action. The formal Codex goal remains active: make the Robson AI Solutions website the best releasable version it can be while remaining polished, professional, responsive, accessible, evidence-led, brand-consistent, cautious about product maturity, and validated locally before preview/publish approval.
 
 Previous tranche:
 

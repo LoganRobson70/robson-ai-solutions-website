@@ -7820,3 +7820,672 @@ body[data-page-type="building-analyst"] .analyst-summary-card .home-card-label {
     max-width: none;
   }
 }
+
+/* Wayne review visual refinement: remove the awkward floating logo and turn text-heavy homepage blocks into tighter product surfaces. */
+.home-hero-mark {
+  display: none !important;
+}
+
+.home-hero-stage {
+  width: min(100%, 39rem);
+}
+
+.home-signal-board,
+body[data-page-type="preview"] .home-signal-board {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.15rem, 2.4vw, 1.75rem);
+}
+
+.home-signal-board::after,
+body[data-page-type="preview"] .home-signal-board::after {
+  content: "" !important;
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.35rem);
+  right: clamp(1rem, 2vw, 1.35rem);
+  display: block !important;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  background: var(--color-signal);
+  box-shadow:
+    0 0 0 0.45rem rgba(245, 166, 35, 0.12),
+    0 0 2.4rem rgba(245, 166, 35, 0.36);
+}
+
+.home-signal-panel-primary {
+  max-width: min(100%, 29rem);
+}
+
+.home-section-explorer,
+.home-section-output,
+.home-section-contact {
+  background:
+    linear-gradient(rgba(6, 19, 61, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 19, 61, 0.025) 1px, transparent 1px),
+    linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+  background-size: 58px 58px, 58px 58px, auto;
+}
+
+.workflow-finder-shell,
+.home-contact-shell {
+  align-items: stretch;
+}
+
+.workflow-finder-intro,
+.operations-proof-intro,
+.home-contact-copy {
+  position: sticky;
+  top: 7rem;
+  align-self: start;
+}
+
+.workflow-finder-board {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.38fr) minmax(0, 1fr);
+  gap: clamp(0.75rem, 2vw, 1rem);
+  padding: clamp(0.75rem, 2vw, 1rem);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.92));
+}
+
+.interactive-tabs {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.interactive-tab {
+  min-height: 4.2rem;
+  justify-content: flex-start;
+  padding: 0.9rem;
+}
+
+.workflow-finder-panels {
+  min-width: 0;
+}
+
+.workflow-finder-panel {
+  min-height: 22rem;
+  padding: clamp(1.1rem, 2.8vw, 1.55rem);
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(14rem, 0.56fr);
+  gap: clamp(1rem, 3vw, 1.5rem);
+  align-items: start;
+  align-content: start;
+}
+
+.workflow-finder-panel[hidden],
+.assessment-lens-panel[hidden] {
+  display: none !important;
+}
+
+.workflow-finder-panel h3 {
+  max-width: 13ch;
+  font-size: clamp(2rem, 3.4vw, 3.15rem);
+  line-height: 0.98;
+}
+
+.workflow-finder-panel p:not(.home-card-label),
+.workflow-finder-checks li {
+  font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+  line-height: 1.45;
+}
+
+.workflow-finder-checks {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(47, 91, 211, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 91, 211, 0.05) 1px, transparent 1px),
+    rgba(47, 91, 211, 0.05);
+  background-size: 30px 30px, 30px 30px, auto;
+}
+
+.workflow-finder-panel .text-link,
+.workflow-finder-actions .text-link,
+.operations-proof-actions .text-link,
+.home-contact-routes .text-link {
+  width: fit-content;
+  padding: 0.62rem 0.78rem;
+  border-radius: 8px;
+  border: 1px solid rgba(47, 91, 211, 0.16);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 24px rgba(6, 19, 61, 0.05);
+}
+
+.home-section-operations {
+  background:
+    linear-gradient(rgba(6, 19, 61, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 19, 61, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 84% 20%, rgba(47, 91, 211, 0.1), transparent 28rem),
+    linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  background-size: 58px 58px, 58px 58px, auto, auto;
+}
+
+.operations-boundary-note {
+  max-width: 31rem;
+}
+
+.operations-proof-board {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.operations-queue-card {
+  padding: clamp(1rem, 2vw, 1.25rem);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 250, 255, 0.92));
+}
+
+.operations-meta-grid {
+  gap: 0.55rem;
+}
+
+.operations-meta-grid div,
+.operations-evidence-trail,
+.operations-decision-rail article {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.operations-evidence-trail ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  padding: 0;
+  list-style: none;
+}
+
+.operations-evidence-trail li {
+  min-height: 4.6rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: rgba(47, 91, 211, 0.06);
+}
+
+.operations-decision-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.operations-decision-rail article {
+  min-height: 11rem;
+  padding: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+.operations-proof-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.home-section-output .home-section-grid {
+  grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.25fr);
+}
+
+.home-method-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.home-method-grid::before {
+  content: "";
+  position: absolute;
+  top: 2.15rem;
+  left: 4rem;
+  right: 4rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(47, 91, 211, 0.16), rgba(47, 91, 211, 0.44), rgba(245, 166, 35, 0.36));
+}
+
+.home-workflow-step {
+  min-height: 16rem;
+  padding: clamp(1rem, 2.4vw, 1.25rem);
+  align-content: start;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.home-workflow-step::before {
+  content: none;
+}
+
+.home-step-index {
+  position: relative;
+  z-index: 1;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #e7f1fb;
+}
+
+.home-workflow-step h3 {
+  max-width: 11ch;
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+}
+
+.home-section-credibility {
+  padding-block: clamp(4rem, 8vw, 6rem);
+}
+
+.home-belief-panel {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 2.4rem);
+  box-shadow: 0 30px 80px rgba(6, 19, 61, 0.18);
+}
+
+.home-belief-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto -8rem -10rem auto;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(47, 91, 211, 0.38), transparent 66%);
+  pointer-events: none;
+}
+
+.home-belief-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-belief-panel .home-section-intro {
+  max-width: 42rem;
+}
+
+.home-belief-panel .section-title {
+  max-width: 11ch;
+}
+
+.home-output-notes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+.home-belief-panel .home-output-notes article {
+  min-height: 9rem;
+  padding: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+.home-proof-status-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 0.85rem;
+}
+
+.home-proof-status-strip article {
+  min-height: 10rem;
+  padding: clamp(0.9rem, 2vw, 1.05rem);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.home-proof-status-strip strong {
+  display: block;
+  margin-top: 0.6rem;
+  color: #ffffff;
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+  line-height: 1.15;
+}
+
+.home-proof-status-strip p {
+  margin-top: 0.45rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.94rem;
+  line-height: 1.35;
+}
+
+.home-boundary-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 0.75rem;
+}
+
+.home-boundary-strip article {
+  padding: 0.8rem;
+}
+
+.home-contact-shell {
+  grid-template-columns: minmax(0, 0.48fr) minmax(0, 1.12fr);
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.home-contact-panel {
+  padding: clamp(1rem, 2.6vw, 1.5rem);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.94));
+}
+
+.home-contact-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.home-contact-list div {
+  min-height: 8.5rem;
+  padding: 0.9rem;
+  box-shadow: none;
+}
+
+.home-contact-routes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 0.8rem;
+}
+
+.home-contact-routes article {
+  min-height: 11rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.95rem;
+  border-radius: 8px;
+  background: rgba(47, 91, 211, 0.05);
+}
+
+.home-contact-routes p {
+  font-size: 0.96rem;
+  line-height: 1.38;
+}
+
+.home-contact-routes .text-link {
+  margin-top: auto;
+}
+
+.home-contact-panel .contact-link {
+  margin-top: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 8px;
+  background: var(--color-ink);
+  color: #ffffff;
+}
+
+@media (max-width: 1100px) {
+  .workflow-finder-intro,
+  .operations-proof-intro,
+  .home-contact-copy {
+    position: static;
+  }
+
+  .workflow-finder-board,
+  .workflow-finder-panel,
+  .home-section-output .home-section-grid,
+  .home-contact-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-finder-panel {
+    min-height: auto;
+  }
+
+  .home-method-grid,
+  .home-proof-status-strip,
+  .home-contact-routes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-method-grid::before {
+    content: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-hero-stage {
+    width: 100%;
+  }
+
+  .operations-evidence-trail ul,
+  .operations-decision-rail,
+  .home-method-grid,
+  .home-output-notes,
+  .home-proof-status-strip,
+  .home-boundary-strip,
+  .home-contact-list,
+  .home-contact-routes {
+    grid-template-columns: 1fr;
+  }
+
+  .interactive-tab,
+  .home-contact-list div,
+  .home-contact-routes article,
+  .operations-decision-rail article,
+  .home-workflow-step {
+    min-height: auto;
+  }
+}
+
+/* Best-site polish pass: proof-led depth, clearer section rhythm, and restrained motion hooks. */
+.home-section[data-proof-surface],
+.home-section-output,
+.home-section-contact {
+  position: relative;
+  isolation: isolate;
+}
+
+.home-section[data-proof-surface]::before,
+.home-section-output::before,
+.home-section-contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0, rgba(47, 91, 211, 0.06) 50%, transparent 100%) top / 100% 1px no-repeat,
+    linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(47, 91, 211, 0.045) 52%, rgba(255, 255, 255, 0) 100%);
+}
+
+.home-section-grid,
+.operations-proof-shell,
+.buildscan-showcase,
+.home-contact-shell,
+.workflow-finder-shell {
+  position: relative;
+}
+
+.workflow-finder-board,
+.operations-queue-card,
+.buildscan-window,
+.home-contact-panel {
+  border-color: rgba(6, 19, 61, 0.11);
+  box-shadow:
+    0 22px 54px rgba(6, 19, 61, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.workflow-finder-board::after,
+.operations-queue-card::after,
+.home-contact-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.55), transparent 34%),
+    linear-gradient(315deg, rgba(47, 91, 211, 0.08), transparent 38%);
+}
+
+.workflow-finder-board > *,
+.operations-queue-card > *,
+.home-contact-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.workflow-finder-panel {
+  background:
+    linear-gradient(rgba(6, 19, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 19, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 250, 255, 0.88));
+  background-size: 38px 38px, 38px 38px, auto;
+  border: 1px solid rgba(47, 91, 211, 0.12);
+  border-radius: 8px;
+}
+
+.workflow-finder-panel .text-link,
+.operations-proof-actions .text-link,
+.home-contact-routes .text-link {
+  color: var(--color-ink);
+}
+
+.interactive-tab {
+  border-color: rgba(47, 91, 211, 0.14);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.interactive-tab.is-active {
+  box-shadow: 0 14px 34px rgba(6, 19, 61, 0.14);
+}
+
+.operations-proof-board {
+  position: relative;
+  padding: clamp(0.75rem, 1.8vw, 1rem);
+  border: 1px solid rgba(47, 91, 211, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 22px 60px rgba(6, 19, 61, 0.07);
+}
+
+.operations-meta-grid div,
+.operations-evidence-trail,
+.operations-decision-rail article {
+  border-color: rgba(47, 91, 211, 0.11);
+}
+
+.operations-decision-rail article {
+  position: relative;
+  overflow: hidden;
+}
+
+.operations-decision-rail article::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-signal));
+  opacity: 0.78;
+}
+
+.buildscan-window {
+  position: relative;
+  overflow: hidden;
+}
+
+.buildscan-window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 26%, transparent 74%, rgba(47, 91, 211, 0.1)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 34%);
+}
+
+.buildscan-window > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-method-grid {
+  align-items: stretch;
+}
+
+.home-workflow-step {
+  border-color: rgba(47, 91, 211, 0.12);
+  box-shadow: 0 18px 44px rgba(6, 19, 61, 0.06);
+}
+
+.home-workflow-step:nth-child(2) {
+  transform: translateY(0.75rem);
+}
+
+.home-workflow-step:nth-child(3) {
+  transform: translateY(1.5rem);
+}
+
+.home-belief-panel .home-output-notes article {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.home-proof-status-strip article,
+.home-boundary-strip article {
+  backdrop-filter: blur(12px);
+}
+
+.home-proof-status-strip article {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-proof-status-strip article::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--color-signal), rgba(47, 91, 211, 0.8));
+  opacity: 0.86;
+}
+
+.home-contact-list div,
+.home-contact-routes article {
+  border-color: rgba(47, 91, 211, 0.12);
+}
+
+.home-contact-routes article {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-contact-routes article::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(47, 91, 211, 0.86), rgba(245, 166, 35, 0.86));
+}
+
+.contact-actions {
+  margin-top: 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) and (pointer: fine) {
+  .workflow-finder-panel .text-link,
+  .operations-proof-actions .text-link,
+  .home-contact-routes .text-link,
+  .contact-actions .btn {
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .workflow-finder-panel .text-link:hover,
+  .workflow-finder-panel .text-link:focus-visible,
+  .operations-proof-actions .text-link:hover,
+  .operations-proof-actions .text-link:focus-visible,
+  .home-contact-routes .text-link:hover,
+  .home-contact-routes .text-link:focus-visible,
+  .contact-actions .btn:hover,
+  .contact-actions .btn:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(6, 19, 61, 0.12);
+  }
+}
+
+@media (max-width: 1100px) {
+  .home-workflow-step:nth-child(2),
+  .home-workflow-step:nth-child(3) {
+    transform: none;
+  }
+}

@@ -766,7 +766,7 @@ function setupAmbientMotion() {
 
   const root = document.documentElement;
   const depthSurfaces = document.querySelectorAll(
-    ".home-signal-board, .analyst-summary-card, .home-problem-card, .home-workflow-step, .home-contact-panel, .analyst-core-card, .analyst-flow-card, .analyst-fit-card, .page-card, .fit-card"
+    ".home-signal-board, .workflow-finder-board, .operations-queue-card, .operations-decision-rail article, .buildscan-window, .home-belief-panel, .home-contact-panel, .analyst-summary-card, .home-problem-card, .home-workflow-step, .home-contact-routes article, .analyst-core-card, .analyst-flow-card, .analyst-fit-card, .page-card, .fit-card"
   );
 
   document.body.classList.add("motion-pointer-ready");
