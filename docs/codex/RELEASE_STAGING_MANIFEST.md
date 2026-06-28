@@ -1,9 +1,9 @@
 # Release Staging Manifest - Post-Launch Proof Motion Polish
 
-Last updated: 2026-06-28 20:13 BST
+Last updated: 2026-06-28 20:22 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: Wayne-approved for local commit and non-production Netlify preview deploy; no branch push or production deploy approved
+Status: committed and preview-gated; no branch push or production deploy approved
 
 ## 1. Purpose
 
@@ -31,6 +31,13 @@ Do not run `git add .` for this candidate.
 Wayne approved option `3` on 2026-06-28 to start the next design/motion improvement tranche.
 
 Wayne approved `motion polish preview` on 2026-06-28, covering explicit-path staging, local commit, non-production Netlify preview deploy, and deployed preview release-gate validation.
+
+Preview outcome:
+
+- Local commit: `763c8d8` (`Add proof motion polish`)
+- Netlify preview deploy: `6a41739b29f5ccb3751611f1`
+- Preview URL: `https://proof-motion-polish--robson-ai-website.netlify.app`
+- Preview gate: `output/release-preview-gate/gate-2026-06-28T19-19-11-713Z/release-preview-gate.json`
 
 Approved now:
 
@@ -75,6 +82,10 @@ Current validation evidence:
 - `npm run qa:release-inventory` passed with artifact `output/release-inventory/inventory-2026-06-28T18-09-42-986Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings, and GLB externalUriCount 0.
 - `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-06-28T18-10-09-591Z/release-local-gate.json`.
 - Full-gate evidence includes rendered screenshots in `output/playwright/rendered-release-smoke-2026-06-28T18-11-45-560Z` and measurement evidence in `output/measurement/evidence-2026-06-28T18-12-05-225Z`; Lighthouse reported performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.65 seconds, and CLS 0.
+- Pre-commit `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-06-28T19-14-54-021Z/release-local-gate.json`; Lighthouse reported performance 98, accessibility 100, best practices 100, SEO 100, LCP about 1.73 seconds, and CLS 0.
+- Netlify preview deploy `6a41739b29f5ccb3751611f1` went live at `https://proof-motion-polish--robson-ai-website.netlify.app`.
+- `QA_BASE_URL="https://proof-motion-polish--robson-ai-website.netlify.app" npm run qa:release:preview` passed all 14 steps with artifact `output/release-preview-gate/gate-2026-06-28T19-19-11-713Z/release-preview-gate.json`.
+- Preview gate evidence includes release inventory `output/release-inventory/inventory-2026-06-28T19-19-11-843Z/release-candidate-inventory.json` with dirtyCount 0 and zero secret findings; deployed headers `output/release-headers/smoke-2026-06-28T19-19-18-844Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-06-28T19-19-19-213Z`; product/design `output/product-design-acceptance/smoke-2026-06-28T19-19-52-037Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-06-28T19-20-01-778Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-06-28T19-20-36-358Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-06-28T19-21-16-388Z`; and measurement smoke `output/measurement/smoke-2026-06-28T19-21-30-032Z`.
 
 The release inventory gate enforces:
 
@@ -175,4 +186,4 @@ QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true 
 
 ## 12. Rollback Path
 
-If the motion polish causes visual, accessibility, performance, or interaction regression, revert these four files to commit `39c5bf5` and rerun the local release gate before any preview or production decision.
+If the motion polish causes visual, accessibility, performance, or interaction regression before production, revert local commit `763c8d8` or restore these four files to commit `39c5bf5`, then rerun the local release gate before another preview or production decision. If it is later published and needs rollback, restore the current live Netlify production deploy `6a415b5db31442000737c37c`.

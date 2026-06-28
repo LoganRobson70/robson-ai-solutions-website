@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-28 20:13 BST
+Last updated: 2026-06-28 20:22 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/docs-evidence-preservation-no-production-deploy`
@@ -11,9 +11,9 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Move the `post-launch-proof-motion-polish` candidate from local-only into a Wayne-approved non-production preview.
+- Review the deployed `post-launch-proof-motion-polish` preview and decide whether to publish it to production.
 - Preserve the aligned production/source-control baseline and treat all motion work as a new approval-gated candidate.
-- Keep the next action bounded to explicit-path staging, local commit, Netlify preview deploy, preview QA, then Wayne's separate production decision.
+- Keep the next action bounded to Wayne review, then a separate explicit production decision if he wants this motion polish live.
 
 Success means:
 
@@ -33,9 +33,9 @@ Success means:
 ## 2. Active Tranche
 
 Tranche name: `post-launch-proof-motion-polish`
-Status: Wayne-approved for local commit and non-production Netlify preview deploy; production deploy not approved
+Status: committed and Netlify preview-gated; production deploy not approved
 Started: 2026-06-28 19:05 BST
-Completed: not complete; commit/preview execution in progress
+Completed: 2026-06-28 20:22 BST for the approved preview tranche; awaiting Wayne production decision
 
 Scope:
 
@@ -82,6 +82,15 @@ Validation evidence:
 - `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-06-28T18-10-09-591Z/release-local-gate.json`.
 - Measurement evidence from the full gate: `output/measurement/evidence-2026-06-28T18-12-05-225Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.65 seconds, CLS 0.
 - Browser coverage advisory remains warning-only for Firefox/WebKit binaries unavailable locally; Chromium passed.
+- Wayne-approved explicit-path staged files: `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/TRACKER.md`, `script.js`, and `styles.css`.
+- Pre-commit `git diff --cached --check` passed.
+- Pre-commit `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-06-28T19-14-54-021Z/release-local-gate.json`.
+- Pre-commit measurement evidence: `output/measurement/evidence-2026-06-28T19-16-55-575Z`; Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, LCP about 1.73 seconds, CLS 0.
+- Local commit created: `763c8d8` (`Add proof motion polish`); branch is ahead of `origin/codex/docs-evidence-preservation-no-production-deploy` and has not been pushed.
+- Netlify preview deploy succeeded from a clean archive of commit `763c8d8`: deploy `6a41739b29f5ccb3751611f1`, preview URL `https://proof-motion-polish--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a41739b29f5ccb3751611f1`.
+- Preview release gate passed: `QA_BASE_URL="https://proof-motion-polish--robson-ai-website.netlify.app" npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-06-28T19-19-11-713Z/release-preview-gate.json`; result pass, 14 steps.
+- Preview gate evidence includes release inventory `output/release-inventory/inventory-2026-06-28T19-19-11-843Z/release-candidate-inventory.json` with dirtyCount 0 and zero secret findings; deployed headers `output/release-headers/smoke-2026-06-28T19-19-18-844Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-06-28T19-19-19-213Z`; semantic SEO `output/semantic-seo/smoke-2026-06-28T19-19-38-356Z/semantic-seo-smoke.json`; product/design `output/product-design-acceptance/smoke-2026-06-28T19-19-52-037Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-06-28T19-20-01-778Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-06-28T19-20-36-358Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-06-28T19-21-16-388Z`; and measurement smoke `output/measurement/smoke-2026-06-28T19-21-30-032Z`.
+- Residual advisories: production deploy is not approved; branch push/GitHub PR are not approved; production dependency footprint remains zero vulnerabilities; dev/release tooling audit remains 17 moderate advisories; Chromium browser coverage passed while Firefox/WebKit are unavailable locally and warning-only.
 
 ## 3. Completed Source-Control Alignment Tranche
 
