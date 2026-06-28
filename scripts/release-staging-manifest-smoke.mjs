@@ -56,7 +56,7 @@ function parseCodeBlockAfterHeading(markdown, heading) {
   assert(headingIndex !== -1, `${heading} section is missing from ${MANIFEST_PATH}.`);
 
   const afterHeading = markdown.slice(headingIndex);
-  const blockMatch = afterHeading.match(/```(?:text|bash)\n([\s\S]*?)\n```/);
+  const blockMatch = afterHeading.match(/```(?:text|bash)\n([\s\S]*?)```/);
   assert(blockMatch, `${heading} should include a fenced code block.`);
 
   return blockMatch[1];

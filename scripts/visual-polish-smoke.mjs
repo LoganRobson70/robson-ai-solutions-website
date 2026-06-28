@@ -16,6 +16,7 @@ const ROUTES = [
 
 const VIEWPORTS = [
   { name: "mobile", width: 390, height: 844 },
+  { name: "tablet", width: 900, height: 1000 },
   { name: "desktop", width: 1440, height: 1000 }
 ];
 
@@ -199,6 +200,38 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
       };
     });
 
+    const heroLogoMetrics = await page.evaluate(() => {
+      const frame = document.querySelector(".home-hero-mark");
+      const image = frame?.querySelector("img");
+      const board = document.querySelector(".home-signal-board");
+
+      if (!frame || !image || !board) {
+        return null;
+      }
+
+      const frameRect = frame.getBoundingClientRect();
+      const imageRect = image.getBoundingClientRect();
+      const boardRect = board.getBoundingClientRect();
+      const visible = frameRect.width > 2 && frameRect.height > 2 && imageRect.width > 2 && imageRect.height > 2;
+
+      return {
+        visible,
+        frameWidth: Math.round(frameRect.width),
+        frameHeight: Math.round(frameRect.height),
+        imageWidth: Math.round(imageRect.width),
+        imageHeight: Math.round(imageRect.height),
+        frameRatio: visible ? Number((frameRect.width / frameRect.height).toFixed(3)) : null,
+        imageRatio: visible ? Number((imageRect.width / imageRect.height).toFixed(3)) : null,
+        boardWidth: Math.round(boardRect.width),
+        boardHeight: Math.round(boardRect.height),
+        boardRight: Math.round(boardRect.right),
+        frameRight: Math.round(frameRect.right),
+        frameToBoardRight: visible ? Math.round(frameRect.right - boardRect.right) : null,
+        naturalWidth: image.naturalWidth,
+        naturalHeight: image.naturalHeight
+      };
+    });
+
     const blockingFailedRequests = diagnostics.failedRequests.filter((failure) => {
       const hadSuccessfulGlbResponse = diagnostics.responses.some(
         (responseResult) => responseResult.url === failure.url && responseResult.status === 200 && responseResult.url.includes("buildscan-ludgershall-public.glb")
@@ -210,12 +243,24 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
     assert(!contrastAndLayout.overflowX, `${route} ${viewport.name} should not introduce horizontal overflow.`);
     assert(diagnostics.consoleMessages.length === 0, `${route} ${viewport.name} should not emit console/page errors: ${JSON.stringify(diagnostics.consoleMessages)}.`);
     assert(blockingFailedRequests.length === 0, `${route} ${viewport.name} should not have failed requests: ${JSON.stringify(blockingFailedRequests)}.`);
+    if (route === "/") {
+      assert(heroLogoMetrics, `${route} ${viewport.name} should render the decorative hero logo.`);
+      if (viewport.name === "desktop") {
+        assert(heroLogoMetrics.visible, `${route} ${viewport.name} should show the decorative hero logo: ${JSON.stringify(heroLogoMetrics)}.`);
+      }
+      if (heroLogoMetrics.visible) {
+        assert(heroLogoMetrics.frameRatio >= 0.9 && heroLogoMetrics.frameRatio <= 1.1, `${route} ${viewport.name} hero logo frame should remain square: ${JSON.stringify(heroLogoMetrics)}.`);
+        assert(heroLogoMetrics.imageRatio >= 0.9 && heroLogoMetrics.imageRatio <= 1.1, `${route} ${viewport.name} hero logo image should not be distorted: ${JSON.stringify(heroLogoMetrics)}.`);
+        assert(Math.abs(heroLogoMetrics.frameToBoardRight) <= 40, `${route} ${viewport.name} hero logo should stay anchored to the product board, not the viewport edge: ${JSON.stringify(heroLogoMetrics)}.`);
+      }
+    }
 
     return {
       route,
       viewport,
       surfaceFindings,
       contrastAndLayout,
+      heroLogoMetrics,
       diagnostics
     };
   } finally {

@@ -6498,6 +6498,9 @@ body[data-page-type="who-its-for"] .btn-outline {
 .home-hero-stage {
   position: relative;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: min(100%, 37rem);
+  justify-self: end;
   gap: 1rem;
   align-items: start;
 }
@@ -6509,6 +6512,9 @@ body[data-page-type="who-its-for"] .btn-outline {
   z-index: 2;
   justify-self: end;
   width: clamp(4.6rem, 8vw, 6rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
   padding: 0.75rem;
   border-radius: 8px;
   border: 1px solid rgba(6, 19, 61, 0.1);
@@ -6516,8 +6522,16 @@ body[data-page-type="who-its-for"] .btn-outline {
   box-shadow: 0 20px 54px rgba(6, 19, 61, 0.1);
 }
 
+.home-hero-mark img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
 .home-signal-board,
 body[data-page-type="preview"] .home-signal-board {
+  width: 100%;
   min-height: unset;
   padding: clamp(1.2rem, 3vw, 1.6rem);
   border-radius: 8px;

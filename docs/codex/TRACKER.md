@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-28 12:01 BST
+Last updated: 2026-06-28 12:45 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/docs-evidence-preservation-no-production-deploy`
@@ -129,6 +129,8 @@ Validation evidence:
 - Final website approval handoff added in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`. It presents the full website links, approval questions, product-direction criteria, evidence, residual risks, and next-phase refinement candidates. No deploy is approved by this handoff.
 - Next-phase refinement plan added in `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md`. It identifies candidate refinements for BuildScan interaction polish, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment. It is planning-only and does not approve code changes, preview deploys, production deploys, analytics, forms, or new public-model exposure.
 - Website approval review checklist added in `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`. It gives Wayne a page-by-page desktop/mobile review sequence, approval/flag criteria, latest evidence paths, known residuals, and the exact approval response. It does not rerun production verification or approve any deploy.
+- Hero logo aspect and anchor fix candidate completed locally after Wayne flagged the floating homepage icon as misshaped and then drifting too far right. CSS now keeps `.home-hero-mark` square, renders the image at its intrinsic 1:1 ratio, constrains `.home-hero-stage` to the product-board width, and forces the stage grid to one full-width track so the icon anchors to the board rather than the viewport edge. `scripts/visual-polish-smoke.mjs` now guards mobile, tablet, and desktop homepage hero logo behaviour and accepts intentionally hidden mobile hero-stage state. `scripts/release-staging-manifest-smoke.mjs` now accepts empty candidate sections so zero untracked files can be represented explicitly. Latest targeted validation passed: `node --check scripts/visual-polish-smoke.mjs`, `node --check scripts/release-staging-manifest-smoke.mjs`, `git diff --check`, and `npm run qa:visual-polish` with artifact `output/visual-polish/smoke-2026-06-28T11-33-56-092Z/visual-polish-smoke.json`; tablet metrics now show stage and board both 592px wide with the icon anchored 16px inside the board's right edge. This remains local only: no commit, push, preview deploy, production verification, or production deploy is approved.
+- Wayne approved option `1`, `commit-and-preview-hero-logo-aspect-and-anchor-fix`, on 2026-06-28 12:45 BST. Approval covers staging the five manifest files, creating a local commit, creating a Netlify preview, and running preview QA. It does not approve branch push, production verification with confirmation, or production deploy.
 
 Previous tranche:
 
