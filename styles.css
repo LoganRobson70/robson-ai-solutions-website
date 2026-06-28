@@ -8489,3 +8489,194 @@ body[data-page-type="preview"] .home-signal-board::after {
     transform: none;
   }
 }
+
+/* Post-launch proof motion polish: inspectable surfaces, not decorative noise. */
+.workflow-finder-board::after,
+.operations-queue-card::after,
+.home-contact-panel::after {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.58), transparent 34%),
+    linear-gradient(315deg, rgba(47, 91, 211, 0.08), transparent 38%),
+    linear-gradient(90deg, transparent 0%, rgba(245, 166, 35, 0.18) 50%, transparent 100%);
+  background-size: auto, auto, 190% 100%;
+  background-position: center, center, -90% 0;
+}
+
+.workflow-finder-panel,
+.operations-meta-grid div,
+.operations-evidence-trail,
+.buildscan-model-viewport,
+.buildscan-proof-list article {
+  position: relative;
+  overflow: hidden;
+}
+
+.workflow-finder-panel::after,
+.operations-evidence-trail::after,
+.buildscan-proof-list article::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 0 38%, rgba(47, 91, 211, 0.11) 48%, transparent 60% 100%);
+  opacity: 0;
+  transform: translate3d(-34%, 0, 0);
+}
+
+.workflow-finder-panel > *,
+.operations-evidence-trail > *,
+.buildscan-proof-list article > * {
+  position: relative;
+  z-index: 1;
+}
+
+.workflow-finder-panel.is-panel-entering {
+  animation: proof-panel-enter 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.workflow-finder-panel.is-panel-entering::after {
+  animation: proof-panel-scan 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.operations-meta-grid div::after {
+  content: "";
+  position: absolute;
+  right: 0.72rem;
+  top: 0.72rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--color-signal);
+  box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.24);
+  opacity: 0.78;
+}
+
+.buildscan-model-viewport::before,
+.buildscan-model-viewport::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.74;
+}
+
+.buildscan-model-viewport::before {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 22%, transparent 78%, rgba(99, 167, 242, 0.11)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 44px);
+  transform: translate3d(var(--ambient-x-soft), var(--ambient-y-soft), 0);
+}
+
+.buildscan-model-viewport::after {
+  inset: 12% 8%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent) 0 42% / 160% 1px no-repeat,
+    linear-gradient(0deg, transparent, rgba(99, 167, 242, 0.24), transparent) 58% 0 / 1px 160% no-repeat;
+  transform: translate3d(var(--ambient-x-soft-neg), var(--ambient-y-soft-neg), 0);
+}
+
+.buildscan-model-viewport.is-loaded::before,
+.buildscan-model-viewport.is-loaded::after {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) and (pointer: fine) {
+  body.motion-pointer-ready .workflow-finder-board::after,
+  body.motion-pointer-ready .operations-queue-card::after,
+  body.motion-pointer-ready .home-contact-panel::after {
+    background-position:
+      center,
+      center,
+      calc(-90% + var(--ambient-x-soft)) 0;
+    transition: background-position 220ms ease-out;
+  }
+
+  .operations-meta-grid div::after {
+    animation: proof-status-pulse 3200ms ease-in-out infinite;
+  }
+
+  .operations-evidence-trail::after,
+  .buildscan-proof-list article::after {
+    animation: proof-panel-scan 5200ms cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  }
+
+  .buildscan-model-viewport::after {
+    animation: buildscan-inspection-sweep 7600ms ease-in-out infinite;
+  }
+}
+
+@keyframes proof-panel-enter {
+  from {
+    opacity: 0.74;
+    transform: translate3d(0.45rem, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes proof-panel-scan {
+  0% {
+    opacity: 0;
+    transform: translate3d(-44%, 0, 0);
+  }
+
+  28% {
+    opacity: 0.72;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(52%, 0, 0);
+  }
+}
+
+@keyframes proof-status-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.22);
+  }
+
+  45% {
+    box-shadow: 0 0 0 0.42rem rgba(245, 166, 35, 0);
+  }
+}
+
+@keyframes buildscan-inspection-sweep {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: translate3d(var(--ambient-x-soft-neg), var(--ambient-y-soft-neg), 0) scale(1);
+  }
+
+  50% {
+    opacity: 0.78;
+    transform: translate3d(var(--ambient-x-soft), var(--ambient-y-soft), 0) scale(1.015);
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  .workflow-finder-panel.is-panel-entering,
+  .workflow-finder-panel.is-panel-entering::after,
+  .operations-meta-grid div::after,
+  .operations-evidence-trail::after,
+  .buildscan-proof-list article::after,
+  .buildscan-model-viewport::after {
+    animation: none;
+  }
+
+  .workflow-finder-panel::after,
+  .operations-evidence-trail::after,
+  .buildscan-proof-list article::after,
+  .buildscan-model-viewport::before,
+  .buildscan-model-viewport::after {
+    opacity: 0;
+    transform: none;
+  }
+}

@@ -353,6 +353,8 @@ function setupInteractivePanels() {
   interactivePanels.forEach((component) => {
     const triggers = Array.from(component.querySelectorAll("[data-panel-trigger]"));
     const panes = Array.from(component.querySelectorAll("[data-panel-pane]"));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let panelMotionTimer = 0;
 
     if (!triggers.length || !panes.length) {
       return;
@@ -375,9 +377,21 @@ function setupInteractivePanels() {
 
       panes.forEach((pane) => {
         pane.hidden = pane !== activePane;
+        pane.classList.remove("is-panel-entering");
       });
 
       component.dataset.activePanel = panelId;
+
+      if (!reducedMotion) {
+        window.clearTimeout(panelMotionTimer);
+        activePane.classList.remove("is-panel-entering");
+        window.requestAnimationFrame(() => {
+          activePane.classList.add("is-panel-entering");
+          panelMotionTimer = window.setTimeout(() => {
+            activePane.classList.remove("is-panel-entering");
+          }, 360);
+        });
+      }
 
       if (shouldFocus) {
         activeTrigger.focus();
@@ -766,7 +780,7 @@ function setupAmbientMotion() {
 
   const root = document.documentElement;
   const depthSurfaces = document.querySelectorAll(
-    ".home-signal-board, .workflow-finder-board, .operations-queue-card, .operations-decision-rail article, .buildscan-window, .home-belief-panel, .home-contact-panel, .analyst-summary-card, .home-problem-card, .home-workflow-step, .home-contact-routes article, .analyst-core-card, .analyst-flow-card, .analyst-fit-card, .page-card, .fit-card"
+    ".home-signal-board, .workflow-finder-board, .workflow-finder-panel, .operations-queue-card, .operations-meta-grid div, .operations-decision-rail article, .buildscan-window, .buildscan-model-viewport, .buildscan-proof-list article, .home-belief-panel, .home-contact-panel, .analyst-summary-card, .home-problem-card, .home-workflow-step, .home-contact-routes article, .analyst-core-card, .analyst-flow-card, .analyst-fit-card, .page-card, .fit-card"
   );
 
   document.body.classList.add("motion-pointer-ready");
