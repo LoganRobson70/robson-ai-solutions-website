@@ -1,13 +1,34 @@
 # Release Approval Packet - BuildScan Interactive Preview Candidate
 
-Last updated: 2026-06-28 01:56 BST
+Last updated: 2026-06-28 11:44 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: Wayne approved option `1`; preview-only tranche is complete on `codex/buildscan-interactive-preview-release-candidate`; final Netlify draft preview `https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app` passed the deployed preview gate; production deploy is not approved
+Status: historical preview approval packet; the candidate was later approved, published to production, production-gated, and post-launch observed. No further live deploy is approved.
+
+## 0. Current Status - 2026-06-28
+
+The approval packet below is preserved as the historical decision record for the BuildScan interactive preview candidate.
+
+Current production state:
+
+- Public URL: `https://robsonai.co.uk`.
+- Current production deploy: `6a40ed1d6073460008b7d3b7`.
+- Current production commit: `568259e6c5c745b4aa7668ee5048ea41319dba7a`.
+- Published: `2026-06-28T09:45:15.914Z`.
+- Production release gate: passed, artifact `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
+- Post-launch observation: passed read-only checks, recorded in `docs/codex/TRACKER.md`.
+- Preservation branch: `codex/docs-evidence-preservation-no-production-deploy`.
+
+Current approval rule:
+
+- Do not treat this packet as approval for any new deploy.
+- Before any future live deploy, present the full website or candidate preview to Wayne for final approval.
+- Future releases must preserve the existing release pattern: scoped change, local validation, preview validation, explicit Wayne final approval, then production deploy and production gate.
+- Any new public-model exposure, analytics, contact form/customer-data path, domain/DNS change, broad redesign, Codex Security workspace scan, browser installation, or production deploy remains separately approval-gated.
 
 ## 1. Recommended Decision
 
-Recommended option 1 was approved by Wayne:
+Historical recommended option 1 was approved by Wayne:
 
 Approve `buildscan-interactive-preview-release-candidate`.
 
@@ -22,19 +43,13 @@ That approval means Wayne approves Codex to:
 7. Review the deployed preview in Browser on desktop and mobile.
 8. Return to Wayne with the preview URL, deployed evidence, risks, and rollback path before any production decision.
 
-This approval does not approve production deploy. The preview-only tranche has now completed and the production decision is the next explicit approval gate.
+This approval did not approve production deploy at the time. Wayne later approved production publish separately, and the production gate passed.
 
 Use `docs/codex/PUBLISH_READINESS_AUDIT.md` as the single gate checklist before any preview or production publish decision.
 
-Current recommended production option:
+Current recommended next step:
 
-Approve `production-publish-from-validated-preview-and-docs-closeout`.
-
-That approval would allow Codex to verify the current live Netlify production deploy and rollback target, follow `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md` for the validated candidate and docs closeout, run `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`, and report production evidence. It would not approve DNS/domain changes, GA4 enablement, contact forms, customer-data handling, or a motion-polish redesign.
-
-Alternative option:
-
-Run the full Codex Security workspace scan before production, then continue with production publish if no blocker is found.
+Prepare a scoped next-phase planning pass for content/design refinements. This must not deploy to production. Future candidate work should be presented to Wayne for final approval before any live deploy.
 
 ## 2. What The Candidate Adds
 
@@ -70,9 +85,9 @@ The candidate turns the current public site into a stronger release-grade websit
 
 ## 3. Explicitly Not Approved By This Packet
 
-The following still need separate approval:
+The following still need separate approval for any future change:
 
-- Production deploy.
+- Production deploy or production verification with confirmation.
 - Domain or DNS changes.
 - GA4 Measurement ID setup or analytics enablement.
 - Contact forms or customer-data capture.
@@ -93,7 +108,9 @@ The main product/security decision is the BuildScan GLB:
 - Current inventory result: binary glTF 2.0, one mesh, 118 materials, 118 images, zero external URI references.
 - Release implication: once previewed or published, the model is public downloadable website data.
 
-Wayne approval of `buildscan-interactive-preview-release-candidate` includes approval to expose this optimised GLB on a Netlify preview only. Production exposure still requires a later production decision.
+Wayne approval of `buildscan-interactive-preview-release-candidate` originally included approval to expose this optimised GLB on a Netlify preview only. Wayne later approved production publish separately, and the current production release exposes the optimised public GLB.
+
+Any new public model, larger model, replacement GLB, or more detailed asset remains a separate approval point before preview or production exposure.
 
 ## 5. Current Local Evidence
 

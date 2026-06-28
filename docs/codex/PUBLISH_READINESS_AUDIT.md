@@ -1,50 +1,50 @@
 # Publish Readiness Audit - Robson AI Solutions Website
 
-Last updated: 2026-06-28 01:56 BST
+Last updated: 2026-06-28 11:44 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: preview candidate is committed, pushed, deployed to Netlify draft preview, and deployed-preview gated; production publish is not yet approved or fully proved
+Status: production release shipped and production-gated
 
 ## 1. Purpose
 
-This audit is the single checklist for moving from the current local release candidate to a production publish decision.
+This audit is the single checklist for the 2026-06-28 BuildScan interactive production release and post-publish closeout.
 
-It does not approve staging, commit, push, Netlify preview, public GLB exposure, or production deploy. Those remain separate Wayne approvals.
+It records what was approved, shipped, validated, and what remains as non-blocking post-launch observation or optional hardening.
 
 ## 2. Current Readiness
 
-- Local release-readiness: 99.5%.
-- Preview release-readiness: 99%.
-- Production publish-readiness: 98.5%.
-- Current recommendation: ask Wayne for explicit production-publish approval for the validated preview candidate and docs closeout, then follow `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`, verify rollback target, deploy production, and run the production release gate.
-- Current state: branch `codex/buildscan-interactive-preview-release-candidate` is pushed at `b6ab8b3`; Netlify draft preview `https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app` passed `npm run qa:release:preview`.
+- Local release-readiness: 100%.
+- Preview release-readiness: 100%.
+- Production publish-readiness: 100%.
+- Current recommendation: preserve the final docs evidence on local branch `codex/docs-evidence-preservation-no-production-deploy` without pushing `main` or triggering a new production deploy, then plan the next content/design refinement tranche.
+- Current state: `main` and `origin/main` are at commit `568259e6c5c745b4aa7668ee5048ea41319dba7a`; Netlify production deploy `6a40ed1d6073460008b7d3b7` is ready and published on `https://robsonai.co.uk`; `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` passed.
 
-The remaining publish gap is not visual polish. It is release governance:
+The remaining work is not a publish blocker:
 
-- Wayne visual/product approval of the deployed preview
-- Wayne approval for public BuildScan GLB exposure in production
-- final rollback target re-verification immediately before production
-- separate production deploy approval
+- Preserve final docs evidence on the local branch without pushing directly to `main`.
+- Decide whether to run a full Codex Security workspace scan as an additional assurance step.
+- Decide whether to install Playwright Firefox/WebKit for strict local browser parity.
+- Decide whether to start the Luffu/Steno/Unfold-inspired motion-polish tranche, with reduced-motion and performance evidence.
 
 ## 3. Gate Matrix
 
 | Gate | Status | Evidence | Required before production |
 | --- | --- | --- | --- |
-| Product positioning | Passed on preview | `qa:product-design:preview`, rendered screenshots, PRD/current docs | Wayne product approval |
-| Visual/design quality | Passed on preview | rendered smoke, responsive smoke, product/design smoke, visual-polish smoke | Wayne visual approval |
-| Accessibility | Passed on preview | keyboard smoke, BuildScan viewer keyboard smoke, rendered checks | Strict Firefox/WebKit optional if Wayne wants a harder parity gate |
-| Performance | Passed on preview | local Lighthouse performance 100, preview measurement smoke passed, enforced budget | Production measurement gate after deploy |
-| SEO/semantics | Passed on preview | semantic/SEO smoke, sitemap/robots checks | Production route/metadata verification after deploy |
+| Product positioning | Passed on production | `qa:product-design`, rendered screenshots, PRD/current docs | Post-launch wording watch only |
+| Visual/design quality | Passed on production | rendered smoke, responsive smoke, product/design smoke, visual-polish smoke | Post-launch observation only |
+| Accessibility | Passed on production | keyboard smoke, BuildScan viewer keyboard smoke, rendered checks | Strict Firefox/WebKit optional if Wayne wants a harder parity gate |
+| Performance | Passed on production | local Lighthouse performance 100, production measurement smoke passed, enforced budget | Monitor after cache/search settle |
+| SEO/semantics | Passed on production | semantic/SEO smoke, sitemap/robots checks | Monitor indexing and social previews |
 | Cross-browser coverage | Partial local warning | Chromium passes advisory gate; Firefox/WebKit Playwright binaries are not installed locally; strict mode fails as expected | Install/enable Firefox and WebKit or run strict gate in a complete QA environment before treating browser parity as fully proved |
-| Security/privacy source posture | Passed on preview | release-security smoke, release-header config smoke, deployed header/source-deny checks, no form/customer data path | Production header/source-deny checks after deploy |
-| Dependency risk | Residual warning | non-force remediation removed high/critical findings; production audit clean; dev/release tooling audit has 17 moderate, 0 high, 0 critical | Accept residual Lighthouse/Sentry/OpenTelemetry tooling risk for preview, or defer for upstream/tooling changes |
-| BuildScan GLB public data | Warning | GLB structure clean, no external URI references, 1.35 MB | Wayne approves public preview/production exposure |
-| Staged file scope | Passed and staged | staging manifest smoke passes after staging against 25 modified / 37 new file boundary | Keep commit restricted to manifest paths |
+| Security/privacy source posture | Passed on production | release-security smoke, release-header config smoke, deployed header/source-deny checks, no form/customer data path | Full Codex Security workspace scan remains optional |
+| Dependency risk | Residual warning | non-force remediation removed high/critical findings; production audit clean; dev/release tooling audit has 17 moderate, 0 high, 0 critical | Accept residual Lighthouse/Sentry/OpenTelemetry tooling risk for production, or defer for upstream/tooling changes |
+| BuildScan GLB public data | Approved and shipped | GLB structure clean, no external URI references, 1.35 MB | Public model remains downloadable by design |
+| Staged file scope | Passed and shipped | staging manifest smoke passed after staging against 25 modified / 37 new file boundary | None |
 | Netlify deploy-preview | Passed | `https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app` | None before production beyond Wayne approval |
 | Deployed preview QA | Passed | `output/release-preview-gate/gate-2026-06-27T23-54-42-307Z/release-preview-gate.json` | None before production beyond Wayne approval |
-| Production rollback | Identified read-only | Netlify current production deploy `6a3d75a7658e0400089157a2` from commit `4a3f1fa8f7b1f885c37937056e2a029d6043501b` | Re-verify immediately before production deploy |
-| Production deploy | Not approved | none | Separate Wayne approval only |
-| Production verification | Not run | `qa:release:production` exists and fails closed without `QA_PRODUCTION_URL` plus confirmation | Run only after a separately approved production deploy |
+| Production rollback | Verified before deploy | previous production deploy `6a3d75a7658e0400089157a2` from commit `4a3f1fa8f7b1f885c37937056e2a029d6043501b` | Restore previous deploy or revert `main` if needed |
+| Production deploy | Passed | Netlify production deploy `6a40ed1d6073460008b7d3b7` from commit `568259e6c5c745b4aa7668ee5048ea41319dba7a` | None |
+| Production verification | Passed | `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json` | None |
 
 ## 4. Evidence Snapshot
 
@@ -80,6 +80,37 @@ Latest deployed preview gate:
 - Coverage included release inventory, dependency audit advisory, security source posture, deployed headers/source-path-deny checks, BuildScan viewer preview smoke, keyboard smoke, semantic/SEO smoke, product/design acceptance smoke, responsive route smoke, visual-polish smoke, browser coverage advisory, rendered smoke, and measurement smoke.
 - Fresh artifacts from this pass include release inventory `output/release-inventory/inventory-2026-06-27T23-54-42-416Z/release-candidate-inventory.json`, dependency advisory `output/dependency-audit/summary-2026-06-27T23-54-42-621Z/dependency-audit-summary.json`, deployed headers `output/release-headers/smoke-2026-06-27T23-54-50-959Z/release-header-smoke.json`, BuildScan viewer `output/buildscan-viewer/smoke-2026-06-27T23-54-51-284Z`, keyboard `output/playwright/keyboard-release-smoke-2026-06-27T23-54-58-312Z`, semantic SEO `output/semantic-seo/smoke-2026-06-27T23-55-04-317Z/semantic-seo-smoke.json`, product/design `output/product-design-acceptance/smoke-2026-06-27T23-55-13-362Z/product-design-acceptance-smoke.json`, responsive route `output/responsive-route/smoke-2026-06-27T23-55-20-409Z/responsive-route-smoke.json`, visual polish `output/visual-polish/smoke-2026-06-27T23-55-43-175Z/visual-polish-smoke.json`, browser coverage `output/browser-coverage/smoke-2026-06-27T23-55-55-976Z/browser-coverage-smoke.json`, rendered smoke `output/playwright/rendered-release-smoke-2026-06-27T23-56-05-122Z`, and measurement smoke `output/measurement/smoke-2026-06-27T23-56-17-356Z`.
 
+Production deployment and release gate:
+
+- Production deploy: `6a40ed1d6073460008b7d3b7`.
+- Production URL: `https://robsonai.co.uk`.
+- Commit: `568259e6c5c745b4aa7668ee5048ea41319dba7a`.
+- Published: `2026-06-28T09:45:15.914Z`.
+- Previous rollback candidate: `6a3d75a7658e0400089157a2`.
+- Production gate command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`.
+- Production gate result: pass, 14 steps.
+- Production gate artifact: `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
+- Release inventory artifact: `output/release-inventory/inventory-2026-06-28T09-46-09-283Z/release-candidate-inventory.json`: dirtyCount 0, 76 scanned files, zero secret findings, GLB externalUriCount 0.
+- Dependency audit artifact: `output/dependency-audit/summary-2026-06-28T09-46-09-491Z/dependency-audit-summary.json`: production vulnerabilities 0; dev/release tooling remains 17 moderate, 0 high, 0 critical.
+- Production header/security artifact: `output/release-headers/smoke-2026-06-28T09-46-17-470Z/release-header-smoke.json`; source-path deny checks passed.
+- Production BuildScan viewer artifact: `output/buildscan-viewer/smoke-2026-06-28T09-46-17-781Z`; direct and embedded viewer checks passed.
+- Production measurement smoke: `output/measurement/smoke-2026-06-28T09-47-29-656Z`.
+- Browser coverage advisory: `output/browser-coverage/smoke-2026-06-28T09-47-13-177Z/browser-coverage-smoke.json`; Chromium passed, Firefox/WebKit unavailable locally and warning-only.
+
+Post-launch observation check:
+
+- Completed read-only on 2026-06-28 11:30 BST.
+- Production remained on Netlify deploy `6a40ed1d6073460008b7d3b7` from commit `568259e6c5c745b4aa7668ee5048ea41319dba7a`.
+- Headers/source-deny passed: `output/release-headers/smoke-2026-06-28T10-27-25-060Z/release-header-smoke.json`.
+- SEO/social metadata passed: `output/semantic-seo/smoke-2026-06-28T10-27-33-517Z/semantic-seo-smoke.json`.
+- Measurement passed: `output/measurement/smoke-2026-06-28T10-27-33-522Z`.
+- Rendered screenshots passed: `output/playwright/rendered-release-smoke-2026-06-28T10-27-48-468Z`.
+- BuildScan viewer passed: `output/buildscan-viewer/smoke-2026-06-28T10-28-08-942Z`.
+- Responsive route smoke passed: `output/responsive-route/smoke-2026-06-28T10-28-43-063Z/responsive-route-smoke.json`.
+- Visual-polish, product/design, and keyboard smokes passed at `output/visual-polish/smoke-2026-06-28T10-29-14-071Z/visual-polish-smoke.json`, `output/product-design-acceptance/smoke-2026-06-28T10-29-14-071Z/product-design-acceptance-smoke.json`, and `output/playwright/keyboard-release-smoke-2026-06-28T10-29-14-071Z`.
+- Browser coverage advisory completed with warning only: `output/browser-coverage/smoke-2026-06-28T10-29-37-496Z/browser-coverage-smoke.json`; Chromium passed, Firefox/WebKit unavailable locally.
+- Preservation branch: `codex/docs-evidence-preservation-no-production-deploy`, local-only unless Wayne later approves a push/PR path.
+
 Latest staging-manifest drift check:
 
 - `output/release-staging-manifest/smoke-2026-06-27T22-37-11-410Z/release-staging-manifest-smoke.json`
@@ -100,13 +131,10 @@ Latest browser coverage advisory:
 - Chromium passes across 7 release routes.
 - Firefox and WebKit are unavailable locally; `npm run qa:browser-coverage:strict` fails as expected until those browser binaries are installed or another QA environment supplies them.
 
-Latest production-verification gate guardrails:
+Latest production-verification gate:
 
-- `npm run qa:release:production` exists but has not been run against production.
-- Missing `QA_PRODUCTION_URL` fails closed.
-- `QA_PRODUCTION_URL=https://robsonai.co.uk` without explicit confirmation fails closed.
-- Non-production hosts are rejected even with confirmation.
-- `QA_BASE_URL=https://robsonai.co.uk npm run qa:release:preview` still rejects production by default.
+- `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` passed all 14 steps with artifact `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
+- Guardrails remain in place: missing `QA_PRODUCTION_URL` fails closed, `QA_PRODUCTION_URL=https://robsonai.co.uk` without explicit confirmation fails closed, non-production hosts are rejected even with confirmation, and `QA_BASE_URL=https://robsonai.co.uk npm run qa:release:preview` still rejects production by default.
 
 Latest dependency audit after approved remediation:
 
@@ -126,25 +154,25 @@ Latest pre-production security refresh:
 Latest read-only Netlify production state:
 
 - Site: `robson-ai-website`, project ID `4ab53a28-c28c-4e7d-b7ca-93960fc4c39f`, production URL `https://robsonai.co.uk`.
-- Current production deploy discovered read-only: `6a3d75a7658e0400089157a2`, context `production`, branch `main`, commit `4a3f1fa8f7b1f885c37937056e2a029d6043501b`, published `2026-06-25T18:38:43.783Z`.
-- Treat this as the current rollback candidate, but re-check immediately before any approved production deploy.
+- Current production deploy discovered read-only: `6a40ed1d6073460008b7d3b7`, context `production`, branch `main`, commit `568259e6c5c745b4aa7668ee5048ea41319dba7a`, published `2026-06-28T09:45:15.914Z`.
+- Previous production deploy `6a3d75a7658e0400089157a2` remains the immediate rollback candidate if a restore is needed.
 
 ## 5. Publish Path
 
-Recommended order:
+Completed order:
 
-1. Wayne reviews the validated preview URL and explicitly approves or declines production publish.
-2. If approved, Codex re-verifies the exact current production deploy ID and rollback target.
-3. Codex follows `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the recommended path is GitHub/main-triggered Netlify production deploy.
-4. After approved production deployment, Codex runs `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` and reports the production evidence artifact.
-5. The Luffu/Steno/Unfold motion-polish tranche in `docs/codex/MOTION_REFERENCE_BRIEF.md` stays parked until after production, unless Wayne explicitly chooses to invalidate the passed preview evidence and rerun the release gates before production.
+1. Wayne approved `production-publish-from-validated-preview-and-docs-closeout`.
+2. Codex re-verified the current production deploy and rollback target.
+3. Codex used the GitHub/main-triggered Netlify production deploy path.
+4. Codex ran `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; it passed.
+5. The Luffu/Steno/Unfold motion-polish tranche remains parked as optional post-launch work in `docs/codex/MOTION_REFERENCE_BRIEF.md`.
 
 ## 6. Decision Options
 
-1. Recommended: approve `production-publish-from-validated-preview-and-docs-closeout`.
-2. Hold production and run full Codex Security scan first.
-3. Hold production and install/enable Playwright Firefox and WebKit for strict cross-browser parity.
-4. Hold production and approve the `docs/codex/MOTION_REFERENCE_BRIEF.md` motion-polish tranche before publish, accepting that the preview candidate must be regenerated and re-gated.
+1. Recommended: start a scoped next-phase planning pass for content/design refinements: BuildScan interaction polish when public-model gates are approved, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment.
+2. Start the `docs/codex/MOTION_REFERENCE_BRIEF.md` motion-polish tranche with fresh local/preview/production gates.
+3. Run full Codex Security workspace scan.
+4. Install/enable Playwright Firefox and WebKit for strict local cross-browser parity.
 
 ## 7. Hard Stops
 
@@ -154,8 +182,8 @@ Do not proceed without explicit approval for:
 - staging files
 - commit or push
 - Netlify preview deploy
-- public BuildScan GLB exposure
-- production deploy
+- a new public BuildScan GLB/model exposure
+- another production deploy
 - domain/DNS changes
 - GA4 enablement
 - contact forms or customer-data capture
