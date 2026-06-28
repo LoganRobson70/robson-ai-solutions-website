@@ -1,6 +1,6 @@
 # Robson AI Solutions Website Excellence Programme
 
-Last updated: 2026-06-27 23:14 BST
+Last updated: 2026-06-28 00:45 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Status: active programme, current-state scorecard and tranche plan
@@ -37,6 +37,7 @@ Bold/cinematic influence rule:
 - Translate any approved bold move into the Robson system: navy/tech-blue, glass, Inter/body typography, Fraunces/display use where already established, and rare orange data accents.
 - Each bold treatment must pass the same performance, WCAG/reduced-motion, readability, and layout-stability gates as the rest of the site.
 - Resolve the tension per surface: calm restraint wins for trust, compliance, privacy, forms/contact, and product maturity boundaries; a bolder moment may be justified only where it clarifies the main proposition or approved product proof.
+- Luffu, Steno and Unfold motion references are translated in `docs/codex/MOTION_REFERENCE_BRIEF.md`; this is a future-tranche brief, not silent scope for the current validated preview candidate.
 
 ## 2. Current State Summary
 
@@ -55,25 +56,27 @@ Current strengths:
 - Local keyboard release smoke now proves the homepage skip link, consent decline, workflow tabs, copy-email action, BuildScan keyboard opt-in, Building Analyst tabs, and Building Analyst copy-email path.
 - Local semantic/SEO smoke now proves public-page titles, descriptions, canonicals, robots, landmarks, H1s, nav, skip links, image dimensions/alt text, Open Graph/Twitter metadata, homepage Organization JSON-LD, sitemap/robots posture, and consistent `Robson AI` casing in current public metadata and contact labels.
 - The local 404 fallback has been upgraded from a sparse error page into a noindex Robson AI recovery page with header, navigation, recovery route cards, return/contact CTAs, footer and skip link.
-- Latest full local release gate passed all 37 steps on the current 62-file candidate, with staging-manifest drift check, dependency audit advisory, visual-polish smoke, browser coverage advisory, and production-verification gate syntax check included: `output/release-local-gate/gate-2026-06-27T22-11-05-540Z/release-local-gate.json`.
+- Latest full local release gate passed all 37 steps on the current 62-file candidate, with staging-manifest drift check, dependency audit advisory, visual-polish smoke, browser coverage advisory, and production-verification gate syntax check included: `output/release-local-gate/gate-2026-06-27T22-37-04-773Z/release-local-gate.json`.
+- Latest deployed preview release gate passed all 14 steps on Netlify draft preview `https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app`: `output/release-preview-gate/gate-2026-06-27T22-59-30-083Z/release-preview-gate.json`.
+- Latest pre-production security refresh passed the bounded local security/header checks and strict dependency audit produced no blockers: `output/release-security/smoke-2026-06-27T23-21-07-139Z/release-security-smoke.json`, `output/release-headers/smoke-2026-06-27T23-21-07-141Z/release-header-smoke.json`, and `output/dependency-audit/summary-2026-06-27T23-21-07-138Z/dependency-audit-summary.json`.
 - A read-only production verification command now exists as `npm run qa:release:production`. It has not been run against production and requires `QA_PRODUCTION_URL` plus explicit confirmation before it will execute.
 
 Current blockers and risks:
 
-1. The interactive BuildScan GLB candidate is local, uncommitted, and not yet approved for public release. The GLB is optimised but still downloadable public model data.
-2. The worktree is dirty, so production release must not happen without a clean staged-file review or branch/PR gate.
-3. Current local performance clears the Lighthouse/Core Web Vitals lab gate, but the result still needs Netlify preview validation from deployed headers/assets before production.
-4. The interactive viewer is folded into local smoke/evidence coverage, local keyboard smoke covers the core public keyboard journeys, local semantic/SEO smoke covers metadata and crawl posture, local responsive route smoke covers mobile/tablet/desktop route integrity, local visual-polish smoke guards against large high-opacity text-level backgrounds, local browser coverage advisory proves Chromium and records missing Firefox/WebKit binaries as warnings, local rendered smoke captures the opt-in and loaded viewer states, release-candidate inventory checks the GLB structure/size/no-external-URI condition, local release-header smoke now checks the Netlify header contract including HSTS, and local release-security smoke checks bounded privacy/security posture; deployed preview validation is still required for actual HSTS/CSP/frame/cache/MIME behaviour and real deployed asset delivery.
-5. Current source-of-truth docs have been refreshed locally, but the dirty candidate still needs staged review before any commit, preview deploy, or production deploy.
+1. The interactive BuildScan GLB candidate is preview-validated but still needs Wayne's explicit production approval because it is downloadable public model data.
+2. The worktree currently has docs-only closeout edits, so production release must not happen without a clean staged-file review or an approved Git/Netlify publish path.
+3. Local and deployed-preview performance/release gates are passing, but production verification still has to run after an approved production deploy.
+4. The interactive viewer is folded into local and deployed-preview smoke/evidence coverage, keyboard smoke covers the core public keyboard journeys, semantic/SEO smoke covers metadata and crawl posture, responsive route smoke covers mobile/tablet/desktop route integrity, visual-polish smoke guards against large high-opacity text-level backgrounds, browser coverage advisory proves Chromium and records missing Firefox/WebKit binaries as warnings, rendered smoke captures the opt-in and loaded viewer states, release-candidate inventory checks the GLB structure/size/no-external-URI condition, release-header smoke checks the Netlify header contract including HSTS/CSP/cache/MIME/source-path denies, and release-security smoke checks bounded privacy/security posture.
+5. Current source-of-truth docs have been refreshed locally, but the docs closeout still needs commit/push approval or deliberate post-production handling.
 6. Dependency audit evidence is improved: the production website footprint audit is clean, and the approved non-force remediation removed all high/critical dev-tooling findings. The remaining 17 moderate findings are in the Lighthouse/Sentry/OpenTelemetry tooling chain and are recorded as residual dev-tooling risk.
 7. Production verification is named and guarded, but it remains a post-deploy check and does not replace preview validation, rollback verification, or Wayne's separate production approval.
 
 Current release decision:
 
-1. Recommended: approve `buildscan-interactive-preview-release-candidate` for a Netlify deploy-preview only.
-2. Security-first alternative: run the full Codex Security workspace scan before preview, then continue to the preview candidate if no blocker is found.
-3. Browser-parity alternative: install/enable Playwright Firefox and WebKit before preview if strict local cross-browser parity is required.
-4. Conservative alternative: defer the interactive GLB, keep the static BuildScan proof, remove/defer viewer-specific files, and re-run the local gates.
+1. Recommended: approve `production-publish-from-validated-preview-and-docs-closeout`.
+2. Security-first alternative: run the full Codex Security workspace scan before production, then continue if no blocker is found.
+3. Browser-parity alternative: install/enable Playwright Firefox and WebKit before production if strict local cross-browser parity is required.
+4. Motion-polish alternative: hold production and run the `docs/codex/MOTION_REFERENCE_BRIEF.md` tranche first, accepting that preview evidence must be regenerated.
 
 ## 3. Evidence Used
 
@@ -237,7 +240,7 @@ Primary gaps:
 - Latest local evidence reports Lighthouse median performance 100, accessibility 97, best practices 100, SEO 100, CLS 0, and LCP about 1.73s.
 - QA now enforces the release budget inside `npm run qa:measurement:evidence`.
 - CSS is large and likely has unused rules.
-- Deployed Netlify preview validation is still required before production release.
+- Deployed Netlify preview validation has passed; production verification remains required after any approved production deploy.
 
 ### Privacy, Security, And Governance
 
@@ -255,10 +258,10 @@ Current rating: conservative baseline, but red release governance while GLB is u
 
 Primary gaps:
 
-- Public GLB sign-off is required.
-- Release-candidate inventory should be rerun immediately before staging so the dirty-file, asset-budget, GLB, and secret-scan evidence matches the exact commit candidate.
+- Public GLB production sign-off is required.
+- Release-candidate inventory should be rerun immediately before staging/commit/publish so the dirty-file, asset-budget, GLB, and secret-scan evidence matches the exact commit candidate.
 - Preview-auth route enforcement should be proved on Netlify or the requirement retired.
-- HSTS/CSP/cache/MIME/source-path deny checks now have a local release-header smoke gate; they still need to be run against the Netlify preview before production.
+- HSTS/CSP/cache/MIME/source-path deny checks now have local and deployed-preview release-header/source-deny evidence; production checks remain required after deploy.
 - Local release-security smoke now checks no form/customer-data capture, no direct third-party analytics embeds, explicit/default-off consent, empty GA4 IDs, no cookie storage or high-risk DOM/code injection APIs, viewer noindex, and vendored Three.js license presence. This bounded smoke is not a substitute for the full Codex Security scan.
 - Dependency audit split is now repeatable: production-footprint npm audit is clean, and the approved non-force remediation reduced full dev/release tooling audit to 17 moderate findings with 0 high and 0 critical. `npm run qa:dependency-audit` and `npm run qa:dependency-audit:strict` exit without blockers, with warning status for residual moderate dev-tooling findings.
 - `npm run qa:release:local` now runs the ordered local release gate before commit/preview approval, includes staging-manifest drift, dependency audit advisory, and browser coverage advisory, and writes a summary under `output/release-local-gate/`.
@@ -473,14 +476,14 @@ Use `docs/codex/PUBLISH_READINESS_AUDIT.md` as the single current checklist for 
 
 Recommended next action:
 
-1. Approve `buildscan-interactive-preview-release-candidate` for a Netlify deploy-preview only.
+1. Approve `production-publish-from-validated-preview-and-docs-closeout`.
 
 Reason:
-Dependency remediation has removed the high/critical dev-tooling findings and the full local release gate is passing. The next useful proof is deployed-preview evidence from Netlify, not more local polish.
+Dependency remediation has removed the high/critical dev-tooling findings, the full local release gate is passing, the deployed Netlify preview gate is passing, and a read-only rollback target has been identified. The remaining useful proof is production verification after an explicitly approved production publish.
 
 Decision alternatives:
 
-1. Recommended: approve `buildscan-interactive-preview-release-candidate`, with no production deploy included.
-2. Run the full Codex Security workspace scan before preview, then continue if no blocker is found.
-3. Install/enable Playwright Firefox and WebKit before preview if strict local cross-browser parity is required.
-4. Defer the interactive GLB and ship a static-proof-only site after the local gates are rerun.
+1. Recommended: approve `production-publish-from-validated-preview-and-docs-closeout`.
+2. Run the full Codex Security workspace scan before production, then continue if no blocker is found.
+3. Install/enable Playwright Firefox and WebKit before production if strict local cross-browser parity is required.
+4. Hold production and run the `docs/codex/MOTION_REFERENCE_BRIEF.md` tranche first, accepting that preview evidence must be regenerated.

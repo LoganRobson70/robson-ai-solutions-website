@@ -1,9 +1,9 @@
 # Release Approval Packet - BuildScan Interactive Preview Candidate
 
-Last updated: 2026-06-27 23:55 BST
+Last updated: 2026-06-28 01:56 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: Wayne approved option `1`; preview-only tranche is in progress on `codex/buildscan-interactive-preview-release-candidate`; first deployed preview exposed a CSP blocker in the interactive viewer; production deploy is not approved
+Status: Wayne approved option `1`; preview-only tranche is complete on `codex/buildscan-interactive-preview-release-candidate`; final Netlify draft preview `https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app` passed the deployed preview gate; production deploy is not approved
 
 ## 1. Recommended Decision
 
@@ -22,13 +22,19 @@ That approval means Wayne approves Codex to:
 7. Review the deployed preview in Browser on desktop and mobile.
 8. Return to Wayne with the preview URL, deployed evidence, risks, and rollback path before any production decision.
 
-This approval does not approve production deploy.
+This approval does not approve production deploy. The preview-only tranche has now completed and the production decision is the next explicit approval gate.
 
 Use `docs/codex/PUBLISH_READINESS_AUDIT.md` as the single gate checklist before any preview or production publish decision.
 
-Recommended option 2:
+Current recommended production option:
 
-Run the full Codex Security workspace scan before preview, then continue with option 1 if no blocker is found.
+Approve `production-publish-from-validated-preview-and-docs-closeout`.
+
+That approval would allow Codex to verify the current live Netlify production deploy and rollback target, follow `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md` for the validated candidate and docs closeout, run `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`, and report production evidence. It would not approve DNS/domain changes, GA4 enablement, contact forms, customer-data handling, or a motion-polish redesign.
+
+Alternative option:
+
+Run the full Codex Security workspace scan before production, then continue with production publish if no blocker is found.
 
 ## 2. What The Candidate Adds
 
@@ -191,7 +197,20 @@ Preview deployment note:
 - Commit `a15f7128c3b38ecfd39bf999f87d2b28aff2e21a` was pushed to `origin/codex/buildscan-interactive-preview-release-candidate`.
 - Clean draft URL created from committed files only: `https://6a4053b5f59c19174d72f4f4--robson-ai-website.netlify.app`.
 - The first deployed preview gate passed source inventory, dependency advisory, security source posture, deployed headers, and source-path denies, then failed at the deployed BuildScan viewer.
-- Root cause: deployed CSP blocked Meshopt WebAssembly compilation and GLB texture blob loading. Scoped fix underway: allow `wasm-unsafe-eval`, `blob:` image/connect handling, and `worker-src 'self' blob:` for the viewer runtime; add `.netlifyignore` so CLI draft deploys do not upload local evidence/tooling folders.
+- Root cause: deployed CSP blocked Meshopt WebAssembly compilation and GLB texture blob loading. The scoped fix allows `wasm-unsafe-eval`, `blob:` image/connect handling, and `worker-src 'self' blob:` for the viewer runtime; `.netlifyignore` was added for CLI draft deploy hygiene.
+- Follow-up commit `6b6102f` fixed the deployed viewer CSP and added `.netlifyignore`.
+- Follow-up commit `b6ab8b3` hardened deployed rendered smoke for Netlify's privacy-link normalization.
+- Final draft preview: `https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app`.
+- Final preview gate: `QA_BASE_URL=https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app npm run qa:release:preview` passed all 14 steps with artifact `output/release-preview-gate/gate-2026-06-27T22-59-30-083Z/release-preview-gate.json`.
+- Fresh preview gate refresh: `QA_BASE_URL=https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app npm run qa:release:preview` passed all 14 steps again with artifact `output/release-preview-gate/gate-2026-06-27T23-54-42-307Z/release-preview-gate.json`.
+- Luffu, Steno, and Unfold motion references are intentionally not included in this candidate. They are documented in `docs/codex/MOTION_REFERENCE_BRIEF.md` and remain a separate motion-polish tranche so the passed preview evidence is not invalidated before production unless Wayne explicitly chooses that route.
+
+Latest pre-production security refresh:
+
+- `npm run qa:release-security` passed with artifact `output/release-security/smoke-2026-06-27T23-21-07-139Z/release-security-smoke.json`.
+- `npm run qa:release-headers` passed with artifact `output/release-headers/smoke-2026-06-27T23-21-07-141Z/release-header-smoke.json`.
+- `npm run qa:dependency-audit:strict` produced no blockers with artifact `output/dependency-audit/summary-2026-06-27T23-21-07-138Z/dependency-audit-summary.json`; production footprint remains zero, dev/release tooling remains 17 moderate findings, 0 high, 0 critical.
+- `QA_PRODUCTION_URL=https://robsonai.co.uk npm run qa:release:production` failed closed because `CONFIRM_PRODUCTION_VERIFICATION=true` was intentionally not supplied.
 
 Latest preview-gate safety checks after adding dependency audit advisory:
 
@@ -275,12 +294,20 @@ This is a read-only production verification gate. It does not deploy, approve de
 
 ## 9. Rollback
 
-Rollback target must be re-verified before any production approval.
+Rollback target must be re-verified immediately before any production deploy.
 
-Known references in docs:
+Latest read-only Netlify production state:
 
-- Current verified static BuildScan production deploy from the tracker: `6a3d74cb38ad980008340f42`
-- Older previous production deploy reference retained in this packet: `6a37e26ea4fa5700094ad18a`
+- Current production deploy discovered on 2026-06-28: `6a3d75a7658e0400089157a2`
+- Context: `production`
+- Branch: `main`
+- Commit: `4a3f1fa8f7b1f885c37937056e2a029d6043501b`
+- Published: `2026-06-25T18:38:43.783Z`
+
+Historical references retained for context only:
+
+- Earlier static BuildScan production deploy from the tracker: `6a3d74cb38ad980008340f42`
+- Older previous production deploy reference: `6a37e26ea4fa5700094ad18a`
 - Older previous deploy permalink: `https://6a37e26ea4fa5700094ad18a--robson-ai-website.netlify.app`
 
 Pre-production hard gate:
@@ -297,6 +324,6 @@ Rollback options after production approval/deploy:
 
 Recommended option 1:
 
-Approve `buildscan-interactive-preview-release-candidate`.
+Approve `production-publish-from-validated-preview-and-docs-closeout`.
 
-That moves this local candidate to a Netlify deploy-preview only. It still does not approve production. If Wayne wants the full Codex Security scan before preview, press Start scan in the Codex Security workspace and continue in Codex.
+That lets Codex verify the current live Netlify production deploy and rollback target, follow `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md` for the validated candidate and docs closeout, run `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`, and report production evidence. If Wayne wants the full Codex Security scan before production, choose that hold option first.
