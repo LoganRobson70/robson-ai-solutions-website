@@ -1,6 +1,6 @@
 # Release Approval Packet - BuildScan Interactive Preview Candidate
 
-Last updated: 2026-06-28 11:55 BST
+Last updated: 2026-06-28 13:20 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Status: historical preview approval packet; the candidate was later approved, published to production, production-gated, and post-launch observed. No further live deploy is approved.
@@ -12,10 +12,10 @@ The approval packet below is preserved as the historical decision record for the
 Current production state:
 
 - Public URL: `https://robsonai.co.uk`.
-- Current production deploy: `6a40ed1d6073460008b7d3b7`.
-- Current production commit: `568259e6c5c745b4aa7668ee5048ea41319dba7a`.
-- Published: `2026-06-28T09:45:15.914Z`.
-- Production release gate: passed, artifact `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
+- Current production deploy: `6a4110fe34f4b66db778e4bb`.
+- Current production source: local commit `5994de8` deployed by approved Netlify CLI production deploy from clean `git archive HEAD`.
+- Published: `2026-06-28 13:18 BST`.
+- Production release gate: passed, artifact `output/release-production-gate/gate-2026-06-28T12-18-19-900Z/release-preview-gate.json`.
 - Post-launch observation: passed read-only checks, recorded in `docs/codex/TRACKER.md`.
 - Preservation branch: `codex/docs-evidence-preservation-no-production-deploy`.
 - Final website approval handoff: `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`.

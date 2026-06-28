@@ -1,6 +1,6 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-06-28 12:01 BST
+Last updated: 2026-06-28 13:20 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Status: Wayne review checklist; no deploy approved
@@ -12,11 +12,11 @@ Use this checklist to review the current live Robson AI Solutions website before
 Important:
 
 - Current live website: `https://robsonai.co.uk`.
-- Current production deploy: `6a40ed1d6073460008b7d3b7`.
-- Current production commit: `568259e6c5c745b4aa7668ee5048ea41319dba7a`.
+- Current production deploy: `6a4110fe34f4b66db778e4bb`.
+- Current production source: local commit `5994de8` deployed by approved Netlify CLI production deploy from clean `git archive HEAD`.
 - This checklist does not approve another production deploy.
-- Fresh production verification has not been rerun for this checklist because production verification remains approval-gated.
-- Latest post-launch evidence remains the 2026-06-28 11:30 BST observation pack recorded in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`.
+- Fresh production verification was rerun after Wayne approved the hero-logo aspect/anchor production fix.
+- Latest production evidence is recorded in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`.
 
 ## 2. Review Sequence
 
@@ -30,9 +30,9 @@ Review these pages in order on desktop and mobile:
 6. 404 recovery page: `https://robsonai.co.uk/404.html`
 7. Holding fallback: `https://robsonai.co.uk/holding.html`
 
-Screenshot evidence from the latest post-launch rendered smoke:
+Screenshot evidence from the latest production rendered smoke:
 
-- `output/playwright/rendered-release-smoke-2026-06-28T10-27-48-468Z`
+- `output/playwright/rendered-release-smoke-2026-06-28T12-19-45-394Z`
 
 ## 3. What To Approve Or Flag
 
@@ -115,20 +115,20 @@ Latest production release gate:
 
 - Command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
 - Result: pass, 14 steps.
-- Artifact: `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
+- Artifact: `output/release-production-gate/gate-2026-06-28T12-18-19-900Z/release-preview-gate.json`.
 
-Latest post-launch observation pack:
+Latest production evidence pack:
 
-- Headers/source-deny: `output/release-headers/smoke-2026-06-28T10-27-25-060Z/release-header-smoke.json`.
-- SEO/social metadata: `output/semantic-seo/smoke-2026-06-28T10-27-33-517Z/semantic-seo-smoke.json`.
-- Measurement: `output/measurement/smoke-2026-06-28T10-27-33-522Z`.
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T10-27-48-468Z`.
-- BuildScan viewer: `output/buildscan-viewer/smoke-2026-06-28T10-28-08-942Z`.
-- Responsive route smoke: `output/responsive-route/smoke-2026-06-28T10-28-43-063Z/responsive-route-smoke.json`.
-- Visual polish: `output/visual-polish/smoke-2026-06-28T10-29-14-071Z/visual-polish-smoke.json`.
-- Product/design: `output/product-design-acceptance/smoke-2026-06-28T10-29-14-071Z/product-design-acceptance-smoke.json`.
-- Keyboard: `output/playwright/keyboard-release-smoke-2026-06-28T10-29-14-071Z`.
-- Browser coverage advisory: `output/browser-coverage/smoke-2026-06-28T10-29-37-496Z/browser-coverage-smoke.json`.
+- Headers/source-deny: `output/release-headers/smoke-2026-06-28T12-18-28-269Z/release-header-smoke.json`.
+- SEO/social metadata: `output/semantic-seo/smoke-2026-06-28T12-18-40-596Z/semantic-seo-smoke.json`.
+- Measurement: `output/measurement/smoke-2026-06-28T12-19-56-164Z`.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T12-19-45-394Z`.
+- BuildScan viewer: `output/buildscan-viewer/smoke-2026-06-28T12-18-28-654Z`.
+- Responsive route smoke: `output/responsive-route/smoke-2026-06-28T12-18-56-116Z/responsive-route-smoke.json`.
+- Visual polish: `output/visual-polish/smoke-2026-06-28T12-19-16-916Z/visual-polish-smoke.json`.
+- Product/design: `output/product-design-acceptance/smoke-2026-06-28T12-18-49-095Z/product-design-acceptance-smoke.json`.
+- Keyboard: `output/playwright/keyboard-release-smoke-2026-06-28T12-18-35-864Z`.
+- Browser coverage advisory: `output/browser-coverage/smoke-2026-06-28T12-19-37-587Z/browser-coverage-smoke.json`.
 
 Known residuals:
 

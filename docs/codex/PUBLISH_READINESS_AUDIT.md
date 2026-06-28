@@ -1,13 +1,13 @@
 # Publish Readiness Audit - Robson AI Solutions Website
 
-Last updated: 2026-06-28 11:55 BST
+Last updated: 2026-06-28 13:20 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Status: production release shipped and production-gated
 
 ## 1. Purpose
 
-This audit is the single checklist for the 2026-06-28 BuildScan interactive production release and post-publish closeout.
+This audit is the single checklist for the 2026-06-28 BuildScan interactive production release, post-publish closeout, and follow-on homepage hero-logo aspect/anchor fix.
 
 It records what was approved, shipped, validated, and what remains as non-blocking post-launch observation or optional hardening.
 
@@ -17,7 +17,7 @@ It records what was approved, shipped, validated, and what remains as non-blocki
 - Preview release-readiness: 100%.
 - Production publish-readiness: 100%.
 - Current recommendation: Wayne reviews the full website using `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and replies `Approved current live website` or lists required changes before any future live deployment.
-- Current state: `main` and `origin/main` are at commit `568259e6c5c745b4aa7668ee5048ea41319dba7a`; Netlify production deploy `6a40ed1d6073460008b7d3b7` is ready and published on `https://robsonai.co.uk`; `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` passed.
+- Current state: `main` and `origin/main` are at commit `568259e6c5c745b4aa7668ee5048ea41319dba7a`; local branch `codex/docs-evidence-preservation-no-production-deploy` contains follow-on commit `5994de8`; Netlify production deploy `6a4110fe34f4b66db778e4bb` is ready and published on `https://robsonai.co.uk`; `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` passed for the current live deploy.
 
 The remaining work is not a publish blocker:
 
@@ -42,9 +42,9 @@ The remaining work is not a publish blocker:
 | Staged file scope | Passed and shipped | staging manifest smoke passed after staging against 25 modified / 37 new file boundary | None |
 | Netlify deploy-preview | Passed | `https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app` | None before production beyond Wayne approval |
 | Deployed preview QA | Passed | `output/release-preview-gate/gate-2026-06-27T23-54-42-307Z/release-preview-gate.json` | None before production beyond Wayne approval |
-| Production rollback | Verified before deploy | previous production deploy `6a3d75a7658e0400089157a2` from commit `4a3f1fa8f7b1f885c37937056e2a029d6043501b` | Restore previous deploy or revert `main` if needed |
-| Production deploy | Passed | Netlify production deploy `6a40ed1d6073460008b7d3b7` from commit `568259e6c5c745b4aa7668ee5048ea41319dba7a` | None |
-| Production verification | Passed | `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json` | None |
+| Production rollback | Verified before deploy | previous production deploy `6a40ed1d6073460008b7d3b7` is the immediate restore candidate for the hero-logo fix | Restore previous deploy or use a reviewed Git path if needed |
+| Production deploy | Passed | Netlify production deploy `6a4110fe34f4b66db778e4bb` from local commit `5994de8` by approved CLI deploy | None |
+| Production verification | Passed | `output/release-production-gate/gate-2026-06-28T12-18-19-900Z/release-preview-gate.json` | None |
 
 ## 4. Evidence Snapshot
 
@@ -80,24 +80,24 @@ Latest deployed preview gate:
 - Coverage included release inventory, dependency audit advisory, security source posture, deployed headers/source-path-deny checks, BuildScan viewer preview smoke, keyboard smoke, semantic/SEO smoke, product/design acceptance smoke, responsive route smoke, visual-polish smoke, browser coverage advisory, rendered smoke, and measurement smoke.
 - Fresh artifacts from this pass include release inventory `output/release-inventory/inventory-2026-06-27T23-54-42-416Z/release-candidate-inventory.json`, dependency advisory `output/dependency-audit/summary-2026-06-27T23-54-42-621Z/dependency-audit-summary.json`, deployed headers `output/release-headers/smoke-2026-06-27T23-54-50-959Z/release-header-smoke.json`, BuildScan viewer `output/buildscan-viewer/smoke-2026-06-27T23-54-51-284Z`, keyboard `output/playwright/keyboard-release-smoke-2026-06-27T23-54-58-312Z`, semantic SEO `output/semantic-seo/smoke-2026-06-27T23-55-04-317Z/semantic-seo-smoke.json`, product/design `output/product-design-acceptance/smoke-2026-06-27T23-55-13-362Z/product-design-acceptance-smoke.json`, responsive route `output/responsive-route/smoke-2026-06-27T23-55-20-409Z/responsive-route-smoke.json`, visual polish `output/visual-polish/smoke-2026-06-27T23-55-43-175Z/visual-polish-smoke.json`, browser coverage `output/browser-coverage/smoke-2026-06-27T23-55-55-976Z/browser-coverage-smoke.json`, rendered smoke `output/playwright/rendered-release-smoke-2026-06-27T23-56-05-122Z`, and measurement smoke `output/measurement/smoke-2026-06-27T23-56-17-356Z`.
 
-Production deployment and release gate:
+Current production deployment and release gate:
 
-- Production deploy: `6a40ed1d6073460008b7d3b7`.
+- Production deploy: `6a4110fe34f4b66db778e4bb`.
 - Production URL: `https://robsonai.co.uk`.
-- Commit: `568259e6c5c745b4aa7668ee5048ea41319dba7a`.
-- Published: `2026-06-28T09:45:15.914Z`.
-- Previous rollback candidate: `6a3d75a7658e0400089157a2`.
+- Commit/source: local commit `5994de8` deployed by approved Netlify CLI production deploy from clean `git archive HEAD`.
+- Published: `2026-06-28 13:18 BST`.
+- Previous rollback candidate: `6a40ed1d6073460008b7d3b7`.
 - Production gate command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`.
 - Production gate result: pass, 14 steps.
-- Production gate artifact: `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
-- Release inventory artifact: `output/release-inventory/inventory-2026-06-28T09-46-09-283Z/release-candidate-inventory.json`: dirtyCount 0, 76 scanned files, zero secret findings, GLB externalUriCount 0.
-- Dependency audit artifact: `output/dependency-audit/summary-2026-06-28T09-46-09-491Z/dependency-audit-summary.json`: production vulnerabilities 0; dev/release tooling remains 17 moderate, 0 high, 0 critical.
-- Production header/security artifact: `output/release-headers/smoke-2026-06-28T09-46-17-470Z/release-header-smoke.json`; source-path deny checks passed.
-- Production BuildScan viewer artifact: `output/buildscan-viewer/smoke-2026-06-28T09-46-17-781Z`; direct and embedded viewer checks passed.
-- Production measurement smoke: `output/measurement/smoke-2026-06-28T09-47-29-656Z`.
-- Browser coverage advisory: `output/browser-coverage/smoke-2026-06-28T09-47-13-177Z/browser-coverage-smoke.json`; Chromium passed, Firefox/WebKit unavailable locally and warning-only.
+- Production gate artifact: `output/release-production-gate/gate-2026-06-28T12-18-19-900Z/release-preview-gate.json`.
+- Release inventory artifact: `output/release-inventory/inventory-2026-06-28T12-18-20-027Z/release-candidate-inventory.json`: dirtyCount 0, 79 scanned files, zero secret findings, GLB externalUriCount 0.
+- Dependency audit artifact: `output/dependency-audit/summary-2026-06-28T12-18-20-274Z/dependency-audit-summary.json`: production vulnerabilities 0; dev/release tooling remains 17 moderate, 0 high, 0 critical.
+- Production header/security artifact: `output/release-headers/smoke-2026-06-28T12-18-28-269Z/release-header-smoke.json`; source-path deny checks passed.
+- Production BuildScan viewer artifact: `output/buildscan-viewer/smoke-2026-06-28T12-18-28-654Z`; direct and embedded viewer checks passed.
+- Production measurement smoke: `output/measurement/smoke-2026-06-28T12-19-56-164Z`.
+- Browser coverage advisory: `output/browser-coverage/smoke-2026-06-28T12-19-37-587Z/browser-coverage-smoke.json`; Chromium passed, Firefox/WebKit unavailable locally and warning-only.
 
-Post-launch observation check:
+Post-launch observation check for original production release:
 
 - Completed read-only on 2026-06-28 11:30 BST.
 - Production remained on Netlify deploy `6a40ed1d6073460008b7d3b7` from commit `568259e6c5c745b4aa7668ee5048ea41319dba7a`.
@@ -134,7 +134,7 @@ Latest browser coverage advisory:
 
 Latest production-verification gate:
 
-- `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` passed all 14 steps with artifact `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
+- `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` passed all 14 steps with artifact `output/release-production-gate/gate-2026-06-28T12-18-19-900Z/release-preview-gate.json`.
 - Guardrails remain in place: missing `QA_PRODUCTION_URL` fails closed, `QA_PRODUCTION_URL=https://robsonai.co.uk` without explicit confirmation fails closed, non-production hosts are rejected even with confirmation, and `QA_BASE_URL=https://robsonai.co.uk npm run qa:release:preview` still rejects production by default.
 
 Latest dependency audit after approved remediation:
@@ -155,8 +155,8 @@ Latest pre-production security refresh:
 Latest read-only Netlify production state:
 
 - Site: `robson-ai-website`, project ID `4ab53a28-c28c-4e7d-b7ca-93960fc4c39f`, production URL `https://robsonai.co.uk`.
-- Current production deploy discovered read-only: `6a40ed1d6073460008b7d3b7`, context `production`, branch `main`, commit `568259e6c5c745b4aa7668ee5048ea41319dba7a`, published `2026-06-28T09:45:15.914Z`.
-- Previous production deploy `6a3d75a7658e0400089157a2` remains the immediate rollback candidate if a restore is needed.
+- Current production deploy: `6a4110fe34f4b66db778e4bb`, created by approved CLI production deploy from local commit `5994de8`.
+- Previous production deploy `6a40ed1d6073460008b7d3b7` remains the immediate rollback candidate if a restore is needed.
 
 ## 5. Publish Path
 
