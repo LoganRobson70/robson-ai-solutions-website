@@ -1,6 +1,6 @@
 # Release Approval Packet - BuildScan Interactive Preview Candidate
 
-Last updated: 2026-06-28 11:44 BST
+Last updated: 2026-06-28 11:55 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Status: historical preview approval packet; the candidate was later approved, published to production, production-gated, and post-launch observed. No further live deploy is approved.
@@ -18,11 +18,12 @@ Current production state:
 - Production release gate: passed, artifact `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
 - Post-launch observation: passed read-only checks, recorded in `docs/codex/TRACKER.md`.
 - Preservation branch: `codex/docs-evidence-preservation-no-production-deploy`.
+- Final website approval handoff: `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`.
 
 Current approval rule:
 
 - Do not treat this packet as approval for any new deploy.
-- Before any future live deploy, present the full website or candidate preview to Wayne for final approval.
+- Before any future live deploy, present the full website or candidate preview to Wayne for final approval. Use `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` for the current full-website review.
 - Future releases must preserve the existing release pattern: scoped change, local validation, preview validation, explicit Wayne final approval, then production deploy and production gate.
 - Any new public-model exposure, analytics, contact form/customer-data path, domain/DNS change, broad redesign, Codex Security workspace scan, browser installation, or production deploy remains separately approval-gated.
 

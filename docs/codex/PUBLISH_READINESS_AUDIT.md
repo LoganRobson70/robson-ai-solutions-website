@@ -1,6 +1,6 @@
 # Publish Readiness Audit - Robson AI Solutions Website
 
-Last updated: 2026-06-28 11:44 BST
+Last updated: 2026-06-28 11:55 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Status: production release shipped and production-gated
@@ -16,12 +16,12 @@ It records what was approved, shipped, validated, and what remains as non-blocki
 - Local release-readiness: 100%.
 - Preview release-readiness: 100%.
 - Production publish-readiness: 100%.
-- Current recommendation: preserve the final docs evidence on local branch `codex/docs-evidence-preservation-no-production-deploy` without pushing `main` or triggering a new production deploy, then plan the next content/design refinement tranche.
+- Current recommendation: Wayne reviews the full website using `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and replies `Approved current live website` or lists required changes before any future live deployment.
 - Current state: `main` and `origin/main` are at commit `568259e6c5c745b4aa7668ee5048ea41319dba7a`; Netlify production deploy `6a40ed1d6073460008b7d3b7` is ready and published on `https://robsonai.co.uk`; `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` passed.
 
 The remaining work is not a publish blocker:
 
-- Preserve final docs evidence on the local branch without pushing directly to `main`.
+- Preserve final docs evidence and final approval handoff on the local branch without pushing directly to `main`.
 - Decide whether to run a full Codex Security workspace scan as an additional assurance step.
 - Decide whether to install Playwright Firefox/WebKit for strict local browser parity.
 - Decide whether to start the Luffu/Steno/Unfold-inspired motion-polish tranche, with reduced-motion and performance evidence.
@@ -110,6 +110,7 @@ Post-launch observation check:
 - Visual-polish, product/design, and keyboard smokes passed at `output/visual-polish/smoke-2026-06-28T10-29-14-071Z/visual-polish-smoke.json`, `output/product-design-acceptance/smoke-2026-06-28T10-29-14-071Z/product-design-acceptance-smoke.json`, and `output/playwright/keyboard-release-smoke-2026-06-28T10-29-14-071Z`.
 - Browser coverage advisory completed with warning only: `output/browser-coverage/smoke-2026-06-28T10-29-37-496Z/browser-coverage-smoke.json`; Chromium passed, Firefox/WebKit unavailable locally.
 - Preservation branch: `codex/docs-evidence-preservation-no-production-deploy`, local-only unless Wayne later approves a push/PR path.
+- Final website approval handoff: `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`.
 
 Latest staging-manifest drift check:
 
@@ -169,10 +170,10 @@ Completed order:
 
 ## 6. Decision Options
 
-1. Recommended: start a scoped next-phase planning pass for content/design refinements: BuildScan interaction polish when public-model gates are approved, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment.
-2. Start the `docs/codex/MOTION_REFERENCE_BRIEF.md` motion-polish tranche with fresh local/preview/production gates.
-3. Run full Codex Security workspace scan.
-4. Install/enable Playwright Firefox and WebKit for strict local cross-browser parity.
+1. Recommended: Wayne reviews `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and replies `Approved current live website` or lists required changes.
+2. Start a scoped next-phase planning pass for BuildScan interaction polish, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment.
+3. Start the `docs/codex/MOTION_REFERENCE_BRIEF.md` motion-polish tranche with fresh local/preview/production gates.
+4. Run full Codex Security workspace scan or install Playwright Firefox/WebKit for stricter assurance.
 
 ## 7. Hard Stops
 

@@ -1,13 +1,20 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-28 11:44 BST
+Last updated: 2026-06-28 11:55 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/docs-evidence-preservation-no-production-deploy`
 
 ## 1. Current Objective
 
-Ship the best release-grade Robson AI Solutions website it can be by benchmarking against current expert web, product, and design standards for performance, accessibility/WCAG, SEO, semantics, motion, security, and conversion. Define and enforce what "good" means for Robson AI: precise, modern, intelligent, practical, trusted, calm rather than flashy, and clean rather than decorative. Deliver improvements as bounded, independently validated tranches with before/after evidence and explicit approval gates up to a publish-ready production release.
+Maintain the production-grade Robson AI Solutions website so it continues to embody professional building intelligence and the current product direction. The live site should present Building Analyst for assessment capture and report-ready evidence, BuildScan for external modelling and visual context, and property operations thinking for CAFM-style workflows. It should show a practical loop of capturing evidence, structuring assessment records, analysing patterns, and supporting clearer client understanding while preserving professional boundaries, proof over claims, cautious Apple-native intelligence language, and email-first contact with no form data collection.
+
+Current focus:
+
+- Preserve final documentation evidence without triggering a redeploy.
+- Keep repository records up to date and discoverable.
+- Present the full website to Wayne for final approval before any future live deployment.
+- Prepare the next phase by identifying content/design refinements while keeping all implementation and deployment separately approval-gated.
 
 Success means:
 
@@ -16,6 +23,7 @@ Success means:
 - Bold/cinematic influences are never adopted by default; any such treatment needs concrete options/mockups, Wayne approval, Robson-system adaptation, and the same performance/accessibility/reduced-motion proof.
 - Work proceeds through small, reversible tranches with evidence and explicit approval gates for commits, pushes, previews, and production deploys.
 - Serious closeouts report publish-readiness progress as a percentage and always end with the single recommended next action as numbered option `1`, plus alternatives when Wayne needs to decide.
+- Full website approval handoff is recorded in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`; use it before any future live deploy.
 - Side ideas are parked instead of expanding the active tranche.
 - Luffu/Steno/Unfold motion references are captured as `docs/codex/MOTION_REFERENCE_BRIEF.md`; they are not approved implementation scope unless Wayne chooses the motion-polish alternative.
 - Completion status is audited in `docs/codex/GOAL_COMPLETION_AUDIT.md`; the production release goal is complete as of Netlify production deploy `6a40ed1d6073460008b7d3b7` and production gate pass `output/release-production-gate/gate-2026-06-28T09-46-09-182Z/release-preview-gate.json`.
@@ -116,6 +124,7 @@ Validation evidence:
 - Post-launch browser coverage advisory completed with warning only: `ROBSON_ALLOW_PRODUCTION_QA=true QA_BASE_URL=https://robsonai.co.uk npm run qa:browser-coverage:preview`; artifact `output/browser-coverage/smoke-2026-06-28T10-29-37-496Z/browser-coverage-smoke.json`; Chromium passed, Firefox/WebKit unavailable locally.
 - Live metadata/cache spot check passed: `/`, `/building-analyst.html`, `/who-its-for.html`, and `/privacy.html` returned `200` with canonical URLs, `index, follow`, OG image, and `summary_large_image`; `/robots.txt` returned `200`, references sitemap, and disallows `holding.html`; `/sitemap.xml` returned `200` with 4 public locs; OG image, BuildScan GLB, `styles.css`, and `script.js` returned `200` with expected content types/cache headers.
 - Docs evidence preservation branch created locally on 2026-06-28: `codex/docs-evidence-preservation-no-production-deploy`. Purpose: preserve final release and post-launch observation evidence without pushing `main`, creating a PR, or triggering a Netlify production deploy.
+- Final website approval handoff added in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`. It presents the full website links, approval questions, product-direction criteria, evidence, residual risks, and next-phase refinement candidates. No deploy is approved by this handoff.
 
 Previous tranche:
 
@@ -1103,7 +1112,7 @@ Detailed recommendations live in `docs/codex/CAPABILITY_AUDIT.md`.
 - Public production URL: `https://robsonai.co.uk`.
 - Current production stance: full public website is live at `/`; launch pages are public and crawlable. Latest read-only Netlify production deploy check identified production deploy `6a40ed1d6073460008b7d3b7` from commit `568259e6c5c745b4aa7668ee5048ea41319dba7a`, published `2026-06-28T09:45:15.914Z`.
 - Current candidate branch: `codex/buildscan-interactive-preview-release-candidate` is pushed at `568259e`, matches `main`, and includes the BuildScan interactive GLB preview, source-path deny hardening, release gates, dependency remediation, public proof/content updates, 404 polish, and supporting docs/scripts/assets.
-- Current local branch: `codex/docs-evidence-preservation-no-production-deploy`, created to preserve final evidence and post-launch observation notes without pushing `main` or triggering a Netlify production deploy.
+- Current local branch: `codex/docs-evidence-preservation-no-production-deploy`, created to preserve final evidence, post-launch observation notes, and the final website approval handoff without pushing `main` or triggering a Netlify production deploy.
 - Current local dirty state before preservation commit: docs-only final evidence and post-launch observation updates in `docs/codex/TRACKER.md`, `docs/codex/PUBLISH_READINESS_AUDIT.md`, and `docs/codex/GOAL_COMPLETION_AUDIT.md`.
 - Do not push this branch, open a PR, push `main`, production-verify with confirmation, or production deploy again without Wayne approval.
 - Release risk: low after production verification and post-launch observation; continue to monitor enquiries, search indexing, and any stale external cache previews.
@@ -1126,11 +1135,13 @@ Use this to resume in a new Codex thread:
 >
 > Post-launch observation check completed read-only on 2026-06-28 11:30 BST. Production remained on deploy `6a40ed1d6073460008b7d3b7`. Passing artifacts include headers/source-deny `output/release-headers/smoke-2026-06-28T10-27-25-060Z/release-header-smoke.json`, SEO/social metadata `output/semantic-seo/smoke-2026-06-28T10-27-33-517Z/semantic-seo-smoke.json`, measurement `output/measurement/smoke-2026-06-28T10-27-33-522Z`, rendered screenshots `output/playwright/rendered-release-smoke-2026-06-28T10-27-48-468Z`, BuildScan viewer `output/buildscan-viewer/smoke-2026-06-28T10-28-08-942Z`, responsive `output/responsive-route/smoke-2026-06-28T10-28-43-063Z/responsive-route-smoke.json`, visual polish `output/visual-polish/smoke-2026-06-28T10-29-14-071Z/visual-polish-smoke.json`, product/design `output/product-design-acceptance/smoke-2026-06-28T10-29-14-071Z/product-design-acceptance-smoke.json`, keyboard `output/playwright/keyboard-release-smoke-2026-06-28T10-29-14-071Z`, and browser coverage advisory `output/browser-coverage/smoke-2026-06-28T10-29-37-496Z/browser-coverage-smoke.json`.
 >
-> Current local branch is `codex/docs-evidence-preservation-no-production-deploy`, created to preserve final evidence and observation notes without pushing `main` or triggering a production deploy. Do not run `npm audit fix --force`, install browser binaries, push, create a PR, production verification with confirmation, or production deploy again without Wayne approval.
+> Final website approval handoff is available at `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`. It presents the full public website to Wayne for approval before any future live deploy.
+>
+> Current local branch is `codex/docs-evidence-preservation-no-production-deploy`, created to preserve final evidence, observation notes, and final approval handoff without pushing `main` or triggering a production deploy. Do not run `npm audit fix --force`, install browser binaries, push, create a PR, production verification with confirmation, or production deploy again without Wayne approval.
 >
 > Full Codex Security scan is not complete. Use the Codex Security workspace only if Wayne chooses the security-first hold option.
 >
-> Recommended option 1 after preservation is to start a scoped next-phase planning pass for content/design refinements: BuildScan interaction polish when public-model gates are approved, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment. Alternative option 2 is the separate motion-polish tranche from `docs/codex/MOTION_REFERENCE_BRIEF.md`.
+> Recommended option 1 is for Wayne to review the full website links in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and reply `Approved current live website` or list required changes. After that, start a scoped next-phase planning pass for content/design refinements: BuildScan interaction polish when public-model gates are approved, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment.
 
 ## 13. PRD Gate Execution Log (2026-06-01)
 

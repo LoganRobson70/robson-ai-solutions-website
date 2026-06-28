@@ -1,6 +1,6 @@
 # Goal Completion Audit - Robson AI Solutions Website
 
-Last updated: 2026-06-28 11:44 BST
+Last updated: 2026-06-28 11:55 BST
 Owner: Wayne Robson / Robson AI Solutions
 Status: complete; production release shipped and production release gate passed
 
@@ -86,6 +86,7 @@ The full goal was to build to a publish-ready production release and ship it thr
 - Production measurement smoke: `output/measurement/smoke-2026-06-28T09-47-29-656Z`.
 - Post-launch observation: completed read-only on 2026-06-28 11:30 BST, with headers/source-deny, SEO/social metadata, measurement, rendered screenshots, BuildScan viewer, responsive route, visual-polish, product/design, keyboard, and browser coverage advisory checks recorded in `docs/codex/TRACKER.md`.
 - Preservation branch: `codex/docs-evidence-preservation-no-production-deploy`, local-only unless Wayne later approves a push/PR path.
+- Final website approval handoff: `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`, pending Wayne's explicit approval or change list.
 
 Release execution reference:
 
@@ -93,7 +94,7 @@ Release execution reference:
 
 ## 6. Recommended Next Action
 
-1. Recommended: start a scoped next-phase planning pass for content/design refinements: BuildScan interaction polish when public-model gates are approved, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment.
-2. Start the `docs/codex/MOTION_REFERENCE_BRIEF.md` motion-polish tranche with fresh local/preview/production gates.
-3. Run a full Codex Security workspace scan.
-4. Install/enable Playwright Firefox and WebKit for stricter browser parity.
+1. Recommended: Wayne reviews `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and replies `Approved current live website` or lists required changes.
+2. Start a scoped next-phase planning pass for BuildScan interaction polish, property operations narrative clarity, SEO/analytics configuration, accessibility/performance watch, and claim alignment.
+3. Start the `docs/codex/MOTION_REFERENCE_BRIEF.md` motion-polish tranche with fresh local/preview/production gates.
+4. Run a full Codex Security workspace scan or install Playwright Firefox/WebKit for stricter assurance.
