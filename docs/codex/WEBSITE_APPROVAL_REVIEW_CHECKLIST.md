@@ -1,38 +1,44 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-06-28 18:20 BST
+Last updated: 2026-06-29 17:11 BST
 Owner: Wayne Robson / Robson AI Solutions
-Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: live post-publish review checklist for production deploy `6a415725a6f69e52078a74df`
+Repo: `/private/tmp/robson-ai-website-quality-restart`
+Status: clean restart-candidate review checklist; previous production checklist retained as historical context
 
 ## 1. Purpose
 
-Use this checklist to review the live Robson AI Solutions website after the approved visual-refinement production publish.
+Use this checklist to review the current local restart candidate for the original goal:
+
+> Make the Robson AI Solutions website the best releasable version it can be.
 
 Important:
 
-- Production site: `https://robsonai.co.uk`.
-- Production deploy: `6a415725a6f69e52078a74df`.
-- Candidate name: `website-visual-refinement-proof-surface-polish`.
-- Production release gate passed at `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`.
-- This checklist does not approve branch push, GitHub PR, another production deploy, analytics, forms, DNS/domain work, or external messages.
-- Latest release evidence is recorded in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`.
+- Current local review URL: `http://127.0.0.1:8133/`.
+- Current candidate name: `website-quality-restart-from-original-goal`.
+- Current clean branch: `codex/website-quality-clean-restart`.
+- The rejected `proof-motion-polish` preview must not be published.
+- Production remains unchanged at `https://robsonai.co.uk`.
+- No commit, branch push, GitHub PR, Netlify preview deploy, production deploy, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
+- Current preview approval handoff is `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
+- Historical production release evidence is retained below for context only; it is not approval for the restart candidate.
 
-## 2. Review Sequence
+## 2. Current Restart Review Sequence
 
-Review these production pages in order on desktop and mobile:
+Review these local pages in order on desktop and mobile:
 
-1. Home: `https://robsonai.co.uk/`
-2. Building Analyst: `https://robsonai.co.uk/building-analyst.html`
-3. Who it is for: `https://robsonai.co.uk/who-its-for.html`
-4. BuildScan viewer: `https://robsonai.co.uk/buildscan-viewer.html`
-5. Privacy: `https://robsonai.co.uk/privacy.html`
-6. 404 recovery page: `https://robsonai.co.uk/404.html`
-7. Holding fallback: `https://robsonai.co.uk/holding.html`
+1. Home: `http://127.0.0.1:8133/`
+2. Building Analyst: `http://127.0.0.1:8133/building-analyst.html`
+3. Who it is for: `http://127.0.0.1:8133/who-its-for.html`
+4. BuildScan viewer: `http://127.0.0.1:8133/buildscan-viewer.html`
+5. Privacy: `http://127.0.0.1:8133/privacy.html`
+6. 404 recovery page: `http://127.0.0.1:8133/404.html`
+7. Holding fallback: `http://127.0.0.1:8133/holding.html`
 
-Screenshot evidence from the production rendered smoke:
+Screenshot evidence from the current local rendered smoke:
 
-- `output/playwright/rendered-release-smoke-2026-06-28T17-19-35-062Z`
+- `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`
+
+The clean local server is running from `/private/tmp/robson-ai-website-quality-restart` and `curl` returned HTTP 200.
 
 ## 3. What To Approve Or Flag
 
@@ -41,16 +47,19 @@ Screenshot evidence from the production rendered smoke:
 Approve if:
 
 - The first impression says Robson AI Solutions is about professional building intelligence, not generic AI.
-- The awkward floating logo issue is gone.
+- The rejected floating/misaligned hero icon treatment is gone.
+- The hero proof surface feels deliberate, product-led, and professionally composed.
 - Finder, Operations, Method, Credibility, and Contact feel more designed and less like text blocks.
 - Building Analyst, BuildScan, and property operations read as connected but distinct workstreams.
+- Header navigation lands cleanly on major sections without orphaned controls from the previous section appearing below the sticky nav.
+- Secondary pages keep the visible Robson AI brand lockup clear and do not accidentally present `Fit` as a separate product name.
 - The page feels credible, current, and useful enough for public visitors.
 
 Flag if:
 
 - Any section still feels amateur, too wordy, visually flat, or misaligned.
 - Any wording feels too vague, too futuristic, too sales-heavy, or not aligned with Robson AI.
-- Any motion, graphic treatment, or proof section feels distracting or unprofessional.
+- Any graphic treatment or proof section feels distracting, gimmicky, or unprofessional.
 
 ### Building Analyst
 
@@ -113,36 +122,51 @@ Flag if:
 
 - Any fallback wording sounds stale, confusing, or launch-blocking.
 
-## 4. Evidence To Keep In Mind
+## 4. Current Candidate Evidence
 
-Production release gate:
+Local release gate:
 
-- Command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
-- Result: pass, 14 steps.
-- Artifact: `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`.
+- Command: `npm run qa:release:local`
+- Result: pass, 37 steps.
+- Artifact: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`.
 
-Production evidence pack:
+Local evidence pack:
 
-- Release inventory: `output/release-inventory/inventory-2026-06-28T17-18-10-215Z/release-candidate-inventory.json`.
-- BuildScan viewer: `output/buildscan-viewer/smoke-2026-06-28T17-18-17-990Z`.
-- Product/design: `output/product-design-acceptance/smoke-2026-06-28T17-18-38-578Z/product-design-acceptance-smoke.json`.
-- Responsive route smoke: `output/responsive-route/smoke-2026-06-28T17-18-45-615Z/responsive-route-smoke.json`.
-- Visual polish: `output/visual-polish/smoke-2026-06-28T17-19-06-367Z/visual-polish-smoke.json`.
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T17-19-35-062Z`.
-- Measurement: `output/measurement/smoke-2026-06-28T17-19-46-704Z`.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`.
+- Measurement: `output/measurement/evidence-2026-06-29T16-21-48-137Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Latest 11-file staging-manifest smoke: `output/release-staging-manifest/smoke-2026-06-29T16-20-03-286Z/release-staging-manifest-smoke.json`.
+- Latest 11-file release inventory: `output/release-inventory/inventory-2026-06-29T16-20-03-053Z/release-candidate-inventory.json`; dirtyCount 11, secret findings 0, GLB external URI references 0.
 
 Known residuals:
 
-- Source control is not yet aligned with production because the production deploy used a clean archive of local commit `8e32faf`.
+- The clean-worktree staging manifest now expects the 11-file restart candidate.
+- Anchor-navigation polish is included in the latest rendered smoke.
+- Brand-consistency polish has been moved onto the clean branch; the next validation refresh should confirm the 11-file candidate.
+- The active restart candidate is local-only and uncommitted.
+- No Netlify preview exists for the restart candidate.
+- The original dirty branch is ahead by the rejected motion-preview/evidence commits; this clean branch avoids using those commits as the publish path. Do not publish the rejected `proof-motion-polish` preview.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains 17 moderate, 0 high, 0 critical; production footprint remains zero.
 - Full Codex Security scan is not complete.
 - Public BuildScan GLB downloadability is intentional but should be reconsidered before exposing any new model.
 
-## 5. Next Decision
+## 5. Current Decision
 
 Use one of these responses:
 
-1. Recommended: `approve source-control alignment`
-2. `hold and monitor production for 24 hours`
-3. `start a new design tranche` followed by the exact page or section to improve.
+1. Recommended: `approve explicit-path commit plus Netlify preview deploy for website-quality-restart-from-original-goal`
+2. `request another local visual pass first` followed by the exact page or section to improve.
+3. `hold here with production unchanged`
+
+## 6. Historical Production Context
+
+The previous production checklist was for production deploy `6a415725a6f69e52078a74df` and candidate `website-visual-refinement-proof-surface-polish`.
+
+Historical production release gate:
+
+- Command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
+- Result: pass, 14 steps.
+- Artifact: `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`.
+- Production rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T17-19-35-062Z`.
+
+That release remains useful as rollback/reference context, but it does not approve or complete the active restart candidate.

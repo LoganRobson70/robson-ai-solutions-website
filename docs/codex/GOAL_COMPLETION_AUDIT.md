@@ -1,18 +1,71 @@
 # Goal Completion Audit - Robson AI Solutions Website
 
-Last updated: 2026-06-28 18:20 BST
+Last updated: 2026-06-29 17:11 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: complete for the approved "best website it can be" release goal; live production deploy passed the production release gate
+Status: active restart goal is not complete; clean local candidate passed full local validation and still needs preview/publish approvals
 
-## 1. Completed Goal
+## 1. Current Active Goal
 
-Completed Codex goal:
+Active Codex goal:
 
 > Make the Robson AI Solutions website the best releasable version it can be: polished, professional, responsive, accessible, evidence-led, brand-consistent, cautious about product maturity, validated locally and ready for preview/publish approval.
 
-The goal is complete for the approved release scope because the visual-refinement candidate was locally validated, committed, preview-deployed, preview-gated, explicitly approved for production, production-deployed, and production-gated.
+Current audit result:
 
-## 2. Current Production State
+- Not complete for the restarted goal.
+- The local restart candidate is implemented, visually reviewed through screenshots, and passed the full local release gate.
+- Commit, branch push, GitHub PR, Netlify preview deploy, deployed preview gate, Wayne preview review, production approval, production deploy, and production gate are not complete for the restart candidate.
+- Do not use the historical completion evidence below as approval for the current candidate.
+
+## 2. Current Restart Candidate State
+
+Current local candidate:
+
+- Clean worktree path: `/private/tmp/robson-ai-website-quality-restart`
+- Branch: `codex/website-quality-clean-restart` from `origin/main`
+- Local review URL: `http://127.0.0.1:8133/`; HTTP 200 confirmed.
+- Current dirty scope: 9 modified tracked files plus 2 untracked candidate files.
+- Modified tracked files: `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/TRACKER.md`, `docs/codex/PUBLISH_READINESS_AUDIT.md`, `docs/codex/GOAL_COMPLETION_AUDIT.md`, `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`, `index.html`, `scripts/rendered-release-smoke.mjs`, `styles.css`, and `who-its-for.html`.
+- Untracked candidate files: `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md` and `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
+
+Current validation evidence:
+
+- Full local release gate: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`; passed all 37 steps.
+- Rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`.
+- Measurement evidence: `output/measurement/evidence-2026-06-29T16-21-48-137Z`; performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80s, CLS 0.
+- Current staging manifest evidence: `output/release-staging-manifest/smoke-2026-06-29T16-20-03-286Z/release-staging-manifest-smoke.json`; 9 modified tracked files, 2 untracked candidate files and 11 staging paths.
+- Current release inventory evidence: `output/release-inventory/inventory-2026-06-29T16-20-03-053Z/release-candidate-inventory.json`; dirtyCount 11, zero secret findings and GLB externalUriCount 0.
+
+Current blockers to completion:
+
+- Wayne has not approved explicit-path commit plus Netlify preview deploy.
+- No deployed preview exists for this restart candidate.
+- No preview release gate has run for this restart candidate.
+- No production approval, deploy, or production gate has run for this restart candidate.
+
+## 3. Requirement Audit For Current Restart Candidate
+
+| Requirement | Evidence | Status |
+| --- | --- | --- |
+| Polished and professional | Current rendered homepage/product/support screenshots at `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`; local visual-polish gate passed | locally satisfied, needs Wayne review |
+| Responsive | `npm run qa:responsive` passed inside `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json` | locally satisfied, needs preview gate |
+| Accessible | keyboard, axe and Lighthouse evidence inside local release gate | locally satisfied, needs preview gate |
+| Evidence-led | Hero/BuildScan/Finder/Operations/Method/Credibility/Contact proof surfaces visible in rendered screenshots | locally satisfied, needs Wayne review |
+| Brand-consistent | Restart audit and rendered screenshots show Robson AI professional building intelligence direction | locally satisfied, needs Wayne review |
+| Cautious about product maturity | Product/design acceptance smoke passed locally; copy remains cautious and no new product claims were added | locally satisfied, needs preview gate |
+| Privacy/security | Release security/header checks passed locally; no form/customer-data store was added | locally satisfied, needs deployed header/source-deny checks |
+| Performance/SEO | Measurement and semantic/SEO checks passed locally | locally satisfied, needs preview gate |
+| Local validation | `npm run qa:release:local` passed at `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json` | complete for local stage |
+| Anchor navigation | Desktop BuildScan nav click lands below the sticky header without showing previous Operations controls below the header; rendered smoke now checks this | locally satisfied |
+| Secondary-page brand consistency | Who It Fits header lockup now reads `Robson AI / Solutions`; rendered smoke now checks expected page straplines | locally satisfied |
+| Preview validation | No Netlify preview exists for the restart candidate | incomplete |
+| Production validation | No production deploy exists for the restart candidate | incomplete |
+
+## 4. Historical Completed Release
+
+The earlier approved release goal was completed before Wayne restarted the design direction. This history is preserved below, but it is not current completion evidence for the active restart candidate.
+
+## 5. Historical Production State
 
 Current live production site:
 
@@ -29,7 +82,7 @@ Source-control note:
 - The branch `codex/docs-evidence-preservation-no-production-deploy` has not been pushed.
 - `main`/GitHub may therefore not yet match the current live archive deploy. Aligning source control is a separate approval-gated action because pushing may trigger Netlify.
 
-## 3. Requirement Audit
+## 6. Historical Requirement Audit
 
 | Requirement | Evidence | Status |
 | --- | --- | --- |
@@ -45,7 +98,7 @@ Source-control note:
 | Preview validation | Preview passed at `output/release-preview-gate/gate-2026-06-28T17-00-40-765Z/release-preview-gate.json` | complete |
 | Production validation | Production passed at `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json` | complete |
 
-## 4. Release Evidence
+## 7. Historical Release Evidence
 
 Local gate:
 
@@ -77,17 +130,20 @@ Production evidence from the gate:
 - Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T17-19-35-062Z`.
 - Measurement: `output/measurement/smoke-2026-06-28T17-19-46-704Z`.
 
-## 5. Known Residuals
+## 8. Current Known Residuals
 
-- Source-control alignment remains outstanding because the production deploy used a clean archive of local commit `8e32faf`; the branch has not been pushed.
+- The active restart candidate is local-only and uncommitted.
+- The rejected preview/evidence commits remain isolated on the old dirty branch; the active restart candidate now lives on clean branch `codex/website-quality-clean-restart` from `origin/main`.
+- The rejected `proof-motion-polish` preview must not be published.
+- No deployed preview exists for the restart candidate.
 - Chromium browser coverage passed; Firefox and WebKit Playwright binaries are unavailable locally and warning-only.
 - Dev/release tooling audit still reports 17 moderate advisories; production footprint remains zero vulnerabilities.
 - Full Codex Security workspace scan is not complete.
 - Public BuildScan GLB downloadability is intentional for the current public proof asset, but should be reconsidered before exposing any new model.
 - No DNS changes, analytics enablement, forms, customer-data handling, external messages, or app-platform implementation work were performed.
 
-## 6. Recommended Next Action
+## 9. Recommended Next Action
 
-1. Recommended: approve a source-control alignment tranche so Codex can push the live commit path safely or prepare an explicit PR/merge path without accidentally triggering another unreviewed production change.
-2. Keep production as-is and run a 24-hour post-launch observation check only.
-3. Start a separate post-launch design tranche for motion/visual improvements after source control is aligned.
+1. Recommended: approve explicit-path commit plus Netlify preview deploy for the current restart candidate.
+2. Ask for another local visual pass first.
+3. Hold here with production unchanged.

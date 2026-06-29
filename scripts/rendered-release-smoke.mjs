@@ -168,6 +168,45 @@ async function expectVisible(page, selector, label) {
   return locator;
 }
 
+async function assertAnchorLandingClean(page, targetSelector, previousSectionSelector, label) {
+  const state = await page.evaluate(
+    ({ previousSectionSelector, targetSelector }) => {
+      const target = document.querySelector(targetSelector);
+      const header = document.querySelector(".site-header");
+      const headerBottom = header?.getBoundingClientRect().bottom || 0;
+      const targetRect = target?.getBoundingClientRect();
+      const visiblePreviousControls = [...document.querySelectorAll(`${previousSectionSelector} a, ${previousSectionSelector} button`)]
+        .map((element) => {
+          const rect = element.getBoundingClientRect();
+
+          return {
+            text: element.textContent?.trim() || "",
+            top: Math.round(rect.top),
+            bottom: Math.round(rect.bottom),
+            visibleBelowHeader: rect.bottom > headerBottom && rect.top < window.innerHeight
+          };
+        })
+        .filter((control) => control.visibleBelowHeader);
+
+      return {
+        headerBottom: Math.round(headerBottom),
+        targetTop: targetRect ? Math.round(targetRect.top) : null,
+        visiblePreviousControls
+      };
+    },
+    { previousSectionSelector, targetSelector }
+  );
+
+  assert(state.targetTop !== null, `${label} target should exist.`);
+  assert(state.targetTop > state.headerBottom, `${label} should land below the sticky header: ${JSON.stringify(state)}.`);
+  assert(
+    state.visiblePreviousControls.length === 0,
+    `${label} should not show previous-section controls below the sticky header: ${JSON.stringify(state.visiblePreviousControls)}.`
+  );
+
+  return state;
+}
+
 async function assertHoldingFallbackCurrentState(page) {
   const bodyText = await page.locator("body").innerText();
   const stalePatterns = [
@@ -306,6 +345,12 @@ async function runBuildScanInteractive(browser, baseUrl, artifactDir) {
   try {
     const response = await page.goto(new URL("/index.html#buildscan-model-view", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "BuildScan section route should return HTTP 200.");
+    const anchorLanding = await assertAnchorLandingClean(
+      page,
+      "#buildscan-model-view",
+      "#property-operations",
+      "BuildScan anchor landing"
+    );
     await page.locator("[data-buildscan-interactive]").scrollIntoViewIfNeeded();
     await page.waitForTimeout(300);
 
@@ -350,6 +395,7 @@ async function runBuildScanInteractive(browser, baseUrl, artifactDir) {
 
     return {
       metrics: await assertNoPageRegression(page, "Desktop BuildScan interactive"),
+      anchorLanding,
       viewerState,
       diagnostics
     };
@@ -368,18 +414,21 @@ async function runSupportingPages(browser, baseUrl, artifactDir) {
       path: "/building-analyst.html#workflow-proof",
       screenshot: "desktop-building-analyst-proof.png",
       requiredSelector: "#workflow-proof",
+      brandStrapline: "Building Analyst",
       label: "Building Analyst proof"
     },
     {
       path: "/who-its-for.html",
       screenshot: "desktop-who-its-for.png",
       requiredSelector: "main",
+      brandStrapline: "Solutions",
       label: "Who it fits"
     },
     {
       path: "/privacy.html",
       screenshot: "desktop-privacy.png",
       requiredSelector: "main",
+      brandStrapline: "Privacy",
       label: "Privacy"
     },
     {
@@ -402,6 +451,13 @@ async function runSupportingPages(browser, baseUrl, artifactDir) {
       const response = await page.goto(new URL(pageSpec.path, baseUrl).toString(), { waitUntil: "networkidle" });
       assert(response?.status() === 200, `${pageSpec.label} should return HTTP 200.`);
       await expectVisible(page, pageSpec.requiredSelector, pageSpec.label);
+      if (pageSpec.brandStrapline) {
+        const brandStrapline = (await page.locator(".brand-lockup-text small").first().textContent())?.trim() || "";
+        assert(
+          brandStrapline === pageSpec.brandStrapline,
+          `${pageSpec.label} brand strapline should be "${pageSpec.brandStrapline}", got "${brandStrapline}".`
+        );
+      }
       const metrics = await assertNoPageRegression(page, pageSpec.label);
 
       if (pageSpec.path === "/404.html" || pageSpec.path === "/holding.html") {

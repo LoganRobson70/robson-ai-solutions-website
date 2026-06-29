@@ -1,9 +1,9 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-28 18:32 BST
+Last updated: 2026-06-29 17:11 BST
 Project owner: Wayne Robson / Robson AI Solutions
-Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Current branch: `codex/docs-evidence-preservation-no-production-deploy`
+Primary repo/path: `/private/tmp/robson-ai-website-quality-restart`
+Current branch: `codex/website-quality-clean-restart`
 
 ## 1. Current Objective
 
@@ -11,9 +11,9 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Complete Wayne-approved source-control alignment for the live `website-visual-refinement-proof-surface-polish` production release.
-- Preserve release evidence and tracker records without treating evidence-only docs updates as approval for another deploy.
-- Keep the next action bounded: docs-only evidence commit, branch push, fast-forward `main`, Netlify GitHub production deploy wait, production gate rerun, and closeout.
+- Restart from the original "best releasable website" goal after Wayne rejected the current website direction as ugly.
+- Treat the deployed `post-launch-proof-motion-polish` preview as rejected for publication.
+- Remove or bypass the rejected motion-preview changes before the next design pass, then run an evidence-based audit of the current live website before making further visual changes.
 
 Success means:
 
@@ -23,7 +23,7 @@ Success means:
 - Work proceeds through small, reversible tranches with evidence and explicit approval gates for commits, pushes, previews, and production deploys.
 - Serious closeouts report publish-readiness progress as a percentage and always end with the single recommended next action as numbered option `1`, plus alternatives when Wayne needs to decide.
 - Full website approval handoff is recorded in `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`; use it before any future live deploy.
-- Page-by-page Wayne approval checklist is recorded in `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`; it is the recommended review path before closing the current website goal or starting another tranche.
+- Page-by-page Wayne approval checklist is recorded in `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`; it now reviews the local restart candidate and preserves the older production checklist as historical context.
 - Next-phase refinement planning baseline is recorded in `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md`; it is not implementation or deployment approval.
 - Side ideas are parked instead of expanding the active tranche.
 - Luffu/Steno/Unfold motion references are captured as `docs/codex/MOTION_REFERENCE_BRIEF.md`; they are not approved implementation scope unless Wayne chooses the motion-polish alternative.
@@ -32,10 +32,116 @@ Success means:
 
 ## 2. Active Tranche
 
-Tranche name: `source-control-alignment-for-live-visual-release`
-Status: approved by Wayne selecting option `1`; in progress
-Started: 2026-06-28 18:32 BST
+Tranche name: `website-quality-restart-from-original-goal`
+Status: clean local composition-reset candidate passed full local gate; explicit-path local commit plus Netlify preview deploy approved; motion preview rejected for publication; production deploy not approved
+Started: 2026-06-28 20:33 BST
 Completed: not complete
+
+Scope:
+
+- Restart from the original goal: make the Robson AI Solutions website the best releasable version it can be: polished, professional, responsive, accessible, evidence-led, brand-consistent, cautious about product maturity, validated locally, and ready for preview/publish approval.
+- Do not publish the current motion-polish preview.
+- Neutralise the rejected motion-preview implementation in the working tree before further design work.
+- Audit the live website and current code/design system against the original goal before implementing another visual tranche.
+- Preserve product truth, Robson AI brand direction, cautious Apple-native language, email-first/no-form privacy posture, and BuildScan opt-in model behaviour.
+
+Out of scope:
+
+- Publishing the rejected `proof-motion-polish` preview, production deploy, branch push, GitHub PR, DNS/domain changes, analytics/forms/customer-data capture, new public GLB/model asset, app implementation, Apple submission/signing, external messages, force-push, destructive git reset, or broad rebuild without a reviewed direction.
+
+Permission envelope:
+
+- Wayne selected option `3` to hold the preview-only motion work.
+- Wayne then instructed: `restart from original goal, do not publish current motion preview`.
+- Wayne approved option `1` to create a clean local restart path from `origin/main`, so rejected preview commits cannot become the next publish path.
+- Wayne approved option `1` on 2026-06-29 to stage the manifest-approved paths, create a local commit, create a Netlify preview deploy, and run the deployed preview gate.
+- Safe local inspection, scoped file edits, docs/tracker updates, local QA, and browser evidence are approved.
+- Branch push, GitHub PR, production deploy, DNS changes, analytics/forms/customer data, external messages, and destructive git actions still require explicit later approval.
+
+Done criteria:
+
+- Rejected motion-preview changes are not treated as the active publish candidate.
+- Current live site and current code/design system are audited from fresh evidence.
+- A focused first remedial design tranche is defined and implemented locally without publishing.
+- Local release gate passes for the current candidate.
+- Wayne receives the findings, changed files, validation evidence, risks, rollback path, publish-readiness percentage, and next recommended action as numbered option `1`.
+
+Validation evidence:
+
+- Production remains `https://robsonai.co.uk` at the previously verified production baseline; no production deploy has been performed for the rejected motion preview.
+- Rejected preview/evidence commits `763c8d8` and `d5e9d64` remain only on the original dirty branch and have not been pushed.
+- Clean worktree created at `/private/tmp/robson-ai-website-quality-restart` on branch `codex/website-quality-clean-restart` from `origin/main`.
+- The active publish path now uses the clean worktree rather than the branch containing rejected preview commits.
+- Restart design audit added at `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md`; recommended next tranche is `homepage-composition-reset`.
+- Restart design audit now includes local implementation results, dirty scope, validation evidence, residuals and the next approval path.
+- Publish readiness and goal-completion audits now distinguish the active local restart candidate from the earlier completed production release; the active goal remains incomplete until preview and production approval gates are completed.
+- Restart preview approval handoff added at `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md` so Wayne's next approval can be scoped to commit plus Netlify preview, not production.
+- Homepage composition reset implemented locally: the rejected floating hero icon treatment is replaced with a BuildScan proof image surface, dark proof sections have explicit contrast fixes, repeated pale card surfaces are reduced, and Finder/Operations/Method/Credibility/Contact are consolidated into stronger product-proof layouts without changing product claims.
+- Follow-up visual defect fixed locally: the Focus manifesto no longer uses a broken white-card/dark-section mix; the section is now a deliberate dark proof band with legible text.
+- Follow-up navigation defect fixed locally: desktop BuildScan nav now lands below the sticky header without showing previous Operations controls below the header, and `scripts/rendered-release-smoke.mjs` now checks this.
+- Follow-up brand consistency defect fixed locally: the Who It Fits header lockup now reads `Robson AI / Solutions`, not `Robson AI / Fit`, and `scripts/rendered-release-smoke.mjs` checks key secondary-page straplines.
+- Clean local review URL: `http://127.0.0.1:8133/`; HTTP 200 confirmed.
+- Current clean dirty scope: 9 modified tracked files and 2 untracked candidate files: `docs/codex/GOAL_COMPLETION_AUDIT.md`, `docs/codex/PUBLISH_READINESS_AUDIT.md`, `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/TRACKER.md`, `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`, `index.html`, `scripts/rendered-release-smoke.mjs`, `styles.css`, `who-its-for.html`, `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md`, and `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
+- `script.js` has no net restart change in the clean worktree; the earlier dirty state came from removing rejected preview code back to the production baseline.
+- Current approval checklist has been realigned to the local restart candidate and no longer points Wayne at the old production release as the active review path.
+- Current 11-file full local release gate passed: `output/release-local-gate/gate-2026-06-28T21-09-14-722Z/release-local-gate.json`; 37 steps.
+- Current 11-file staging-manifest smoke passed inside the full gate: `output/release-staging-manifest/smoke-2026-06-28T21-09-21-067Z/release-staging-manifest-smoke.json`; 9 modified tracked files, 2 untracked candidate files, 11 explicit staging paths.
+- Current 11-file release inventory passed inside the full gate: `output/release-inventory/inventory-2026-06-28T21-09-20-859Z/release-candidate-inventory.json`; dirtyCount 11, zero secret findings, GLB externalUriCount 0.
+- Current rendered screenshot evidence after anchor-navigation polish: `output/playwright/rendered-release-smoke-2026-06-28T21-10-35-845Z`.
+- Current measurement evidence after anchor-navigation polish: `output/measurement/evidence-2026-06-28T21-11-19-578Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Clean full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`.
+- Clean staging-manifest smoke passed inside the full gate: `output/release-staging-manifest/smoke-2026-06-29T16-20-03-286Z/release-staging-manifest-smoke.json`; 9 modified tracked files, 2 untracked candidate files, 11 explicit staging paths.
+- Clean release inventory passed inside the full gate: `output/release-inventory/inventory-2026-06-29T16-20-03-053Z/release-candidate-inventory.json`; dirtyCount 11, zero secret findings, GLB externalUriCount 0.
+- Clean rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`.
+- Clean measurement evidence: `output/measurement/evidence-2026-06-29T16-21-48-137Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Current 8-file staging-manifest smoke passed: `output/release-staging-manifest/smoke-2026-06-28T20-26-30-213Z/release-staging-manifest-smoke.json`.
+- Current release inventory passed: `output/release-inventory/inventory-2026-06-28T20-26-30-267Z/release-candidate-inventory.json`; dirtyCount 8, zero secret findings, GLB externalUriCount 0.
+- Fast local checks passed: `node --check script.js` and `git diff --check`.
+- Targeted local checks passed: `npm run qa:visual-polish` (`output/visual-polish/smoke-2026-06-28T19-56-47-953Z/visual-polish-smoke.json`), `npm run qa:responsive` (`output/responsive-route/smoke-2026-06-28T19-56-47-953Z/responsive-route-smoke.json`), `npm run qa:keyboard` (`output/playwright/keyboard-release-smoke-2026-06-28T19-57-55-348Z`), `npm run qa:product-design` (`output/product-design-acceptance/smoke-2026-06-28T19-57-55-348Z/product-design-acceptance-smoke.json`), `npm run qa:release-inventory` (`output/release-inventory/inventory-2026-06-28T19-57-55-809Z/release-candidate-inventory.json`; dirtyCount 6; zero secret findings), and `npm run qa:release-staging-manifest` (`output/release-staging-manifest/smoke-2026-06-28T19-57-56-843Z/release-staging-manifest-smoke.json`; 5 modified tracked, 1 untracked candidate, 6 staging paths).
+- Rendered screenshot evidence for the reset candidate: `output/playwright/rendered-release-smoke-2026-06-28T19-56-47-965Z`.
+- Refreshed rendered screenshot evidence after the Focus fix: `output/playwright/rendered-release-smoke-2026-06-28T20-07-57-608Z`.
+- Full local release gate passed all 37 steps after the Focus fix: `output/release-local-gate/gate-2026-06-28T20-09-23-996Z/release-local-gate.json`.
+- Measurement evidence from the full local gate: `output/measurement/evidence-2026-06-28T20-11-11-946Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Residual advisories: production deploy is not approved; branch push/GitHub PR are not approved; Netlify preview deploy is not approved; production dependency footprint remains zero vulnerabilities; dev/release tooling audit remains 17 moderate advisories; Chromium browser coverage passed while Firefox/WebKit binaries are unavailable locally and warning-only.
+- Local rendered screenshot pack against production: `output/playwright/rendered-release-smoke-2026-06-28T19-38-52-319Z`.
+- Cleanup validation passed: `node --check script.js`, `git diff --check`, `npm run qa:release-inventory` with artifact `output/release-inventory/inventory-2026-06-28T19-35-20-902Z/release-candidate-inventory.json`, and `npm run qa:release-staging-manifest` with artifact `output/release-staging-manifest/smoke-2026-06-28T19-35-36-069Z/release-staging-manifest-smoke.json`.
+- Live baseline screenshots captured in `output/product-design-audit/motion-tranche-2026-06-28-live`.
+- Implementation currently touches `script.js`, `styles.css`, and this tracker.
+- Current dirty scope matches `docs/codex/RELEASE_STAGING_MANIFEST.md`: `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/TRACKER.md`, `script.js`, and `styles.css`.
+- `node --check script.js` passed.
+- `git diff --check` passed.
+- `npm run qa:visual-polish` passed with artifact `output/visual-polish/smoke-2026-06-28T18-06-42-338Z/visual-polish-smoke.json`.
+- `npm run qa:responsive` passed with artifact `output/responsive-route/smoke-2026-06-28T18-06-42-620Z/responsive-route-smoke.json`.
+- `npm run qa:keyboard` passed with artifact `output/playwright/keyboard-release-smoke-2026-06-28T18-06-43-163Z`.
+- `npm run qa:rendered` passed with artifact `output/playwright/rendered-release-smoke-2026-06-28T18-07-26-612Z`; updated homepage screenshot reviewed locally.
+- `npm run qa:product-design` passed with artifact `output/product-design-acceptance/smoke-2026-06-28T18-07-27-149Z/product-design-acceptance-smoke.json`.
+- `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-06-28T18-09-42-986Z/release-staging-manifest-smoke.json`; counts: 4 modified tracked files, 0 untracked candidate files, 4 staging command paths.
+- `npm run qa:release-inventory` passed with artifact `output/release-inventory/inventory-2026-06-28T18-09-42-986Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings, GLB externalUriCount 0.
+- `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-06-28T18-10-09-591Z/release-local-gate.json`.
+- Measurement evidence from the full gate: `output/measurement/evidence-2026-06-28T18-12-05-225Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.65 seconds, CLS 0.
+- Browser coverage advisory remains warning-only for Firefox/WebKit binaries unavailable locally; Chromium passed.
+- Wayne-approved explicit-path staged files: `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/TRACKER.md`, `script.js`, and `styles.css`.
+- Pre-commit `git diff --cached --check` passed.
+- Pre-commit `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-06-28T19-14-54-021Z/release-local-gate.json`.
+- Pre-commit measurement evidence: `output/measurement/evidence-2026-06-28T19-16-55-575Z`; Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, LCP about 1.73 seconds, CLS 0.
+- Local commit created: `763c8d8` (`Add proof motion polish`); branch is ahead of `origin/codex/docs-evidence-preservation-no-production-deploy` and has not been pushed.
+- Netlify preview deploy succeeded from a clean archive of commit `763c8d8`: deploy `6a41739b29f5ccb3751611f1`, preview URL `https://proof-motion-polish--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a41739b29f5ccb3751611f1`.
+- Preview release gate passed: `QA_BASE_URL="https://proof-motion-polish--robson-ai-website.netlify.app" npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-06-28T19-19-11-713Z/release-preview-gate.json`; result pass, 14 steps.
+- Preview gate evidence includes release inventory `output/release-inventory/inventory-2026-06-28T19-19-11-843Z/release-candidate-inventory.json` with dirtyCount 0 and zero secret findings; deployed headers `output/release-headers/smoke-2026-06-28T19-19-18-844Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-06-28T19-19-19-213Z`; semantic SEO `output/semantic-seo/smoke-2026-06-28T19-19-38-356Z/semantic-seo-smoke.json`; product/design `output/product-design-acceptance/smoke-2026-06-28T19-19-52-037Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-06-28T19-20-01-778Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-06-28T19-20-36-358Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-06-28T19-21-16-388Z`; and measurement smoke `output/measurement/smoke-2026-06-28T19-21-30-032Z`.
+- Residual advisories: production deploy is not approved; branch push/GitHub PR are not approved; production dependency footprint remains zero vulnerabilities; dev/release tooling audit remains 17 moderate advisories; Chromium browser coverage passed while Firefox/WebKit are unavailable locally and warning-only.
+
+Rejected preview record:
+
+- Preview URL: `https://proof-motion-polish--robson-ai-website.netlify.app`.
+- Reason rejected: Wayne said the website is ugly and instructed Codex to restart from the original goal and not publish the current motion preview.
+- Handling: do not publish this preview. Preserve the evidence as a learning artifact only; do not treat it as product approval.
+
+## 3. Completed Source-Control Alignment Tranche
+
+Tranche name: `source-control-alignment-for-live-visual-release`
+Status: completed; branch and `main` pushed to `39c5bf5`, Netlify production deploy `6a415b5db31442000737c37c` passed the production gate
+Started: 2026-06-28 18:32 BST
+Completed: 2026-06-28 18:39 BST
 
 Scope:
 
@@ -65,7 +171,19 @@ Done criteria:
 - Production release gate passes.
 - Tracker is updated with evidence and the next recommended action.
 
-## 3. Completed Visual Release Tranche
+Validation evidence:
+
+- Docs-only closeout commit: `39c5bf5` (`Document visual release production alignment`).
+- Branch push succeeded: `origin/codex/docs-evidence-preservation-no-production-deploy` now points at `39c5bf5`.
+- `main` push succeeded as a non-force fast-forward: `origin/main` moved from `568259e` to `39c5bf5`.
+- Local refs aligned: `HEAD`, `main`, and `origin/main` all resolve to `39c5bf5`.
+- Netlify GitHub-triggered production deploy is ready: `6a415b5db31442000737c37c`, commit `39c5bf5560aa392f3615b69975ddcf390d1ad92b`, published `2026-06-28T17:35:39.514Z`, URL `https://robsonai.co.uk`, unique deploy URL `https://6a415b5db31442000737c37c--robson-ai-website.netlify.app`.
+- Production release gate passed after the GitHub/main deploy: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-06-28T17-36-03-324Z/release-preview-gate.json`; result pass, 14 steps.
+- Production gate evidence includes release inventory `output/release-inventory/inventory-2026-06-28T17-36-03-458Z/release-candidate-inventory.json` with dirtyCount 0 and zero secret findings; BuildScan viewer `output/buildscan-viewer/smoke-2026-06-28T17-36-11-003Z`; semantic SEO `output/semantic-seo/smoke-2026-06-28T17-36-22-947Z/semantic-seo-smoke.json`; product/design `output/product-design-acceptance/smoke-2026-06-28T17-36-31-728Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-06-28T17-36-38-613Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-06-28T17-36-59-862Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-06-28T17-37-33-205Z`; measurement `output/measurement/smoke-2026-06-28T17-37-44-358Z`.
+- Rollback candidate before the GitHub/main alignment deploy: Netlify production deploy `6a415725a6f69e52078a74df`.
+- Residual advisories: production dependency footprint remains zero vulnerabilities; dev/release tooling audit remains 17 moderate advisories; Chromium browser coverage passed while Firefox/WebKit are unavailable locally and warning-only; this final tracker evidence update is local-only unless Wayne approves another docs-only commit.
+
+## 4. Completed Visual Release Tranche
 
 Tranche name: `website-visual-refinement-proof-surface-polish`
 Status: completed and production-gated; Netlify production deploy `6a415725a6f69e52078a74df` is live on `https://robsonai.co.uk`
@@ -127,7 +245,7 @@ Validation evidence:
 - Rollback candidate before this publish: Netlify production deploy `6a4110fe34f4b66db778e4bb`.
 - Residual advisories: branch/main are not pushed to match the archive production deploy; production dependency footprint remains zero vulnerabilities; dev/release tooling audit remains 17 moderate advisories; Chromium browser coverage passed while Firefox/WebKit are unavailable locally and warning-only.
 
-## 4. Previous Major Release Tranche
+## 5. Previous Major Release Tranche
 
 Tranche name: `buildscan-interactive-preview-release-candidate`
 Status: completed and production-gated; branch `codex/buildscan-interactive-preview-release-candidate` and `main` are pushed at `568259e`; follow-on local commit `5994de8` was deployed by approved CLI production deploy; Netlify production deploy `6a4110fe34f4b66db778e4bb` is live on `https://robsonai.co.uk`; production release gate passed
