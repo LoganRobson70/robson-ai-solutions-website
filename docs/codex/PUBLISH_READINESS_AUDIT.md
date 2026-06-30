@@ -1,9 +1,9 @@
 # Publish Readiness Audit - Robson AI Solutions Website
 
-Last updated: 2026-06-29 17:11 BST
+Last updated: 2026-06-29 20:17 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: clean-worktree restart candidate passed full local gate; local commit plus Netlify preview deploy approved; historical production release remains live
+Status: clean-worktree restart candidate is live on production and has passed the production gate
 
 ## 1. Purpose
 
@@ -12,7 +12,7 @@ This audit is the current publish-readiness checklist for the active website-qua
 Important current-state rule:
 
 - The old production release evidence below does not approve the new restart candidate.
-- The current local candidate must go through explicit-path commit, Netlify preview deploy, deployed preview gate, Wayne review, explicit production approval, production deploy, and production gate before it can be treated as live release work.
+- The current clean restart candidate went through explicit-path commit, Netlify preview deploy, deployed preview gate, Wayne option `1` production approval, production deploy, and production gate before being treated as live release work.
 - The rejected `proof-motion-polish` preview must not be published.
 
 ## 2. Current Readiness
@@ -20,29 +20,25 @@ Important current-state rule:
 Current active restart candidate:
 
 - Local release-readiness: 100% for the current working tree candidate.
-- Preview release-readiness: 0% until Wayne approves commit plus Netlify preview deploy and `QA_BASE_URL=<preview> npm run qa:release:preview` passes.
-- Production publish-readiness: 0% until Wayne approves production publish after a passed deployed preview gate.
-- Overall publish readiness: about 87% because local implementation, screenshot review, checklist alignment, anchor-navigation polish, secondary-page brand consistency and local release gates are complete, but preview/publish approvals and deployed gates are still missing.
-- Current recommendation: execute the approved explicit-path commit plus Netlify preview deploy, then run the deployed preview gate and return the preview URL for Wayne review.
+- Preview release-readiness: 100% for the deployed preview gate.
+- Production publish-readiness: 100% for the deployed production gate.
+- Overall publish readiness: about 98% because local implementation, screenshot review, checklist alignment, clean source-control path, local release gate, Netlify preview deploy, deployed preview gate, production deploy and production gate are complete; source-control alignment and optional owner live visual sign-off remain.
+- Current recommendation: approve source-control alignment so GitHub/main matches the live production archive deploy.
 - Current local evidence: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`, `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`, and `output/measurement/evidence-2026-06-29T16-21-48-137Z`.
-- Current dirty scope: 9 modified tracked files and 2 untracked candidate files in the clean worktree, as enforced by `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+- Current dirty scope: five post-preview/post-production evidence docs in the clean worktree.
 - Current preview-deploy approval handoff: `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
 
 Current live production state:
 
 - Public URL: `https://robsonai.co.uk`.
-- Current verified GitHub/main production deploy remains `6a415b5db31442000737c37c` from commit `39c5bf5`.
-- Production has not received the restart candidate.
-- No production deploy, Netlify preview deploy, commit, branch push, GitHub PR, DNS change, analytics/form change, external message, or customer data handling is approved by this audit.
+- Current verified Netlify production deploy is `6a42c401c0f172f9fa99e3a7`, deployed from clean archive commit `242410f`.
+- Previous verified GitHub/main production deploy `6a415b5db31442000737c37c` from commit `39c5bf5` is the immediate rollback candidate.
+- Branch push, GitHub PR/main alignment, DNS change, analytics/form change, external message, or customer data handling is not approved by this audit.
 
-The remaining work before the restart candidate can be published:
+The remaining work before the release is fully closed:
 
-- Codex stages only the manifest-approved file list.
-- Codex creates a local commit.
-- Codex creates a Netlify preview deploy.
-- Codex runs the deployed preview gate and returns the preview URL, evidence, risks, and rollback path.
-- Wayne gives separate explicit production approval.
-- Codex performs production deploy and production release verification.
+- Wayne gives separate approval for source-control alignment.
+- Codex pushes/aligns the approved source path without force, waits for any GitHub-triggered Netlify deploy, and reruns production verification if the live deploy changes.
 
 The remaining work that is not a preview blocker:
 
@@ -64,11 +60,12 @@ The remaining work that is not a preview blocker:
 | Dependency risk | Residual warning | production audit clean; dev/release tooling audit has 17 moderate, 0 high, 0 critical | Accept residual tooling risk or defer for upstream/tooling changes |
 | BuildScan GLB public data | No new model exposure in restart candidate | Existing public proof asset unchanged | Separate approval needed for any new/replaced public model |
 | Staged file scope | Passed locally for clean 11-file restart candidate | `output/release-staging-manifest/smoke-2026-06-29T16-20-03-286Z/release-staging-manifest-smoke.json` | Use explicit-path staging after Wayne approval only |
-| Netlify deploy-preview | Not approved yet | No preview URL for restart candidate | Wayne approval required |
-| Deployed preview QA | Not run for restart candidate | Missing by design until preview exists | Required before any production decision |
-| Production rollback | Known current production baseline | Current live deploy `6a415b5db31442000737c37c` | Confirm rollback target before production deploy |
-| Production deploy | Not approved | No restart production deploy | Wayne approval required after preview |
-| Production verification | Not run for restart candidate | Missing by design until production deploy exists | Required after production deploy |
+| Netlify deploy-preview | Passed | `https://website-quality-clean-restart--robson-ai-website.netlify.app` | Wayne review |
+| Deployed preview QA | Passed | `output/release-preview-gate/gate-2026-06-29T17-53-08-619Z/release-preview-gate.json` | Wayne review |
+| Production rollback | Confirmed before publish | Previous live deploy `6a415b5db31442000737c37c` | Keep as immediate restore candidate until next approved deploy |
+| Production deploy | Passed | Netlify deploy `6a42c401c0f172f9fa99e3a7` | Complete for this release |
+| Production verification | Passed | `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json` | Complete for this release |
+| Source-control alignment | Not approved | Local branch ahead of `origin/main`; live deploy from CLI archive | Required before repository is fully aligned with production |
 
 ## 4. Current Restart Candidate Evidence
 
@@ -108,6 +105,27 @@ Latest current-candidate release inventory:
 - Dirty candidate files: 11.
 - Secret findings: 0.
 - GLB external URI references: 0.
+
+Latest deployed preview:
+
+- URL: `https://website-quality-clean-restart--robson-ai-website.netlify.app`
+- Deploy ID: `6a42b0eaaaa964aad7bb6dce`
+- Logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a42b0eaaaa964aad7bb6dce`
+- Preview gate: `output/release-preview-gate/gate-2026-06-29T17-53-08-619Z/release-preview-gate.json`
+- Result: pass, 14 steps.
+
+Latest production deploy:
+
+- Production URL: `https://robsonai.co.uk`
+- Deploy ID: `6a42c401c0f172f9fa99e3a7`
+- Deploy URL: `https://6a42c401c0f172f9fa99e3a7--robson-ai-website.netlify.app`
+- Logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a42c401c0f172f9fa99e3a7`
+- Source: clean `git archive 242410f` deploy directory.
+- Rollback candidate: `6a415b5db31442000737c37c`.
+- Production gate: `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json`
+- Result: pass, 14 steps.
+- Production gate supporting artifacts: release inventory `output/release-inventory/inventory-2026-06-29T19-15-08-805Z/release-candidate-inventory.json`, deployed headers `output/release-headers/smoke-2026-06-29T19-15-17-692Z/release-header-smoke.json`, BuildScan viewer `output/buildscan-viewer/smoke-2026-06-29T19-15-18-160Z`, semantic SEO `output/semantic-seo/smoke-2026-06-29T19-15-31-512Z/semantic-seo-smoke.json`, product/design `output/product-design-acceptance/smoke-2026-06-29T19-15-40-452Z/product-design-acceptance-smoke.json`, responsive `output/responsive-route/smoke-2026-06-29T19-15-47-175Z/responsive-route-smoke.json`, visual polish `output/visual-polish/smoke-2026-06-29T19-16-08-162Z/visual-polish-smoke.json`, rendered screenshots `output/playwright/rendered-release-smoke-2026-06-29T19-16-37-328Z`, and measurement `output/measurement/smoke-2026-06-29T19-16-48-260Z`.
+- Note: the production gate release inventory reports dirtyCount 5 because local post-preview evidence docs were already dirty. The production upload itself came from a clean archive of `242410f`.
 
 Additional local polish after this evidence:
 

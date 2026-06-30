@@ -1,13 +1,13 @@
 # Release Staging Manifest - Website Quality Restart
 
-Last updated: 2026-06-29 17:11 BST
+Last updated: 2026-06-29 20:26 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: clean-worktree restart candidate passed full local gate; Wayne approved explicit-path local commit plus Netlify preview deploy; rejected motion preview must not be published; production deploy not approved
+Status: clean restart candidate is live on production; post-production docs closeout and source-control alignment remain approval-gated
 
 ## 1. Purpose
 
-This manifest defines the intended file scope for the restart from the original website goal:
+This manifest records the file scope for the restart from the original website goal and the remaining post-production closeout:
 
 `website-quality-restart-from-original-goal`
 
@@ -17,12 +17,12 @@ This restart:
 
 - treats the `proof-motion-polish` preview as rejected for publication
 - removes the rejected motion-preview implementation from the working tree
-- preserves the live production baseline while the next design pass is audited and planned
-- keeps all publishing, pushing, and production work approval-gated
+- published the clean restart candidate to production only after Wayne approved option `1`
+- keeps all pushing, GitHub/main alignment and later release work approval-gated
 
-It does not add new product claims, change public model assets, enable analytics/forms, push, or deploy anything.
+It does not add new product claims, change public model assets, enable analytics/forms, push to GitHub, or perform any DNS/customer-data/external-message work.
 
-Do not run `git add .` for this candidate.
+Do not run `git add .` for this repository.
 
 ## 2. Approval Boundary
 
@@ -41,23 +41,26 @@ Wayne approved option `1` on 2026-06-29 for this clean branch:
 - local commit
 - Netlify preview deploy
 - deployed preview gate
+- production deploy from clean archive commit `242410f`
+- production release gate against `https://robsonai.co.uk`
 
-Wayne must still explicitly approve before Codex performs any of these actions:
+Wayne must approve before Codex performs any of these actions:
 
 - branch push
 - GitHub PR
-- production deploy
+- GitHub/main alignment
+- another production deploy
 - DNS/domain changes
 - analytics/forms/customer data handling
 - external messages
 
 ## 3. Current Dirty Scope
 
-Latest intended dirty scope:
+Current post-production dirty scope:
 
-- 9 modified tracked files.
-- 2 untracked candidate files.
-- Total dirty candidate files: 11.
+- 7 modified tracked files.
+- 0 untracked candidate files.
+- Total dirty candidate files: 7.
 - This manifest itself is intentionally included in the modified tracked file count.
 
 Current validation evidence:
@@ -68,6 +71,11 @@ Current validation evidence:
 - Clean measurement evidence: `output/measurement/evidence-2026-06-29T16-21-48-137Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
 - Clean staging-manifest smoke passed inside the full gate: `output/release-staging-manifest/smoke-2026-06-29T16-20-03-286Z/release-staging-manifest-smoke.json`; 9 modified tracked files, 2 untracked candidate files, 11 explicit staging paths.
 - Clean release inventory passed inside the full gate: `output/release-inventory/inventory-2026-06-29T16-20-03-053Z/release-candidate-inventory.json`; dirtyCount 11, zero secret findings, GLB externalUriCount 0.
+- Local commit created: `242410f` (`Prepare clean website restart candidate`).
+- Netlify preview deploy passed: `https://website-quality-clean-restart--robson-ai-website.netlify.app`, deploy `6a42b0eaaaa964aad7bb6dce`, preview gate `output/release-preview-gate/gate-2026-06-29T17-53-08-619Z/release-preview-gate.json`.
+- Netlify production deploy passed: `https://robsonai.co.uk`, deploy `6a42c401c0f172f9fa99e3a7`, production gate `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json`.
+- Rollback target confirmed before publish: `6a415b5db31442000737c37c`.
+- Live recheck on 2026-06-29 20:25 BST: Netlify API still reports deploy `6a42c401c0f172f9fa99e3a7`, and `https://robsonai.co.uk/` returned HTTP 200 with `content-length: 37720`.
 - Rejected preview record: `https://proof-motion-polish--robson-ai-website.netlify.app`, deploy `6a41739b29f5ccb3751611f1`; this preview must not be published.
 - Restart audit added at `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md`.
 - Local rendered screenshot pack against production: `output/playwright/rendered-release-smoke-2026-06-28T19-38-52-319Z`.
@@ -122,32 +130,28 @@ The release inventory gate enforces:
 
 ## 4. Modified Tracked Files
 
-These files are modified and expected in the restart cleanup/audit candidate:
+These files are modified and expected in the post-production closeout candidate:
 
 ```text
-docs/codex/RELEASE_STAGING_MANIFEST.md
-docs/codex/TRACKER.md
 docs/codex/GOAL_COMPLETION_AUDIT.md
 docs/codex/PUBLISH_READINESS_AUDIT.md
+docs/codex/PRODUCTION_RELEASE_RUNBOOK.md
+docs/codex/RELEASE_STAGING_MANIFEST.md
+docs/codex/TRACKER.md
 docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md
-index.html
-scripts/rendered-release-smoke.mjs
-styles.css
-who-its-for.html
+docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md
 ```
 
 ## 5. Untracked Candidate Files
 
-These untracked files are expected in the candidate:
+No untracked files are expected in the post-production closeout candidate.
 
 ```text
-docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md
-docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md
 ```
 
 ## 6. Asset Size Watch
 
-No asset files are changed in this restart candidate.
+No asset files are changed in this post-production closeout candidate.
 
 Existing watched release assets remain governed by `npm run qa:release-inventory`, including:
 
@@ -177,38 +181,34 @@ secrets, credentials, keys, certificates, profiles, or generated screenshots
 
 ## 8. Staging Command After Approval Only
 
-After Wayne approves a restart cleanup commit, use an explicit path list rather than `git add .`.
+After Wayne approves a post-production closeout/source-control alignment commit, use an explicit path list rather than `git add .`.
 
 ```bash
 git add -- \
   docs/codex/GOAL_COMPLETION_AUDIT.md \
   docs/codex/PUBLISH_READINESS_AUDIT.md \
+  docs/codex/PRODUCTION_RELEASE_RUNBOOK.md \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
   docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md \
-  docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md \
-  docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md \
-  index.html \
-  scripts/rendered-release-smoke.mjs \
-  styles.css \
-  who-its-for.html
+  docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md
 ```
 
 ## 9. Required Checks Before Commit
 
-Run these after staging and before commit:
+Run these after staging and before any approved closeout commit:
 
 ```bash
 git status --short --branch
 git diff --cached --check
-npm run qa:release:local
+npm run qa:release-inventory
 ```
 
 Then confirm the staged file set matches this manifest before committing.
 
 ## 10. Required Checks After Preview Deploy
 
-After Wayne approves a future Netlify preview deploy, run:
+After Wayne approves any future Netlify preview deploy, run:
 
 ```bash
 QA_BASE_URL="https://<netlify-preview-url>" npm run qa:release:preview
@@ -216,7 +216,7 @@ QA_BASE_URL="https://<netlify-preview-url>" npm run qa:release:preview
 
 ## 11. Required Checks After Production Deploy
 
-Only after Wayne explicitly approves production deployment, run:
+Only after Wayne explicitly approves another production deployment, run:
 
 ```bash
 QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
@@ -224,4 +224,4 @@ QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true 
 
 ## 12. Rollback Path
 
-If the restart cleanup causes a regression before commit, restore the manifest-approved files to the prior committed state, then rerun the local checks before another decision. If any future candidate is published and needs rollback, restore the current live Netlify production deploy `6a415b5db31442000737c37c`.
+If the post-production closeout causes a regression before commit, restore the manifest-approved docs to the prior committed state, then rerun the local checks before another decision. If the current production publish needs rollback, restore Netlify production deploy `6a415b5db31442000737c37c` unless a newer approved rollback target is confirmed first.

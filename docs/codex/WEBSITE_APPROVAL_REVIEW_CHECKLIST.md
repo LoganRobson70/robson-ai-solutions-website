@@ -1,44 +1,45 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-06-29 17:11 BST
+Last updated: 2026-06-29 20:17 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: clean restart-candidate review checklist; previous production checklist retained as historical context
+Status: live production review checklist; previous production checklist retained as historical context
 
 ## 1. Purpose
 
-Use this checklist to review the current local restart candidate for the original goal:
+Use this checklist to review the current live restart candidate for the original goal:
 
 > Make the Robson AI Solutions website the best releasable version it can be.
 
 Important:
 
-- Current local review URL: `http://127.0.0.1:8133/`.
+- Current production URL: `https://robsonai.co.uk`.
+- Current Netlify preview URL: `https://website-quality-clean-restart--robson-ai-website.netlify.app`.
 - Current candidate name: `website-quality-restart-from-original-goal`.
 - Current clean branch: `codex/website-quality-clean-restart`.
 - The rejected `proof-motion-polish` preview must not be published.
-- Production remains unchanged at `https://robsonai.co.uk`.
-- No commit, branch push, GitHub PR, Netlify preview deploy, production deploy, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
+- Production deploy `6a42c401c0f172f9fa99e3a7` is live and production-gated.
+- No branch push, GitHub PR/main alignment, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
 - Current preview approval handoff is `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
 - Historical production release evidence is retained below for context only; it is not approval for the restart candidate.
 
 ## 2. Current Restart Review Sequence
 
-Review these local pages in order on desktop and mobile:
+Review these live pages in order on desktop and mobile:
 
-1. Home: `http://127.0.0.1:8133/`
-2. Building Analyst: `http://127.0.0.1:8133/building-analyst.html`
-3. Who it is for: `http://127.0.0.1:8133/who-its-for.html`
-4. BuildScan viewer: `http://127.0.0.1:8133/buildscan-viewer.html`
-5. Privacy: `http://127.0.0.1:8133/privacy.html`
-6. 404 recovery page: `http://127.0.0.1:8133/404.html`
-7. Holding fallback: `http://127.0.0.1:8133/holding.html`
+1. Home: `https://robsonai.co.uk/`
+2. Building Analyst: `https://robsonai.co.uk/building-analyst.html`
+3. Who it is for: `https://robsonai.co.uk/who-its-for.html`
+4. BuildScan viewer: `https://robsonai.co.uk/buildscan-viewer.html`
+5. Privacy: `https://robsonai.co.uk/privacy.html`
+6. 404 recovery page: `https://robsonai.co.uk/404.html`
+7. Holding fallback: `https://robsonai.co.uk/holding.html`
 
 Screenshot evidence from the current local rendered smoke:
 
 - `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`
 
-The clean local server is running from `/private/tmp/robson-ai-website-quality-restart` and `curl` returned HTTP 200.
+The production deploy is `6a42c401c0f172f9fa99e3a7`, and `curl` returned HTTP 200 with the expected deployed content length.
 
 ## 3. What To Approve Or Flag
 
@@ -130,6 +131,22 @@ Local release gate:
 - Result: pass, 37 steps.
 - Artifact: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`.
 
+Preview release gate:
+
+- Command: `QA_BASE_URL=https://website-quality-clean-restart--robson-ai-website.netlify.app npm run qa:release:preview`
+- Result: pass, 14 steps.
+- Artifact: `output/release-preview-gate/gate-2026-06-29T17-53-08-619Z/release-preview-gate.json`.
+- Deploy ID: `6a42b0eaaaa964aad7bb6dce`.
+
+Production release gate:
+
+- Command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
+- Result: pass, 14 steps.
+- Artifact: `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json`.
+- Deploy ID: `6a42c401c0f172f9fa99e3a7`.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-29T19-16-37-328Z`.
+- Measurement: `output/measurement/smoke-2026-06-29T19-16-48-260Z`.
+
 Local evidence pack:
 
 - Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`.
@@ -141,9 +158,9 @@ Known residuals:
 
 - The clean-worktree staging manifest now expects the 11-file restart candidate.
 - Anchor-navigation polish is included in the latest rendered smoke.
-- Brand-consistency polish has been moved onto the clean branch; the next validation refresh should confirm the 11-file candidate.
-- The active restart candidate is local-only and uncommitted.
-- No Netlify preview exists for the restart candidate.
+- Brand-consistency polish has been moved onto the clean branch and preview-gated.
+- The active restart candidate is committed locally as `242410f`, deployed to preview `6a42b0eaaaa964aad7bb6dce`, and live on production as `6a42c401c0f172f9fa99e3a7`.
+- GitHub/main has not yet been aligned with the production archive deploy.
 - The original dirty branch is ahead by the rejected motion-preview/evidence commits; this clean branch avoids using those commits as the publish path. Do not publish the rejected `proof-motion-polish` preview.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains 17 moderate, 0 high, 0 critical; production footprint remains zero.
@@ -154,9 +171,9 @@ Known residuals:
 
 Use one of these responses:
 
-1. Recommended: `approve explicit-path commit plus Netlify preview deploy for website-quality-restart-from-original-goal`
-2. `request another local visual pass first` followed by the exact page or section to improve.
-3. `hold here with production unchanged`
+1. Recommended: `approve source-control alignment for website-quality-clean-restart`
+2. `request targeted live fixes first` followed by the exact page or section to improve.
+3. `hold here with production live and GitHub unchanged`
 
 ## 6. Historical Production Context
 

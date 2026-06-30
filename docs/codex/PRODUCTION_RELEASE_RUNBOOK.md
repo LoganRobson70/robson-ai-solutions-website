@@ -1,131 +1,147 @@
-# Production Release Runbook - Robson AI Solutions Website
+# Production Release And Source-Control Runbook - Robson AI Solutions Website
 
-Last updated: 2026-06-28 01:56 BST
+Last updated: 2026-06-29 20:35 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: ready for approval; do not execute without Wayne approval
+Status: production published from clean archive; source-control alignment requires Wayne approval
 
 ## 1. Purpose
 
-This runbook defines the exact release path from the validated preview candidate to production.
+This runbook records the current production state for the clean website restart and defines the remaining approval-gated path to align GitHub source control with the live Netlify deploy.
 
-It does not approve staging, commits, pushes, pull requests, merges, production deploys, production verification, domain/DNS changes, analytics, forms, customer-data handling, or destructive git actions.
+It does not approve commits, pushes, pull requests, merges, production deploys, production verification, domain/DNS changes, analytics, forms, customer-data handling, external messages, or destructive git actions.
 
-## 2. Current Release Inputs
+## 2. Current Production State
 
-Validated candidate branch:
+Live production:
 
-- `codex/buildscan-interactive-preview-release-candidate`
-- latest pushed commit: `b6ab8b3`
-- three commits ahead of `main`
+- Public URL: `https://robsonai.co.uk`
+- Netlify production deploy: `6a42c401c0f172f9fa99e3a7`
+- Unique deploy URL: `https://6a42c401c0f172f9fa99e3a7--robson-ai-website.netlify.app`
+- Logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a42c401c0f172f9fa99e3a7`
+- Source: clean archive of local commit `242410f`
+- Published after Wayne approved option `1`
 
-Validated Netlify draft preview:
+Validation:
 
-- `https://6a4055bfcca135298c4b453a--robson-ai-website.netlify.app`
-- preview gate evidence: `output/release-preview-gate/gate-2026-06-27T23-54-42-307Z/release-preview-gate.json`
+- Production gate command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
+- Production gate artifact: `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json`
+- Result: pass, 14 steps
+- Live recheck on 2026-06-29 20:25 BST: Netlify API still reported deploy `6a42c401c0f172f9fa99e3a7`, and `https://robsonai.co.uk/` returned HTTP 200 with `content-length: 37720`
 
-Current production rollback candidate:
+Immediate rollback target:
 
-- Netlify deploy ID: `6a3d75a7658e0400089157a2`
-- production URL: `https://robsonai.co.uk`
-- branch: `main`
-- commit: `4a3f1fa8f7b1f885c37937056e2a029d6043501b`
-- published: `2026-06-25T18:38:43.783Z`
+- Netlify deploy: `6a415b5db31442000737c37c`
+- Source: GitHub/main commit `39c5bf5`
+- Unique deploy URL: `https://6a415b5db31442000737c37c--robson-ai-website.netlify.app`
 
-Docs closeout currently local-only:
+Rejected preview that must not be published:
 
-- `docs/codex/TRACKER.md`
-- `docs/codex/PUBLISH_READINESS_AUDIT.md`
-- `docs/codex/RELEASE_APPROVAL_PACKET.md`
-- `docs/codex/WEBSITE_EXCELLENCE_PROGRAMME.md`
-- `docs/codex/MOTION_REFERENCE_BRIEF.md`
-- `docs/codex/GOAL_COMPLETION_AUDIT.md`
-- `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`
+- `https://proof-motion-polish--robson-ai-website.netlify.app`
+- Deploy: `6a41739b29f5ccb3751611f1`
 
-## 3. Recommended Approval Phrase
+## 3. Current Source-Control State
 
-Wayne should approve this exact phrase before execution:
+Current clean worktree:
 
-`Approve production-publish-from-validated-preview-and-docs-closeout`
+- Path: `/private/tmp/robson-ai-website-quality-restart`
+- Branch: `codex/website-quality-clean-restart`
+- Commit: `242410f` (`Prepare clean website restart candidate`)
+- Tracking: `origin/main`
+- Status: branch is one commit ahead of `origin/main`
 
-That approval means:
+Current GitHub/main:
 
-- public production exposure of the validated BuildScan GLB is approved
-- docs closeout may be staged, committed and pushed
-- the validated candidate may be published through the approved production path
-- production verification may run with explicit confirmation
+- `origin/main`: `39c5bf5`
+- `main`: `39c5bf5`
 
-It still does not approve:
+Fast-forward preflight:
 
+- Checked: 2026-06-29 20:35 BST
+- `HEAD`: `242410f`
+- `origin/main`: `39c5bf5`
+- `main`: `39c5bf5`
+- `origin/main -> HEAD`: fast-forward possible
+- `main -> HEAD`: fast-forward possible
+- `HEAD` is not yet contained by `origin/main`
+- No force-push is required for the recommended alignment path.
+
+Important consequence:
+
+- Production currently serves the clean restart candidate from a CLI archive deploy.
+- GitHub/main does not yet contain commit `242410f`.
+- A future GitHub-triggered Netlify production deploy from unchanged `main` could revert production back to `39c5bf5` unless source control is aligned first.
+
+## 4. Recommended Approval Phrase
+
+Recommended approval phrase:
+
+`Approve source-control alignment for website-quality-clean-restart`
+
+That approval means Codex may:
+
+- stage only the docs closeout files listed in `docs/codex/RELEASE_STAGING_MANIFEST.md`
+- create a docs closeout commit on `codex/website-quality-clean-restart`
+- push the branch
+- fast-forward `main` without force if the local history remains a clean descendant of `origin/main`
+- push `main`
+- wait for any GitHub-triggered Netlify production deploy
+- rerun production verification if Netlify publishes a new deploy
+
+That approval does not include:
+
+- force-push
+- destructive git reset/checkout
 - DNS/domain changes
-- GA4 or analytics enablement
-- contact forms or customer-data capture
+- analytics/forms/customer-data handling
 - external messages
+- app-platform implementation
 - Apple signing/submission
 - payments
-- destructive git actions
 - `npm audit fix --force`
-- motion-polish implementation before production
+- publishing the rejected motion preview
 
-## 4. Recommended Production Path
+## 5. Recommended Source-Control Alignment Path
 
-Recommended path: GitHub/main-triggered Netlify production deploy.
+Recommended path: normal Git push with no force.
 
 Why:
 
 - Netlify is configured to deploy production from GitHub `main`.
-- The current live production deploy is from `main`.
-- This keeps source control and production aligned.
-- It avoids a one-off CLI production deploy that could make production differ from GitHub.
+- The current production deploy was a clean CLI archive from `242410f`, so source control should be brought back into line.
+- A no-force fast-forward keeps the audit trail simple.
 
-Execution outline after approval:
+Execution outline after Wayne approval:
 
 1. Re-check `git status --short --branch`.
-2. Re-check Netlify production deploy list and record the live rollback deploy ID.
-3. Run `git diff --check` on the docs closeout.
-4. Run `npm run qa:release-inventory`.
-5. Stage only the approved docs closeout files listed in section 2.
-6. Commit the docs closeout on `codex/buildscan-interactive-preview-release-candidate`.
-7. Push the updated candidate branch.
-8. Move the validated candidate into `main` through the approved GitHub/main path.
-9. Wait for the Netlify production deploy to become `ready`.
-10. Run:
+2. Re-check `git log --oneline --decorate --graph --max-count=8 --all`.
+3. Re-check Netlify current production deploy and rollback target.
+4. Run `git diff --check`.
+5. Run `npm run qa:release-inventory`.
+6. Stage only the explicit docs closeout paths in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+7. Run `git diff --cached --check`.
+8. Commit the docs closeout.
+9. Push branch `codex/website-quality-clean-restart`.
+10. Fast-forward local `main` to the approved branch without force.
+11. Push `main` normally.
+12. Wait for Netlify production deploy to become ready.
+13. If Netlify publishes a new deploy, run:
 
 ```bash
 QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
 ```
 
-11. Report production deploy ID, production verification artifact, rollback target, risks and post-launch next step.
-
-## 5. CLI Production Fallback
-
-Fallback path: explicit Netlify CLI production deploy.
-
-Only use this if Wayne explicitly approves a CLI production deploy instead of GitHub/main.
-
-Why it is not the default:
-
-- It can publish a production deploy that is not represented by `main`.
-- It weakens the normal GitHub-to-Netlify audit trail.
-- It requires extra care to ensure the deployed directory contains only committed/approved files.
-
-If approved, use a clean committed-file export rather than deploying the dirty repo root.
-
-Required guardrails:
-
-- re-check rollback target first
-- deploy only the approved candidate plus docs closeout
-- do not include `.git`, `.netlify`, `node_modules`, `output`, local screenshots, raw source models, secrets or local machine files
-- run the same production verification command after deploy
+14. Update tracker and closeout docs with the final source-control and deploy evidence.
 
 ## 6. Rollback
 
-If production verification fails after deploy:
+If source-control alignment triggers a Netlify deploy that fails production verification:
 
 1. Stop further changes.
 2. Preserve the failed production evidence artifact.
-3. Restore the previous Netlify production deploy, currently expected to be `6a3d75a7658e0400089157a2`, after re-checking that it is still the correct rollback target.
-4. If the GitHub/main path was used, prepare a revert commit on `main` if the Netlify restore is not sufficient.
-5. Report the failure, restored deploy ID and next fix tranche.
+3. Restore the previous known-good Netlify deploy, currently `6a42c401c0f172f9fa99e3a7`, if the failure occurred after a GitHub/main redeploy.
+4. If the clean restart itself needs to be rolled back, restore `6a415b5db31442000737c37c`.
+5. Prepare a normal revert commit rather than force-pushing.
+6. Report the failure, restored deploy ID, evidence and next fix tranche.
 
 Do not use `git reset --hard`, force-push, DNS edits, or destructive commands as rollback unless Wayne explicitly approves that exact action.
 
@@ -146,11 +162,8 @@ Production verification must pass:
 - rendered smoke
 - measurement smoke
 
-The goal is not complete until production verification passes and the tracker is updated with the production evidence.
-
 ## 8. Recommended Next Step
 
-1. Recommended: approve `production-publish-from-validated-preview-and-docs-closeout`.
-2. Hold production and run full Codex Security first.
-3. Hold production and implement `docs/codex/MOTION_REFERENCE_BRIEF.md`, accepting that preview evidence must be regenerated.
-4. Hold production and install/enable Firefox/WebKit for strict browser parity.
+1. Recommended: approve `source-control alignment for website-quality-clean-restart`.
+2. Review the live site first and request targeted fixes if needed.
+3. Hold here with production live and GitHub/main unchanged.

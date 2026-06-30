@@ -1,8 +1,8 @@
 # Goal Completion Audit - Robson AI Solutions Website
 
-Last updated: 2026-06-29 17:11 BST
+Last updated: 2026-06-29 20:17 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: active restart goal is not complete; clean local candidate passed full local validation and still needs preview/publish approvals
+Status: active restart goal is production-gated; source-control alignment and final owner sign-off remain
 
 ## 1. Current Active Goal
 
@@ -13,8 +13,8 @@ Active Codex goal:
 Current audit result:
 
 - Not complete for the restarted goal.
-- The local restart candidate is implemented, visually reviewed through screenshots, and passed the full local release gate.
-- Commit, branch push, GitHub PR, Netlify preview deploy, deployed preview gate, Wayne preview review, production approval, production deploy, and production gate are not complete for the restart candidate.
+- The restart candidate is implemented, visually reviewed through screenshots, committed locally, deployed to a Netlify preview, passed the deployed preview gate, published to production after Wayne approved option `1`, and passed the production release gate.
+- Branch push, GitHub PR/main alignment, optional Wayne live visual sign-off, and optional full security/browser-parity follow-up are not complete for the restart candidate.
 - Do not use the historical completion evidence below as approval for the current candidate.
 
 ## 2. Current Restart Candidate State
@@ -38,10 +38,8 @@ Current validation evidence:
 
 Current blockers to completion:
 
-- Wayne has not approved explicit-path commit plus Netlify preview deploy.
-- No deployed preview exists for this restart candidate.
-- No preview release gate has run for this restart candidate.
-- No production approval, deploy, or production gate has run for this restart candidate.
+- Wayne has not yet approved source-control alignment, so GitHub/main does not yet match the CLI archive production deploy.
+- Optional Wayne live visual sign-off has not been recorded after production publish.
 
 ## 3. Requirement Audit For Current Restart Candidate
 
@@ -58,8 +56,9 @@ Current blockers to completion:
 | Local validation | `npm run qa:release:local` passed at `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json` | complete for local stage |
 | Anchor navigation | Desktop BuildScan nav click lands below the sticky header without showing previous Operations controls below the header; rendered smoke now checks this | locally satisfied |
 | Secondary-page brand consistency | Who It Fits header lockup now reads `Robson AI / Solutions`; rendered smoke now checks expected page straplines | locally satisfied |
-| Preview validation | No Netlify preview exists for the restart candidate | incomplete |
-| Production validation | No production deploy exists for the restart candidate | incomplete |
+| Preview validation | Netlify preview `https://website-quality-clean-restart--robson-ai-website.netlify.app` passed `output/release-preview-gate/gate-2026-06-29T17-53-08-619Z/release-preview-gate.json` | complete for preview stage |
+| Production validation | Netlify production deploy `6a42c401c0f172f9fa99e3a7` passed `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json` | complete for production stage |
+| Source-control alignment | Live production was deployed from clean archive commit `242410f`; branch push/main alignment not approved | incomplete |
 
 ## 4. Historical Completed Release
 
@@ -132,10 +131,13 @@ Production evidence from the gate:
 
 ## 8. Current Known Residuals
 
-- The active restart candidate is local-only and uncommitted.
+- The active restart candidate is committed locally as `242410f`, deployed to preview `6a42b0eaaaa964aad7bb6dce`, and live on production as `6a42c401c0f172f9fa99e3a7`.
 - The rejected preview/evidence commits remain isolated on the old dirty branch; the active restart candidate now lives on clean branch `codex/website-quality-clean-restart` from `origin/main`.
 - The rejected `proof-motion-polish` preview must not be published.
-- No deployed preview exists for the restart candidate.
+- Deployed preview gate passed for `https://website-quality-clean-restart--robson-ai-website.netlify.app`.
+- Production gate passed for `https://robsonai.co.uk`; artifact `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json`.
+- Immediate rollback target before this publish was `6a415b5db31442000737c37c`.
+- GitHub/main is not yet aligned with the CLI archive production deploy.
 - Chromium browser coverage passed; Firefox and WebKit Playwright binaries are unavailable locally and warning-only.
 - Dev/release tooling audit still reports 17 moderate advisories; production footprint remains zero vulnerabilities.
 - Full Codex Security workspace scan is not complete.
@@ -144,6 +146,6 @@ Production evidence from the gate:
 
 ## 9. Recommended Next Action
 
-1. Recommended: approve explicit-path commit plus Netlify preview deploy for the current restart candidate.
-2. Ask for another local visual pass first.
-3. Hold here with production unchanged.
+1. Recommended: approve source-control alignment so GitHub/main matches production deploy `6a42c401c0f172f9fa99e3a7`.
+2. Review the live site first and give explicit final visual sign-off or targeted fixes.
+3. Hold here with production live and no GitHub push.

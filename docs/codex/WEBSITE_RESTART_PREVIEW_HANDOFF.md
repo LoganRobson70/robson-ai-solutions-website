@@ -1,9 +1,9 @@
-# Website Restart Preview Handoff
+# Website Restart Preview And Production Handoff
 
-Last updated: 2026-06-29 17:11 BST
+Last updated: 2026-06-29 20:17 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: clean local restart candidate passed full local validation; explicit-path local commit plus Netlify preview deploy approved; production approval still required
+Status: clean restart candidate is live on production and has passed the production gate
 
 ## 1. Purpose
 
@@ -14,10 +14,14 @@ It is separate from `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`, which record
 Current decision state:
 
 - Wayne approved option `1` on 2026-06-29.
-- Codex is approved to stage the manifest-approved paths, create a local commit, create a Netlify preview deploy, and run the deployed preview gate.
-- Production deploy, branch push, GitHub PR, DNS/domain changes, analytics/forms/customer data handling and external messages remain unapproved.
+- Local commit `242410f` was created on branch `codex/website-quality-clean-restart`.
+- Netlify preview deploy `6a42b0eaaaa964aad7bb6dce` passed the deployed preview gate.
+- Preview URL: `https://website-quality-clean-restart--robson-ai-website.netlify.app`
+- Wayne later approved option `1` to production publish the clean restart candidate.
+- Production deploy `6a42c401c0f172f9fa99e3a7` is live on `https://robsonai.co.uk` and passed the production release gate.
+- Branch push, GitHub PR/main alignment, DNS/domain changes, analytics/forms/customer data handling and external messages remain unapproved.
 
-Recommended next step after preview gate: Wayne reviews the Netlify preview and decides whether to request changes or approve production.
+Recommended next step: approve source-control alignment so GitHub/main matches the live production archive deploy.
 
 ## 2. Current Review URL
 
@@ -35,7 +39,8 @@ Notes:
 
 - This is a local server on Wayne's Mac.
 - The Browser MCP container cannot reach this loopback URL, but local browser access has returned HTTP 200.
-- No Netlify preview exists yet for this restart candidate.
+- Netlify preview exists at `https://website-quality-clean-restart--robson-ai-website.netlify.app`.
+- Production exists at `https://robsonai.co.uk`.
 
 ## 3. What This Candidate Changes
 
@@ -55,9 +60,8 @@ Implemented locally:
 
 Not included:
 
-- Production deploy.
 - Branch push or GitHub PR.
-- Netlify preview deploy until Wayne approves.
+- Source-control alignment to GitHub/main.
 - New product claims.
 - New customer logos, testimonials, fake screenshots or invented traction.
 - New public GLB/model exposure.
@@ -116,9 +120,30 @@ Latest candidate scope evidence:
 
 The clean-worktree candidate has 11 files: 9 modified tracked files and 2 untracked candidate docs. `script.js` is intentionally absent because it has no net restart change against `origin/main`.
 
-## 6. Approval Meaning
+Deployed preview evidence:
 
-If Wayne approves option `1`, Codex is approved to:
+- Preview URL: `https://website-quality-clean-restart--robson-ai-website.netlify.app`
+- Deploy ID: `6a42b0eaaaa964aad7bb6dce`
+- Logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a42b0eaaaa964aad7bb6dce`
+- Preview gate: `output/release-preview-gate/gate-2026-06-29T17-53-08-619Z/release-preview-gate.json`
+- Result: pass, 14 steps.
+
+Production evidence:
+
+- Production URL: `https://robsonai.co.uk`
+- Deploy ID: `6a42c401c0f172f9fa99e3a7`
+- Deploy URL: `https://6a42c401c0f172f9fa99e3a7--robson-ai-website.netlify.app`
+- Logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a42c401c0f172f9fa99e3a7`
+- Source: clean archive of local commit `242410f`.
+- Rollback target confirmed before publish: `6a415b5db31442000737c37c`.
+- Production gate command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
+- Production gate: `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json`
+- Result: pass, 14 steps.
+- Supporting artifacts: release inventory `output/release-inventory/inventory-2026-06-29T19-15-08-805Z/release-candidate-inventory.json`, headers `output/release-headers/smoke-2026-06-29T19-15-17-692Z/release-header-smoke.json`, BuildScan viewer `output/buildscan-viewer/smoke-2026-06-29T19-15-18-160Z`, semantic SEO `output/semantic-seo/smoke-2026-06-29T19-15-31-512Z/semantic-seo-smoke.json`, product/design `output/product-design-acceptance/smoke-2026-06-29T19-15-40-452Z/product-design-acceptance-smoke.json`, responsive `output/responsive-route/smoke-2026-06-29T19-15-47-175Z/responsive-route-smoke.json`, visual polish `output/visual-polish/smoke-2026-06-29T19-16-08-162Z/visual-polish-smoke.json`, rendered screenshots `output/playwright/rendered-release-smoke-2026-06-29T19-16-37-328Z`, and measurement `output/measurement/smoke-2026-06-29T19-16-48-260Z`.
+
+## 6. Approval Already Used
+
+Wayne's previous option `1` approvals were used to:
 
 1. Stage only the explicit file list in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
 2. Run staged diff hygiene checks.
@@ -126,12 +151,13 @@ If Wayne approves option `1`, Codex is approved to:
 4. Create a local commit for the restart candidate.
 5. Create a Netlify preview deploy.
 6. Run `QA_BASE_URL=<preview-url> npm run qa:release:preview`.
-7. Return the preview URL, deployed evidence, risks and next decision.
+7. Deploy the clean archive to production.
+8. Run `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`.
+9. Return the live URL, deployed evidence, risks and next decision.
 
-This approval would not approve:
+This approval did not approve:
 
-- Production deploy.
-- Branch push unless it is required by the selected preview mechanism and separately stated.
+- Branch push or GitHub/main alignment.
 - GitHub PR.
 - DNS/domain changes.
 - Analytics/forms/customer data handling.
@@ -164,10 +190,11 @@ Expected preview evidence:
 ## 8. Risks And Residuals
 
 - The original dirty branch is ahead by rejected motion-preview/evidence commits. This clean worktree avoids using that branch as the publish path. Do not publish the rejected `proof-motion-polish` preview.
+- The production deploy was made from a clean archive of commit `242410f`, but GitHub/main has not yet been aligned with that commit.
 - Firefox/WebKit Playwright binaries remain unavailable locally; Chromium passes and this is warning-only in the current gates.
 - Dev/release tooling audit still reports 17 moderate advisories; production footprint remains zero vulnerabilities.
 - Full Codex Security workspace scan is not complete.
-- Production currently remains unchanged at the last verified live baseline.
+- Production currently serves deploy `6a42c401c0f172f9fa99e3a7`.
 
 ## 9. Rollback Path
 
@@ -175,18 +202,18 @@ Before commit:
 
 - Restore the manifest-approved files to the prior committed state, then rerun local checks.
 
-After preview:
+After any future preview-only candidate:
 
 - Do not promote the preview.
-- Keep production unchanged.
+- Keep the current approved production deploy unchanged unless Wayne explicitly approves another production publish.
 - Revert the local commit or prepare a corrected candidate.
 
-After any future production deploy:
+After production:
 
-- Restore the current live Netlify production deploy `6a415b5db31442000737c37c` unless a newer approved rollback target is confirmed first.
+- Restore Netlify production deploy `6a415b5db31442000737c37c` if rollback is needed before a newer approved rollback target is confirmed.
 
 ## 10. Recommended Decision
 
-1. Approve explicit-path commit plus Netlify preview deploy for `website-quality-restart-from-original-goal`.
-2. Request another local visual pass first.
-3. Hold here with production unchanged.
+1. Recommended: approve source-control alignment for `website-quality-restart-from-original-goal`.
+2. Review the live site first and request targeted fixes if needed.
+3. Hold here with production live and GitHub/main unchanged.
