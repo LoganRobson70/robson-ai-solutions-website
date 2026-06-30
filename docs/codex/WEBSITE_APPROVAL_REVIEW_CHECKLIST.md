@@ -1,6 +1,6 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-06-29 20:17 BST
+Last updated: 2026-06-30 07:02 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
 Status: live production review checklist; previous production checklist retained as historical context
@@ -18,8 +18,8 @@ Important:
 - Current candidate name: `website-quality-restart-from-original-goal`.
 - Current clean branch: `codex/website-quality-clean-restart`.
 - The rejected `proof-motion-polish` preview must not be published.
-- Production deploy `6a42c401c0f172f9fa99e3a7` is live and production-gated.
-- No branch push, GitHub PR/main alignment, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
+- Production deploy `6a435aeccc48bb00085e7eb4` is live, source-control aligned, and production-gated.
+- No analytics, forms, DNS/domain work, customer-data handling, external messages, force-pushes, or future production deploys are approved by this checklist.
 - Current preview approval handoff is `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
 - Historical production release evidence is retained below for context only; it is not approval for the restart candidate.
 
@@ -39,7 +39,7 @@ Screenshot evidence from the current local rendered smoke:
 
 - `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`
 
-The production deploy is `6a42c401c0f172f9fa99e3a7`, and `curl` returned HTTP 200 with the expected deployed content length.
+The production deploy is `6a435aeccc48bb00085e7eb4`, and the latest production gate passed against `https://robsonai.co.uk`.
 
 ## 3. What To Approve Or Flag
 
@@ -142,10 +142,10 @@ Production release gate:
 
 - Command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
 - Result: pass, 14 steps.
-- Artifact: `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json`.
-- Deploy ID: `6a42c401c0f172f9fa99e3a7`.
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-29T19-16-37-328Z`.
-- Measurement: `output/measurement/smoke-2026-06-29T19-16-48-260Z`.
+- Artifact: `output/release-production-gate/gate-2026-06-30T06-00-24-751Z/release-preview-gate.json`.
+- Deploy ID: `6a435aeccc48bb00085e7eb4`.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-30T06-01-47-236Z`.
+- Measurement: `output/measurement/smoke-2026-06-30T06-01-57-788Z`.
 
 Local evidence pack:
 
@@ -159,8 +159,8 @@ Known residuals:
 - The clean-worktree staging manifest now expects the 11-file restart candidate.
 - Anchor-navigation polish is included in the latest rendered smoke.
 - Brand-consistency polish has been moved onto the clean branch and preview-gated.
-- The active restart candidate is committed locally as `242410f`, deployed to preview `6a42b0eaaaa964aad7bb6dce`, and live on production as `6a42c401c0f172f9fa99e3a7`.
-- GitHub/main has not yet been aligned with the production archive deploy.
+- The active restart candidate is committed and source-control aligned as `75f9a13`, deployed to preview `6a42b0eaaaa964aad7bb6dce`, and live on production as `6a435aeccc48bb00085e7eb4`.
+- GitHub/main is aligned with the live production deploy.
 - The original dirty branch is ahead by the rejected motion-preview/evidence commits; this clean branch avoids using those commits as the publish path. Do not publish the rejected `proof-motion-polish` preview.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains 17 moderate, 0 high, 0 critical; production footprint remains zero.
@@ -171,9 +171,9 @@ Known residuals:
 
 Use one of these responses:
 
-1. Recommended: `approve source-control alignment for website-quality-clean-restart`
-2. `request targeted live fixes first` followed by the exact page or section to improve.
-3. `hold here with production live and GitHub unchanged`
+1. Recommended: `review live site and approve final visual sign-off` or list exact targeted fixes.
+2. `run full security assurance tranche`
+3. `hold here with production live and source control aligned`
 
 ## 6. Historical Production Context
 

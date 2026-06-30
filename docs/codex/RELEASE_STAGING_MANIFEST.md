@@ -1,9 +1,9 @@
 # Release Staging Manifest - Website Quality Restart
 
-Last updated: 2026-06-29 20:26 BST
+Last updated: 2026-06-30 07:02 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: clean restart candidate is live on production; post-production docs closeout and source-control alignment remain approval-gated
+Status: clean restart candidate is live on production and source-control aligned; final evidence-doc update is local-only unless Wayne approves another docs closeout commit
 
 ## 1. Purpose
 
@@ -18,9 +18,10 @@ This restart:
 - treats the `proof-motion-polish` preview as rejected for publication
 - removes the rejected motion-preview implementation from the working tree
 - published the clean restart candidate to production only after Wayne approved option `1`
-- keeps all pushing, GitHub/main alignment and later release work approval-gated
+- aligned GitHub/main only after Wayne approved option `1`
+- keeps any later release work approval-gated
 
-It does not add new product claims, change public model assets, enable analytics/forms, push to GitHub, or perform any DNS/customer-data/external-message work.
+It does not add new product claims, change public model assets, enable analytics/forms, or perform any DNS/customer-data/external-message work.
 
 Do not run `git add .` for this repository.
 
@@ -44,11 +45,20 @@ Wayne approved option `1` on 2026-06-29 for this clean branch:
 - production deploy from clean archive commit `242410f`
 - production release gate against `https://robsonai.co.uk`
 
+Wayne approved option `1` on 2026-06-30 for source-control alignment:
+
+- explicit-path staging of the seven closeout docs listed in this manifest
+- docs closeout commit `75f9a13`
+- branch push for `codex/website-quality-clean-restart`
+- normal non-force fast-forward push to `main`
+- GitHub-triggered Netlify production deploy
+- production release gate against `https://robsonai.co.uk`
+
 Wayne must approve before Codex performs any of these actions:
 
-- branch push
+- another branch push
 - GitHub PR
-- GitHub/main alignment
+- another GitHub/main alignment commit
 - another production deploy
 - DNS/domain changes
 - analytics/forms/customer data handling
@@ -76,6 +86,10 @@ Current validation evidence:
 - Netlify production deploy passed: `https://robsonai.co.uk`, deploy `6a42c401c0f172f9fa99e3a7`, production gate `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json`.
 - Rollback target confirmed before publish: `6a415b5db31442000737c37c`.
 - Live recheck on 2026-06-29 20:25 BST: Netlify API still reports deploy `6a42c401c0f172f9fa99e3a7`, and `https://robsonai.co.uk/` returned HTTP 200 with `content-length: 37720`.
+- Source-control closeout commit created and pushed: `75f9a13` (`Document clean restart production alignment`).
+- Branch `codex/website-quality-clean-restart`, local `main`, and `origin/main` aligned at `75f9a13`.
+- GitHub-triggered Netlify production deploy passed: `https://robsonai.co.uk`, deploy `6a435aeccc48bb00085e7eb4`, production gate `output/release-production-gate/gate-2026-06-30T06-00-24-751Z/release-preview-gate.json`.
+- Latest production release inventory passed with dirtyCount 0: `output/release-inventory/inventory-2026-06-30T06-00-24-883Z/release-candidate-inventory.json`; zero secret findings, GLB externalUriCount 0.
 - Rejected preview record: `https://proof-motion-polish--robson-ai-website.netlify.app`, deploy `6a41739b29f5ccb3751611f1`; this preview must not be published.
 - Restart audit added at `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md`.
 - Local rendered screenshot pack against production: `output/playwright/rendered-release-smoke-2026-06-28T19-38-52-319Z`.
@@ -181,7 +195,7 @@ secrets, credentials, keys, certificates, profiles, or generated screenshots
 
 ## 8. Staging Command After Approval Only
 
-After Wayne approves a post-production closeout/source-control alignment commit, use an explicit path list rather than `git add .`.
+After Wayne approves any further final-docs-only closeout commit, use an explicit path list rather than `git add .`.
 
 ```bash
 git add -- \

@@ -1,9 +1,9 @@
 # Website Restart Preview And Production Handoff
 
-Last updated: 2026-06-29 20:17 BST
+Last updated: 2026-06-30 07:02 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: clean restart candidate is live on production and has passed the production gate
+Status: clean restart candidate is live on production, source-control aligned, and production-gated
 
 ## 1. Purpose
 
@@ -19,9 +19,12 @@ Current decision state:
 - Preview URL: `https://website-quality-clean-restart--robson-ai-website.netlify.app`
 - Wayne later approved option `1` to production publish the clean restart candidate.
 - Production deploy `6a42c401c0f172f9fa99e3a7` is live on `https://robsonai.co.uk` and passed the production release gate.
-- Branch push, GitHub PR/main alignment, DNS/domain changes, analytics/forms/customer data handling and external messages remain unapproved.
+- Wayne then approved option `1` to align source control for `website-quality-clean-restart`.
+- Commit `75f9a13` was pushed to branch `codex/website-quality-clean-restart` and `main` as a normal non-force fast-forward.
+- GitHub-triggered production deploy `6a435aeccc48bb00085e7eb4` is live on `https://robsonai.co.uk` and passed the production release gate.
+- DNS/domain changes, analytics/forms/customer data handling, external messages, force-pushes, and future production deploys remain unapproved.
 
-Recommended next step: approve source-control alignment so GitHub/main matches the live production archive deploy.
+Recommended next step: run a short owner visual sign-off pass on the live website and list only targeted fixes, if any.
 
 ## 2. Current Review URL
 
@@ -60,8 +63,6 @@ Implemented locally:
 
 Not included:
 
-- Branch push or GitHub PR.
-- Source-control alignment to GitHub/main.
 - New product claims.
 - New customer logos, testimonials, fake screenshots or invented traction.
 - New public GLB/model exposure.
@@ -131,15 +132,15 @@ Deployed preview evidence:
 Production evidence:
 
 - Production URL: `https://robsonai.co.uk`
-- Deploy ID: `6a42c401c0f172f9fa99e3a7`
-- Deploy URL: `https://6a42c401c0f172f9fa99e3a7--robson-ai-website.netlify.app`
-- Logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a42c401c0f172f9fa99e3a7`
-- Source: clean archive of local commit `242410f`.
-- Rollback target confirmed before publish: `6a415b5db31442000737c37c`.
+- Deploy ID: `6a435aeccc48bb00085e7eb4`
+- Deploy URL: `https://6a435aeccc48bb00085e7eb4--robson-ai-website.netlify.app`
+- Logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a435aeccc48bb00085e7eb4`
+- Source: GitHub/main commit `75f9a13899c1205d02aae7567b06324774e7c8ff`.
+- Rollback target confirmed before source-control alignment deploy: `6a42c401c0f172f9fa99e3a7`.
 - Production gate command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
-- Production gate: `output/release-production-gate/gate-2026-06-29T19-15-08-658Z/release-preview-gate.json`
+- Production gate: `output/release-production-gate/gate-2026-06-30T06-00-24-751Z/release-preview-gate.json`
 - Result: pass, 14 steps.
-- Supporting artifacts: release inventory `output/release-inventory/inventory-2026-06-29T19-15-08-805Z/release-candidate-inventory.json`, headers `output/release-headers/smoke-2026-06-29T19-15-17-692Z/release-header-smoke.json`, BuildScan viewer `output/buildscan-viewer/smoke-2026-06-29T19-15-18-160Z`, semantic SEO `output/semantic-seo/smoke-2026-06-29T19-15-31-512Z/semantic-seo-smoke.json`, product/design `output/product-design-acceptance/smoke-2026-06-29T19-15-40-452Z/product-design-acceptance-smoke.json`, responsive `output/responsive-route/smoke-2026-06-29T19-15-47-175Z/responsive-route-smoke.json`, visual polish `output/visual-polish/smoke-2026-06-29T19-16-08-162Z/visual-polish-smoke.json`, rendered screenshots `output/playwright/rendered-release-smoke-2026-06-29T19-16-37-328Z`, and measurement `output/measurement/smoke-2026-06-29T19-16-48-260Z`.
+- Supporting artifacts: release inventory `output/release-inventory/inventory-2026-06-30T06-00-24-883Z/release-candidate-inventory.json`, headers `output/release-headers/smoke-2026-06-30T06-00-32-090Z/release-header-smoke.json`, BuildScan viewer `output/buildscan-viewer/smoke-2026-06-30T06-00-32-456Z`, product/design `output/product-design-acceptance/smoke-2026-06-30T06-00-52-394Z/product-design-acceptance-smoke.json`, responsive `output/responsive-route/smoke-2026-06-30T06-00-58-871Z/responsive-route-smoke.json`, visual polish `output/visual-polish/smoke-2026-06-30T06-01-19-400Z/visual-polish-smoke.json`, rendered screenshots `output/playwright/rendered-release-smoke-2026-06-30T06-01-47-236Z`, and measurement `output/measurement/smoke-2026-06-30T06-01-57-788Z`.
 
 ## 6. Approval Already Used
 
@@ -153,11 +154,15 @@ Wayne's previous option `1` approvals were used to:
 6. Run `QA_BASE_URL=<preview-url> npm run qa:release:preview`.
 7. Deploy the clean archive to production.
 8. Run `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`.
-9. Return the live URL, deployed evidence, risks and next decision.
+9. Stage and commit closeout docs.
+10. Push branch `codex/website-quality-clean-restart`.
+11. Push `main` as a normal non-force fast-forward.
+12. Wait for the GitHub-triggered production deploy.
+13. Rerun `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`.
+14. Return the live URL, deployed evidence, risks and next decision.
 
 This approval did not approve:
 
-- Branch push or GitHub/main alignment.
 - GitHub PR.
 - DNS/domain changes.
 - Analytics/forms/customer data handling.
@@ -190,11 +195,11 @@ Expected preview evidence:
 ## 8. Risks And Residuals
 
 - The original dirty branch is ahead by rejected motion-preview/evidence commits. This clean worktree avoids using that branch as the publish path. Do not publish the rejected `proof-motion-polish` preview.
-- The production deploy was made from a clean archive of commit `242410f`, but GitHub/main has not yet been aligned with that commit.
+- GitHub/main is now aligned with the clean restart candidate at `75f9a13`.
 - Firefox/WebKit Playwright binaries remain unavailable locally; Chromium passes and this is warning-only in the current gates.
 - Dev/release tooling audit still reports 17 moderate advisories; production footprint remains zero vulnerabilities.
 - Full Codex Security workspace scan is not complete.
-- Production currently serves deploy `6a42c401c0f172f9fa99e3a7`.
+- Production currently serves deploy `6a435aeccc48bb00085e7eb4`.
 
 ## 9. Rollback Path
 
@@ -210,10 +215,10 @@ After any future preview-only candidate:
 
 After production:
 
-- Restore Netlify production deploy `6a415b5db31442000737c37c` if rollback is needed before a newer approved rollback target is confirmed.
+- Restore Netlify production deploy `6a42c401c0f172f9fa99e3a7` if rollback is needed before a newer approved rollback target is confirmed.
 
 ## 10. Recommended Decision
 
-1. Recommended: approve source-control alignment for `website-quality-restart-from-original-goal`.
-2. Review the live site first and request targeted fixes if needed.
-3. Hold here with production live and GitHub/main unchanged.
+1. Recommended: review the live site for final visual sign-off and request only targeted fixes if needed.
+2. Run a full security assurance tranche.
+3. Hold here with production live and source control aligned.
