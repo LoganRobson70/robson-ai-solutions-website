@@ -1,13 +1,13 @@
 # Release Staging Manifest - Website Quality Restart
 
-Last updated: 2026-07-01 16:53 BST
+Last updated: 2026-07-01 19:14 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: hero BuildScan proof visual fix is preview deployed and preview-gated; production not approved
+Status: hero BuildScan proof visual fix is production deployed and production-gated; source-control alignment not yet approved
 
 ## 1. Purpose
 
-This manifest records the file scope for the approved hero BuildScan proof visual fix:
+This manifest records the file scope for the approved hero BuildScan proof visual fix and post-production evidence closeout:
 
 `hero-buildscan-proof-visual-fix`
 
@@ -18,9 +18,9 @@ This tranche:
 - preserves the existing BuildScan proof assets
 - corrects the hero proof surface so the model view is not forced into a tall portrait crop
 - keeps the work bounded to homepage proof visual layout, responsive image selection, and tracking docs
-- keeps production deployment approval-gated
+- records the approved production deployment and validation evidence
 
-It does not add new product claims, change public model assets, enable analytics/forms, or perform any production, DNS, customer-data, or external-message work.
+It does not add new product claims, change public model assets, enable analytics/forms, or perform any DNS, customer-data, or external-message work.
 
 Do not run `git add .` for this repository.
 
@@ -37,25 +37,27 @@ Wayne approved option `1` on 2026-07-01 for this focused visual fix:
 - branch push for `codex/hero-buildscan-proof-visual-fix`
 - Netlify preview deploy
 - deployed preview gate
+- approved production deploy
+- deployed production gate
 
 Wayne must approve before Codex performs any of these actions:
 
 - GitHub PR
-- production deploy
+- source-control alignment to `main`
 - DNS/domain changes
 - analytics/forms/customer data handling
 - external messages
 
 ## 3. Current Dirty Scope
 
-Current hero proof visual fix candidate scope:
+Current hero proof visual fix post-production evidence scope:
 
 - 2 modified tracked files.
 - 0 untracked candidate files.
 - Total dirty candidate files: 2.
 - Release candidate commit `3c1112d` changed 4 tracked files.
 - 0 untracked candidate files were included.
-- This post-preview evidence update is docs-only and records the deployed preview gate; it does not change the served website.
+- This post-production evidence update is docs-only and records the deployed production gate; it does not change the served website.
 
 Current validation evidence:
 
@@ -75,6 +77,11 @@ Current validation evidence:
 - Netlify preview deploy succeeded from a clean archive of `3c1112d`: deploy `6a4536c825996713e910923d`, preview URL `https://hero-buildscan-proof-visual-fix--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4536c825996713e910923d`.
 - Deployed preview gate passed: `QA_BASE_URL=https://hero-buildscan-proof-visual-fix--robson-ai-website.netlify.app npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-01T15-48-46-308Z/release-preview-gate.json`; result pass, 14 steps.
 - Preview gate evidence includes release inventory `output/release-inventory/inventory-2026-07-01T15-48-46-432Z/release-candidate-inventory.json` with dirtyCount 0, zero secret findings, and GLB externalUriCount 0; deployed headers `output/release-headers/smoke-2026-07-01T15-48-55-435Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-07-01T15-48-55-791Z`; product/design `output/product-design-acceptance/smoke-2026-07-01T15-49-24-664Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-07-01T15-49-34-650Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-07-01T15-50-05-342Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-01T15-50-43-762Z`; measurement smoke `output/measurement/smoke-2026-07-01T15-50-55-519Z`.
+- Production rollback target before publish was confirmed as deploy `6a43e8d61174090008cedebe` from `main` commit `8ac3970`.
+- Netlify production deploy succeeded from a clean archive of branch head `e9020c1`: deploy `6a4558490aaf99a4fb8f1af6`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a4558490aaf99a4fb8f1af6--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4558490aaf99a4fb8f1af6`.
+- Netlify API confirmed `6a4558490aaf99a4fb8f1af6` as the current published deploy at `2026-07-01T18:11:24.980Z`; this was an API/manual production deploy, so `commit_ref` is null and source-control alignment remains a separate approval.
+- Production release gate passed: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-01T18-11-39-418Z/release-preview-gate.json`; result pass, 14 steps.
+- Production gate evidence includes release inventory `output/release-inventory/inventory-2026-07-01T18-11-39-560Z/release-candidate-inventory.json` with dirtyCount 0, zero secret findings, and GLB externalUriCount 0; release security `output/release-security/smoke-2026-07-01T18-11-43-804Z/release-security-smoke.json`; deployed headers `output/release-headers/smoke-2026-07-01T18-11-48-024Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-07-01T18-11-48-411Z`; product/design `output/product-design-acceptance/smoke-2026-07-01T18-12-11-650Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-07-01T18-12-18-062Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-07-01T18-12-38-341Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-01T18-13-09-335Z`; measurement smoke `output/measurement/smoke-2026-07-01T18-13-20-139Z`.
 - Clean local review URL: `http://127.0.0.1:8133/`; HTTP 200 confirmed.
 - Clean full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`.
 - Clean rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`.
@@ -144,7 +151,7 @@ The release inventory gate enforces:
 
 ## 4. Modified Tracked Files
 
-These files are modified and expected in the post-preview evidence update:
+These files are modified and expected in the post-production evidence update:
 
 ```text
 docs/codex/RELEASE_STAGING_MANIFEST.md
