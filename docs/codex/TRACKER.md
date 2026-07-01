@@ -1,9 +1,9 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-06-30 07:02 BST
+Last updated: 2026-07-01 16:46 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/private/tmp/robson-ai-website-quality-restart`
-Current branch: `codex/website-quality-clean-restart`
+Current branch: `codex/hero-buildscan-proof-visual-fix`
 
 ## 1. Current Objective
 
@@ -11,9 +11,9 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Restart from the original "best releasable website" goal after Wayne rejected the current website direction as ugly.
-- Treat the deployed `post-launch-proof-motion-polish` preview as rejected for publication.
-- Remove or bypass the rejected motion-preview changes before the next design pass, then run an evidence-based audit of the current live website before making further visual changes.
+- Fix the live homepage hero BuildScan proof visual Wayne flagged as distorted.
+- Keep the fix bounded to the hero proof surface and supporting responsive presentation.
+- Run local visual/responsive QA, create a preview deploy, and ask Wayne for review before any production deploy.
 
 Success means:
 
@@ -32,45 +32,46 @@ Success means:
 
 ## 2. Active Tranche
 
-Tranche name: `website-quality-restart-from-original-goal`
-Status: completed for approved release scope; clean restart production deployed, source-control aligned, and production-gated
-Started: 2026-06-28 20:33 BST
-Completed: 2026-06-30 07:02 BST
+Tranche name: `hero-buildscan-proof-visual-fix`
+Status: active; local release gate passed; preview deploy pending; production not approved
+Started: 2026-07-01 16:34 BST
+Completed: not complete
 
 Scope:
 
-- Restart from the original goal: make the Robson AI Solutions website the best releasable version it can be: polished, professional, responsive, accessible, evidence-led, brand-consistent, cautious about product maturity, validated locally, and ready for preview/publish approval.
-- Do not publish the current motion-polish preview.
-- Neutralise the rejected motion-preview implementation in the working tree before further design work.
-- Audit the live website and current code/design system against the original goal before implementing another visual tranche.
-- Preserve product truth, Robson AI brand direction, cautious Apple-native language, email-first/no-form privacy posture, and BuildScan opt-in model behaviour.
+- Correct the distorted-looking homepage BuildScan proof visual.
+- Preserve the existing BuildScan public proof asset; do not add or expose a new model file.
+- Make the hero proof surface responsive, clear, and representative of drone-to-3D/model review work.
+- Preserve product truth, cautious Apple-native language, email-first/no-form privacy posture, and the current BuildScan opt-in model behaviour.
 
 Out of scope:
 
-- Publishing the rejected `proof-motion-polish` preview, branch push, GitHub PR, DNS/domain changes, analytics/forms/customer-data capture, new public GLB/model asset, app implementation, Apple submission/signing, external messages, force-push, destructive git reset, or broad rebuild without a reviewed direction.
+- Production deploy, publishing the rejected `proof-motion-polish` preview, DNS/domain changes, analytics/forms/customer-data capture, new public GLB/model asset, app implementation, Apple submission/signing, external messages, force-push, destructive git reset, or broad redesign.
 
 Permission envelope:
 
-- Wayne selected option `3` to hold the preview-only motion work.
-- Wayne then instructed: `restart from original goal, do not publish current motion preview`.
-- Wayne approved option `1` to create a clean local restart path from `origin/main`, so rejected preview commits cannot become the next publish path.
-- Wayne approved option `1` on 2026-06-29 to stage the manifest-approved paths, create a local commit, create a Netlify preview deploy, and run the deployed preview gate.
-- Wayne approved option `1` on 2026-06-29 to production publish the clean restart candidate after the preview passed.
-- Wayne approved option `1` on 2026-06-30 to align source control for `website-quality-clean-restart`: stage closeout docs, commit, push the branch, fast-forward `main` without force, wait for Netlify, and rerun production verification if a new deploy was created.
-- Safe local inspection, scoped file edits, docs/tracker updates, local QA, and browser evidence are approved.
-- DNS changes, analytics/forms/customer data, external messages, destructive git actions, force-pushes, and future production deploys still require explicit later approval.
+- Wayne approved option `1` on 2026-07-01 for a focused `hero-buildscan-proof-visual-fix` tranche.
+- Approval covers scoped local edits, tracker update, local QA, commit, branch push, Netlify preview deploy, and preview verification.
+- Approval does not cover production deploy, DNS changes, analytics/forms/customer data, external messages, destructive git actions, or force-pushes.
 
 Done criteria:
 
-- Rejected motion-preview changes are not treated as the active publish candidate.
-- Current live site and current code/design system are audited from fresh evidence.
-- A focused first remedial design tranche is defined and implemented locally without publishing.
-- Local release gate passes for the current candidate.
-- Production deploy and production release gate pass for the approved candidate.
-- Wayne receives the findings, changed files, validation evidence, risks, rollback path, publish-readiness percentage, and next recommended action as numbered option `1`.
+- The hero proof visual no longer crops/upscales the model into a distorted-looking portrait panel.
+- Local screenshots show the proof surface clearly on desktop and the flagged tablet-width viewport.
+- Relevant local visual/responsive checks pass.
+- A Netlify preview is available for Wayne review.
+- Wayne receives changed files, validation evidence, risks, rollback path, publish-readiness percentage, and next recommended action as numbered option `1`.
 
 Validation evidence:
 
+- Hero proof fix implemented locally: the homepage proof image now uses a corrected responsive `sizes` hint, a landscape `aspect-ratio: 1.647`, no tall minimum-height override, and a modest non-distorting image zoom to reduce black margin.
+- Targeted local viewport evidence captured at `output/product-design-audit/hero-proof-fix-2026-07-01/home-hero-proof-fixed-zoom-872x996.png`.
+- Targeted local viewport check shows the hero proof image now selects `assets/showcase/buildscan-ludgershall-model-view-840.webp`, rendering around `706x428` at the flagged 872px viewport instead of the live `420w` source rendering around `706x982`.
+- Local checks passed: `git diff --check`; `npm run qa:visual-polish` with artifact `output/visual-polish/smoke-2026-07-01T15-40-25-626Z/visual-polish-smoke.json`; `npm run qa:responsive` with artifact `output/responsive-route/smoke-2026-07-01T15-40-25-646Z/responsive-route-smoke.json`; `npm run qa:product-design` with artifact `output/product-design-acceptance/smoke-2026-07-01T15-41-05-177Z/product-design-acceptance-smoke.json`; `npm run qa:rendered` with screenshot pack `output/playwright/rendered-release-smoke-2026-07-01T15-41-05-177Z`.
+- Release scope checks passed: `npm run qa:release-staging-manifest` with artifact `output/release-staging-manifest/smoke-2026-07-01T15-40-25-513Z/release-staging-manifest-smoke.json`; 4 modified tracked files, 0 untracked candidate files, 4 staging paths. `npm run qa:release-inventory` with artifact `output/release-inventory/inventory-2026-07-01T15-40-25-500Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings, GLB externalUriCount 0.
+- Full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-07-01T15-42-36-520Z/release-local-gate.json`.
+- Full-gate measurement evidence: `output/measurement/evidence-2026-07-01T15-44-53-053Z`; Lighthouse median performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Full-gate rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-01T15-44-08-535Z`.
 - Production is `https://robsonai.co.uk` at GitHub-triggered Netlify deploy `6a435aeccc48bb00085e7eb4` for the clean restart candidate; no production deploy has been performed for the rejected motion preview.
 - Rejected preview/evidence commits `763c8d8` and `d5e9d64` remain only on the original dirty branch and have not been pushed.
 - Clean worktree created at `/private/tmp/robson-ai-website-quality-restart` on branch `codex/website-quality-clean-restart` from `origin/main`.

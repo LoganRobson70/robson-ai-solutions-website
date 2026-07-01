@@ -1,80 +1,74 @@
 # Release Staging Manifest - Website Quality Restart
 
-Last updated: 2026-06-30 07:02 BST
+Last updated: 2026-07-01 16:46 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: clean restart candidate is live on production and source-control aligned; final evidence-doc update is local-only unless Wayne approves another docs closeout commit
+Status: hero BuildScan proof visual fix is active; preview deploy approved; production not approved
 
 ## 1. Purpose
 
-This manifest records the file scope for the restart from the original website goal and the remaining post-production closeout:
+This manifest records the file scope for the approved hero BuildScan proof visual fix:
 
-`website-quality-restart-from-original-goal`
+`hero-buildscan-proof-visual-fix`
 
-The restart responds to Wayne's instruction: `restart from original goal, do not publish current motion preview`.
+The fix responds to Wayne's live-site comment that the homepage BuildScan proof visual looks distorted.
 
-This restart:
+This tranche:
 
-- treats the `proof-motion-polish` preview as rejected for publication
-- removes the rejected motion-preview implementation from the working tree
-- published the clean restart candidate to production only after Wayne approved option `1`
-- aligned GitHub/main only after Wayne approved option `1`
-- keeps any later release work approval-gated
+- preserves the existing BuildScan proof assets
+- corrects the hero proof surface so the model view is not forced into a tall portrait crop
+- keeps the work bounded to homepage proof visual layout, responsive image selection, and tracking docs
+- keeps production deployment approval-gated
 
-It does not add new product claims, change public model assets, enable analytics/forms, or perform any DNS/customer-data/external-message work.
+It does not add new product claims, change public model assets, enable analytics/forms, or perform any production, DNS, customer-data, or external-message work.
 
 Do not run `git add .` for this repository.
 
 ## 2. Approval Boundary
 
-Wayne instructed Codex to restart from the original goal and not publish the current motion preview. This supersedes the previous preview recommendation.
+Wayne approved option `1` on 2026-07-01 for this focused visual fix:
 
-Approved now:
-
-- safe local code/docs edits
+- scoped local edits
+- tracker and staging-manifest updates
 - local browser/screenshot evidence
-- local QA and release gate validation
-- removal of the rejected motion-preview implementation from the working tree
-
-Wayne approved option `1` on 2026-06-29 for this clean branch:
-
+- relevant local QA
 - explicit-path staging of the files listed in this manifest
 - local commit
+- branch push for `codex/hero-buildscan-proof-visual-fix`
 - Netlify preview deploy
 - deployed preview gate
-- production deploy from clean archive commit `242410f`
-- production release gate against `https://robsonai.co.uk`
-
-Wayne approved option `1` on 2026-06-30 for source-control alignment:
-
-- explicit-path staging of the seven closeout docs listed in this manifest
-- docs closeout commit `75f9a13`
-- branch push for `codex/website-quality-clean-restart`
-- normal non-force fast-forward push to `main`
-- GitHub-triggered Netlify production deploy
-- production release gate against `https://robsonai.co.uk`
 
 Wayne must approve before Codex performs any of these actions:
 
-- another branch push
 - GitHub PR
-- another GitHub/main alignment commit
-- another production deploy
+- production deploy
 - DNS/domain changes
 - analytics/forms/customer data handling
 - external messages
 
 ## 3. Current Dirty Scope
 
-Current post-production dirty scope:
+Current hero proof visual fix dirty scope:
 
-- 7 modified tracked files.
+- 4 modified tracked files.
 - 0 untracked candidate files.
-- Total dirty candidate files: 7.
+- Total dirty candidate files: 4.
 - This manifest itself is intentionally included in the modified tracked file count.
 
 Current validation evidence:
 
+- Local targeted screenshot after fix: `output/product-design-audit/hero-proof-fix-2026-07-01/home-hero-proof-fixed-zoom-872x996.png`.
+- Local targeted viewport check shows the hero image now uses the `840w` source and renders around `706x428` at the flagged viewport instead of around `706x982`.
+- `git diff --check` passed.
+- `npm run qa:visual-polish` passed with artifact `output/visual-polish/smoke-2026-07-01T15-40-25-626Z/visual-polish-smoke.json`.
+- `npm run qa:responsive` passed with artifact `output/responsive-route/smoke-2026-07-01T15-40-25-646Z/responsive-route-smoke.json`.
+- `npm run qa:product-design` passed with artifact `output/product-design-acceptance/smoke-2026-07-01T15-41-05-177Z/product-design-acceptance-smoke.json`.
+- `npm run qa:rendered` passed with screenshot pack `output/playwright/rendered-release-smoke-2026-07-01T15-41-05-177Z`.
+- `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-01T15-40-25-513Z/release-staging-manifest-smoke.json`; 4 modified tracked files, 0 untracked candidate files, 4 explicit staging paths.
+- `npm run qa:release-inventory` passed with artifact `output/release-inventory/inventory-2026-07-01T15-40-25-500Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings, GLB externalUriCount 0.
+- `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-01T15-42-36-520Z/release-local-gate.json`.
+- Full-gate measurement evidence: `output/measurement/evidence-2026-07-01T15-44-53-053Z`; Lighthouse median performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Full-gate rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-01T15-44-08-535Z`.
 - Clean local review URL: `http://127.0.0.1:8133/`; HTTP 200 confirmed.
 - Clean full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`.
 - Clean rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`.
@@ -144,16 +138,13 @@ The release inventory gate enforces:
 
 ## 4. Modified Tracked Files
 
-These files are modified and expected in the post-production closeout candidate:
+These files are modified and expected in the hero proof visual fix candidate:
 
 ```text
-docs/codex/GOAL_COMPLETION_AUDIT.md
-docs/codex/PUBLISH_READINESS_AUDIT.md
-docs/codex/PRODUCTION_RELEASE_RUNBOOK.md
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
-docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md
-docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md
+index.html
+styles.css
 ```
 
 ## 5. Untracked Candidate Files
@@ -165,7 +156,7 @@ No untracked files are expected in the post-production closeout candidate.
 
 ## 6. Asset Size Watch
 
-No asset files are changed in this post-production closeout candidate.
+No asset files are changed in this hero proof visual fix candidate.
 
 Existing watched release assets remain governed by `npm run qa:release-inventory`, including:
 
@@ -195,17 +186,14 @@ secrets, credentials, keys, certificates, profiles, or generated screenshots
 
 ## 8. Staging Command After Approval Only
 
-After Wayne approves any further final-docs-only closeout commit, use an explicit path list rather than `git add .`.
+After checks pass, use an explicit path list rather than `git add .`.
 
 ```bash
 git add -- \
-  docs/codex/GOAL_COMPLETION_AUDIT.md \
-  docs/codex/PUBLISH_READINESS_AUDIT.md \
-  docs/codex/PRODUCTION_RELEASE_RUNBOOK.md \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
-  docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md \
-  docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md
+  index.html \
+  styles.css
 ```
 
 ## 9. Required Checks Before Commit
