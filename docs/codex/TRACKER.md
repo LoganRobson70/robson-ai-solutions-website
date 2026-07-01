@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-01 16:46 BST
+Last updated: 2026-07-01 16:53 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/private/tmp/robson-ai-website-quality-restart`
 Current branch: `codex/hero-buildscan-proof-visual-fix`
@@ -33,9 +33,9 @@ Success means:
 ## 2. Active Tranche
 
 Tranche name: `hero-buildscan-proof-visual-fix`
-Status: active; local release gate passed; preview deploy pending; production not approved
+Status: preview deployed and preview-gated; Wayne review / production approval pending; production not approved
 Started: 2026-07-01 16:34 BST
-Completed: not complete
+Completed: local and preview validation complete on 2026-07-01 16:53 BST; production not approved
 
 Scope:
 
@@ -72,6 +72,10 @@ Validation evidence:
 - Full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-07-01T15-42-36-520Z/release-local-gate.json`.
 - Full-gate measurement evidence: `output/measurement/evidence-2026-07-01T15-44-53-053Z`; Lighthouse median performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
 - Full-gate rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-01T15-44-08-535Z`.
+- Commit created and pushed: `3c1112d` (`Fix hero BuildScan proof visual`) on branch `codex/hero-buildscan-proof-visual-fix`.
+- Netlify preview deploy succeeded from a clean archive of `3c1112d`: deploy `6a4536c825996713e910923d`, preview URL `https://hero-buildscan-proof-visual-fix--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4536c825996713e910923d`.
+- Deployed preview gate passed: `QA_BASE_URL=https://hero-buildscan-proof-visual-fix--robson-ai-website.netlify.app npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-01T15-48-46-308Z/release-preview-gate.json`; result pass, 14 steps.
+- Preview gate evidence includes release inventory `output/release-inventory/inventory-2026-07-01T15-48-46-432Z/release-candidate-inventory.json` with dirtyCount 0, zero secret findings, and GLB externalUriCount 0; deployed headers `output/release-headers/smoke-2026-07-01T15-48-55-435Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-07-01T15-48-55-791Z`; keyboard smoke `output/playwright/keyboard-release-smoke-2026-07-01T15-49-06-288Z`; semantic SEO `output/semantic-seo/smoke-2026-07-01T15-49-12-949Z/semantic-seo-smoke.json`; product/design `output/product-design-acceptance/smoke-2026-07-01T15-49-24-664Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-07-01T15-49-34-650Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-07-01T15-50-05-342Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-01T15-50-43-762Z`; measurement smoke `output/measurement/smoke-2026-07-01T15-50-55-519Z`.
 - Production is `https://robsonai.co.uk` at GitHub-triggered Netlify deploy `6a435aeccc48bb00085e7eb4` for the clean restart candidate; no production deploy has been performed for the rejected motion preview.
 - Rejected preview/evidence commits `763c8d8` and `d5e9d64` remain only on the original dirty branch and have not been pushed.
 - Clean worktree created at `/private/tmp/robson-ai-website-quality-restart` on branch `codex/website-quality-clean-restart` from `origin/main`.

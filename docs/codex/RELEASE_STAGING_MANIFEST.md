@@ -1,9 +1,9 @@
 # Release Staging Manifest - Website Quality Restart
 
-Last updated: 2026-07-01 16:46 BST
+Last updated: 2026-07-01 16:53 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: hero BuildScan proof visual fix is active; preview deploy approved; production not approved
+Status: hero BuildScan proof visual fix is preview deployed and preview-gated; production not approved
 
 ## 1. Purpose
 
@@ -48,12 +48,14 @@ Wayne must approve before Codex performs any of these actions:
 
 ## 3. Current Dirty Scope
 
-Current hero proof visual fix dirty scope:
+Current hero proof visual fix candidate scope:
 
-- 4 modified tracked files.
+- 2 modified tracked files.
 - 0 untracked candidate files.
-- Total dirty candidate files: 4.
-- This manifest itself is intentionally included in the modified tracked file count.
+- Total dirty candidate files: 2.
+- Release candidate commit `3c1112d` changed 4 tracked files.
+- 0 untracked candidate files were included.
+- This post-preview evidence update is docs-only and records the deployed preview gate; it does not change the served website.
 
 Current validation evidence:
 
@@ -69,6 +71,10 @@ Current validation evidence:
 - `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-01T15-42-36-520Z/release-local-gate.json`.
 - Full-gate measurement evidence: `output/measurement/evidence-2026-07-01T15-44-53-053Z`; Lighthouse median performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
 - Full-gate rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-01T15-44-08-535Z`.
+- Commit created and pushed: `3c1112d` (`Fix hero BuildScan proof visual`) on branch `codex/hero-buildscan-proof-visual-fix`.
+- Netlify preview deploy succeeded from a clean archive of `3c1112d`: deploy `6a4536c825996713e910923d`, preview URL `https://hero-buildscan-proof-visual-fix--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4536c825996713e910923d`.
+- Deployed preview gate passed: `QA_BASE_URL=https://hero-buildscan-proof-visual-fix--robson-ai-website.netlify.app npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-01T15-48-46-308Z/release-preview-gate.json`; result pass, 14 steps.
+- Preview gate evidence includes release inventory `output/release-inventory/inventory-2026-07-01T15-48-46-432Z/release-candidate-inventory.json` with dirtyCount 0, zero secret findings, and GLB externalUriCount 0; deployed headers `output/release-headers/smoke-2026-07-01T15-48-55-435Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-07-01T15-48-55-791Z`; product/design `output/product-design-acceptance/smoke-2026-07-01T15-49-24-664Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-07-01T15-49-34-650Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-07-01T15-50-05-342Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-01T15-50-43-762Z`; measurement smoke `output/measurement/smoke-2026-07-01T15-50-55-519Z`.
 - Clean local review URL: `http://127.0.0.1:8133/`; HTTP 200 confirmed.
 - Clean full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`.
 - Clean rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`.
@@ -138,13 +144,11 @@ The release inventory gate enforces:
 
 ## 4. Modified Tracked Files
 
-These files are modified and expected in the hero proof visual fix candidate:
+These files are modified and expected in the post-preview evidence update:
 
 ```text
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
-index.html
-styles.css
 ```
 
 ## 5. Untracked Candidate Files
@@ -191,9 +195,7 @@ After checks pass, use an explicit path list rather than `git add .`.
 ```bash
 git add -- \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
-  docs/codex/TRACKER.md \
-  index.html \
-  styles.css
+  docs/codex/TRACKER.md
 ```
 
 ## 9. Required Checks Before Commit
