@@ -1,45 +1,46 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-06-30 07:02 BST
+Last updated: 2026-07-02 18:43 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: live production review checklist; previous production checklist retained as historical context
+Status: current local review checklist for `word-heavy-section-polish`; previous production checklist retained as historical context
 
 ## 1. Purpose
 
-Use this checklist to review the current live restart candidate for the original goal:
+Use this checklist to review the current local word-heavy section polish candidate for the original goal:
 
 > Make the Robson AI Solutions website the best releasable version it can be.
 
 Important:
 
-- Current production URL: `https://robsonai.co.uk`.
-- Current Netlify preview URL: `https://website-quality-clean-restart--robson-ai-website.netlify.app`.
-- Current candidate name: `website-quality-restart-from-original-goal`.
-- Current clean branch: `codex/website-quality-clean-restart`.
+- Current local review URL: `http://127.0.0.1:8135/`.
+- Current production URL remains: `https://robsonai.co.uk`.
+- Current candidate name: `word-heavy-section-polish`.
+- Current branch: `codex/word-heavy-section-polish`.
+- Current candidate scope: 9 files; 8 modified tracked files and 1 untracked audit note.
 - The rejected `proof-motion-polish` preview must not be published.
-- Production deploy `6a435aeccc48bb00085e7eb4` is live, source-control aligned, and production-gated.
-- No analytics, forms, DNS/domain work, customer-data handling, external messages, force-pushes, or future production deploys are approved by this checklist.
+- Existing production deploy `6a45f66d95632900082f00cb` remains live and production-gated; this local candidate is not live.
+- No commit, branch push, Netlify preview deploy, production deploy, analytics, forms, DNS/domain work, customer-data handling, external messages, force-pushes, or future production deploys are approved by this checklist.
 - Current preview approval handoff is `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
 - Historical production release evidence is retained below for context only; it is not approval for the restart candidate.
 
-## 2. Current Restart Review Sequence
+## 2. Current Local Review Sequence
 
-Review these live pages in order on desktop and mobile:
+Review these local pages in order on desktop and mobile:
 
-1. Home: `https://robsonai.co.uk/`
-2. Building Analyst: `https://robsonai.co.uk/building-analyst.html`
-3. Who it is for: `https://robsonai.co.uk/who-its-for.html`
-4. BuildScan viewer: `https://robsonai.co.uk/buildscan-viewer.html`
-5. Privacy: `https://robsonai.co.uk/privacy.html`
-6. 404 recovery page: `https://robsonai.co.uk/404.html`
-7. Holding fallback: `https://robsonai.co.uk/holding.html`
+1. Home: `http://127.0.0.1:8135/`
+2. Building Analyst: `http://127.0.0.1:8135/building-analyst.html`
+3. Who it is for: `http://127.0.0.1:8135/who-its-for.html`
+4. BuildScan viewer: `http://127.0.0.1:8135/buildscan-viewer.html`
+5. Privacy: `http://127.0.0.1:8135/privacy.html`
+6. 404 recovery page: `http://127.0.0.1:8135/404.html`
+7. Holding fallback: `http://127.0.0.1:8135/holding.html`
 
 Screenshot evidence from the current local rendered smoke:
 
-- `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`
+- `output/playwright/rendered-release-smoke-2026-07-02T17-24-59-410Z`
 
-The production deploy is `6a435aeccc48bb00085e7eb4`, and the latest production gate passed against `https://robsonai.co.uk`.
+The local server returned HTTP 200 at `http://127.0.0.1:8135/`. No preview or production deploy has been performed for this candidate.
 
 ## 3. What To Approve Or Flag
 
@@ -51,6 +52,7 @@ Approve if:
 - The rejected floating/misaligned hero icon treatment is gone.
 - The hero proof surface feels deliberate, product-led, and professionally composed.
 - Finder, Operations, Method, Credibility, and Contact feel more designed and less like text blocks.
+- The optional analytics consent rail does not undermine the desktop hero first impression.
 - Building Analyst, BuildScan, and property operations read as connected but distinct workstreams.
 - Header navigation lands cleanly on major sections without orphaned controls from the previous section appearing below the sticky nav.
 - Secondary pages keep the visible Robson AI brand lockup clear and do not accidentally present `Fit` as a separate product name.
@@ -129,39 +131,21 @@ Local release gate:
 
 - Command: `npm run qa:release:local`
 - Result: pass, 37 steps.
-- Artifact: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`.
+- Artifact: `output/release-local-gate/gate-2026-07-02T17-23-29-682Z/release-local-gate.json`.
 
-Preview release gate:
+Current local product/design evidence:
 
-- Command: `QA_BASE_URL=https://website-quality-clean-restart--robson-ai-website.netlify.app npm run qa:release:preview`
-- Result: pass, 14 steps.
-- Artifact: `output/release-preview-gate/gate-2026-06-29T17-53-08-619Z/release-preview-gate.json`.
-- Deploy ID: `6a42b0eaaaa964aad7bb6dce`.
-
-Production release gate:
-
-- Command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
-- Result: pass, 14 steps.
-- Artifact: `output/release-production-gate/gate-2026-06-30T06-00-24-751Z/release-preview-gate.json`.
-- Deploy ID: `6a435aeccc48bb00085e7eb4`.
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-30T06-01-47-236Z`.
-- Measurement: `output/measurement/smoke-2026-06-30T06-01-57-788Z`.
-
-Local evidence pack:
-
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`.
-- Measurement: `output/measurement/evidence-2026-06-29T16-21-48-137Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
-- Latest 11-file staging-manifest smoke: `output/release-staging-manifest/smoke-2026-06-29T16-20-03-286Z/release-staging-manifest-smoke.json`.
-- Latest 11-file release inventory: `output/release-inventory/inventory-2026-06-29T16-20-03-053Z/release-candidate-inventory.json`; dirtyCount 11, secret findings 0, GLB external URI references 0.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-02T17-24-59-410Z`.
+- Measurement: `output/measurement/evidence-2026-07-02T17-25-18-165Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Product/design audit screenshots: `output/product-design-audit/word-heavy-continuation-2026-07-02T17-15-15-448Z`.
+- Consent first-impression screenshots: `output/product-design-audit/consent-first-impression-2026-07-02T17-18-36-986Z`.
+- Latest staging-manifest smoke: `output/release-staging-manifest/smoke-2026-07-02T17-43-25-511Z/release-staging-manifest-smoke.json`; 8 modified tracked files, 1 untracked candidate file, 9 explicit staging paths.
+- Latest release inventory: `output/release-inventory/inventory-2026-07-02T17-43-25-511Z/release-candidate-inventory.json`; dirtyCount 9, secret findings 0, GLB external URI references 0.
 
 Known residuals:
 
-- The clean-worktree staging manifest now expects the 11-file restart candidate.
-- Anchor-navigation polish is included in the latest rendered smoke.
-- Brand-consistency polish has been moved onto the clean branch and preview-gated.
-- The active restart candidate is committed and source-control aligned as `75f9a13`, deployed to preview `6a42b0eaaaa964aad7bb6dce`, and live on production as `6a435aeccc48bb00085e7eb4`.
-- GitHub/main is aligned with the live production deploy.
-- The original dirty branch is ahead by the rejected motion-preview/evidence commits; this clean branch avoids using those commits as the publish path. Do not publish the rejected `proof-motion-polish` preview.
+- The candidate is not committed, pushed, preview-deployed, or production-deployed.
+- The fixed mobile consent rail still sits over the bottom of the tall hero area until the visitor chooses an option; the main headline and CTAs remain visible. A different consent pattern should be a separate approved tranche.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains 17 moderate, 0 high, 0 critical; production footprint remains zero.
 - Full Codex Security scan is not complete.
@@ -171,9 +155,9 @@ Known residuals:
 
 Use one of these responses:
 
-1. Recommended: `review live site and approve final visual sign-off` or list exact targeted fixes.
-2. `run full security assurance tranche`
-3. `hold here with production live and source control aligned`
+1. Recommended: `approve commit + branch push + Netlify preview deploy for word-heavy-section-polish`.
+2. `request targeted visual changes before preview`
+3. `hold here with production unchanged`
 
 ## 6. Historical Production Context
 

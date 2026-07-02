@@ -1,9 +1,9 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-02 06:29 BST
+Last updated: 2026-07-02 18:43 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/private/tmp/robson-ai-website-quality-restart`
-Current branch: `main`
+Current branch: `codex/word-heavy-section-polish`
 
 ## 1. Current Objective
 
@@ -11,9 +11,11 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Fix the live homepage hero BuildScan proof visual Wayne flagged as distorted.
-- Keep the fix bounded to the hero proof surface and supporting responsive presentation.
-- Run local visual/responsive QA, create a preview deploy, and ask Wayne for review before any production deploy.
+- Improve the homepage sections Wayne flagged as word-heavy: Workflow Finder, Operations, Method, Credibility, and Contact.
+- Keep first-load consent presentation from undermining the hero first impression.
+- Keep the work bounded to product-proof presentation, layout density, and existing copy/claims.
+- Run local visual/responsive QA and ask Wayne for review before any preview or production deploy.
+- Keep the preview-approval docs aligned so Wayne is asked to approve the current candidate, not a stale historical release.
 
 Success means:
 
@@ -31,6 +33,73 @@ Success means:
 - Production release execution is defined in `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the 2026-06-29 clean restart publish and 2026-06-30 source-control alignment were executed after Wayne approved option `1`.
 
 ## 2. Active Tranche
+
+Tranche name: `word-heavy-section-polish`
+Status: local implementation and QA complete; Wayne review pending; preview and production not approved
+Started: 2026-07-02 16:30 BST
+Completed: local implementation complete 2026-07-02 17:01 BST; release pending Wayne decision
+
+Scope:
+
+- Reduce the word-heavy feel in Finder, Operations, Method, Credibility, and Contact.
+- Preserve current product truth and cautious Robson AI / Building Analyst / BuildScan / WAIS wording.
+- Use existing assets, fonts, colours, 8px cards, proof surfaces, and QA scripts.
+- Apply only narrow consent presentation polish if first-load screenshots show it obstructing the hero; do not change consent logic, analytics behavior, or privacy copy meaning.
+- Keep all changes local until Wayne approves any preview or production deploy.
+
+Out of scope:
+
+- Production deploy, preview deploy, DNS/domain changes, analytics/forms/customer-data capture, consent/analytics logic changes, new public GLB/model asset, app implementation, Apple submission/signing, external messages, force-push, destructive git reset, or broad redesign outside the five named sections plus the narrow consent presentation fix.
+
+Permission envelope:
+
+- Wayne approved option `1` on 2026-07-02 to start the next focused design-quality tranche for the word-heavy sections.
+- Approval covers scoped local edits, audit/tracker/manifest updates, local browser/screenshot evidence, local QA, and a local review URL.
+- Approval does not cover commit, branch push, PR, Netlify preview deploy, production deploy, DNS changes, analytics/forms/customer data, external messages, destructive git actions, or force-pushes unless Wayne separately approves them.
+
+Done criteria:
+
+- The five target sections read more like operational product/proof surfaces and less like plain text blocks.
+- Local screenshots show desktop and mobile layouts without overlap or cramped text.
+- Relevant local visual, responsive, product-design, release-inventory, and release-gate checks pass.
+- Wayne receives changed files, validation evidence, risks, rollback path, publish-readiness percentage, and next recommended action as numbered option `1`.
+
+Validation evidence:
+
+- Product Design context preflight found no saved context file, so the tranche is grounded in the current live site, repo design system, and tracker.
+- In-app browser live current-state full-page screenshot captured as `live-current-full-page.png`.
+- Local post-change rendered screenshot: `output/playwright/rendered-release-smoke-2026-07-02T15-48-58-679Z/desktop-homepage.png`.
+- Audit note added at `docs/codex/WORD_HEAVY_SECTION_POLISH_AUDIT.md`.
+- Fast checks passed: `git diff --check`; `node --check script.js`.
+- Local screenshot smoke passed against `http://127.0.0.1:8135`: `output/playwright/rendered-release-smoke-2026-07-02T15-48-58-679Z`.
+- Local route checks passed: `npm run qa:responsive` with artifact `output/responsive-route/smoke-2026-07-02T15-47-14-898Z/responsive-route-smoke.json`; `npm run qa:product-design` with artifact `output/product-design-acceptance/smoke-2026-07-02T15-47-14-898Z/product-design-acceptance-smoke.json`; `npm run qa:visual-polish` with artifact `output/visual-polish/smoke-2026-07-02T15-47-14-898Z/visual-polish-smoke.json`.
+- Local review URL confirmed HTTP 200: `http://127.0.0.1:8135/`.
+- Final post-doc `git diff --check` passed.
+- Final staging-manifest smoke passed: `output/release-staging-manifest/smoke-2026-07-02T16-02-56-058Z/release-staging-manifest-smoke.json`; 4 modified tracked files, 1 untracked candidate file, 5 explicit staging paths.
+- Final release inventory passed: `output/release-inventory/inventory-2026-07-02T16-02-56-058Z/release-candidate-inventory.json`; dirtyCount 5, zero secret findings, GLB externalUriCount 0.
+- Full local release gate initially failed HTML validation because six decorative signal `div` elements used invalid `aria-label` attributes; those labels were removed without changing visible content.
+- Full local release gate then passed all 37 steps: `output/release-local-gate/gate-2026-07-02T15-56-59-235Z/release-local-gate.json`.
+- Full-gate rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-02T15-58-35-049Z`.
+- Full-gate measurement evidence: `output/measurement/evidence-2026-07-02T15-59-19-980Z`; Lighthouse median performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Full-gate browser coverage remains advisory: Chromium passed; local Firefox/WebKit browser binaries were unavailable, so preview/deployed review should still be used before production.
+- Continuation Product Design audit screenshots captured: `output/product-design-audit/word-heavy-continuation-2026-07-02T17-15-15-448Z`; no horizontal overflow was found at desktop, tablet, or mobile.
+- Continuation audit found the first-load consent panel could cover the desktop hero proof board and the lower mobile hero tags.
+- Narrow consent presentation polish added in `styles.css`: the same consent controls now use a slimmer bottom rail; no consent logic, analytics behavior, form, or customer-data path changed.
+- Consent first-impression screenshots captured after the polish: `output/product-design-audit/consent-first-impression-2026-07-02T17-18-36-986Z`; desktop no longer intersects the hero proof board, all three consent choices remain visible, and there is no horizontal overflow.
+- Post-consent-polish checks passed: `git diff --check`; `npm run qa:visual-polish` with artifact `output/visual-polish/smoke-2026-07-02T17-20-16-511Z/visual-polish-smoke.json`; `npm run qa:responsive` with artifact `output/responsive-route/smoke-2026-07-02T17-20-16-511Z/responsive-route-smoke.json`; `npm run qa:rendered` with artifact `output/playwright/rendered-release-smoke-2026-07-02T17-20-16-511Z`.
+- Remaining visual note: on mobile the fixed consent rail still sits over the bottom of the tall hero area until the visitor chooses an option, but the headline and primary CTAs remain visible; a different consent pattern should be treated as a separate approved tranche.
+- Final post-consent full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-07-02T17-23-29-682Z/release-local-gate.json`.
+- Final full-gate rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-02T17-24-59-410Z`.
+- Final full-gate measurement evidence: `output/measurement/evidence-2026-07-02T17-25-18-165Z`; Lighthouse median performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Final full-gate staging manifest passed inside the release gate: `output/release-staging-manifest/smoke-2026-07-02T17-23-36-823Z/release-staging-manifest-smoke.json`; 4 modified tracked files, 1 untracked candidate file, 5 explicit staging paths.
+- Final full-gate release inventory passed inside the release gate: `output/release-inventory/inventory-2026-07-02T17-23-36-605Z/release-candidate-inventory.json`; dirtyCount 5, zero secret findings, GLB externalUriCount 0.
+- Approval/readiness docs aligned after the full gate: `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`, `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`, `docs/codex/PUBLISH_READINESS_AUDIT.md`, and `docs/codex/GOAL_COMPLETION_AUDIT.md` now describe the current local candidate, 88% publish readiness, and the next `commit + branch push + Netlify preview deploy` approval decision.
+- Current candidate scope after approval-doc alignment: 8 modified tracked files and 1 untracked audit note; 9 explicit staging paths. No commit, branch push, Netlify preview deploy, or production deploy has been performed.
+- Final post-alignment `git diff --check` passed.
+- Final post-drift-audit staging-manifest smoke passed: `output/release-staging-manifest/smoke-2026-07-02T17-43-25-511Z/release-staging-manifest-smoke.json`; 8 modified tracked files, 1 untracked candidate file, 9 explicit staging paths.
+- Final post-drift-audit release inventory passed: `output/release-inventory/inventory-2026-07-02T17-43-25-511Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings, GLB externalUriCount 0.
+
+## 3. Completed Hero Proof Visual Fix Tranche
 
 Tranche name: `hero-buildscan-proof-visual-fix`
 Status: completed, production-gated, and source-control aligned; GitHub-triggered Netlify production deploy `6a45f66d95632900082f00cb` is live on `https://robsonai.co.uk`

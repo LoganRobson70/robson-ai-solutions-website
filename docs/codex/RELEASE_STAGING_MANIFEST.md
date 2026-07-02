@@ -1,95 +1,93 @@
 # Release Staging Manifest - Website Quality Restart
 
-Last updated: 2026-07-02 06:29 BST
+Last updated: 2026-07-02 18:43 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/private/tmp/robson-ai-website-quality-restart`
-Status: hero BuildScan proof visual fix is production deployed, production-gated, and source-control aligned
+Status: word-heavy section polish is local-only; local QA passed; preview and production not approved
 
 ## 1. Purpose
 
-This manifest records the file scope for the approved hero BuildScan proof visual fix and source-control alignment closeout:
+This manifest records the file scope for the approved homepage design-quality tranche:
 
-`hero-buildscan-proof-visual-fix`
+`word-heavy-section-polish`
 
-The fix responds to Wayne's live-site comment that the homepage BuildScan proof visual looks distorted.
+The tranche responds to Wayne's feedback that several homepage sections are aesthetically weak because they are full of words.
 
 This tranche:
 
-- preserves the existing BuildScan proof assets
-- corrects the hero proof surface so the model view is not forced into a tall portrait crop
-- keeps the work bounded to homepage proof visual layout, responsive image selection, and tracking docs
-- records the approved production deployment and validation evidence
-- records the approved fast-forward push to `main` and GitHub-triggered production gate
+- keeps the work bounded to Workflow Finder, Property Operations, Method, Credibility, and Contact
+- turns dense text blocks into clearer route boards, status signals, process strips, proof summaries, and workflow brief surfaces
+- keeps the first-load consent choice from visually obstructing the desktop hero proof board
+- preserves the current Robson AI product claims, privacy posture, BuildScan asset set, and email-first contact route
+- records local design audit evidence, local QA, and current preview-approval/readiness handoff docs
 
-It does not add new product claims, change public model assets, enable analytics/forms, or perform any DNS, customer-data, or external-message work.
+It does not add new product claims, change public model assets, change consent/analytics logic, enable analytics/forms, deploy preview or production, or perform any DNS, customer-data, or external-message work.
 
 Do not run `git add .` for this repository.
 
 ## 2. Approval Boundary
 
-Wayne approved option `1` on 2026-07-01 for this focused visual fix:
+Wayne approved option `1` on 2026-07-02 for this focused design-quality tranche:
 
 - scoped local edits
-- tracker and staging-manifest updates
+- audit, tracker and staging-manifest updates
+- approval checklist, preview handoff, publish-readiness audit, and goal-completion audit updates
 - local browser/screenshot evidence
 - relevant local QA
-- explicit-path staging of the files listed in this manifest
-- local commit
-- branch push for `codex/hero-buildscan-proof-visual-fix`
-- Netlify preview deploy
-- deployed preview gate
-- approved production deploy
-- deployed production gate
-- approved source-control alignment to `main`
-- GitHub-triggered production gate
 
 Wayne must approve before Codex performs any of these actions:
 
+- local commit
+- branch push
 - GitHub PR
+- Netlify preview deploy
+- production deploy
 - DNS/domain changes
 - analytics/forms/customer data handling
 - external messages
 
 ## 3. Current Dirty Scope
 
-Current hero proof visual fix source-control evidence scope:
+Current word-heavy section polish dirty scope:
 
-- 2 modified tracked files.
-- 0 untracked candidate files.
-- Total dirty candidate files: 2.
-- Release candidate commit `3c1112d` changed 4 tracked files.
-- 0 untracked candidate files were included.
-- This source-control evidence update is docs-only and records the `main` alignment plus GitHub-triggered production gate; it does not change the served website.
+- 8 modified tracked files.
+- 1 untracked candidate files.
+- Total dirty candidate files: 9.
+- This candidate is local-only and does not change the live website until Wayne approves preview and production deployment.
 
 Current validation evidence:
 
-- Local targeted screenshot after fix: `output/product-design-audit/hero-proof-fix-2026-07-01/home-hero-proof-fixed-zoom-872x996.png`.
-- Local targeted viewport check shows the hero image now uses the `840w` source and renders around `706x428` at the flagged viewport instead of around `706x982`.
-- `git diff --check` passed.
-- `npm run qa:visual-polish` passed with artifact `output/visual-polish/smoke-2026-07-01T15-40-25-626Z/visual-polish-smoke.json`.
-- `npm run qa:responsive` passed with artifact `output/responsive-route/smoke-2026-07-01T15-40-25-646Z/responsive-route-smoke.json`.
-- `npm run qa:product-design` passed with artifact `output/product-design-acceptance/smoke-2026-07-01T15-41-05-177Z/product-design-acceptance-smoke.json`.
-- `npm run qa:rendered` passed with screenshot pack `output/playwright/rendered-release-smoke-2026-07-01T15-41-05-177Z`.
-- `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-01T15-40-25-513Z/release-staging-manifest-smoke.json`; 4 modified tracked files, 0 untracked candidate files, 4 explicit staging paths.
-- `npm run qa:release-inventory` passed with artifact `output/release-inventory/inventory-2026-07-01T15-40-25-500Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings, GLB externalUriCount 0.
-- `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-01T15-42-36-520Z/release-local-gate.json`.
-- Full-gate measurement evidence: `output/measurement/evidence-2026-07-01T15-44-53-053Z`; Lighthouse median performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
-- Full-gate rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-01T15-44-08-535Z`.
-- Commit created and pushed: `3c1112d` (`Fix hero BuildScan proof visual`) on branch `codex/hero-buildscan-proof-visual-fix`.
-- Netlify preview deploy succeeded from a clean archive of `3c1112d`: deploy `6a4536c825996713e910923d`, preview URL `https://hero-buildscan-proof-visual-fix--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4536c825996713e910923d`.
-- Deployed preview gate passed: `QA_BASE_URL=https://hero-buildscan-proof-visual-fix--robson-ai-website.netlify.app npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-01T15-48-46-308Z/release-preview-gate.json`; result pass, 14 steps.
-- Preview gate evidence includes release inventory `output/release-inventory/inventory-2026-07-01T15-48-46-432Z/release-candidate-inventory.json` with dirtyCount 0, zero secret findings, and GLB externalUriCount 0; deployed headers `output/release-headers/smoke-2026-07-01T15-48-55-435Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-07-01T15-48-55-791Z`; product/design `output/product-design-acceptance/smoke-2026-07-01T15-49-24-664Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-07-01T15-49-34-650Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-07-01T15-50-05-342Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-01T15-50-43-762Z`; measurement smoke `output/measurement/smoke-2026-07-01T15-50-55-519Z`.
-- Production rollback target before publish was confirmed as deploy `6a43e8d61174090008cedebe` from `main` commit `8ac3970`.
-- Netlify production deploy succeeded from a clean archive of branch head `e9020c1`: deploy `6a4558490aaf99a4fb8f1af6`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a4558490aaf99a4fb8f1af6--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4558490aaf99a4fb8f1af6`.
-- Netlify API confirmed `6a4558490aaf99a4fb8f1af6` as the current published deploy at `2026-07-01T18:11:24.980Z`; this was an API/manual production deploy, so `commit_ref` is null and source-control alignment remains a separate approval.
-- Production release gate passed: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-01T18-11-39-418Z/release-preview-gate.json`; result pass, 14 steps.
-- Production gate evidence includes release inventory `output/release-inventory/inventory-2026-07-01T18-11-39-560Z/release-candidate-inventory.json` with dirtyCount 0, zero secret findings, and GLB externalUriCount 0; release security `output/release-security/smoke-2026-07-01T18-11-43-804Z/release-security-smoke.json`; deployed headers `output/release-headers/smoke-2026-07-01T18-11-48-024Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-07-01T18-11-48-411Z`; product/design `output/product-design-acceptance/smoke-2026-07-01T18-12-11-650Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-07-01T18-12-18-062Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-07-01T18-12-38-341Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-01T18-13-09-335Z`; measurement smoke `output/measurement/smoke-2026-07-01T18-13-20-139Z`.
-- Source-control alignment preflight on 2026-07-02 found `HEAD=aa9e9c7`, `origin/main=8ac3970`, and `main=8ac3970`; both `origin/main -> HEAD` and `main -> HEAD` were normal fast-forward paths.
-- Local `main` was fast-forwarded from `8ac3970` to `aa9e9c7`, then `origin/main` was pushed normally without force.
-- Netlify GitHub-triggered production deploy became ready: deploy `6a45f66d95632900082f00cb`, commit `aa9e9c756a2310d6dbe8f54d16f3349ac8571cae`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a45f66d95632900082f00cb--robson-ai-website.netlify.app`, published `2026-07-02T05:26:20.044Z`.
-- Production release gate passed after the GitHub/main deploy: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-02T05-26-33-605Z/release-preview-gate.json`; result pass, 14 steps.
-- Production gate evidence includes release inventory `output/release-inventory/inventory-2026-07-02T05-26-33-803Z/release-candidate-inventory.json` with dirtyCount 0, zero secret findings, and GLB externalUriCount 0; release security `output/release-security/smoke-2026-07-02T05-26-38-018Z/release-security-smoke.json`; deployed headers `output/release-headers/smoke-2026-07-02T05-26-42-024Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-07-02T05-26-42-556Z`; product/design `output/product-design-acceptance/smoke-2026-07-02T05-27-12-410Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-07-02T05-27-19-334Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-07-02T05-27-40-807Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-02T05-28-10-116Z`; measurement smoke `output/measurement/smoke-2026-07-02T05-28-20-078Z`.
-- Clean local review URL: `http://127.0.0.1:8133/`; HTTP 200 confirmed.
+- Product Design context preflight found no saved context file, so this tranche is grounded in the live site, repo design system, and tracker.
+- In-app browser live current-state full-page screenshot captured as `live-current-full-page.png`.
+- Local post-change rendered screenshot: `output/playwright/rendered-release-smoke-2026-07-02T15-48-58-679Z/desktop-homepage.png`.
+- Audit note added at `docs/codex/WORD_HEAVY_SECTION_POLISH_AUDIT.md`.
+- Fast checks passed: `git diff --check`; `node --check script.js`.
+- Local screenshot smoke passed against `http://127.0.0.1:8135`: `output/playwright/rendered-release-smoke-2026-07-02T15-48-58-679Z`.
+- Local route checks passed: `npm run qa:responsive` with artifact `output/responsive-route/smoke-2026-07-02T15-47-14-898Z/responsive-route-smoke.json`; `npm run qa:product-design` with artifact `output/product-design-acceptance/smoke-2026-07-02T15-47-14-898Z/product-design-acceptance-smoke.json`; `npm run qa:visual-polish` with artifact `output/visual-polish/smoke-2026-07-02T15-47-14-898Z/visual-polish-smoke.json`.
+- Local review URL: `http://127.0.0.1:8135/`; HTTP 200 confirmed.
+- Final post-doc `git diff --check` passed.
+- Final staging-manifest smoke passed: `output/release-staging-manifest/smoke-2026-07-02T16-02-56-058Z/release-staging-manifest-smoke.json`; 4 modified tracked files, 1 untracked candidate file, 5 explicit staging paths.
+- Final release inventory passed: `output/release-inventory/inventory-2026-07-02T16-02-56-058Z/release-candidate-inventory.json`; dirtyCount 5, zero secret findings, GLB externalUriCount 0.
+- Full local release gate initially failed HTML validation because six decorative signal `div` elements used invalid `aria-label` attributes; those labels were removed without changing visible content.
+- Full local release gate then passed all 37 steps: `output/release-local-gate/gate-2026-07-02T15-56-59-235Z/release-local-gate.json`.
+- Full-gate rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-02T15-58-35-049Z`.
+- Full-gate measurement evidence: `output/measurement/evidence-2026-07-02T15-59-19-980Z`; Lighthouse median performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Full-gate browser coverage remains advisory: Chromium passed; local Firefox/WebKit browser binaries were unavailable, so preview/deployed review should still be used before production.
+- Continuation Product Design audit screenshots captured: `output/product-design-audit/word-heavy-continuation-2026-07-02T17-15-15-448Z`; no horizontal overflow was found at desktop, tablet, or mobile.
+- Continuation audit found the first-load consent panel could cover the desktop hero proof board and the lower mobile hero tags.
+- Narrow consent presentation polish added in `styles.css`: the same consent controls now use a slimmer bottom rail; no consent logic, analytics behavior, form, or customer-data path changed.
+- Consent first-impression screenshots captured after the polish: `output/product-design-audit/consent-first-impression-2026-07-02T17-18-36-986Z`; desktop no longer intersects the hero proof board, all three consent choices remain visible, and there is no horizontal overflow.
+- Post-consent-polish checks passed: `git diff --check`; `npm run qa:visual-polish` with artifact `output/visual-polish/smoke-2026-07-02T17-20-16-511Z/visual-polish-smoke.json`; `npm run qa:responsive` with artifact `output/responsive-route/smoke-2026-07-02T17-20-16-511Z/responsive-route-smoke.json`; `npm run qa:rendered` with artifact `output/playwright/rendered-release-smoke-2026-07-02T17-20-16-511Z`.
+- Remaining visual note: on mobile the fixed consent rail still sits over the bottom of the tall hero area until the visitor chooses an option, but the headline and primary CTAs remain visible; a different consent pattern should be treated as a separate approved tranche.
+- Final post-consent full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-07-02T17-23-29-682Z/release-local-gate.json`.
+- Final full-gate rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-02T17-24-59-410Z`.
+- Final full-gate measurement evidence: `output/measurement/evidence-2026-07-02T17-25-18-165Z`; Lighthouse median performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
+- Final full-gate staging manifest passed inside the release gate: `output/release-staging-manifest/smoke-2026-07-02T17-23-36-823Z/release-staging-manifest-smoke.json`; 4 modified tracked files, 1 untracked candidate file, 5 explicit staging paths.
+- Final full-gate release inventory passed inside the release gate: `output/release-inventory/inventory-2026-07-02T17-23-36-605Z/release-candidate-inventory.json`; dirtyCount 5, zero secret findings, GLB externalUriCount 0.
+- Approval/readiness docs aligned after the full gate: `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`, `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`, `docs/codex/PUBLISH_READINESS_AUDIT.md`, and `docs/codex/GOAL_COMPLETION_AUDIT.md` now describe the current local candidate, 88% publish readiness, and the next `commit + branch push + Netlify preview deploy` approval decision.
+- Final post-alignment `git diff --check` passed.
+- Final post-drift-audit staging-manifest smoke passed: `output/release-staging-manifest/smoke-2026-07-02T17-43-25-511Z/release-staging-manifest-smoke.json`; 8 modified tracked files, 1 untracked candidate file, 9 explicit staging paths.
+- Final post-drift-audit release inventory passed: `output/release-inventory/inventory-2026-07-02T17-43-25-511Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings, GLB externalUriCount 0.
 - Clean full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`.
 - Clean rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`.
 - Clean measurement evidence: `output/measurement/evidence-2026-06-29T16-21-48-137Z`; Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.80 seconds, CLS 0.
@@ -158,23 +156,30 @@ The release inventory gate enforces:
 
 ## 4. Modified Tracked Files
 
-These files are modified and expected in the source-control evidence update:
+These files are modified and expected in the word-heavy section polish candidate:
 
 ```text
+docs/codex/GOAL_COMPLETION_AUDIT.md
+docs/codex/PUBLISH_READINESS_AUDIT.md
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
+docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md
+docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md
+index.html
+styles.css
 ```
 
 ## 5. Untracked Candidate Files
 
-No untracked files are expected in the post-production closeout candidate.
+These untracked files are expected in the word-heavy section polish candidate:
 
 ```text
+docs/codex/WORD_HEAVY_SECTION_POLISH_AUDIT.md
 ```
 
 ## 6. Asset Size Watch
 
-No asset files are changed in this hero proof visual fix candidate.
+No asset files are changed in this word-heavy section polish candidate.
 
 Existing watched release assets remain governed by `npm run qa:release-inventory`, including:
 
@@ -208,8 +213,15 @@ After checks pass, use an explicit path list rather than `git add .`.
 
 ```bash
 git add -- \
+  docs/codex/GOAL_COMPLETION_AUDIT.md \
+  docs/codex/PUBLISH_READINESS_AUDIT.md \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
-  docs/codex/TRACKER.md
+  docs/codex/TRACKER.md \
+  docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md \
+  docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md \
+  docs/codex/WORD_HEAVY_SECTION_POLISH_AUDIT.md \
+  index.html \
+  styles.css
 ```
 
 ## 9. Required Checks Before Commit
@@ -242,4 +254,4 @@ QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true 
 
 ## 12. Rollback Path
 
-If the post-production closeout causes a regression before commit, restore the manifest-approved docs to the prior committed state, then rerun the local checks before another decision. If the current production publish needs rollback, restore Netlify production deploy `6a415b5db31442000737c37c` unless a newer approved rollback target is confirmed first.
+If this local word-heavy section polish is rejected before commit, restore the nine manifest-approved candidate files to the prior committed state, remove `docs/codex/WORD_HEAVY_SECTION_POLISH_AUDIT.md`, then rerun local checks before another decision. Production is unchanged unless Wayne separately approves a deploy; if a future production publish needs rollback, confirm the current Netlify rollback target immediately before restoring a previous deploy.
