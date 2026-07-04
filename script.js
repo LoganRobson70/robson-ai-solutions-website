@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   setupQaMode();
+  setupHeroMeshCanvas();
 
   const analytics = createAnalytics();
 
@@ -219,7 +220,9 @@ function setupConsentBanner(analytics) {
 
   const consentState = analytics.getConsentState();
 
-  if (!consentState) {
+  if (!analytics.hasMeasurementId) {
+    closeBanner();
+  } else if (!consentState) {
     openBanner();
   } else {
     closeBanner();
@@ -738,9 +741,11 @@ function setupSectionReveal() {
     return;
   }
 
-  const revealTargets = document.querySelectorAll(
-    ".home-hero-stage, .home-section-intro, .home-focus-manifesto, .home-product-map, .workflow-finder-board, .home-method-grid, .home-belief-panel, .home-contact-panel, .assessment-lens-board"
-  );
+  const revealTargets = [
+    ...document.querySelectorAll(
+      ".home-hero-stage, .home-section-intro, .home-focus-manifesto, .home-product-map, .workflow-finder-board, .home-method-grid, .home-belief-panel, .home-contact-panel, .assessment-lens-board, [data-reveal], [data-reveal-stagger] > *"
+    )
+  ];
 
   if (!revealTargets.length) {
     return;
@@ -765,10 +770,375 @@ function setupSectionReveal() {
     }
   );
 
-  revealTargets.forEach((target, index) => {
+  [...new Set(revealTargets)].forEach((target, index) => {
     target.style.setProperty("--reveal-index", String(index % 4));
     observer.observe(target);
   });
+}
+
+function setupHeroMeshCanvas() {
+  const canvases = [...document.querySelectorAll("[data-mesh-canvas]")];
+
+  if (!canvases.length) {
+    return;
+  }
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const staticMode = document.body.classList.contains("qa-static");
+  const shouldAnimate = !reducedMotion && !staticMode;
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  let pointer = {
+    active: false,
+    x: window.innerWidth * 0.5,
+    y: window.innerHeight * 0.5
+  };
+
+  const drawPalette = (tone) => {
+    if (tone === "light") {
+      return {
+        line: "47, 91, 211",
+        dot: "47, 91, 211",
+        softDot: "6, 19, 61",
+        accent: "245, 166, 35",
+        baseLineAlpha: 0.16,
+        gridAlpha: 0.09
+      };
+    }
+
+    return {
+      line: "99, 167, 242",
+      dot: "156, 194, 245",
+      softDot: "255, 255, 255",
+      accent: "245, 166, 35",
+      baseLineAlpha: 0.22,
+      gridAlpha: 0.12
+    };
+  };
+
+  const meshInstances = canvases.map((canvas, canvasIndex) => {
+    const context = canvas.getContext("2d", { alpha: true });
+
+    if (!context) {
+      return null;
+    }
+
+    const density = clamp(Number.parseFloat(canvas.dataset.density || "1") || 1, 0.45, 2.2);
+    const mode = canvas.dataset.mode || "mesh";
+    const palette = drawPalette(canvas.dataset.tone || "dark");
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let points = [];
+    let frame = 0;
+    let animationFrame = 0;
+    let visible = true;
+
+    const createPoints = () => {
+      if (mode === "blueprint" || mode === "topography") {
+        points = [];
+        return;
+      }
+
+      const count = Math.max(16, Math.min(118, Math.round((Math.sqrt(width * height) / 34) * density)));
+      points = Array.from({ length: count }, (_, index) => {
+        const phase = (index * 0.73 + canvasIndex * 1.9) % (Math.PI * 2);
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.16,
+          vy: (Math.random() - 0.5) * 0.16,
+          accent: index % 17 === 0,
+          phase
+        };
+      });
+    };
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      width = Math.max(1, Math.round(rect.width));
+      height = Math.max(1, Math.round(rect.height));
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      createPoints();
+      draw();
+    };
+
+    const drawConnection = (a, b, opacity) => {
+      context.strokeStyle = `rgba(${palette.line}, ${opacity})`;
+      context.lineWidth = 1;
+      context.beginPath();
+      context.moveTo(a.x, a.y);
+      context.lineTo(b.x, b.y);
+      context.stroke();
+    };
+
+    const drawBlueprint = () => {
+      const gridSize = Math.max(38, Math.round(64 / density));
+      const drift = shouldAnimate ? (frame * 0.18) % gridSize : 0;
+
+      context.save();
+      context.strokeStyle = `rgba(${palette.line}, ${palette.gridAlpha})`;
+      context.lineWidth = 1;
+
+      for (let x = -gridSize + drift; x <= width + gridSize; x += gridSize) {
+        context.beginPath();
+        context.moveTo(x, 0);
+        context.lineTo(x, height);
+        context.stroke();
+      }
+
+      for (let y = -gridSize + drift; y <= height + gridSize; y += gridSize) {
+        context.beginPath();
+        context.moveTo(0, y);
+        context.lineTo(width, y);
+        context.stroke();
+      }
+
+      context.globalAlpha = 0.44;
+      context.beginPath();
+      context.moveTo(width * 0.08, height * 0.68);
+      context.lineTo(width * 0.36, height * 0.32);
+      context.lineTo(width * 0.68, height * 0.42);
+      context.lineTo(width * 0.92, height * 0.18);
+      context.stroke();
+
+      context.globalAlpha = 1;
+      context.fillStyle = `rgba(${palette.accent}, 0.9)`;
+      [0.08, 0.36, 0.68, 0.92].forEach((xRatio, index) => {
+        const yRatio = [0.68, 0.32, 0.42, 0.18][index];
+        context.beginPath();
+        context.arc(width * xRatio, height * yRatio, index === 1 ? 4 : 2.6, 0, Math.PI * 2);
+        context.fill();
+      });
+
+      context.restore();
+    };
+
+    const drawTopography = () => {
+      context.save();
+      context.strokeStyle = `rgba(${palette.line}, ${palette.gridAlpha + 0.04})`;
+      context.lineWidth = 1;
+
+      for (let ring = 0; ring < 7; ring += 1) {
+        const radiusX = width * (0.12 + ring * 0.075);
+        const radiusY = height * (0.08 + ring * 0.055);
+        const offset = shouldAnimate ? Math.sin(frame * 0.012 + ring) * 8 : 0;
+
+        context.beginPath();
+        context.ellipse(width * 0.64 + offset, height * 0.46 - offset * 0.5, radiusX, radiusY, ring * 0.18, 0, Math.PI * 2);
+        context.stroke();
+      }
+
+      context.fillStyle = `rgba(${palette.accent}, 0.82)`;
+      context.beginPath();
+      context.arc(width * 0.62, height * 0.46, 3, 0, Math.PI * 2);
+      context.fill();
+      context.restore();
+    };
+
+    const drawPointerField = () => {
+      if (!pointer.active || !points.length) {
+        return;
+      }
+
+      const rect = canvas.getBoundingClientRect();
+      const localPointer = {
+        x: pointer.x - rect.left,
+        y: pointer.y - rect.top
+      };
+
+      if (
+        localPointer.x < -40 ||
+        localPointer.x > rect.width + 40 ||
+        localPointer.y < -40 ||
+        localPointer.y > rect.height + 40
+      ) {
+        return;
+      }
+
+      points.forEach((point) => {
+        const distance = Math.hypot(point.x - localPointer.x, point.y - localPointer.y);
+        if (distance < 210) {
+          drawConnection(point, localPointer, (1 - distance / 210) * 0.34);
+        }
+      });
+
+      context.fillStyle = `rgba(${palette.line}, 0.18)`;
+      context.beginPath();
+      context.arc(localPointer.x, localPointer.y, 18, 0, Math.PI * 2);
+      context.fill();
+    };
+
+    const draw = () => {
+      context.clearRect(0, 0, width, height);
+
+      if (mode === "blueprint") {
+        drawBlueprint();
+        return;
+      }
+
+      if (mode === "topography") {
+        drawTopography();
+        return;
+      }
+
+      for (let i = 0; i < points.length; i += 1) {
+        for (let j = i + 1; j < points.length; j += 1) {
+          const a = points[i];
+          const b = points[j];
+          const distance = Math.hypot(a.x - b.x, a.y - b.y);
+          const range = mode === "constellation" ? 126 : 156;
+
+          if (distance < range) {
+            const modeFactor = mode === "constellation" ? 0.12 : palette.baseLineAlpha;
+            drawConnection(a, b, (1 - distance / range) * modeFactor);
+          }
+        }
+      }
+
+      drawPointerField();
+
+      points.forEach((point) => {
+        if (point.accent) {
+          context.fillStyle = `rgba(${palette.accent}, 0.18)`;
+          context.beginPath();
+          context.arc(point.x, point.y, 9, 0, Math.PI * 2);
+          context.fill();
+          context.fillStyle = `rgba(${palette.accent}, 0.94)`;
+          context.beginPath();
+          context.arc(point.x, point.y, 2.7, 0, Math.PI * 2);
+          context.fill();
+          return;
+        }
+
+        const opacity = shouldAnimate ? 0.34 + 0.22 * Math.sin(frame * 0.02 + point.phase) : 0.46;
+        context.fillStyle = `rgba(${point.accent ? palette.accent : palette.dot}, ${opacity})`;
+        context.beginPath();
+        context.arc(point.x, point.y, mode === "constellation" ? 1.85 : 1.45, 0, Math.PI * 2);
+        context.fill();
+      });
+    };
+
+    const start = () => {
+      if (!shouldAnimate || !visible || animationFrame) {
+        return;
+      }
+
+      animationFrame = window.requestAnimationFrame(tick);
+    };
+
+    const stop = () => {
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      }
+    };
+
+    const tick = () => {
+      if (!visible) {
+        animationFrame = 0;
+        return;
+      }
+
+      frame += 1;
+      points.forEach((point) => {
+        point.x += point.vx;
+        point.y += point.vy;
+
+        if (point.x < 0 || point.x > width) {
+          point.vx *= -1;
+        }
+        if (point.y < 0 || point.y > height) {
+          point.vy *= -1;
+        }
+      });
+      draw();
+      animationFrame = window.requestAnimationFrame(tick);
+    };
+
+    resize();
+
+    start();
+
+    return {
+      resize,
+      redraw: draw,
+      setVisible(nextVisible) {
+        visible = nextVisible;
+        if (visible) {
+          draw();
+          start();
+        } else {
+          stop();
+        }
+      },
+      stop() {
+        stop();
+      }
+    };
+  }).filter(Boolean);
+
+  if (!meshInstances.length) {
+    return;
+  }
+
+  if (shouldAnimate && "IntersectionObserver" in window) {
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const instanceIndex = canvases.indexOf(entry.target);
+          const instance = meshInstances[instanceIndex];
+
+          if (instance) {
+            instance.setVisible(entry.isIntersecting);
+          }
+        });
+      },
+      {
+        rootMargin: "160px 0px"
+      }
+    );
+
+    canvases.forEach((canvas) => visibilityObserver.observe(canvas));
+  }
+
+  if (shouldAnimate) {
+    let pointerFrame = 0;
+    const redrawForPointer = () => {
+      pointerFrame = 0;
+      meshInstances.forEach((instance) => instance.redraw());
+    };
+
+    window.addEventListener(
+      "pointermove",
+      (event) => {
+        pointer = {
+          active: true,
+          x: event.clientX,
+          y: event.clientY
+        };
+
+        if (!pointerFrame) {
+          pointerFrame = window.requestAnimationFrame(redrawForPointer);
+        }
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      "pointerleave",
+      () => {
+        pointer.active = false;
+        meshInstances.forEach((instance) => instance.redraw());
+      },
+      { passive: true }
+    );
+  }
+
+  const resizeAll = () => meshInstances.forEach((instance) => instance.resize());
+  window.addEventListener("resize", resizeAll, { passive: true });
 }
 
 function setupAmbientMotion() {
@@ -785,7 +1155,7 @@ function setupAmbientMotion() {
 
   const root = document.documentElement;
   const depthSurfaces = document.querySelectorAll(
-    ".home-signal-board, .workflow-finder-board, .operations-queue-card, .operations-decision-rail article, .buildscan-window, .home-belief-panel, .home-contact-panel, .analyst-summary-card, .home-problem-card, .home-workflow-step, .home-contact-routes article, .analyst-core-card, .analyst-flow-card, .analyst-fit-card, .page-card, .fit-card"
+    ".home-signal-board, .workflow-finder-board, .operations-queue-card, .operations-decision-rail article, .buildscan-window, .home-belief-panel, .home-contact-panel, .analyst-summary-card, .home-problem-card, .home-workflow-step, .home-contact-routes article, .analyst-core-card, .analyst-flow-card, .analyst-fit-card, .page-card, .fit-card, .zip-product-card, .zip-price-card, .zip-app-panel, .zip-buildscan-window, .zip-trust-grid article, .zip-boundary-strip article, .zip-contact-routes article"
   );
 
   document.body.classList.add("motion-pointer-ready");

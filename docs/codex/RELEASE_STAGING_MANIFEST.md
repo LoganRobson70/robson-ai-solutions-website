@@ -1,49 +1,48 @@
-# Release Staging Manifest - Website Quality Restart
+# Release Staging Manifest - Zip-Faithful Redesign Correction
 
-Last updated: 2026-07-03 20:13 BST
+Last updated: 2026-07-04 16:57 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: restart candidate; rejected motion preview must not be published; no commit, branch push, preview deploy, or production deploy approved for the restart
+Status: local-only correction and zip-animation parity polish passed the full local release gate after Wayne rejected the live zip-adapted visual match; no commit, branch push, GitHub PR, Netlify preview deploy, production deploy, DNS, analytics/forms, customer data handling, or external messages approved
 
 ## 1. Purpose
 
-This manifest defines the intended file scope for the restart from the original website goal:
+This manifest defines the intended file scope for the zip-faithful redesign correction:
 
-`website-quality-restart-from-original-goal`
+`zip-faithful-redesign-correction`
 
-The restart responds to Wayne's instruction: `restart from original goal, do not publish current motion preview`.
+The correction responds to Wayne's instruction that the published site is not close enough to the supplied redesign zip in layout, text, fonts and content.
 
-This restart:
+This correction:
 
-- treats the `proof-motion-polish` preview as rejected for publication
-- removes the rejected motion-preview implementation from the working tree
-- adapts Wayne's supplied redesign zip into the existing static site rather than shipping prototype runtime code
-- adds the BuildScan model-view and opt-in GLB viewer elements into the zip-style design
-- preserves the live production baseline while the next design pass is audited and planned
-- keeps all publishing, pushing, and production work approval-gated
+- uses `/Users/wayne/Downloads/Robsonai website redesign.zip` as the primary visual/content reference
+- replaces the previous homepage shell with a zip-faithful static implementation: white header, Home/Product/Pricing/About IA, dark mesh hero, large Manrope proposition, and zip-style product sections
+- keeps BuildScan as the added product element with static model image and opt-in interactive GLB viewer
+- restores relevant zip prototype motion in production-safe form: animated mesh canvases, pointer-responsive hero motion, staged movement-only reveals, hover/depth feedback and reduced-motion fallbacks
+- keeps privacy/analytics, email-first contact, professional-review boundaries, and cautious maturity language
+- keeps commit, branch push, Netlify preview deploy, production deploy, DNS, analytics/forms, customer data handling, and external messages approval-gated
 
-It does not add unsupported pricing/platform/provider claims, change public model assets, enable analytics/forms, push, or deploy anything.
+It does not add launched pricing, payment checkout, live customer-system integrations, analytics/forms, branch pushes, or production deploys.
 
 Do not run `git add .` for this candidate.
 
 ## 2. Approval Boundary
 
-Wayne instructed Codex to restart from the original goal and not publish the current motion preview. This supersedes the previous preview recommendation.
+Wayne instructed Codex to use the supplied zip design more faithfully and add the BuildScan element. This supersedes the earlier local/published zip-adapted interpretation.
 
-Approved now:
+Approved for this correction:
 
 - safe local code/docs edits
 - local browser/screenshot evidence
 - local QA and release gate validation
-- removal of the rejected motion-preview implementation from the working tree
 
 Wayne must approve before Codex performs any of these actions:
 
-- commit
+- local commit
+- Netlify preview deploy
+- production rollback or production deploy
 - branch push
 - GitHub PR
-- Netlify preview deploy
-- production deploy
 - DNS/domain changes
 - analytics/forms/customer data handling
 - external messages
@@ -52,26 +51,27 @@ Wayne must approve before Codex performs any of these actions:
 
 Latest intended dirty scope:
 
-- 13 modified tracked files.
-- 2 untracked candidate files.
+- Live Netlify production deploy still serving until Wayne approves replacement or rollback: `6a48c6e1a19608e3698fa160`.
+- Local review URL while the Python server is running: `http://127.0.0.1:8134/`.
+- 15 modified tracked files.
+- 0 untracked candidate files.
 - Total dirty candidate files: 15.
-- This manifest itself is intentionally included in the modified tracked file count.
 
 Current validation evidence:
 
-- Redesign adaptation local checks passed on 2026-07-03 after Wayne supplied `/Users/wayne/Downloads/Robsonai website redesign.zip`.
-- `node --check script.js`, `node --check scripts/product-design-acceptance-smoke.mjs`, `node --check scripts/responsive-route-smoke.mjs`, `node --check scripts/rendered-release-smoke.mjs`, `node --check scripts/measurement-evidence.mjs`, and `git diff --check` passed.
-- Full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-07-03T19-05-24-098Z/release-local-gate.json`.
-- Rendered screenshot evidence passed: `output/playwright/rendered-release-smoke-2026-07-03T19-06-47-075Z`.
-- Measurement evidence passed: `output/measurement/evidence-2026-07-03T19-07-04-456Z`; Playwright-injected axe reported zero violations across six routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.73 seconds, CLS 0.
-- BuildScan viewer evidence passed: `output/buildscan-viewer/smoke-2026-07-03T19-05-33-122Z`; direct and embedded GLB paths rendered canvas and keyboard controls.
-- Product/design acceptance passed: `output/product-design-acceptance/smoke-2026-07-03T19-05-51-888Z/product-design-acceptance-smoke.json`.
-- Responsive and visual-polish evidence passed: `output/responsive-route/smoke-2026-07-03T19-05-57-649Z/responsive-route-smoke.json` and `output/visual-polish/smoke-2026-07-03T19-06-18-629Z/visual-polish-smoke.json`.
-- Release inventory passed: `output/release-inventory/inventory-2026-07-03T19-05-30-188Z/release-candidate-inventory.json`; dirtyCount 15, zero secret findings, GLB externalUriCount 0.
-- Staging manifest smoke passed: `output/release-staging-manifest/smoke-2026-07-03T19-05-30-381Z/release-staging-manifest-smoke.json`; 13 modified tracked files, 2 untracked candidate files, 15 explicit staging paths.
-- `scripts/measurement-evidence.mjs` now uses Playwright-injected `axe-core` for accessibility evidence because the previous Selenium/ChromeDriver axe CLI path reproducibly timed out after 300 seconds on local ChromeDriver 150.
-- Rejected preview record: `https://proof-motion-polish--robson-ai-website.netlify.app`, deploy `6a41739b29f5ccb3751611f1`; this preview must not be published.
-- Restart audit added at `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md`.
+- `git diff --check` passed.
+- Direct motion check passed on `http://127.0.0.1:8134/`: the hero canvas frame changed after pointer movement and reveal targets were detected.
+- Final full local release gate passed: `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json`; 37 steps.
+- Release inventory passed inside the full gate: `output/release-inventory/inventory-2026-07-04T15-53-45-020Z/release-candidate-inventory.json`; dirtyCount 15, zero secret findings, GLB externalUriCount 0.
+- Staging manifest smoke passed inside the full gate: `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json`; 15 modified tracked files, 0 untracked candidate files, 15 staging paths.
+- Release security and headers passed: `output/release-security/smoke-2026-07-04T15-53-44-751Z/release-security-smoke.json` and `output/release-headers/smoke-2026-07-04T15-53-44-890Z/release-header-smoke.json`.
+- BuildScan viewer smoke passed: `output/buildscan-viewer/smoke-2026-07-04T15-53-47-283Z`; direct and embedded viewer paths render and the embedded viewer reaches model-ready state.
+- Keyboard release smoke passed: `output/playwright/keyboard-release-smoke-2026-07-04T15-53-54-807Z`.
+- Semantic SEO, product/design, responsive and visual-polish smokes passed: `output/semantic-seo/smoke-2026-07-04T15-54-00-422Z/semantic-seo-smoke.json`, `output/product-design-acceptance/smoke-2026-07-04T15-54-08-382Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-04T15-54-14-587Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-04T15-54-36-622Z/visual-polish-smoke.json`.
+- Rendered screenshot evidence passed: `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`.
+- Measurement smoke and evidence passed: `output/measurement/smoke-2026-07-04T15-55-18-743Z` and `output/measurement/evidence-2026-07-04T15-55-27-128Z`; axe violations 0 across six routes; Lighthouse performance 99, accessibility 100, best practices 100, SEO 100, LCP about 1.24 seconds, CLS 0.
+- Browser coverage advisory remains warning-only: Chromium passed; Firefox/WebKit Playwright binaries are unavailable locally. Artifact: `output/browser-coverage/smoke-2026-07-04T15-54-58-774Z/browser-coverage-smoke.json`.
+- Dependency audit advisory remains warning-only: production vulnerabilities 0; dev/release tooling still has 17 moderate advisories. Artifact: `output/dependency-audit/summary-2026-07-04T15-53-45-464Z/dependency-audit-summary.json`.
 
 The release inventory gate enforces:
 
@@ -84,31 +84,31 @@ The release inventory gate enforces:
 
 ## 4. Modified Tracked Files
 
-These files are modified and expected in the restart cleanup/audit candidate:
+These files are modified and expected in the correction candidate:
 
 ```text
-docs/codex/RELEASE_STAGING_MANIFEST.md
-docs/codex/TRACKER.md
 docs/codex/GOAL_COMPLETION_AUDIT.md
 docs/codex/PUBLISH_READINESS_AUDIT.md
+docs/codex/RELEASE_STAGING_MANIFEST.md
+docs/codex/TRACKER.md
 docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md
+docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md
 index.html
-scripts/measurement-evidence.mjs
+scripts/keyboard-release-smoke.mjs
+scripts/measurement-smoke.mjs
 scripts/product-design-acceptance-smoke.mjs
+scripts/release-security-smoke.mjs
 scripts/rendered-release-smoke.mjs
 scripts/responsive-route-smoke.mjs
 script.js
 styles.css
-who-its-for.html
 ```
 
 ## 5. Untracked Candidate Files
 
-These untracked files are expected in the candidate:
+No untracked files are expected in this correction candidate.
 
 ```text
-docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md
-docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md
 ```
 
 ## 6. Asset Size Watch
@@ -143,7 +143,7 @@ secrets, credentials, keys, certificates, profiles, or generated screenshots
 
 ## 8. Staging Command After Approval Only
 
-After Wayne approves a restart cleanup commit, use an explicit path list rather than `git add .`.
+After Wayne approves a correction commit, use an explicit path list rather than `git add .`.
 
 ```bash
 git add -- \
@@ -152,16 +152,16 @@ git add -- \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
   docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md \
-  docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md \
   docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md \
   index.html \
-  scripts/measurement-evidence.mjs \
+  scripts/keyboard-release-smoke.mjs \
+  scripts/measurement-smoke.mjs \
   scripts/product-design-acceptance-smoke.mjs \
+  scripts/release-security-smoke.mjs \
   scripts/rendered-release-smoke.mjs \
   scripts/responsive-route-smoke.mjs \
   script.js \
-  styles.css \
-  who-its-for.html
+  styles.css
 ```
 
 ## 9. Required Checks Before Commit
@@ -194,4 +194,4 @@ QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true 
 
 ## 12. Rollback Path
 
-If the restart cleanup causes a regression before commit, restore the manifest-approved files to the prior committed state, then rerun the local checks before another decision. If any future candidate is published and needs rollback, restore the current live Netlify production deploy `6a415b5db31442000737c37c`.
+If this correction causes a regression before commit, restore the manifest-approved files to the prior committed state, then rerun the local checks before another decision. If Wayne wants to undo the currently live production deploy before a replacement is ready, the prior known-good rollback candidate is Netlify production deploy `6a415b5db31442000737c37c`.

@@ -1,53 +1,50 @@
 # Website Restart Preview Handoff
 
-Last updated: 2026-07-03 20:13 BST
+Last updated: 2026-07-04 16:57 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: local restart candidate ready for Wayne review and explicit preview-deploy approval
+Status: local-gated handoff for zip-faithful correction with animation parity polish; no preview or production deploy approved
 
 ## 1. Purpose
 
-This handoff is the current approval packet for the restarted Robson AI Solutions website candidate.
+This handoff is the current approval packet for the zip-faithful Robson AI Solutions website correction.
 
 It is separate from `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`, which records the earlier production release. The earlier release evidence does not approve this candidate.
 
 Current decision needed:
 
-1. Approve explicit-path commit plus Netlify preview deploy for `website-quality-restart-from-original-goal`.
-2. Request another local visual pass.
-3. Hold with production unchanged.
+1. Approve explicit-path staging, local commit, Netlify preview deploy and deployed preview-gate validation for `zip-faithful-redesign-correction`.
+2. Request local design/content tweaks before any commit or preview.
+3. Approve a production rollback to the prior known-good deploy while the correction is reviewed.
 
 Recommended option: `1`.
 
 ## 2. Current Review URL
 
-Local review URL:
+Local review URL while the Python server is running:
 
-- `http://127.0.0.1:8133/`
+- `http://127.0.0.1:8134/`
 
 Notes:
 
-- This is a local server on Wayne's Mac.
-- The Browser MCP container cannot reach this loopback URL, but local browser access has returned HTTP 200.
-- No Netlify preview exists yet for this restart candidate.
+- The Browser plugin backend cannot reach this local loopback URL and returned `ERR_CONNECTION_REFUSED`; use Wayne's in-app/local browser or the Playwright screenshot evidence.
+- Production remains live at `https://robsonai.co.uk` on deploy `6a48c6e1a19608e3698fa160` until Wayne approves replacement or rollback.
+- No commit, Netlify preview deploy, production deploy, branch push or GitHub PR has been approved for this correction.
 
 ## 3. What This Candidate Changes
 
-The candidate restarts from the original "best releasable website" goal after Wayne rejected the motion-preview direction.
+The correction responds to Wayne's rejection that the published site was not faithful enough to the supplied redesign zip in layout, text, fonts and content.
 
 Implemented locally:
 
-- Adapts Wayne's supplied redesign zip into the existing static site rather than shipping the prototype runtime code.
-- Replaces the rejected floating hero icon treatment with a stronger zip-inspired hero and product/proof surface.
+- Replaces the previous homepage shell with a much closer zip-style version: white header, Home/Product/Pricing/About IA, dark mesh hero, large `Turning data into intelligence.` proposition, and zip-style product sections.
+- Restores the relevant supplied-zip motion feel through production-safe local code: animated mesh canvases, pointer-responsive hero motion, movement-only section reveals, hover/depth feedback, reduced-motion handling and `qa-static` fallback.
 - Keeps the BuildScan model-view layer and opt-in interactive GLB viewer as part of the product evidence.
-- Reduces repeated pale-card treatment and strengthens navy proof sections.
-- Consolidates the homepage around Home, Product, BuildScan, Method, About and Contact.
-- Fixes the Focus/product proof section so it no longer mixes a broken white-card/dark-section treatment.
-- Keeps Building Analyst, BuildScan and property operations positioned as separate but connected workstreams.
+- Keeps Building Analyst, Robson AI Software and BuildScan positioned as separate product directions under one brand.
 - Keeps cautious Apple-native/product maturity language.
 - Keeps email-first contact and no website form/customer-data store.
 - Keeps the existing BuildScan opt-in model-view behaviour and does not add new model assets.
-- Removes the rejected motion-preview layer from the active working tree.
+- Updates release QA scripts to match the new IA, no-GA4 first-load privacy behaviour, and BuildScan opt-in interaction.
 
 Not included:
 
@@ -69,19 +66,20 @@ Expected tracked files:
 - `docs/codex/RELEASE_STAGING_MANIFEST.md`
 - `docs/codex/TRACKER.md`
 - `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`
+- `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`
 - `index.html`
-- `scripts/measurement-evidence.mjs`
+- `scripts/keyboard-release-smoke.mjs`
+- `scripts/measurement-smoke.mjs`
 - `scripts/product-design-acceptance-smoke.mjs`
+- `scripts/release-security-smoke.mjs`
 - `scripts/rendered-release-smoke.mjs`
 - `scripts/responsive-route-smoke.mjs`
 - `script.js`
 - `styles.css`
-- `who-its-for.html`
 
 Expected untracked candidate files:
 
-- `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md`
-- `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`
+- None.
 
 Do not use `git add .`.
 
@@ -89,47 +87,54 @@ Do not use `git add .`.
 
 Latest full local release gate:
 
-- `output/release-local-gate/gate-2026-07-03T19-05-24-098Z/release-local-gate.json`
+- `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json`
 - Result: pass, 37 steps.
 
 Rendered screenshot evidence:
 
-- `output/playwright/rendered-release-smoke-2026-07-03T19-06-47-075Z`
+- `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`
 
 Measurement evidence:
 
-- `output/measurement/evidence-2026-07-03T19-07-04-456Z`
-- Lighthouse performance: 100.
+- `output/measurement/evidence-2026-07-04T15-55-27-128Z`
+- Lighthouse performance: 99.
 - Accessibility: 100.
 - Best practices: 100.
 - SEO: 100.
-- LCP: about 1.73 seconds.
+- LCP: about 1.24 seconds.
 - Playwright-injected axe: zero violations across six routes.
 - CLS: 0.
 
 Latest candidate scope evidence:
 
-- `output/release-staging-manifest/smoke-2026-07-03T19-05-30-381Z/release-staging-manifest-smoke.json`
-- `output/release-inventory/inventory-2026-07-03T19-05-30-188Z/release-candidate-inventory.json`
+- `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json`
+- `output/release-inventory/inventory-2026-07-04T15-53-45-020Z/release-candidate-inventory.json`
 - Dirty count: 15.
 - Secret findings: 0.
 - GLB external URI references: 0.
 
-The manifest and inventory match the current 15-file zip-adapted candidate.
+The manifest and inventory match the current 15-file zip-faithful correction.
+
+Latest deployed preview evidence:
+
+- None for this correction.
+
+Latest production evidence:
+
+- None for this correction. Current production deploy `6a48c6e1a19608e3698fa160` is the rejected visual match and remains live only until Wayne approves replacement or rollback.
 
 ## 6. Approval Meaning
 
-If Wayne approves option `1`, Codex is approved to:
+Future option `1` approval means:
 
-1. Stage only the explicit file list in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+1. Stage only the explicit 15-file list in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
 2. Run staged diff hygiene checks.
-3. Run `npm run qa:release:local`.
-4. Create a local commit for the restart candidate.
-5. Create a Netlify preview deploy.
-6. Run `QA_BASE_URL=<preview-url> npm run qa:release:preview`.
-7. Return the preview URL, deployed evidence, risks and next decision.
+3. Create a local commit.
+4. Create a Netlify preview deploy.
+5. Run `QA_BASE_URL=<preview-url> npm run qa:release:preview`.
+6. Report the preview URL, evidence, risks and next production decision.
 
-This approval would not approve:
+This future approval would not approve:
 
 - Production deploy.
 - Branch push unless it is required by the selected preview mechanism and separately stated.
@@ -139,36 +144,24 @@ This approval would not approve:
 - External messages.
 - Any destructive git action.
 
-## 7. Preview Gate Requirements
+## 7. Production Gate Requirements
 
-After a Netlify preview exists, run:
+The production gate has not been run for this correction. If Wayne later approves production deployment, run:
 
 ```bash
-QA_BASE_URL="https://<preview-url>" npm run qa:release:preview
+QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
 ```
 
-The preview is not ready for production discussion until that gate passes.
-
-Expected preview evidence:
-
-- release inventory
-- dependency advisory
-- release security/header checks
-- deployed BuildScan viewer smoke
-- semantic SEO smoke
-- product/design acceptance smoke
-- responsive route smoke
-- visual polish smoke
-- rendered screenshot smoke
-- measurement smoke
+The production deploy is not complete until this gate passes.
 
 ## 8. Risks And Residuals
 
-- The branch is ahead by the rejected motion-preview/evidence commits. Do not publish the rejected `proof-motion-polish` preview.
+- The branch is ahead by previous release/evidence commits. Do not publish the rejected `proof-motion-polish` preview.
 - Firefox/WebKit Playwright binaries remain unavailable locally; Chromium passes and this is warning-only in the current gates.
 - Dev/release tooling audit still reports 17 moderate advisories; production footprint remains zero vulnerabilities.
 - Full Codex Security workspace scan is not complete.
-- Production currently remains unchanged at the last verified live baseline.
+- Production currently remains on rejected deploy `6a48c6e1a19608e3698fa160` until Wayne approves replacement or rollback.
+- No deployed preview exists for this correction yet, so deployed-preview behaviour remains unverified until Wayne approves option `1`.
 
 ## 9. Rollback Path
 
@@ -188,6 +181,6 @@ After any future production deploy:
 
 ## 10. Recommended Decision
 
-1. Approve explicit-path commit plus Netlify preview deploy for `website-quality-restart-from-original-goal`.
-2. Request another local visual pass first.
-3. Hold here with production unchanged.
+1. Approve explicit-path staging, local commit, Netlify preview deploy and deployed preview-gate validation for `zip-faithful-redesign-correction`.
+2. Request local design/content tweaks before any commit or preview.
+3. Approve a production rollback to the prior known-good deploy while the correction is reviewed.

@@ -166,14 +166,15 @@ function assertNoBlockingDiagnostics(routeResult) {
 
 function assertFirstViewport(home) {
   assert(includesAll(home.viewportText, [
-    "Robson AI Solutions",
+    "Robson AI",
     "Turning data into intelligence",
-    "surveying-led software",
-    "building professionals",
+    "surveying-led AI software",
+    "people who run sites",
     "structured, professional intelligence",
-    "Discuss a Workflow",
-    "See What We Do"
-  ]), `Homepage first viewport should explain brand, audience, workflow problem and next actions. Actual viewport text: ${home.viewportText}`);
+    "See What We Do",
+    "Why Robson AI",
+    "One brand. Three product lines"
+  ]), `Homepage first viewport should match the supplied redesign direction and explain the proposition, audience and next actions. Actual viewport text: ${home.viewportText}`);
 }
 
 function assertProofStatus(home, buildingAnalyst) {
@@ -181,13 +182,12 @@ function assertProofStatus(home, buildingAnalyst) {
     "Building Analyst",
     "BuildScan",
     "Property operations",
-    "Evidence, assessment context and professional review kept together",
+    "evidence, assessment context and professional review together",
     "BuildScan adds the model-view layer",
-    "Workflow proof live",
-    "Interactive model live",
+    "Workflow proof only",
     "Opt-in 3D model preview with static fallback",
-    "Workflow proof only"
-  ]), "Homepage should label active workstream proof and the BuildScan interactive candidate state.");
+    "Pricing will stay simple"
+  ]), "Homepage should match the zip-style IA while labelling active workstream proof, pricing maturity and the BuildScan interactive candidate state.");
 
   assert(includesAll(buildingAnalyst.text, [
     "early professional product direction",

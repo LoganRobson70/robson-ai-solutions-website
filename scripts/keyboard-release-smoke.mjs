@@ -153,22 +153,20 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
     await activateFocusedElement(page);
     await page.waitForFunction(() => window.location.hash === "#main-content");
 
-    await page.locator("[data-consent-decline]").focus();
-    const declineFocus = await getActiveElementState(page);
-    assert(/Decline/i.test(declineFocus?.text || ""), `Consent Decline button should be keyboard focusable: ${JSON.stringify(declineFocus)}.`);
+    const bannerVisible = await page.locator("[data-consent-banner]").evaluate((banner) => !banner.hidden);
+    assert(!bannerVisible, "Consent banner should stay hidden on first load while GA4 measurement is unset.");
+
+    await page.locator('.zip-site-nav a[href="#product"]').focus();
+    const productNavFocus = await getActiveElementState(page);
+    assert(productNavFocus?.href === "#product" && /Product/i.test(productNavFocus?.text || ""), `Product nav link should be keyboard focusable: ${JSON.stringify(productNavFocus)}.`);
     await activateFocusedElement(page);
-    await page.waitForFunction(() => document.querySelector("[data-consent-banner]")?.hidden === true);
+    await page.waitForFunction(() => window.location.hash === "#product");
 
-    await page.locator("#workflow-tab-assessment").focus();
-    await page.keyboard.press("ArrowRight");
-    await page.waitForFunction(() => document.querySelector("#workflow-tab-visual")?.getAttribute("aria-selected") === "true");
-    const workflowVisual = await getActiveElementState(page);
-    assert(workflowVisual?.dataPanelTrigger === "visual", `ArrowRight should move to the visual workflow tab: ${JSON.stringify(workflowVisual)}.`);
-
-    await page.keyboard.press("End");
-    await page.waitForFunction(() => document.querySelector("#workflow-tab-operations")?.getAttribute("aria-selected") === "true");
-    const workflowOperations = await getActiveElementState(page);
-    assert(workflowOperations?.dataPanelTrigger === "operations", `End should move to the operations workflow tab: ${JSON.stringify(workflowOperations)}.`);
+    await page.locator('[data-analytics-id="hero-why-robson-ai"]').focus();
+    const aboutCtaFocus = await getActiveElementState(page);
+    assert(aboutCtaFocus?.href === "#about" && /Why Robson AI/i.test(aboutCtaFocus?.text || ""), `Hero About CTA should be keyboard focusable: ${JSON.stringify(aboutCtaFocus)}.`);
+    await activateFocusedElement(page);
+    await page.waitForFunction(() => window.location.hash === "#about");
 
     await page.locator("[data-copy-email]").first().focus();
     const copyFocus = await getActiveElementState(page);
@@ -208,13 +206,13 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
     });
 
     return {
+      aboutCtaFocus,
+      bannerVisible,
       buildScanState,
       copyFeedback,
-      declineFocus,
       diagnostics,
-      skipFocus,
-      workflowOperations,
-      workflowVisual
+      productNavFocus,
+      skipFocus
     };
   } finally {
     await context.close();

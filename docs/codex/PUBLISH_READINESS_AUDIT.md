@@ -1,49 +1,50 @@
 # Publish Readiness Audit - Robson AI Solutions Website
 
-Last updated: 2026-07-03 20:08 BST
+Last updated: 2026-07-04 16:57 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: current restart candidate is local-only and ready for Wayne preview-deploy approval; historical production release remains live
+Status: zip-faithful correction with animation parity polish is local-gated and awaiting Wayne review; current production remains the rejected visual match until Wayne approves replacement or rollback
 
 ## 1. Purpose
 
-This audit is the current publish-readiness checklist for the active website-quality restart and preserves the historical 2026-06-28 BuildScan/visual production release evidence.
+This audit is the current publish-readiness checklist for the zip-faithful correction and preserves historical production release evidence.
 
 Important current-state rule:
 
-- The old production release evidence below does not approve the new restart candidate.
-- The current local candidate must go through explicit-path commit, Netlify preview deploy, deployed preview gate, Wayne review, explicit production approval, production deploy, and production gate before it can be treated as live release work.
+- The old production release evidence below does not approve this zip-faithful correction.
+- This correction has completed local implementation and the full local release gate only.
+- Wayne review, explicit-path staging, local commit, Netlify preview deploy, preview gate, production approval/deploy, and production gate are still pending.
 - The rejected `proof-motion-polish` preview must not be published.
 
 ## 2. Current Readiness
 
-Current active restart candidate:
+Current active correction:
 
-- Local release-readiness: 100% for the current working tree candidate.
-- Preview release-readiness: 0% until Wayne approves commit plus Netlify preview deploy and `QA_BASE_URL=<preview> npm run qa:release:preview` passes.
-- Production publish-readiness: 0% until Wayne approves production publish after a passed deployed preview gate.
-- Overall publish readiness: about 90% because local zip-adapted implementation, screenshot review, release manifest alignment, BuildScan GLB viewer, accessibility/performance evidence and full local release gate are complete, but commit, preview deploy, deployed preview gate, Wayne preview approval and production approval/deploy are still missing.
-- Current recommendation: Wayne reviews `http://127.0.0.1:8133/` and approves explicit-path commit plus Netlify preview deploy.
-- Current local evidence: `output/release-local-gate/gate-2026-07-03T19-05-24-098Z/release-local-gate.json`, `output/playwright/rendered-release-smoke-2026-07-03T19-06-47-075Z`, and `output/measurement/evidence-2026-07-03T19-07-04-456Z`.
-- Current dirty scope: 13 modified tracked files and 2 untracked candidate files, as enforced by `docs/codex/RELEASE_STAGING_MANIFEST.md`.
-- Current preview-deploy approval handoff: `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
+- Local release-readiness: 100%.
+- Preview release-readiness: 0% for this correction; no preview deploy has been approved or created.
+- Production publish-readiness: 0% for this correction; no production deploy has been approved.
+- Overall publish readiness to production: 84%.
+- Current recommendation: approve explicit-path staging, a local commit, a Netlify preview deploy, and deployed preview-gate validation for the 15-file `zip-faithful-redesign-correction`.
+- Current local review URL: `http://127.0.0.1:8134/` while the Python server is running.
+- Current local evidence: `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json`, `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`, and `output/measurement/evidence-2026-07-04T15-55-27-128Z`.
+- Current local candidate scope: 15 modified tracked files, 0 untracked candidate files; `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json`.
+- Current release inventory: `output/release-inventory/inventory-2026-07-04T15-53-45-020Z/release-candidate-inventory.json`; dirtyCount 15, secret findings 0, GLB externalUriCount 0.
+- Current commit: not created for this correction.
+- Current preview URL: not created for this correction.
+- Current production deploy remains `6a48c6e1a19608e3698fa160` until Wayne approves replacement or rollback.
 
 Current live production state:
 
 - Public URL: `https://robsonai.co.uk`.
-- Current verified GitHub/main production deploy remains `6a415b5db31442000737c37c` from commit `39c5bf5`.
-- Production has not received the restart candidate.
-- No production deploy, Netlify preview deploy, commit, branch push, GitHub PR, DNS change, analytics/form change, external message, or customer data handling is approved by this audit.
+- Current verified CLI/archive production deploy is `6a48c6e1a19608e3698fa160` from commit `1fdd0c8`.
+- Wayne has rejected the visual match of that production deploy; it remains live only because no replacement/rollback has been approved.
+- No branch push, GitHub PR, DNS change, analytics/form change, external message, or customer data handling is approved by this audit.
 
-The remaining work before the restart candidate can be published:
+The zip-faithful correction has not been published. Remaining work before publish:
 
-- Wayne reviews the local candidate and approves explicit-path commit plus Netlify preview deploy.
-- Codex stages only the manifest-approved file list.
-- Codex creates a local commit.
-- Codex creates a Netlify preview deploy.
-- Codex runs the deployed preview gate and returns the preview URL, evidence, risks, and rollback path.
-- Wayne gives separate explicit production approval.
-- Codex performs production deploy and production release verification.
+- Wayne reviews the local candidate.
+- Wayne approves explicit-path staging, local commit, Netlify preview deploy and preview-gate validation.
+- If preview passes and Wayne approves, deploy production and run the production release gate.
 
 The remaining work that is not a preview blocker:
 
@@ -55,56 +56,57 @@ The remaining work that is not a preview blocker:
 
 | Gate | Status | Evidence | Required before production |
 | --- | --- | --- | --- |
-| Product positioning | Passed locally for current restart candidate | `qa:product-design`, rendered screenshots, `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md` | Preview gate and Wayne review |
-| Visual/design quality | Passed locally after zip adaptation and Focus-section refinement | rendered smoke, responsive smoke, product/design smoke, visual-polish smoke | Preview screenshot review and Wayne review |
-| Accessibility | Passed locally | keyboard smoke, BuildScan viewer smoke, Playwright-injected axe/Lighthouse evidence | Preview gate; strict Firefox/WebKit optional |
-| Performance | Passed locally | Lighthouse performance 100, LCP about 1.73s, CLS 0 | Preview measurement smoke, then production measurement gate |
+| Product positioning | Passed locally for zip-faithful correction | `qa:product-design`, rendered screenshots | Wayne review, preview gate |
+| Visual/design quality | Passed locally after replacing homepage with zip-faithful layout, BuildScan element and zip-style motion polish | rendered smoke, responsive smoke, product/design smoke, visual-polish smoke | Wayne review, preview screenshot review |
+| Accessibility | Passed locally | keyboard smoke, BuildScan viewer smoke, axe/Lighthouse evidence | Preview gate; strict Firefox/WebKit optional |
+| Performance | Passed locally | Lighthouse performance 99, LCP about 1.24s, CLS 0 | Preview measurement smoke, then production measurement gate |
 | SEO/semantics | Passed locally | semantic/SEO smoke in full local gate | Preview gate |
 | Cross-browser coverage | Partial local warning | Chromium passes; Firefox/WebKit Playwright binaries unavailable locally | Optional strict browser-parity gate if Wayne wants it |
 | Security/privacy source posture | Passed locally | release-security smoke, release-header config smoke, no form/customer data path | Preview deployed headers/source-deny checks |
 | Dependency risk | Residual warning | production audit clean; dev/release tooling audit has 17 moderate, 0 high, 0 critical | Accept residual tooling risk or defer for upstream/tooling changes |
 | BuildScan GLB public data | No new model exposure in restart candidate | Existing public proof asset unchanged | Separate approval needed for any new/replaced public model |
-| Staged file scope | Passed locally for 15-file zip-adapted restart candidate | `output/release-staging-manifest/smoke-2026-07-03T19-05-30-381Z/release-staging-manifest-smoke.json` | Use explicit-path staging after Wayne approval only |
-| Netlify deploy-preview | Not approved yet | No preview URL for restart candidate | Wayne approval required |
-| Deployed preview QA | Not run for restart candidate | Missing by design until preview exists | Required before any production decision |
+| Staged file scope | Passed locally for 15-file zip-faithful correction | `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json` | Use explicit-path staging after Wayne approval only |
+| Netlify deploy-preview | Not yet created for this correction | Pending Wayne approval | Required before production |
+| Deployed preview QA | Not yet run for this correction | Pending preview URL | Required before production |
 | Production rollback | Known current production baseline | Current live deploy `6a415b5db31442000737c37c` | Confirm rollback target before production deploy |
-| Production deploy | Not approved | No restart production deploy | Wayne approval required after preview |
-| Production verification | Not run for restart candidate | Missing by design until production deploy exists | Required after production deploy |
+| Production deploy | Not approved for this correction | Current production remains `6a48c6e1a19608e3698fa160` | Requires explicit Wayne approval after preview |
+| Production verification | Not run for this correction | Pending production deploy | Required after production deploy |
 
-## 4. Current Restart Candidate Evidence
+## 4. Current Correction Evidence
 
-Latest current-candidate local gate:
+Latest local gate:
 
-- `output/release-local-gate/gate-2026-07-03T19-05-24-098Z/release-local-gate.json`
+- `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json`
 - Result: pass, 37 steps.
 
-Latest current-candidate measurement evidence:
+Latest measurement evidence:
 
-- `output/measurement/evidence-2026-07-03T19-07-04-456Z`
-- Lighthouse performance: 100.
+- `output/measurement/evidence-2026-07-04T15-55-27-128Z`
+- Lighthouse performance: 99.
 - Accessibility: 100.
 - Best practices: 100.
 - SEO: 100.
 - CLS: 0.
-- LCP: about 1.73 seconds.
+- LCP: about 1.24 seconds.
+- Axe violations: 0 across six routes.
 
-Latest current-candidate rendered smoke:
+Latest rendered smoke:
 
-- `output/playwright/rendered-release-smoke-2026-07-03T19-06-47-075Z`
+- `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`
 - Result: pass.
-- The homepage screenshot confirms the supplied redesign direction has been adapted into the static site and the Focus-section text block has been visually integrated.
+- The homepage screenshot confirms the supplied redesign zip direction has been implemented much more directly while retaining the BuildScan model-view element.
 
-Latest current-candidate staging-manifest drift check:
+Latest staging-manifest drift check:
 
-- `output/release-staging-manifest/smoke-2026-07-03T19-05-30-381Z/release-staging-manifest-smoke.json`
+- `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json`
 - Result: pass.
-- Modified tracked files: 13.
-- Untracked candidate files: 2.
+- Modified tracked files: 15.
+- Untracked candidate files: 0.
 - Explicit staging command paths: 15.
 
-Latest current-candidate release inventory:
+Latest release inventory:
 
-- `output/release-inventory/inventory-2026-07-03T19-05-30-188Z/release-candidate-inventory.json`
+- `output/release-inventory/inventory-2026-07-04T15-53-45-020Z/release-candidate-inventory.json`
 - Result: pass.
 - Dirty candidate files: 15.
 - Secret findings: 0.
@@ -112,8 +114,8 @@ Latest current-candidate release inventory:
 
 Current local implementation notes:
 
-- The latest full local release gate includes the anchor-navigation regression check, secondary-page brand consistency check, zip-adapted homepage copy/layout checks, and the Playwright-injected axe measurement path.
-- The current evidence represents the complete 15-file local candidate; no further validation refresh is pending before Wayne's local review decision.
+- The latest full local release gate includes the zip IA, zip-style motion parity, no-GA4 first-load privacy behaviour, BuildScan opt-in interaction, keyboard path, rendered screenshot, product/design, responsive, visual-polish, security/header and release inventory checks.
+- The current evidence represents the complete 15-file local correction; no further validation refresh is pending before Wayne's local review decision.
 
 ## 5. Historical Production Release Evidence
 

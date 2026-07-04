@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-03 20:13 BST
+Last updated: 2026-07-04 17:11 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/docs-evidence-preservation-no-production-deploy`
@@ -11,6 +11,9 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
+- Correct the live-site mismatch Wayne identified on 2026-07-04: the current published site is not faithful enough to the supplied redesign zip in layout, text, fonts, content and overall look.
+- Rebuild the homepage locally around the zip's white header, dark mesh hero, Home/Product/Pricing/About IA, large `Turning data into intelligence.` proposition and product-line structure, while adding the approved BuildScan/model-view element in that visual language.
+- Keep this correction local until Wayne approves a non-production preview or production deploy; no production deploy, rollback, branch push or PR is approved by this tracker update.
 - Restart from the original "best releasable website" goal after Wayne rejected the current website direction as ugly.
 - Treat the deployed `post-launch-proof-motion-polish` preview as rejected for publication.
 - Use Wayne's supplied redesign zip as the visual direction, while rejecting unsupported product claims and prototype runtime code.
@@ -33,10 +36,62 @@ Success means:
 
 ## 2. Active Tranche
 
+Tranche name: `zip-faithful-redesign-correction`
+Status: Wayne approved option `1`; explicit-path staging, local commit, Netlify preview deploy and deployed preview-gate validation in progress
+Started: 2026-07-04 09:55 BST
+
+Scope:
+
+- Use `/Users/wayne/Downloads/Robsonai website redesign.zip` as the primary visual and content reference, not merely as loose inspiration.
+- Replace the current homepage direction with a zip-faithful static implementation: white navigation, dark mesh/constellation hero, large sans proposition, `Home / Product / Pricing / About` navigation, email-first CTA, product-line structure and Robson AI wording.
+- Add the existing approved BuildScan static model shot and opt-in GLB viewer into the zip-style product flow.
+- Restore the supplied zip prototype's relevant motion feel in production-safe form: animated mesh/canvas backgrounds, staged section reveals, hover/depth feedback, reduced-motion fallbacks and local QA evidence.
+- Preserve safe production plumbing: privacy/analytics consent, email-first contact, local assets, static deployment path, BuildScan opt-in loading, release QA, and cautious professional-review language.
+
+Out of scope:
+
+- Production deploy, rollback, branch push, GitHub PR, DNS/domain changes, analytics/forms/customer-data capture, new pricing/commercial promises, Apple/platform implementation, external messages, destructive git actions, or committing/pushing without Wayne's later approval.
+
+Permission envelope:
+
+- Wayne explicitly rejected the current live visual match and asked for the website to look like the supplied zip file, with the BuildScan element added.
+- Safe local file edits, local QA, docs/tracker updates and local browser review are approved.
+- Wayne approved option `1` on 2026-07-04 17:11 BST for explicit-path staging, local commit, Netlify non-production preview deploy and deployed preview-gate validation.
+- Production deploy/rollback, branch push, GitHub PR, DNS/domain changes, analytics/forms/customer data, and external messages still require explicit later approval.
+
+Done criteria:
+
+- The local homepage visually follows the supplied zip much more closely than the current production site.
+- BuildScan/model-view element is integrated without distorting the GLB/model imagery.
+- Local QA passes for the touched release surface or any residual issues are clearly reported.
+- Tracker records changed files, validation evidence, risks, rollback path and the next recommended action.
+
+Validation evidence:
+
+- Local review URL while the Python server is running: `http://127.0.0.1:8134/`; `curl -I http://127.0.0.1:8134/` returned HTTP 200.
+- Zip animation parity implemented locally from the supplied redesign zip's relevant prototype behaviour: animated mesh canvas modes, pointer-responsive hero mesh, staged movement-only section reveals, hover/depth feedback, reduced-motion and `qa-static` fallbacks, and cache-busted script/style references.
+- Direct motion check passed on `http://127.0.0.1:8134/`: hero canvas frame changed after pointer movement; `motion-ready` was active; reveal targets were detected.
+- Final full local release gate passed after animation parity: `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json`; result pass, 37 steps.
+- Release inventory passed inside the final gate: `output/release-inventory/inventory-2026-07-04T15-53-45-020Z/release-candidate-inventory.json`; dirtyCount 15, secret findings 0, GLB externalUriCount 0.
+- Staging manifest smoke passed inside the final gate: `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json`; 15 modified tracked files, 0 untracked candidate files, 15 explicit staging paths.
+- Release security and headers passed inside the final gate: `output/release-security/smoke-2026-07-04T15-53-44-751Z/release-security-smoke.json` and `output/release-headers/smoke-2026-07-04T15-53-44-890Z/release-header-smoke.json`.
+- BuildScan viewer passed direct and embedded checks inside the final gate: `output/buildscan-viewer/smoke-2026-07-04T15-53-47-283Z`; the opt-in viewer reaches model-ready state and the static image remains fallback.
+- Keyboard smoke passed inside the final gate: `output/playwright/keyboard-release-smoke-2026-07-04T15-53-54-807Z`.
+- Semantic SEO, product/design, responsive and visual-polish smokes passed: `output/semantic-seo/smoke-2026-07-04T15-54-00-422Z/semantic-seo-smoke.json`, `output/product-design-acceptance/smoke-2026-07-04T15-54-08-382Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-04T15-54-14-587Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-04T15-54-36-622Z/visual-polish-smoke.json`.
+- Rendered screenshot evidence passed and confirms content remains visible without blank reveal bands: `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`.
+- Measurement smoke and evidence passed: `output/measurement/smoke-2026-07-04T15-55-18-743Z` and `output/measurement/evidence-2026-07-04T15-55-27-128Z`; axe violations 0 across six routes; Lighthouse performance 99, accessibility 100, best practices 100, SEO 100, LCP about 1.24 seconds, CLS 0.
+- Browser coverage advisory remains warning-only: Chromium passed; Firefox/WebKit Playwright binaries are unavailable locally. Artifact: `output/browser-coverage/smoke-2026-07-04T15-54-58-774Z/browser-coverage-smoke.json`.
+- Dependency audit advisory remains warning-only: production vulnerabilities 0; dev/release tooling still has 17 moderate advisories. Artifact: `output/dependency-audit/summary-2026-07-04T15-53-45-464Z/dependency-audit-summary.json`.
+- Browser plugin attempted `http://127.0.0.1:8134/` but its backend returned `ERR_CONNECTION_REFUSED`; use Wayne's in-app/local browser or Playwright screenshot evidence for local review.
+- Publish-readiness estimate for the full process to production: 84%. Local implementation and local QA are complete; Wayne review, explicit-path staging, local commit, Netlify preview deploy, preview gate, production approval/deploy and production gate remain.
+- Recommended next decision: `1` approve explicit-path staging, local commit, Netlify preview deploy and preview-gate validation for this 15-file zip-faithful correction.
+
+## 3. Superseded Active Tranche Record
+
 Tranche name: `website-quality-restart-from-original-goal`
-Status: local zip-adapted candidate ready for Wayne review; motion preview rejected for publication; no commit, preview deploy, or production deploy approved
+Status: superseded by Wayne visual rejection on 2026-07-04; Netlify production deploy `6a48c6e1a19608e3698fa160` remains live on `https://robsonai.co.uk` until Wayne approves rollback or replacement
 Started: 2026-06-28 20:33 BST
-Completed: not complete
+Completed: 2026-07-04 09:42 BST
 
 Scope:
 
@@ -55,7 +110,9 @@ Permission envelope:
 - Wayne selected option `3` to hold the preview-only motion work.
 - Wayne then instructed: `restart from original goal, do not publish current motion preview`.
 - Safe local inspection, scoped file edits, docs/tracker updates, local QA, and browser evidence are approved.
-- Commits, branch push, GitHub PR, Netlify preview deploy, and production deploy still require explicit later approval unless Wayne grants a bounded tranche approval.
+- Wayne approved option `1` on 2026-07-04, covering explicit-path staging, local commit, non-production Netlify preview deploy, and deployed preview gate validation.
+- Wayne approved option `1 in codex browser` on 2026-07-04, covering Codex browser preview review, production deploy from commit `1fdd0c8`, and production release-gate validation.
+- Branch push, GitHub PR, DNS/domain changes, analytics/forms/customer-data capture, and external messages still require explicit later approval.
 
 Done criteria:
 
@@ -67,13 +124,23 @@ Done criteria:
 
 Validation evidence:
 
-- Production remains `https://robsonai.co.uk` at the previously verified production baseline; no production deploy has been performed for this restart candidate.
+- Production is now live at `https://robsonai.co.uk` on Netlify deploy `6a48c6e1a19608e3698fa160`.
 - Redesign zip reviewed from `/Users/wayne/Downloads/Robsonai website redesign.zip`; extracted locally to `/tmp/robson-redesign.AUtbkX` and rendered at `http://127.0.0.1:8142/Robson%20AI%20Website.dc.html`.
 - Redesign screenshot evidence saved in `output/product-design-audit/redesign-zip-2026-07-03`, including desktop/mobile prototype captures, Product/Pricing/About captures, and live comparison captures.
 - Redesign verdict: useful as direction reference for a darker confident hero, trust framing and product-proof spacing; not usable as production code because it includes prototype runtime files, external dependencies, mobile overflow, wordmark rendering issues, and unsupported pricing/platform/provider claims.
 - Zip-adapted local candidate implemented: the homepage now uses the redesign direction, keeps cautious Robson AI/Building Analyst/BuildScan positioning, and retains the BuildScan model-view layer plus opt-in GLB viewer.
 - Local review URL: `http://127.0.0.1:8133/`.
-- Current dirty scope: 13 modified tracked files and 2 untracked candidate files: `docs/codex/GOAL_COMPLETION_AUDIT.md`, `docs/codex/PUBLISH_READINESS_AUDIT.md`, `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/TRACKER.md`, `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`, `index.html`, `scripts/measurement-evidence.mjs`, `scripts/product-design-acceptance-smoke.mjs`, `scripts/rendered-release-smoke.mjs`, `scripts/responsive-route-smoke.mjs`, `script.js`, `styles.css`, `who-its-for.html`, `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md`, and `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
+- Local commit created after manifest-approved staging and full local release gate: `1fdd0c8` (`Adapt website redesign preview`).
+- Netlify preview deploy succeeded from a clean `git archive` of commit `1fdd0c8`: deploy `6a48c3c7f5bf8c1f6799a27d`, preview URL `https://website-quality-restart--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a48c3c7f5bf8c1f6799a27d`.
+- First preview gate attempt failed at deployed BuildScan viewer immediately after deploy because the direct viewer did not render a canvas; deployed asset/header checks passed and the standalone BuildScan viewer rerun passed, indicating likely Netlify propagation timing.
+- Full preview gate rerun passed: `QA_BASE_URL="https://website-quality-restart--robson-ai-website.netlify.app" npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-04T08-28-49-470Z/release-preview-gate.json`; result pass, 14 steps.
+- Preview gate evidence includes release inventory `output/release-inventory/inventory-2026-07-04T08-28-49-592Z/release-candidate-inventory.json` with dirtyCount 0, secret findings 0, GLB externalUriCount 0; release headers/source-deny `output/release-headers/smoke-2026-07-04T08-28-56-469Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-07-04T08-28-56-723Z`; product/design `output/product-design-acceptance/smoke-2026-07-04T08-29-23-007Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-07-04T08-29-32-193Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-07-04T08-30-02-406Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-04T08-30-35-440Z`; measurement smoke `output/measurement/smoke-2026-07-04T08-30-47-550Z`.
+- Codex browser review passed before production deploy: preview homepage, direct BuildScan viewer and mobile-width homepage showed correct H1/nav/title, no page overflow, no broken images and no console errors/warnings.
+- Production CLI/archive deploy succeeded from clean commit `1fdd0c8`: Netlify deploy `6a48c6e1a19608e3698fa160`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a48c6e1a19608e3698fa160--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a48c6e1a19608e3698fa160`.
+- Production release gate passed: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-04T08-40-16-386Z/release-preview-gate.json`; result pass, 14 steps.
+- Production gate evidence includes release inventory `output/release-inventory/inventory-2026-07-04T08-40-16-507Z/release-candidate-inventory.json` with dirtyCount 6, secret findings 0, GLB externalUriCount 0; release headers/source-deny `output/release-headers/smoke-2026-07-04T08-40-23-576Z/release-header-smoke.json`; BuildScan viewer `output/buildscan-viewer/smoke-2026-07-04T08-40-23-913Z`; product/design `output/product-design-acceptance/smoke-2026-07-04T08-40-43-653Z/product-design-acceptance-smoke.json`; responsive `output/responsive-route/smoke-2026-07-04T08-40-49-941Z/responsive-route-smoke.json`; visual polish `output/visual-polish/smoke-2026-07-04T08-41-09-970Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-04T08-41-36-999Z`; measurement smoke `output/measurement/smoke-2026-07-04T08-41-47-692Z`.
+- Codex browser production check passed after deploy: live homepage showed correct title, H1 `Turning data into intelligence.`, Home/Product/BuildScan/Method/About/Contact nav, no page overflow, no broken images and no console errors/warnings.
+- The 15-file candidate scope is now committed in `1fdd0c8`; the only later local changes are docs evidence updates for this preview closeout unless further edits are approved.
 - Full local release gate passed: `output/release-local-gate/gate-2026-07-03T19-05-24-098Z/release-local-gate.json`; 37 steps.
 - Staging-manifest smoke passed: `output/release-staging-manifest/smoke-2026-07-03T19-05-30-381Z/release-staging-manifest-smoke.json`; 13 modified tracked files, 2 untracked candidate files, 15 explicit staging paths.
 - Release inventory passed: `output/release-inventory/inventory-2026-07-03T19-05-30-188Z/release-candidate-inventory.json`; dirtyCount 15, zero secret findings, GLB externalUriCount 0.
@@ -82,7 +149,7 @@ Validation evidence:
 - BuildScan viewer smoke passed: `output/buildscan-viewer/smoke-2026-07-03T19-05-33-122Z`; direct and embedded GLB paths rendered canvas and keyboard controls.
 - Product/design, responsive and visual-polish smokes passed: `output/product-design-acceptance/smoke-2026-07-03T19-05-51-888Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-03T19-05-57-649Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-03T19-06-18-629Z/visual-polish-smoke.json`.
 - `scripts/measurement-evidence.mjs` now uses Playwright-injected `axe-core` because the previous Selenium/ChromeDriver axe CLI path reproducibly timed out after 300 seconds on local ChromeDriver 150.
-- Residual advisories: production deploy is not approved; branch push/GitHub PR are not approved; Netlify preview deploy is not approved; production dependency footprint remains zero vulnerabilities; dev/release tooling audit remains 17 moderate advisories; Chromium browser coverage passed while Firefox/WebKit binaries are unavailable locally and warning-only.
+- Residual advisories: branch push/GitHub PR are not approved; production dependency footprint remains zero vulnerabilities; dev/release tooling audit remains 17 moderate advisories; Chromium browser coverage passed while Firefox/WebKit binaries are unavailable locally and warning-only; post-production evidence docs are local-only until Wayne approves a docs/source-control alignment commit.
 
 Rejected preview record:
 

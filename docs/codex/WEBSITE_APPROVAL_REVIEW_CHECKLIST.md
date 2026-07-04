@@ -1,23 +1,23 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-07-03 20:13 BST
+Last updated: 2026-07-04 16:57 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: active restart-candidate review checklist; previous production checklist retained as historical context
+Status: local review checklist for zip-faithful correction with animation parity polish; production deploy `6a48c6e1a19608e3698fa160` remains live but was rejected as the visual target
 
 ## 1. Purpose
 
-Use this checklist to review the current local restart candidate for the original goal:
+Use this checklist to review the current local zip-faithful correction for the original goal:
 
 > Make the Robson AI Solutions website the best releasable version it can be.
 
 Important:
 
-- Current local review URL: `http://127.0.0.1:8133/`.
-- Current candidate name: `website-quality-restart-from-original-goal`.
+- Current local review URL: `http://127.0.0.1:8134/` while the Python server is running.
+- Current candidate name: `zip-faithful-redesign-correction`.
 - The rejected `proof-motion-polish` preview must not be published.
-- Production remains unchanged at `https://robsonai.co.uk`.
-- No commit, branch push, GitHub PR, Netlify preview deploy, production deploy, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
+- Production is live at `https://robsonai.co.uk` on deploy `6a48c6e1a19608e3698fa160`, but Wayne rejected its visual match.
+- No commit, Netlify preview deploy, production deploy, branch push, GitHub PR, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
 - Current preview approval handoff is `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
 - Historical production release evidence is retained below for context only; it is not approval for the restart candidate.
 
@@ -25,19 +25,19 @@ Important:
 
 Review these local pages in order on desktop and mobile:
 
-1. Home: `http://127.0.0.1:8133/`
-2. Building Analyst: `http://127.0.0.1:8133/building-analyst.html`
-3. Who it is for: `http://127.0.0.1:8133/who-its-for.html`
-4. BuildScan viewer: `http://127.0.0.1:8133/buildscan-viewer.html`
-5. Privacy: `http://127.0.0.1:8133/privacy.html`
-6. 404 recovery page: `http://127.0.0.1:8133/404.html`
-7. Holding fallback: `http://127.0.0.1:8133/holding.html`
+1. Home: `http://127.0.0.1:8134/`
+2. Building Analyst: `http://127.0.0.1:8134/building-analyst.html`
+3. Who it is for: `http://127.0.0.1:8134/who-its-for.html`
+4. BuildScan viewer: `http://127.0.0.1:8134/buildscan-viewer.html`
+5. Privacy: `http://127.0.0.1:8134/privacy.html`
+6. 404 recovery page: `http://127.0.0.1:8134/404.html`
+7. Holding fallback: `http://127.0.0.1:8134/holding.html`
 
 Screenshot evidence from the current local rendered smoke:
 
-- `output/playwright/rendered-release-smoke-2026-07-03T19-06-47-075Z`
+- `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`
 
-The local Python server is running on Wayne's Mac for review. Earlier Browser MCP loopback access was unreliable, so Playwright and local shell evidence are the current automation source.
+Local release-gate evidence is now the current automation source.
 
 ## 3. What To Approve Or Flag
 
@@ -46,11 +46,11 @@ The local Python server is running on Wayne's Mac for review. Earlier Browser MC
 Approve if:
 
 - The first impression says Robson AI Solutions turns building evidence into professional intelligence, not generic AI.
-- The rejected floating/misaligned hero icon treatment is gone.
-- The zip-inspired hero and proof surface feel deliberate, product-led, and professionally composed.
-- Product, BuildScan, Method, About, and Contact feel more designed and less like text blocks.
-- Building Analyst, BuildScan, and property operations read as connected but distinct workstreams.
-- Header navigation lands cleanly on major sections without orphaned controls from the previous section appearing below the sticky nav.
+- The page looks materially like the supplied redesign zip: white header, dark mesh hero, Manrope-style large proposition, Home/Product/Pricing/About IA, and `Turning data into intelligence.`.
+- The added BuildScan model-view element feels native to the zip-style site rather than pasted in.
+- Product, Pricing, About, BuildScan and Contact feel designed and not like text blocks.
+- Building Analyst, Robson AI Software and BuildScan read as connected but distinct product directions.
+- Header navigation lands cleanly on major sections.
 - Secondary pages keep the visible Robson AI brand lockup clear and do not accidentally present `Fit` as a separate product name.
 - The page feels credible, current, and useful enough for public visitors.
 
@@ -127,21 +127,28 @@ Local release gate:
 
 - Command: `npm run qa:release:local`
 - Result: pass, 37 steps.
-- Artifact: `output/release-local-gate/gate-2026-07-03T19-05-24-098Z/release-local-gate.json`.
+- Artifact: `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json`.
+
+Preview release gate:
+
+- Not yet run for this correction.
+
+Production release gate:
+
+- Not yet run for this correction.
 
 Local evidence pack:
 
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-03T19-06-47-075Z`.
-- Measurement: `output/measurement/evidence-2026-07-03T19-07-04-456Z`; Playwright-injected axe reported zero violations across six routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.73 seconds, CLS 0.
-- Latest 15-file staging-manifest smoke: `output/release-staging-manifest/smoke-2026-07-03T19-05-30-381Z/release-staging-manifest-smoke.json`.
-- Latest 15-file release inventory: `output/release-inventory/inventory-2026-07-03T19-05-30-188Z/release-candidate-inventory.json`; dirtyCount 15, secret findings 0, GLB external URI references 0.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`.
+- Measurement: `output/measurement/evidence-2026-07-04T15-55-27-128Z`; axe reported zero violations across six routes, Lighthouse performance 99, accessibility 100, best practices 100, SEO 100, LCP about 1.24 seconds, CLS 0.
+- Latest 15-file staging-manifest smoke: `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json`.
+- Latest 15-file release inventory: `output/release-inventory/inventory-2026-07-04T15-53-45-020Z/release-candidate-inventory.json`; dirtyCount 15, secret findings 0, GLB external URI references 0.
 
 Known residuals:
 
-- The staging manifest and inventory now match the 15-file zip-adapted restart candidate.
-- Anchor-navigation, secondary-page brand consistency, measurement-runner stability, and zip-design copy/layout updates are included in the latest local gate.
-- The active restart candidate is local-only and uncommitted.
-- No Netlify preview exists for the restart candidate.
+- The staging manifest and inventory now match the 15-file zip-faithful correction.
+- Animation parity, anchor-navigation, secondary-page brand consistency, measurement-runner stability, and zip-design copy/layout updates are included in the latest local gate.
+- The active correction is local-only and not yet committed or deployed to preview/production.
 - The branch is ahead by the rejected motion-preview/evidence commits; do not publish the rejected `proof-motion-polish` preview.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains 17 moderate, 0 high, 0 critical; production footprint remains zero.
@@ -152,9 +159,9 @@ Known residuals:
 
 Use one of these responses:
 
-1. Recommended: `approve explicit-path commit plus Netlify preview deploy for website-quality-restart-from-original-goal`
-2. `request another local visual pass first` followed by the exact page or section to improve.
-3. `hold here with production unchanged`
+1. Recommended: `approve explicit-path staging, local commit, Netlify preview deploy and preview-gate validation for zip-faithful-redesign-correction`
+2. `request local design/content tweaks before preview` followed by the exact page or section to improve.
+3. `approve production rollback while the correction is reviewed`
 
 ## 6. Historical Production Context
 
