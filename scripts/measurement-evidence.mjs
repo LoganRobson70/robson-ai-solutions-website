@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawn } from "node:child_process";
+import { chromium } from "playwright";
 
 import { runMeasurementSmoke } from "./measurement-smoke.mjs";
 import { startStaticServer } from "./lib/static-server.mjs";
@@ -97,18 +98,51 @@ async function ensureChromeDriver(artifactDir) {
 }
 
 async function runAxe(artifactDir, baseUrl) {
+  const axeSource = await readFile(path.resolve("node_modules/axe-core/axe.min.js"), "utf8");
+  const browser = await chromium.launch({ channel: "chrome", headless: true });
   const results = [];
 
-  for (const routePath of A11Y_PATHS) {
-    const targetUrl = new URL(routePath, baseUrl).toString();
-    const fileName = routePath === "/" ? "axe-home.txt" : `axe-${routePath.replace(/[/.]/g, "-").replace(/^-+/, "")}.txt`;
-    const reportPath = path.join(artifactDir, fileName);
-    const result = await runCommand("npx", ["axe", targetUrl, "--tags", "wcag2a,wcag2aa"]);
-    await writeFile(reportPath, `${result.stdout}${result.stderr}`, "utf8");
-    results.push({
-      reportPath,
-      url: targetUrl
-    });
+  try {
+    for (const routePath of A11Y_PATHS) {
+      const target = new URL(routePath, baseUrl);
+      target.searchParams.set("qa", "axe");
+      const targetUrl = target.toString();
+      const fileName = routePath === "/" ? "axe-home.json" : `axe-${routePath.replace(/[/.]/g, "-").replace(/^-+/, "")}.json`;
+      const reportPath = path.join(artifactDir, fileName);
+      const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+      const page = await context.newPage();
+
+      try {
+        const response = await page.goto(targetUrl, { waitUntil: "networkidle" });
+        if (response?.status() !== 200) {
+          throw new Error(`Axe route ${targetUrl} returned HTTP ${response?.status() ?? "unknown"}.`);
+        }
+
+        await page.addScriptTag({ content: axeSource });
+        const axeResult = await page.evaluate(async () => window.axe.run(document, {
+          runOnly: {
+            type: "tag",
+            values: ["wcag2a", "wcag2aa"]
+          }
+        }));
+
+        await writeJson(reportPath, axeResult);
+        results.push({
+          reportPath,
+          url: targetUrl,
+          violationCount: axeResult.violations.length,
+          violations: axeResult.violations.map((violation) => ({
+            id: violation.id,
+            impact: violation.impact,
+            nodes: violation.nodes.length
+          }))
+        });
+      } finally {
+        await context.close();
+      }
+    }
+  } finally {
+    await browser.close();
   }
 
   return results;

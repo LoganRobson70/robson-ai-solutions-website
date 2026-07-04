@@ -167,12 +167,12 @@ function assertNoBlockingDiagnostics(routeResult) {
 function assertFirstViewport(home) {
   assert(includesAll(home.viewportText, [
     "Robson AI Solutions",
-    "Professional building intelligence",
-    "surveyors",
-    "capture evidence",
-    "reporting",
+    "Turning data into intelligence",
+    "surveying-led software",
+    "building professionals",
+    "structured, professional intelligence",
     "Discuss a Workflow",
-    "See the Workstreams"
+    "See What We Do"
   ]), `Homepage first viewport should explain brand, audience, workflow problem and next actions. Actual viewport text: ${home.viewportText}`);
 }
 
@@ -181,6 +181,8 @@ function assertProofStatus(home, buildingAnalyst) {
     "Building Analyst",
     "BuildScan",
     "Property operations",
+    "Evidence, assessment context and professional review kept together",
+    "BuildScan adds the model-view layer",
     "Workflow proof live",
     "Interactive model live",
     "Opt-in 3D model preview with static fallback",
