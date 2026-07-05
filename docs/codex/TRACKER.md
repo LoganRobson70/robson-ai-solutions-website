@@ -39,7 +39,7 @@ Success means:
 ## 2. Active Tranche
 
 Tranche name: `github-main-reconciliation-preflight`
-Status: completed locally and QA-passed; local merge commit pending; no push, PR, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message is approved
+Status: completed locally and QA-passed; local merge commit `0796be2` created; no push, PR, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message is approved
 Started: 2026-07-05 16:12 BST
 
 Scope:
@@ -74,6 +74,7 @@ Validation evidence:
 - Measurement evidence passed with artifact directory `output/measurement/evidence-2026-07-05T15-35-27-356Z`; axe violations 0 across six routes, Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, LCP about 1.60s and CLS 0.
 - Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact `output/browser-coverage/smoke-2026-07-05T15-34-30-551Z/browser-coverage-smoke.json`.
 - Dependency audit remains warning-only: production vulnerabilities 0; dev/release tooling has 17 moderate advisories and no fix was run. Artifact `output/dependency-audit/summary-2026-07-05T15-33-02-902Z/dependency-audit-summary.json`.
+- Local reconciliation merge commit created: `0796be2` (`Reconcile main with Globe Loader release`).
 
 Done criteria:
 
