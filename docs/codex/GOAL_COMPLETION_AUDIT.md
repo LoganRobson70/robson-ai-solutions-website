@@ -1,8 +1,8 @@
 # Goal Completion Audit - Robson AI Solutions Website
 
-Last updated: 2026-07-04 16:57 BST
+Last updated: 2026-07-04 17:31 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: active goal not complete; zip-faithful correction with animation parity polish is locally gated and awaiting Wayne review/preview approval
+Status: current approved release goal complete; zip-faithful correction with animation parity polish is live and production-gated
 
 ## 1. Current Active Goal
 
@@ -12,9 +12,9 @@ Active Codex goal:
 
 Current audit result:
 
-- Not complete for the active goal because the current production site was rejected as not faithful enough to the supplied redesign zip.
-- The zip-faithful correction and animation parity polish have been implemented locally and passed the full local release gate.
-- Wayne review, explicit-path staging, local commit, Netlify preview deploy, deployed preview gate, production approval/deploy, and production gate remain before the goal can be marked complete.
+- Complete for the current approved release goal: the rejected production site has been replaced with the zip-faithful correction, and the live domain passed the production release gate.
+- The zip-faithful correction and animation parity polish have been implemented locally, committed, deployed to a non-production Netlify preview, passed the deployed preview gate, deployed to production, and passed the production gate.
+- Source-control alignment remains a separate approval-gated housekeeping tranche; it is not a production publish blocker.
 - Do not use the historical completion evidence below as approval for the current candidate.
 
 ## 2. Current Restart Candidate State
@@ -22,11 +22,11 @@ Current audit result:
 Current local candidate:
 
 - Local review URL: `http://127.0.0.1:8134/` while the Python server is running.
-- Preview review URL: not created for this correction.
-- Current commit: not created for this correction.
-- Netlify preview deploy: not created for this correction.
+- Preview review URL: `https://zip-faithful-motion--robson-ai-website.netlify.app`.
+- Current commit: `f2df3c1` (`Restore zip-faithful website motion preview`).
+- Netlify preview deploy: `6a4931e3a196083c018fa0bb`.
 - Production URL: `https://robsonai.co.uk`.
-- Production deploy: `6a48c6e1a19608e3698fa160`; Wayne rejected its visual match, so it is not completion evidence for this active goal.
+- Production deploy: `6a4933ec2451857b37ea20b4`; this is completion evidence for the current approved release goal.
 
 Current validation evidence:
 
@@ -35,31 +35,32 @@ Current validation evidence:
 - Measurement evidence: `output/measurement/evidence-2026-07-04T15-55-27-128Z`; axe reported zero violations across six routes, Lighthouse performance 99, accessibility 100, best practices 100, SEO 100, LCP about 1.24s, CLS 0.
 - Current staging manifest evidence: `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json`; 15 modified tracked files, 0 untracked candidate files and 15 staging paths.
 - Current release inventory evidence: `output/release-inventory/inventory-2026-07-04T15-53-45-020Z/release-candidate-inventory.json`; dirtyCount 15, zero secret findings and GLB externalUriCount 0.
-- Deployed preview gate: not yet run for this correction.
-- Production release gate: not yet run for this correction.
+- Staged full local release gate before commit: `output/release-local-gate/gate-2026-07-04T16-12-44-423Z/release-local-gate.json`; passed all 37 steps.
+- Deployed preview gate: `output/release-preview-gate/gate-2026-07-04T16-16-54-785Z/release-preview-gate.json`; passed all 14 steps.
+- Production release gate: `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json`; passed all 14 steps.
 - Browser plugin local review attempt failed with `ERR_CONNECTION_REFUSED`; use Wayne's in-app/local browser or Playwright screenshot evidence for local review.
 
 Current residuals:
 
 - Branch push/GitHub PR are not approved.
-- Commit, preview deploy and production deploy for this correction are not approved.
+- Further production deploys or rollback are not approved.
 - Dev/release tooling advisories remain warning-only; production dependency footprint remains zero.
 
 ## 3. Requirement Audit For Current Restart Candidate
 
 | Requirement | Evidence | Status |
 | --- | --- | --- |
-| Polished and professional | Current zip-faithful rendered homepage/product/BuildScan screenshots at `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`; local visual-polish gate passed | locally satisfied, needs Wayne review |
-| Responsive | `npm run qa:responsive` passed inside `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json` | locally satisfied, needs preview gate |
-| Accessible | keyboard, axe and Lighthouse evidence inside local release gate | locally satisfied, needs preview gate |
-| Evidence-led | Product, Building Analyst, BuildScan, pricing direction, about and contact surfaces visible in rendered screenshots | locally satisfied, needs Wayne review |
-| Brand-consistent | Zip-faithful homepage keeps Robson AI professional building intelligence direction and supplied-zip motion feel | locally satisfied, needs Wayne review |
-| Cautious about product maturity | Product/design acceptance smoke passed locally; copy remains cautious and no new product claims were added | locally satisfied, needs preview gate |
-| Privacy/security | Release security/header checks passed locally; no form/customer-data store was added | locally satisfied, needs deployed header/source-deny checks |
-| Performance/SEO | Measurement and semantic/SEO checks passed locally | locally satisfied, needs preview gate |
+| Polished and professional | Current zip-faithful rendered homepage/product/BuildScan screenshots at `output/playwright/rendered-release-smoke-2026-07-04T16-26-49-860Z`; production visual-polish gate passed | complete for approved release, subject to Wayne live review |
+| Responsive | `npm run qa:responsive` passed inside local, preview and production gates | complete for approved release |
+| Accessible | keyboard, axe and Lighthouse evidence inside local gate; keyboard and BuildScan checks passed on preview and production | complete for approved release |
+| Evidence-led | Product, Building Analyst, BuildScan, pricing direction, about and contact surfaces visible in rendered production screenshots | complete for approved release, subject to Wayne live review |
+| Brand-consistent | Zip-faithful homepage keeps Robson AI professional building intelligence direction and supplied-zip motion feel | complete for approved release, subject to Wayne live review |
+| Cautious about product maturity | Product/design acceptance smoke passed locally, on preview and on production; copy remains cautious and no new product claims were added | complete for approved release |
+| Privacy/security | Release security/header checks passed locally and deployed source-deny/header checks passed on preview and production; no form/customer-data store was added | complete for approved release |
+| Performance/SEO | Measurement and semantic/SEO checks passed locally, on preview and on production | complete for approved release |
 | Local validation | `npm run qa:release:local` passed at `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json` | complete for local stage |
-| Preview validation | Not yet run for this correction | pending approval |
-| Production validation | Not yet run for this correction | pending approval after preview |
+| Preview validation | `QA_BASE_URL="https://zip-faithful-motion--robson-ai-website.netlify.app" npm run qa:release:preview` passed at `output/release-preview-gate/gate-2026-07-04T16-16-54-785Z/release-preview-gate.json` | complete for preview stage |
+| Production validation | `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` passed at `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json` | complete for approved release |
 
 ## 4. Historical Completed Release
 
@@ -132,10 +133,10 @@ Production evidence from the gate:
 
 ## 8. Current Known Residuals
 
-- The active restart candidate is local-only and uncommitted.
-- Source-control alignment remains complicated because the branch is ahead by rejected preview/evidence commits that have not been pushed.
+- The active restart candidate is live in production from local commit `f2df3c1`.
+- Source-control alignment remains complicated because the branch is ahead by release/evidence commits that have not been pushed.
 - The rejected `proof-motion-polish` preview must not be published.
-- No deployed preview exists for the restart candidate.
+- The deployed preview and production release gates both passed for the restart candidate.
 - Chromium browser coverage passed; Firefox and WebKit Playwright binaries are unavailable locally and warning-only.
 - Dev/release tooling audit still reports 17 moderate advisories; production footprint remains zero vulnerabilities.
 - Full Codex Security workspace scan is not complete.
@@ -144,6 +145,6 @@ Production evidence from the gate:
 
 ## 9. Recommended Next Action
 
-1. Recommended: approve explicit-path staging, local commit, Netlify preview deploy and preview-gate validation for `zip-faithful-redesign-correction`.
-2. Request local design/content tweaks before preview.
-3. Approve a production rollback while the correction is reviewed.
+1. Recommended: approve a docs/source-control alignment tranche so the production evidence docs can be committed and GitHub/main can be reconciled deliberately.
+2. Request live-site design/content tweaks if anything still feels wrong.
+3. Hold source-control alignment and leave the live site as-is.

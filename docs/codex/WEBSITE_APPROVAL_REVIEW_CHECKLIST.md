@@ -1,43 +1,44 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-07-04 16:57 BST
+Last updated: 2026-07-04 17:31 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: local review checklist for zip-faithful correction with animation parity polish; production deploy `6a48c6e1a19608e3698fa160` remains live but was rejected as the visual target
+Status: live review checklist for zip-faithful correction with animation parity polish; production deploy `6a4933ec2451857b37ea20b4` is live and production-gated
 
 ## 1. Purpose
 
-Use this checklist to review the current local zip-faithful correction for the original goal:
+Use this checklist to review the current live zip-faithful correction for the original goal:
 
 > Make the Robson AI Solutions website the best releasable version it can be.
 
 Important:
 
+- Current live review URL: `https://robsonai.co.uk`.
 - Current local review URL: `http://127.0.0.1:8134/` while the Python server is running.
 - Current candidate name: `zip-faithful-redesign-correction`.
 - The rejected `proof-motion-polish` preview must not be published.
-- Production is live at `https://robsonai.co.uk` on deploy `6a48c6e1a19608e3698fa160`, but Wayne rejected its visual match.
-- No commit, Netlify preview deploy, production deploy, branch push, GitHub PR, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
+- Production is live at `https://robsonai.co.uk` on deploy `6a4933ec2451857b37ea20b4`; production gate passed at `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json`.
+- No branch push, GitHub PR, further production deploy, rollback, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
 - Current preview approval handoff is `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
 - Historical production release evidence is retained below for context only; it is not approval for the restart candidate.
 
 ## 2. Current Restart Review Sequence
 
-Review these local pages in order on desktop and mobile:
+Review these live pages in order on desktop and mobile:
 
-1. Home: `http://127.0.0.1:8134/`
-2. Building Analyst: `http://127.0.0.1:8134/building-analyst.html`
-3. Who it is for: `http://127.0.0.1:8134/who-its-for.html`
-4. BuildScan viewer: `http://127.0.0.1:8134/buildscan-viewer.html`
-5. Privacy: `http://127.0.0.1:8134/privacy.html`
-6. 404 recovery page: `http://127.0.0.1:8134/404.html`
-7. Holding fallback: `http://127.0.0.1:8134/holding.html`
+1. Home: `https://robsonai.co.uk/`
+2. Building Analyst: `https://robsonai.co.uk/building-analyst.html`
+3. Who it is for: `https://robsonai.co.uk/who-its-for.html`
+4. BuildScan viewer: `https://robsonai.co.uk/buildscan-viewer.html`
+5. Privacy: `https://robsonai.co.uk/privacy.html`
+6. 404 recovery page: `https://robsonai.co.uk/404.html`
+7. Holding fallback: `https://robsonai.co.uk/holding.html`
 
-Screenshot evidence from the current local rendered smoke:
+Screenshot evidence from the current production rendered smoke:
 
-- `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`
+- `output/playwright/rendered-release-smoke-2026-07-04T16-26-49-860Z`
 
-Local release-gate evidence is now the current automation source.
+Production release-gate evidence is now the current automation source.
 
 ## 3. What To Approve Or Flag
 
@@ -148,7 +149,7 @@ Known residuals:
 
 - The staging manifest and inventory now match the 15-file zip-faithful correction.
 - Animation parity, anchor-navigation, secondary-page brand consistency, measurement-runner stability, and zip-design copy/layout updates are included in the latest local gate.
-- The active correction is local-only and not yet committed or deployed to preview/production.
+- The active correction is committed as `f2df3c1`, preview-gated, production-published and production-gated.
 - The branch is ahead by the rejected motion-preview/evidence commits; do not publish the rejected `proof-motion-polish` preview.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains 17 moderate, 0 high, 0 critical; production footprint remains zero.
@@ -159,9 +160,9 @@ Known residuals:
 
 Use one of these responses:
 
-1. Recommended: `approve explicit-path staging, local commit, Netlify preview deploy and preview-gate validation for zip-faithful-redesign-correction`
-2. `request local design/content tweaks before preview` followed by the exact page or section to improve.
-3. `approve production rollback while the correction is reviewed`
+1. Recommended: approve docs/source-control alignment so the production evidence docs can be committed and GitHub/main can be reconciled deliberately.
+2. Request live-site design/content tweaks, with the exact page or section to improve.
+3. Hold source-control alignment and leave the live site as-is.
 
 ## 6. Historical Production Context
 
@@ -174,4 +175,4 @@ Historical production release gate:
 - Artifact: `output/release-production-gate/gate-2026-06-28T17-18-10-065Z/release-preview-gate.json`.
 - Production rendered screenshots: `output/playwright/rendered-release-smoke-2026-06-28T17-19-35-062Z`.
 
-That release remains useful as rollback/reference context, but it does not approve or complete the active restart candidate.
+That release remains useful as historical rollback/reference context, but the active restart candidate is now the live production-gated release.

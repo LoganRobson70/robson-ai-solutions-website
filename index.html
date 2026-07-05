@@ -49,7 +49,16 @@
     <header class="site-header zip-site-header">
       <div class="container topbar zip-topbar">
         <a class="zip-wordmark" href="/" aria-label="Robson AI home">
-          <span>Robson A<span class="zip-wordmark-i">I</span></span>
+          <img
+            class="zip-wordmark-icon"
+            src="./assets/robson-ai-icon-v3-transparent-320.webp?v=20260627"
+            width="320"
+            height="320"
+            alt=""
+            decoding="async"
+            fetchpriority="high"
+          >
+          <span class="zip-wordmark-text">Robson AI</span>
         </a>
 
         <nav class="site-nav zip-site-nav" aria-label="Primary">
@@ -70,6 +79,9 @@
       <section class="zip-hero" id="top" data-section="hero">
         <canvas class="zip-mesh-canvas" data-mesh-canvas data-density="1.8" data-mode="mesh" data-tone="dark" aria-hidden="true"></canvas>
         <div class="zip-hero-glow" aria-hidden="true"></div>
+        <div class="zip-hero-globe-loader" data-globe-loader aria-hidden="true">
+          <canvas class="zip-globe-loader-canvas" width="420" height="420"></canvas>
+        </div>
 
         <div class="container zip-hero-inner">
           <div class="zip-hero-copy" data-reveal>
@@ -228,8 +240,11 @@
                 </div>
               </div>
             </div>
-            <figcaption id="buildscan-shot-caption">
-              BuildScan model-view capture with an optional optimised interactive GLB preview, shown as product evidence for the external visual-capture workflow.
+            <figcaption id="buildscan-shot-caption" class="buildscan-shot-caption">
+              <span>BuildScan model-view capture with an optional optimised interactive GLB preview, shown as product evidence for the external visual-capture workflow.</span>
+              <span class="buildscan-demo-quality-note">
+                <strong>Demo quality preview:</strong> this website uses a compressed, lower-resolution model image for fast loading. It is not representative of the higher-quality model review intended inside the app.
+              </span>
             </figcaption>
           </figure>
         </div>
@@ -340,7 +355,16 @@
       <div class="container footer-grid zip-footer-grid">
         <div class="footer-brand-block">
           <a class="zip-wordmark zip-footer-wordmark" href="/" aria-label="Robson AI home">
-            <span>Robson A<span class="zip-wordmark-i">I</span></span>
+            <img
+              class="zip-wordmark-icon"
+              src="./assets/robson-ai-icon-v3-transparent-320.webp?v=20260627"
+              width="320"
+              height="320"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            >
+            <span class="zip-wordmark-text">Robson AI</span>
           </a>
           <p class="footer-copy">Surveying-led AI software for building professionals. Insight. Intelligence. Impact.</p>
         </div>

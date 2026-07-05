@@ -1,21 +1,21 @@
 # Website Restart Preview Handoff
 
-Last updated: 2026-07-04 16:57 BST
+Last updated: 2026-07-04 17:31 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: local-gated handoff for zip-faithful correction with animation parity polish; no preview or production deploy approved
+Status: production-gated handoff for zip-faithful correction with animation parity polish; live on `https://robsonai.co.uk`
 
 ## 1. Purpose
 
-This handoff is the current approval packet for the zip-faithful Robson AI Solutions website correction.
+This handoff records the production-published zip-faithful Robson AI Solutions website correction.
 
 It is separate from `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`, which records the earlier production release. The earlier release evidence does not approve this candidate.
 
 Current decision needed:
 
-1. Approve explicit-path staging, local commit, Netlify preview deploy and deployed preview-gate validation for `zip-faithful-redesign-correction`.
-2. Request local design/content tweaks before any commit or preview.
-3. Approve a production rollback to the prior known-good deploy while the correction is reviewed.
+1. Approve a docs/source-control alignment tranche so production evidence can be committed and GitHub/main can be reconciled deliberately.
+2. Request live-site design/content tweaks if anything still feels wrong.
+3. Hold source-control alignment and leave the live site as-is.
 
 Recommended option: `1`.
 
@@ -28,8 +28,9 @@ Local review URL while the Python server is running:
 Notes:
 
 - The Browser plugin backend cannot reach this local loopback URL and returned `ERR_CONNECTION_REFUSED`; use Wayne's in-app/local browser or the Playwright screenshot evidence.
-- Production remains live at `https://robsonai.co.uk` on deploy `6a48c6e1a19608e3698fa160` until Wayne approves replacement or rollback.
-- No commit, Netlify preview deploy, production deploy, branch push or GitHub PR has been approved for this correction.
+- Preview is live at `https://zip-faithful-motion--robson-ai-website.netlify.app` on deploy `6a4931e3a196083c018fa0bb`.
+- Production is live at `https://robsonai.co.uk` on deploy `6a4933ec2451857b37ea20b4`.
+- Branch push, GitHub PR, DNS/domain changes and further production deploys have not been approved for this correction.
 
 ## 3. What This Candidate Changes
 
@@ -48,9 +49,9 @@ Implemented locally:
 
 Not included:
 
-- Production deploy.
 - Branch push or GitHub PR.
-- Netlify preview deploy until Wayne approves.
+- Further production deploy or rollback.
+- Production deploy.
 - New product claims.
 - New customer logos, testimonials, fake screenshots or invented traction.
 - New public GLB/model exposure.
@@ -117,26 +118,33 @@ The manifest and inventory match the current 15-file zip-faithful correction.
 
 Latest deployed preview evidence:
 
-- None for this correction.
+- Preview URL: `https://zip-faithful-motion--robson-ai-website.netlify.app`.
+- Deploy ID: `6a4931e3a196083c018fa0bb`.
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4931e3a196083c018fa0bb`.
+- Source commit: `f2df3c1` (`Restore zip-faithful website motion preview`).
+- Preview gate: `output/release-preview-gate/gate-2026-07-04T16-16-54-785Z/release-preview-gate.json`; result pass, 14 steps.
+- Preview gate evidence includes release inventory `output/release-inventory/inventory-2026-07-04T16-16-54-926Z/release-candidate-inventory.json`, deployed headers/source-deny `output/release-headers/smoke-2026-07-04T16-17-02-455Z/release-header-smoke.json`, BuildScan viewer `output/buildscan-viewer/smoke-2026-07-04T16-17-02-806Z`, rendered screenshots `output/playwright/rendered-release-smoke-2026-07-04T16-19-15-017Z`, and measurement smoke `output/measurement/smoke-2026-07-04T16-19-27-393Z`.
 
 Latest production evidence:
 
-- None for this correction. Current production deploy `6a48c6e1a19608e3698fa160` is the rejected visual match and remains live only until Wayne approves replacement or rollback.
+- Production URL: `https://robsonai.co.uk`.
+- Netlify deploy: `6a4933ec2451857b37ea20b4`.
+- Unique deploy URL: `https://6a4933ec2451857b37ea20b4--robson-ai-website.netlify.app`.
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4933ec2451857b37ea20b4`.
+- Source commit: `f2df3c1` (`Restore zip-faithful website motion preview`).
+- Production gate: `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json`; result pass, 14 steps.
+- Production gate evidence includes release inventory `output/release-inventory/inventory-2026-07-04T16-25-32-251Z/release-candidate-inventory.json`, deployed headers/source-deny `output/release-headers/smoke-2026-07-04T16-25-39-683Z/release-header-smoke.json`, BuildScan viewer `output/buildscan-viewer/smoke-2026-07-04T16-25-39-989Z`, rendered screenshots `output/playwright/rendered-release-smoke-2026-07-04T16-26-49-860Z`, and measurement smoke `output/measurement/smoke-2026-07-04T16-27-00-373Z`.
 
 ## 6. Approval Meaning
 
-Future option `1` approval means:
+Completed option `1` approval meant:
 
-1. Stage only the explicit 15-file list in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
-2. Run staged diff hygiene checks.
-3. Create a local commit.
-4. Create a Netlify preview deploy.
-5. Run `QA_BASE_URL=<preview-url> npm run qa:release:preview`.
-6. Report the preview URL, evidence, risks and next production decision.
+1. Deploy commit `f2df3c1` to production using Netlify CLI/archive deployment.
+2. Run `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`.
+3. Report the production URL, deploy ID, production-gate evidence, risks and rollback path.
 
-This future approval would not approve:
+This approval did not approve:
 
-- Production deploy.
 - Branch push unless it is required by the selected preview mechanism and separately stated.
 - GitHub PR.
 - DNS/domain changes.
@@ -146,13 +154,13 @@ This future approval would not approve:
 
 ## 7. Production Gate Requirements
 
-The production gate has not been run for this correction. If Wayne later approves production deployment, run:
+The production gate has been run for this correction:
 
 ```bash
 QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
 ```
 
-The production deploy is not complete until this gate passes.
+The production deploy is complete for this release because this gate passed at `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json`.
 
 ## 8. Risks And Residuals
 
@@ -160,8 +168,8 @@ The production deploy is not complete until this gate passes.
 - Firefox/WebKit Playwright binaries remain unavailable locally; Chromium passes and this is warning-only in the current gates.
 - Dev/release tooling audit still reports 17 moderate advisories; production footprint remains zero vulnerabilities.
 - Full Codex Security workspace scan is not complete.
-- Production currently remains on rejected deploy `6a48c6e1a19608e3698fa160` until Wayne approves replacement or rollback.
-- No deployed preview exists for this correction yet, so deployed-preview behaviour remains unverified until Wayne approves option `1`.
+- Production is now on approved deploy `6a4933ec2451857b37ea20b4`; the previous rejected deploy `6a48c6e1a19608e3698fa160` is the immediate rollback candidate if Wayne asks for it.
+- Deployed preview and production behaviour have both passed release gates.
 
 ## 9. Rollback Path
 
@@ -175,12 +183,12 @@ After preview:
 - Keep production unchanged.
 - Revert the local commit or prepare a corrected candidate.
 
-After any future production deploy:
+After this production deploy:
 
-- Restore the current live Netlify production deploy `6a415b5db31442000737c37c` unless a newer approved rollback target is confirmed first.
+- Restore the previous Netlify production deploy `6a48c6e1a19608e3698fa160` unless Wayne confirms a different rollback target first.
 
 ## 10. Recommended Decision
 
-1. Approve explicit-path staging, local commit, Netlify preview deploy and deployed preview-gate validation for `zip-faithful-redesign-correction`.
-2. Request local design/content tweaks before any commit or preview.
-3. Approve a production rollback to the prior known-good deploy while the correction is reviewed.
+1. Approve docs/source-control alignment so the production evidence docs can be committed and GitHub/main can be reconciled deliberately.
+2. Request live-site design/content tweaks if anything still feels wrong.
+3. Hold source-control alignment and leave the live site as-is.

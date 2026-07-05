@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   setupQaMode();
   setupHeroMeshCanvas();
+  setupGlobeLoader();
 
   const analytics = createAnalytics();
 
@@ -1139,6 +1140,320 @@ function setupHeroMeshCanvas() {
 
   const resizeAll = () => meshInstances.forEach((instance) => instance.resize());
   window.addEventListener("resize", resizeAll, { passive: true });
+}
+
+function setupGlobeLoader() {
+  const loaders = [...document.querySelectorAll("[data-globe-loader]")];
+
+  if (!loaders.length) {
+    return;
+  }
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const staticMode = document.body.classList.contains("qa-static");
+  const shouldAnimate = !reducedMotion && !staticMode;
+  const icon = new Image();
+  icon.decoding = "async";
+  icon.src = "./assets/robson-ai-icon-v3-transparent-320.webp?v=20260627";
+
+  const fallbackLandShapes = [
+    [[-128, 50], [-110, 60], [-88, 56], [-64, 43], [-78, 21], [-104, 19], [-126, 34]],
+    [[-84, 12], [-60, 7], [-47, -20], [-66, -52], [-79, -32], [-88, -6]],
+    [[-12, 35], [18, 37], [34, 12], [26, -33], [4, -31], [-10, -5]],
+    [[-9, 59], [22, 66], [58, 56], [92, 46], [123, 24], [105, 7], [62, 8], [28, 27], [5, 48]],
+    [[112, -11], [146, -18], [151, -36], [126, -41], [112, -27]]
+  ];
+  const atlasPromise = window.fetch
+    ? window.fetch("./assets/globe-loader/world-countries-lite.json?v=20260705", { cache: "force-cache" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((atlas) => (Array.isArray(atlas?.rings) && atlas.rings.length ? atlas.rings : null))
+      .catch(() => null)
+    : Promise.resolve(null);
+
+  const projectPoint = (lon, lat, rotation, radius, cx, cy) => {
+    const lambda = ((lon + rotation) * Math.PI) / 180;
+    const phi = (lat * Math.PI) / 180;
+    const depth = Math.cos(phi) * Math.cos(lambda);
+
+    return {
+      visible: depth > 0,
+      x: cx + radius * Math.cos(phi) * Math.sin(lambda),
+      y: cy - radius * Math.sin(phi) * 0.92
+    };
+  };
+
+  loaders.forEach((loader) => {
+    const canvas = loader.querySelector("canvas");
+    const context = canvas?.getContext("2d", { alpha: true });
+
+    if (!canvas || !context) {
+      return;
+    }
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let animationFrame = 0;
+    let visible = true;
+    let landShapes = fallbackLandShapes;
+    let detailedAtlasLoaded = false;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      width = Math.max(1, Math.round(rect.width));
+      height = Math.max(1, Math.round(rect.height));
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw(performance.now());
+    };
+
+    const strokePath = (points, strokeStyle, lineWidth, closePath = false, fillStyle = "") => {
+      const visiblePoints = points.filter((point) => point.visible);
+
+      if (visiblePoints.length < 2) {
+        return;
+      }
+
+      context.beginPath();
+      context.moveTo(visiblePoints[0].x, visiblePoints[0].y);
+      visiblePoints.slice(1).forEach((point) => {
+        context.lineTo(point.x, point.y);
+      });
+
+      if (closePath && visiblePoints.length >= 3) {
+        context.closePath();
+        if (fillStyle) {
+          context.fillStyle = fillStyle;
+          context.fill();
+        }
+      }
+
+      context.strokeStyle = strokeStyle;
+      context.lineWidth = lineWidth;
+      context.stroke();
+    };
+
+    const drawGraticule = (rotation, radius, cx, cy) => {
+      context.save();
+      context.strokeStyle = "rgba(32, 34, 38, 0.2)";
+      context.lineWidth = 0.85;
+
+      for (let lat = -60; lat <= 60; lat += 20) {
+        const points = [];
+        for (let lon = -180; lon <= 180; lon += 5) {
+          points.push(projectPoint(lon, lat, rotation, radius, cx, cy));
+        }
+        strokePath(points, "rgba(32, 34, 38, 0.16)", 0.75);
+      }
+
+      for (let lon = -160; lon <= 180; lon += 20) {
+        const points = [];
+        for (let lat = -78; lat <= 78; lat += 4) {
+          points.push(projectPoint(lon, lat, rotation, radius, cx, cy));
+        }
+        strokePath(points, "rgba(32, 34, 38, 0.14)", 0.75);
+      }
+
+      context.restore();
+    };
+
+    const drawLand = (rotation, radius, cx, cy) => {
+      context.save();
+      landShapes.forEach((shape) => {
+        const points = shape.map(([lon, lat]) => projectPoint(lon, lat, rotation, radius, cx, cy));
+        const visibleRatio = points.filter((point) => point.visible).length / points.length;
+
+        if (visibleRatio < (detailedAtlasLoaded ? 0.24 : 0.55)) {
+          return;
+        }
+
+        strokePath(
+          points,
+          detailedAtlasLoaded ? "rgba(244, 242, 237, 0.26)" : "rgba(22, 24, 29, 0.72)",
+          detailedAtlasLoaded ? 0.38 : 1.1,
+          true,
+          detailedAtlasLoaded ? "rgba(35, 33, 28, 0.78)" : "rgba(31, 34, 34, 0.34)"
+        );
+      });
+      context.restore();
+    };
+
+    const drawIcon = (cx, cy, size) => {
+      context.save();
+      context.beginPath();
+      context.arc(cx, cy, size * 0.56, 0, Math.PI * 2);
+      context.fillStyle = "rgba(246, 244, 238, 0.82)";
+      context.fill();
+
+      if (icon.complete && icon.naturalWidth > 0) {
+        context.drawImage(icon, cx - size * 0.55, cy - size * 0.55, size * 1.1, size * 1.1);
+      } else {
+        context.fillStyle = "#0b1a4a";
+        context.font = `700 ${Math.round(size * 0.54)}px system-ui, sans-serif`;
+        context.textAlign = "center";
+        context.textBaseline = "middle";
+        context.fillText("R", cx, cy + size * 0.04);
+      }
+
+      context.restore();
+    };
+
+    const drawOrbit = (cx, cy, radius, t) => {
+      const rings = [
+        { r: radius * 1.28, start: -0.42, span: 0.9, speed: 0.72, width: 3.2, stroke: "rgba(18, 99, 182, 0.92)" },
+        { r: radius * 1.55, start: 2.25, span: 1.45, speed: -0.36, width: 2.4, stroke: "rgba(159, 176, 203, 0.92)" },
+        { r: radius * 1.72, start: 5.08, span: 0.72, speed: 0.46, width: 2.8, stroke: "rgba(245, 166, 35, 0.86)" },
+        { r: radius * 1.76, start: 0.08, span: 0.54, speed: -0.28, width: 2.2, stroke: "rgba(126, 156, 202, 0.82)" }
+      ];
+
+      context.save();
+      context.lineCap = "round";
+      rings.forEach((ring) => {
+        context.beginPath();
+        const start = ring.start + t * ring.speed;
+        context.arc(cx, cy, ring.r, start, start + ring.span);
+        context.lineWidth = ring.width;
+        context.strokeStyle = ring.stroke;
+        context.stroke();
+      });
+
+      [
+        { angle: 2.9 + t * 0.42, distance: 1.56, color: "rgba(18, 99, 182, 0.96)", size: 2.5 },
+        { angle: 3.65 - t * 0.34, distance: 1.48, color: "rgba(18, 99, 182, 0.82)", size: 1.8 },
+        { angle: 5.08 + t * 0.44, distance: 1.56, color: "rgba(245, 166, 35, 0.92)", size: 2.3 },
+        { angle: 1.55 - t * 0.26, distance: 1.82, color: "rgba(159, 176, 203, 0.88)", size: 1.4 },
+        { angle: 6.08 + t * 0.5, distance: 1.72, color: "rgba(245, 166, 35, 0.82)", size: 1.4 }
+      ].forEach((dot) => {
+        const dotX = cx + Math.cos(dot.angle) * radius * dot.distance;
+        const dotY = cy + Math.sin(dot.angle) * radius * dot.distance;
+        context.beginPath();
+        context.arc(dotX, dotY, dot.size, 0, Math.PI * 2);
+        context.fillStyle = dot.color;
+        context.fill();
+      });
+
+      const activeAngle = t * 1.28 + 2.95;
+      const activeX = cx + Math.cos(activeAngle) * radius * 1.34;
+      const activeY = cy + Math.sin(activeAngle) * radius * 1.34;
+      const gradient = context.createRadialGradient(activeX, activeY, 0, activeX, activeY, radius * 0.12);
+      gradient.addColorStop(0, "rgba(255, 210, 145, 0.95)");
+      gradient.addColorStop(0.45, "rgba(245, 166, 35, 0.86)");
+      gradient.addColorStop(1, "rgba(245, 166, 35, 0)");
+      context.beginPath();
+      context.arc(activeX, activeY, radius * 0.12, 0, Math.PI * 2);
+      context.fillStyle = gradient;
+      context.fill();
+      context.restore();
+    };
+
+    const draw = (now = 0) => {
+      context.clearRect(0, 0, width, height);
+
+      if (width < 4 || height < 4) {
+        return;
+      }
+
+      const t = shouldAnimate ? now * 0.001 : 1.2;
+      const cx = width / 2;
+      const cy = height / 2;
+      const radius = Math.min(width, height) * 0.31;
+      const rotation = (t * 28) % 360;
+
+      context.save();
+      context.globalAlpha = 0.98;
+      drawOrbit(cx, cy, radius, t);
+      context.restore();
+
+      context.save();
+      const globeGradient = context.createRadialGradient(cx - radius * 0.34, cy - radius * 0.42, radius * 0.1, cx, cy, radius);
+      globeGradient.addColorStop(0, "rgba(255, 255, 255, 0.98)");
+      globeGradient.addColorStop(0.64, "rgba(238, 238, 232, 0.96)");
+      globeGradient.addColorStop(1, "rgba(205, 207, 199, 0.9)");
+      context.beginPath();
+      context.arc(cx, cy, radius, 0, Math.PI * 2);
+      context.fillStyle = globeGradient;
+      context.fill();
+      context.lineWidth = 2;
+      context.strokeStyle = "rgba(18, 20, 24, 0.72)";
+      context.stroke();
+
+      context.save();
+      context.beginPath();
+      context.arc(cx, cy, radius - 1, 0, Math.PI * 2);
+      context.clip();
+      drawGraticule(rotation, radius, cx, cy);
+      drawLand(rotation, radius, cx, cy);
+      context.restore();
+
+      context.beginPath();
+      context.arc(cx, cy, radius, 0, Math.PI * 2);
+      context.lineWidth = 1.2;
+      context.strokeStyle = "rgba(18, 20, 24, 0.42)";
+      context.stroke();
+
+      drawIcon(cx, cy, radius * 1.18);
+      context.restore();
+    };
+
+    const stop = () => {
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      }
+    };
+
+    const tick = (now) => {
+      if (!visible) {
+        animationFrame = 0;
+        return;
+      }
+
+      draw(now);
+      animationFrame = window.requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (!shouldAnimate || !visible || animationFrame) {
+        return;
+      }
+
+      animationFrame = window.requestAnimationFrame(tick);
+    };
+
+    icon.addEventListener("load", () => draw(performance.now()), { once: true });
+    atlasPromise.then((rings) => {
+      if (!rings) {
+        return;
+      }
+
+      landShapes = rings;
+      detailedAtlasLoaded = true;
+      draw(performance.now());
+    });
+    resize();
+    start();
+    window.addEventListener("resize", resize, { passive: true });
+
+    if (shouldAnimate && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          visible = Boolean(entry?.isIntersecting);
+          if (visible) {
+            draw(performance.now());
+            start();
+          } else {
+            stop();
+          }
+        },
+        {
+          rootMargin: "160px 0px"
+        }
+      );
+      observer.observe(loader);
+    }
+  });
 }
 
 function setupAmbientMotion() {
