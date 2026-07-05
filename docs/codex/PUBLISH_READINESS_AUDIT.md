@@ -1,19 +1,19 @@
 # Publish Readiness Audit - Robson AI Solutions Website
 
-Last updated: 2026-07-04 17:31 BST
+Last updated: 2026-07-05 12:18 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: zip-faithful correction with animation parity polish is production-published and production-gated on `https://robsonai.co.uk`
+Status: Globe Loader atlas-detail and privacy disclosure release is production-published and production-gated on `https://robsonai.co.uk`
 
 ## 1. Purpose
 
-This audit is the current publish-readiness checklist for the zip-faithful correction and preserves historical production release evidence.
+This audit is the current publish-readiness checklist for the Globe Loader atlas-detail and privacy disclosure release and preserves historical production release evidence.
 
 Important current-state rule:
 
-- The old production release evidence below does not approve this zip-faithful correction.
+- The old production release evidence below does not approve this Globe Loader/privacy correction.
 - This correction has completed local implementation, full local release gate, local commit, Netlify non-production preview deploy, deployed preview gate, Netlify production deploy, and production release gate.
-- Branch push, GitHub PR, DNS/domain changes, analytics/forms/customer-data handling, external messages and any further production deploy remain separately approval-gated.
+- Wayne approved the local evidence-doc source-control alignment step after production. Branch push, GitHub PR, DNS/domain changes, analytics/forms/customer-data handling, external messages and any further production deploy remain separately approval-gated.
 - The rejected `proof-motion-polish` preview must not be published.
 
 ## 2. Current Readiness
@@ -24,29 +24,29 @@ Current active correction:
 - Preview release-readiness: 100%; non-production preview deploy and deployed preview gate passed.
 - Production publish-readiness: 100%; production deploy and production release gate passed.
 - Overall publish readiness to production: 100%.
-- Current recommendation: approve a docs/source-control alignment tranche so the production evidence can be committed and source control can be reconciled deliberately.
+- Current recommendation: approve GitHub/main reconciliation planning after the local production evidence-doc commit.
 - Current local review URL: `http://127.0.0.1:8134/` while the Python server is running.
-- Current local evidence: `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json`, `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`, and `output/measurement/evidence-2026-07-04T15-55-27-128Z`.
-- Current local candidate scope: 15 modified tracked files, 0 untracked candidate files; `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json`.
-- Current release inventory: `output/release-inventory/inventory-2026-07-04T15-53-45-020Z/release-candidate-inventory.json`; dirtyCount 15, secret findings 0, GLB externalUriCount 0.
-- Current commit: `f2df3c1` (`Restore zip-faithful website motion preview`).
-- Current preview URL: `https://zip-faithful-motion--robson-ai-website.netlify.app`.
-- Current preview deploy: `6a4931e3a196083c018fa0bb`; logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4931e3a196083c018fa0bb`.
-- Current preview gate: `output/release-preview-gate/gate-2026-07-04T16-16-54-785Z/release-preview-gate.json`; passed all 14 steps.
-- Current production deploy: `6a4933ec2451857b37ea20b4`; logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4933ec2451857b37ea20b4`.
-- Current production gate: `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json`; passed all 14 steps.
+- Current local evidence: `output/release-local-gate/gate-2026-07-05T10-35-28-613Z/release-local-gate.json`, `output/playwright/rendered-release-smoke-2026-07-05T10-37-00-412Z`, and `output/measurement/evidence-2026-07-05T10-37-20-934Z`.
+- Current local candidate scope before commit: 12 modified tracked files, 18 untracked candidate files; `output/release-staging-manifest/smoke-2026-07-05T10-35-35-782Z/release-staging-manifest-smoke.json`.
+- Current release inventory before production: `output/release-inventory/inventory-2026-07-05T10-40-51-731Z/release-candidate-inventory.json`; dirtyCount 0 at preview gate, secret findings 0, GLB externalUriCount 0.
+- Current commit: `db3922c` (`Integrate globe loader preview and privacy disclosures`).
+- Current preview URL: `https://globe-loader-privacy--robson-ai-website.netlify.app`.
+- Current preview deploy: `6a4a349440be152194797efd`; logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4a349440be152194797efd`.
+- Current preview gate: `output/release-preview-gate/gate-2026-07-05T10-40-51-607Z/release-preview-gate.json`; passed all 14 steps.
+- Current production deploy: `6a4a38a0eef7cd2aee692a52`; logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4a38a0eef7cd2aee692a52`.
+- Current production gate: `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`; passed all 14 steps.
 
 Current live production state:
 
 - Public URL: `https://robsonai.co.uk`.
-- Current verified CLI/archive production deploy is `6a4933ec2451857b37ea20b4` from commit `f2df3c1`.
-- The previous rejected visual-match deploy was `6a48c6e1a19608e3698fa160`; it is now the immediate rollback candidate if Wayne asks to restore that version.
+- Current verified CLI/archive production deploy is `6a4a38a0eef7cd2aee692a52` from commit `db3922c`.
+- The previous production deploy was `6a4933ec2451857b37ea20b4`; it is now the immediate rollback candidate if Wayne asks to restore that version.
 - No branch push, GitHub PR, DNS change, analytics/form change, external message, further production deploy or customer data handling is approved by this audit.
 
 The zip-faithful correction has been published. Remaining work after publish:
 
 - Wayne reviews the live site.
-- If accepted, run a source-control alignment tranche so GitHub/main and the local evidence docs can be reconciled without unplanned deploy churn.
+- If accepted, plan GitHub/main reconciliation carefully so source control can catch up without unplanned deploy churn.
 
 The remaining work that is not a preview blocker:
 
@@ -67,58 +67,58 @@ The remaining work that is not a preview blocker:
 | Security/privacy source posture | Passed locally, on preview and on production | release-security smoke, deployed release-header/source-deny checks, no form/customer data path | Complete |
 | Dependency risk | Residual warning | production audit clean; dev/release tooling audit has 17 moderate, 0 high, 0 critical | Accept residual tooling risk or defer for upstream/tooling changes |
 | BuildScan GLB public data | No new model exposure in restart candidate | Existing public proof asset unchanged | Separate approval needed for any new/replaced public model |
-| Staged file scope | Passed locally for 15-file zip-faithful correction | `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json` | Complete |
-| Netlify deploy-preview | Passed | `https://zip-faithful-motion--robson-ai-website.netlify.app` | Complete |
-| Deployed preview QA | Passed | `output/release-preview-gate/gate-2026-07-04T16-16-54-785Z/release-preview-gate.json` | Complete |
-| Production rollback | Known previous baseline | Previous rejected deploy `6a48c6e1a19608e3698fa160`; older stable deploy `6a415b5db31442000737c37c` remains historical | Confirm target before any rollback |
-| Production deploy | Passed | Netlify deploy `6a4933ec2451857b37ea20b4` from commit `f2df3c1` | Complete |
-| Production verification | Passed | `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json` | Complete |
+| Staged file scope | Passed locally for 30-file Globe Loader/privacy correction | `output/release-staging-manifest/smoke-2026-07-05T10-35-35-782Z/release-staging-manifest-smoke.json` | Complete |
+| Netlify deploy-preview | Passed | `https://globe-loader-privacy--robson-ai-website.netlify.app` | Complete |
+| Deployed preview QA | Passed | `output/release-preview-gate/gate-2026-07-05T10-40-51-607Z/release-preview-gate.json` | Complete |
+| Production rollback | Known previous baseline | Previous production deploy `6a4933ec2451857b37ea20b4`; older stable deploy `6a415b5db31442000737c37c` remains historical | Confirm target before any rollback |
+| Production deploy | Passed | Netlify deploy `6a4a38a0eef7cd2aee692a52` from commit `db3922c` | Complete |
+| Production verification | Passed | `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json` | Complete |
 
 ## 4. Current Correction Evidence
 
 Latest local gate:
 
-- `output/release-local-gate/gate-2026-07-04T16-12-44-423Z/release-local-gate.json`
+- `output/release-local-gate/gate-2026-07-05T10-35-28-613Z/release-local-gate.json`
 - Result: pass, 37 steps.
 
 Latest measurement evidence:
 
-- `output/measurement/evidence-2026-07-04T15-55-27-128Z`
-- Lighthouse performance: 99.
+- `output/measurement/evidence-2026-07-05T10-37-20-934Z`
+- Lighthouse performance: 100.
 - Accessibility: 100.
 - Best practices: 100.
 - SEO: 100.
 - CLS: 0.
-- LCP: about 1.24 seconds.
+- LCP: about 1.39 seconds.
 - Axe violations: 0 across six routes.
 
 Latest deployed preview gate:
 
-- Preview URL: `https://zip-faithful-motion--robson-ai-website.netlify.app`.
-- Netlify deploy: `6a4931e3a196083c018fa0bb`.
-- Commit/source: `f2df3c1`.
-- Gate artifact: `output/release-preview-gate/gate-2026-07-04T16-16-54-785Z/release-preview-gate.json`.
+- Preview URL: `https://globe-loader-privacy--robson-ai-website.netlify.app`.
+- Netlify deploy: `6a4a349440be152194797efd`.
+- Commit/source: `db3922c`.
+- Gate artifact: `output/release-preview-gate/gate-2026-07-05T10-40-51-607Z/release-preview-gate.json`.
 - Result: pass, 14 steps.
-- Release inventory: `output/release-inventory/inventory-2026-07-04T16-16-54-926Z/release-candidate-inventory.json`; dirtyCount 0, secret findings 0, GLB externalUriCount 0.
-- Deployed headers/source-deny: `output/release-headers/smoke-2026-07-04T16-17-02-455Z/release-header-smoke.json`.
-- Deployed BuildScan viewer: `output/buildscan-viewer/smoke-2026-07-04T16-17-02-806Z`.
-- Rendered preview screenshots: `output/playwright/rendered-release-smoke-2026-07-04T16-19-15-017Z`.
-- Measurement preview smoke: `output/measurement/smoke-2026-07-04T16-19-27-393Z`.
+- Release inventory: `output/release-inventory/inventory-2026-07-05T10-40-51-731Z/release-candidate-inventory.json`; dirtyCount 0, secret findings 0, GLB externalUriCount 0.
+- Deployed headers/source-deny: `output/release-headers/smoke-2026-07-05T10-41-00-227Z/release-header-smoke.json`.
+- Deployed BuildScan viewer: `output/buildscan-viewer/smoke-2026-07-05T10-41-00-567Z`.
+- Rendered preview screenshots: `output/playwright/rendered-release-smoke-2026-07-05T10-43-12-228Z`.
+- Measurement preview smoke: `output/measurement/smoke-2026-07-05T10-43-26-170Z`.
 
 Latest production gate:
 
 - Production URL: `https://robsonai.co.uk`.
-- Netlify deploy: `6a4933ec2451857b37ea20b4`.
-- Unique deploy URL: `https://6a4933ec2451857b37ea20b4--robson-ai-website.netlify.app`.
-- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4933ec2451857b37ea20b4`.
-- Commit/source: `f2df3c1`.
-- Gate artifact: `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json`.
+- Netlify deploy: `6a4a38a0eef7cd2aee692a52`.
+- Unique deploy URL: `https://6a4a38a0eef7cd2aee692a52--robson-ai-website.netlify.app`.
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4a38a0eef7cd2aee692a52`.
+- Commit/source: `db3922c`.
+- Gate artifact: `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`.
 - Result: pass, 14 steps.
-- Release inventory: `output/release-inventory/inventory-2026-07-04T16-25-32-251Z/release-candidate-inventory.json`; docs-only dirtyCount 4 at gate start, secret findings 0, GLB externalUriCount 0.
-- Deployed headers/source-deny: `output/release-headers/smoke-2026-07-04T16-25-39-683Z/release-header-smoke.json`.
-- Deployed BuildScan viewer: `output/buildscan-viewer/smoke-2026-07-04T16-25-39-989Z`.
-- Rendered production screenshots: `output/playwright/rendered-release-smoke-2026-07-04T16-26-49-860Z`.
-- Measurement production smoke: `output/measurement/smoke-2026-07-04T16-27-00-373Z`.
+- Release inventory: `output/release-inventory/inventory-2026-07-05T10-58-01-134Z/release-candidate-inventory.json`; dirtyCount 2 from post-preview evidence docs only, secret findings 0, GLB externalUriCount 0.
+- Deployed headers/source-deny: `output/release-headers/smoke-2026-07-05T10-58-08-174Z/release-header-smoke.json`.
+- Deployed BuildScan viewer: `output/buildscan-viewer/smoke-2026-07-05T10-58-08-486Z`.
+- Rendered production screenshots: `output/playwright/rendered-release-smoke-2026-07-05T10-59-21-515Z`.
+- Measurement production smoke: `output/measurement/smoke-2026-07-05T10-59-31-552Z`.
 
 Latest rendered smoke:
 

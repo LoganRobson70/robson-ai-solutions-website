@@ -1,9 +1,9 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-07-04 17:31 BST
+Last updated: 2026-07-05 12:18 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: live review checklist for zip-faithful correction with animation parity polish; production deploy `6a4933ec2451857b37ea20b4` is live and production-gated
+Status: live review checklist for Globe Loader atlas-detail and privacy disclosure release; production deploy `6a4a38a0eef7cd2aee692a52` is live and production-gated
 
 ## 1. Purpose
 
@@ -15,10 +15,10 @@ Important:
 
 - Current live review URL: `https://robsonai.co.uk`.
 - Current local review URL: `http://127.0.0.1:8134/` while the Python server is running.
-- Current candidate name: `zip-faithful-redesign-correction`.
+- Current candidate name: `globe-loader-hero-integration`.
 - The rejected `proof-motion-polish` preview must not be published.
-- Production is live at `https://robsonai.co.uk` on deploy `6a4933ec2451857b37ea20b4`; production gate passed at `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json`.
-- No branch push, GitHub PR, further production deploy, rollback, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
+- Production is live at `https://robsonai.co.uk` on deploy `6a4a38a0eef7cd2aee692a52`; production gate passed at `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`.
+- No branch push, GitHub PR, further production deploy, rollback, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist. Wayne approved only the local docs/source-control evidence alignment step after production.
 - Current preview approval handoff is `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
 - Historical production release evidence is retained below for context only; it is not approval for the restart candidate.
 
@@ -36,7 +36,7 @@ Review these live pages in order on desktop and mobile:
 
 Screenshot evidence from the current production rendered smoke:
 
-- `output/playwright/rendered-release-smoke-2026-07-04T16-26-49-860Z`
+- `output/playwright/rendered-release-smoke-2026-07-05T10-59-21-515Z`
 
 Production release-gate evidence is now the current automation source.
 
@@ -128,28 +128,32 @@ Local release gate:
 
 - Command: `npm run qa:release:local`
 - Result: pass, 37 steps.
-- Artifact: `output/release-local-gate/gate-2026-07-04T15-53-37-926Z/release-local-gate.json`.
+- Artifact: `output/release-local-gate/gate-2026-07-05T10-35-28-613Z/release-local-gate.json`.
 
 Preview release gate:
 
-- Not yet run for this correction.
+- Command: `QA_BASE_URL="https://globe-loader-privacy--robson-ai-website.netlify.app" npm run qa:release:preview`
+- Result: pass, 14 steps.
+- Artifact: `output/release-preview-gate/gate-2026-07-05T10-40-51-607Z/release-preview-gate.json`.
 
 Production release gate:
 
-- Not yet run for this correction.
+- Command: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
+- Result: pass, 14 steps.
+- Artifact: `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`.
 
 Local evidence pack:
 
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-04T15-55-06-652Z`.
-- Measurement: `output/measurement/evidence-2026-07-04T15-55-27-128Z`; axe reported zero violations across six routes, Lighthouse performance 99, accessibility 100, best practices 100, SEO 100, LCP about 1.24 seconds, CLS 0.
-- Latest 15-file staging-manifest smoke: `output/release-staging-manifest/smoke-2026-07-04T15-53-45-280Z/release-staging-manifest-smoke.json`.
-- Latest 15-file release inventory: `output/release-inventory/inventory-2026-07-04T15-53-45-020Z/release-candidate-inventory.json`; dirtyCount 15, secret findings 0, GLB external URI references 0.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-05T10-59-21-515Z`.
+- Measurement: `output/measurement/evidence-2026-07-05T10-37-20-934Z`; axe reported zero violations across six routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.39 seconds, CLS 0.
+- Latest 30-file staging-manifest smoke: `output/release-staging-manifest/smoke-2026-07-05T10-35-35-782Z/release-staging-manifest-smoke.json`.
+- Latest release inventory: `output/release-inventory/inventory-2026-07-05T10-58-01-134Z/release-candidate-inventory.json`; dirtyCount 2 from post-preview evidence docs only, secret findings 0, GLB external URI references 0.
 
 Known residuals:
 
-- The staging manifest and inventory now match the 15-file zip-faithful correction.
-- Animation parity, anchor-navigation, secondary-page brand consistency, measurement-runner stability, and zip-design copy/layout updates are included in the latest local gate.
-- The active correction is committed as `f2df3c1`, preview-gated, production-published and production-gated.
+- The staging manifest and inventory now match the 30-file Globe Loader/privacy correction.
+- Globe Loader atlas-detail polish, BuildScan demo-quality wording, privacy disclosure baseline and zip-design copy/layout updates are included in the latest local gate.
+- The active correction is committed as `db3922c`, preview-gated, production-published and production-gated.
 - The branch is ahead by the rejected motion-preview/evidence commits; do not publish the rejected `proof-motion-polish` preview.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains 17 moderate, 0 high, 0 critical; production footprint remains zero.
@@ -160,9 +164,9 @@ Known residuals:
 
 Use one of these responses:
 
-1. Recommended: approve docs/source-control alignment so the production evidence docs can be committed and GitHub/main can be reconciled deliberately.
+1. Recommended: approve GitHub/main reconciliation planning after the local production evidence-doc commit.
 2. Request live-site design/content tweaks, with the exact page or section to improve.
-3. Hold source-control alignment and leave the live site as-is.
+3. Hold GitHub/main reconciliation and leave the live site as-is.
 
 ## 6. Historical Production Context
 

@@ -1,9 +1,9 @@
 # Release Staging Manifest - Globe Loader And Privacy Disclosure Local Candidate
 
-Last updated: 2026-07-05 11:20 BST
+Last updated: 2026-07-05 12:18 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: local Globe Loader atlas-detail candidate passed full local release gate; privacy service disclosure baseline passed targeted local checks; no commit, preview deploy, production deploy, branch push, GitHub PR, DNS, analytics/forms, customer data handling, external messages or further production deploys are approved
+Status: Globe Loader atlas-detail and privacy disclosure candidate committed as `db3922c`; Netlify preview deploy `6a4a349440be152194797efd` passed deployed preview gate; production deploy `6a4a38a0eef7cd2aee692a52` passed production release gate; Wayne approved local evidence-doc source-control alignment only; no branch push, GitHub PR, DNS, analytics/forms, customer data handling, external messages or further deploys are approved
 
 ## 1. Purpose
 
@@ -27,7 +27,7 @@ This candidate:
 - updates `privacy.html` to disclose the current/potential services a scanner can identify: Netlify hosting/security logs, optional Google Analytics 4 / Google tag script, browser local storage for consent, email-provider handling for mailto enquiries, self-hosted fonts/assets, and the same-origin BuildScan/Three.js model-viewer path
 - keeps privacy/analytics, email-first contact, professional-review boundaries, and cautious maturity language
 
-It does not add launched pricing, payment checkout, live customer-system integrations, analytics/forms, branch pushes, source-control alignment, preview deploys or production deploys.
+It does not add launched pricing, payment checkout, live customer-system integrations, analytics/forms, branch pushes or further deploys.
 
 Do not run `git add .` for this candidate.
 
@@ -45,9 +45,8 @@ Approved and completed for this local candidate:
 - generating the compact atlas asset from the supplied standalone Globe Loader source
 - updating the privacy notice locally to cover the iubenda missing-services warning without activating analytics or changing production
 
-Wayne must approve before Codex performs any of these actions:
+Wayne approved a local evidence-doc source-control alignment step after production. Wayne must still approve before Codex performs any of these actions:
 
-- further local commit
 - further Netlify preview deploy
 - production rollback or further production deploy
 - branch push
@@ -56,17 +55,16 @@ Wayne must approve before Codex performs any of these actions:
 - analytics/forms/customer data handling
 - external messages
 
-## 3. Current Dirty Scope
+## 3. Current Source-Control Scope
 
-Current local candidate scope:
+Current release state:
 
-- Live Netlify production deploy: `6a4933ec2451857b37ea20b4`.
-- Source commit: `f2df3c1`.
-- Previous rejected production deploy and immediate rollback candidate if Wayne asks: `6a48c6e1a19608e3698fa160`.
+- Live Netlify production deploy: `6a4a38a0eef7cd2aee692a52`.
+- Source commit: `db3922c`.
+- Previous production deploy and immediate rollback candidate if Wayne asks: `6a4933ec2451857b37ea20b4`.
 - Local review URL while the Python server is running: `http://127.0.0.1:8134/`.
-- 12 modified tracked files.
-- 18 untracked candidate files.
-- Total dirty candidate files: 30.
+- Public release files and Globe Loader/privacy reference assets are already committed in `db3922c`.
+- The remaining dirty tree before this alignment commit is docs-only production evidence: `docs/codex/GOAL_COMPLETION_AUDIT.md`, `docs/codex/PUBLISH_READINESS_AUDIT.md`, `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/TRACKER.md`, `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`, and `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
 
 Current validation evidence:
 
@@ -277,24 +275,33 @@ Then confirm the staged file set matches this manifest before committing.
 
 ## 10. Checks After Preview Deploy
 
-Not yet approved for this local candidate. If Wayne approves a preview deploy, run:
+Wayne approved the preview step. Completed preview validation:
 
 ```bash
-QA_BASE_URL="https://zip-faithful-motion--robson-ai-website.netlify.app" npm run qa:release:preview
+QA_BASE_URL="https://globe-loader-privacy--robson-ai-website.netlify.app" npm run qa:release:preview
 ```
 
-No preview artifact exists for this Globe Loader candidate yet.
+- Preview deploy: `https://globe-loader-privacy--robson-ai-website.netlify.app`
+- Deploy id: `6a4a349440be152194797efd`
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4a349440be152194797efd`
+- Preview gate artifact: `output/release-preview-gate/gate-2026-07-05T10-40-51-607Z/release-preview-gate.json`
+- Result: pass, 14 steps.
 
 ## 11. Checks After Production Deploy
 
-Not yet approved for this local candidate. If Wayne approves a production deploy after preview approval, run:
+Wayne approved the production step. Completed production validation:
 
 ```bash
 QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
 ```
 
-No production artifact exists for this Globe Loader candidate yet.
+- Production URL: `https://robsonai.co.uk`
+- Production deploy: `6a4a38a0eef7cd2aee692a52`
+- Unique deploy URL: `https://6a4a38a0eef7cd2aee692a52--robson-ai-website.netlify.app`
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4a38a0eef7cd2aee692a52`
+- Production gate artifact: `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`
+- Result: pass, 14 steps.
 
 ## 12. Rollback Path
 
-If this local candidate causes a live regression after a future approved deploy, restore current production deploy `6a4933ec2451857b37ea20b4` unless Wayne confirms a different rollback target first. If a local/docs regression is found before deploy, restore the affected manifest-approved files to the prior committed state and rerun the relevant checks before another decision.
+If this production candidate causes a live regression, restore previous production deploy `6a4933ec2451857b37ea20b4` unless Wayne confirms a different rollback target first. If a local/docs regression is found, restore the affected manifest-approved files to the prior committed state and rerun the relevant checks before another decision.

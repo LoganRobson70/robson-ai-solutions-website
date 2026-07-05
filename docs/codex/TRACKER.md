@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-05 11:20 BST
+Last updated: 2026-07-05 12:18 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/docs-evidence-preservation-no-production-deploy`
@@ -32,13 +32,13 @@ Success means:
 - Next-phase refinement planning baseline is recorded in `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md`; it is not implementation or deployment approval.
 - Side ideas are parked instead of expanding the active tranche.
 - Luffu/Steno/Unfold motion references are captured as `docs/codex/MOTION_REFERENCE_BRIEF.md`; they are not approved implementation scope unless Wayne chooses the motion-polish alternative.
-- Completion status is audited in `docs/codex/GOAL_COMPLETION_AUDIT.md`; the zip-faithful correction is live as Netlify production deploy `6a4933ec2451857b37ea20b4` with production gate pass `output/release-production-gate/gate-2026-07-04T16-25-32-131Z/release-preview-gate.json`.
+- Completion status is audited in `docs/codex/GOAL_COMPLETION_AUDIT.md`; the Globe Loader/privacy correction is live as Netlify production deploy `6a4a38a0eef7cd2aee692a52` with production gate pass `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`.
 - Production release execution is defined in `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the 2026-06-28 publish was executed after Wayne approved option `1`.
 
 ## 2. Active Tranche
 
 Tranche name: `globe-loader-hero-integration`
-Status: atlas-detail Globe Loader polish implemented locally, Downloads Globe Loader files moved into project reference imports, compact atlas asset generated from the supplied standalone loader, privacy service disclosure baseline implemented locally, and refreshed full local release gate passed; awaiting Wayne approval for explicit-path staging, local commit, Netlify preview deploy and preview-gate validation
+Status: completed for production; atlas-detail Globe Loader polish, Globe Loader reference imports, compact atlas asset and privacy service disclosure baseline are live on `https://robsonai.co.uk` from commit `db3922c` as Netlify production deploy `6a4a38a0eef7cd2aee692a52`; production release gate passed
 Started: 2026-07-04 17:38 BST
 
 Scope:
@@ -58,7 +58,7 @@ Scope:
 
 Out of scope:
 
-- Production deploy, rollback, branch push, GitHub PR, DNS/domain changes, analytics/forms/customer-data capture, app implementation, external messages, destructive git actions, or source-control alignment without Wayne approval.
+- Further production deploy, rollback, branch push, GitHub PR, DNS/domain changes, analytics/forms/customer-data capture, app implementation, external messages, destructive git actions, or source-control alignment without Wayne approval.
 
 Validation evidence:
 
@@ -133,18 +133,30 @@ Validation evidence:
 - Measurement evidence inside that refreshed full local gate reported axe violations 0 across six routes and Lighthouse median performance 98, accessibility 100, best practices 100, SEO 100, LCP about 1.59s, CLS 0. Artifact: `output/measurement/evidence-2026-07-05T10-18-36-016Z`.
 - Browser coverage advisory remains warning-only: Chromium passed; Firefox/WebKit Playwright binaries are unavailable locally. Latest artifact: `output/browser-coverage/smoke-2026-07-05T10-17-43-679Z/browser-coverage-smoke.json`.
 - The command prefix `npm run qa:release:local` is now approved for future local release-gate runs so Codex should not ask Wayne for this same local QA approval again.
-- Current publish-readiness estimate for this candidate: 88%. Local visual implementation, atlas-detail reference matching, near-invisible soft-field polish, source-file preservation, public asset budget validation, privacy service disclosure baseline, release inventory validation, privacy validation, staging-manifest alignment, and refreshed full local release gate are complete; staging, commit, preview deploy, preview gate, production approval/deploy and production gate remain.
+- Final staged-state `git diff --cached --check` passed before commit.
+- Final staged-state full `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-05T10-35-28-613Z/release-local-gate.json`; 37 steps.
+- Measurement evidence inside that final staged-state local gate reported axe violations 0 across six routes and Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.39s, CLS 0. Artifact: `output/measurement/evidence-2026-07-05T10-37-20-934Z`.
+- Local commit created: `db3922c` (`Integrate globe loader preview and privacy disclosures`).
+- Netlify non-production preview deploy succeeded from a clean `git archive` of commit `db3922c`: deploy `6a4a349440be152194797efd`, preview URL `https://globe-loader-privacy--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4a349440be152194797efd`.
+- Deployed preview gate passed: `QA_BASE_URL="https://globe-loader-privacy--robson-ai-website.netlify.app" npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-05T10-40-51-607Z/release-preview-gate.json`; result pass, 14 steps.
+- Preview gate evidence includes clean release inventory `output/release-inventory/inventory-2026-07-05T10-40-51-731Z/release-candidate-inventory.json` with dirtyCount 0, zero secret findings and GLB externalUriCount 0; deployed headers/source-deny `output/release-headers/smoke-2026-07-05T10-41-00-227Z/release-header-smoke.json`; deployed BuildScan viewer `output/buildscan-viewer/smoke-2026-07-05T10-41-00-567Z`; deployed responsive smoke `output/responsive-route/smoke-2026-07-05T10-41-37-931Z/responsive-route-smoke.json`; deployed visual-polish smoke `output/visual-polish/smoke-2026-07-05T10-42-34-653Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-05T10-43-12-228Z`; measurement smoke `output/measurement/smoke-2026-07-05T10-43-26-170Z`.
+- Browser coverage advisory remains warning-only: Chromium passed; Firefox/WebKit Playwright binaries are unavailable locally. Latest preview artifact: `output/browser-coverage/smoke-2026-07-05T10-43-01-937Z/browser-coverage-smoke.json`.
+- Netlify production deploy succeeded from a clean `git archive` of commit `db3922c`: deploy `6a4a38a0eef7cd2aee692a52`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a4a38a0eef7cd2aee692a52--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4a38a0eef7cd2aee692a52`.
+- Production release gate passed: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`; result pass, 14 steps.
+- Production gate evidence includes release inventory `output/release-inventory/inventory-2026-07-05T10-58-01-134Z/release-candidate-inventory.json` with dirtyCount 2 from post-preview evidence docs only, zero secret findings and GLB externalUriCount 0; deployed headers/source-deny `output/release-headers/smoke-2026-07-05T10-58-08-174Z/release-header-smoke.json`; deployed BuildScan viewer `output/buildscan-viewer/smoke-2026-07-05T10-58-08-486Z`; deployed responsive smoke `output/responsive-route/smoke-2026-07-05T10-58-34-775Z/responsive-route-smoke.json`; deployed visual-polish smoke `output/visual-polish/smoke-2026-07-05T10-58-54-591Z/visual-polish-smoke.json`; rendered screenshots `output/playwright/rendered-release-smoke-2026-07-05T10-59-21-515Z`; measurement smoke `output/measurement/smoke-2026-07-05T10-59-31-552Z`.
+- Browser coverage advisory remains warning-only on production: Chromium passed; Firefox/WebKit Playwright binaries are unavailable locally. Latest production artifact: `output/browser-coverage/smoke-2026-07-05T10-59-14-298Z/browser-coverage-smoke.json`.
+- Current publish-readiness estimate for this candidate: 100%. Local visual implementation, atlas-detail reference matching, near-invisible soft-field polish, source-file preservation, public asset budget validation, privacy service disclosure baseline, local commit, Netlify preview deploy, deployed preview gate, production deploy and production release gate are complete.
 
 Rollback path:
 
-- Before commit/deploy: restore the manifest-approved files to the prior committed state and delete `assets/globe-loader/world-countries-lite.json`, `docs/codex/reference/globe-loader/`, and `docs/codex/reference/globe-loader-imports/` if Wayne rejects the copied/moved reference material, generated atlas asset, or privacy disclosure update.
-- After a future approved deploy: restore current production deploy `6a4933ec2451857b37ea20b4` unless Wayne confirms a different rollback target.
+- Before further deploy: restore the manifest-approved files to the prior committed state and delete `assets/globe-loader/world-countries-lite.json`, `docs/codex/reference/globe-loader/`, and `docs/codex/reference/globe-loader-imports/` if Wayne rejects the copied/moved reference material, generated atlas asset, or privacy disclosure update.
+- After this approved deploy: restore previous production deploy `6a4933ec2451857b37ea20b4` unless Wayne confirms a different rollback target.
 
 Recommended next decision:
 
-1. Recommended: approve explicit-path staging, local commit, Netlify preview deploy and preview-gate validation for the 30-file atlas-detail plus privacy-disclosure candidate, then review the preview before deciding on production.
-2. Review the local site first at `http://127.0.0.1:8134/` and request visual tweaks to globe size, opacity, position or motion.
-3. Hold this change locally and leave the current live site as-is.
+1. Recommended: approve GitHub/main reconciliation planning after the local production evidence-doc commit, because branch/main pushes can trigger Netlify deploys.
+2. Review `https://robsonai.co.uk` live and request specific visual/privacy-copy tweaks.
+3. Hold GitHub/main reconciliation for now and leave production deploy `6a4a38a0eef7cd2aee692a52` live.
 
 ## 3. Completed Zip-Faithful Redesign Tranche
 
