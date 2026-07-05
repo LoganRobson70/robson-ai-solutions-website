@@ -1,8 +1,8 @@
 # Website Restart Design Audit
 
-Last updated: 2026-06-29 17:11 BST
+Last updated: 2026-07-03 20:08 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: current-state restart audit plus clean-worktree implementation evidence; no commit, push, preview deploy, or production deploy approved
+Status: current-state restart audit plus local implementation evidence; no commit, push, preview deploy, or production deploy approved
 
 ## 1. Restart Decision
 
@@ -17,7 +17,7 @@ Decision:
 - The `proof-motion-polish` preview must not be published.
 - The rejected motion layer is not the path to quality.
 - The next website tranche should reset composition and hierarchy first, then reconsider restrained motion later.
-- A clean local composition-reset candidate now exists at `/private/tmp/robson-ai-website-quality-restart` on branch `codex/website-quality-clean-restart`.
+- A local zip-adapted composition candidate now exists for Wayne review at `http://127.0.0.1:8133/`.
 
 ## 2. Evidence Inspected
 
@@ -53,13 +53,12 @@ Local restart-candidate evidence:
 - Current rendered screenshot evidence before the anchor-navigation polish: `output/playwright/rendered-release-smoke-2026-06-28T20-48-26-094Z`
 - Current full local release gate before the anchor-navigation polish: `output/release-local-gate/gate-2026-06-28T20-47-02-707Z/release-local-gate.json`
 - Current measurement evidence before the anchor-navigation polish: `output/measurement/evidence-2026-06-28T20-48-45-497Z`
-- Current rendered screenshot evidence after anchor-navigation polish: `output/playwright/rendered-release-smoke-2026-06-28T21-10-35-845Z`
-- Current full local release gate after anchor-navigation polish: `output/release-local-gate/gate-2026-06-28T21-09-14-722Z/release-local-gate.json`
-- Current measurement evidence after anchor-navigation polish: `output/measurement/evidence-2026-06-28T21-11-19-578Z`
-- Clean local review URL: `http://127.0.0.1:8133/`; HTTP 200 confirmed.
-- Clean rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-06-29T16-21-29-423Z`
-- Clean full local release gate: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`
-- Clean measurement evidence: `output/measurement/evidence-2026-06-29T16-21-48-137Z`
+- Local review URL: `http://127.0.0.1:8133/`
+- Zip-adapted rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-07-03T19-06-47-075Z`
+- Zip-adapted full local release gate: `output/release-local-gate/gate-2026-07-03T19-05-24-098Z/release-local-gate.json`; passed all 37 steps.
+- Zip-adapted measurement evidence: `output/measurement/evidence-2026-07-03T19-07-04-456Z`; Playwright-injected axe reported zero violations across six routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.73 seconds, CLS 0.
+- Zip-adapted BuildScan viewer evidence: `output/buildscan-viewer/smoke-2026-07-03T19-05-33-122Z`; direct and embedded GLB paths rendered canvas and keyboard controls.
+- Zip-adapted responsive and visual-polish evidence: `output/responsive-route/smoke-2026-07-03T19-05-57-649Z/responsive-route-smoke.json` and `output/visual-polish/smoke-2026-07-03T19-06-18-629Z/visual-polish-smoke.json`.
 
 ## 3. Executive Verdict
 
@@ -222,13 +221,7 @@ Recommended next action:
 
 ## 9. Local Implementation Result
 
-The `homepage-composition-reset` tranche has been moved onto a clean local worktree and remains uncommitted.
-
-Clean worktree:
-
-- Path: `/private/tmp/robson-ai-website-quality-restart`
-- Branch: `codex/website-quality-clean-restart`
-- Base: `origin/main`
+The `homepage-composition-reset` tranche has been implemented locally and remains uncommitted.
 
 Implemented locally:
 
@@ -241,7 +234,7 @@ Implemented locally:
 - Fixed the Who It Fits header lockup so it reads `Robson AI / Solutions`, not `Robson AI / Fit`.
 - Added rendered-smoke strapline checks for key secondary pages.
 - Preserved cautious product maturity language, email-first contact, no form capture, BuildScan opt-in loading, and existing analytics event names.
-- Removed the rejected motion-preview branch history from the active publish path by moving the restart candidate onto a clean branch from `origin/main`.
+- Removed the rejected motion-preview layer from the active working tree.
 
 Current dirty scope:
 
@@ -253,7 +246,11 @@ Current dirty scope:
 - `docs/codex/WEBSITE_RESTART_DESIGN_AUDIT.md`
 - `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`
 - `index.html`
+- `scripts/measurement-evidence.mjs`
+- `scripts/product-design-acceptance-smoke.mjs`
 - `scripts/rendered-release-smoke.mjs`
+- `scripts/responsive-route-smoke.mjs`
+- `script.js`
 - `styles.css`
 - `who-its-for.html`
 
@@ -261,12 +258,14 @@ Validation:
 
 - `node --check script.js` passed.
 - `node --check scripts/rendered-release-smoke.mjs` passed.
+- `node --check scripts/measurement-evidence.mjs` passed.
+- `node --check scripts/product-design-acceptance-smoke.mjs` passed.
+- `node --check scripts/responsive-route-smoke.mjs` passed.
 - `git diff --check` passed.
-- `npm run qa:rendered` passed after the anchor-navigation regression check was added.
-- `npm run qa:release-inventory` passed with dirtyCount 11 and zero secret findings: `output/release-inventory/inventory-2026-06-29T16-20-03-053Z/release-candidate-inventory.json`.
-- `npm run qa:release-staging-manifest` passed with 9 modified tracked files, 2 untracked candidate files and 11 staging paths: `output/release-staging-manifest/smoke-2026-06-29T16-20-03-286Z/release-staging-manifest-smoke.json`.
-- `npm run qa:release:local` passed all 37 steps for the clean 11-file candidate: `output/release-local-gate/gate-2026-06-29T16-19-55-329Z/release-local-gate.json`.
-- `script.js` is intentionally absent because it has no net restart change against `origin/main`.
+- `npm run qa:rendered` passed for the zip-adapted candidate.
+- `npm run qa:release-inventory` passed with dirtyCount 15 and zero secret findings.
+- `npm run qa:release-staging-manifest` passed with 13 modified tracked files, 2 untracked candidate files and 15 staging paths.
+- `npm run qa:release:local` passed all 37 steps for the current 15-file candidate.
 
 Measurement:
 
@@ -274,8 +273,9 @@ Measurement:
 - Accessibility: 100
 - Best practices: 100
 - SEO: 100
-- LCP: about 1.80 seconds
+- LCP: about 1.73 seconds
 - CLS: 0
+- Playwright-injected axe: zero violations across six routes
 
 Residuals:
 
@@ -283,3 +283,49 @@ Residuals:
 - Local browser coverage still records Firefox/WebKit binaries as unavailable; Chromium passes and the warning is non-blocking in the current release gate.
 - Dev/release tooling audit still records 17 moderate findings in tooling dependencies; production footprint remains zero vulnerabilities.
 - The rejected motion preview remains a learning artifact only and must not be published.
+
+## 10. Redesign Zip Reference Review
+
+Source:
+
+- `/Users/wayne/Downloads/Robsonai website redesign.zip`
+
+Local inspection evidence:
+
+- Extracted reference package: `/tmp/robson-redesign.AUtbkX`
+- Local prototype URL: `http://127.0.0.1:8142/Robson%20AI%20Website.dc.html`
+- Screenshot evidence folder: `output/product-design-audit/redesign-zip-2026-07-03`
+- Prototype desktop hero: `output/product-design-audit/redesign-zip-2026-07-03/01-redesign-desktop-hero.png`
+- Prototype mobile hero: `output/product-design-audit/redesign-zip-2026-07-03/03-redesign-mobile-hero.png`
+- Prototype Product/Pricing/About captures: `output/product-design-audit/redesign-zip-2026-07-03/04-redesign-product.png`, `04-redesign-pricing.png`, and `04-redesign-about.png`
+- Live comparison captures: `output/product-design-audit/redesign-zip-2026-07-03/10-live-desktop-hero.png` and `11-live-mobile-hero.png`
+
+Useful design direction:
+
+- The darker hero direction is materially more modern and confident than the current pale-grid first impression.
+- `Insight. Intelligence. Impact.` and `Turning data into intelligence` are strong brand-level ideas if adapted carefully.
+- The trust framing around AI as a draft to verify is useful and aligned with the existing Robson AI boundary that professional judgement remains central.
+- The product-proof cards are calmer and more spacious than several current live sections.
+- The design system's navy/blue/rare-orange palette and restrained interaction rules remain useful.
+
+Do not use unchanged:
+
+- Do not copy the standalone HTML into production. It depends on prototype runtime files, inline styles, Google Fonts, unpkg React/Babel fallbacks, and canvas animation.
+- Do not import its pricing page or subscription claims without a separate product/commercial approval.
+- Do not use `server-side Gemini`, `Stripe`, Android, Google web, free workspace, Professional unlocks, finished reports/notices/specs, or `on every platform a surveyor actually uses` as public claims unless those facts are current and approved.
+- Do not describe Building Analyst as a generic AI assistant or external-provider product goal.
+- Do not adopt the animated mesh as-is. It needs a rebuilt static-site implementation, reduced-motion behaviour, mobile overflow fixes, performance evidence, and no external runtime dependencies.
+
+Observed blockers:
+
+- Mobile prototype has horizontal overflow: 390px viewport produced 772px scroll width.
+- Rendered wordmark/body text exposed a `Robson A ı` issue in the prototype.
+- Pricing/product copy overstates maturity relative to the current public website position.
+- The prototype has no production-ready metadata/title/SEO structure.
+- The exported design-system notes conflict with the current Apple-native/device-first Building Analyst direction in places by naming Google, Gemini, Android, and Stripe as product facts.
+
+Recommendation:
+
+1. Use the zip as a direction reference only: borrow the dark hero confidence, cleaner trust section, and stronger product-proof spacing, while keeping the current repo's cautious copy, release gates, static architecture, and privacy posture.
+2. Do not source-control-align or publish the current live/restart candidate until Wayne decides whether to run a small `redesign-reference-adaptation` tranche first.
+3. If approved, the next implementation tranche should be local-only and should adapt the hero/trust/product-proof language without adding pricing, payment, Android, Google, Gemini, new external fonts, new external runtime dependencies, or production deploy scope.

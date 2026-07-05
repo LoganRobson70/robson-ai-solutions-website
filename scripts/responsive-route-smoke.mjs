@@ -197,8 +197,9 @@ async function assertRouteSpecific(page, route) {
 
   if (route === "/") {
     await page.locator("h1").first().waitFor({ state: "visible", timeout: 10000 });
-    assert(/Professional building intelligence/i.test(bodyText), "Homepage should keep the main proposition visible.");
+    assert(/Turning data into\s+intelligence/i.test(bodyText), "Homepage should keep the main proposition visible.");
     assert(/Discuss a Workflow/i.test(bodyText), "Homepage should keep a primary workflow CTA.");
+    assert(/See What We Do/i.test(bodyText), "Homepage should keep a secondary product CTA.");
     assert(/BuildScan/i.test(bodyText), "Homepage should expose the BuildScan workstream.");
     assert(/Property operations/i.test(bodyText), "Homepage should expose property operations.");
   }

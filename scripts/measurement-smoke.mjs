@@ -134,7 +134,12 @@ async function runDeclineFlow(browser, baseUrl, artifactDir) {
     await page.goto(new URL(APP_ENTRY_PATH, baseUrl).toString(), { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifactDir, "consent-banner-first-load.png"), fullPage: false });
 
-    assert(await page.locator("[data-consent-banner]").isVisible(), "Consent banner should be visible on a clean first load.");
+    const bannerVisibleOnFirstLoad = await page.locator("[data-consent-banner]").isVisible();
+    assert(!bannerVisibleOnFirstLoad, "Consent banner should stay hidden on first load while GA4 measurement is unset.");
+
+    await page.locator("[data-open-consent]").first().click();
+    const bannerVisibleAfterSettingsOpen = await page.locator("[data-consent-banner]").isVisible();
+    assert(bannerVisibleAfterSettingsOpen, "Cookie Settings should open the consent controls.");
 
     await page.getByRole("button", { name: "Decline" }).click();
     const declineConsent = await page.evaluate(() => window.localStorage.getItem("robsonai.analytics-consent"));
@@ -150,7 +155,7 @@ async function runDeclineFlow(browser, baseUrl, artifactDir) {
     );
     assert(bannerHiddenAfterReload, "Consent banner should stay hidden after decline and reload.");
 
-    await page.locator('[data-analytics-id="nav-start-conversation"]').click();
+    await page.locator('[data-analytics-id="footer-contact"]').click();
     assert(page.url().endsWith("/#contact"), "Primary contact navigation should land on the preview contact hash.");
 
     await page.getByRole("button", { name: "Copy email address" }).click();
@@ -158,7 +163,7 @@ async function runDeclineFlow(browser, baseUrl, artifactDir) {
     assert(copyFeedback === "Email address copied.", "Copy email should show success feedback.");
 
     const mailtoHref =
-      (await page.locator('[data-analytics-id="contact-mailto-link"]').getAttribute("href")) || "";
+      (await page.locator('[data-analytics-id="contact-email"]').getAttribute("href")) || "";
 
     assert(
       /subject=.*body=/.test(mailtoHref),
@@ -166,7 +171,8 @@ async function runDeclineFlow(browser, baseUrl, artifactDir) {
     );
 
     return {
-      bannerVisibleOnFirstLoad: true,
+      bannerVisibleOnFirstLoad,
+      bannerVisibleAfterSettingsOpen,
       consentAfterDecline: declineConsent,
       bannerHiddenAfterReload,
       copyFeedback,
@@ -187,6 +193,7 @@ async function runAcceptNoIdFlow(browser, baseUrl) {
 
   try {
     await page.goto(new URL(APP_ENTRY_PATH, baseUrl).toString(), { waitUntil: "networkidle" });
+    await page.locator("[data-open-consent]").first().click();
     await page.getByRole("button", { name: "Accept analytics" }).click();
 
     const consentAfterAccept = await page.evaluate(() => window.localStorage.getItem("robsonai.analytics-consent"));
@@ -239,21 +246,18 @@ async function runFakeIdContractFlow(browser, baseUrl) {
     await page.getByRole("button", { name: "Accept analytics" }).click();
     await page.waitForTimeout(250);
 
-    await page.evaluate(() => {
-      const proofLink = document.querySelector('[data-analytics-id="proof-building-analyst-page"]');
-
-      if (!proofLink) {
-        throw new Error("Proof CTA not found for fake-ID contract test.");
-      }
-
-      proofLink.addEventListener("click", (event) => event.preventDefault(), { once: true });
-      proofLink.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
-    });
-
-    await page.locator('[data-analytics-id="nav-method"]').click();
-    await page.locator('[data-analytics-id="nav-start-conversation"]').click();
-    await page.locator('[data-analytics-id="contact-mailto-link"]').dispatchEvent("click");
+    await page.locator('[data-analytics-id="hero-see-what-we-do"]').click();
+    await page.locator('[data-analytics-id="nav-about"]').click();
+    await page.locator('[data-analytics-id="footer-contact"]').click();
+    await page.locator('[data-analytics-id="contact-email"]').dispatchEvent("click");
     await page.getByRole("button", { name: "Copy email address" }).click();
+    await page.locator("[data-buildscan-load-model]").click();
+    await page
+      .waitForFunction(() => {
+        const viewer = document.querySelector("[data-buildscan-interactive]");
+        return viewer?.classList.contains("is-loaded") || viewer?.classList.contains("is-error");
+      }, null, { timeout: 30000 })
+      .catch(() => undefined);
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     await page.waitForTimeout(400);
 

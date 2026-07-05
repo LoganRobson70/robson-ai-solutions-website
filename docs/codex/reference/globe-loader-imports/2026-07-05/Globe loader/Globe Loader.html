@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Globe Loader</title>
+<meta name="ext-resource-dependency" content="iR-logo-nodot.png" data-resource-id="iRlogo" />
+<meta name="ext-resource-dependency" content="iR-logo-full.png" data-resource-id="iRlogoFull" />
+<meta name="ext-resource-dependency" content="https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json" data-resource-id="topo" />
+<template id="__bundler_thumbnail" data-bg-color="#f4f2ed">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="600" cy="400" r="300" fill="none" stroke="#1855a3" stroke-width="14" stroke-dasharray="900 1885" />
+    <circle cx="600" cy="400" r="250" fill="none" stroke="#f28a30" stroke-width="12" stroke-dasharray="300 1571" />
+    <circle cx="520" cy="250" r="42" fill="#f28a30" />
+    <rect x="500" y="320" width="60" height="200" rx="18" fill="#1d4ed8" />
+    <path d="M600 320 h120 a90 90 0 0 1 0 180 h-120 z M600 500 l130 120" fill="none" stroke="#16245e" stroke-width="58" stroke-linejoin="round" stroke-linecap="round" />
+  </svg>
+</template>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #f4f2ed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #loader {
+    width: 200px;
+    height: 200px;
+    position: relative;
+  }
+  #loader canvas {
+    position: absolute;
+    inset: 0;
+    width: 200px;
+    height: 200px;
+  }
+</style>
+</head>
+<body style="background: rgb(255, 255, 255)">
+  <div id="loader">
+    <canvas id="whirl" width="400" height="400"></canvas>
+    <canvas id="globe" width="400" height="400"></canvas>
+  </div>
+  <div id="tweaks-root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+
+  <script>
+  (function () {
+    const DPR = 2;            // canvas backing scale (400/200)
+    const SIZE = 200;
+    const cx = SIZE / 2, cy = SIZE / 2;
+    const R = 64;             // subject radius
+
+    // ---- live tweak state (mutated by the React panel) ----
+    const T = {
+      subject: 'building',
+      spin: 22,
+      whirl: 1,
+      ink: '#23211c',
+      bg: '#f4f2ed',
+    };
+
+    function hexToRgb(hex) {
+      const h = hex.replace('#', '');
+      return {
+        r: parseInt(h.slice(0, 2), 16),
+        g: parseInt(h.slice(2, 4), 16),
+        b: parseInt(h.slice(4, 6), 16),
+      };
+    }
+    const ink = (a) => {
+      const { r, g, b } = hexToRgb(T.ink);
+      return `rgba(${r},${g},${b},${a})`;
+    };
+
+    const globe = document.getElementById('globe');
+    const whirl = document.getElementById('whirl');
+    const gctx = globe.getContext('2d');
+    const wctx = whirl.getContext('2d');
+    gctx.scale(DPR, DPR);
+    wctx.scale(DPR, DPR);
+
+    const projection = d3.geoOrthographic()
+      .scale(R)
+      .translate([cx, cy])
+      .clipAngle(90);
+    const path = d3.geoPath(projection, gctx);
+    const graticule = d3.geoGraticule10();
+    let land = null, borders = null;
+
+    // ---- iR logo (dot removed; we animate our own orange dot) ----
+    const ICON = { orange: '#f28a30', blue: [24, 85, 163], navy: [28, 46, 110], orangeRGB: [242, 138, 48] };
+    const logo = new Image();
+    let logoReady = false;
+    logo.onload = () => { logoReady = true; last = -1; };
+    logo.src = (window.__resources && window.__resources.iRlogo) || 'iR-logo-nodot.png';
+
+    // ---- iR logo WITH the orange dot (transparent bg) for faces / globe overlay ----
+    const logoFull = new Image();
+    let logoFullReady = false;
+    logoFull.onload = () => { logoFullReady = true; last = -1; };
+    logoFull.src = (window.__resources && window.__resources.iRlogoFull) || 'iR-logo-full.png';
+
+    // ---- Globe ----
+    function drawGlobe(lambda) {
+      projection.rotate([lambda, -12, 0]);
+      gctx.clearRect(0, 0, SIZE, SIZE);
+
+      gctx.beginPath(); path({ type: 'Sphere' });
+      gctx.fillStyle = ink(0.06); gctx.fill();
+
+      gctx.beginPath(); path(graticule);
+      gctx.lineWidth = 0.5; gctx.strokeStyle = ink(0.18); gctx.stroke();
+
+      if (land) {
+        gctx.beginPath(); path(land);
+        gctx.fillStyle = ink(0.82); gctx.fill();
+      }
+      if (borders) {
+        gctx.beginPath(); path(borders);
+        gctx.lineWidth = 0.5; gctx.strokeStyle = T.bg; gctx.stroke();
+      }
+      gctx.beginPath(); path({ type: 'Sphere' });
+      gctx.lineWidth = 1.4; gctx.strokeStyle = ink(1); gctx.stroke();
+    }
+
+    // ---- Globe with the iR icon held at its centre ----
+    function drawGlobeIcon(lambda) {
+      drawGlobe(lambda);
+      const S = 84, x0 = cx - S / 2, y0 = cy - S / 2;
+      gctx.save();
+      gctx.globalAlpha = 0.86;
+      gctx.beginPath(); gctx.arc(cx, cy, 47, 0, Math.PI * 2);
+      gctx.fillStyle = T.bg; gctx.fill();
+      gctx.restore();
+      gctx.beginPath(); gctx.arc(cx, cy, 47, 0, Math.PI * 2);
+      gctx.lineWidth = 1.2; gctx.strokeStyle = ink(0.35); gctx.stroke();
+      if (logoFullReady) gctx.drawImage(logoFull, x0, y0, S, S);
+    }
+
+    // ---- Building (generic rotating 3D massing) ----
+    const SCALE = 0.8;          // model units -> screen px
+    const YC = 70;              // vertical centre of the model
+    const TILT = 20 * Math.PI / 180;
+    const COS_T = Math.cos(TILT), SIN_T = Math.sin(TILT);
+    const LIGHT = { x: -0.30, y: 0.82, z: 0.49 };   // camera-space light dir
+
+    // stacked boxes (centred on x=z=0); win = [cols, rows] for glazed sides
+    const MASS = [
+      { y0: 0,   y1: 30,  hx: 40, hz: 40, win: [5, 2] },             // podium
+      { y0: 30,  y1: 98,  hx: 28, hz: 28, win: [4, 7], tex: true },  // shaft (iR logo)
+      { y0: 98,  y1: 128, hx: 18, hz: 18, win: [3, 3] },             // crown setback
+      { y0: 128, y1: 142, hx: 3,  hz: 3,  win: null    },             // rooftop mast
+    ];
+
+    function boxFaces(b) {
+      const { y0, y1, hx, hz, win, tex } = b;
+      const V = {
+        a: [-hx, y0, -hz], b: [hx, y0, -hz], c: [hx, y0, hz], d: [-hx, y0, hz],
+        e: [-hx, y1, -hz], f: [hx, y1, -hz], g: [hx, y1, hz], h: [-hx, y1, hz],
+      };
+      return [
+        { p: [V.e, V.f, V.g, V.h], win: null, tex: false },  // top
+        { p: [V.d, V.c, V.g, V.h], win, tex },                 // +z (front)
+        { p: [V.b, V.a, V.e, V.f], win, tex },                 // -z (back)
+        { p: [V.c, V.b, V.f, V.g], win, tex },                 // +x (right)
+        { p: [V.a, V.d, V.h, V.e], win, tex },                 // -x (left)
+      ];
+    }
+
+    function project(P, c, s) {
+      const [x, y, z] = P;
+      const x1 = x * c + z * s;
+      const z1 = -x * s + z * c;
+      const y1 = y - YC;
+      const y2 = y1 * COS_T - z1 * SIN_T;
+      const z2 = y1 * SIN_T + z1 * COS_T;
+      return { sx: cx + x1 * SCALE, sy: cy - y2 * SCALE, cam: [x1, y2, z2] };
+    }
+    const lerp = (A, B, t) => ({ sx: A.sx + (B.sx - A.sx) * t, sy: A.sy + (B.sy - A.sy) * t });
+
+    // map a square image onto a (slightly inset) projected face parallelogram
+    function drawTexturedFace(pts, img, alpha) {
+      const [A, B, C, D] = pts;
+      const ctr = { sx: (A.sx+B.sx+C.sx+D.sx)/4, sy: (A.sy+B.sy+C.sy+D.sy)/4 };
+      const ins = (p, f) => ({ sx: ctr.sx + (p.sx-ctr.sx)*f, sy: ctr.sy + (p.sy-ctr.sy)*f });
+      const a = ins(A, 0.86), b = ins(B, 0.86), cc = ins(C, 0.86), d = ins(D, 0.86);
+      const w = img.width, h = img.height;
+      gctx.save();
+      gctx.beginPath();
+      gctx.moveTo(a.sx, a.sy); gctx.lineTo(b.sx, b.sy);
+      gctx.lineTo(cc.sx, cc.sy); gctx.lineTo(d.sx, d.sy); gctx.closePath();
+      gctx.clip();
+      gctx.globalAlpha = alpha;
+      gctx.setTransform(
+        ((b.sx-a.sx)/w) * DPR, ((b.sy-a.sy)/w) * DPR,
+        (-(d.sx-a.sx)/h) * DPR, (-(d.sy-a.sy)/h) * DPR,
+        d.sx * DPR, d.sy * DPR
+      );
+      gctx.drawImage(img, 0, 0);
+      gctx.restore();
+    }
+
+    function drawBuilding3D(angle) {
+      gctx.clearRect(0, 0, SIZE, SIZE);
+      gctx.lineJoin = 'round';
+      const c = Math.cos(angle), s = Math.sin(angle);
+
+      // build, transform, cull back faces, sort far -> near
+      const faces = [];
+      for (const b of MASS) {
+        for (const f of boxFaces(b)) {
+          const pts = f.p.map(P => project(P, c, s));
+          const [a0, a1, a2] = pts.map(p => p.cam);
+          const e1 = [a1[0]-a0[0], a1[1]-a0[1], a1[2]-a0[2]];
+          const e2 = [a2[0]-a0[0], a2[1]-a0[1], a2[2]-a0[2]];
+          const n = [
+            e1[1]*e2[2] - e1[2]*e2[1],
+            e1[2]*e2[0] - e1[0]*e2[2],
+            e1[0]*e2[1] - e1[1]*e2[0],
+          ];
+          if (n[2] <= 0) continue;                       // back-facing -> skip
+          const nl = Math.hypot(n[0], n[1], n[2]) || 1;
+          const dot = Math.max(0, (n[0]*LIGHT.x + n[1]*LIGHT.y + n[2]*LIGHT.z) / nl);
+          const depth = (a0[2] + a1[2] + a2[2] + pts[3].cam[2]) / 4;
+          faces.push({ pts, win: f.win, tex: f.tex, shade: 0.05 + 0.20 * (1 - dot), depth });
+        }
+      }
+      faces.sort((A, B) => B.depth - A.depth);
+
+      for (const f of faces) {
+        const [A, B, C, D] = f.pts;
+        gctx.beginPath();
+        gctx.moveTo(A.sx, A.sy); gctx.lineTo(B.sx, B.sy);
+        gctx.lineTo(C.sx, C.sy); gctx.lineTo(D.sx, D.sy); gctx.closePath();
+        gctx.fillStyle = T.bg; gctx.fill();              // occlude what's behind
+        gctx.fillStyle = ink(f.shade); gctx.fill();      // facet shading
+
+        if (f.tex && logoFullReady) {                    // iR logo on the side
+          drawTexturedFace(f.pts, logoFull, Math.max(0.62, 1.0 - f.shade * 0.9));
+        } else if (f.win) {                              // window grid
+          const [cols, rows] = f.win;
+          gctx.beginPath();
+          for (let i = 1; i < cols; i++) {
+            const p1 = lerp(A, B, i / cols), p2 = lerp(D, C, i / cols);
+            gctx.moveTo(p1.sx, p1.sy); gctx.lineTo(p2.sx, p2.sy);
+          }
+          for (let j = 1; j < rows; j++) {
+            const p1 = lerp(A, D, j / rows), p2 = lerp(B, C, j / rows);
+            gctx.moveTo(p1.sx, p1.sy); gctx.lineTo(p2.sx, p2.sy);
+          }
+          gctx.lineWidth = 0.6; gctx.strokeStyle = ink(0.45); gctx.stroke();
+        }
+
+        gctx.beginPath();
+        gctx.moveTo(A.sx, A.sy); gctx.lineTo(B.sx, B.sy);
+        gctx.lineTo(C.sx, C.sy); gctx.lineTo(D.sx, D.sy); gctx.closePath();
+        gctx.lineWidth = 1.2; gctx.strokeStyle = ink(1); gctx.stroke();
+      }
+    }
+
+    // ---- iR icon: logo + animated orange dot that sweeps and spins ----
+    function drawIcon(elapsed) {
+      gctx.clearRect(0, 0, SIZE, SIZE);
+      const S = 138, x0 = cx - S / 2, y0 = cy - S / 2;
+      if (logoReady) gctx.drawImage(logo, x0, y0, S, S);
+
+      const hx = x0 + 0.341 * S;   // original tittle position
+      const hy = y0 + 0.227 * S;
+      const r = 0.0493 * S;
+      const t = elapsed;
+      const sweep = (tt) => hx + Math.sin(tt * 2.1) * 15;   // left-right travel
+      const bob   = (tt) => hy + Math.sin(tt * 4.2 + Math.PI / 2) * 3.5;
+      const px = sweep(t), py = bob(t);
+      const [orr, org, orb] = ICON.orangeRGB;
+
+      // motion trail behind the ball
+      for (let kk = 3; kk >= 1; kk--) {
+        const tt = t - kk * 0.07;
+        gctx.beginPath();
+        gctx.arc(sweep(tt), bob(tt), r * (1 - 0.07 * kk), 0, Math.PI * 2);
+        gctx.fillStyle = `rgba(${orr},${org},${orb},${0.14 / kk})`;
+        gctx.fill();
+      }
+      // the ball
+      gctx.beginPath();
+      gctx.arc(px, py, r, 0, Math.PI * 2);
+      gctx.fillStyle = ICON.orange;
+      gctx.fill();
+      // rotating specular highlight -> reads as spin
+      const sp = t * 3.0;
+      gctx.beginPath();
+      gctx.arc(px + Math.cos(sp) * r * 0.42, py + Math.sin(sp) * r * 0.42, r * 0.34, 0, Math.PI * 2);
+      gctx.fillStyle = 'rgba(255,212,156,0.92)';
+      gctx.fill();
+    }
+
+    // ---- Whirl ----
+    function drawWhirl(t, palette) {
+      wctx.clearRect(0, 0, SIZE, SIZE);
+      wctx.lineCap = 'round';
+      const k = T.whirl;
+      if (k <= 0) return;
+      const col = (i) => palette[i % palette.length];
+
+      const rings = [
+        { r: R + 12, span: 1.5, speed: 1.0,  w: 2.2, a: 0.55 },
+        { r: R + 20, span: 0.9, speed: -0.7, w: 1.6, a: 0.40 },
+        { r: R + 28, span: 2.3, speed: 0.5,  w: 1.2, a: 0.26 },
+        { r: R + 36, span: 0.5, speed: -1.3, w: 1.8, a: 0.32 },
+      ];
+      rings.forEach((ring, idx) => {
+        const a0 = t * ring.speed;
+        const c = col(idx);
+        wctx.beginPath();
+        wctx.arc(cx, cy, ring.r, a0, a0 + ring.span);
+        wctx.lineWidth = ring.w;
+        wctx.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},${Math.min(1, ring.a * k)})`;
+        wctx.stroke();
+      });
+      const N = 7;
+      for (let i = 0; i < N; i++) {
+        const ang = (i / N) * Math.PI * 2 + t * 1.6;
+        const rr = R + 12 + (i % 3) * 9;
+        const px = cx + Math.cos(ang) * rr;
+        const py = cy + Math.sin(ang) * rr;
+        const s = 1.6 - (i % 3) * 0.35;
+        const c = col(i);
+        wctx.beginPath();
+        wctx.arc(px, py, s, 0, Math.PI * 2);
+        wctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${Math.min(1, (0.5 - (i % 3) * 0.12) * k)})`;
+        wctx.fill();
+      }
+    }
+
+    // ---- loop ----
+    const t0 = performance.now();
+    let last = -1;
+    function renderFrame() {
+      const elapsed = (performance.now() - t0) / 1000;
+      if (elapsed === last) return;
+      last = elapsed;
+      if (T.subject === 'globe') drawGlobe((elapsed * T.spin) % 360);
+      else if (T.subject === 'globeIcon') drawGlobeIcon((elapsed * T.spin) % 360);
+      else if (T.subject === 'icon') drawIcon(elapsed);
+      else drawBuilding3D(elapsed * T.spin * Math.PI / 180);
+
+      const ic = hexToRgb(T.ink);
+      const palette = (T.subject === 'icon' || T.subject === 'globeIcon')
+        ? [ICON.blue, ICON.orangeRGB, ICON.navy]
+        : [[ic.r, ic.g, ic.b]];
+      drawWhirl(elapsed * 1.1, palette);
+    }
+    function raf() { renderFrame(); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    setInterval(renderFrame, 1000 / 30);
+    renderFrame();
+
+    // ---- tweak bridge ----
+    window.__applyTweaks = (next) => {
+      Object.assign(T, next);
+      document.body.style.background = T.bg;
+      last = -1;          // force a redraw next tick
+      renderFrame();
+    };
+
+    // ---- country geometry ----
+    fetch((window.__resources && window.__resources.topo) || 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+      .then(r => r.json())
+      .then(topo => {
+        land = topojson.feature(topo, topo.objects.countries);
+        borders = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b);
+      })
+      .catch(() => {});
+  })();
+  </script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "subject": "globeIcon",
+      "spin": 28,
+      "whirl": 2,
+      "ink": "#23211c",
+      "bg": "#f4f2ed"
+    }/*EDITMODE-END*/;
+
+    const INKS = ['#23211c', '#222a26', '#212733', '#2a2422'];
+    const BGS  = ['#f4f2ed', '#eef0ec', '#eceef2', '#f2efe9'];
+
+    function App() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+      React.useEffect(() => { window.__applyTweaks && window.__applyTweaks(t); }, [t]);
+      return (
+        <TweaksPanel>
+          <TweakSection label="Subject" />
+          <TweakSelect label="Show" value={t.subject}
+            options={['globe', 'building', 'icon', 'globeIcon']}
+            onChange={(v) => setTweak('subject', v)} />
+
+          <TweakSection label="Motion" />
+          <TweakSlider label="Spin speed" value={t.spin} min={0} max={90} step={1} unit="°/s"
+            onChange={(v) => setTweak('spin', v)} />
+          <TweakSlider label="Whirl" value={t.whirl} min={0} max={2} step={0.1}
+            onChange={(v) => setTweak('whirl', v)} />
+
+          <TweakSection label="Palette" />
+          <TweakColor label="Ink" value={t.ink} options={INKS}
+            onChange={(v) => setTweak('ink', v)} />
+          <TweakColor label="Background" value={t.bg} options={BGS}
+            onChange={(v) => setTweak('bg', v)} />
+        </TweaksPanel>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App />);
+  </script>
+</body>
+</html>

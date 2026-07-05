@@ -1,12 +1,12 @@
 # Production Release And Source-Control Runbook - Robson AI Solutions Website
 
-Last updated: 2026-06-30 07:02 BST
+Last updated: 2026-07-05 16:21 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: production published from GitHub/main; source-control aligned and production-gated
+Status: production is live from a Netlify CLI/archive deploy; GitHub/main reconciliation is in local preflight only
 
 ## 1. Purpose
 
-This runbook records the current production state for the clean website restart after GitHub source control was aligned with the live Netlify deploy.
+This runbook records the current production state and the safe source-control reconciliation path after the Globe Loader atlas-detail and privacy disclosure release.
 
 It does not approve commits, pushes, pull requests, merges, production deploys, production verification, domain/DNS changes, analytics, forms, customer-data handling, external messages, or destructive git actions.
 
@@ -15,24 +15,23 @@ It does not approve commits, pushes, pull requests, merges, production deploys, 
 Live production:
 
 - Public URL: `https://robsonai.co.uk`
-- Netlify production deploy: `6a435aeccc48bb00085e7eb4`
-- Unique deploy URL: `https://6a435aeccc48bb00085e7eb4--robson-ai-website.netlify.app`
-- Logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a435aeccc48bb00085e7eb4`
-- Source: GitHub/main commit `75f9a13899c1205d02aae7567b06324774e7c8ff`
-- Published after Wayne approved option `1` for production, then option `1` for source-control alignment
+- Netlify production deploy: `6a4a38a0eef7cd2aee692a52`
+- Unique deploy URL: `https://6a4a38a0eef7cd2aee692a52--robson-ai-website.netlify.app`
+- Logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4a38a0eef7cd2aee692a52`
+- Source: clean `git archive` of local commit `db3922c` (`Integrate globe loader preview and privacy disclosures`)
+- Post-production evidence commit: `9fcdf9f` (`Document Globe Loader production evidence alignment`)
 
 Validation:
 
 - Production gate command: `QA_PRODUCTION_URL=https://robsonai.co.uk CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
-- Production gate artifact: `output/release-production-gate/gate-2026-06-30T06-00-24-751Z/release-preview-gate.json`
+- Production gate artifact: `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`
 - Result: pass, 14 steps
-- Live recheck on 2026-06-30 after the GitHub/main deploy: `https://robsonai.co.uk/` returned HTTP 200 with `content-length: 37720`
 
 Immediate rollback target:
 
-- Netlify deploy: `6a42c401c0f172f9fa99e3a7`
-- Source: clean archive of local commit `242410f`
-- Unique deploy URL: `https://6a42c401c0f172f9fa99e3a7--robson-ai-website.netlify.app`
+- Netlify deploy: `6a4933ec2451857b37ea20b4`
+- Source: clean `git archive` of local commit `f2df3c1`
+- Unique deploy URL: `https://6a4933ec2451857b37ea20b4--robson-ai-website.netlify.app`
 
 Secondary rollback target:
 
@@ -43,38 +42,35 @@ Secondary rollback target:
 Rejected preview that must not be published:
 
 - `https://proof-motion-polish--robson-ai-website.netlify.app`
-- Deploy: `6a41739b29f5ccb3751611f1`
 
 ## 3. Current Source-Control State
 
-Current clean worktree:
+Live-release branch:
 
-- Path: `/private/tmp/robson-ai-website-quality-restart`
-- Branch: `codex/website-quality-clean-restart`
-- Commit: `75f9a13` (`Document clean restart production alignment`)
-- Tracking: `origin/codex/website-quality-clean-restart`
-- Status before this local runbook update: clean and aligned
+- Branch: `codex/docs-evidence-preservation-no-production-deploy`
+- Local HEAD before reconciliation preflight: `9fcdf9f`
+- Remote tracking branch: `origin/codex/docs-evidence-preservation-no-production-deploy`
+- State before preflight: clean, ahead of remote by six commits
 
 Current GitHub/main:
 
-- `origin/main`: `75f9a13`
-- `main`: `75f9a13`
+- `origin/main`: `bd14eed`
+- Relationship: `origin/main` and the live-release branch diverged after merge-base `39c5bf5`
+- Consequence: `main` cannot be fast-forwarded to the live-release branch without a merge/reconciliation step
 
-Fast-forward preflight:
+Local reconciliation worktree:
 
-- Checked: 2026-06-30 07:02 BST
-- `HEAD`: `75f9a13`
-- `origin/main`: `75f9a13`
-- `main`: `75f9a13`
-- Branch push completed for `origin/codex/website-quality-clean-restart`.
-- `main` push completed as a normal non-force fast-forward.
-- No force-push was used.
+- Worktree path: `/private/tmp/robson-ai-website-main-reconciliation`
+- Branch: `codex/github-main-reconciliation-preflight`
+- Base: `origin/main` at `bd14eed`
+- Merge source: `codex/docs-evidence-preservation-no-production-deploy`
+- Status: local preflight only until Wayne approves a remote action
 
 Important consequence:
 
-- Production currently serves the clean restart candidate from GitHub/main.
-- GitHub/main contains the release source at commit `75f9a13`.
-- Future GitHub-triggered Netlify production deploys should preserve the clean restart candidate unless new source changes are pushed.
+- Production currently serves the Globe Loader/privacy release from a CLI/archive deploy, not from GitHub/main.
+- A GitHub/main push or merge is likely to trigger a new Netlify production deploy.
+- Remote alignment needs an explicit next approval after this local preflight.
 
 ## 4. Recommended Approval Phrase
 

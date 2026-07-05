@@ -236,12 +236,14 @@ async function runDesktopHomepage(browser, baseUrl, artifactDir) {
     const response = await page.goto(new URL("/", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "Homepage should return HTTP 200.");
     await expectVisible(page, "h1", "Homepage H1");
-    await expectVisible(page, "#property-operations", "Property operations section");
+    await expectVisible(page, "#product", "Product section");
     await expectVisible(page, "#buildscan-model-view", "BuildScan model section");
+    await expectVisible(page, "#pricing", "Pricing section");
+    await expectVisible(page, "#about", "About section");
     await expectVisible(page, "#contact", "Contact section");
 
     const heroText = (await page.locator("h1").first().textContent())?.trim() || "";
-    assert(/building/i.test(heroText) || /Robson/i.test(heroText), `Homepage H1 should carry the Robson/building proposition; actual: ${heroText}`);
+    assert(/Turning data into\s+intelligence/i.test(heroText), `Homepage H1 should carry the current Robson AI proposition; actual: ${heroText}`);
 
     const staticImage = page.locator(".buildscan-model-image").first();
     await staticImage.scrollIntoViewIfNeeded();
@@ -279,7 +281,7 @@ async function runDesktopHomepage(browser, baseUrl, artifactDir) {
   }
 }
 
-async function runMobileConsentAndHomepage(browser, baseUrl, artifactDir) {
+async function runMobileHomepage(browser, baseUrl, artifactDir) {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true });
   const page = await context.newPage();
   const diagnostics = captureDiagnostics(page);
@@ -288,25 +290,13 @@ async function runMobileConsentAndHomepage(browser, baseUrl, artifactDir) {
     const response = await page.goto(new URL("/", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "Mobile homepage should return HTTP 200.");
 
-    const banner = await expectVisible(page, "[data-consent-banner]", "Mobile consent banner");
-    await expectVisible(page, "[data-consent-accept]", "Mobile consent accept button");
-    await expectVisible(page, "[data-consent-decline]", "Mobile consent decline button");
-    await expectVisible(
-      page,
-      '[data-consent-banner] a[href="./privacy.html"], [data-consent-banner] a[href="/privacy"], [data-consent-banner] a[href="/privacy.html"]',
-      "Mobile consent privacy link"
-    );
-
-    const bannerBox = await banner.boundingBox();
-    assert(bannerBox && bannerBox.height <= 260, `Mobile consent banner should stay compact; actual height ${bannerBox?.height}.`);
+    const bannerVisible = await page.locator("[data-consent-banner]").evaluate((banner) => !banner.hidden);
+    assert(!bannerVisible, "Mobile consent banner should not cover first load while no GA4 measurement ID is configured.");
 
     await page.screenshot({
-      path: path.join(artifactDir, "mobile-consent-first-load.png"),
+      path: path.join(artifactDir, "mobile-homepage-first-load.png"),
       fullPage: false
     });
-
-    await page.getByRole("button", { name: "Decline" }).click();
-    await page.waitForFunction(() => document.querySelector("[data-consent-banner]")?.hidden === true);
 
     await page.locator("#buildscan-model-view").scrollIntoViewIfNeeded();
     const loadButton = page.locator("[data-buildscan-load-model]").first();
@@ -327,7 +317,7 @@ async function runMobileConsentAndHomepage(browser, baseUrl, artifactDir) {
 
     return {
       metrics: await assertNoPageRegression(page, "Mobile homepage"),
-      bannerHeight: bannerBox.height,
+      bannerVisible,
       buildscanLoadButtonClear: buttonHitTest,
       diagnostics
     };
@@ -348,7 +338,7 @@ async function runBuildScanInteractive(browser, baseUrl, artifactDir) {
     const anchorLanding = await assertAnchorLandingClean(
       page,
       "#buildscan-model-view",
-      "#property-operations",
+      "#building-analyst",
       "BuildScan anchor landing"
     );
     await page.locator("[data-buildscan-interactive]").scrollIntoViewIfNeeded();
@@ -538,7 +528,7 @@ export async function runRenderedReleaseSmoke({
       baseUrl,
       mode,
       desktopHomepage: await runDesktopHomepage(browser, baseUrl, artifactDir),
-      mobileHomepage: await runMobileConsentAndHomepage(browser, baseUrl, artifactDir),
+      mobileHomepage: await runMobileHomepage(browser, baseUrl, artifactDir),
       buildscanInteractive: await runBuildScanInteractive(browser, baseUrl, artifactDir),
       supportingPages: await runSupportingPages(browser, baseUrl, artifactDir)
     };
@@ -571,7 +561,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
         mode: summary.mode,
         screenshots: [
           "desktop-homepage.png",
-          "mobile-consent-first-load.png",
+          "mobile-homepage-first-load.png",
           "mobile-buildscan-before-load.png",
           "desktop-buildscan-interactive-loaded.png",
           "desktop-building-analyst-proof.png",
