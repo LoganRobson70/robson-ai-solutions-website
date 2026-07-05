@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-05 16:37 BST
+Last updated: 2026-07-05 17:05 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/github-main-reconciliation-preflight` in worktree `/private/tmp/robson-ai-website-main-reconciliation`
@@ -11,7 +11,7 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Complete the approved `github-main-reconciliation-preflight`: reconcile current `origin/main` with the live Globe Loader/privacy production release locally, resolve conflicts, run QA, and report the exact branch push / PR / Netlify deploy risk before any remote action.
+- Complete the approved `github-main-reconciliation-preflight`: reconcile current `origin/main` with the live Globe Loader/privacy production release, resolve conflicts, run QA, push a review branch, and open a draft GitHub PR without merging or production deploying.
 - Correct the live-site mismatch Wayne identified on 2026-07-04: the current published site is not faithful enough to the supplied redesign zip in layout, text, fonts, content and overall look.
 - Rebuild the homepage locally around the zip's white header, dark mesh hero, Home/Product/Pricing/About IA, large `Turning data into intelligence.` proposition and product-line structure, while adding the approved BuildScan/model-view element in that visual language.
 - Publish the zip-faithful correction after Wayne approved option `1`; branch push, PR, DNS/domain changes and further production deploys remain approval-gated.
@@ -39,7 +39,7 @@ Success means:
 ## 2. Active Tranche
 
 Tranche name: `github-main-reconciliation-preflight`
-Status: completed locally and QA-passed; local merge commit `0796be2` created; no push, PR, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message is approved
+Status: draft PR open and QA-passed; branch `codex/github-main-reconciliation-preflight` pushed to origin; GitHub PR #3 open at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/3`; no merge to `main`, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message has been performed
 Started: 2026-07-05 16:12 BST
 
 Scope:
@@ -53,7 +53,7 @@ Scope:
 
 Out of scope:
 
-- Branch push, GitHub PR, merge to `main`, Netlify preview deploy, Netlify production deploy, rollback, DNS/domain changes, analytics/forms/customer-data handling, external messages, destructive git actions, or customer/system integrations.
+- Merge to `main`, Netlify preview deploy, Netlify production deploy, rollback, DNS/domain changes, analytics/forms/customer-data handling, external messages, destructive git actions, or customer/system integrations.
 
 Validation evidence:
 
@@ -75,19 +75,28 @@ Validation evidence:
 - Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact `output/browser-coverage/smoke-2026-07-05T15-34-30-551Z/browser-coverage-smoke.json`.
 - Dependency audit remains warning-only: production vulnerabilities 0; dev/release tooling has 17 moderate advisories and no fix was run. Artifact `output/dependency-audit/summary-2026-07-05T15-33-02-902Z/dependency-audit-summary.json`.
 - Local reconciliation merge commit created: `0796be2` (`Reconcile main with Globe Loader release`).
+- Local docs closeout commit created: `bda1de5` (`Document reconciliation preflight closeout`).
+- Pre-push `git status --short --branch` showed the reconciliation branch clean and ahead of `origin/main` by eight commits.
+- Pre-push `git diff --check` passed.
+- Pre-push `npm run qa:release-inventory` passed with artifact `output/release-inventory/inventory-2026-07-05T16-04-10-361Z/release-candidate-inventory.json`; dirtyCount 0, zero secret findings and GLB externalUriCount 0.
+- Branch `codex/github-main-reconciliation-preflight` pushed to origin and set to track `origin/codex/github-main-reconciliation-preflight`.
+- Draft GitHub PR opened for review only: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/3`.
+- The PR body explicitly records that merging to `main` may trigger Netlify production deployment and must not happen without Wayne's separate approval.
+- No merge to `main`, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling, external message, or destructive git action was performed during the PR-first remote alignment.
 
 Done criteria:
 
 - Merge conflicts resolved locally.
 - Local release QA passed.
-- Tracker records final preflight evidence and the recommended next decision.
-- No remote action is taken without Wayne's next explicit approval.
+- Review branch pushed and draft PR opened after Wayne approved option `1`.
+- Tracker records final preflight, branch-push and PR evidence.
+- No merge to `main` or production deploy is performed without Wayne's next explicit approval.
 
 Recommended next decision:
 
-1. Recommended: approve a PR-first remote alignment plan: push `codex/github-main-reconciliation-preflight`, open a GitHub PR for review, do not merge, and do not trigger a production deploy until Wayne separately approves merge/deploy.
-2. Hold source-control remote alignment and leave production as-is.
-3. Request specific live-site edits before source-control alignment.
+1. Recommended: review GitHub PR #3 and Netlify/GitHub checks; if acceptable, approve a separate merge-to-main and production-gate action.
+2. Request PR changes and keep production as-is.
+3. Leave PR #3 open as a source-control alignment hold while production deploy `6a4a38a0eef7cd2aee692a52` remains live.
 
 ## 3. Completed Globe Loader Production Tranche
 
