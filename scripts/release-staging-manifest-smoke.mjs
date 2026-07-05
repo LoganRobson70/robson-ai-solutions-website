@@ -32,9 +32,9 @@ async function git(args) {
 }
 
 async function listDirtyFiles() {
-  const stdout = await git(["status", "--porcelain=v1", "-uall"]);
+  const stdout = await git(["status", "--porcelain=v1", "-z", "-uall"]);
   return stdout
-    .split("\n")
+    .split("\0")
     .filter(Boolean)
     .map((line) => ({
       status: line.slice(0, 2),
@@ -82,6 +82,13 @@ function parseStagingCommandPaths(markdown) {
     .filter(Boolean)
     .filter((line) => !line.startsWith("git add --"))
     .map((line) => line.replace(/\\$/, "").trim())
+    .map((line) => {
+      if ((line.startsWith('"') && line.endsWith('"')) || (line.startsWith("'") && line.endsWith("'"))) {
+        return line.slice(1, -1);
+      }
+
+      return line;
+    })
     .filter(Boolean);
 
   return paths;

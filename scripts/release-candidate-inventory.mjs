@@ -13,6 +13,7 @@ const ALLOWED_DIRTY_PATTERNS = [
   /^README\.md$/,
   /^building-analyst\.html$/,
   /^buildscan-viewer\.html$/,
+  /^docs\/codex\/reference\/globe-loader(?:\/.*|-imports\/.*)$/,
   /^docs\/.*\.md$/,
   /^holding\.html$/,
   /^index\.html$/,
@@ -25,6 +26,7 @@ const ALLOWED_DIRTY_PATTERNS = [
   /^scripts\/.*\.mjs$/,
   /^styles\.css$/,
   /^who-its-for\.html$/,
+  /^assets\/globe-loader\/world-countries-lite\.json$/,
   /^assets\/robson-ai-icon-v3-.*\.(png|webp)$/,
   /^assets\/showcase\/buildscan-ludgershall-(model-view-\d+\.webp|public\.glb)$/,
   /^assets\/vendor\/three-0\.164\.1\/(LICENSE|build\/three\.module\.js|examples\/jsm\/(controls\/OrbitControls\.js|libs\/meshopt_decoder\.module\.js|loaders\/GLTFLoader\.js|utils\/BufferGeometryUtils\.js))$/
@@ -41,6 +43,7 @@ const FORBIDDEN_DIRTY_PATTERNS = [
 ];
 
 const FILE_BUDGETS = [
+  { path: "assets/globe-loader/world-countries-lite.json", maxBytes: 80_000 },
   { path: "assets/robson-ai-icon-v3-32.png", maxBytes: 5_000 },
   { path: "assets/robson-ai-icon-v3-180.png", maxBytes: 25_000 },
   { path: "assets/robson-ai-icon-v3-128.webp", maxBytes: 10_000 },
@@ -117,9 +120,9 @@ async function git(args) {
 }
 
 async function listDirtyFiles() {
-  const stdout = await git(["status", "--porcelain=v1", "-uall"]);
+  const stdout = await git(["status", "--porcelain=v1", "-z", "-uall"]);
   return stdout
-    .split("\n")
+    .split("\0")
     .filter(Boolean)
     .map((line) => ({
       status: line.slice(0, 2),
