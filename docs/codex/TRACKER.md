@@ -42,7 +42,7 @@ Success means:
 ## 2. Active Tranche
 
 Tranche name: `live-globe-loader-fix`
-Status: Wayne approved option `1`; release execution in progress for commit, branch push, Netlify preview deploy, preview gate, production deploy and production gate; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action is approved
+Status: completed for production; hotfix commit `924b214` is pushed on branch `codex/live-globe-loader-fix`; Netlify preview deploy and production deploy passed their release gates; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
 Started: 2026-07-05 21:37 BST
 
 Scope:
@@ -82,18 +82,27 @@ Validation evidence:
 - Measurement evidence inside the full local gate reported axe violations 0 across six routes and Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.58s and CLS 0. Artifact: `output/measurement/evidence-2026-07-05T21-06-32-286Z`.
 - Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact `output/browser-coverage/smoke-2026-07-05T21-06-03-874Z/browser-coverage-smoke.json`.
 - Dependency audit remains warning-only: production vulnerabilities 0; dev/release tooling has 17 moderate advisories and no fix was run. Artifact `output/dependency-audit/summary-2026-07-05T21-04-47-011Z/dependency-audit-summary.json`.
+- Wayne approved option `1` to commit, push, Netlify preview deploy, preview gate, production deploy and production gate.
+- Hotfix commit created: `924b214` (`Fix live globe loader placement`).
+- Branch `codex/live-globe-loader-fix` pushed to origin and set to track `origin/codex/live-globe-loader-fix`.
+- Netlify non-production preview deploy succeeded from a clean `git archive` of commit `924b214`: deploy `6a4acae9255264dd4cca1cb7`, preview URL `https://live-globe-loader-fix--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4acae9255264dd4cca1cb7`.
+- Deployed preview gate passed: `QA_BASE_URL="https://live-globe-loader-fix--robson-ai-website.netlify.app" npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-05T21-22-15-609Z/release-preview-gate.json`; result pass, 14 steps.
+- Netlify production deploy succeeded from the same clean `git archive` of commit `924b214`: deploy `6a4acbc6eef7cd0827692aff`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a4acbc6eef7cd0827692aff--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4acbc6eef7cd0827692aff`.
+- Production release gate passed: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-05T21-25-50-841Z/release-preview-gate.json`; result pass, 14 steps.
+- Focused live Globe Loader check passed at 872px browser width against `https://robsonai.co.uk`: canvas visible, no horizontal overflow, no console messages and no failed requests. Artifact and screenshot: `output/live-globe-postdeploy/2026-07-05T21-28-05-347Z/`.
 
 Done criteria:
 
 - Globe Loader is visibly present and proportionate at Wayne's browser width in local screenshot evidence.
 - Local release QA passes with the narrowed staging manifest.
 - Tracker and staging manifest record the hotfix scope and evidence.
-- No commit, branch push, preview deploy or production deploy is performed without Wayne's explicit approval.
+- Commit, branch push, preview deploy, preview gate, production deploy and production gate are complete.
+- Focused live browser-width check confirms the original live regression is corrected.
 
 Recommended next decision:
 
-1. Approved by Wayne: commit, push, Netlify preview deploy, deployed preview gate, production deploy and production gate for `live-globe-loader-fix`.
-2. If preview or production validation fails, stop and report the blocker with evidence before any further action.
+1. Recommended: approve a follow-up source-control alignment PR/merge so `main` records the production hotfix now live from CLI/archive deploy `6a4acbc6eef7cd0827692aff`.
+2. Do a short owner visual pass on the live homepage before any further design work.
 
 ## 2A. Previous Reconciliation Tranche - Historical Context
 

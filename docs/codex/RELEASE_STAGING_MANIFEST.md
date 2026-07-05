@@ -5,7 +5,7 @@ Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Hotfix worktree: `/private/tmp/robson-ai-website-live-globe-fix`
 Branch: `codex/live-globe-loader-fix`
-Status: local hotfix candidate only; no commit, branch push, Netlify preview deploy, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action is approved by this document
+Status: hotfix committed, pushed, preview deployed, production deployed and production-gated; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
 
 ## 1. Purpose
 
@@ -82,6 +82,12 @@ Current validation evidence:
 - Measurement evidence inside the full local gate reported axe violations 0 across six routes and Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.58s and CLS 0. Artifact: `output/measurement/evidence-2026-07-05T21-06-32-286Z`.
 - Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact: `output/browser-coverage/smoke-2026-07-05T21-06-03-874Z/browser-coverage-smoke.json`.
 - Dependency audit remains warning-only: production vulnerabilities 0; dev/release tooling has 17 moderate advisories and no fix was run. Artifact: `output/dependency-audit/summary-2026-07-05T21-04-47-011Z/dependency-audit-summary.json`.
+- Hotfix commit created: `924b214` (`Fix live globe loader placement`) and branch `codex/live-globe-loader-fix` was pushed to origin.
+- Netlify non-production preview deploy succeeded from a clean `git archive` of commit `924b214`: deploy `6a4acae9255264dd4cca1cb7`, preview URL `https://live-globe-loader-fix--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4acae9255264dd4cca1cb7`.
+- Deployed preview gate passed: `QA_BASE_URL="https://live-globe-loader-fix--robson-ai-website.netlify.app" npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-05T21-22-15-609Z/release-preview-gate.json`; result pass, 14 steps.
+- Netlify production deploy succeeded from the same clean `git archive` of commit `924b214`: deploy `6a4acbc6eef7cd0827692aff`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a4acbc6eef7cd0827692aff--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4acbc6eef7cd0827692aff`.
+- Production release gate passed: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-05T21-25-50-841Z/release-preview-gate.json`; result pass, 14 steps.
+- Focused live Globe Loader check passed at 872px browser width against `https://robsonai.co.uk`: canvas visible, no horizontal overflow, no console messages and no failed requests. Artifact and screenshot: `output/live-globe-postdeploy/2026-07-05T21-28-05-347Z/`.
 
 The release inventory gate enforces:
 
@@ -165,19 +171,32 @@ Then confirm the staged file set matches this manifest before committing.
 
 ## 10. Checks After Preview Deploy
 
-If Wayne approves a Netlify preview deploy, validate the exact deployed preview URL:
+Completed preview validation:
 
 ```bash
-QA_BASE_URL="<preview-url>" npm run qa:release:preview
+QA_BASE_URL="https://live-globe-loader-fix--robson-ai-website.netlify.app" npm run qa:release:preview
 ```
+
+- Preview deploy: `https://live-globe-loader-fix--robson-ai-website.netlify.app`
+- Deploy id: `6a4acae9255264dd4cca1cb7`
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4acae9255264dd4cca1cb7`
+- Preview gate artifact: `output/release-preview-gate/gate-2026-07-05T21-22-15-609Z/release-preview-gate.json`
+- Result: pass, 14 steps.
 
 ## 11. Checks After Production Deploy
 
-If Wayne approves a production deploy, validate the live production URL:
+Completed production validation:
 
 ```bash
 QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
 ```
+
+- Production URL: `https://robsonai.co.uk`
+- Production deploy: `6a4acbc6eef7cd0827692aff`
+- Unique deploy URL: `https://6a4acbc6eef7cd0827692aff--robson-ai-website.netlify.app`
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4acbc6eef7cd0827692aff`
+- Production gate artifact: `output/release-production-gate/gate-2026-07-05T21-25-50-841Z/release-preview-gate.json`
+- Result: pass, 14 steps.
 
 ## 12. Rollback Path
 
