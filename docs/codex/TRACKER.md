@@ -1,9 +1,9 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-05 17:25 BST
+Last updated: 2026-07-05 21:56 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Current branch: `codex/github-main-reconciliation-preflight` in worktree `/private/tmp/robson-ai-website-main-reconciliation`
+Current branch: `codex/live-globe-loader-fix` in worktree `/private/tmp/robson-ai-website-live-globe-fix`
 
 ## 1. Current Objective
 
@@ -11,7 +11,10 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Complete the approved `github-main-reconciliation-preflight`: reconcile current `origin/main` with the live Globe Loader/privacy production release, resolve conflicts, run QA, push a review branch, and open a draft GitHub PR without merging or production deploying.
+- Prepare a narrow live hotfix for Wayne's 2026-07-05 report that the homepage Globe Loader appears missing and the Robson AI icon appears massive on the live site.
+- Keep the hotfix scoped to Globe Loader placement, globe scale and centre-icon scale; do not reopen wider website design, copy, BuildScan, privacy or analytics scope in this tranche.
+- Validate the hotfix locally before asking Wayne for any commit, preview deploy or production deploy decision.
+- Keep the local review URL at `http://127.0.0.1:8136/` while the hotfix server is running.
 - Correct the live-site mismatch Wayne identified on 2026-07-04: the current published site is not faithful enough to the supplied redesign zip in layout, text, fonts, content and overall look.
 - Rebuild the homepage locally around the zip's white header, dark mesh hero, Home/Product/Pricing/About IA, large `Turning data into intelligence.` proposition and product-line structure, while adding the approved BuildScan/model-view element in that visual language.
 - Publish the zip-faithful correction after Wayne approved option `1`; branch push, PR, DNS/domain changes and further production deploys remain approval-gated.
@@ -37,6 +40,62 @@ Success means:
 - Production release execution is defined in `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the 2026-06-28 publish was executed after Wayne approved option `1`.
 
 ## 2. Active Tranche
+
+Tranche name: `live-globe-loader-fix`
+Status: Wayne approved option `1`; release execution in progress for commit, branch push, Netlify preview deploy, preview gate, production deploy and production gate; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action is approved
+Started: 2026-07-05 21:37 BST
+
+Scope:
+
+- Diagnose why the live Globe Loader reads as missing or as a massive icon at Wayne's browser width.
+- Create an isolated hotfix worktree from `origin/main`.
+- Move the decorative Globe Loader rail inward on tablet/desktop widths.
+- Slightly increase the visible globe size and reduce/soften the centre Robson AI icon.
+- Preserve the current public website content, BuildScan viewer, privacy disclosures, reduced-motion behaviour and mobile hiding rule.
+- Run focused browser checks and the local release gate.
+- Ask Wayne for the next approval gate once the candidate is deploy-ready.
+
+Out of scope:
+
+- Copy/design rewrite, copy changes, BuildScan asset changes, analytics/forms changes, privacy-policy changes, merge to `main`, Netlify preview deploy, Netlify production deploy, rollback, DNS/domain changes, customer-data handling, external messages, destructive git actions, or customer/system integrations.
+
+Validation evidence:
+
+- Worktree created at `/private/tmp/robson-ai-website-live-globe-fix` on branch `codex/live-globe-loader-fix` from `origin/main` commit `c7a1e1f` (`Reconcile main with Globe Loader release`).
+- Live production asset checks confirmed `script.js`, `assets/globe-loader/world-countries-lite.json` and `assets/robson-ai-icon-v3-transparent-320.webp` return HTTP 200.
+- Live 872px browser diagnostic found the loader rail at the far right with a visually dominant centre logo; the globe canvas was present but read as wrong in Wayne's viewport.
+- Local hotfix browser check passed on `http://127.0.0.1:8136/` across desktop, tablet, Wayne-like 872px width and mobile. Evidence: `output/globe-fix-check/summary.json`; screenshots: `output/globe-fix-check/wayne-872.png`, `tablet-969.png`, `desktop-1440.png`, `mobile-390.png`.
+- `npm install` completed in the hotfix worktree; the known 17 moderate dev/release-tooling advisories remain and no `npm audit fix` was run.
+- `node --check script.js` passed.
+- `git diff --check` passed before tracker/manifest refresh.
+- `npm run qa:release-inventory` passed before tracker/manifest refresh with artifact `output/release-inventory/inventory-2026-07-05T20-50-24-853Z/release-candidate-inventory.json`; dirtyCount 2, zero secret findings and GLB externalUriCount 0.
+- `npm run qa:responsive` passed before tracker/manifest refresh with artifact `output/responsive-route/smoke-2026-07-05T20-50-25-272Z/responsive-route-smoke.json`.
+- `npm run qa:visual-polish` passed before tracker/manifest refresh with artifact `output/visual-polish/smoke-2026-07-05T20-50-25-272Z/visual-polish-smoke.json`.
+- `npm run qa:rendered` passed before tracker/manifest refresh with screenshots in `output/playwright/rendered-release-smoke-2026-07-05T20-51-52-138Z`.
+- First `npm run qa:release:local` attempt for this hotfix reached the release staging manifest check and failed because the manifest still described the earlier broad release. `docs/codex/RELEASE_STAGING_MANIFEST.md` has now been narrowed to the four-file hotfix candidate.
+- `npm run qa:release-staging-manifest` passed after manifest refresh with artifact `output/release-staging-manifest/smoke-2026-07-05T21-04-19-138Z/release-staging-manifest-smoke.json`; modifiedTracked 4, untrackedCandidate 0, totalDirtyCandidate 4, stagingCommandPaths 4.
+- Full `npm run qa:release:local` passed after manifest refresh with artifact `output/release-local-gate/gate-2026-07-05T21-04-39-682Z/release-local-gate.json`; 37 steps.
+- Release inventory inside the full local gate passed with artifact `output/release-inventory/inventory-2026-07-05T21-04-46-549Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings and GLB externalUriCount 0.
+- BuildScan viewer smoke inside the full local gate passed with artifact `output/buildscan-viewer/smoke-2026-07-05T21-04-50-456Z`.
+- Product/design acceptance, responsive route and visual polish smokes inside the full local gate passed with artifacts `output/product-design-acceptance/smoke-2026-07-05T21-05-13-153Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-05T21-05-19-497Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-05T21-05-41-672Z/visual-polish-smoke.json`.
+- Rendered screenshot evidence inside the full local gate passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-05T21-06-11-903Z`.
+- Measurement evidence inside the full local gate reported axe violations 0 across six routes and Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.58s and CLS 0. Artifact: `output/measurement/evidence-2026-07-05T21-06-32-286Z`.
+- Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact `output/browser-coverage/smoke-2026-07-05T21-06-03-874Z/browser-coverage-smoke.json`.
+- Dependency audit remains warning-only: production vulnerabilities 0; dev/release tooling has 17 moderate advisories and no fix was run. Artifact `output/dependency-audit/summary-2026-07-05T21-04-47-011Z/dependency-audit-summary.json`.
+
+Done criteria:
+
+- Globe Loader is visibly present and proportionate at Wayne's browser width in local screenshot evidence.
+- Local release QA passes with the narrowed staging manifest.
+- Tracker and staging manifest record the hotfix scope and evidence.
+- No commit, branch push, preview deploy or production deploy is performed without Wayne's explicit approval.
+
+Recommended next decision:
+
+1. Approved by Wayne: commit, push, Netlify preview deploy, deployed preview gate, production deploy and production gate for `live-globe-loader-fix`.
+2. If preview or production validation fails, stop and report the blocker with evidence before any further action.
+
+## 2A. Previous Reconciliation Tranche - Historical Context
 
 Tranche name: `github-main-reconciliation-preflight`
 Status: draft PR open and QA-passed; branch `codex/github-main-reconciliation-preflight` pushed to origin; GitHub PR #3 open at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/3`; GitHub/Netlify deploy-preview check passed and the immutable deploy preview gate passed; no merge to `main`, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message has been performed

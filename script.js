@@ -1284,14 +1284,15 @@ function setupGlobeLoader() {
       context.save();
       context.beginPath();
       context.arc(cx, cy, size * 0.56, 0, Math.PI * 2);
-      context.fillStyle = "rgba(246, 244, 238, 0.82)";
+      context.fillStyle = "rgba(246, 244, 238, 0.72)";
       context.fill();
 
       if (icon.complete && icon.naturalWidth > 0) {
-        context.drawImage(icon, cx - size * 0.55, cy - size * 0.55, size * 1.1, size * 1.1);
+        context.globalAlpha = 0.92;
+        context.drawImage(icon, cx - size * 0.46, cy - size * 0.46, size * 0.92, size * 0.92);
       } else {
         context.fillStyle = "#0b1a4a";
-        context.font = `700 ${Math.round(size * 0.54)}px system-ui, sans-serif`;
+        context.font = `700 ${Math.round(size * 0.46)}px system-ui, sans-serif`;
         context.textAlign = "center";
         context.textBaseline = "middle";
         context.fillText("R", cx, cy + size * 0.04);
@@ -1358,7 +1359,7 @@ function setupGlobeLoader() {
       const t = shouldAnimate ? now * 0.001 : 1.2;
       const cx = width / 2;
       const cy = height / 2;
-      const radius = Math.min(width, height) * 0.31;
+      const radius = Math.min(width, height) * 0.34;
       const rotation = (t * 28) % 360;
 
       context.save();
@@ -1393,7 +1394,7 @@ function setupGlobeLoader() {
       context.strokeStyle = "rgba(18, 20, 24, 0.42)";
       context.stroke();
 
-      drawIcon(cx, cy, radius * 1.18);
+      drawIcon(cx, cy, radius * 0.68);
       context.restore();
     };
 
