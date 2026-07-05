@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-05 17:05 BST
+Last updated: 2026-07-05 17:25 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/github-main-reconciliation-preflight` in worktree `/private/tmp/robson-ai-website-main-reconciliation`
@@ -39,7 +39,7 @@ Success means:
 ## 2. Active Tranche
 
 Tranche name: `github-main-reconciliation-preflight`
-Status: draft PR open and QA-passed; branch `codex/github-main-reconciliation-preflight` pushed to origin; GitHub PR #3 open at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/3`; no merge to `main`, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message has been performed
+Status: draft PR open and QA-passed; branch `codex/github-main-reconciliation-preflight` pushed to origin; GitHub PR #3 open at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/3`; GitHub/Netlify deploy-preview check passed and the immutable deploy preview gate passed; no merge to `main`, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message has been performed
 Started: 2026-07-05 16:12 BST
 
 Scope:
@@ -82,6 +82,12 @@ Validation evidence:
 - Branch `codex/github-main-reconciliation-preflight` pushed to origin and set to track `origin/codex/github-main-reconciliation-preflight`.
 - Draft GitHub PR opened for review only: `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/3`.
 - The PR body explicitly records that merging to `main` may trigger Netlify production deployment and must not happen without Wayne's separate approval.
+- GitHub PR metadata check showed PR #3 is open, draft, mergeable, and has a successful Netlify deploy-preview status. Deploy-preview alias: `https://deploy-preview-3--robson-ai-website.netlify.app`.
+- The deploy-preview alias injects Netlify Drawer/CDP scripts that are not part of the site and can create console noise under the site's CSP. The immutable deploy URL for commit `83780b3` was therefore used for the full preview gate: `https://6a4a81a8d69a8700088b0858--robson-ai-website.netlify.app`.
+- Full deployed preview gate passed against the immutable deploy URL: `QA_BASE_URL="https://6a4a81a8d69a8700088b0858--robson-ai-website.netlify.app" npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-05T16-23-02-495Z/release-preview-gate.json`; 14 steps.
+- Preview gate evidence includes clean release inventory `output/release-inventory/inventory-2026-07-05T16-23-02-613Z/release-candidate-inventory.json`; dirtyCount 0, zero secret findings and GLB externalUriCount 0.
+- Deployed preview gate evidence includes BuildScan viewer `output/buildscan-viewer/smoke-2026-07-05T16-23-10-472Z`, keyboard screenshots `output/playwright/keyboard-release-smoke-2026-07-05T16-23-19-807Z`, semantic SEO `output/semantic-seo/smoke-2026-07-05T16-23-26-435Z/semantic-seo-smoke.json`, product/design `output/product-design-acceptance/smoke-2026-07-05T16-23-39-382Z/product-design-acceptance-smoke.json`, responsive `output/responsive-route/smoke-2026-07-05T16-23-47-544Z/responsive-route-smoke.json`, visual polish `output/visual-polish/smoke-2026-07-05T16-24-19-101Z/visual-polish-smoke.json`, rendered screenshots `output/playwright/rendered-release-smoke-2026-07-05T16-25-05-336Z`, and measurement smoke `output/measurement/smoke-2026-07-05T16-25-19-448Z`.
+- Browser coverage remains warning-only on the immutable deploy gate: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact `output/browser-coverage/smoke-2026-07-05T16-24-54-906Z/browser-coverage-smoke.json`.
 - No merge to `main`, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling, external message, or destructive git action was performed during the PR-first remote alignment.
 
 Done criteria:
@@ -89,6 +95,7 @@ Done criteria:
 - Merge conflicts resolved locally.
 - Local release QA passed.
 - Review branch pushed and draft PR opened after Wayne approved option `1`.
+- GitHub/Netlify deploy-preview check and immutable deployed preview gate passed.
 - Tracker records final preflight, branch-push and PR evidence.
 - No merge to `main` or production deploy is performed without Wayne's next explicit approval.
 
