@@ -1,29 +1,30 @@
-# Release Staging Manifest - Live Globe Loader Hotfix
+# Release Staging Manifest - Live Globe Loader Cache-Bust Hotfix
 
-Last updated: 2026-07-05 21:56 BST
+Last updated: 2026-07-05 23:00 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Hotfix worktree: `/private/tmp/robson-ai-website-live-globe-fix`
 Branch: `codex/live-globe-loader-fix`
-Status: hotfix committed, pushed, preview deployed, production deployed and production-gated; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
+Status: local cache-bust validation passed; no commit, branch push, Netlify preview deploy, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action is approved by this document
 
 ## 1. Purpose
 
-This manifest defines the intended file scope for the live Globe Loader visual regression hotfix:
+This manifest defines the intended file scope for the live Globe Loader cache-bust hotfix:
 
-`live-globe-loader-fix`
+`live-globe-loader-cache-bust`
 
 Wayne reported on 2026-07-05 that the live homepage Globe Loader appeared missing and the Robson AI icon appeared massive. Local and live browser diagnostics showed the Globe Loader canvas was present and nonblank, but at Wayne's in-app browser width it was pushed too far right and the centre icon dominated the globe, making the treatment read like a floating oversized logo rather than the supplied Globe Loader visual.
 
-This hotfix:
+The first hotfix corrected the visual code and passed production validation. Wayne then reported that he still could not see the globe. Follow-up diagnosis confirmed the live HTML still referenced `styles.css?v=20260704a` and `script.js?v=20260704a` while those assets are served with `Cache-Control: public, max-age=31536000, immutable`. Existing browsers can therefore keep the old CSS/JS and miss the corrected Globe Loader.
 
-- moves the Globe Loader rail inward on tablet/desktop widths
-- slightly increases the visible globe size
-- reduces and softens the centre Robson AI icon inside the globe
+This cache-bust hotfix:
+
+- updates public HTML references to `styles.css?v=20260705b` and `script.js?v=20260705b`
+- keeps the existing Globe Loader visual code unchanged
 - preserves the existing zip-style homepage, BuildScan section, privacy baseline, reduced-motion behaviour and mobile hiding rule
-- keeps the scope narrow to the regression Wayne reported
+- keeps the scope narrow to forcing browsers onto the verified current CSS/JS
 
-It does not change copy, pricing, analytics, forms, BuildScan GLB assets, privacy content, DNS, Netlify settings or product positioning.
+It does not change copy, pricing, analytics, forms, BuildScan GLB assets, privacy content, DNS, Netlify settings, product positioning, Globe Loader geometry or JavaScript drawing logic.
 
 Do not run `git add .` for this candidate.
 
@@ -51,15 +52,15 @@ Wayne must approve before Codex performs any of these actions:
 
 ## 3. Current Source-Control Scope
 
-Current hotfix state:
+Current cache-bust state:
 
-- Base branch: `origin/main`
+- Base branch: `origin/main` at `697fee7`
 - Hotfix branch: `codex/live-globe-loader-fix`
 - Hotfix worktree: `/private/tmp/robson-ai-website-live-globe-fix`
 - Local review URL while the Python server is running: `http://127.0.0.1:8136/`
-- 4 modified tracked files.
+- 9 modified tracked files.
 - 0 untracked candidate files.
-- Total dirty candidate files: 4.
+- Total dirty candidate files: 9.
 
 Current validation evidence:
 
@@ -88,6 +89,21 @@ Current validation evidence:
 - Netlify production deploy succeeded from the same clean `git archive` of commit `924b214`: deploy `6a4acbc6eef7cd0827692aff`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a4acbc6eef7cd0827692aff--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4acbc6eef7cd0827692aff`.
 - Production release gate passed: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-05T21-25-50-841Z/release-preview-gate.json`; result pass, 14 steps.
 - Focused live Globe Loader check passed at 872px browser width against `https://robsonai.co.uk`: canvas visible, no horizontal overflow, no console messages and no failed requests. Artifact and screenshot: `output/live-globe-postdeploy/2026-07-05T21-28-05-347Z/`.
+- Wayne reported after production/source alignment that he still could not see the globe.
+- Follow-up diagnosis confirmed live HTML still referenced immutable cached asset URLs `styles.css?v=20260704a` and `script.js?v=20260704a`; `curl -I` confirmed those assets are served with `Cache-Control: public,max-age=31536000,immutable`.
+- Local candidate updates public HTML pages to the new shared asset version key `20260705b`.
+- `scripts/release-security-smoke.mjs` is updated to approve the new reviewed script cache key `./script.js?v=20260705b`.
+- `rg -n "20260704a|20260627a" *.html` returned no matches after the cache-bust update.
+- `git diff --check` passed.
+- `npm run qa:release-inventory` passed for the cache-bust candidate with artifact `output/release-inventory/inventory-2026-07-05T21-49-30-098Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings and GLB externalUriCount 0.
+- `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-05T21-49-00-821Z/release-staging-manifest-smoke.json`; modifiedTracked 9, untrackedCandidate 0, totalDirtyCandidate 9, stagingCommandPaths 9.
+- `npm run qa:release-security` passed after adding the reviewed cache key to the script-source allowlist with artifact `output/release-security/smoke-2026-07-05T21-49-00-821Z/release-security-smoke.json`.
+- Full `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-05T21-49-23-250Z/release-local-gate.json`; 37 steps.
+- BuildScan viewer smoke inside the full local gate confirmed the homepage now requests `styles.css?v=20260705b`, `script.js?v=20260705b` and `assets/globe-loader/world-countries-lite.json?v=20260705`.
+- Product/design acceptance, responsive route and visual polish smokes passed inside the full local gate with artifacts `output/product-design-acceptance/smoke-2026-07-05T21-49-56-809Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-05T21-50-03-164Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-05T21-50-25-903Z/visual-polish-smoke.json`.
+- Rendered screenshot evidence passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-05T21-50-56-390Z`.
+- Measurement evidence passed with artifact `output/measurement/evidence-2026-07-05T21-51-16-195Z`; axe violations 0, Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, LCP about 1.62s and CLS 0.
+- Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally.
 
 The release inventory gate enforces:
 
@@ -100,13 +116,18 @@ The release inventory gate enforces:
 
 ## 4. Modified Tracked Files
 
-These files are modified and expected in the local hotfix candidate:
+These files are modified and expected in the local cache-bust candidate:
 
 ```text
+404.html
+building-analyst.html
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
-script.js
-styles.css
+holding.html
+index.html
+privacy.html
+scripts/release-security-smoke.mjs
+who-its-for.html
 ```
 
 ## 5. Untracked Candidate Files
@@ -118,7 +139,7 @@ No untracked files are expected in this hotfix candidate.
 
 ## 6. Asset Size Watch
 
-No public asset files are changed in this hotfix candidate.
+No public asset files are changed in this cache-bust candidate. The HTML references are changed so browsers fetch the already-deployed current public assets under a fresh cache key.
 
 Existing watched release assets remain governed by `npm run qa:release-inventory`, including:
 
@@ -151,10 +172,15 @@ After Wayne approves a correction commit, use an explicit path list rather than 
 
 ```bash
 git add -- \
+  404.html \
+  building-analyst.html \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
-  script.js \
-  styles.css
+  holding.html \
+  index.html \
+  privacy.html \
+  scripts/release-security-smoke.mjs \
+  who-its-for.html
 ```
 
 ## 9. Required Checks Before Commit
@@ -171,32 +197,30 @@ Then confirm the staged file set matches this manifest before committing.
 
 ## 10. Checks After Preview Deploy
 
-Completed preview validation:
+Required after Wayne approves a deploy:
 
 ```bash
-QA_BASE_URL="https://live-globe-loader-fix--robson-ai-website.netlify.app" npm run qa:release:preview
+QA_BASE_URL="<cache-bust-preview-url>" npm run qa:release:preview
 ```
 
-- Preview deploy: `https://live-globe-loader-fix--robson-ai-website.netlify.app`
-- Deploy id: `6a4acae9255264dd4cca1cb7`
-- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4acae9255264dd4cca1cb7`
-- Preview gate artifact: `output/release-preview-gate/gate-2026-07-05T21-22-15-609Z/release-preview-gate.json`
-- Result: pass, 14 steps.
+- Preview deploy: pending Wayne approval.
+- Preview gate artifact: pending Wayne approval.
+- Result: pending Wayne approval.
 
 ## 11. Checks After Production Deploy
 
-Completed production validation:
+Required after Wayne approves production deployment:
 
 ```bash
 QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
 ```
 
 - Production URL: `https://robsonai.co.uk`
-- Production deploy: `6a4acbc6eef7cd0827692aff`
-- Unique deploy URL: `https://6a4acbc6eef7cd0827692aff--robson-ai-website.netlify.app`
-- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4acbc6eef7cd0827692aff`
-- Production gate artifact: `output/release-production-gate/gate-2026-07-05T21-25-50-841Z/release-preview-gate.json`
-- Result: pass, 14 steps.
+- Production deploy: pending Wayne approval.
+- Unique deploy URL: pending Wayne approval.
+- Deploy logs: pending Wayne approval.
+- Production gate artifact: pending Wayne approval.
+- Result: pending Wayne approval.
 
 ## 12. Rollback Path
 
