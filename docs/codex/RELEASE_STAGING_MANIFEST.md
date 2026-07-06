@@ -1,11 +1,11 @@
 # Release Staging Manifest - Globe Loader Icon Prominence Polish
 
-Last updated: 2026-07-06 17:10 BST
+Last updated: 2026-07-06 18:04 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Hotfix worktree: `/private/tmp/robson-ai-website-live-globe-fix`
 Branch: `codex/live-globe-loader-fix`
-Status: local 50-percent icon prominence candidate validated; no commit, branch push, Netlify preview deploy, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action is approved by this document
+Status: 50-percent icon prominence polish is live in production from commit `d0bbcd9`; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
 
 ## 1. Purpose
 
@@ -72,12 +72,18 @@ Current validation evidence:
 - `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-06T15-59-49-566Z/release-staging-manifest-smoke.json`; modifiedTracked 9, untrackedCandidate 0, totalDirtyCandidate 9, stagingCommandPaths 9.
 - Focused local browser render passed: `script.js?v=20260706a` requested, Globe Loader canvas present, no failed requests, no console warnings, no horizontal overflow, and centre blue sample count increased to 35 versus 22 on the previous live check. Artifact and screenshot: `output/globe-icon-50-percent-check/2026-07-06T16-02-29-461Z/`.
 - Full `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-06T16-06-55-577Z/release-local-gate.json`; 37 steps.
+- Staged pre-commit `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-06T16-51-34-447Z/release-local-gate.json`; 37 steps.
 - Release inventory inside the full local gate passed with artifact `output/release-inventory/inventory-2026-07-06T16-07-02-483Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings and GLB externalUriCount 0.
 - Product/design acceptance, responsive route and visual polish smokes inside the full local gate passed with artifacts `output/product-design-acceptance/smoke-2026-07-06T16-07-27-793Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-06T16-07-34-726Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-06T16-07-58-387Z/visual-polish-smoke.json`.
 - Rendered screenshot evidence inside the full local gate passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-06T16-08-29-943Z`.
 - Measurement evidence inside the full local gate reported axe violations 0 across six routes and Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.59s and CLS 0. Artifact: `output/measurement/evidence-2026-07-06T16-09-15-129Z`.
 - Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact `output/browser-coverage/smoke-2026-07-06T16-08-21-482Z/browser-coverage-smoke.json`.
 - Dependency audit remains warning-only: production vulnerabilities 0; dev/release tooling has 17 moderate advisories and no fix was run. Artifact `output/dependency-audit/summary-2026-07-06T16-07-02-937Z/dependency-audit-summary.json`.
+- Commit created: `d0bbcd9` (`Increase globe loader centre icon`).
+- Branch `codex/live-globe-loader-fix` pushed to origin and `main` fast-forwarded to `d0bbcd9`.
+- Netlify production deploy succeeded from a clean `git archive` of commit `d0bbcd9`: deploy `6a4bdf25d47fe304e6efbd85`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a4bdf25d47fe304e6efbd85--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4bdf25d47fe304e6efbd85`.
+- Production release gate passed: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-06T17-01-12-872Z/release-preview-gate.json`; result pass, 14 steps.
+- Live production gate confirmed `https://robsonai.co.uk/script.js?v=20260706a` is served and rendered screenshot evidence passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-06T17-02-35-285Z`.
 
 The release inventory gate enforces:
 
@@ -190,11 +196,11 @@ QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true 
 ```
 
 - Production URL: `https://robsonai.co.uk`
-- Production deploy: pending Wayne approval.
-- Unique deploy URL: pending Wayne approval.
-- Deploy logs: pending Wayne approval.
-- Production gate artifact: pending Wayne approval.
-- Result: pending Wayne approval.
+- Production deploy: `6a4bdf25d47fe304e6efbd85`
+- Unique deploy URL: `https://6a4bdf25d47fe304e6efbd85--robson-ai-website.netlify.app`
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4bdf25d47fe304e6efbd85`
+- Production gate artifact: `output/release-production-gate/gate-2026-07-06T17-01-12-872Z/release-preview-gate.json`
+- Result: pass
 
 ## 12. Rollback Path
 

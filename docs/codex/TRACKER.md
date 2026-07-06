@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-06 17:10 BST
+Last updated: 2026-07-06 18:04 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/live-globe-loader-fix` in worktree `/private/tmp/robson-ai-website-live-globe-fix`
@@ -44,7 +44,7 @@ Success means:
 ## 2. Active Tranche
 
 Tranche name: `globe-loader-icon-50-percent-prominence`
-Status: local validation complete and ready for Wayne's deploy decision; no commit, branch push, PR, Netlify preview deploy, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message has been performed for this 50-percent icon follow-up
+Status: completed for production; commit `d0bbcd9` is pushed to `codex/live-globe-loader-fix` and `main`; Netlify production deploy `6a4bdf25d47fe304e6efbd85` is live and the production gate passed; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
 Started: 2026-07-06 16:55 BST
 
 Scope:
@@ -72,6 +72,7 @@ Validation evidence:
 - `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-06T15-59-49-566Z/release-staging-manifest-smoke.json`; modifiedTracked 9, untrackedCandidate 0, totalDirtyCandidate 9, stagingCommandPaths 9.
 - Focused local browser render passed: `script.js?v=20260706a` requested, Globe Loader canvas present, no failed requests, no console warnings, no horizontal overflow, and centre blue sample count increased to 35 versus 22 on the previous live check. Artifact and screenshot: `output/globe-icon-50-percent-check/2026-07-06T16-02-29-461Z/`.
 - Full `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-06T16-06-55-577Z/release-local-gate.json`; 37 steps.
+- Staged pre-commit `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-06T16-51-34-447Z/release-local-gate.json`; 37 steps.
 - Release inventory inside the full local gate passed with artifact `output/release-inventory/inventory-2026-07-06T16-07-02-483Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings and GLB externalUriCount 0.
 - BuildScan viewer smoke inside the full local gate passed with artifact `output/buildscan-viewer/smoke-2026-07-06T16-07-06-070Z`.
 - Product/design acceptance, responsive route and visual polish smokes inside the full local gate passed with artifacts `output/product-design-acceptance/smoke-2026-07-06T16-07-27-793Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-06T16-07-34-726Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-06T16-07-58-387Z/visual-polish-smoke.json`.
@@ -79,17 +80,23 @@ Validation evidence:
 - Measurement evidence inside the full local gate reported axe violations 0 across six routes and Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.59s and CLS 0. Artifact: `output/measurement/evidence-2026-07-06T16-09-15-129Z`.
 - Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact `output/browser-coverage/smoke-2026-07-06T16-08-21-482Z/browser-coverage-smoke.json`.
 - Dependency audit remains warning-only: production vulnerabilities 0; dev/release tooling has 17 moderate advisories and no fix was run. Artifact `output/dependency-audit/summary-2026-07-06T16-07-02-937Z/dependency-audit-summary.json`.
+- Commit created: `d0bbcd9` (`Increase globe loader centre icon`).
+- Branch `codex/live-globe-loader-fix` pushed to origin and `main` fast-forwarded to `d0bbcd9`.
+- Netlify production deploy succeeded from a clean `git archive` of commit `d0bbcd9`: deploy `6a4bdf25d47fe304e6efbd85`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a4bdf25d47fe304e6efbd85--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4bdf25d47fe304e6efbd85`.
+- Production release gate passed: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-06T17-01-12-872Z/release-preview-gate.json`; result pass, 14 steps.
+- Live production gate confirmed `https://robsonai.co.uk/script.js?v=20260706a` is served, so browsers fetch the larger centre-icon drawing code.
+- Live rendered screenshot evidence passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-06T17-02-35-285Z`; desktop homepage screenshot shows the centre icon enlarged and contained within the Globe Loader.
 
 Done criteria:
 
 - Local release inventory, staging manifest and relevant rendered/visual checks pass.
 - Focused browser evidence confirms the Globe Loader icon is about 50% larger and remains contained within the globe.
-- Production deploy and production gate complete only after Wayne approval.
+- Production deploy and production gate complete after Wayne approval.
 
 Recommended next decision:
 
-1. Recommended after local validation passes: approve commit, push to `main`, Netlify production deploy and production gate for the 50% icon increase.
-2. Keep the current live icon size if the 50% local candidate feels too dominant.
+1. Recommended: Wayne completes a quick live visual pass on `https://robsonai.co.uk` and confirms the Globe Loader icon now feels right.
+2. If the icon now feels too dominant, approve one small follow-up size adjustment rather than reopening wider website design.
 
 ## 2A. Completed Globe Loader Placement Hotfix
 
