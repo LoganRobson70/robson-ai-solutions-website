@@ -1287,7 +1287,7 @@ function setupGlobeLoader() {
         const sourceInset = Math.round(Math.min(icon.naturalWidth, icon.naturalHeight) * 0.18);
         const sourceWidth = icon.naturalWidth - sourceInset * 2;
         const sourceHeight = icon.naturalHeight - sourceInset * 2;
-        const iconSize = size * 1.04;
+        const iconSize = size * 1.56;
         context.shadowColor = "rgba(4, 12, 37, 0.18)";
         context.shadowBlur = size * 0.18;
         context.shadowOffsetY = size * 0.04;

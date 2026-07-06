@@ -1,25 +1,25 @@
-# Release Staging Manifest - Globe Loader Icon Polish
+# Release Staging Manifest - Globe Loader Icon Prominence Polish
 
-Last updated: 2026-07-05 23:22 BST
+Last updated: 2026-07-06 17:10 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Hotfix worktree: `/private/tmp/robson-ai-website-live-globe-fix`
 Branch: `codex/live-globe-loader-fix`
-Status: local icon-polish candidate only; no commit, branch push, Netlify preview deploy, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action is approved by this document
+Status: local 50-percent icon prominence candidate validated; no commit, branch push, Netlify preview deploy, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action is approved by this document
 
 ## 1. Purpose
 
-This manifest defines the intended file scope for the live Globe Loader centre-icon polish:
+This manifest defines the intended file scope for the live Globe Loader centre-icon prominence polish:
 
-`globe-loader-icon-backplate-polish`
+`globe-loader-icon-50-percent-prominence`
 
-Wayne confirmed the site now looks good after the cache-bust publish, then asked for a narrow visual correction to the Globe Loader: remove the pale circular backplate behind the Robson AI icon and make the icon slightly larger so it reads better against the globe.
+Wayne reviewed the live Globe Loader and asked for the Robson AI icon in the centre of the globe to be about 50% bigger so it is more prominent within the globe circle.
 
 This icon-polish candidate:
 
-- removes the visible filled circular backplate behind the centre icon in the canvas Globe Loader
-- increases the centre icon draw size and keeps a subtle canvas shadow only for contrast
-- updates public HTML references from `script.js?v=20260705b` to `script.js?v=20260705c` so browsers fetch the changed drawing code
+- keeps the visible filled circular backplate removed
+- increases the cropped centre icon draw size from `size * 1.04` to `size * 1.56`, a 50% increase from the current live treatment
+- updates public HTML references from `script.js?v=20260705c` to `script.js?v=20260706a` so browsers fetch the changed drawing code
 - keeps `styles.css?v=20260705b` unchanged because no CSS is changed
 - preserves the existing Globe Loader globe, orbit motion, hero layout, copy, BuildScan section, privacy baseline, reduced-motion behaviour and mobile hiding rule
 
@@ -51,9 +51,9 @@ Wayne must approve before Codex performs any of these actions:
 
 ## 3. Current Source-Control Scope
 
-Current icon-polish state:
+Current icon-prominence state:
 
-- Base branch: `origin/main` at `599e0b0`
+- Base branch: `origin/main` at `e1aab74`
 - Hotfix branch: `codex/live-globe-loader-fix`
 - Hotfix worktree: `/private/tmp/robson-ai-website-live-globe-fix`
 - Local review URL while the Python server is running: `http://127.0.0.1:8136/`
@@ -63,21 +63,21 @@ Current icon-polish state:
 
 Current validation evidence:
 
-- The immediately previous cache-bust release was published to production from commit `599e0b0` as Netlify production deploy `6a4ad5768a2c9400088be4b2`.
-- Production gate for the previous cache-bust passed with artifact `output/release-production-gate/gate-2026-07-05T22-07-32-406Z/release-preview-gate.json`; the live homepage requested `styles.css?v=20260705b`, `script.js?v=20260705b` and `assets/globe-loader/world-countries-lite.json?v=20260705`.
-- This new candidate changes only the centre-icon canvas drawing, the public script cache key, the release-security allowlist, and Codex release docs.
+- The immediately previous icon polish release is live from commit `e1aab74` as Netlify production deploy `6a4b44f4473eb70007f8aace`.
+- The current live homepage requests `styles.css?v=20260705b`, `script.js?v=20260705c` and `assets/globe-loader/world-countries-lite.json?v=20260705`.
+- This candidate changes only the centre-icon canvas draw scale, the public script cache key, the release-security allowlist, and Codex release docs.
 - `node --check script.js` passed.
 - `git diff --check` passed.
-- `npm run qa:release-security` passed with artifact `output/release-security/smoke-2026-07-05T22-16-19-570Z/release-security-smoke.json`.
-- `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-05T22-16-19-571Z/release-staging-manifest-smoke.json`; modifiedTracked 9, untrackedCandidate 0, totalDirtyCandidate 9, stagingCommandPaths 9.
-- Focused local browser render passed after transparent-padding crop: `script.js?v=20260705c` requested, Globe Loader canvas present, no failed requests, no console warnings, no horizontal overflow, and centre blue sample count increased from 9 to 23. Artifact and screenshot: `output/globe-icon-polish-check/2026-07-05T22-20-26-603Z/`.
-- Full `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-05T22-22-11-495Z/release-local-gate.json`; 37 steps.
-- Release inventory inside the full local gate passed with artifact `output/release-inventory/inventory-2026-07-05T22-22-18-457Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings and GLB externalUriCount 0.
-- BuildScan viewer smoke inside the full local gate confirmed the homepage now requests `styles.css?v=20260705b`, `script.js?v=20260705c` and `assets/globe-loader/world-countries-lite.json?v=20260705`.
-- Product/design acceptance, responsive route and visual polish smokes passed inside the full local gate with artifacts `output/product-design-acceptance/smoke-2026-07-05T22-22-43-918Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-05T22-22-50-309Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-05T22-23-13-620Z/visual-polish-smoke.json`.
-- Rendered screenshot evidence passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-05T22-23-45-425Z`.
-- Measurement evidence passed with artifact `output/measurement/evidence-2026-07-05T22-24-05-468Z`; axe violations 0, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.59s and CLS 0.
-- Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally.
+- `npm run qa:release-security` passed with artifact `output/release-security/smoke-2026-07-06T15-59-49-446Z/release-security-smoke.json`.
+- `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-06T15-59-49-566Z/release-staging-manifest-smoke.json`; modifiedTracked 9, untrackedCandidate 0, totalDirtyCandidate 9, stagingCommandPaths 9.
+- Focused local browser render passed: `script.js?v=20260706a` requested, Globe Loader canvas present, no failed requests, no console warnings, no horizontal overflow, and centre blue sample count increased to 35 versus 22 on the previous live check. Artifact and screenshot: `output/globe-icon-50-percent-check/2026-07-06T16-02-29-461Z/`.
+- Full `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-06T16-06-55-577Z/release-local-gate.json`; 37 steps.
+- Release inventory inside the full local gate passed with artifact `output/release-inventory/inventory-2026-07-06T16-07-02-483Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings and GLB externalUriCount 0.
+- Product/design acceptance, responsive route and visual polish smokes inside the full local gate passed with artifacts `output/product-design-acceptance/smoke-2026-07-06T16-07-27-793Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-06T16-07-34-726Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-06T16-07-58-387Z/visual-polish-smoke.json`.
+- Rendered screenshot evidence inside the full local gate passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-06T16-08-29-943Z`.
+- Measurement evidence inside the full local gate reported axe violations 0 across six routes and Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.59s and CLS 0. Artifact: `output/measurement/evidence-2026-07-06T16-09-15-129Z`.
+- Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact `output/browser-coverage/smoke-2026-07-06T16-08-21-482Z/browser-coverage-smoke.json`.
+- Dependency audit remains warning-only: production vulnerabilities 0; dev/release tooling has 17 moderate advisories and no fix was run. Artifact `output/dependency-audit/summary-2026-07-06T16-07-02-937Z/dependency-audit-summary.json`.
 
 The release inventory gate enforces:
 
