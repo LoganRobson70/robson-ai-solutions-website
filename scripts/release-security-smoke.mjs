@@ -20,7 +20,8 @@ const HTML_PAGES = [
 const APPROVED_SCRIPT_SOURCES = [
   "./script.js?v=20260627a",
   "./script.js?v=20260704a",
-  "./script.js?v=20260705b"
+  "./script.js?v=20260705b",
+  "./script.js?v=20260705c"
 ];
 
 const HOLDING_FORBIDDEN_COPY_PATTERNS = [

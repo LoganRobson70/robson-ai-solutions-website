@@ -1282,17 +1282,30 @@ function setupGlobeLoader() {
 
     const drawIcon = (cx, cy, size) => {
       context.save();
-      context.beginPath();
-      context.arc(cx, cy, size * 0.56, 0, Math.PI * 2);
-      context.fillStyle = "rgba(246, 244, 238, 0.72)";
-      context.fill();
 
       if (icon.complete && icon.naturalWidth > 0) {
-        context.globalAlpha = 0.92;
-        context.drawImage(icon, cx - size * 0.46, cy - size * 0.46, size * 0.92, size * 0.92);
+        const sourceInset = Math.round(Math.min(icon.naturalWidth, icon.naturalHeight) * 0.18);
+        const sourceWidth = icon.naturalWidth - sourceInset * 2;
+        const sourceHeight = icon.naturalHeight - sourceInset * 2;
+        const iconSize = size * 1.04;
+        context.shadowColor = "rgba(4, 12, 37, 0.18)";
+        context.shadowBlur = size * 0.18;
+        context.shadowOffsetY = size * 0.04;
+        context.globalAlpha = 0.98;
+        context.drawImage(
+          icon,
+          sourceInset,
+          sourceInset,
+          sourceWidth,
+          sourceHeight,
+          cx - iconSize * 0.5,
+          cy - iconSize * 0.5,
+          iconSize,
+          iconSize
+        );
       } else {
         context.fillStyle = "#0b1a4a";
-        context.font = `700 ${Math.round(size * 0.46)}px system-ui, sans-serif`;
+        context.font = `700 ${Math.round(size * 0.62)}px system-ui, sans-serif`;
         context.textAlign = "center";
         context.textBaseline = "middle";
         context.fillText("R", cx, cy + size * 0.04);

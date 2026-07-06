@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-05 23:00 BST
+Last updated: 2026-07-05 23:22 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/live-globe-loader-fix` in worktree `/private/tmp/robson-ai-website-live-globe-fix`
@@ -11,8 +11,8 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Prepare a narrow asset cache-bust hotfix after Wayne reported he still cannot see the Globe Loader on the live site after the visual fix deployed.
-- Keep the cache-bust scoped to HTML asset version query strings so existing browsers fetch the current immutable `styles.css` and `script.js` files.
+- Prepare a narrow Globe Loader icon polish after Wayne confirmed the live site looks good and asked for the centre icon to lose the visible circular backplate and read larger against the globe.
+- Keep the polish scoped to the canvas centre-icon drawing and a `script.js` cache-key bump so existing browsers fetch the changed drawing code.
 - Prepare a narrow live hotfix for Wayne's 2026-07-05 report that the homepage Globe Loader appears missing and the Robson AI icon appears massive on the live site.
 - Keep the hotfix scoped to Globe Loader placement, globe scale and centre-icon scale; do not reopen wider website design, copy, BuildScan, privacy or analytics scope in this tranche.
 - Validate the hotfix locally before asking Wayne for any commit, preview deploy or production deploy decision.
@@ -43,52 +43,53 @@ Success means:
 
 ## 2. Active Tranche
 
-Tranche name: `live-globe-loader-cache-bust`
-Status: local validation passed; awaiting Wayne approval for commit, branch/main push, Netlify deploy and production gate; no commit, branch push, PR, Netlify preview deploy, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message has been performed for this cache-bust follow-up
-Started: 2026-07-05 22:41 BST
+Tranche name: `globe-loader-icon-backplate-polish`
+Status: full local validation passed; awaiting Wayne approval for commit, branch/main push, Netlify deploy and production gate; no commit, branch push, PR, Netlify preview deploy, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message has been performed for this icon-polish follow-up
+Started: 2026-07-05 23:18 BST
 
 Scope:
 
-- Diagnose why Wayne still cannot see the Globe Loader after the verified production visual hotfix.
-- Confirm whether live HTML is still pointing browsers at immutable cached asset URLs.
-- Update public HTML references to `styles.css?v=20260705b` and `script.js?v=20260705b`.
-- Preserve the existing Globe Loader code, visual layout, product copy, BuildScan viewer, privacy baseline and release controls.
-- Run focused local/live validation, then ask Wayne before any production deploy.
+- Remove the visible pale circular backplate behind the Robson AI centre icon in the canvas Globe Loader.
+- Increase the centre icon draw size slightly so it reads better against the globe.
+- Keep a subtle canvas shadow only for contrast; do not reintroduce a filled backplate.
+- Update public script references to `script.js?v=20260705c` so browsers fetch the changed drawing code.
+- Preserve the Globe Loader globe, orbit animation, hero layout, product copy, BuildScan viewer, privacy baseline and release controls.
+- Run focused local validation, then ask Wayne before any production deploy.
 
 Out of scope:
 
-- Globe Loader redesign, layout changes, copy changes, BuildScan asset changes, analytics/forms changes, privacy-policy changes, rollback, DNS/domain changes, customer-data handling, external messages, destructive git actions, or customer/system integrations.
+- Globe Loader redesign, placement changes, orbit behaviour changes, CSS changes, copy changes, BuildScan asset changes, analytics/forms changes, privacy-policy changes, rollback, DNS/domain changes, customer-data handling, external messages, destructive git actions, or customer/system integrations.
 
 Validation evidence:
 
-- Wayne reported after production/source alignment that he still could not see the globe on the live site.
-- Live HTML check confirmed `https://robsonai.co.uk/` still referenced `styles.css?v=20260704a` and `script.js?v=20260704a`.
-- Live header checks confirmed both assets are served with `Cache-Control: public,max-age=31536000,immutable`, so existing browsers can continue using old cached CSS/JS despite the verified production deploy.
-- Local candidate updates all public HTML pages to use shared asset cache key `20260705b`.
-- First full `npm run qa:release:local` attempt for this cache-bust candidate failed at release security because `./script.js?v=20260705b` was not yet in the explicit approved script-source allowlist. This is expected release protection.
-- `scripts/release-security-smoke.mjs` now approves the reviewed cache key `./script.js?v=20260705b`.
-- `rg -n "20260704a|20260627a" *.html` returned no matches after the cache-bust update.
+- Wayne confirmed after the production cache-bust that the site looks great and asked to remove the centre-icon background circle and enlarge the icon.
+- The immediately previous cache-bust release is live on `https://robsonai.co.uk` from commit `599e0b0` as Netlify production deploy `6a4ad5768a2c9400088be4b2`.
+- Production gate for the previous cache-bust passed with artifact `output/release-production-gate/gate-2026-07-05T22-07-32-406Z/release-preview-gate.json`.
+- The live homepage now requests `styles.css?v=20260705b`, `script.js?v=20260705b` and `assets/globe-loader/world-countries-lite.json?v=20260705`.
+- Local candidate updates the canvas centre-icon drawing in `script.js`, changes public page script references to `script.js?v=20260705c`, and adds that reviewed script source to the release-security allowlist.
+- `node --check script.js` passed.
 - `git diff --check` passed.
-- `npm run qa:release-inventory` passed for the cache-bust candidate with artifact `output/release-inventory/inventory-2026-07-05T21-49-30-098Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings and GLB externalUriCount 0.
-- `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-05T21-49-00-821Z/release-staging-manifest-smoke.json`; modifiedTracked 9, untrackedCandidate 0, totalDirtyCandidate 9, stagingCommandPaths 9.
-- `npm run qa:release-security` passed after adding the reviewed cache key to the script-source allowlist with artifact `output/release-security/smoke-2026-07-05T21-49-00-821Z/release-security-smoke.json`.
-- Full `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-05T21-49-23-250Z/release-local-gate.json`; 37 steps.
-- BuildScan viewer smoke inside the full local gate confirmed the homepage now requests `styles.css?v=20260705b`, `script.js?v=20260705b` and `assets/globe-loader/world-countries-lite.json?v=20260705`.
-- Product/design acceptance, responsive route and visual polish smokes passed inside the full local gate with artifacts `output/product-design-acceptance/smoke-2026-07-05T21-49-56-809Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-05T21-50-03-164Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-05T21-50-25-903Z/visual-polish-smoke.json`.
-- Rendered screenshot evidence passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-05T21-50-56-390Z`.
-- Measurement evidence passed with artifact `output/measurement/evidence-2026-07-05T21-51-16-195Z`; axe violations 0, Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, LCP about 1.62s and CLS 0.
+- `npm run qa:release-security` passed with artifact `output/release-security/smoke-2026-07-05T22-16-19-570Z/release-security-smoke.json`.
+- `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-05T22-16-19-571Z/release-staging-manifest-smoke.json`; modifiedTracked 9, untrackedCandidate 0, totalDirtyCandidate 9, stagingCommandPaths 9.
+- Focused local browser render passed after transparent-padding crop: `script.js?v=20260705c` requested, Globe Loader canvas present, no failed requests, no console warnings, no horizontal overflow, and centre blue sample count increased from 9 to 23. Artifact and screenshot: `output/globe-icon-polish-check/2026-07-05T22-20-26-603Z/`.
+- Full `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-05T22-22-11-495Z/release-local-gate.json`; 37 steps.
+- Release inventory inside the full local gate passed with artifact `output/release-inventory/inventory-2026-07-05T22-22-18-457Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings and GLB externalUriCount 0.
+- BuildScan viewer smoke inside the full local gate confirmed the homepage now requests `styles.css?v=20260705b`, `script.js?v=20260705c` and `assets/globe-loader/world-countries-lite.json?v=20260705`.
+- Product/design acceptance, responsive route and visual polish smokes passed inside the full local gate with artifacts `output/product-design-acceptance/smoke-2026-07-05T22-22-43-918Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-05T22-22-50-309Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-05T22-23-13-620Z/visual-polish-smoke.json`.
+- Rendered screenshot evidence passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-05T22-23-45-425Z`.
+- Measurement evidence passed with artifact `output/measurement/evidence-2026-07-05T22-24-05-468Z`; axe violations 0, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.59s and CLS 0.
 - Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally.
 
 Done criteria:
 
 - Local release inventory, staging manifest and relevant rendered/visual checks pass.
-- A deployed preview proves the HTML references `20260705b` and the Globe Loader is visible.
+- Focused browser evidence confirms the Globe Loader icon renders larger and without a filled circular backplate.
 - Production deploy and production gate complete only after Wayne approves.
 
 Recommended next decision:
 
-1. Recommended: approve cache-bust commit, branch/main push, Netlify deploy and production gate so all visitors fetch the corrected Globe Loader assets.
-2. Use a hard refresh as a temporary local workaround, but still ship the cache-bust because other visitors can have the same immutable-cache problem.
+1. Recommended after local validation passes: approve icon-polish commit, branch/main push, Netlify deploy and production gate.
+2. Keep the current live Globe Loader as-is if the larger unbacked icon feels too dominant in local preview.
 
 ## 2A. Completed Globe Loader Placement Hotfix
 
