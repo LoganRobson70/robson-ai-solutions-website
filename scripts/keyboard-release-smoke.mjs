@@ -230,16 +230,17 @@ async function runBuildingAnalystKeyboardJourney(browser, baseUrl, artifactDir) 
     const response = await page.goto(new URL("/building-analyst.html#workflow-proof", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "Building Analyst keyboard journey should load HTTP 200.");
 
-    await page.locator("#lens-tab-surveyor").focus();
-    await page.keyboard.press("ArrowRight");
-    await page.waitForFunction(() => document.querySelector("#lens-tab-manager")?.getAttribute("aria-selected") === "true");
-    const managerFocus = await getActiveElementState(page);
-    assert(managerFocus?.dataPanelTrigger === "manager", `ArrowRight should move to manager lens: ${JSON.stringify(managerFocus)}.`);
+    await page.locator('.zip-site-nav a[href="#product"]').focus();
+    const productNavFocus = await getActiveElementState(page);
+    assert(productNavFocus?.href === "#product" && /Product/i.test(productNavFocus?.text || ""), `Building Analyst Product nav link should be keyboard focusable: ${JSON.stringify(productNavFocus)}.`);
+    await activateFocusedElement(page);
+    await page.waitForFunction(() => window.location.hash === "#product");
 
-    await page.keyboard.press("End");
-    await page.waitForFunction(() => document.querySelector("#lens-tab-client")?.getAttribute("aria-selected") === "true");
-    const clientFocus = await getActiveElementState(page);
-    assert(clientFocus?.dataPanelTrigger === "client", `End should move to client lens: ${JSON.stringify(clientFocus)}.`);
+    await page.locator('.zip-site-nav a[href="#contact"]').focus();
+    const contactNavFocus = await getActiveElementState(page);
+    assert(contactNavFocus?.href === "#contact" && /Contact/i.test(contactNavFocus?.text || ""), `Building Analyst Contact nav link should be keyboard focusable: ${JSON.stringify(contactNavFocus)}.`);
+    await activateFocusedElement(page);
+    await page.waitForFunction(() => window.location.hash === "#contact");
 
     await page.locator("[data-copy-email]").first().focus();
     await activateFocusedElement(page);
@@ -252,10 +253,10 @@ async function runBuildingAnalystKeyboardJourney(browser, baseUrl, artifactDir) 
     });
 
     return {
-      clientFocus,
+      contactNavFocus,
       copyFeedback,
       diagnostics,
-      managerFocus
+      productNavFocus
     };
   } finally {
     await context.close();

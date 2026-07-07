@@ -404,7 +404,7 @@ async function runSupportingPages(browser, baseUrl, artifactDir) {
       path: "/building-analyst.html#workflow-proof",
       screenshot: "desktop-building-analyst-proof.png",
       requiredSelector: "#workflow-proof",
-      brandStrapline: "Building Analyst",
+      wordmarkText: "Robson AI",
       label: "Building Analyst proof"
     },
     {
@@ -446,6 +446,13 @@ async function runSupportingPages(browser, baseUrl, artifactDir) {
         assert(
           brandStrapline === pageSpec.brandStrapline,
           `${pageSpec.label} brand strapline should be "${pageSpec.brandStrapline}", got "${brandStrapline}".`
+        );
+      }
+      if (pageSpec.wordmarkText) {
+        const wordmarkText = (await page.locator(".zip-wordmark-text").first().textContent())?.trim() || "";
+        assert(
+          wordmarkText === pageSpec.wordmarkText,
+          `${pageSpec.label} wordmark should be "${pageSpec.wordmarkText}", got "${wordmarkText}".`
         );
       }
       const metrics = await assertNoPageRegression(page, pageSpec.label);

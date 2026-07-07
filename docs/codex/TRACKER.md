@@ -1,9 +1,9 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-06 18:04 BST
+Last updated: 2026-07-07 21:32 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Current branch: `codex/live-globe-loader-fix` in worktree `/private/tmp/robson-ai-website-live-globe-fix`
+Current branch: `codex/live-globe-loader-fix` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
 
 ## 1. Current Objective
 
@@ -11,6 +11,9 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
+- Publish the Building Analyst homepage-design alignment after Wayne reported that `https://robsonai.co.uk/building-analyst` still looked unchanged.
+- Use a stable non-temp worktree so the release candidate is not lost during validation.
+- Keep the tranche scoped to `building-analyst.html` and QA compatibility updates; do not change DNS, privacy policy, analytics config, forms, BuildScan assets or broader homepage design.
 - Prepare a narrow follow-up Globe Loader icon prominence polish after Wayne reviewed the live site and asked for the centre icon to be about 50% bigger inside the globe.
 - Keep the change scoped to the canvas centre-icon draw size and a `script.js` cache-key bump; do not reopen the hero layout, globe, orbit motion, copy, BuildScan, privacy or analytics.
 - Prepare a narrow live hotfix for Wayne's 2026-07-05 report that the homepage Globe Loader appears missing and the Robson AI icon appears massive on the live site.
@@ -42,6 +45,50 @@ Success means:
 - Production release execution is defined in `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the 2026-06-28 publish was executed after Wayne approved option `1`.
 
 ## 2. Active Tranche
+
+Tranche name: `building-analyst-homepage-design-alignment`
+Status: local candidate implemented in stable worktree; Wayne approved option `1` to continue through Netlify CLI availability, full local gate, commit, push, production deploy and production gate; no production deploy has been performed for this tranche yet
+Started: 2026-07-07 21:05 BST
+
+Scope:
+
+- Make `building-analyst.html` look and behave like the current homepage design system after the homepage `Explore Building Analyst` CTA.
+- Replace the older Building Analyst page shell with the same white header, dark mesh hero, Globe Loader, card language, proof band, boundary band, contact surface and footer treatment used by `index.html`.
+- Preserve cautious Building Analyst positioning, including early-stage maturity, professional review boundaries, "Assessment capture and report-ready evidence", "Not a finished product screenshot", "Not autonomous diagnosis", and "not a substitute for professional judgement".
+- Update the rendered and keyboard QA journeys so they test the new homepage-style Building Analyst page rather than retired header/lens-tab markup.
+
+Out of scope:
+
+- DNS/domain changes, analytics/forms changes, privacy-policy changes, BuildScan asset changes, product claims, app implementation, customer-data handling, external messages, destructive git actions, rollback, or broader website redesign.
+
+Validation evidence:
+
+- `git diff --check` passed.
+- `npx --no-install html-validate --rule doctype-style:off --rule void-style:off building-analyst.html` passed.
+- `node --check scripts/keyboard-release-smoke.mjs` and `node --check scripts/rendered-release-smoke.mjs` passed.
+- `npm run qa:product-design` passed with artifact `output/product-design-acceptance/smoke-2026-07-07T20-27-00-031Z/product-design-acceptance-smoke.json`.
+- `npm run qa:responsive` passed with artifact `output/responsive-route/smoke-2026-07-07T20-27-00-065Z/responsive-route-smoke.json`.
+- `npm run qa:visual-polish` passed with artifact `output/visual-polish/smoke-2026-07-07T20-27-01-451Z/visual-polish-smoke.json`.
+- `npm run qa:rendered` passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-07T20-27-49-249Z`; `desktop-building-analyst-proof.png` shows the aligned homepage-style Building Analyst route.
+- `npm run qa:keyboard` passed with artifact `output/playwright/keyboard-release-smoke-2026-07-07T20-27-49-465Z`.
+- `npm run qa:semantic-seo` passed with artifact `output/semantic-seo/smoke-2026-07-07T20-27-49-482Z/semantic-seo-smoke.json`.
+- `npm run qa:release-security` passed with artifact `output/release-security/smoke-2026-07-07T20-27-50-420Z/release-security-smoke.json`.
+- Full local release gate is pending after manifest refresh.
+
+Done criteria:
+
+- Full `npm run qa:release:local` passes.
+- Commit is created and pushed.
+- Netlify production deploy completes.
+- Production gate passes against `https://robsonai.co.uk`.
+- Live `https://robsonai.co.uk/building-analyst` returns the new homepage-style Building Analyst page.
+
+Recommended next decision:
+
+1. Recommended and already approved: complete full local gate, commit, push, production deploy, production gate and live verification.
+2. If any validation fails, stop and report the blocker before deploying.
+
+## 2A. Completed Globe Loader Icon Prominence Tranche
 
 Tranche name: `globe-loader-icon-50-percent-prominence`
 Status: completed for production; commit `d0bbcd9` is pushed to `codex/live-globe-loader-fix` and `main`; Netlify production deploy `6a4bdf25d47fe304e6efbd85` is live and the production gate passed; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
@@ -98,7 +145,7 @@ Recommended next decision:
 1. Recommended: Wayne completes a quick live visual pass on `https://robsonai.co.uk` and confirms the Globe Loader icon now feels right.
 2. If the icon now feels too dominant, approve one small follow-up size adjustment rather than reopening wider website design.
 
-## 2A. Completed Globe Loader Placement Hotfix
+## 2B. Completed Globe Loader Placement Hotfix
 
 Tranche name: `live-globe-loader-fix`
 Status: completed for production; hotfix commit `924b214` is pushed on branch `codex/live-globe-loader-fix`; Netlify preview deploy and production deploy passed their release gates; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
@@ -163,7 +210,7 @@ Recommended next decision:
 1. Recommended: approve a follow-up source-control alignment PR/merge so `main` records the production hotfix now live from CLI/archive deploy `6a4acbc6eef7cd0827692aff`.
 2. Do a short owner visual pass on the live homepage before any further design work.
 
-## 2B. Previous Reconciliation Tranche - Historical Context
+## 2C. Previous Reconciliation Tranche - Historical Context
 
 Tranche name: `github-main-reconciliation-preflight`
 Status: draft PR open and QA-passed; branch `codex/github-main-reconciliation-preflight` pushed to origin; GitHub PR #3 open at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/3`; GitHub/Netlify deploy-preview check passed and the immutable deploy preview gate passed; no merge to `main`, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message has been performed

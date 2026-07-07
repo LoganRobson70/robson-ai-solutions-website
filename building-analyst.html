@@ -29,546 +29,304 @@
     <meta name="twitter:image" content="https://robsonai.co.uk/assets/og/robsonai-cover-1200x630.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/robson-ai-icon-v3-32.png?v=20260627">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/robson-ai-icon-v3-180.png?v=20260627">
-    <link rel="preload" href="./assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="./styles.css?v=20260705b">
   </head>
-  <body data-page-type="building-analyst">
+  <body data-page-type="preview" class="zip-page building-analyst-zip-page">
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <header class="site-header">
-      <div class="container topbar">
-        <a class="brand brand-lockup-link" href="/" aria-label="Robson AI home">
-          <span class="brand-icon-only" aria-hidden="true">
-            <img class="brand-logo" src="./assets/robson-ai-icon-v3-128.webp?v=20260627" width="48" height="48" alt="" decoding="async">
-          </span>
-          <span class="brand-lockup-text" aria-hidden="true">
-            <span>Robson AI</span>
-            <small>Building Analyst</small>
-          </span>
+    <header class="site-header zip-site-header">
+      <div class="container topbar zip-topbar">
+        <a class="zip-wordmark" href="/" aria-label="Robson AI home">
+          <img
+            class="zip-wordmark-icon"
+            src="./assets/robson-ai-icon-v3-transparent-320.webp?v=20260627"
+            width="320"
+            height="320"
+            alt=""
+            decoding="async"
+            fetchpriority="high"
+          >
+          <span class="zip-wordmark-text">Robson AI</span>
         </a>
 
-        <nav class="site-nav" aria-label="Primary">
-          <a href="/" data-analytics-id="nav-home-problem">Home</a>
-          <a href="#issue-model" data-analytics-id="nav-issue-model">Assessment model</a>
-          <a href="#assessment-lens" data-analytics-id="nav-assessment-lens">Workflow lens</a>
-          <a href="#workflow-proof" data-analytics-id="nav-workflow-proof">Product proof</a>
-          <a href="#fit-boundaries" data-analytics-id="nav-fit-boundaries">Fit</a>
-          <a href="./who-its-for.html" data-analytics-id="nav-who-its-for">Who it fits</a>
-          <a href="#contact" data-analytics-id="nav-start-conversation">Start a conversation</a>
+        <nav class="site-nav zip-site-nav" aria-label="Primary">
+          <a href="/" data-analytics-id="building-nav-home">Home</a>
+          <a href="#product" data-analytics-id="building-nav-product">Product</a>
+          <a href="#workflow-proof" data-analytics-id="building-nav-proof">Proof</a>
+          <a href="#fit-boundaries" data-analytics-id="building-nav-fit">Fit</a>
+          <a href="#contact" data-analytics-id="building-nav-contact">Contact</a>
         </nav>
+
+        <div class="zip-header-actions">
+          <a class="zip-header-email" href="mailto:hello@robsonai.co.uk" data-analytics-id="building-nav-email" data-cta-location="header">hello@robsonai.co.uk</a>
+          <a class="zip-header-cta" href="#contact" data-analytics-id="building-nav-discuss-workflow" data-cta-location="header">Discuss Workflow <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
     </header>
 
-    <main id="main-content" class="site-main">
-      <section class="hero analyst-hero" data-section="building-analyst-hero">
-        <div class="container analyst-hero-grid">
-          <div class="analyst-hero-copy">
-            <p class="home-kicker">Building Analyst</p>
-            <h1>Assessment capture and report-ready evidence for building surveyors.</h1>
-            <p class="analyst-hero-lead">
-              An early professional product direction for collecting building observations, supporting evidence and report-ready analysis in one structured Apple-platform-first workflow direction.
-            </p>
-            <p class="analyst-hero-support">
-              The aim is to improve surveyor productivity while keeping professional judgement, context and responsibility with the user. Apple-native intelligence is being evaluated where it can help structure evidence, summarise context and prepare material for review.
+    <main id="main-content" class="site-main zip-main">
+      <section class="zip-hero" id="top" data-section="building-analyst-hero">
+        <canvas class="zip-mesh-canvas" data-mesh-canvas data-density="1.55" data-mode="mesh" data-tone="dark" aria-hidden="true"></canvas>
+        <div class="zip-hero-glow" aria-hidden="true"></div>
+        <div class="zip-hero-globe-loader" data-globe-loader aria-hidden="true">
+          <canvas class="zip-globe-loader-canvas" width="420" height="420"></canvas>
+        </div>
+
+        <div class="container zip-hero-inner">
+          <div class="zip-hero-copy" data-reveal>
+            <p class="zip-kicker"><span aria-hidden="true"></span> Evidence <b>&middot;</b> Review <b>&middot;</b> Reports</p>
+            <h1>Building Analyst turns evidence into <span>review-ready intelligence.</span></h1>
+            <p class="zip-hero-lead">
+              Assessment capture and report-ready evidence for building surveyors. Building Analyst is an early professional product direction for keeping observations, photos, notes and review context together before anything is issued.
             </p>
 
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact" data-analytics-id="building-analyst-email-example" data-cta-location="building-analyst-hero">Start a Conversation</a>
-              <a class="btn btn-outline" href="#issue-model" data-analytics-id="building-analyst-issue-model" data-cta-location="building-analyst-hero">See the Approach</a>
+            <div class="zip-hero-actions">
+              <a class="zip-button zip-button-primary" href="#product" data-analytics-id="building-hero-see-product" data-cta-location="building-analyst-hero">See the Product Flow <span aria-hidden="true">&rarr;</span></a>
+              <a class="zip-button zip-button-ghost" href="#contact" data-analytics-id="building-hero-contact" data-cta-location="building-analyst-hero">Discuss Assessment Workflow</a>
+            </div>
+
+            <p class="zip-product-line">
+              <strong>Professional review stays central.</strong>
+              <span>Capture</span>
+              <span aria-hidden="true">/</span>
+              <span>Structure</span>
+              <span aria-hidden="true">/</span>
+              <span>Draft for review</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="zip-section" id="product" data-section="building-analyst-product">
+        <div class="container zip-section-head" data-reveal>
+          <p class="zip-section-label">Product direction</p>
+          <h2>Assessment capture and report-ready evidence in one professional workflow.</h2>
+          <p>
+            The product direction is deliberately practical: collect the building evidence, keep it attached to the issue record, and prepare clearer material for professional review. It supports judgement; it does not replace it.
+          </p>
+        </div>
+
+        <div class="container zip-product-cards" data-reveal-stagger>
+          <article class="zip-product-card">
+            <span>01</span>
+            <h3>Capture the issue while context is fresh.</h3>
+            <p>Record location, condition, urgency, access constraints, photos, PDFs and notes before the site visit goes cold.</p>
+            <strong>Assessment record</strong>
+          </article>
+          <article class="zip-product-card">
+            <span>02</span>
+            <h3>Keep evidence and reasoning together.</h3>
+            <p>Each item stays connected to the observation, so review questions do not drift away from the evidence.</p>
+            <strong>Evidence trail</strong>
+          </article>
+          <article class="zip-product-card zip-product-card-dark">
+            <span>03</span>
+            <h3>Prepare drafts for professional review.</h3>
+            <p>AI assistance can help structure summaries and draft wording, with verification before any client-facing use.</p>
+            <strong>Review boundary</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="zip-section zip-analyst-section" id="issue-model" data-section="issue-model">
+        <div class="container zip-split" data-reveal-stagger>
+          <div class="zip-section-head zip-section-head-left">
+            <p class="zip-section-label">Issue model</p>
+            <h2>What stays attached.</h2>
+            <p>
+              The useful parts of the site visit stay together: observation, location, evidence, risk and next action. The goal is a clearer review surface for the surveyor, manager or client-facing output.
+            </p>
+            <div class="zip-proof-steps">
+              <article><span>1</span><strong>Observation</strong><p>The finding is captured while the facts are fresh.</p></article>
+              <article><span>2</span><strong>Location</strong><p>The building area and access context remain clear.</p></article>
+              <article><span>3</span><strong>Evidence pack</strong><p>Photos, notes, readings and chronology stay bound to the issue.</p></article>
+              <article><span>4</span><strong>Decision context</strong><p>Risk, urgency and possible next steps can be reviewed with the evidence close by.</p></article>
             </div>
           </div>
 
-          <div class="analyst-summary-card">
-            <div class="motion-field motion-field-analyst" aria-hidden="true">
-              <span class="motion-field-line motion-field-line-a"></span>
-              <span class="motion-field-line motion-field-line-b"></span>
-              <span class="motion-field-line motion-field-line-c"></span>
-              <span class="motion-field-node motion-field-node-a"></span>
-              <span class="motion-field-node motion-field-node-b"></span>
-              <span class="motion-field-node motion-field-node-c"></span>
+          <div class="zip-app-panel" role="group" aria-label="Building Analyst evidence workflow preview">
+            <div class="zip-app-toolbar">
+              <strong>Building Analyst</strong>
+              <span>Evidence to draft</span>
             </div>
-
-            <div class="analyst-summary-head">
-              <div>
-                <p class="home-card-label">Workflow summary</p>
-                <h2>What the workflow is exploring</h2>
-              </div>
-              <span class="analyst-summary-pill">Evidence-backed</span>
+            <div class="zip-evidence-stack">
+              <p><span>IMG</span>Damp staining - north wall</p>
+              <p><span>PDF</span>EPC certificate</p>
+              <p><span>NOTE</span>Access and safety observation</p>
+              <p><span>READING</span>Moisture reading attached to location</p>
             </div>
-
-            <div class="analyst-summary-grid">
-              <article>
-                <span>Assessment</span>
-                <p>Issue, location, access, severity.</p>
-              </article>
-              <article>
-                <span>Evidence</span>
-                <p>Photos, readings, notes, chronology.</p>
-              </article>
-              <article>
-                <span>Analysis</span>
-                <p>Likely issue, risk, next step.</p>
-              </article>
-              <article>
-                <span>Report</span>
-                <p>Structured information for review and client-facing work.</p>
-              </article>
+            <div class="zip-draft-panel">
+              <span>Surveyor's report</span>
+              <strong>Draft prepared with AI assistance. Verify before client issue.</strong>
+              <i></i><i></i><i></i>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section analyst-section" id="issue-model" data-section="issue-model">
-        <div class="container analyst-section-grid">
-          <div class="analyst-section-intro">
-            <p class="section-label">Issue model</p>
-            <h2 class="section-title">What stays attached.</h2>
-            <p class="section-intro section-intro-dark">
-              The useful parts of the site visit stay together.
+      <section class="zip-section zip-buildscan-section" id="workflow-proof" data-section="workflow-proof" data-proof-surface>
+        <canvas class="zip-mesh-canvas zip-section-mesh" data-mesh-canvas data-density="0.78" data-mode="constellation" data-tone="dark" aria-hidden="true"></canvas>
+        <div class="container zip-buildscan-grid" data-reveal-stagger>
+          <div class="zip-section-head zip-section-head-left">
+            <p class="zip-section-label">Product proof</p>
+            <h2>Proof starts with the workflow.</h2>
+            <p>
+              This public page shows workflow structure, not a finished launch promise. It explains what gets captured, what stays attached, what is reviewed and what remains under professional sign-off.
             </p>
+            <div class="zip-buildscan-notes">
+              <article><span>01</span><strong>Capture</strong><p>Condition, location, access notes, photos, readings and urgency belong to one assessment record.</p></article>
+              <article><span>02</span><strong>Bind</strong><p>The record is shaped so review questions stay close to the facts seen on site.</p></article>
+              <article><span>03</span><strong>Review</strong><p>Intelligence can help structure summaries, but the professional checks context, judgement and wording.</p></article>
+              <article><span>04</span><strong>Output</strong><p>The aim is clearer evidence trails for reports, client explanation and further investigation.</p></article>
+            </div>
           </div>
 
-          <div class="analyst-core-grid">
-            <article class="analyst-core-card">
-              <span>01</span>
-              <h3>Observation</h3>
-              <p>The finding is captured while the facts are fresh.</p>
-            </article>
-            <article class="analyst-core-card">
-              <span>02</span>
-              <h3>Location</h3>
-              <p>The building area and access context remain clear.</p>
-            </article>
-            <article class="analyst-core-card">
-              <span>03</span>
-              <h3>Evidence pack</h3>
-              <p>Photos, notes, readings, and chronology stay bound to the issue.</p>
-            </article>
-            <article class="analyst-core-card">
-              <span>04</span>
-              <h3>Decision context</h3>
-              <p>Risk, urgency and possible next steps can be reviewed with the evidence close by.</p>
-            </article>
+          <div class="zip-price-card zip-price-card-dark">
+            <span>Safe to show now</span>
+            <h3>Workflow, record structure and professional boundaries.</h3>
+            <p>
+              Building Analyst is an early professional product direction. The current site can show the model for evidence capture and review support without claiming App Store availability or autonomous diagnosis.
+            </p>
+            <ul>
+              <li>Surveyor-led assessment capture.</li>
+              <li>Evidence kept close to the issue record.</li>
+              <li>Apple-platform-first direction where useful.</li>
+              <li>Human review before client-facing use.</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section class="section analyst-section analyst-section-lens" id="assessment-lens" data-section="assessment-lens" data-proof-surface>
-        <div class="container assessment-lens-shell" data-interactive-panel="assessment-lens">
-          <div class="analyst-section-intro">
-            <p class="section-label">Workflow lens</p>
-            <h2 class="section-title">Same record, different professional questions.</h2>
-            <p class="section-intro section-intro-dark">
-              Building Analyst is being shaped around a shared evidence record that can support different review needs without losing source context.
-            </p>
-          </div>
+      <section class="zip-section" id="example-output" data-section="example-output" data-proof-surface>
+        <div class="container zip-section-head" data-reveal>
+          <p class="zip-section-label">Illustrative structure</p>
+          <h2>A clearer assessment record.</h2>
+          <p>
+            Not a finished product screenshot. This is a simple example of the information structure being explored for surveyor-led assessment, evidence and reporting workflows.
+          </p>
+        </div>
 
-          <div class="assessment-lens-board">
-            <div class="interactive-tabs interactive-tabs-vertical" role="tablist" aria-label="Assessment review lenses">
-              <button
-                class="interactive-tab is-active"
-                id="lens-tab-surveyor"
-                type="button"
-                role="tab"
-                aria-selected="true"
-                aria-controls="lens-panel-surveyor"
-                data-panel-trigger="surveyor"
-                data-analytics-id="assessment-lens-surveyor"
-              >
-                <span class="interactive-tab-icon" aria-hidden="true">SV</span>
-                <span>Surveyor review</span>
-              </button>
-              <button
-                class="interactive-tab"
-                id="lens-tab-manager"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                aria-controls="lens-panel-manager"
-                tabindex="-1"
-                data-panel-trigger="manager"
-                data-analytics-id="assessment-lens-manager"
-              >
-                <span class="interactive-tab-icon" aria-hidden="true">MG</span>
-                <span>Manager triage</span>
-              </button>
-              <button
-                class="interactive-tab"
-                id="lens-tab-client"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                aria-controls="lens-panel-client"
-                tabindex="-1"
-                data-panel-trigger="client"
-                data-analytics-id="assessment-lens-client"
-              >
-                <span class="interactive-tab-icon" aria-hidden="true">CL</span>
-                <span>Client explanation</span>
-              </button>
-            </div>
-
-            <div class="assessment-lens-panels">
-              <div
-                class="assessment-lens-panel"
-                id="lens-panel-surveyor"
-                role="tabpanel"
-                aria-labelledby="lens-tab-surveyor"
-                data-panel-pane="surveyor"
-              >
-                <p class="home-card-label">Professional question</p>
-                <h3>What did I see, where is the evidence, and what judgement is supported?</h3>
-                <dl class="assessment-lens-list">
-                  <div>
-                    <dt>Record focus</dt>
-                    <dd>Observation, condition, location, photographs, readings and access constraints.</dd>
-                  </div>
-                  <div>
-                    <dt>Useful output</dt>
-                    <dd>A report-ready evidence trail that is easier to review and defend.</dd>
-                  </div>
-                  <div>
-                    <dt>Boundary</dt>
-                    <dd>The product can structure and support review; it does not remove professional responsibility.</dd>
-                  </div>
-                </dl>
-              </div>
-
-              <div
-                class="assessment-lens-panel"
-                id="lens-panel-manager"
-                role="tabpanel"
-                aria-labelledby="lens-tab-manager"
-                data-panel-pane="manager"
-                hidden
-              >
-                <p class="home-card-label">Professional question</p>
-                <h3>What needs attention, why does it matter, and what is blocked?</h3>
-                <dl class="assessment-lens-list">
-                  <div>
-                    <dt>Record focus</dt>
-                    <dd>Priority, risk, next action, responsibility and evidence strength.</dd>
-                  </div>
-                  <div>
-                    <dt>Useful output</dt>
-                    <dd>A clearer triage view for estate, FM or surveying team decisions.</dd>
-                  </div>
-                  <div>
-                    <dt>Boundary</dt>
-                    <dd>Operational workflows need governance before live integration with customer systems.</dd>
-                  </div>
-                </dl>
-              </div>
-
-              <div
-                class="assessment-lens-panel"
-                id="lens-panel-client"
-                role="tabpanel"
-                aria-labelledby="lens-tab-client"
-                data-panel-pane="client"
-                hidden
-              >
-                <p class="home-card-label">Professional question</p>
-                <h3>How do we explain the issue clearly without losing the evidence trail?</h3>
-                <dl class="assessment-lens-list">
-                  <div>
-                    <dt>Record focus</dt>
-                    <dd>Plain-language summary, evidence references, options and recommended next steps.</dd>
-                  </div>
-                  <div>
-                    <dt>Useful output</dt>
-                    <dd>Material that can support better client understanding while staying reviewable.</dd>
-                  </div>
-                  <div>
-                    <dt>Boundary</dt>
-                    <dd>Client-facing wording still needs human approval before being relied on.</dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
-          </div>
+        <div class="container zip-pricing-grid" data-reveal-stagger>
+          <article class="zip-price-card">
+            <span>Representative issue record</span>
+            <h3>Rooflight ingress with repeat staining.</h3>
+            <p>Issue, location, evidence, access, judgement and next action are held in one record.</p>
+            <ul>
+              <li>Site visit: 06 May 2026, 10:40</li>
+              <li>Location: Block B, level 03 stair core</li>
+              <li>Evidence: 12 photos, moisture readings, access note</li>
+            </ul>
+          </article>
+          <article class="zip-price-card zip-price-card-dark">
+            <span>Review support</span>
+            <h3>Clearer material before client issue.</h3>
+            <p>Draft text can be structured around evidence and context, then checked by the professional before it is relied on.</p>
+            <ul>
+              <li>Assessment note with evidence references.</li>
+              <li>Likely issue and uncertainty made visible.</li>
+              <li>Recommended next action separated from source evidence.</li>
+            </ul>
+          </article>
         </div>
       </section>
 
-      <section class="section analyst-section analyst-section-flow" data-section="assessment-flow">
-        <div class="container analyst-section-grid">
-          <div class="analyst-section-intro">
-            <p class="section-label">Assessment flow</p>
-            <h2 class="section-title">How it moves.</h2>
-            <p class="section-intro section-intro-dark">
-              Capture, review, analyse.
+      <section class="zip-section zip-about-section" id="fit-boundaries" data-section="fit-boundaries">
+        <canvas class="zip-mesh-canvas zip-section-mesh" data-mesh-canvas data-density="0.78" data-mode="mesh" data-tone="dark" aria-hidden="true"></canvas>
+        <div class="container zip-about-head" data-reveal>
+          <div class="zip-section-head">
+            <p class="zip-section-label">Fit and boundaries</p>
+            <h2>Best where evidence and analysis need structure.</h2>
+            <p>
+              Building Analyst is strongest where assessment evidence, analysis and reporting material are scattered. It is not autonomous diagnosis and is not a substitute for professional judgement.
             </p>
           </div>
+        </div>
 
-          <div class="analyst-flow-grid">
-            <article class="analyst-flow-card">
-              <p class="analyst-flow-label">On site</p>
-              <h3>Assessment is recorded with context.</h3>
-              <p>Location, condition, evidence, and urgency are captured together.</p>
-            </article>
-            <article class="analyst-flow-card">
-              <p class="analyst-flow-label">During review</p>
-              <h3>Analysis stays tied to the evidence.</h3>
-              <p>The analyst view stays tied to the source evidence.</p>
-            </article>
-            <article class="analyst-flow-card">
-              <p class="analyst-flow-label">For client support</p>
-              <h3>The record supports clearer understanding.</h3>
-              <p>Findings, evidence and analysis can inform advice, reporting or further investigation.</p>
-            </article>
-          </div>
+        <div class="container zip-boundary-strip" data-reveal-stagger>
+          <article><span>Strong fit</span><p>Surveying, estates, FM, housing, compliance and public-sector operations.</p></article>
+          <article><span>Why it matters</span><p>Useful when evidence, analysis and reporting are separated across notes, folders and memory.</p></article>
+          <article><span>Boundary</span><p>Not autonomous diagnosis and not a substitute for professional judgement.</p></article>
+          <article><span>What good looks like</span><p>The surveyor can review building information with evidence and context close together.</p></article>
         </div>
       </section>
 
-      <section class="section analyst-section analyst-section-proof" id="workflow-proof" data-section="workflow-proof" data-proof-surface>
-        <div class="container analyst-proof-shell">
-          <div class="analyst-section-intro analyst-proof-intro">
-            <p class="section-label">Product proof</p>
-            <h2 class="section-title">Proof starts with the workflow.</h2>
-            <p class="section-intro section-intro-dark">
-              The current public story is deliberately practical: what gets captured, what stays attached, what is reviewed and what remains under professional sign-off.
+      <section class="zip-section zip-contact-section" id="contact" data-section="building-analyst-contact">
+        <div class="container zip-contact-panel" data-reveal-stagger>
+          <div class="zip-section-head zip-section-head-left">
+            <p class="zip-section-label">Start a conversation</p>
+            <h2>Interested in assessment and evidence workflows?</h2>
+            <p>
+              Share the type of surveying work, evidence capture or reporting challenge you are interested in. No contact form is used on this site; email opens in your mail app and you control what you send.
             </p>
-          </div>
-
-          <div class="analyst-proof-board">
-            <div class="analyst-proof-rail">
-              <article class="analyst-proof-step">
-                <span>01</span>
-                <p class="analyst-flow-label">Capture</p>
-                <h3>Record the issue while context is fresh.</h3>
-                <p>Condition, location, access notes, photos, readings and urgency belong to one assessment record.</p>
-              </article>
-              <article class="analyst-proof-step">
-                <span>02</span>
-                <p class="analyst-flow-label">Bind</p>
-                <h3>Keep evidence and reasoning together.</h3>
-                <p>The record is shaped so review questions do not drift away from the facts seen on site.</p>
-              </article>
-              <article class="analyst-proof-step">
-                <span>03</span>
-                <p class="analyst-flow-label">Review</p>
-                <h3>Support the surveyor before anything is used.</h3>
-                <p>Intelligence can help structure summaries, but the professional checks context, judgement and wording.</p>
-              </article>
-              <article class="analyst-proof-step">
-                <span>04</span>
-                <p class="analyst-flow-label">Output</p>
-                <h3>Prepare report-ready material.</h3>
-                <p>The aim is clearer evidence trails for reports, client explanation and further investigation.</p>
-              </article>
-            </div>
-
-            <div class="analyst-proof-status-grid">
-              <article class="analyst-proof-status analyst-proof-status-dark">
-                <p class="home-card-label">Safe to show now</p>
-                <h3>Workflow, record structure and professional boundaries.</h3>
-                <ul>
-                  <li>Surveyor-led assessment capture.</li>
-                  <li>Evidence kept close to the issue record.</li>
-                  <li>Apple-platform-first direction where useful.</li>
-                  <li>Human review before client-facing use.</li>
-                </ul>
-              </article>
-
-              <article class="analyst-proof-status">
-                <p class="home-card-label">Held for approval</p>
-                <h3>Final app screenshots, launch video and App Store links.</h3>
-                <p>
-                  Those assets should be added when the current Apple-platform product screens are approved for public use.
-                </p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section analyst-section" id="example-output" data-section="example-output" data-proof-surface>
-        <div class="container analyst-section-grid">
-          <div class="analyst-section-intro">
-            <p class="section-label">Illustrative structure</p>
-            <h2 class="section-title">A clearer assessment record.</h2>
-            <p class="section-intro section-intro-dark">
-              Not a finished product screenshot. A simple example of the information structure being explored.
-            </p>
-          </div>
-
-          <div class="analyst-output-shell">
-            <div class="analyst-output-card">
-              <div class="analyst-output-head">
-                <div>
-                  <p class="home-card-label">Representative issue record</p>
-                  <h3>Rooflight ingress with repeat staining to stair core ceiling</h3>
-                </div>
-                <span class="analyst-summary-pill">Priority 2</span>
-              </div>
-
-              <div class="analyst-output-grid">
-                <div class="analyst-output-meta">
-                  <article>
-                    <span>Case ref</span>
-                    <strong>BA-24-118</strong>
-                  </article>
-                  <article>
-                    <span>Site visit</span>
-                    <strong>06 May 2026, 10:40</strong>
-                  </article>
-                  <article>
-                    <span>Location</span>
-                    <strong>Block B, level 03 stair core</strong>
-                  </article>
-                  <article>
-                    <span>Evidence</span>
-                    <strong>12 photos, moisture readings, access note</strong>
-                  </article>
-                  <article>
-                    <span>Raised by</span>
-                    <strong>Surveyor review record</strong>
-                  </article>
-                  <article>
-                    <span>Interim risk</span>
-                    <strong>Progressive internal fabric damage</strong>
-                  </article>
-                </div>
-
-                <div class="analyst-output-report">
-                  <div>
-                    <p class="home-card-meta">Assessment fields</p>
-                    <p>Issue, location, evidence, access, judgement, and next action in one record.</p>
-                  </div>
-                  <div>
-                    <p class="home-card-meta">Assessment note</p>
-                    <p>Active staining and elevated damp readings at the rooflight perimeter suggest recurring ingress rather than isolated condensation.</p>
-                  </div>
-                  <div>
-                    <p class="home-card-meta">Analyst summary</p>
-                    <p>Pattern indicates likely failure at rooflight flashing or adjacent junction. Immediate containment recommended pending targeted roofing inspection.</p>
-                  </div>
-                  <div>
-                    <p class="home-card-meta">Recommended next action</p>
-                    <p>Make-safe, inspect, return contractor evidence into the same record.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="analyst-output-notes">
-              <article>
-                <span>Useful for review</span>
-                <p>A manager or surveyor can understand the issue quickly.</p>
-              </article>
-              <article>
-                <span>Useful for analysis</span>
-                <p>The record keeps evidence close to the reasoning.</p>
-              </article>
-              <article>
-                <span>Useful for defensibility</span>
-                <p>The record stays close to what was seen and why it matters.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section analyst-section analyst-section-fit" id="fit-boundaries" data-section="fit-boundaries">
-        <div class="container analyst-section-grid">
-          <div class="analyst-section-intro">
-            <p class="section-label">Fit &amp; boundaries</p>
-            <h2 class="section-title">Best where evidence and analysis need structure.</h2>
-          </div>
-
-          <div class="analyst-fit-grid">
-            <article class="analyst-fit-card">
-              <span>Strong fit</span>
-              <p>Surveying, estates, FM, housing, compliance, and public sector operations.</p>
-            </article>
-            <article class="analyst-fit-card">
-              <span>Why it matters</span>
-              <p>Useful when evidence, analysis, and reporting are scattered.</p>
-            </article>
-            <article class="analyst-fit-card">
-              <span>Boundary</span>
-              <p>Not autonomous diagnosis. Not a substitute for professional judgement.</p>
-            </article>
-            <article class="analyst-fit-card">
-              <span>What good looks like</span>
-              <p>The surveyor can review building information with evidence and context closer together.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section analyst-section analyst-section-contact" id="contact" data-section="building-analyst-contact">
-        <div class="container analyst-contact-shell">
-          <div class="analyst-section-intro">
-            <p class="section-label">Start a conversation</p>
-            <h2 class="section-title">Interested in assessment and evidence workflows?</h2>
-            <p class="section-intro section-intro-dark">
-              Share the type of surveying work, evidence capture or analysis challenge you are interested in.
-            </p>
-          </div>
-
-          <div class="analyst-contact-card">
-            <div class="home-contact-list">
-              <div>
-                <span>What to send</span>
-                <p>A short description of the surveying workflow or building-related challenge.</p>
-              </div>
-              <div>
-                <span>What you get back</span>
-                <p>A direct reply on whether there is a relevant conversation to have.</p>
-              </div>
-              <div>
-                <span>Useful detail</span>
-                <p>Include the type of survey, evidence source, reporting output, or review step you want improved.</p>
-              </div>
-            </div>
-
-            <a
-              class="contact-link"
-              href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20assessment%20workflow&body=Hi%20Wayne%2C%0A%0AI%20would%20like%20to%20discuss%20a%20Building%20Analyst%20assessment%20or%20evidence%20workflow.%0A%0AAssessment%20workflow%3A%0AEvidence%20or%20reporting%20problem%3A%0AUseful%20context%3A%0A%0AThanks%2C"
-              data-analytics-id="building-analyst-mailto-link"
-              data-cta-location="building-analyst-contact"
-            >hello@robsonai.co.uk</a>
-
-            <div class="contact-actions">
-              <a class="btn btn-primary" href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20assessment%20workflow&body=Hi%20Wayne%2C%0A%0AI%20would%20like%20to%20discuss%20a%20Building%20Analyst%20assessment%20or%20evidence%20workflow.%0A%0AAssessment%20workflow%3A%0AEvidence%20or%20reporting%20problem%3A%0AUseful%20context%3A%0A%0AThanks%2C" data-analytics-id="building-analyst-contact-email" data-cta-location="building-analyst-contact">Email the Assessment Workflow</a>
-              <button class="btn btn-outline" type="button" data-copy-email data-copy-value="hello@robsonai.co.uk" data-analytics-id="building-analyst-copy-email">Copy Email Address</button>
-              <a class="btn btn-outline" href="./privacy.html" data-analytics-id="building-analyst-privacy" data-cta-location="building-analyst-contact">Privacy Notice</a>
+            <div class="zip-contact-actions">
+              <a class="zip-button zip-button-primary" href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20assessment%20workflow&body=Hi%20Wayne%2C%0A%0AI%20would%20like%20to%20discuss%20a%20Building%20Analyst%20assessment%20or%20evidence%20workflow.%0A%0AAssessment%20workflow%3A%0AEvidence%20or%20reporting%20problem%3A%0AUseful%20context%3A%0A%0AThanks%2C" data-analytics-id="building-analyst-contact-email" data-cta-location="building-analyst-contact">Email the Assessment Workflow</a>
+              <button class="zip-button zip-button-ghost-light" type="button" data-copy-email data-copy-value="hello@robsonai.co.uk" data-analytics-id="building-analyst-copy-email">Copy Email Address</button>
+              <a class="zip-button zip-button-ghost-light" href="./privacy.html" data-analytics-id="building-analyst-privacy" data-cta-location="building-analyst-contact">Privacy Notice</a>
             </div>
             <p class="contact-feedback" data-copy-feedback aria-live="polite"></p>
-            <p class="contact-assurance">No form data is collected on this site. Email opens in your mail app.</p>
           </div>
+
+          <div class="zip-contact-routes">
+            <article>
+              <span>Assessment and reports</span>
+              <p>Condition, evidence and report-ready material.</p>
+              <a class="text-link" href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20assessment%20workflow" data-analytics-id="building-contact-assessment" data-cta-location="building-analyst-contact">Email assessment workflow</a>
+            </article>
+            <article>
+              <span>Professional review</span>
+              <p>Draft notes, report wording and review-ready outputs.</p>
+              <a class="text-link" href="#workflow-proof" data-analytics-id="building-contact-proof" data-cta-location="building-analyst-contact">Review product proof</a>
+            </article>
+            <article>
+              <span>Evidence structure</span>
+              <p>Photos, notes, readings, documents and issue context kept together.</p>
+              <a class="text-link" href="#issue-model" data-analytics-id="building-contact-issue-model" data-cta-location="building-analyst-contact">See issue model</a>
+            </article>
+            <article>
+              <span>Privacy</span>
+              <p>No website form or customer data store is used for this first contact step.</p>
+              <a class="text-link" href="./privacy.html" data-analytics-id="building-contact-privacy" data-cta-location="building-analyst-contact">Read privacy notice</a>
+            </article>
+          </div>
+
+          <p class="zip-contact-assurance">This site does not use a contact form or customer data store for this first contact step.</p>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
+    <footer class="site-footer zip-footer">
+      <div class="container zip-footer-grid">
         <div class="footer-brand-block">
-          <a class="brand footer-brand" href="/" aria-label="Robson AI home">
-            <span class="brand-wordmark" aria-hidden="true">
-              <span>Robson</span>
-              <span class="brand-wordmark-ai">A<span class="brand-wordmark-i"><span class="brand-i-stem"></span></span></span>
-            </span>
+          <a class="zip-wordmark zip-footer-wordmark" href="/" aria-label="Robson AI home">
+            <img
+              class="zip-wordmark-icon"
+              src="./assets/robson-ai-icon-v3-transparent-320.webp?v=20260627"
+              width="320"
+              height="320"
+              alt=""
+              decoding="async"
+              loading="lazy"
+            >
+            <span class="zip-wordmark-text">Robson AI</span>
           </a>
-          <p class="footer-copy">Building Analyst is an early professional product direction for assessment, evidence capture, reporting and review support.</p>
+          <p class="footer-copy">Building Analyst is an early professional product for assessment, evidence capture, reporting and review support.</p>
         </div>
 
         <div class="footer-nav-group">
           <p class="footer-heading">Explore</p>
           <div class="footer-links">
             <a href="/">Home</a>
-            <a href="#issue-model" data-analytics-id="footer-issue-model" data-cta-location="footer">Issue Model</a>
+            <a href="#product" data-analytics-id="footer-product" data-cta-location="footer">Product</a>
             <a href="#workflow-proof" data-analytics-id="footer-workflow-proof" data-cta-location="footer">Product Proof</a>
             <a href="#example-output" data-analytics-id="footer-example-output" data-cta-location="footer">Example Output</a>
-            <a href="./who-its-for.html">Who It Fits</a>
+            <a href="#fit-boundaries" data-analytics-id="footer-fit" data-cta-location="footer">Fit</a>
             <a href="./privacy.html">Privacy Notice</a>
           </div>
         </div>
 
         <div class="footer-nav-group">
-          <p class="footer-heading">Start a conversation</p>
+          <p class="footer-heading">Contact</p>
           <div class="footer-links">
             <a href="#contact" data-analytics-id="footer-contact" data-cta-location="footer">Start a conversation</a>
             <a href="mailto:hello@robsonai.co.uk" data-analytics-id="footer-mailto-link" data-cta-location="footer">hello@robsonai.co.uk</a>

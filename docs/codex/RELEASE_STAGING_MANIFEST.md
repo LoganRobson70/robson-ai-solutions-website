@@ -1,89 +1,69 @@
-# Release Staging Manifest - Globe Loader Icon Prominence Polish
+# Release Staging Manifest - Building Analyst Homepage Alignment
 
-Last updated: 2026-07-06 18:04 BST
+Last updated: 2026-07-07 21:30 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Hotfix worktree: `/private/tmp/robson-ai-website-live-globe-fix`
+Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
 Branch: `codex/live-globe-loader-fix`
-Status: 50-percent icon prominence polish is live in production from commit `d0bbcd9`; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
+Status: local candidate in validation after Wayne reported that the live Building Analyst page still looked unchanged; no production deploy has been performed for this tranche yet
 
 ## 1. Purpose
 
-This manifest defines the intended file scope for the live Globe Loader centre-icon prominence polish:
+This manifest defines the intended file scope for:
 
-`globe-loader-icon-50-percent-prominence`
+`building-analyst-homepage-design-alignment`
 
-Wayne reviewed the live Globe Loader and asked for the Robson AI icon in the centre of the globe to be about 50% bigger so it is more prominent within the globe circle.
+Wayne identified that the homepage `Explore Building Analyst` button led to a page that looked like a different website. This candidate replaces the older Building Analyst page shell with the same homepage visual system already live on `https://robsonai.co.uk`.
 
-This icon-polish candidate:
+This candidate:
 
-- keeps the visible filled circular backplate removed
-- increases the cropped centre icon draw size from `size * 1.04` to `size * 1.56`, a 50% increase from the current live treatment
-- updates public HTML references from `script.js?v=20260705c` to `script.js?v=20260706a` so browsers fetch the changed drawing code
-- keeps `styles.css?v=20260705b` unchanged because no CSS is changed
-- preserves the existing Globe Loader globe, orbit motion, hero layout, copy, BuildScan section, privacy baseline, reduced-motion behaviour and mobile hiding rule
+- makes `building-analyst.html` use the homepage-style white header, dark mesh hero, Globe Loader, zip cards, proof band, boundary band, contact panel and footer treatment
+- preserves Building Analyst SEO, route, contact email, no-form privacy posture and cautious product positioning
+- keeps required public phrases including "Assessment capture and report-ready evidence", "Not a finished product screenshot", "Not autonomous diagnosis", and "not a substitute for professional judgement"
+- updates rendered and keyboard release smokes so they test the new Building Analyst UI rather than retired lens tabs and retired page strapline markup
 
-It does not change copy, pricing, analytics, forms, BuildScan GLB assets, privacy content, DNS, Netlify settings, product positioning, Globe Loader placement, CSS or orbit behaviour.
+It does not change pricing, analytics config, forms, privacy policy content, DNS, Netlify settings, BuildScan assets, customer-data handling or external integrations.
 
 Do not run `git add .` for this candidate.
 
 ## 2. Approval Boundary
 
-Approved locally:
+Wayne approved option `1` to continue through Netlify CLI availability, local release gate, commit, push, production deploy and production gate for this Building Analyst alignment.
 
-- safe local code/docs edits
-- local browser/screenshot evidence
-- local release validation
-- tracker and staging-manifest updates for the hotfix scope
+Still out of scope without a separate approval:
 
-Wayne must approve before Codex performs any of these actions:
-
-- git commit
-- branch push
-- GitHub PR
-- Netlify preview deploy
-- Netlify production deploy
 - rollback
 - DNS/domain changes
 - analytics/forms/customer-data handling
 - external messages
 - destructive git actions
+- unrelated website redesign
 
 ## 3. Current Source-Control Scope
 
-Current icon-prominence state:
+Current Building Analyst alignment state:
 
-- Base branch: `origin/main` at `e1aab74`
-- Hotfix branch: `codex/live-globe-loader-fix`
-- Hotfix worktree: `/private/tmp/robson-ai-website-live-globe-fix`
-- Local review URL while the Python server is running: `http://127.0.0.1:8136/`
-- 9 modified tracked files.
+- Base branch: `codex/live-globe-loader-fix` at `b2d4ca5`
+- Working branch: `codex/live-globe-loader-fix`
+- Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
+- 5 modified tracked files.
 - 0 untracked candidate files.
-- Total dirty candidate files: 9.
+- Total dirty candidate files: 5.
 
 Current validation evidence:
 
-- The immediately previous icon polish release is live from commit `e1aab74` as Netlify production deploy `6a4b44f4473eb70007f8aace`.
-- The current live homepage requests `styles.css?v=20260705b`, `script.js?v=20260705c` and `assets/globe-loader/world-countries-lite.json?v=20260705`.
-- This candidate changes only the centre-icon canvas draw scale, the public script cache key, the release-security allowlist, and Codex release docs.
-- `node --check script.js` passed.
 - `git diff --check` passed.
-- `npm run qa:release-security` passed with artifact `output/release-security/smoke-2026-07-06T15-59-49-446Z/release-security-smoke.json`.
-- `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-06T15-59-49-566Z/release-staging-manifest-smoke.json`; modifiedTracked 9, untrackedCandidate 0, totalDirtyCandidate 9, stagingCommandPaths 9.
-- Focused local browser render passed: `script.js?v=20260706a` requested, Globe Loader canvas present, no failed requests, no console warnings, no horizontal overflow, and centre blue sample count increased to 35 versus 22 on the previous live check. Artifact and screenshot: `output/globe-icon-50-percent-check/2026-07-06T16-02-29-461Z/`.
-- Full `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-06T16-06-55-577Z/release-local-gate.json`; 37 steps.
-- Staged pre-commit `npm run qa:release:local` passed with artifact `output/release-local-gate/gate-2026-07-06T16-51-34-447Z/release-local-gate.json`; 37 steps.
-- Release inventory inside the full local gate passed with artifact `output/release-inventory/inventory-2026-07-06T16-07-02-483Z/release-candidate-inventory.json`; dirtyCount 9, zero secret findings and GLB externalUriCount 0.
-- Product/design acceptance, responsive route and visual polish smokes inside the full local gate passed with artifacts `output/product-design-acceptance/smoke-2026-07-06T16-07-27-793Z/product-design-acceptance-smoke.json`, `output/responsive-route/smoke-2026-07-06T16-07-34-726Z/responsive-route-smoke.json`, and `output/visual-polish/smoke-2026-07-06T16-07-58-387Z/visual-polish-smoke.json`.
-- Rendered screenshot evidence inside the full local gate passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-06T16-08-29-943Z`.
-- Measurement evidence inside the full local gate reported axe violations 0 across six routes and Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.59s and CLS 0. Artifact: `output/measurement/evidence-2026-07-06T16-09-15-129Z`.
-- Browser coverage remains warning-only: Chromium passed, Firefox/WebKit Playwright binaries are unavailable locally. Artifact `output/browser-coverage/smoke-2026-07-06T16-08-21-482Z/browser-coverage-smoke.json`.
-- Dependency audit remains warning-only: production vulnerabilities 0; dev/release tooling has 17 moderate advisories and no fix was run. Artifact `output/dependency-audit/summary-2026-07-06T16-07-02-937Z/dependency-audit-summary.json`.
-- Commit created: `d0bbcd9` (`Increase globe loader centre icon`).
-- Branch `codex/live-globe-loader-fix` pushed to origin and `main` fast-forwarded to `d0bbcd9`.
-- Netlify production deploy succeeded from a clean `git archive` of commit `d0bbcd9`: deploy `6a4bdf25d47fe304e6efbd85`, production URL `https://robsonai.co.uk`, unique deploy URL `https://6a4bdf25d47fe304e6efbd85--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4bdf25d47fe304e6efbd85`.
-- Production release gate passed: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-06T17-01-12-872Z/release-preview-gate.json`; result pass, 14 steps.
-- Live production gate confirmed `https://robsonai.co.uk/script.js?v=20260706a` is served and rendered screenshot evidence passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-06T17-02-35-285Z`.
+- `npx --no-install html-validate --rule doctype-style:off --rule void-style:off building-analyst.html` passed.
+- `node --check scripts/keyboard-release-smoke.mjs` and `node --check scripts/rendered-release-smoke.mjs` passed.
+- `npm run qa:product-design` passed with artifact `output/product-design-acceptance/smoke-2026-07-07T20-27-00-031Z/product-design-acceptance-smoke.json`.
+- `npm run qa:responsive` passed with artifact `output/responsive-route/smoke-2026-07-07T20-27-00-065Z/responsive-route-smoke.json`.
+- `npm run qa:visual-polish` passed with artifact `output/visual-polish/smoke-2026-07-07T20-27-01-451Z/visual-polish-smoke.json`.
+- `npm run qa:rendered` passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-07T20-27-49-249Z`.
+- `desktop-building-analyst-proof.png` from that artifact confirms the Building Analyst route now shares the homepage-style dark hero, card system, proof section, boundary section, contact panel and footer treatment.
+- `npm run qa:keyboard` passed with artifact `output/playwright/keyboard-release-smoke-2026-07-07T20-27-49-465Z`.
+- `npm run qa:semantic-seo` passed with artifact `output/semantic-seo/smoke-2026-07-07T20-27-49-482Z/semantic-seo-smoke.json`.
+- `npm run qa:release-security` passed with artifact `output/release-security/smoke-2026-07-07T20-27-50-420Z/release-security-smoke.json`.
+- Full `npm run qa:release:local` is pending for this manifest.
 
 The release inventory gate enforces:
 
@@ -96,30 +76,26 @@ The release inventory gate enforces:
 
 ## 4. Modified Tracked Files
 
-These files are modified and expected in the local icon-polish candidate:
+These files are modified and expected in the local Building Analyst alignment candidate:
 
 ```text
 building-analyst.html
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
-holding.html
-index.html
-privacy.html
-script.js
-scripts/release-security-smoke.mjs
-who-its-for.html
+scripts/keyboard-release-smoke.mjs
+scripts/rendered-release-smoke.mjs
 ```
 
 ## 5. Untracked Candidate Files
 
-No untracked files are expected in this hotfix candidate.
+No untracked files are expected in this candidate.
 
 ```text
 ```
 
 ## 6. Asset Size Watch
 
-No public asset files are changed in this icon-polish candidate. The HTML script references are changed so browsers fetch the updated drawing code under a fresh cache key.
+No binary public assets are changed in this candidate.
 
 Existing watched release assets remain governed by `npm run qa:release-inventory`, including:
 
@@ -148,19 +124,15 @@ secrets, credentials, keys, certificates, profiles, or generated screenshots
 
 ## 8. Staging Command After Approval Only
 
-After Wayne approves a correction commit, use an explicit path list rather than `git add .`.
+Wayne approved this publish path. Use this explicit path list rather than `git add .`.
 
 ```bash
 git add -- \
   building-analyst.html \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
-  holding.html \
-  index.html \
-  privacy.html \
-  script.js \
-  scripts/release-security-smoke.mjs \
-  who-its-for.html
+  scripts/keyboard-release-smoke.mjs \
+  scripts/rendered-release-smoke.mjs
 ```
 
 ## 9. Required Checks Before Commit
@@ -177,31 +149,29 @@ Then confirm the staged file set matches this manifest before committing.
 
 ## 10. Checks After Preview Deploy
 
-Required after Wayne approves a deploy:
+Preview deploy is optional for this already-approved hotfix path. If used:
 
 ```bash
 QA_BASE_URL="<cache-bust-preview-url>" npm run qa:release:preview
 ```
 
-- Preview deploy: pending Wayne approval.
-- Preview gate artifact: pending Wayne approval.
-- Result: pending Wayne approval.
+- Preview deploy: optional.
+- Preview gate artifact: pending if used.
+- Result: pending if used.
 
 ## 11. Checks After Production Deploy
 
-Required after Wayne approves production deployment:
+Required after production deployment:
 
 ```bash
 QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
 ```
 
 - Production URL: `https://robsonai.co.uk`
-- Production deploy: `6a4bdf25d47fe304e6efbd85`
-- Unique deploy URL: `https://6a4bdf25d47fe304e6efbd85--robson-ai-website.netlify.app`
-- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4bdf25d47fe304e6efbd85`
-- Production gate artifact: `output/release-production-gate/gate-2026-07-06T17-01-12-872Z/release-preview-gate.json`
-- Result: pass
+- Production deploy: pending.
+- Production gate artifact: pending.
+- Result: pending.
 
 ## 12. Rollback Path
 
-If this hotfix causes a live regression after deployment, restore the currently live pre-hotfix production deploy unless Wayne confirms a different rollback target first. If a local/docs regression is found before deployment, restore the affected manifest-approved files to the prior committed state and rerun the relevant checks before another decision.
+If this candidate causes a live regression after deployment, restore the current production deploy `6a4bdf25d47fe304e6efbd85` unless Wayne confirms a different rollback target first. If a local/docs regression is found before deployment, restore the affected manifest-approved files to the prior committed state and rerun the relevant checks before another decision.
