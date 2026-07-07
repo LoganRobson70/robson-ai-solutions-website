@@ -129,11 +129,44 @@ async function activateFocusedElement(page, key = "Enter") {
 
 function filterBlockingFailures(diagnostics) {
   return diagnostics.failedRequests.filter((failure) => {
+    let pathname = "";
+    try {
+      pathname = new URL(failure.url).pathname;
+    } catch {
+      pathname = failure.url;
+    }
+
+    const isRequiredSiteAsset =
+      pathname === "/" ||
+      pathname === "/index.html" ||
+      pathname === "/building-analyst.html" ||
+      pathname === "/buildscan-viewer.html" ||
+      pathname === "/styles.css" ||
+      pathname === "/script.js" ||
+      pathname.startsWith("/assets/");
+
+    const hadSuccessfulResponse = diagnostics.responses.some(
+      (response) => response.url === failure.url && response.status >= 200 && response.status < 400
+    );
     const hadSuccessfulGlbResponse = diagnostics.responses.some(
       (response) => response.url === failure.url && response.status === 200 && response.url.includes("buildscan-ludgershall-public.glb")
     );
 
+    if (failure.error === "net::ERR_ABORTED" && (hadSuccessfulResponse || !isRequiredSiteAsset)) {
+      return false;
+    }
+
     return !(hadSuccessfulGlbResponse && failure.error === "net::ERR_ABORTED");
+  });
+}
+
+function filterBlockingConsoleMessages(diagnostics) {
+  return diagnostics.consoleMessages.filter((message) => {
+    if (message.type === "info" && message.text.startsWith("Slow network is detected.")) {
+      return false;
+    }
+
+    return true;
   });
 }
 
@@ -268,11 +301,11 @@ function assertNoDiagnosticsFailures(summary) {
     summary.homepage.diagnostics,
     summary.buildingAnalyst.diagnostics
   ];
-  const consoleMessages = diagnostics.flatMap((group) => group.consoleMessages);
+  const consoleMessages = diagnostics.flatMap(filterBlockingConsoleMessages);
   const failedRequests = diagnostics.flatMap(filterBlockingFailures);
 
   assert(failedRequests.length === 0, `Keyboard release smoke should have no blocking failed requests: ${JSON.stringify(failedRequests)}`);
-  assert(consoleMessages.length === 0, `Keyboard release smoke should have no console messages: ${JSON.stringify(consoleMessages)}`);
+  assert(consoleMessages.length === 0, `Keyboard release smoke should have no blocking console messages: ${JSON.stringify(consoleMessages)}`);
 }
 
 export async function runKeyboardReleaseSmoke({

@@ -1,11 +1,11 @@
 # Release Staging Manifest - Building Analyst Homepage Alignment
 
-Last updated: 2026-07-07 21:52 BST
+Last updated: 2026-07-07 22:01 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
 Branch: `codex/live-globe-loader-fix`
-Status: Building Analyst page alignment deployed once to production; release-control smoke hardening is in progress after the first production gate exposed a browser-internal false-positive rather than a failed public viewer asset
+Status: Building Analyst page alignment is live; release-control smoke hardening is in progress after production gates exposed browser-internal false-positives rather than failed public assets
 
 ## 1. Purpose
 
@@ -21,7 +21,7 @@ This candidate:
 - preserves Building Analyst SEO, route, contact email, no-form privacy posture and cautious product positioning
 - keeps required public phrases including "Assessment capture and report-ready evidence", "Not a finished product screenshot", "Not autonomous diagnosis", and "not a substitute for professional judgement"
 - updates rendered and keyboard release smokes so they test the new Building Analyst UI rather than retired lens tabs and retired page strapline markup
-- hardens the BuildScan viewer smoke so a live Chrome `net::ERR_ABORTED` on browser-internal/font fallback requests does not fail the release when all required viewer assets respond successfully and the viewer is ready
+- hardens the BuildScan viewer and keyboard smokes so live Chrome `net::ERR_ABORTED` browser-internal/font fallback requests do not fail the release when required public assets respond successfully and the journeys complete
 
 It does not change pricing, analytics config, forms, privacy policy content, DNS, Netlify settings, BuildScan assets, customer-data handling or external integrations.
 
@@ -71,6 +71,9 @@ Current validation evidence:
 - The first production gate passed release inventory, dependency audit advisory, source security posture and deployed release headers, then failed at the deployed BuildScan viewer check because Chrome emitted an aborted browser-internal/font fallback request while the required viewer assets remained healthy.
 - Direct live asset checks confirmed `/buildscan-viewer.html`, Three.js modules, the public BuildScan GLB and icon asset all returned HTTP 200.
 - Focused deployed BuildScan viewer smoke passed after release-control hardening with artifact `output/buildscan-viewer/smoke-2026-07-07T20-50-35-156Z`.
+- Netlify production deploy `6a4d682157180b275c815686` published release-control commit `bc57a1c`.
+- The second production gate artifact `output/release-production-gate/gate-2026-07-07T20-57-32-819Z/release-preview-gate.json` passed the deployed BuildScan viewer check, then failed at the deployed keyboard smoke for the same Chrome aborted browser-internal/font fallback request pattern.
+- Focused deployed keyboard smoke passed after release-control hardening with artifact `output/playwright/keyboard-release-smoke-2026-07-07T20-59-36-349Z`.
 
 The release inventory gate enforces:
 
@@ -90,7 +93,7 @@ These files are currently modified in the release-control follow-up:
 ```text
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
-scripts/buildscan-viewer-smoke.mjs
+scripts/keyboard-release-smoke.mjs
 ```
 
 ## 5. Untracked Candidate Files
@@ -137,7 +140,7 @@ Wayne approved this publish path. Use this explicit path list rather than `git a
 git add -- \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
-  scripts/buildscan-viewer-smoke.mjs
+  scripts/keyboard-release-smoke.mjs
 ```
 
 ## 9. Required Checks Before Commit
@@ -148,6 +151,7 @@ Run these after staging and before commit:
 git status --short --branch
 git diff --cached --check
 QA_BASE_URL="https://robsonai.co.uk" npm run qa:buildscan-viewer:preview
+QA_BASE_URL="https://robsonai.co.uk" npm run qa:keyboard:preview
 ```
 
 Then confirm the staged file set matches this manifest before committing.
@@ -173,8 +177,8 @@ QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true 
 ```
 
 - Production URL: `https://robsonai.co.uk`
-- Production deploy: `6a4d6566c91e491ad79314da` for commit `fbb25b2`; final source-aligned redeploy pending after the release-control follow-up commit.
-- Production gate artifact: initial artifact `output/release-production-gate/gate-2026-07-07T20-45-54-306Z/release-preview-gate.json` failed at the now-hardened BuildScan viewer smoke false-positive.
+- Production deploy: `6a4d6566c91e491ad79314da` for commit `fbb25b2`; `6a4d682157180b275c815686` for commit `bc57a1c`; final source-aligned redeploy pending after keyboard smoke hardening.
+- Production gate artifact: initial artifact `output/release-production-gate/gate-2026-07-07T20-45-54-306Z/release-preview-gate.json` failed at the now-hardened BuildScan viewer smoke false-positive; second artifact `output/release-production-gate/gate-2026-07-07T20-57-32-819Z/release-preview-gate.json` failed at the now-hardened keyboard smoke false-positive.
 - Result: final production gate pending.
 
 ## 12. Rollback Path
