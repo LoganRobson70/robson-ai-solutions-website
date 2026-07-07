@@ -233,15 +233,43 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
     });
 
     const blockingFailedRequests = diagnostics.failedRequests.filter((failure) => {
+      let pathname = "";
+      try {
+        pathname = new URL(failure.url).pathname;
+      } catch {
+        pathname = failure.url;
+      }
+
+      const isRequiredSiteAsset =
+        pathname === "/" ||
+        pathname.endsWith(".html") ||
+        pathname === "/styles.css" ||
+        pathname === "/script.js" ||
+        pathname.startsWith("/assets/");
+      const hadSuccessfulResponse = diagnostics.responses.some(
+        (responseResult) => responseResult.url === failure.url && responseResult.status >= 200 && responseResult.status < 400
+      );
       const hadSuccessfulGlbResponse = diagnostics.responses.some(
         (responseResult) => responseResult.url === failure.url && responseResult.status === 200 && responseResult.url.includes("buildscan-ludgershall-public.glb")
       );
+
+      if (failure.error === "net::ERR_ABORTED" && (hadSuccessfulResponse || !isRequiredSiteAsset)) {
+        return false;
+      }
+
       return !(route === "/buildscan-viewer.html" && hadSuccessfulGlbResponse && failure.error === "net::ERR_ABORTED");
+    });
+    const blockingConsoleMessages = diagnostics.consoleMessages.filter((message) => {
+      if (message.type === "info" && message.text.startsWith("Slow network is detected.")) {
+        return false;
+      }
+
+      return true;
     });
 
     assert(surfaceFindings.length === 0, `${route} ${viewport.name} has large text elements with high-opacity backgrounds: ${JSON.stringify(surfaceFindings, null, 2)}.`);
     assert(!contrastAndLayout.overflowX, `${route} ${viewport.name} should not introduce horizontal overflow.`);
-    assert(diagnostics.consoleMessages.length === 0, `${route} ${viewport.name} should not emit console/page errors: ${JSON.stringify(diagnostics.consoleMessages)}.`);
+    assert(blockingConsoleMessages.length === 0, `${route} ${viewport.name} should not emit blocking console/page errors: ${JSON.stringify(blockingConsoleMessages)}.`);
     assert(blockingFailedRequests.length === 0, `${route} ${viewport.name} should not have failed requests: ${JSON.stringify(blockingFailedRequests)}.`);
     if (route === "/") {
       if (heroLogoMetrics?.visible) {

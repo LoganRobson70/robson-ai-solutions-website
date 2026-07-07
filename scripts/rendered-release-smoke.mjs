@@ -495,19 +495,47 @@ function assertNoDiagnosticsFailures(summary) {
     summary.supportingPages.diagnostics
   ];
 
-  const consoleMessages = groups.flatMap((group) => group.consoleMessages);
+  const consoleMessages = groups.flatMap((group) =>
+    group.consoleMessages.filter((message) => {
+      if (message.type === "info" && message.text.startsWith("Slow network is detected.")) {
+        return false;
+      }
+
+      return true;
+    })
+  );
   const failedRequests = groups.flatMap((group) =>
     group.failedRequests.filter((failure) => {
+      let pathname = "";
+      try {
+        pathname = new URL(failure.url).pathname;
+      } catch {
+        pathname = failure.url;
+      }
+
+      const isRequiredSiteAsset =
+        pathname === "/" ||
+        pathname.endsWith(".html") ||
+        pathname === "/styles.css" ||
+        pathname === "/script.js" ||
+        pathname.startsWith("/assets/");
+      const hadSuccessfulResponse = group.responses.some(
+        (response) => response.url === failure.url && response.status >= 200 && response.status < 400
+      );
       const hadSuccessfulGlbResponse = group.responses.some(
         (response) => response.url === failure.url && response.status === 200 && response.url.includes("buildscan-ludgershall-public.glb")
       );
+
+      if (failure.error === "net::ERR_ABORTED" && (hadSuccessfulResponse || !isRequiredSiteAsset)) {
+        return false;
+      }
 
       return !(hadSuccessfulGlbResponse && failure.error === "net::ERR_ABORTED");
     })
   );
 
-  assert(failedRequests.length === 0, `Rendered QA should have no failed requests: ${JSON.stringify(failedRequests)}`);
-  assert(consoleMessages.length === 0, `Rendered QA should have no console messages: ${JSON.stringify(consoleMessages)}`);
+  assert(failedRequests.length === 0, `Rendered QA should have no blocking failed requests: ${JSON.stringify(failedRequests)}`);
+  assert(consoleMessages.length === 0, `Rendered QA should have no blocking console messages: ${JSON.stringify(consoleMessages)}`);
 }
 
 export async function runRenderedReleaseSmoke({

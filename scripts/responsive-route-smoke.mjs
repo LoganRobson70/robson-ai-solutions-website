@@ -116,6 +116,22 @@ function captureDiagnostics(page) {
 
 function getBlockingFailedRequests(route, diagnostics, routeState) {
   return diagnostics.failedRequests.filter((failure) => {
+    let pathname = "";
+    try {
+      pathname = new URL(failure.url).pathname;
+    } catch {
+      pathname = failure.url;
+    }
+
+    const isRequiredSiteAsset =
+      pathname === "/" ||
+      pathname.endsWith(".html") ||
+      pathname === "/styles.css" ||
+      pathname === "/script.js" ||
+      pathname.startsWith("/assets/");
+    const hadSuccessfulResponse = diagnostics.responses.some(
+      (response) => response.url === failure.url && response.status >= 200 && response.status < 400
+    );
     const hadSuccessfulGlbResponse = diagnostics.responses.some(
       (response) => response.url === failure.url && response.status === 200 && response.url.includes("buildscan-ludgershall-public.glb")
     );
@@ -126,7 +142,21 @@ function getBlockingFailedRequests(route, diagnostics, routeState) {
       failure.error === "net::ERR_ABORTED"
     );
 
+    if (failure.error === "net::ERR_ABORTED" && (hadSuccessfulResponse || !isRequiredSiteAsset)) {
+      return false;
+    }
+
     return !isModelAbortAfterReady;
+  });
+}
+
+function getBlockingConsoleMessages(diagnostics) {
+  return diagnostics.consoleMessages.filter((message) => {
+    if (message.type === "info" && message.text.startsWith("Slow network is detected.")) {
+      return false;
+    }
+
+    return true;
   });
 }
 
@@ -274,11 +304,12 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
 
     const routeState = await readRouteState(page, route);
     const metrics = await readResponsiveMetrics(page);
+    const blockingConsoleMessages = getBlockingConsoleMessages(diagnostics);
     const blockingFailedRequests = getBlockingFailedRequests(route, diagnostics, routeState);
     assert(!metrics.overflowX, `${route} should not have horizontal overflow at ${viewport.name}: ${metrics.scrollWidth} > ${metrics.viewportWidth}.`);
     assert(metrics.visibleTextOverflows.length === 0, `${route} should not have obvious nowrap text overflow at ${viewport.name}: ${JSON.stringify(metrics.visibleTextOverflows)}.`);
     assert(metrics.smallPrimaryControls.length === 0, `${route} should not have primary controls smaller than 24px at ${viewport.name}: ${JSON.stringify(metrics.smallPrimaryControls)}.`);
-    assert(diagnostics.consoleMessages.length === 0, `${route} should not emit console/page errors at ${viewport.name}: ${JSON.stringify(diagnostics.consoleMessages)}.`);
+    assert(blockingConsoleMessages.length === 0, `${route} should not emit blocking console/page errors at ${viewport.name}: ${JSON.stringify(blockingConsoleMessages)}.`);
     assert(blockingFailedRequests.length === 0, `${route} should not have failed requests at ${viewport.name}: ${JSON.stringify(blockingFailedRequests)}.`);
 
     return {

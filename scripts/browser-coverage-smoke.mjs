@@ -123,12 +123,37 @@ async function inspectRoute(page, baseUrl, route) {
   assert(state.h1Text.length > 0, `${route} should expose an H1.`);
   assert(state.bodyLength > 200, `${route} should render meaningful body text.`);
   assert(!state.overflowX, `${route} should not have horizontal overflow.`);
-  assert(diagnostics.consoleMessages.length === 0, `${route} should not emit console/page errors: ${JSON.stringify(diagnostics.consoleMessages)}.`);
+  const blockingConsoleMessages = diagnostics.consoleMessages.filter((message) => {
+    if (message.type === "info" && message.text.startsWith("Slow network is detected.")) {
+      return false;
+    }
+
+    return true;
+  });
+  assert(blockingConsoleMessages.length === 0, `${route} should not emit blocking console/page errors: ${JSON.stringify(blockingConsoleMessages)}.`);
 
   const blockingFailedRequests = diagnostics.failedRequests.filter((failure) => {
+    let pathname = "";
+    try {
+      pathname = new URL(failure.url).pathname;
+    } catch {
+      pathname = failure.url;
+    }
+
+    const isRequiredSiteAsset =
+      pathname === "/" ||
+      pathname.endsWith(".html") ||
+      pathname === "/styles.css" ||
+      pathname === "/script.js" ||
+      pathname.startsWith("/assets/");
+
+    if (failure.error === "net::ERR_ABORTED" && !isRequiredSiteAsset) {
+      return false;
+    }
+
     return !(route === "/buildscan-viewer.html" && failure.url.includes("buildscan-ludgershall-public.glb") && failure.error === "net::ERR_ABORTED");
   });
-  assert(blockingFailedRequests.length === 0, `${route} should not have failed requests: ${JSON.stringify(blockingFailedRequests)}.`);
+  assert(blockingFailedRequests.length === 0, `${route} should not have blocking failed requests: ${JSON.stringify(blockingFailedRequests)}.`);
 
   return {
     route,

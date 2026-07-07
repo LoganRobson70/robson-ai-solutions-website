@@ -127,11 +127,41 @@ function captureDiagnostics(page) {
 
 function getBlockingFailedRequests(diagnostics) {
   return diagnostics.failedRequests.filter((failure) => {
+    let pathname = "";
+    try {
+      pathname = new URL(failure.url).pathname;
+    } catch {
+      pathname = failure.url;
+    }
+
+    const isRequiredSiteAsset =
+      pathname === "/" ||
+      pathname.endsWith(".html") ||
+      pathname === "/styles.css" ||
+      pathname === "/script.js" ||
+      pathname.startsWith("/assets/");
+    const hadSuccessfulResponse = diagnostics.responses.some(
+      (response) => response.url === failure.url && response.status >= 200 && response.status < 400
+    );
     const hadSuccessfulGlbResponse = diagnostics.responses.some(
       (response) => response.url === failure.url && response.status === 200 && response.url.includes("buildscan-ludgershall-public.glb")
     );
 
+    if (failure.error === "net::ERR_ABORTED" && (hadSuccessfulResponse || !isRequiredSiteAsset)) {
+      return false;
+    }
+
     return !(hadSuccessfulGlbResponse && failure.error === "net::ERR_ABORTED");
+  });
+}
+
+function getBlockingConsoleMessages(diagnostics) {
+  return diagnostics.consoleMessages.filter((message) => {
+    if (message.type === "info" && message.text.startsWith("Slow network is detected.")) {
+      return false;
+    }
+
+    return true;
   });
 }
 
@@ -237,7 +267,8 @@ async function validatePage(browser, baseUrl, pageSpec, mode) {
       assertNoindexPageSemantics(semantics, pageSpec);
     }
 
-    assert(diagnostics.consoleMessages.length === 0, `${pageSpec.path} should not emit console messages: ${JSON.stringify(diagnostics.consoleMessages)}.`);
+    const blockingConsoleMessages = getBlockingConsoleMessages(diagnostics);
+    assert(blockingConsoleMessages.length === 0, `${pageSpec.path} should not emit blocking console messages: ${JSON.stringify(blockingConsoleMessages)}.`);
     const blockingFailedRequests = getBlockingFailedRequests(diagnostics);
     assert(blockingFailedRequests.length === 0, `${pageSpec.path} should not have blocking failed requests: ${JSON.stringify(blockingFailedRequests)}.`);
 

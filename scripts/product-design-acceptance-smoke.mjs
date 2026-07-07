@@ -159,9 +159,49 @@ async function collectRoute(browser, baseUrl, route) {
   }
 }
 
+function getBlockingFailedRequests(diagnostics) {
+  return diagnostics.failedRequests.filter((failure) => {
+    let pathname = "";
+    try {
+      pathname = new URL(failure.url).pathname;
+    } catch {
+      pathname = failure.url;
+    }
+
+    const isRequiredSiteAsset =
+      pathname === "/" ||
+      pathname.endsWith(".html") ||
+      pathname === "/styles.css" ||
+      pathname === "/script.js" ||
+      pathname.startsWith("/assets/");
+    const hadSuccessfulResponse = diagnostics.responses.some(
+      (response) => response.url === failure.url && response.status >= 200 && response.status < 400
+    );
+
+    if (failure.error === "net::ERR_ABORTED" && (hadSuccessfulResponse || !isRequiredSiteAsset)) {
+      return false;
+    }
+
+    return true;
+  });
+}
+
+function getBlockingConsoleMessages(diagnostics) {
+  return diagnostics.consoleMessages.filter((message) => {
+    if (message.type === "info" && message.text.startsWith("Slow network is detected.")) {
+      return false;
+    }
+
+    return true;
+  });
+}
+
 function assertNoBlockingDiagnostics(routeResult) {
-  assert(routeResult.diagnostics.consoleMessages.length === 0, `${routeResult.route} should not emit console/page errors: ${JSON.stringify(routeResult.diagnostics.consoleMessages)}.`);
-  assert(routeResult.diagnostics.failedRequests.length === 0, `${routeResult.route} should not have failed requests: ${JSON.stringify(routeResult.diagnostics.failedRequests)}.`);
+  const blockingConsoleMessages = getBlockingConsoleMessages(routeResult.diagnostics);
+  const blockingFailedRequests = getBlockingFailedRequests(routeResult.diagnostics);
+
+  assert(blockingConsoleMessages.length === 0, `${routeResult.route} should not emit blocking console/page errors: ${JSON.stringify(blockingConsoleMessages)}.`);
+  assert(blockingFailedRequests.length === 0, `${routeResult.route} should not have blocking failed requests: ${JSON.stringify(blockingFailedRequests)}.`);
 }
 
 function assertFirstViewport(home) {

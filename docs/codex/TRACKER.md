@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-07 22:02 BST
+Last updated: 2026-07-07 22:15 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/live-globe-loader-fix` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
@@ -47,7 +47,7 @@ Success means:
 ## 2. Active Tranche
 
 Tranche name: `building-analyst-homepage-design-alignment`
-Status: Building Analyst page alignment commit `fbb25b2` is pushed to `codex/live-globe-loader-fix` and `main`; Netlify production deploy `6a4d6566c91e491ad79314da` published the new page; release-control smoke hardening is in progress after production gates exposed browser-internal false-positives rather than failed public assets
+Status: Building Analyst page alignment is live; cross-smoke release-control hardening is ready for final source alignment after a full production gate pass against `https://robsonai.co.uk`
 Started: 2026-07-07 21:05 BST
 
 Scope:
@@ -56,7 +56,7 @@ Scope:
 - Replace the older Building Analyst page shell with the same white header, dark mesh hero, Globe Loader, card language, proof band, boundary band, contact surface and footer treatment used by `index.html`.
 - Preserve cautious Building Analyst positioning, including early-stage maturity, professional review boundaries, "Assessment capture and report-ready evidence", "Not a finished product screenshot", "Not autonomous diagnosis", and "not a substitute for professional judgement".
 - Update the rendered and keyboard QA journeys so they test the new homepage-style Building Analyst page rather than retired header/lens-tab markup.
-- Harden the BuildScan viewer and keyboard release smokes so live browser-internal/font fallback aborts do not fail the release when required public assets respond successfully and the journeys complete.
+- Harden deployed browser diagnostic handling across release smokes so live browser-internal/font fallback aborts do not fail the release when required public assets respond successfully and the journeys complete.
 
 Out of scope:
 
@@ -83,18 +83,20 @@ Validation evidence:
 - Netlify production deploy `6a4d682157180b275c815686` published release-control commit `bc57a1c`.
 - The second production gate artifact `output/release-production-gate/gate-2026-07-07T20-57-32-819Z/release-preview-gate.json` passed the deployed BuildScan viewer check, then failed at the deployed keyboard smoke for the same Chrome aborted browser-internal/font fallback request pattern.
 - Focused live keyboard smoke passed after QA hardening with artifact `output/playwright/keyboard-release-smoke-2026-07-07T20-59-36-349Z`; homepage and Building Analyst keyboard journeys both produced screenshots.
+- Netlify production deploy `6a4d69d72e110732b83f8059` published keyboard smoke hardening commit `7d64257`.
+- Full production gate passed against `https://robsonai.co.uk` with artifact `output/release-production-gate/gate-2026-07-07T21-11-30-431Z/release-preview-gate.json`; 14 steps. This pre-commit gate used the cross-smoke release-control hardening and reported dirtyCount 6 for the release-tooling scripts.
 
 Done criteria:
 
 - Full `npm run qa:release:local` passes. Completed.
 - Building Analyst alignment commit is created and pushed. Completed.
-- Netlify production deploy completes. First deploys completed; final source-aligned redeploy pending after keyboard smoke hardening commit.
-- Production gate passes against `https://robsonai.co.uk`. Pending after keyboard smoke hardening commit.
+- Netlify production deploy completes. First deploys completed; final source-aligned redeploy pending after cross-smoke hardening commit.
+- Production gate passes against `https://robsonai.co.uk`. Completed pre-commit; final clean-source gate pending after final source-aligned redeploy.
 - Live `https://robsonai.co.uk/building-analyst` returns the new homepage-style Building Analyst page.
 
 Recommended next decision:
 
-1. Recommended and already approved: commit and push the keyboard smoke hardening, redeploy from the final source commit, run the production gate, then verify live `/building-analyst`.
+1. Recommended and already approved: commit and push the cross-smoke release-control hardening, redeploy from the final source commit, run the clean production gate, then verify live `/building-analyst`.
 2. If any validation fails, stop and report the blocker before deploying.
 
 ## 2A. Completed Globe Loader Icon Prominence Tranche
