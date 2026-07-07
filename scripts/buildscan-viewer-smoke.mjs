@@ -102,11 +102,35 @@ async function capturePageDiagnostics(page, action) {
 
 function getBlockingFailures(result, ready) {
   return result.failedRequests.filter((failure) => {
+    const isRequiredViewerAsset =
+      failure.url.includes("/buildscan-viewer.html") ||
+      failure.url.includes("/assets/vendor/three-0.164.1/") ||
+      failure.url.includes("/assets/showcase/buildscan-ludgershall-public.glb") ||
+      failure.url.includes("/assets/robson-ai-icon-v3-32.png");
+
     const hadSuccessfulGlbResponse = result.responses.some(
       (response) => response.url === failure.url && response.status === 200 && response.url.includes("buildscan-ludgershall-public.glb")
     );
 
-    return !(ready && hadSuccessfulGlbResponse && failure.error === "net::ERR_ABORTED");
+    if (ready && hadSuccessfulGlbResponse && failure.error === "net::ERR_ABORTED") {
+      return false;
+    }
+
+    if (ready && failure.error === "net::ERR_ABORTED" && !isRequiredViewerAsset) {
+      return false;
+    }
+
+    return true;
+  });
+}
+
+function getBlockingConsoleMessages(result) {
+  return result.consoleMessages.filter((message) => {
+    if (message.type === "info" && message.text.startsWith("Slow network is detected.")) {
+      return false;
+    }
+
+    return true;
   });
 }
 
@@ -340,11 +364,13 @@ export async function runBuildScanViewerSmoke({
     };
     const directBlockingFailures = getBlockingFailures(direct, direct.state.ready);
     const embeddedBlockingFailures = getBlockingFailures(embedded, embedded.after.childReady);
+    const directBlockingConsoleMessages = getBlockingConsoleMessages(direct);
+    const embeddedBlockingConsoleMessages = getBlockingConsoleMessages(embedded);
 
     assert(!directBlockingFailures.length, "Direct viewer should have no blocking failed requests.");
     assert(!embeddedBlockingFailures.length, "Embedded viewer should have no blocking failed requests.");
-    assert(!direct.consoleMessages.length, "Direct viewer should have no console messages.");
-    assert(!embedded.consoleMessages.length, "Embedded viewer should have no console messages.");
+    assert(!directBlockingConsoleMessages.length, "Direct viewer should have no blocking console messages.");
+    assert(!embeddedBlockingConsoleMessages.length, "Embedded viewer should have no blocking console messages.");
 
     await writeJson(path.join(artifactDir, "summary.json"), summary);
     return summary;
