@@ -411,14 +411,14 @@ async function runSupportingPages(browser, baseUrl, artifactDir) {
       path: "/who-its-for.html",
       screenshot: "desktop-who-its-for.png",
       requiredSelector: "main",
-      brandStrapline: "Solutions",
+      wordmarkText: "Robson AI",
       label: "Who it fits"
     },
     {
       path: "/privacy.html",
       screenshot: "desktop-privacy.png",
       requiredSelector: "main",
-      brandStrapline: "Privacy",
+      wordmarkText: "Robson AI",
       label: "Privacy"
     },
     {

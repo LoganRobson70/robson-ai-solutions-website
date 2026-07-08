@@ -1,11 +1,130 @@
-# Release Approval Packet - BuildScan Interactive Preview Candidate
+# Release Approval Packet - Secondary Page Shell Consistency
 
-Last updated: 2026-06-28 13:20 BST
+Last updated: 2026-07-08 08:22 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: historical preview approval packet; the candidate was later approved, published to production, production-gated, and post-launch observed. No further live deploy is approved.
+Status: Wayne approved option `1` on 2026-07-08 for the `secondary-page-shell-consistency` preview flow: exact-path staging, commit, branch push, Netlify preview deploy and deployed preview-gate validation. Production deploy, rollback, DNS/domain change, analytics/form change, customer-data handling and external messages remain unapproved.
 
-## 0. Current Status - 2026-06-28
+## 0. Current Status - 2026-07-08
+
+This packet is the current decision record for the local `secondary-page-shell-consistency` candidate.
+
+Current production state before this candidate:
+
+- Public URL: `https://robsonai.co.uk`.
+- Current production source baseline: commit `8c595f6`.
+- Current production deploy baseline: `6a4d6ccccf0a8038379c9abb`.
+- Current live state: Home and Building Analyst use the approved zip-style redesign shell. The live audit found `who-its-for.html` and `privacy.html` still using the older shell.
+
+Current local candidate state:
+
+- Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`.
+- Branch: `codex/live-globe-loader-fix`.
+- Candidate status: refreshed full local release gate passed for the 15-file cache-key candidate, uncommitted.
+- Dirty candidate files are explicitly listed in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+- No new product claim, BuildScan asset, analytics setting, privacy-policy wording, form, customer-data path, DNS setting or external integration is introduced.
+
+## 1. Recommended Decision
+
+1. Recommended: approve `secondary-page-shell-preview`.
+
+That approval would allow Codex to:
+
+1. Stage only the files listed in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+2. Create one scoped commit for the secondary-page shell candidate.
+3. Push branch `codex/live-globe-loader-fix`.
+4. Create a Netlify preview deploy only.
+5. Run `QA_BASE_URL=<preview> npm run qa:release:preview`.
+6. Return to Wayne with the preview URL, deployed evidence, risks, and rollback path before any production decision.
+
+This approval would not approve production deploy. Production still needs a separate explicit approval after preview review and preview QA.
+
+Alternative options:
+
+2. Approve a direct production deploy from the locally validated candidate. This is faster, but it skips the recommended preview review gate.
+3. Hold the candidate uncommitted and request a specific visual/content adjustment first.
+
+## 2. What The Candidate Adds
+
+The candidate makes the public site more coherent by adding:
+
+- Zip-style header and footer shell to `who-its-for.html`.
+- Zip-style header and footer shell to `privacy.html`.
+- Shared `.zip-secondary-page` CSS so the reused shell renders correctly outside the homepage preview body context.
+- Privacy-page top alignment so the intro no longer sits low beside an empty desktop column.
+- A stylesheet cache-key bump on public HTML pages so the changed CSS is fetched after deployment instead of being masked by immutable browser cache.
+- Updated rendered-smoke expectations for Who/Privacy pages after removing the old `.brand-lockup-text small` strapline dependency.
+- Current tracker and staging-manifest evidence for the approval boundary.
+- Current final handoff and goal completion audit so approval docs no longer imply older completed releases are the active release state.
+- Current owner-review checklist and publish-readiness audit for the secondary-page shell candidate.
+
+The candidate preserves:
+
+- Existing Who It Is For content.
+- Existing privacy notice wording and optional-analytics wording.
+- Email-first/no-form contact posture.
+- Cautious Building Analyst, BuildScan and product-maturity boundaries.
+- Current public BuildScan assets and Globe Loader implementation.
+
+## 3. Explicitly Not Approved By This Packet
+
+The following still need separate approval:
+
+- Production deploy.
+- Rollback.
+- DNS/domain changes.
+- GA4 Measurement ID setup or analytics enablement.
+- Contact forms or customer-data capture.
+- Secret rotation.
+- External messages.
+- Apple signing/submission.
+- Payments.
+- Destructive git operations.
+- New public model files or replacement BuildScan GLB assets.
+- `npm audit fix --force`.
+
+## 4. Current Local Evidence
+
+Latest full local release gate:
+
+- Artifact: `output/release-local-gate/gate-2026-07-08T07-18-19-608Z/release-local-gate.json`.
+- Result: pass.
+- Steps: 37.
+- Site failures: 0.
+- Known warning-only residuals: dev/release tooling dependency advisory and unavailable local Firefox/WebKit browser binaries. Production dependency footprint remains 0 vulnerabilities.
+
+Latest staging-manifest drift check:
+
+- Artifact: `output/release-staging-manifest/smoke-2026-07-08T07-18-26-105Z/release-staging-manifest-smoke.json`.
+- Result: pass.
+- Modified tracked files: 15.
+- Untracked candidate files: 0.
+- Total dirty candidate files: 15.
+- Explicit staging command paths: 15.
+- Approval boundary checked: true.
+
+Other current validation evidence:
+
+- Live current-state audit before the fix: `output/playwright/current-site-quality-audit-2026-07-08T05-40-09-880Z/summary.json`.
+- Focused secondary-page local check: `output/playwright/secondary-shell-local-check-2026-07-08T06-01-48-965Z/summary.json`.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-08T07-19-45-967Z`, including refreshed `desktop-who-its-for.png` and `desktop-privacy.png`.
+- Measurement evidence: `output/measurement/evidence-2026-07-08T07-20-06-090Z`; axe reported zero violations across checked routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.38 seconds, CLS 0.
+- Release inventory: `output/release-inventory/inventory-2026-07-08T07-18-25-842Z/release-candidate-inventory.json`; dirtyCount 15, secret findings 0, GLB external URI references 0.
+- Product/design, responsive, visual-polish, semantic/SEO, keyboard, rendered, release-inventory and release-security checks all passed inside the refreshed full local gate.
+
+## 5. Current Rollback Path
+
+If this candidate later reaches production and is not acceptable:
+
+- Preferred rollback: revert the secondary-page shell commit and redeploy after the production gate.
+- Netlify baseline rollback target before this candidate: production deploy `6a4d6ccccf0a8038379c9abb`.
+- Local rollback before commit: restore only the candidate paths listed in `docs/codex/RELEASE_STAGING_MANIFEST.md`.
+
+## 6. Historical BuildScan Approval Packet
+
+The approval packet below is preserved as the historical decision record for the BuildScan interactive preview candidate. It is not approval for the current candidate.
+
+## 6.1. Historical Status - 2026-06-28
 
 The approval packet below is preserved as the historical decision record for the BuildScan interactive preview candidate.
 
@@ -27,7 +146,7 @@ Current approval rule:
 - Future releases must preserve the existing release pattern: scoped change, local validation, preview validation, explicit Wayne final approval, then production deploy and production gate.
 - Any new public-model exposure, analytics, contact form/customer-data path, domain/DNS change, broad redesign, Codex Security workspace scan, browser installation, or production deploy remains separately approval-gated.
 
-## 1. Recommended Decision
+## 6.2. Historical Recommended Decision
 
 Historical recommended option 1 was approved by Wayne:
 
@@ -52,7 +171,7 @@ Current recommended next step:
 
 Prepare a scoped next-phase planning pass for content/design refinements. This must not deploy to production. Future candidate work should be presented to Wayne for final approval before any live deploy.
 
-## 2. What The Candidate Adds
+## 6.3. Historical Candidate Additions
 
 The candidate turns the current public site into a stronger release-grade website by adding:
 
@@ -84,7 +203,7 @@ The candidate turns the current public site into a stronger release-grade websit
 - Non-force dependency remediation that removed all high/critical dev-tooling audit findings without using `npm audit fix --force`.
 - Updated tracker, PRD, release handover, measurement QA, capability and excellence docs.
 
-## 3. Explicitly Not Approved By This Packet
+## 6.4. Historical Non-Approval Boundary
 
 The following still need separate approval for any future change:
 
@@ -100,7 +219,7 @@ The following still need separate approval for any future change:
 - Full Codex Security scan completion, unless Wayne starts the Codex Security workspace.
 - `npm audit fix --force`; that remains separately approval-gated even inside the dependency remediation tranche.
 
-## 4. Public Model Approval Point
+## 6.5. Historical Public Model Approval Point
 
 The main product/security decision is the BuildScan GLB:
 
@@ -113,7 +232,7 @@ Wayne approval of `buildscan-interactive-preview-release-candidate` originally i
 
 Any new public model, larger model, replacement GLB, or more detailed asset remains a separate approval point before preview or production exposure.
 
-## 5. Current Local Evidence
+## 6.6. Historical Local Evidence
 
 Latest full local release gate after staging:
 

@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-07 22:15 BST
+Last updated: 2026-07-08 16:50 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/live-globe-loader-fix` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
@@ -11,7 +11,9 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Publish the Building Analyst homepage-design alignment after Wayne reported that `https://robsonai.co.uk/building-analyst` still looked unchanged.
+- Prepare a local `secondary-page-shell-consistency` candidate after the live audit showed `who-its-for.html` and `privacy.html` were still using the older site shell while Home and Building Analyst were using the approved zip-style redesign shell.
+- Keep the candidate scoped to secondary-page shell consistency, privacy desktop alignment, stylesheet cache-key correctness and rendered-smoke compatibility; do not change privacy wording, product claims, DNS, analytics, forms, BuildScan assets, app implementation, customer-data handling, external messages, commits, pushes or deploys without approval.
+- Close out the Building Analyst homepage-design alignment after Wayne reported that `https://robsonai.co.uk/building-analyst` still looked unchanged; live production now serves the new homepage-style page, and any remaining old view is likely browser cache/back-forward cache.
 - Use a stable non-temp worktree so the release candidate is not lost during validation.
 - Keep the tranche scoped to `building-analyst.html` and QA compatibility updates; do not change DNS, privacy policy, analytics config, forms, BuildScan assets or broader homepage design.
 - Prepare a narrow follow-up Globe Loader icon prominence polish after Wayne reviewed the live site and asked for the centre icon to be about 50% bigger inside the globe.
@@ -44,10 +46,79 @@ Success means:
 - Completion status is audited in `docs/codex/GOAL_COMPLETION_AUDIT.md`; the Globe Loader/privacy correction is live as Netlify production deploy `6a4a38a0eef7cd2aee692a52` with production gate pass `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`.
 - Production release execution is defined in `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the 2026-06-28 publish was executed after Wayne approved option `1`.
 
-## 2. Active Tranche
+## 2. Active Local Candidate
+
+Tranche name: `secondary-page-shell-consistency`
+Status: Wayne approved option `1` on 2026-07-08 for staging, commit, branch push, Netlify preview deploy and preview-gate validation; production deploy remains unapproved
+Started: 2026-07-08 06:40 BST
+
+Scope:
+
+- Align `who-its-for.html` and `privacy.html` with the approved homepage/Building Analyst shell by reusing the zip-style icon wordmark, Home/Product/Pricing/About navigation, header email, solid blue "See What We Do" CTA, and zip-style footer.
+- Preserve the existing Who It Is For and Privacy page content, privacy wording, cautious product maturity boundaries, no-form contact posture, and optional analytics wording.
+- Add a scoped `.zip-secondary-page` CSS layer so reused zip shell components render correctly outside `body[data-page-type="preview"]`.
+- Align the privacy notice intro to the top of the desktop card stack so the page no longer opens with a large empty left column.
+- Bump the public `styles.css` cache key across the HTML pages that reference it so changed CSS is fetched after deployment.
+- Update `scripts/rendered-release-smoke.mjs` so Who/Privacy rendered checks assert the new zip wordmark instead of the removed old `.brand-lockup-text small` strapline.
+- Refresh `docs/codex/RELEASE_APPROVAL_PACKET.md` so Wayne's approval packet describes this current candidate instead of the historical BuildScan preview candidate.
+- Refresh `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and `docs/codex/GOAL_COMPLETION_AUDIT.md` so the current approval state is clear and the goal is not incorrectly marked complete while preview/production approval is still pending.
+- Refresh `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md` and `docs/codex/PUBLISH_READINESS_AUDIT.md` so owner-review and publish-readiness docs are current for the secondary-page shell candidate.
+- Remove confirmed copy duplication from the homepage and Building Analyst page: repeated no-form/privacy wording, repeated professional-boundary phrasing, and repeated "not replacing judgement" wording now resolve to one clear instance in each relevant context.
+- Proceed under Wayne's 2026-07-08 option `1` approval to stage the exact manifest files, create a local commit, push `codex/live-globe-loader-fix`, create a Netlify preview and run the deployed preview gate before any production decision.
+
+Out of scope:
+
+- Production deploy, Netlify preview deploy, commits, pushes, DNS/domain changes, analytics/forms changes, privacy-policy content changes, BuildScan asset changes, product-claim changes, customer-data handling, external messages, app implementation, or broader page redesign.
+
+Validation evidence:
+
+- Live current-state audit before the fix found no 4xx/5xx resources, no failed navigation, and no page-level horizontal overflow, but identified the Who/Privacy pages as visually inconsistent with the approved zip-style Home/Building Analyst shell. Artifact: `output/playwright/current-site-quality-audit-2026-07-08T05-40-09-880Z/summary.json`.
+- `npx --no-install html-validate --rule doctype-style:off --rule void-style:off who-its-for.html privacy.html` passed.
+- `node --check scripts/rendered-release-smoke.mjs` passed.
+- `git diff --check` passed.
+- `npm run qa:responsive` passed with artifact `output/responsive-route/smoke-2026-07-08T05-59-17-525Z/responsive-route-smoke.json`.
+- `npm run qa:visual-polish` passed with artifact `output/visual-polish/smoke-2026-07-08T05-50-22-443Z/visual-polish-smoke.json`.
+- `npm run qa:product-design` passed with artifact `output/product-design-acceptance/smoke-2026-07-08T05-51-07-573Z/product-design-acceptance-smoke.json`.
+- `npm run qa:semantic-seo` passed with artifact `output/semantic-seo/smoke-2026-07-08T05-51-07-721Z/semantic-seo-smoke.json`.
+- `npm run qa:keyboard` passed with artifact `output/playwright/keyboard-release-smoke-2026-07-08T05-51-07-733Z`.
+- `npm run qa:rendered` passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-08T05-57-56-810Z`; `desktop-who-its-for.png` and `desktop-privacy.png` show the updated shell.
+- Focused mobile screenshot check passed for `/who-its-for.html` and `/privacy.html`: no horizontal overflow, no console messages, no failed requests, and header CTA computed as white text on `rgb(54, 91, 217)`. Artifact: `output/playwright/secondary-shell-local-check-2026-07-08T06-01-48-965Z/summary.json`.
+- Refreshed `npm run qa:release-staging-manifest` passed for the fifteen-file candidate inside the full local gate with artifact `output/release-staging-manifest/smoke-2026-07-08T07-18-26-105Z/release-staging-manifest-smoke.json`; modifiedTracked 15, untrackedCandidate 0, totalDirtyCandidate 15, stagingCommandPaths 15, approvalBoundaryChecked true.
+- Refreshed full `npm run qa:release:local` passed for the fifteen-file cache-key candidate with artifact `output/release-local-gate/gate-2026-07-08T07-18-19-608Z/release-local-gate.json`; 37 steps. The gate confirmed public pages request `styles.css?v=20260708a`, release inventory dirtyCount 15 with zero secret findings and GLB external URI references 0, rendered screenshots `output/playwright/rendered-release-smoke-2026-07-08T07-19-45-967Z`, measurement evidence `output/measurement/evidence-2026-07-08T07-20-06-090Z`, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, CLS 0, LCP about 1.38s, and axe violations 0 across checked routes. The known warning-only residuals remain dev/release tooling dependency advisories and unavailable local Firefox/WebKit browser binaries; production dependency footprint remains 0 vulnerabilities.
+- Final post-documentation `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-08T07-25-17-498Z/release-staging-manifest-smoke.json`; modifiedTracked 15, untrackedCandidate 0, totalDirtyCandidate 15, stagingCommandPaths 15, approvalBoundaryChecked true.
+- Duplication audit after Wayne's request found no duplicate IDs, no duplicate headings, and no repeated long visible sentences across `index.html`, `building-analyst.html`, `who-its-for.html`, `privacy.html`, `404.html`, and `holding.html`. The audit still found softer copy repetition in the homepage and Building Analyst contact/boundary copy, which was tightened in `index.html` and `building-analyst.html`.
+- Targeted validation after the duplication cleanup passed: duplicate ID/heading/sentence checks, `npx --no-install html-validate --rule doctype-style:off --rule void-style:off index.html building-analyst.html`, `npm run qa:product-design` with artifact `output/product-design-acceptance/smoke-2026-07-08T15-47-06-740Z/product-design-acceptance-smoke.json`, and `git diff --check`.
+- Refreshed full `npm run qa:release:local` passed after the duplication cleanup with artifact `output/release-local-gate/gate-2026-07-08T15-47-30-756Z/release-local-gate.json`; 37 steps. The gate confirmed release inventory dirtyCount 15 with zero secret findings and GLB external URI references 0, staging manifest 15 explicit paths, rendered screenshots `output/playwright/rendered-release-smoke-2026-07-08T15-48-57-864Z`, measurement evidence `output/measurement/evidence-2026-07-08T15-49-17-314Z`, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, CLS 0, LCP about 1.59s, and axe violations 0 across checked routes. Warning-only residuals remain dev/release tooling dependency advisories and unavailable local Firefox/WebKit browser binaries; production dependency footprint remains 0 vulnerabilities.
+- Final post-tracker `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-08T18-04-47-886Z/release-staging-manifest-smoke.json`; modifiedTracked 15, untrackedCandidate 0, totalDirtyCandidate 15, stagingCommandPaths 15, approvalBoundaryChecked true.
+
+Current dirty files:
+
+- `docs/codex/RELEASE_STAGING_MANIFEST.md`
+- `docs/codex/RELEASE_APPROVAL_PACKET.md`
+- `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`
+- `docs/codex/GOAL_COMPLETION_AUDIT.md`
+- `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`
+- `docs/codex/PUBLISH_READINESS_AUDIT.md`
+- `docs/codex/TRACKER.md`
+- `404.html`
+- `building-analyst.html`
+- `holding.html`
+- `index.html`
+- `privacy.html`
+- `scripts/rendered-release-smoke.mjs`
+- `styles.css`
+- `who-its-for.html`
+
+Recommended next decision:
+
+1. Recommended: complete the approved `secondary-page-shell-preview-with-duplication-cleanup` flow: exact-path staging, commit, branch push, Netlify preview deploy and deployed preview gate.
+2. After the preview gate passes, Wayne reviews the preview and decides whether to approve production deployment.
+3. Hold production if any preview issue is found.
+
+## 2A. Completed Building Analyst Homepage Alignment
 
 Tranche name: `building-analyst-homepage-design-alignment`
-Status: Building Analyst page alignment is live; cross-smoke release-control hardening is ready for final source alignment after a full production gate pass against `https://robsonai.co.uk`
+Status: completed for production; final source commit `8c595f6` is live as Netlify production deploy `6a4d6ccccf0a8038379c9abb`, the clean production gate passed, and live `/building-analyst` was verified as the new homepage-style Building Analyst route
 Started: 2026-07-07 21:05 BST
 
 Scope:
@@ -85,21 +156,27 @@ Validation evidence:
 - Focused live keyboard smoke passed after QA hardening with artifact `output/playwright/keyboard-release-smoke-2026-07-07T20-59-36-349Z`; homepage and Building Analyst keyboard journeys both produced screenshots.
 - Netlify production deploy `6a4d69d72e110732b83f8059` published keyboard smoke hardening commit `7d64257`.
 - Full production gate passed against `https://robsonai.co.uk` with artifact `output/release-production-gate/gate-2026-07-07T21-11-30-431Z/release-preview-gate.json`; 14 steps. This pre-commit gate used the cross-smoke release-control hardening and reported dirtyCount 6 for the release-tooling scripts.
+- Commit `8c595f6` (`Harden deployed smoke diagnostics`) committed and pushed the cross-smoke release-control hardening to `codex/live-globe-loader-fix` and `main`.
+- Netlify production deploy `6a4d6ccccf0a8038379c9abb` published final source commit `8c595f6` to `https://robsonai.co.uk`; deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4d6ccccf0a8038379c9abb`.
+- Clean production release gate passed against `https://robsonai.co.uk` with artifact `output/release-production-gate/gate-2026-07-07T21-17-25-642Z/release-preview-gate.json`; 14 steps and dirtyCount 0.
+- Live direct route verification on 2026-07-07 confirmed `/building-analyst`, `/building-analyst.html`, and cache-busted `/building-analyst?v=codex-live-check` all returned HTTP 200, included `building-analyst-zip-page`, included the new Building Analyst hero copy, and did not include the old lens UI.
+- Fresh clean-browser render confirmed the live route title `Building Analyst | Professional assessment, evidence and reporting`, body class `zip-page building-analyst-zip-page`, H1 `Building Analyst turns evidence into review-ready intelligence.`, no old lens UI, and no console messages. Screenshot: `output/playwright/live-building-analyst-cache-check-2026-07-07T21-22/live-building-analyst.png`.
 
 Done criteria:
 
 - Full `npm run qa:release:local` passes. Completed.
 - Building Analyst alignment commit is created and pushed. Completed.
-- Netlify production deploy completes. First deploys completed; final source-aligned redeploy pending after cross-smoke hardening commit.
-- Production gate passes against `https://robsonai.co.uk`. Completed pre-commit; final clean-source gate pending after final source-aligned redeploy.
-- Live `https://robsonai.co.uk/building-analyst` returns the new homepage-style Building Analyst page.
+- Netlify production deploy completes. Completed with final deploy `6a4d6ccccf0a8038379c9abb`.
+- Production gate passes against `https://robsonai.co.uk`. Completed with clean-source artifact `output/release-production-gate/gate-2026-07-07T21-17-25-642Z/release-preview-gate.json`.
+- Live `https://robsonai.co.uk/building-analyst` returns the new homepage-style Building Analyst page. Completed; cache-busted fresh-browser evidence captured.
 
 Recommended next decision:
 
-1. Recommended and already approved: commit and push the cross-smoke release-control hardening, redeploy from the final source commit, run the clean production gate, then verify live `/building-analyst`.
-2. If any validation fails, stop and report the blocker before deploying.
+1. Recommended: Wayne opens `https://robsonai.co.uk/building-analyst?v=codex-live-check-20260707` for a final owner visual pass; if the old page appears, use `Cmd + Shift + R` because live production is already serving the new route.
+2. Optional: install local Firefox/WebKit Playwright browsers later to remove the warning-only browser-coverage gap.
+3. Optional: clean up the dev/release tooling dependency audit advisories in a separate non-release tranche.
 
-## 2A. Completed Globe Loader Icon Prominence Tranche
+## 2B. Completed Globe Loader Icon Prominence Tranche
 
 Tranche name: `globe-loader-icon-50-percent-prominence`
 Status: completed for production; commit `d0bbcd9` is pushed to `codex/live-globe-loader-fix` and `main`; Netlify production deploy `6a4bdf25d47fe304e6efbd85` is live and the production gate passed; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
@@ -156,7 +233,7 @@ Recommended next decision:
 1. Recommended: Wayne completes a quick live visual pass on `https://robsonai.co.uk` and confirms the Globe Loader icon now feels right.
 2. If the icon now feels too dominant, approve one small follow-up size adjustment rather than reopening wider website design.
 
-## 2B. Completed Globe Loader Placement Hotfix
+## 2C. Completed Globe Loader Placement Hotfix
 
 Tranche name: `live-globe-loader-fix`
 Status: completed for production; hotfix commit `924b214` is pushed on branch `codex/live-globe-loader-fix`; Netlify preview deploy and production deploy passed their release gates; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
@@ -221,7 +298,7 @@ Recommended next decision:
 1. Recommended: approve a follow-up source-control alignment PR/merge so `main` records the production hotfix now live from CLI/archive deploy `6a4acbc6eef7cd0827692aff`.
 2. Do a short owner visual pass on the live homepage before any further design work.
 
-## 2C. Previous Reconciliation Tranche - Historical Context
+## 2D. Previous Reconciliation Tranche - Historical Context
 
 Tranche name: `github-main-reconciliation-preflight`
 Status: draft PR open and QA-passed; branch `codex/github-main-reconciliation-preflight` pushed to origin; GitHub PR #3 open at `https://github.com/LoganRobson70/robson-ai-solutions-website/pull/3`; GitHub/Netlify deploy-preview check passed and the immutable deploy preview gate passed; no merge to `main`, production deploy, rollback, DNS/domain change, analytics/forms change, customer-data handling or external message has been performed

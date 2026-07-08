@@ -31,30 +31,36 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/robson-ai-icon-v3-180.png?v=20260627">
     <link rel="preload" href="./assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="./styles.css?v=20260705b">
+    <link rel="stylesheet" href="./styles.css?v=20260708a">
   </head>
-  <body data-page-type="who-its-for">
+  <body class="zip-secondary-page" data-page-type="who-its-for">
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <header class="site-header">
-      <div class="container topbar">
-        <a class="brand brand-lockup-link" href="/" aria-label="Robson AI home">
-          <span class="brand-icon-only" aria-hidden="true">
-            <img class="brand-logo" src="./assets/robson-ai-icon-v3-128.webp?v=20260627" width="48" height="48" alt="" decoding="async">
-          </span>
-          <span class="brand-lockup-text" aria-hidden="true">
-            <span>Robson AI</span>
-            <small>Solutions</small>
-          </span>
+    <header class="site-header zip-site-header">
+      <div class="container topbar zip-topbar">
+        <a class="zip-wordmark" href="/" aria-label="Robson AI home">
+          <img
+            class="zip-wordmark-icon"
+            src="./assets/robson-ai-icon-v3-transparent-320.webp?v=20260627"
+            width="320"
+            height="320"
+            alt=""
+            decoding="async"
+          >
+          <span class="zip-wordmark-text">Robson AI</span>
         </a>
 
-        <nav class="site-nav" aria-label="Primary">
-          <a href="/#focus" data-analytics-id="nav-failure-pattern">Focus</a>
-          <a href="/#work" data-analytics-id="nav-work">Work in progress</a>
-          <a href="/#credibility" data-analytics-id="nav-proof">Credibility</a>
-          <a href="./who-its-for.html" data-analytics-id="nav-who-its-for" aria-current="location">Who it fits</a>
-          <a href="/#contact" data-analytics-id="nav-start-conversation">Start a conversation</a>
+        <nav class="site-nav zip-site-nav" aria-label="Primary">
+          <a href="/" data-analytics-id="nav-home">Home</a>
+          <a href="/#product" data-analytics-id="nav-product">Product</a>
+          <a href="/#pricing" data-analytics-id="nav-pricing">Pricing</a>
+          <a href="/#about" data-analytics-id="nav-about">About</a>
         </nav>
+
+        <div class="zip-header-actions">
+          <a class="zip-header-email" href="mailto:hello@robsonai.co.uk" data-analytics-id="nav-email" data-cta-location="header">hello@robsonai.co.uk</a>
+          <a class="zip-header-cta" href="/#product" data-analytics-id="nav-see-what-we-do" data-cta-location="header">See What We Do <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
     </header>
 
@@ -202,30 +208,39 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
+    <footer class="site-footer zip-footer">
+      <div class="container footer-grid zip-footer-grid">
         <div class="footer-brand-block">
-          <a class="brand footer-brand" href="/" aria-label="Robson AI home">
-            <span class="brand-wordmark" aria-hidden="true">
-              <span>Robson</span>
-              <span class="brand-wordmark-ai">A<span class="brand-wordmark-i"><span class="brand-i-stem"></span></span></span>
-            </span>
+          <a class="zip-wordmark zip-footer-wordmark" href="/" aria-label="Robson AI home">
+            <img
+              class="zip-wordmark-icon"
+              src="./assets/robson-ai-icon-v3-transparent-320.webp?v=20260627"
+              width="320"
+              height="320"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            >
+            <span class="zip-wordmark-text">Robson AI</span>
           </a>
-          <p class="footer-copy">Surveying knowledge, professional software and building intelligence for building-related work.</p>
+          <p class="footer-copy">Surveying-led AI software for building professionals. Insight. Intelligence. Impact.</p>
         </div>
 
         <div class="footer-nav-group">
           <p class="footer-heading">Explore</p>
           <div class="footer-links">
             <a href="/">Home</a>
-            <a href="/#work">Work in progress</a>
+            <a href="/#product">Product</a>
+            <a href="/#pricing">Pricing</a>
+            <a href="/#about">About</a>
+            <a href="/#buildscan-model-view">BuildScan</a>
             <a href="./who-its-for.html">Who it is for</a>
-            <a href="./privacy.html">Privacy notice</a>
+            <a href="./privacy.html">Privacy Notice</a>
           </div>
         </div>
 
         <div class="footer-nav-group">
-          <p class="footer-heading">Start a conversation</p>
+          <p class="footer-heading">Contact</p>
           <div class="footer-links">
             <a href="/#contact" data-analytics-id="footer-contact" data-cta-location="footer">Start a conversation</a>
             <a
@@ -233,13 +248,13 @@
               data-analytics-id="footer-mailto-link"
               data-cta-location="footer"
             >hello@robsonai.co.uk</a>
-            <button class="footer-link-button" type="button" data-open-consent>Cookie settings</button>
+            <button class="footer-link-button" type="button" data-open-consent>Cookie Settings</button>
           </div>
         </div>
       </div>
 
       <div class="container footer-meta">
-        <p>&copy; 2026 Robson AI Solutions. Early-stage product site for UK property workflows.</p>
+        <p>&copy; 2026 Robson AI Solutions. Early-stage product site.</p>
         <p>Optional analytics stays inactive until a real GA4 Measurement ID is configured.</p>
       </div>
     </footer>

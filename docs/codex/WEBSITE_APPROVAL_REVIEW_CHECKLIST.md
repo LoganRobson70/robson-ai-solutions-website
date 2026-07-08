@@ -1,44 +1,45 @@
 # Website Approval Review Checklist - Robson AI Solutions Website
 
-Last updated: 2026-07-05 12:18 BST
+Last updated: 2026-07-08 08:22 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: live review checklist for Globe Loader atlas-detail and privacy disclosure release; production deploy `6a4a38a0eef7cd2aee692a52` is live and production-gated
+Status: current owner review checklist for the `secondary-page-shell-consistency` candidate; candidate is local QA-passed and awaiting approval for Netlify preview
 
 ## 1. Purpose
 
-Use this checklist to review the current live zip-faithful correction for the original goal:
+Use this checklist to review the current approval-gated candidate for the original goal:
 
 > Make the Robson AI Solutions website the best releasable version it can be.
 
 Important:
 
-- Current live review URL: `https://robsonai.co.uk`.
-- Current local review URL: `http://127.0.0.1:8134/` while the Python server is running.
-- Current candidate name: `globe-loader-hero-integration`.
+- Current production review URL: `https://robsonai.co.uk`.
+- Current production baseline: commit `8c595f6`, Netlify deploy `6a4d6ccccf0a8038379c9abb`, production gate `output/release-production-gate/gate-2026-07-07T21-17-25-642Z/release-preview-gate.json`.
+- Current candidate name: `secondary-page-shell-consistency`.
+- Candidate status: refreshed full local release gate passed for the 15-file cache-key candidate, uncommitted, unpushed, not preview-deployed, not production-deployed.
+- Candidate approval packet: `docs/codex/RELEASE_APPROVAL_PACKET.md`.
+- Current release handoff: `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`.
+- No staging, commit, branch push, GitHub PR, Netlify preview deploy, production deploy, rollback, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist.
 - The rejected `proof-motion-polish` preview must not be published.
-- Production is live at `https://robsonai.co.uk` on deploy `6a4a38a0eef7cd2aee692a52`; production gate passed at `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`.
-- No branch push, GitHub PR, further production deploy, rollback, analytics, forms, DNS/domain work, customer-data handling, or external messages are approved by this checklist. Wayne approved only the local docs/source-control evidence alignment step after production.
-- Current preview approval handoff is `docs/codex/WEBSITE_RESTART_PREVIEW_HANDOFF.md`.
-- Historical production release evidence is retained below for context only; it is not approval for the restart candidate.
+- Historical production release evidence is retained below for context only; it is not approval for the current candidate.
 
-## 2. Current Restart Review Sequence
+## 2. Current Candidate Review Sequence
 
-Review these live pages in order on desktop and mobile:
+After Wayne approves `secondary-page-shell-preview` and Codex creates a Netlify preview, review these preview pages in order on desktop and mobile:
 
-1. Home: `https://robsonai.co.uk/`
-2. Building Analyst: `https://robsonai.co.uk/building-analyst.html`
-3. Who it is for: `https://robsonai.co.uk/who-its-for.html`
-4. BuildScan viewer: `https://robsonai.co.uk/buildscan-viewer.html`
-5. Privacy: `https://robsonai.co.uk/privacy.html`
-6. 404 recovery page: `https://robsonai.co.uk/404.html`
-7. Holding fallback: `https://robsonai.co.uk/holding.html`
+1. Home: `<preview>/`
+2. Building Analyst: `<preview>/building-analyst.html`
+3. Who it is for: `<preview>/who-its-for.html`
+4. Privacy: `<preview>/privacy.html`
+5. BuildScan viewer: `<preview>/buildscan-viewer.html`
+6. 404 recovery page: `<preview>/404.html`
+7. Holding fallback: `<preview>/holding.html`
 
-Screenshot evidence from the current production rendered smoke:
+Current local screenshot evidence before preview:
 
-- `output/playwright/rendered-release-smoke-2026-07-05T10-59-21-515Z`
+- `output/playwright/rendered-release-smoke-2026-07-08T07-19-45-967Z`
 
-Production release-gate evidence is now the current automation source.
+The key pages for this candidate are `who-its-for.html` and `privacy.html`, because the candidate aligns their shell with the approved Home/Building Analyst design. Home, Building Analyst, BuildScan, 404 and holding are included to catch regressions.
 
 ## 3. What To Approve Or Flag
 
@@ -52,7 +53,7 @@ Approve if:
 - Product, Pricing, About, BuildScan and Contact feel designed and not like text blocks.
 - Building Analyst, Robson AI Software and BuildScan read as connected but distinct product directions.
 - Header navigation lands cleanly on major sections.
-- Secondary pages keep the visible Robson AI brand lockup clear and do not accidentally present `Fit` as a separate product name.
+- Secondary pages keep the visible Robson AI brand lockup clear and use the same Home/Product/Pricing/About header rhythm.
 - The page feels credible, current, and useful enough for public visitors.
 
 Flag if:
@@ -79,10 +80,12 @@ Approve if:
 
 - The audience segmentation helps surveyors, property teams, and operational buyers understand where the work fits.
 - The copy preserves professional judgement, evidence, review, and accountability.
+- The page header, navigation, email action, CTA and footer now feel like the same site as Home and Building Analyst.
 
 Flag if:
 
 - The page suggests live council/customer integrations, tenant systems, Microsoft/Oracle/SharePoint connectivity, or operational commitments that are not yet approved.
+- The page still feels like a legacy/older Robson AI page compared with the homepage.
 
 ### BuildScan Viewer
 
@@ -106,10 +109,13 @@ Approve if:
 - The current site does not collect form submissions.
 - Privacy language remains consistent with current website behaviour.
 - The contact section feels like a practical action area rather than a block of words.
+- Privacy page shell and footer look consistent with the current site while preserving the actual privacy wording.
+- Privacy page intro aligns cleanly with the policy cards on desktop.
 
 Flag if:
 
 - You want GA4, contact forms, lead capture, newsletter, CRM, or any data collection. Those require a separate privacy and implementation tranche.
+- The privacy page copy has changed in substance; this candidate should not change privacy wording.
 
 ### 404 And Holding Fallback
 
@@ -128,33 +134,25 @@ Local release gate:
 
 - Command: `npm run qa:release:local`
 - Result: pass, 37 steps.
-- Artifact: `output/release-local-gate/gate-2026-07-05T10-35-28-613Z/release-local-gate.json`.
+- Artifact: `output/release-local-gate/gate-2026-07-08T07-18-19-608Z/release-local-gate.json`.
 
-Preview release gate:
+Staging-manifest drift check:
 
-- Command: `QA_BASE_URL="https://globe-loader-privacy--robson-ai-website.netlify.app" npm run qa:release:preview`
-- Result: pass, 14 steps.
-- Artifact: `output/release-preview-gate/gate-2026-07-05T10-40-51-607Z/release-preview-gate.json`.
-
-Production release gate:
-
-- Command: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`
-- Result: pass, 14 steps.
-- Artifact: `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`.
+- Command: `npm run qa:release-staging-manifest`
+- Result: pass.
+- Artifact: `output/release-staging-manifest/smoke-2026-07-08T07-18-26-105Z/release-staging-manifest-smoke.json`; modifiedTracked 15, untrackedCandidate 0, totalDirtyCandidate 15, stagingCommandPaths 15.
 
 Local evidence pack:
 
-- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-05T10-59-21-515Z`.
-- Measurement: `output/measurement/evidence-2026-07-05T10-37-20-934Z`; axe reported zero violations across six routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.39 seconds, CLS 0.
-- Latest 30-file staging-manifest smoke: `output/release-staging-manifest/smoke-2026-07-05T10-35-35-782Z/release-staging-manifest-smoke.json`.
-- Latest release inventory: `output/release-inventory/inventory-2026-07-05T10-58-01-134Z/release-candidate-inventory.json`; dirtyCount 2 from post-preview evidence docs only, secret findings 0, GLB external URI references 0.
+- Rendered screenshots: `output/playwright/rendered-release-smoke-2026-07-08T07-19-45-967Z`.
+- Measurement: `output/measurement/evidence-2026-07-08T07-20-06-090Z`; axe reported zero violations across checked routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.38 seconds, CLS 0.
+- Release inventory: `output/release-inventory/inventory-2026-07-08T07-18-25-842Z/release-candidate-inventory.json`; dirtyCount 15, secret findings 0, GLB external URI references 0.
 
 Known residuals:
 
-- The staging manifest and inventory now match the 30-file Globe Loader/privacy correction.
-- Globe Loader atlas-detail polish, BuildScan demo-quality wording, privacy disclosure baseline and zip-design copy/layout updates are included in the latest local gate.
-- The active correction is committed as `db3922c`, preview-gated, production-published and production-gated.
-- The branch is ahead by the rejected motion-preview/evidence commits; do not publish the rejected `proof-motion-polish` preview.
+- The candidate is local-only until Wayne approves commit/push/preview.
+- Preview release gate is pending because no Netlify preview deploy has been approved for this candidate.
+- Production release gate is pending because no production deploy has been approved for this candidate.
 - Chromium passes locally; Firefox and WebKit Playwright binaries are not installed locally.
 - Dev/release tooling audit remains 17 moderate, 0 high, 0 critical; production footprint remains zero.
 - Full Codex Security scan is not complete.
@@ -164,9 +162,9 @@ Known residuals:
 
 Use one of these responses:
 
-1. Recommended: approve GitHub/main reconciliation planning after the local production evidence-doc commit.
-2. Request live-site design/content tweaks, with the exact page or section to improve.
-3. Hold GitHub/main reconciliation and leave the live site as-is.
+1. Recommended: approve `secondary-page-shell-preview` so Codex can stage the exact manifest paths, commit, push the branch, create a Netlify preview, run the preview gate, and return with the preview URL before any production decision.
+2. Request visual/content tweaks, with the exact page or section to improve.
+3. Hold this candidate uncommitted.
 
 ## 6. Historical Production Context
 

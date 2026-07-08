@@ -1,65 +1,61 @@
 # Goal Completion Audit - Robson AI Solutions Website
 
-Last updated: 2026-07-05 12:18 BST
+Last updated: 2026-07-08 08:22 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: current approved release goal complete; Globe Loader atlas-detail and privacy disclosure release is live and production-gated
+Status: active goal not complete yet; current live site is production-gated, and Wayne approved option `1` on 2026-07-08 to commit, push and preview-gate the secondary-page shell consistency candidate before any production decision
 
 ## 1. Current Active Goal
 
 Active Codex goal:
 
-> Make the Robson AI Solutions website the best releasable version it can be: polished, professional, responsive, accessible, evidence-led, brand-consistent, cautious about product maturity, validated locally and ready for preview/publish approval.
+> Make the Robson AI Solutions website the best releasable website it can be: modern, coherent with the approved redesign direction, accurate about Building Analyst and BuildScan, production-safe, validated, documented, and ready for owner-approved live publication decisions.
 
 Current audit result:
 
-- Complete for the current approved release goal: the zip-faithful correction remains the website baseline, the Globe Loader atlas-detail/privacy disclosure release is live, and the live domain passed the production release gate.
-- The Globe Loader atlas-detail polish, BuildScan/privacy copy updates and reference preservation have been implemented locally, committed, deployed to a non-production Netlify preview, passed the deployed preview gate, deployed to production, and passed the production gate.
-- Source-control alignment remains a separate housekeeping tranche; Wayne approved the local evidence-doc commit only, while branch push, GitHub PR, main reconciliation and any further deploy remain approval-gated.
+- Not complete. The live site is strong and production-gated, but the current local audit found a remaining coherence issue: `who-its-for.html` and `privacy.html` still used the older shell while Home and Building Analyst used the approved zip-style redesign shell.
+- The `secondary-page-shell-consistency` candidate fixes that local issue, includes a stylesheet cache-key correction, and has passed the refreshed full local release gate. Exact-path staging, commit, branch push, Netlify preview deploy and preview-gate validation are now approved; production deployment remains unapproved.
+- The goal should remain active until the current candidate either reaches an approved live release with production-gate evidence or Wayne explicitly chooses to hold/cancel it.
 - Do not use the historical completion evidence below as approval for the current candidate.
 
-## 2. Current Restart Candidate State
+## 2. Current Candidate State
 
 Current local candidate:
 
-- Local review URL: `http://127.0.0.1:8134/` while the Python server is running.
-- Preview review URL: `https://globe-loader-privacy--robson-ai-website.netlify.app`.
-- Current commit: `db3922c` (`Integrate globe loader preview and privacy disclosures`).
-- Netlify preview deploy: `6a4a349440be152194797efd`.
+- Tranche: `secondary-page-shell-consistency`.
+- Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`.
+- Branch: `codex/live-globe-loader-fix`.
+- Current production source baseline: `8c595f6`.
+- Current production deploy baseline: `6a4d6ccccf0a8038379c9abb`.
 - Production URL: `https://robsonai.co.uk`.
-- Production deploy: `6a4a38a0eef7cd2aee692a52`; this is completion evidence for the current approved release goal.
+- Candidate status: refreshed full local release gate passed, uncommitted, not pushed, not preview-deployed, not production-deployed.
 
 Current validation evidence:
 
-- Full local release gate: `output/release-local-gate/gate-2026-07-05T10-35-28-613Z/release-local-gate.json`; passed all 37 steps.
-- Rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-07-05T10-37-00-412Z`.
-- Measurement evidence: `output/measurement/evidence-2026-07-05T10-37-20-934Z`; axe reported zero violations across six routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, LCP about 1.39s, CLS 0.
-- Current staging manifest evidence: `output/release-staging-manifest/smoke-2026-07-05T10-35-35-782Z/release-staging-manifest-smoke.json`; 12 modified tracked files, 18 untracked candidate files and 30 staging paths.
-- Current release inventory evidence: `output/release-inventory/inventory-2026-07-05T10-40-51-731Z/release-candidate-inventory.json`; dirtyCount 0 at preview gate, zero secret findings and GLB externalUriCount 0.
-- Deployed preview gate: `output/release-preview-gate/gate-2026-07-05T10-40-51-607Z/release-preview-gate.json`; passed all 14 steps.
-- Production release gate: `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`; passed all 14 steps.
-- Browser plugin local review attempt failed with `ERR_CONNECTION_REFUSED`; use Wayne's in-app/local browser or Playwright screenshot evidence for local review.
+- Full local release gate: `output/release-local-gate/gate-2026-07-08T07-18-19-608Z/release-local-gate.json`; passed 37 steps.
+- Rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-07-08T07-19-45-967Z`, including updated `desktop-who-its-for.png` and `desktop-privacy.png`.
+- Measurement evidence: `output/measurement/evidence-2026-07-08T07-20-06-090Z`; axe violations 0 across checked routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, CLS 0, LCP about 1.38s on the median selected run.
+- Staging manifest evidence: `output/release-staging-manifest/smoke-2026-07-08T07-18-26-105Z/release-staging-manifest-smoke.json`; modifiedTracked 15, untrackedCandidate 0, stagingCommandPaths 15.
 
 Current residuals:
 
-- Branch push/GitHub PR are not approved.
-- Further production deploys or rollback are not approved.
-- Dev/release tooling advisories remain warning-only; production dependency footprint remains zero.
+- Staging, commit, branch push, Netlify preview deploy, production deploy and rollback are not approved.
+- Owner preview review has not happened for this candidate.
+- Preview gate and production gate have not been run for this candidate because deploy approval is pending.
+- Local Firefox/WebKit Playwright browser binaries remain unavailable and warning-only; Chromium passes locally.
+- Dev/release tooling advisories remain warning-only; production dependency footprint remains zero vulnerabilities.
 
-## 3. Requirement Audit For Current Restart Candidate
+## 3. Requirement Audit For Current Goal
 
 | Requirement | Evidence | Status |
 | --- | --- | --- |
-| Polished and professional | Current Globe Loader/privacy rendered homepage/product/BuildScan screenshots at `output/playwright/rendered-release-smoke-2026-07-05T10-59-21-515Z`; production visual-polish gate passed | complete for approved release, subject to Wayne live review |
-| Responsive | `npm run qa:responsive` passed inside local, preview and production gates | complete for approved release |
-| Accessible | keyboard, axe and Lighthouse evidence inside local gate; keyboard and BuildScan checks passed on preview and production | complete for approved release |
-| Evidence-led | Product, Building Analyst, BuildScan, pricing direction, about and contact surfaces visible in rendered production screenshots | complete for approved release, subject to Wayne live review |
-| Brand-consistent | Zip-faithful homepage keeps Robson AI professional building intelligence direction and supplied-zip motion feel | complete for approved release, subject to Wayne live review |
-| Cautious about product maturity | Product/design acceptance smoke passed locally, on preview and on production; copy remains cautious and no new product claims were added | complete for approved release |
-| Privacy/security | Release security/header checks passed locally and deployed source-deny/header checks passed on preview and production; no form/customer-data store was added | complete for approved release |
-| Performance/SEO | Measurement and semantic/SEO checks passed locally, on preview and on production | complete for approved release |
-| Local validation | `npm run qa:release:local` passed at `output/release-local-gate/gate-2026-07-05T10-35-28-613Z/release-local-gate.json` | complete for local stage |
-| Preview validation | `QA_BASE_URL="https://globe-loader-privacy--robson-ai-website.netlify.app" npm run qa:release:preview` passed at `output/release-preview-gate/gate-2026-07-05T10-40-51-607Z/release-preview-gate.json` | complete for preview stage |
-| Production validation | `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production` passed at `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json` | complete for approved release |
+| Modern, coherent redesign direction | Home and Building Analyst are live in the approved zip-style design; secondary Who/Privacy pages are aligned locally in the current candidate | locally complete, not live |
+| Accurate Building Analyst and BuildScan positioning | Product/design acceptance gate passed; copy keeps cautious assessment/reporting and BuildScan model-view boundaries | locally complete for candidate |
+| Production-safe | Release security/header/inventory checks pass locally; no new privacy, analytics, form, DNS, customer-data or model-asset changes | locally complete for candidate |
+| Validated | Full local release gate passed at `output/release-local-gate/gate-2026-07-08T07-18-19-608Z/release-local-gate.json` | local stage complete; preview/production stages pending approval |
+| Documented | Tracker, staging manifest, approval packet, handoff, review checklist, publish-readiness audit and this audit now describe the current candidate | locally complete for the approval decision |
+| Ready for owner-approved live publication decisions | Approval packet and recommended next action exist; owner approval for preview is pending | not complete |
+| Preview validation | No preview deploy is approved yet for this candidate | pending approval |
+| Production validation | No production deploy is approved yet for this candidate | pending approval |
 
 ## 4. Historical Completed Release
 
