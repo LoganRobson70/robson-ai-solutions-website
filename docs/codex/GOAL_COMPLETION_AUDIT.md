@@ -1,8 +1,8 @@
 # Goal Completion Audit - Robson AI Solutions Website
 
-Last updated: 2026-07-08 08:22 BST
+Last updated: 2026-07-09 18:10 BST
 Owner: Wayne Robson / Robson AI Solutions
-Status: active goal not complete yet; current live site is production-gated, and Wayne approved option `1` on 2026-07-08 to commit, push and preview-gate the secondary-page shell consistency candidate before any production decision
+Status: active goal is visually and production-release complete for the live website, but not fully closed because source control and final evidence docs are not yet aligned
 
 ## 1. Current Active Goal
 
@@ -12,50 +12,55 @@ Active Codex goal:
 
 Current audit result:
 
-- Not complete. The live site is strong and production-gated, but the current local audit found a remaining coherence issue: `who-its-for.html` and `privacy.html` still used the older shell while Home and Building Analyst used the approved zip-style redesign shell.
-- The `secondary-page-shell-consistency` candidate fixes that local issue, includes a stylesheet cache-key correction, and has passed the refreshed full local release gate. Exact-path staging, commit, branch push, Netlify preview deploy and preview-gate validation are now approved; production deployment remains unapproved.
-- The goal should remain active until the current candidate either reaches an approved live release with production-gate evidence or Wayne explicitly chooses to hold/cancel it.
-- Do not use the historical completion evidence below as approval for the current candidate.
+- Live website release state: complete for the latest approved public-site tranche. The secondary-page shell consistency candidate is deployed to production from commit `58a46ff` and `https://robsonai.co.uk` passed a fresh production release gate on 2026-07-09.
+- Goal closeout state: not fully complete yet because the live production deploy was created from the `codex/live-globe-loader-fix` branch while `origin/main` remains at `8c595f6`. A future unmanaged production deploy from `main` could therefore revert the secondary-page shell consistency work.
+- Documentation state: tracker and staging manifest contain post-production evidence notes, but those notes are local working-tree changes and are not committed.
+- The recommended final closeout is a source-control/docs alignment tranche that preserves the production evidence and brings the default branch into line with the live site under Wayne's explicit approval.
 
 ## 2. Current Candidate State
 
-Current local candidate:
+Current live candidate:
 
 - Tranche: `secondary-page-shell-consistency`.
 - Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`.
 - Branch: `codex/live-globe-loader-fix`.
-- Current production source baseline: `8c595f6`.
-- Current production deploy baseline: `6a4d6ccccf0a8038379c9abb`.
+- Public source commit: `58a46ff` (`Align secondary pages with public site shell`).
+- Production deploy: `6a4fd1b93f48c01f6255327c`.
 - Production URL: `https://robsonai.co.uk`.
-- Candidate status: refreshed full local release gate passed, uncommitted, not pushed, not preview-deployed, not production-deployed.
+- Unique deploy URL: `https://6a4fd1b93f48c01f6255327c--robson-ai-website.netlify.app`.
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4fd1b93f48c01f6255327c`.
+- Candidate status: committed, pushed to `origin/codex/live-globe-loader-fix`, preview-gated, production-deployed and production-gated.
+- Default branch gap: `origin/main` remains at `8c595f6`.
 
 Current validation evidence:
 
-- Full local release gate: `output/release-local-gate/gate-2026-07-08T07-18-19-608Z/release-local-gate.json`; passed 37 steps.
-- Rendered screenshot evidence: `output/playwright/rendered-release-smoke-2026-07-08T07-19-45-967Z`, including updated `desktop-who-its-for.png` and `desktop-privacy.png`.
-- Measurement evidence: `output/measurement/evidence-2026-07-08T07-20-06-090Z`; axe violations 0 across checked routes, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, CLS 0, LCP about 1.38s on the median selected run.
-- Staging manifest evidence: `output/release-staging-manifest/smoke-2026-07-08T07-18-26-105Z/release-staging-manifest-smoke.json`; modifiedTracked 15, untrackedCandidate 0, stagingCommandPaths 15.
+- Full local release gate before commit: `output/release-local-gate/gate-2026-07-08T15-47-30-756Z/release-local-gate.json`; passed 37 steps after the duplication cleanup.
+- Preview gate: `output/release-preview-gate/gate-2026-07-08T18-18-45-862Z/release-preview-gate.json`; passed 14 steps against `https://secondary-page-shell-preview--robson-ai-website.netlify.app`.
+- Production gate after deployment: `output/release-production-gate/gate-2026-07-09T16-53-04-204Z/release-preview-gate.json`; passed 14 steps.
+- Fresh production gate for this audit: `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json`; passed 14 steps.
+- Fresh production screenshots: `output/playwright/rendered-release-smoke-2026-07-09T17-04-36-679Z`.
+- Fresh production measurement smoke: `output/measurement/smoke-2026-07-09T17-04-48-036Z`.
 
 Current residuals:
 
-- Staging, commit, branch push, Netlify preview deploy, production deploy and rollback are not approved.
-- Owner preview review has not happened for this candidate.
-- Preview gate and production gate have not been run for this candidate because deploy approval is pending.
-- Local Firefox/WebKit Playwright browser binaries remain unavailable and warning-only; Chromium passes locally.
-- Dev/release tooling advisories remain warning-only; production dependency footprint remains zero vulnerabilities.
+- Source-control closeout is pending Wayne approval: preserve the local evidence docs, then align `main`/default branch with live commit `58a46ff` without changing public website behaviour.
+- Local docs evidence files are modified and not committed: `docs/codex/TRACKER.md`, `docs/codex/RELEASE_STAGING_MANIFEST.md`, plus this audit/readiness update after the current pass.
+- Local Firefox/WebKit Playwright browser binaries remain unavailable and warning-only; Chromium passes.
+- Dev/release tooling advisories remain warning-only at 17 moderate findings; production dependency footprint remains zero vulnerabilities.
 
 ## 3. Requirement Audit For Current Goal
 
 | Requirement | Evidence | Status |
 | --- | --- | --- |
-| Modern, coherent redesign direction | Home and Building Analyst are live in the approved zip-style design; secondary Who/Privacy pages are aligned locally in the current candidate | locally complete, not live |
-| Accurate Building Analyst and BuildScan positioning | Product/design acceptance gate passed; copy keeps cautious assessment/reporting and BuildScan model-view boundaries | locally complete for candidate |
-| Production-safe | Release security/header/inventory checks pass locally; no new privacy, analytics, form, DNS, customer-data or model-asset changes | locally complete for candidate |
-| Validated | Full local release gate passed at `output/release-local-gate/gate-2026-07-08T07-18-19-608Z/release-local-gate.json` | local stage complete; preview/production stages pending approval |
-| Documented | Tracker, staging manifest, approval packet, handoff, review checklist, publish-readiness audit and this audit now describe the current candidate | locally complete for the approval decision |
-| Ready for owner-approved live publication decisions | Approval packet and recommended next action exist; owner approval for preview is pending | not complete |
-| Preview validation | No preview deploy is approved yet for this candidate | pending approval |
-| Production validation | No production deploy is approved yet for this candidate | pending approval |
+| Modern, coherent redesign direction | Home, Building Analyst, Who It Is For and Privacy now use the approved zip-style shell on live production; fresh rendered screenshots captured at `output/playwright/rendered-release-smoke-2026-07-09T17-04-36-679Z` | complete on live site |
+| Accurate Building Analyst and BuildScan positioning | Product/design acceptance passed fresh against production at `output/product-design-acceptance/smoke-2026-07-09T17-03-38-808Z/product-design-acceptance-smoke.json`; copy keeps cautious assessment/reporting and BuildScan model-view boundaries | complete for live site |
+| Production-safe | Fresh production gate passed release inventory, source deny, headers, CSP, BuildScan viewer, consent/measurement and security posture checks; no DNS, form, customer-data or new model-asset change was made | complete for live site |
+| Validated | Full local, preview and production release gates passed; latest production gate `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json` passed 14 steps | complete for live site |
+| Documented | Tracker, staging manifest, this audit and publish-readiness audit are updated locally with current live evidence | locally complete, not source-control closed |
+| Ready for owner-approved live publication decisions | Live production deployment has happened with Wayne approval and passed production verification; remaining decision is source-control/docs closeout rather than public website publication | publication complete; closeout pending |
+| Preview validation | Preview deploy `6a4e942228cf55b0c6ea142a` passed gate `output/release-preview-gate/gate-2026-07-08T18-18-45-862Z/release-preview-gate.json` | complete |
+| Production validation | Production deploy `6a4fd1b93f48c01f6255327c` passed fresh gate `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json` | complete |
+| Source-control alignment | `origin/main` remains at `8c595f6` while live production was deployed from `58a46ff` | not complete |
 
 ## 4. Historical Completed Release
 

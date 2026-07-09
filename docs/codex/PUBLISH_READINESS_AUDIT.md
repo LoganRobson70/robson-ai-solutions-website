@@ -1,50 +1,49 @@
 # Publish Readiness Audit - Robson AI Solutions Website
 
-Last updated: 2026-07-08 08:22 BST
+Last updated: 2026-07-09 18:10 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Status: current publish-readiness audit for the `secondary-page-shell-consistency` candidate; refreshed local release gate passed and candidate is awaiting approval for commit, push and Netlify preview
+Status: latest public website release is live and production-gated; final source-control/docs closeout remains approval-gated
 
 ## 1. Purpose
 
-This audit is the current publish-readiness checklist for the `secondary-page-shell-consistency` candidate and preserves historical production release evidence.
+This audit is the current publish-readiness checklist for the live Robson AI Solutions website and preserves historical production release evidence.
 
 Important current-state rule:
 
-- The older production release evidence below does not approve this candidate.
-- This candidate has completed local implementation and the refreshed full local release gate after the stylesheet cache-key fix.
-- Staging, commit, branch push, GitHub PR, Netlify preview deploy, production deploy, rollback, DNS/domain changes, analytics/forms/customer-data handling and external messages remain separately approval-gated.
+- The secondary-page shell consistency candidate has been committed, pushed, preview-gated, production-deployed and production-gated.
+- Production currently serves commit `58a46ff` from Netlify deploy `6a4fd1b93f48c01f6255327c`.
+- `origin/main` remains at `8c595f6`, so the remaining release-management gap is source-control/docs closeout, not live-site publication.
+- GitHub/main alignment, another production deploy, rollback, DNS/domain changes, analytics/forms/customer-data handling and external messages remain separately approval-gated.
 - The rejected `proof-motion-polish` preview must not be published.
 
 ## 2. Current Readiness
 
 Current active candidate:
 
-- Local release-readiness: 100%.
-- Preview release-readiness: 0% until Wayne approves preview deploy; expected path is commit, push, Netlify preview, then `QA_BASE_URL=<preview> npm run qa:release:preview`.
-- Production publish-readiness: 0% for this candidate until preview review, explicit production approval, production deploy and production gate are complete.
-- Overall publish readiness to production: about 92%, because implementation, documentation, cache-key correction and local QA are complete but approval-gated preview/live stages remain.
-- Current recommendation: approve `secondary-page-shell-preview`.
-- Current local evidence: refreshed full gate `output/release-local-gate/gate-2026-07-08T07-18-19-608Z/release-local-gate.json`, rendered screenshots `output/playwright/rendered-release-smoke-2026-07-08T07-19-45-967Z`, and measurement evidence `output/measurement/evidence-2026-07-08T07-20-06-090Z`.
-- Current local candidate scope before commit: 15 modified tracked files, 0 untracked candidate files.
-- Current release inventory: `output/release-inventory/inventory-2026-07-08T07-18-25-842Z/release-candidate-inventory.json`; dirtyCount 15, secret findings 0, GLB external URI references 0.
-- Current production baseline: commit `8c595f6`, Netlify deploy `6a4d6ccccf0a8038379c9abb`, production gate `output/release-production-gate/gate-2026-07-07T21-17-25-642Z/release-preview-gate.json`.
+- Local implementation readiness: 100%.
+- Preview readiness: 100%; preview deploy `6a4e942228cf55b0c6ea142a` passed deployed preview gate `output/release-preview-gate/gate-2026-07-08T18-18-45-862Z/release-preview-gate.json`.
+- Production publish-readiness: 100% for the current public website release; production deploy `6a4fd1b93f48c01f6255327c` is live and passed production verification.
+- Overall full-process readiness: about 97%, because the public website itself is live and verified, but `origin/main` and the final evidence docs still need approval-gated source-control alignment.
+- Current recommendation: approve `source-control-docs-closeout` so the live commit/evidence is preserved and future main-based deploys do not regress the secondary-page shell consistency work.
+- Current production evidence: fresh production gate `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json`, rendered screenshots `output/playwright/rendered-release-smoke-2026-07-09T17-04-36-679Z`, and measurement smoke `output/measurement/smoke-2026-07-09T17-04-48-036Z`.
+- Current release inventory: `output/release-inventory/inventory-2026-07-09T17-03-13-953Z/release-candidate-inventory.json`; dirtyCount 2 from local post-production docs-only notes at the time of the gate, secret findings 0, GLB external URI references 0.
+- Current production rollback target: previous deploy `6a4d6ccccf0a8038379c9abb`.
 
 Current live production state:
 
 - Public URL: `https://robsonai.co.uk`.
-- Current verified production deploy baseline is `6a4d6ccccf0a8038379c9abb` from commit `8c595f6`.
-- This candidate is not live yet.
-- No branch push, GitHub PR, DNS change, analytics/form change, external message, preview deploy, production deploy or customer data handling is approved by this audit.
+- Current verified production deploy is `6a4fd1b93f48c01f6255327c` from commit `58a46ff`.
+- Netlify deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4fd1b93f48c01f6255327c`.
+- No GitHub/main alignment, further production deploy, rollback, DNS change, analytics/form change, external message or customer data handling is approved by this audit.
 
-Remaining work before publish:
+Remaining work before full closeout:
 
-- Wayne approves `secondary-page-shell-preview`.
-- Codex stages only the manifest-approved files, commits, pushes, creates a Netlify preview and runs the preview gate.
-- Wayne reviews the preview.
-- If approved, Codex performs the production deploy and production gate only after explicit production approval.
+- Wayne reviews `https://robsonai.co.uk` live.
+- If Wayne is happy, approve a source-control/docs closeout tranche.
+- Codex then preserves the final evidence docs, aligns the default branch with live commit `58a46ff`, and verifies that the closeout path does not change public website behaviour.
 
-The remaining work that is not a preview blocker:
+The remaining work that is not a release blocker:
 
 - Decide whether to run a full Codex Security workspace scan as an additional assurance step.
 - Decide whether to install Playwright Firefox/WebKit for strict local browser parity.
@@ -54,21 +53,22 @@ The remaining work that is not a preview blocker:
 
 | Gate | Status | Evidence | Current release stance |
 | --- | --- | --- | --- |
-| Product positioning | Passed locally | `output/product-design-acceptance/smoke-2026-07-08T07-18-50-300Z/product-design-acceptance-smoke.json` | Preview and owner review pending |
-| Visual/design quality | Passed locally for secondary-page shell consistency | rendered smoke, responsive smoke, product/design smoke, visual-polish smoke | Preview and owner review pending |
-| Accessibility | Passed locally | keyboard smoke, BuildScan viewer smoke, axe/Lighthouse local evidence | Strict Firefox/WebKit optional |
-| Performance | Passed locally | `output/measurement/evidence-2026-07-08T07-20-06-090Z` | Preview and production checks pending approval |
-| SEO/semantics | Passed locally | `output/semantic-seo/smoke-2026-07-08T07-18-42-618Z/semantic-seo-smoke.json` | Preview and production checks pending approval |
+| Product positioning | Passed on production | `output/product-design-acceptance/smoke-2026-07-09T17-03-38-808Z/product-design-acceptance-smoke.json` | Live release verified |
+| Visual/design quality | Passed on production | rendered smoke, responsive smoke, product/design smoke, visual-polish smoke | Live release verified |
+| Accessibility | Passed on production | keyboard smoke, BuildScan viewer smoke, measurement smoke | Strict Firefox/WebKit optional |
+| Performance | Passed on production smoke | `output/measurement/smoke-2026-07-09T17-04-48-036Z` | Live release verified |
+| SEO/semantics | Passed on production | `output/semantic-seo/smoke-2026-07-09T17-03-30-939Z/semantic-seo-smoke.json` | Live release verified |
 | Cross-browser coverage | Partial local warning | Chromium passes; Firefox/WebKit Playwright binaries unavailable locally | Optional strict browser-parity gate if Wayne wants it |
-| Security/privacy source posture | Passed locally | release-security smoke, release-header smoke, no form/customer data path | Preview and production checks pending approval |
+| Security/privacy source posture | Passed on production | release-security smoke, release-header smoke, no form/customer data path | Live release verified |
 | Dependency risk | Residual warning | production audit clean; dev/release tooling audit has 17 moderate, 0 high, 0 critical | Accept residual tooling risk or defer for upstream/tooling changes |
-| BuildScan GLB public data | No new model exposure in restart candidate | Existing public proof asset unchanged | Separate approval needed for any new/replaced public model |
-| Staged file scope | Passed locally for 15-file candidate | `output/release-staging-manifest/smoke-2026-07-08T07-18-26-105Z/release-staging-manifest-smoke.json` | Ready for approval-gated staging |
-| Netlify deploy-preview | Pending approval | None yet for this candidate | Recommended next gate |
-| Deployed preview QA | Pending approval | None yet for this candidate | Required before recommended production decision |
-| Production rollback | Known baseline | Current production deploy `6a4d6ccccf0a8038379c9abb` | Confirm target before any rollback |
-| Production deploy | Pending approval | None yet for this candidate | Not approved |
-| Production verification | Pending approval | None yet for this candidate | Required after any production deploy |
+| BuildScan GLB public data | No new model exposure in secondary-page shell candidate | Existing public proof asset unchanged | Separate approval needed for any new/replaced public model |
+| Staged file scope | Passed before commit | `output/release-staging-manifest/smoke-2026-07-08T18-13-28-668Z/release-staging-manifest-smoke.json` | Complete for shipped commit |
+| Netlify deploy-preview | Complete | Deploy `6a4e942228cf55b0c6ea142a` | Complete |
+| Deployed preview QA | Complete | `output/release-preview-gate/gate-2026-07-08T18-18-45-862Z/release-preview-gate.json` | Complete |
+| Production rollback | Known baseline | Previous production deploy `6a4d6ccccf0a8038379c9abb` | Confirm before rollback |
+| Production deploy | Complete | Deploy `6a4fd1b93f48c01f6255327c` | Live |
+| Production verification | Complete | `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json` | Complete |
+| Source-control/docs closeout | Pending approval | `origin/main` at `8c595f6`; live branch at `58a46ff`; evidence docs dirty locally | Recommended next gate |
 
 ## 4. Current Candidate Evidence
 

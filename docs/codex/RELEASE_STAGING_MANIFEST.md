@@ -1,11 +1,11 @@
 # Release Staging Manifest - Secondary Page Shell Consistency
 
-Last updated: 2026-07-08 08:22 BST
+Last updated: 2026-07-09 18:37 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
 Branch: `codex/live-globe-loader-fix`
-Status: full local release gate passed; Wayne approved option `1` on 2026-07-08 for exact-path staging, commit, branch push, Netlify preview deploy and deployed preview-gate validation; production deploy remains unapproved
+Status: commit `58a46ff` pushed; Netlify preview deploy `6a4e942228cf55b0c6ea142a` passed; Netlify production deploy `6a4fd1b93f48c01f6255327c` is live at `https://robsonai.co.uk`; production gate passed
 
 ## 1. Purpose
 
@@ -36,9 +36,11 @@ Do not run `git add .` for this candidate.
 
 Wayne approved this secondary-page candidate for exact-path staging, commit, branch push, Netlify preview deploy and deployed preview-gate validation by choosing option `1` on 2026-07-08.
 
-Wayne must approve before Codex performs any of these actions:
+Wayne approved production deployment and production-gate verification by choosing option `1` after the deployed preview gate passed.
 
-- running a production deploy
+Wayne must approve before Codex performs any future instances of these actions:
+
+- running another production deploy
 - rolling back production
 
 Still out of scope without a separate approval:
@@ -197,9 +199,10 @@ Required after an approved Netlify preview deploy:
 QA_BASE_URL="<cache-bust-preview-url>" npm run qa:release:preview
 ```
 
-- Preview deploy: approved, pending execution.
-- Preview gate artifact: pending if used.
-- Result: pending if used.
+- Preview deploy: `https://secondary-page-shell-preview--robson-ai-website.netlify.app`.
+- Netlify deploy id: `6a4e942228cf55b0c6ea142a`.
+- Preview gate artifact: `output/release-preview-gate/gate-2026-07-08T18-18-45-862Z/release-preview-gate.json`.
+- Result: pass, 14 steps.
 
 ## 11. Checks After Production Deploy
 
@@ -210,14 +213,20 @@ QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true 
 ```
 
 - Production URL: `https://robsonai.co.uk`
-- Current production deploy before this local candidate: `6a4d6ccccf0a8038379c9abb` for commit `8c595f6`.
-- Candidate production deploy: pending approval.
-- Production gate artifact: pending approval.
-- Result: pending approval.
+- Previous production deploy before this candidate: `6a4d6ccccf0a8038379c9abb` for commit `8c595f6`.
+- Candidate production deploy: `6a4fd1b93f48c01f6255327c`
+- Production URL: `https://robsonai.co.uk`
+- Unique deploy URL: `https://6a4fd1b93f48c01f6255327c--robson-ai-website.netlify.app`
+- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4fd1b93f48c01f6255327c`
+- Production gate artifact: `output/release-production-gate/gate-2026-07-09T16-53-04-204Z/release-preview-gate.json`
+- Fresh continuation production gate artifact: `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json`
+- Result: pass, 14 steps on both production gates.
+- Production gate notes: release inventory dirtyCount 2 from local post-preview docs-only evidence notes; zero secret findings; GLB external URI references 0; deployed headers/source-deny, BuildScan viewer, keyboard, semantic/SEO, product/design, responsive, visual polish, rendered screenshot and measurement smokes passed.
+- Warning-only residuals: dev/release tooling dependency advisories remain at 17 moderate findings with production dependency footprint 0 vulnerabilities; local Firefox/WebKit Playwright binaries are unavailable, while Chromium passed.
 
 ## 12. Rollback Path
 
-If this candidate causes a live regression after deployment, restore the current production deploy `6a4d6ccccf0a8038379c9abb` unless Wayne confirms a different rollback target first. If a local/docs regression is found before deployment, restore the affected manifest-approved files to the prior committed state and rerun the relevant checks before another decision.
+If this candidate causes a live regression after deployment, restore the previous production deploy `6a4d6ccccf0a8038379c9abb` unless Wayne confirms a different rollback target first. If a local/docs regression is found before deployment, restore the affected manifest-approved files to the prior committed state and rerun the relevant checks before another decision.
 
 ## 13. Previous Production Baseline
 
@@ -227,3 +236,31 @@ The previous completed Building Analyst homepage-design alignment remains live a
 - Production deploy: `6a4d6ccccf0a8038379c9abb`
 - Production gate: `output/release-production-gate/gate-2026-07-07T21-17-25-642Z/release-preview-gate.json`
 - Live route verification: `/building-analyst` and `/building-analyst.html` served the new homepage-style Building Analyst page with no old lens UI.
+
+## 14. Source-Control And Docs Closeout Plan
+
+This is the remaining closeout after the production-gated public website release.
+
+Current state:
+
+- Live production source commit: `58a46ff`.
+- Live production deploy: `6a4fd1b93f48c01f6255327c`.
+- Live production URL: `https://robsonai.co.uk`.
+- Default branch remote: `origin/main` at `8c595f6`.
+- `origin/main` is an ancestor of `58a46ff`, so the live branch is one commit ahead and can be fast-forwarded.
+- Local docs-only closeout files currently dirty: `docs/codex/TRACKER.md`, `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/GOAL_COMPLETION_AUDIT.md`, and `docs/codex/PUBLISH_READINESS_AUDIT.md`.
+- Docs-only closeout release inventory passed with artifact `output/release-inventory/inventory-2026-07-09T17-16-11-796Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings, GLB external URI references 0.
+
+Recommended approval-gated closeout sequence:
+
+1. Stage only the four docs-only closeout files listed above.
+2. Commit them on `codex/live-globe-loader-fix` as final evidence preservation.
+3. Push `codex/live-globe-loader-fix`.
+4. Fast-forward `main` to the approved live branch tip.
+5. Push `main`.
+6. If Netlify creates a new production deploy from the `main` push, verify it is the same site state plus docs-only evidence and run `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`.
+7. Update the tracker with the final main/source-control closeout evidence.
+
+This closeout must not include unrelated edits, dependency remediation, DNS/domain changes, analytics/forms/customer-data handling, external messages, rollback, or new production features.
+
+Wayne approved this `source-control-docs-closeout` sequence by choosing option `1` on 2026-07-09 at 18:37 BST.

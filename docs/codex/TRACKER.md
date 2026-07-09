@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-08 16:50 BST
+Last updated: 2026-07-09 18:37 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/live-globe-loader-fix` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
@@ -11,25 +11,14 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Prepare a local `secondary-page-shell-consistency` candidate after the live audit showed `who-its-for.html` and `privacy.html` were still using the older site shell while Home and Building Analyst were using the approved zip-style redesign shell.
-- Keep the candidate scoped to secondary-page shell consistency, privacy desktop alignment, stylesheet cache-key correctness and rendered-smoke compatibility; do not change privacy wording, product claims, DNS, analytics, forms, BuildScan assets, app implementation, customer-data handling, external messages, commits, pushes or deploys without approval.
-- Close out the Building Analyst homepage-design alignment after Wayne reported that `https://robsonai.co.uk/building-analyst` still looked unchanged; live production now serves the new homepage-style page, and any remaining old view is likely browser cache/back-forward cache.
-- Use a stable non-temp worktree so the release candidate is not lost during validation.
-- Keep the tranche scoped to `building-analyst.html` and QA compatibility updates; do not change DNS, privacy policy, analytics config, forms, BuildScan assets or broader homepage design.
-- Prepare a narrow follow-up Globe Loader icon prominence polish after Wayne reviewed the live site and asked for the centre icon to be about 50% bigger inside the globe.
-- Keep the change scoped to the canvas centre-icon draw size and a `script.js` cache-key bump; do not reopen the hero layout, globe, orbit motion, copy, BuildScan, privacy or analytics.
-- Prepare a narrow live hotfix for Wayne's 2026-07-05 report that the homepage Globe Loader appears missing and the Robson AI icon appears massive on the live site.
-- Keep the hotfix scoped to Globe Loader placement, globe scale and centre-icon scale; do not reopen wider website design, copy, BuildScan, privacy or analytics scope in this tranche.
-- Validate the hotfix locally before asking Wayne for any commit, preview deploy or production deploy decision.
-- Keep the local review URL at `http://127.0.0.1:8136/` while the hotfix server is running.
-- Correct the live-site mismatch Wayne identified on 2026-07-04: the current published site is not faithful enough to the supplied redesign zip in layout, text, fonts, content and overall look.
-- Rebuild the homepage locally around the zip's white header, dark mesh hero, Home/Product/Pricing/About IA, large `Turning data into intelligence.` proposition and product-line structure, while adding the approved BuildScan/model-view element in that visual language.
-- Publish the zip-faithful correction after Wayne approved option `1`; branch push, PR, DNS/domain changes and further production deploys remain approval-gated.
-- Restart from the original "best releasable website" goal after Wayne rejected the current website direction as ugly.
-- Treat the deployed `post-launch-proof-motion-polish` preview as rejected for publication.
-- Use Wayne's supplied redesign zip as the visual direction, while rejecting unsupported product claims and prototype runtime code.
-- Add the BuildScan model-view and opt-in GLB viewer elements into the zip-inspired static-site candidate.
-- Address the iubenda missing-services privacy-policy warning before any next commit/preview/production decision.
+- The latest approved website release is live at `https://robsonai.co.uk` from commit `58a46ff` as Netlify production deploy `6a4fd1b93f48c01f6255327c`.
+- Fresh production verification passed on 2026-07-09 with artifact `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json`.
+- The remaining active tranche is `source-control-docs-closeout`: preserve the final evidence docs and align `origin/main` with the live commit so future main-based Netlify deploys do not regress the secondary-page shell consistency work.
+- `origin/main` is an ancestor of the live branch and is one commit behind at `8c595f6`; the live branch `origin/codex/live-globe-loader-fix` is at `58a46ff`.
+- Local uncommitted work is docs-only closeout evidence in `docs/codex/TRACKER.md`, `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/GOAL_COMPLETION_AUDIT.md`, and `docs/codex/PUBLISH_READINESS_AUDIT.md`.
+- Docs-only closeout release inventory passed with artifact `output/release-inventory/inventory-2026-07-09T17-16-11-796Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings, GLB external URI references 0.
+- Wayne approved option `1`, `source-control-docs-closeout`, on 2026-07-09 at 18:37 BST. Approval covers committing the four evidence docs, pushing `codex/live-globe-loader-fix`, fast-forwarding and pushing `main`, allowing the expected Netlify deploy if triggered, and running production verification again.
+- Further production deploys after this closeout, rollback, PR changes, DNS/domain changes, analytics/forms changes, customer-data handling and external messages remain approval-gated.
 
 Success means:
 
@@ -43,13 +32,13 @@ Success means:
 - Next-phase refinement planning baseline is recorded in `docs/codex/NEXT_PHASE_REFINEMENT_PLAN.md`; it is not implementation or deployment approval.
 - Side ideas are parked instead of expanding the active tranche.
 - Luffu/Steno/Unfold motion references are captured as `docs/codex/MOTION_REFERENCE_BRIEF.md`; they are not approved implementation scope unless Wayne chooses the motion-polish alternative.
-- Completion status is audited in `docs/codex/GOAL_COMPLETION_AUDIT.md`; the Globe Loader/privacy correction is live as Netlify production deploy `6a4a38a0eef7cd2aee692a52` with production gate pass `output/release-production-gate/gate-2026-07-05T10-58-00-989Z/release-preview-gate.json`.
+- Completion status is audited in `docs/codex/GOAL_COMPLETION_AUDIT.md`; the public website release is live and production-gated, but the full goal remains active until source-control/docs closeout is complete.
 - Production release execution is defined in `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the 2026-06-28 publish was executed after Wayne approved option `1`.
 
-## 2. Active Local Candidate
+## 2. Completed Secondary-Page Shell Candidate
 
 Tranche name: `secondary-page-shell-consistency`
-Status: Wayne approved option `1` on 2026-07-08 for staging, commit, branch push, Netlify preview deploy and preview-gate validation; production deploy remains unapproved
+Status: completed for production; commit `58a46ff` was deployed from a clean `git archive` to Netlify production deploy `6a4fd1b93f48c01f6255327c`; production release gate passed; no rollback, DNS/domain change, analytics/forms change, customer-data handling, external message or destructive git action was performed
 Started: 2026-07-08 06:40 BST
 
 Scope:
@@ -65,10 +54,11 @@ Scope:
 - Refresh `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md` and `docs/codex/PUBLISH_READINESS_AUDIT.md` so owner-review and publish-readiness docs are current for the secondary-page shell candidate.
 - Remove confirmed copy duplication from the homepage and Building Analyst page: repeated no-form/privacy wording, repeated professional-boundary phrasing, and repeated "not replacing judgement" wording now resolve to one clear instance in each relevant context.
 - Proceed under Wayne's 2026-07-08 option `1` approval to stage the exact manifest files, create a local commit, push `codex/live-globe-loader-fix`, create a Netlify preview and run the deployed preview gate before any production decision.
+- Approved preview flow completed on 2026-07-08: local commit `58a46ff`, branch push, Netlify preview deploy `6a4e942228cf55b0c6ea142a`, and deployed preview gate pass.
 
-Out of scope:
+Out of scope for any follow-on without separate approval:
 
-- Production deploy, Netlify preview deploy, commits, pushes, DNS/domain changes, analytics/forms changes, privacy-policy content changes, BuildScan asset changes, product-claim changes, customer-data handling, external messages, app implementation, or broader page redesign.
+- Further production deploy, rollback, Netlify preview deploy, commits, pushes, DNS/domain changes, analytics/forms changes, privacy-policy content changes, BuildScan asset changes, product-claim changes, customer-data handling, external messages, app implementation, or broader page redesign.
 
 Validation evidence:
 
@@ -90,30 +80,29 @@ Validation evidence:
 - Targeted validation after the duplication cleanup passed: duplicate ID/heading/sentence checks, `npx --no-install html-validate --rule doctype-style:off --rule void-style:off index.html building-analyst.html`, `npm run qa:product-design` with artifact `output/product-design-acceptance/smoke-2026-07-08T15-47-06-740Z/product-design-acceptance-smoke.json`, and `git diff --check`.
 - Refreshed full `npm run qa:release:local` passed after the duplication cleanup with artifact `output/release-local-gate/gate-2026-07-08T15-47-30-756Z/release-local-gate.json`; 37 steps. The gate confirmed release inventory dirtyCount 15 with zero secret findings and GLB external URI references 0, staging manifest 15 explicit paths, rendered screenshots `output/playwright/rendered-release-smoke-2026-07-08T15-48-57-864Z`, measurement evidence `output/measurement/evidence-2026-07-08T15-49-17-314Z`, Lighthouse performance 100, accessibility 100, best practices 100, SEO 100, CLS 0, LCP about 1.59s, and axe violations 0 across checked routes. Warning-only residuals remain dev/release tooling dependency advisories and unavailable local Firefox/WebKit browser binaries; production dependency footprint remains 0 vulnerabilities.
 - Final post-tracker `npm run qa:release-staging-manifest` passed with artifact `output/release-staging-manifest/smoke-2026-07-08T18-04-47-886Z/release-staging-manifest-smoke.json`; modifiedTracked 15, untrackedCandidate 0, totalDirtyCandidate 15, stagingCommandPaths 15, approvalBoundaryChecked true.
+- Staged-candidate checks before commit passed: `git diff --cached --check`; `npx --no-install html-validate --rule doctype-style:off --rule void-style:off 404.html index.html building-analyst.html who-its-for.html privacy.html holding.html`; `node --check scripts/rendered-release-smoke.mjs`; and `npm run qa:release-staging-manifest` with artifact `output/release-staging-manifest/smoke-2026-07-08T18-13-28-668Z/release-staging-manifest-smoke.json`, modifiedTracked 15, untrackedCandidate 0, totalDirtyCandidate 15, stagingCommandPaths 15, approvalBoundaryChecked true.
+- Local commit created and pushed: `58a46ff` (`Align secondary pages with public site shell`), branch `codex/live-globe-loader-fix`, pushed `8c595f6..58a46ff`.
+- Netlify preview deploy succeeded: deploy id `6a4e942228cf55b0c6ea142a`, preview URL `https://secondary-page-shell-preview--robson-ai-website.netlify.app`, build logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4e942228cf55b0c6ea142a`.
+- Deployed preview gate passed: `QA_BASE_URL="https://secondary-page-shell-preview--robson-ai-website.netlify.app" npm run qa:release:preview`; artifact `output/release-preview-gate/gate-2026-07-08T18-18-45-862Z/release-preview-gate.json`; result pass, 14 steps. Evidence includes release inventory dirtyCount 0 with zero secret findings and GLB external URI references 0, deployed headers/source-deny pass `output/release-headers/smoke-2026-07-08T18-18-54-473Z/release-header-smoke.json`, deployed BuildScan viewer pass `output/buildscan-viewer/smoke-2026-07-08T18-18-54-837Z`, deployed product/design pass `output/product-design-acceptance/smoke-2026-07-08T18-19-25-127Z/product-design-acceptance-smoke.json`, deployed responsive pass `output/responsive-route/smoke-2026-07-08T18-19-35-458Z/responsive-route-smoke.json`, deployed visual polish pass `output/visual-polish/smoke-2026-07-08T18-20-12-405Z/visual-polish-smoke.json`, rendered screenshots `output/playwright/rendered-release-smoke-2026-07-08T18-21-36-941Z`, and deployed measurement smoke `output/measurement/smoke-2026-07-08T18-21-49-755Z`.
+- Warning-only residuals on the deployed preview: dev/release tooling dependency advisories remain at 17 moderate findings with production footprint 0 vulnerabilities; local Firefox/WebKit Playwright binaries are unavailable, while Chromium passed.
 
-Current dirty files:
+Current source-control state:
 
-- `docs/codex/RELEASE_STAGING_MANIFEST.md`
-- `docs/codex/RELEASE_APPROVAL_PACKET.md`
-- `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md`
-- `docs/codex/GOAL_COMPLETION_AUDIT.md`
-- `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md`
-- `docs/codex/PUBLISH_READINESS_AUDIT.md`
-- `docs/codex/TRACKER.md`
-- `404.html`
-- `building-analyst.html`
-- `holding.html`
-- `index.html`
-- `privacy.html`
-- `scripts/rendered-release-smoke.mjs`
-- `styles.css`
-- `who-its-for.html`
+- Public candidate commit: `58a46ff`.
+- Branch: `codex/live-globe-loader-fix`, pushed to origin.
+- Preview deploy: `https://secondary-page-shell-preview--robson-ai-website.netlify.app`.
+- Production deploy: `6a4fd1b93f48c01f6255327c`, live at `https://robsonai.co.uk`, unique deploy URL `https://6a4fd1b93f48c01f6255327c--robson-ai-website.netlify.app`, logs `https://app.netlify.com/projects/robson-ai-website/deploys/6a4fd1b93f48c01f6255327c`.
+- Production release gate passed: `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`; artifact `output/release-production-gate/gate-2026-07-09T16-53-04-204Z/release-preview-gate.json`; result pass, 14 steps.
+- Fresh continuation production gate also passed: `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json`; result pass, 14 steps. Fresh evidence includes rendered screenshots in `output/playwright/rendered-release-smoke-2026-07-09T17-04-36-679Z`, measurement smoke in `output/measurement/smoke-2026-07-09T17-04-48-036Z`, product/design pass `output/product-design-acceptance/smoke-2026-07-09T17-03-38-808Z/product-design-acceptance-smoke.json`, responsive pass `output/responsive-route/smoke-2026-07-09T17-03-45-745Z/responsive-route-smoke.json`, and visual polish pass `output/visual-polish/smoke-2026-07-09T17-04-07-437Z/visual-polish-smoke.json`.
+- Production gate evidence included release inventory dirtyCount 2 for local post-preview docs-only evidence notes, zero secret findings, GLB external URI references 0, deployed release headers/source-deny pass, deployed BuildScan viewer pass, keyboard smoke pass, semantic/SEO pass, product/design pass, responsive route pass, visual polish pass, rendered screenshots in `output/playwright/rendered-release-smoke-2026-07-09T16-54-39-102Z`, and measurement smoke in `output/measurement/smoke-2026-07-09T16-54-50-676Z`.
+- Warning-only residuals on production: dev/release tooling dependency advisories remain at 17 moderate findings with production dependency footprint 0 vulnerabilities; local Firefox/WebKit Playwright binaries are unavailable, while Chromium passed.
+- This tracker and the release staging manifest have local post-production evidence notes that are not included in commit `58a46ff`.
 
 Recommended next decision:
 
-1. Recommended: complete the approved `secondary-page-shell-preview-with-duplication-cleanup` flow: exact-path staging, commit, branch push, Netlify preview deploy and deployed preview gate.
-2. After the preview gate passes, Wayne reviews the preview and decides whether to approve production deployment.
-3. Hold production if any preview issue is found.
+1. Recommended: Wayne reviews `https://robsonai.co.uk` live; if it looks right, approve a docs/source-control closeout tranche so the production evidence notes can be preserved without changing the public site.
+2. If a live visual issue remains, identify the exact page and section for a narrow hotfix tranche.
+3. Optional: leave the docs evidence local and move to the next website-improvement tranche.
 
 ## 2A. Completed Building Analyst Homepage Alignment
 
