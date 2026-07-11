@@ -2,19 +2,313 @@ document.addEventListener("DOMContentLoaded", () => {
   setupQaMode();
   setupHeroMeshCanvas();
   setupGlobeLoader();
+  setupHeroIssuePreview();
 
   const analytics = createAnalytics();
 
   setupConsentBanner(analytics);
   setupCopyEmail(analytics);
+  setupBuildingAnalystExplorer();
   setupInteractionTracking(analytics);
   setupInteractivePanels();
   setupBuildScanInteractiveModel(analytics);
+  setupMobileNav();
   setupNavState();
   setupPrivacyNotice();
   setupAmbientMotion();
   setupSectionReveal();
 });
+
+const BUILDING_ANALYST_ISSUES = [
+  {
+    id: "roof-drainage",
+    number: 1,
+    label: "Roof drainage",
+    x: 42.4,
+    y: 22.6,
+    observation: "Light staining is visible below the gutter-to-downpipe junction.",
+    capture: "Record the junction, staining, surrounding fabric, location and visit context.",
+    evaluation: "A qualified surveyor records the likely cause, extent, significance and priority.",
+    review: "Evidence and draft findings are checked before the appropriate action is agreed.",
+    report: "The approved finding carries into a structured client report and action output."
+  },
+  {
+    id: "masonry",
+    number: 2,
+    label: "Masonry",
+    x: 39.8,
+    y: 50.6,
+    observation: "A short local crack and failed pointing are visible in the brickwork.",
+    capture: "Photograph the crack, adjacent joints and wider elevation with a clear location reference.",
+    evaluation: "The surveyor records pattern, extent, potential movement indicators and urgency.",
+    review: "The evidence and proposed next action are checked against the wider building context.",
+    report: "The reviewed condition and recommendation are included in the client output."
+  },
+  {
+    id: "glazing-sealant",
+    number: 3,
+    label: "Glazing and sealant",
+    x: 32.2,
+    y: 72.2,
+    observation: "A local failed sealant section is visible at the glazing-to-façade joint.",
+    capture: "Record close and contextual photographs of the frame perimeter and surrounding fabric.",
+    evaluation: "The surveyor considers exposure, water path, extent and the need for further access.",
+    review: "The proposed finding and repair approach are checked before approval.",
+    report: "The approved finding is carried into the relevant report section and action list."
+  },
+  {
+    id: "entrance-threshold",
+    number: 4,
+    label: "Entrance threshold",
+    x: 63.8,
+    y: 81.2,
+    observation: "The main entrance threshold shows a small area of wear and deterioration.",
+    capture: "Record the threshold, door operation, adjacent paving and relevant dimensions or notes.",
+    evaluation: "The surveyor considers condition, access implications, risk and suitable priority.",
+    review: "The evidence and recommended action are reviewed in the context of the occupied building.",
+    report: "The approved issue is documented with a clear action and client-facing wording."
+  },
+  {
+    id: "cladding-joint",
+    number: 5,
+    label: "Cladding joint",
+    x: 63.9,
+    y: 25.2,
+    observation: "A vertical joint between cladding panels appears open or locally misaligned.",
+    capture: "Record the joint, panel alignment, fixings and its position on the elevation.",
+    evaluation: "The surveyor records extent, exposure, potential moisture risk and investigation needs.",
+    review: "The evidence and draft recommendation are checked before the finding is approved.",
+    report: "The reviewed conclusion is included in the client report and action output."
+  },
+  {
+    id: "service-penetration",
+    number: 6,
+    label: "Service penetration",
+    x: 89.5,
+    y: 61.9,
+    observation: "Local staining is visible around a small service penetration through the rendered wall.",
+    capture: "Record the penetration, seal, staining and the surrounding wall in context.",
+    evaluation: "The surveyor considers the water path, seal condition, consequence and priority.",
+    review: "The finding and proposed action are checked before they are accepted into the record.",
+    report: "The approved evidence and recommendation are carried into the client deliverable."
+  }
+];
+
+function setupHeroIssuePreview() {
+  const root = document.querySelector("[data-hero-issues]");
+
+  if (!root) {
+    return;
+  }
+
+  const hotspots = Array.from(root.querySelectorAll(".studio-hero-hotspot"));
+  const closeAll = (except = null) => {
+    hotspots.forEach((hotspot) => {
+      if (hotspot === except) {
+        return;
+      }
+
+      hotspot.classList.remove("is-pinned");
+      hotspot.querySelector("[data-hero-hotspot]")?.setAttribute("aria-pressed", "false");
+    });
+  };
+
+  hotspots.forEach((hotspot) => {
+    const button = hotspot.querySelector("[data-hero-hotspot]");
+
+    if (!button) {
+      return;
+    }
+
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const willPin = !hotspot.classList.contains("is-pinned");
+      closeAll(hotspot);
+      hotspot.classList.toggle("is-pinned", willPin);
+      button.setAttribute("aria-pressed", String(willPin));
+    });
+
+    button.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      event.preventDefault();
+      hotspot.classList.remove("is-pinned");
+      button.setAttribute("aria-pressed", "false");
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!root.contains(event.target)) {
+      closeAll();
+    }
+  });
+}
+
+function setupBuildingAnalystExplorer() {
+  const root = document.querySelector("[data-building-explorer]");
+
+  if (!root) {
+    return;
+  }
+
+  const list = root.querySelector("[data-explorer-list]");
+  const markerLayer = root.querySelector("[data-explorer-markers]");
+  const panel = root.querySelector("[data-explorer-panel]");
+  const title = root.querySelector("[data-explorer-title]");
+  const observation = root.querySelector("[data-explorer-observation]");
+  const capture = root.querySelector("[data-explorer-capture]");
+  const evaluation = root.querySelector("[data-explorer-evaluation]");
+  const review = root.querySelector("[data-explorer-review]");
+  const report = root.querySelector("[data-explorer-report]");
+
+  if (!list || !markerLayer || !panel || !title || !observation || !capture || !evaluation || !review || !report) {
+    return;
+  }
+
+  const listButtons = new Map();
+  const markerButtons = new Map();
+
+  const selectIssue = (issueId) => {
+    const issue = BUILDING_ANALYST_ISSUES.find((candidate) => candidate.id === issueId);
+
+    if (!issue) {
+      return;
+    }
+
+    BUILDING_ANALYST_ISSUES.forEach((candidate) => {
+      const isActive = candidate.id === issue.id;
+      listButtons.get(candidate.id)?.setAttribute("aria-pressed", String(isActive));
+      markerButtons.get(candidate.id)?.setAttribute("aria-pressed", String(isActive));
+    });
+
+    title.textContent = issue.label;
+    observation.textContent = issue.observation;
+    capture.textContent = issue.capture;
+    evaluation.textContent = issue.evaluation;
+    review.textContent = issue.review;
+    report.textContent = issue.report;
+    panel.setAttribute("aria-label", `Issue ${issue.number}: ${issue.label}`);
+    root.dataset.activeIssue = issue.id;
+  };
+
+  BUILDING_ANALYST_ISSUES.forEach((issue, index) => {
+    const listButton = document.createElement("button");
+    const listNumber = document.createElement("span");
+    const listLabel = document.createElement("span");
+
+    listButton.type = "button";
+    listButton.className = "studio-explorer-issue-button";
+    listButton.dataset.issueId = issue.id;
+    listButton.dataset.analyticsId = `building-analyst-issue-list-${issue.id}`;
+    listButton.setAttribute("aria-label", `Issue ${issue.number}: ${issue.label}`);
+    listButton.setAttribute("aria-controls", panel.id);
+    listButton.setAttribute("aria-pressed", "false");
+    listNumber.className = "studio-explorer-issue-number";
+    listNumber.textContent = String(issue.number);
+    listNumber.setAttribute("aria-hidden", "true");
+    listLabel.textContent = issue.label;
+    listButton.append(listNumber, listLabel);
+
+    listButton.addEventListener("click", () => selectIssue(issue.id));
+    listButton.addEventListener("mouseenter", () => selectIssue(issue.id));
+    listButton.addEventListener("focus", () => selectIssue(issue.id));
+    listButton.addEventListener("keydown", (event) => {
+      const direction = event.key === "ArrowDown" || event.key === "ArrowRight" ? 1 : event.key === "ArrowUp" || event.key === "ArrowLeft" ? -1 : 0;
+
+      if (event.key === "Home" || event.key === "End") {
+        event.preventDefault();
+        const targetIndex = event.key === "Home" ? 0 : BUILDING_ANALYST_ISSUES.length - 1;
+        listButtons.get(BUILDING_ANALYST_ISSUES[targetIndex].id)?.focus();
+        return;
+      }
+
+      if (!direction) {
+        return;
+      }
+
+      event.preventDefault();
+      const targetIndex = (index + direction + BUILDING_ANALYST_ISSUES.length) % BUILDING_ANALYST_ISSUES.length;
+      listButtons.get(BUILDING_ANALYST_ISSUES[targetIndex].id)?.focus();
+    });
+
+    list.append(listButton);
+    listButtons.set(issue.id, listButton);
+
+    const markerButton = document.createElement("button");
+    const markerNumber = document.createElement("span");
+    const markerTooltip = document.createElement("span");
+
+    markerButton.type = "button";
+    markerButton.className = "studio-explorer-marker";
+    markerButton.dataset.issueId = issue.id;
+    markerButton.dataset.analyticsId = `building-analyst-issue-marker-${issue.id}`;
+    markerButton.setAttribute("aria-label", `Issue ${issue.number}: ${issue.label}`);
+    markerButton.setAttribute("aria-controls", panel.id);
+    markerButton.setAttribute("aria-pressed", "false");
+    markerButton.style.setProperty("--issue-x", `${issue.x}%`);
+    markerButton.style.setProperty("--issue-y", `${issue.y}%`);
+    markerNumber.className = "studio-explorer-marker-number";
+    markerNumber.textContent = String(issue.number);
+    markerNumber.setAttribute("aria-hidden", "true");
+    markerTooltip.className = "studio-explorer-marker-tooltip";
+    markerTooltip.textContent = issue.label;
+    markerTooltip.setAttribute("aria-hidden", "true");
+    markerButton.append(markerNumber, markerTooltip);
+
+    markerButton.addEventListener("click", () => selectIssue(issue.id));
+    markerButton.addEventListener("mouseenter", () => selectIssue(issue.id));
+    markerButton.addEventListener("focus", () => selectIssue(issue.id));
+
+    markerLayer.append(markerButton);
+    markerButtons.set(issue.id, markerButton);
+  });
+
+  selectIssue(BUILDING_ANALYST_ISSUES[0].id);
+}
+
+function setupMobileNav() {
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const nav = document.querySelector("[data-primary-nav]");
+
+  if (!toggle || !nav) {
+    return;
+  }
+
+  const closeNav = (returnFocus = false) => {
+    toggle.setAttribute("aria-expanded", "false");
+    nav.classList.remove("is-open");
+
+    if (returnFocus) {
+      toggle.focus();
+    }
+  };
+
+  toggle.addEventListener("click", () => {
+    const willOpen = toggle.getAttribute("aria-expanded") !== "true";
+    toggle.setAttribute("aria-expanded", String(willOpen));
+    nav.classList.toggle("is-open", willOpen);
+  });
+
+  nav.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      closeNav();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && nav.classList.contains("is-open")) {
+      closeNav(true);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) {
+      closeNav();
+    }
+  });
+}
 
 function setupQaMode() {
   const params = new URLSearchParams(window.location.search);

@@ -189,17 +189,54 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
     const bannerVisible = await page.locator("[data-consent-banner]").evaluate((banner) => !banner.hidden);
     assert(!bannerVisible, "Consent banner should stay hidden on first load while GA4 measurement is unset.");
 
-    await page.locator('.zip-site-nav a[href="#product"]').focus();
+    await page.locator('.studio-nav a[href="#product"]').focus();
     const productNavFocus = await getActiveElementState(page);
     assert(productNavFocus?.href === "#product" && /Product/i.test(productNavFocus?.text || ""), `Product nav link should be keyboard focusable: ${JSON.stringify(productNavFocus)}.`);
     await activateFocusedElement(page);
     await page.waitForFunction(() => window.location.hash === "#product");
 
-    await page.locator('[data-analytics-id="hero-why-robson-ai"]').focus();
-    const aboutCtaFocus = await getActiveElementState(page);
-    assert(aboutCtaFocus?.href === "#about" && /Why Robson AI/i.test(aboutCtaFocus?.text || ""), `Hero About CTA should be keyboard focusable: ${JSON.stringify(aboutCtaFocus)}.`);
+    await page.locator('[data-analytics-id="hero-explore-building-analyst"]').focus();
+    const explorerCtaFocus = await getActiveElementState(page);
+    assert(explorerCtaFocus?.href === "#building-analyst-explorer" && /Explore how Building Analyst works/i.test(explorerCtaFocus?.text || ""), `Hero explorer CTA should be keyboard focusable: ${JSON.stringify(explorerCtaFocus)}.`);
     await activateFocusedElement(page);
-    await page.waitForFunction(() => window.location.hash === "#about");
+    await page.waitForFunction(() => window.location.hash === "#building-analyst-explorer");
+
+    const explorerCounts = {
+      list: await page.locator("[data-explorer-list] .studio-explorer-issue-button").count(),
+      markers: await page.locator("[data-explorer-markers] .studio-explorer-marker").count()
+    };
+    assert(explorerCounts.list === 6 && explorerCounts.markers === 6, `Explorer should expose exactly six list controls and six matching markers: ${JSON.stringify(explorerCounts)}.`);
+
+    const firstIssue = page.locator('[data-analytics-id="building-analyst-issue-list-roof-drainage"]');
+    await firstIssue.focus();
+    await page.keyboard.press("ArrowDown");
+    await page.waitForFunction(() => document.querySelector('[data-analytics-id="building-analyst-issue-list-masonry"]')?.getAttribute("aria-pressed") === "true");
+    const masonryState = await page.evaluate(() => ({
+      listPressed: document.querySelector('[data-analytics-id="building-analyst-issue-list-masonry"]')?.getAttribute("aria-pressed"),
+      markerPressed: document.querySelector('[data-analytics-id="building-analyst-issue-marker-masonry"]')?.getAttribute("aria-pressed"),
+      panelTitle: document.querySelector("[data-explorer-title]")?.textContent?.trim() || ""
+    }));
+    assert(masonryState.listPressed === "true" && masonryState.markerPressed === "true" && masonryState.panelTitle === "Masonry", `Issue 2 should synchronize list, marker and panel: ${JSON.stringify(masonryState)}.`);
+
+    const serviceMarker = page.locator('[data-analytics-id="building-analyst-issue-marker-service-penetration"]');
+    await serviceMarker.focus();
+    await activateFocusedElement(page);
+    const serviceState = await page.evaluate(() => ({
+      listPressed: document.querySelector('[data-analytics-id="building-analyst-issue-list-service-penetration"]')?.getAttribute("aria-pressed"),
+      markerPressed: document.querySelector('[data-analytics-id="building-analyst-issue-marker-service-penetration"]')?.getAttribute("aria-pressed"),
+      panelTitle: document.querySelector("[data-explorer-title]")?.textContent?.trim() || ""
+    }));
+    assert(serviceState.listPressed === "true" && serviceState.markerPressed === "true" && serviceState.panelTitle === "Service penetration", `Issue 6 should synchronize list, marker and panel: ${JSON.stringify(serviceState)}.`);
+
+    await page.locator("#building-analyst-explorer").screenshot({
+      path: path.join(artifactDir, "building-analyst-explorer-keyboard.png")
+    });
+
+    await page.locator('[data-analytics-id="hero-discuss-workflow"]').focus();
+    const aboutCtaFocus = await getActiveElementState(page);
+    assert(aboutCtaFocus?.href === "#contact" && /Discuss a workflow/i.test(aboutCtaFocus?.text || ""), `Hero workflow CTA should be keyboard focusable: ${JSON.stringify(aboutCtaFocus)}.`);
+    await activateFocusedElement(page);
+    await page.waitForFunction(() => window.location.hash === "#contact");
 
     await page.locator("[data-copy-email]").first().focus();
     const copyFocus = await getActiveElementState(page);
@@ -244,7 +281,11 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
       buildScanState,
       copyFeedback,
       diagnostics,
+      explorerCounts,
+      explorerCtaFocus,
+      masonryState,
       productNavFocus,
+      serviceState,
       skipFocus
     };
   } finally {
@@ -364,6 +405,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
         mode: summary.mode,
         screenshots: [
           "homepage-keyboard-journey.png",
+          "building-analyst-explorer-keyboard.png",
           "building-analyst-keyboard-journey.png"
         ]
       }, null, 2));

@@ -236,14 +236,19 @@ async function runDesktopHomepage(browser, baseUrl, artifactDir) {
     const response = await page.goto(new URL("/", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "Homepage should return HTTP 200.");
     await expectVisible(page, "h1", "Homepage H1");
+    await expectVisible(page, "#building-analyst-explorer", "Building Analyst explorer");
     await expectVisible(page, "#product", "Product section");
-    await expectVisible(page, "#buildscan-model-view", "BuildScan model section");
-    await expectVisible(page, "#pricing", "Pricing section");
+    await expectVisible(page, "#buildscan-proof", "BuildScan model section");
+    await expectVisible(page, "#audience", "Audience section");
     await expectVisible(page, "#about", "About section");
     await expectVisible(page, "#contact", "Contact section");
 
     const heroText = (await page.locator("h1").first().textContent())?.trim() || "";
-    assert(/Turning data into\s+intelligence/i.test(heroText), `Homepage H1 should carry the current Robson AI proposition; actual: ${heroText}`);
+    assert(/Complex buildings still need qualified people/i.test(heroText), `Homepage H1 should carry the current Robson AI proposition; actual: ${heroText}`);
+
+    const issueListCount = await page.locator("[data-explorer-list] .studio-explorer-issue-button").count();
+    const markerCount = await page.locator("[data-explorer-markers] .studio-explorer-marker").count();
+    assert(issueListCount === 6 && markerCount === 6, `Building Analyst explorer should render six list issues and six image markers; actual: ${issueListCount}/${markerCount}.`);
 
     const staticImage = page.locator(".buildscan-model-image").first();
     await staticImage.scrollIntoViewIfNeeded();
@@ -261,7 +266,7 @@ async function runDesktopHomepage(browser, baseUrl, artifactDir) {
     assert(/buildscan-ludgershall-model-view-840\.webp|buildscan-ludgershall-model-view\.png/.test(imageState.currentSrc), `Desktop BuildScan image should use an expected asset; actual: ${imageState.currentSrc}`);
 
     await page.locator("#contact").scrollIntoViewIfNeeded();
-    await page.getByRole("button", { name: "Copy Email Address" }).click();
+    await page.getByRole("button", { name: /Copy email address/i }).click();
     const copyFeedback = (await page.locator("[data-copy-feedback]").first().textContent())?.trim() || "";
     assert(copyFeedback === "Email address copied.", "Homepage copy-email action should show success feedback.");
 
@@ -298,7 +303,7 @@ async function runMobileHomepage(browser, baseUrl, artifactDir) {
       fullPage: false
     });
 
-    await page.locator("#buildscan-model-view").scrollIntoViewIfNeeded();
+    await page.locator("#buildscan-proof").scrollIntoViewIfNeeded();
     const loadButton = page.locator("[data-buildscan-load-model]").first();
     await loadButton.waitFor({ state: "visible", timeout: 10000 });
     await loadButton.evaluate((button) => button.scrollIntoView({ block: "center", inline: "center" }));
@@ -333,11 +338,11 @@ async function runBuildScanInteractive(browser, baseUrl, artifactDir) {
   const diagnostics = captureDiagnostics(page);
 
   try {
-    const response = await page.goto(new URL("/index.html#buildscan-model-view", baseUrl).toString(), { waitUntil: "networkidle" });
+    const response = await page.goto(new URL("/index.html#buildscan-proof", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "BuildScan section route should return HTTP 200.");
     const anchorLanding = await assertAnchorLandingClean(
       page,
-      "#buildscan-model-view",
+      "#buildscan-proof",
       "#building-analyst",
       "BuildScan anchor landing"
     );

@@ -110,7 +110,9 @@ async function readLinksAndControls(page) {
     }));
     const buttons = [...document.querySelectorAll("button")].map((button) => ({
       text: button.textContent?.trim() || "",
-      analyticsId: button.getAttribute("data-analytics-id") || ""
+      analyticsId: button.getAttribute("data-analytics-id") || "",
+      ariaLabel: button.getAttribute("aria-label") || "",
+      issueId: button.getAttribute("data-issue-id") || ""
     }));
 
     return { links, buttons };
@@ -207,14 +209,13 @@ function assertNoBlockingDiagnostics(routeResult) {
 function assertFirstViewport(home) {
   assert(includesAll(home.viewportText, [
     "Robson AI",
-    "Turning data into intelligence",
-    "surveying-led AI software",
-    "people who run sites",
-    "structured, professional intelligence",
-    "See What We Do",
-    "Why Robson AI",
-    "One brand. Three product lines"
-  ]), `Homepage first viewport should match the supplied redesign direction and explain the proposition, audience and next actions. Actual viewport text: ${home.viewportText}`);
+    "Practical software for building surveying",
+    "Complex buildings still need qualified people",
+    "greater clarity, coordination and confidence",
+    "Explore how Building Analyst works",
+    "Discuss a workflow",
+    "Software supports the process. Professionals make the decisions"
+  ]), `Homepage first viewport should explain the professional proposition and next actions. Actual viewport text: ${home.viewportText}`);
 }
 
 function assertProofStatus(home, buildingAnalyst) {
@@ -222,12 +223,18 @@ function assertProofStatus(home, buildingAnalyst) {
     "Building Analyst",
     "BuildScan",
     "Property operations",
-    "evidence, assessment context and professional review together",
-    "BuildScan adds the model-view layer",
-    "Workflow proof only",
-    "Opt-in 3D model preview with static fallback",
-    "Pricing will stay simple"
-  ]), "Homepage should match the zip-style IA while labelling active workstream proof, pricing maturity and the BuildScan interactive candidate state.");
+    "In development",
+    "Working local product",
+    "Future exploration",
+    "A connected evidence ecosystem is a future possibility, not a current capability",
+    "Guided professional review",
+    "Select an issue",
+    "Roof drainage",
+    "Service penetration",
+    "Building Analyst supports the workflow. A qualified professional evaluates and approves the finding",
+    "Real BuildScan model view",
+    "No maps, floor plans or connected customer systems are claimed"
+  ]), "Homepage should separate the three workstreams, label maturity and use real BuildScan proof without implying an integration.");
 
   assert(includesAll(buildingAnalyst.text, [
     "early professional product direction",
@@ -237,14 +244,34 @@ function assertProofStatus(home, buildingAnalyst) {
   ]), "Building Analyst should label maturity, example status and judgement boundaries.");
 }
 
+function assertExplorerCorrespondence(home) {
+  const issueButtons = home.controls.buttons.filter((button) => button.analyticsId.startsWith("building-analyst-issue-list-"));
+  const markerButtons = home.controls.buttons.filter((button) => button.analyticsId.startsWith("building-analyst-issue-marker-"));
+  const expected = [
+    ["roof-drainage", "Issue 1: Roof drainage"],
+    ["masonry", "Issue 2: Masonry"],
+    ["glazing-sealant", "Issue 3: Glazing and sealant"],
+    ["entrance-threshold", "Issue 4: Entrance threshold"],
+    ["cladding-joint", "Issue 5: Cladding joint"],
+    ["service-penetration", "Issue 6: Service penetration"]
+  ];
+
+  assert(issueButtons.length === 6, `Building Analyst explorer should have exactly six numbered issue-list controls; actual: ${issueButtons.length}.`);
+  assert(markerButtons.length === 6, `Building Analyst explorer should have exactly six matching image markers; actual: ${markerButtons.length}.`);
+  expected.forEach(([issueId, label], index) => {
+    assert(issueButtons[index]?.issueId === issueId && issueButtons[index]?.ariaLabel === label, `Issue list item ${index + 1} should be ${label}; actual: ${JSON.stringify(issueButtons[index])}.`);
+    assert(markerButtons[index]?.issueId === issueId && markerButtons[index]?.ariaLabel === label, `Image marker ${index + 1} should match ${label}; actual: ${JSON.stringify(markerButtons[index])}.`);
+  });
+}
+
 function assertReleaseStageClaims(allText) {
   const requiredCaution = [
     "early",
     "exploration",
-    "opt-in 3d model",
-    "not a finished suite",
-    "not replacing judgement",
-    "does not claim live council",
+    "opt-in viewer",
+    "not a current capability",
+    "no current product or live system integration",
+    "professionals make the decisions",
     "no contact form"
   ];
 
@@ -274,11 +301,9 @@ function assertAudiencePaths(home, who) {
 
   assert(includesAll(linkText, [
     "Explore Building Analyst",
-    "View operations path",
-    "Discuss inspection evidence",
-    "See BuildScan model view",
-    "Email the Workflow"
-  ]), "Homepage/Who It Fits should provide one-click paths for surveyors, operations, inspection, 3D capture and workflow conversations.");
+    "View the interactive proof",
+    "Email the workflow"
+  ]), "Homepage/Who It Fits should provide one-click paths for Building Analyst, real BuildScan proof and workflow conversations.");
 }
 
 function assertCtaHierarchy(home, buildingAnalyst, who, privacy, notFound, holding) {
@@ -307,19 +332,20 @@ function assertCtaHierarchy(home, buildingAnalyst, who, privacy, notFound, holdi
 function assertTrustProof(home, privacy, who) {
   const combined = `${home.text} ${privacy.text} ${who.text}`;
   assert(includesAll(combined, [
-    "building surveying",
-    "professional judgement",
-    "not a finished suite",
+    "surveying practice",
+    "professionals make the decisions",
+    "separate product directions today",
+    "not a current capability",
     "early-stage",
-    "Optional analytics stays inactive until a real GA4 Measurement ID is configured",
-    "does not use a contact form",
-    "customer data store"
+    "optional analytics",
+    "No contact form is used",
+    "real BuildScan model view"
   ]), "Public copy should expose professional context, judgement boundaries, maturity boundaries and privacy posture before contact.");
 }
 
 function assertMotionAndInteraction(stylesText, home) {
   assert(stylesText.includes("prefers-reduced-motion"), "Stylesheet should include reduced-motion support.");
-  assert(home.text.includes("Loads an optimised preview model only when requested"), "BuildScan interactive proof should remain opt-in with static fallback language.");
+  assert(includesAll(home.text, ["opt-in viewer", "static model image remains available", "Load interactive 3D model"]), "BuildScan interactive proof should remain opt-in with static fallback language.");
 }
 
 async function writeJson(filePath, value) {
@@ -347,6 +373,7 @@ export async function runProductDesignAcceptanceSmoke({
 
     assertFirstViewport(results["/"]);
     assertProofStatus(results["/"], results["/building-analyst.html"]);
+    assertExplorerCorrespondence(results["/"]);
     assertReleaseStageClaims(allText);
     assertAudiencePaths(results["/"], results["/who-its-for.html"]);
     assertCtaHierarchy(
@@ -369,6 +396,7 @@ export async function runProductDesignAcceptanceSmoke({
       acceptanceChecks: [
         "first viewport",
         "proof status",
+        "one-to-one explorer issue correspondence",
         "release-stage claims",
         "audience paths",
         "CTA hierarchy",

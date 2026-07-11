@@ -246,7 +246,7 @@ async function runFakeIdContractFlow(browser, baseUrl) {
     await page.getByRole("button", { name: "Accept analytics" }).click();
     await page.waitForTimeout(250);
 
-    await page.locator('[data-analytics-id="hero-see-what-we-do"]').click();
+    await page.locator('[data-analytics-id="hero-explore-building-analyst"]').click();
     await page.locator('[data-analytics-id="nav-about"]').click();
     await page.locator('[data-analytics-id="footer-contact"]').click();
     await page.locator('[data-analytics-id="contact-email"]').dispatchEvent("click");

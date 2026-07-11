@@ -13,6 +13,7 @@ const ALLOWED_DIRTY_PATTERNS = [
   /^README\.md$/,
   /^building-analyst\.html$/,
   /^buildscan-viewer\.html$/,
+  /^design-qa\.md$/,
   /^docs\/codex\/reference\/globe-loader(?:\/.*|-imports\/.*)$/,
   /^docs\/.*\.md$/,
   /^holding\.html$/,
@@ -29,6 +30,8 @@ const ALLOWED_DIRTY_PATTERNS = [
   /^assets\/globe-loader\/world-countries-lite\.json$/,
   /^assets\/robson-ai-icon-v3-.*\.(png|webp)$/,
   /^assets\/showcase\/buildscan-ludgershall-(model-view-\d+\.webp|public\.glb)$/,
+  /^assets\/showcase\/building-analyst-leisure-centre-explorer\.webp$/,
+  /^assets\/showcase\/robson-ai-building-surveying-(ipad-hero-v4|interactive-hero-v5)\.webp$/,
   /^assets\/vendor\/three-0\.164\.1\/(LICENSE|build\/three\.module\.js|examples\/jsm\/(controls\/OrbitControls\.js|libs\/meshopt_decoder\.module\.js|loaders\/GLTFLoader\.js|utils\/BufferGeometryUtils\.js))$/
 ];
 
@@ -51,6 +54,9 @@ const FILE_BUDGETS = [
   { path: "assets/showcase/buildscan-ludgershall-model-view-420.webp", maxBytes: 50_000 },
   { path: "assets/showcase/buildscan-ludgershall-model-view-840.webp", maxBytes: 100_000 },
   { path: "assets/showcase/buildscan-ludgershall-public.glb", maxBytes: 1_500_000 },
+  { path: "assets/showcase/building-analyst-leisure-centre-explorer.webp", maxBytes: 400_000 },
+  { path: "assets/showcase/robson-ai-building-surveying-ipad-hero-v4.webp", maxBytes: 400_000 },
+  { path: "assets/showcase/robson-ai-building-surveying-interactive-hero-v5.webp", maxBytes: 400_000 },
   { path: "assets/vendor/three-0.164.1/build/three.module.js", maxBytes: 1_500_000 },
   { path: "assets/vendor/three-0.164.1/examples/jsm/controls/OrbitControls.js", maxBytes: 75_000 },
   { path: "assets/vendor/three-0.164.1/examples/jsm/loaders/GLTFLoader.js", maxBytes: 150_000 },

@@ -1,21 +1,31 @@
-# Release Staging Manifest - Secondary Page Shell Consistency
+# Release Staging Manifest - Current Main Building Analyst Integration
 
-Last updated: 2026-07-09 18:37 BST
+Last updated: 2026-07-11 21:55 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
-Branch: `codex/live-globe-loader-fix`
-Status: commit `58a46ff` pushed; Netlify preview deploy `6a4e942228cf55b0c6ea142a` passed; Netlify production deploy `6a4fd1b93f48c01f6255327c` is live at `https://robsonai.co.uk`; production gate passed
+Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
+Branch: `codex/current-main-building-analyst-integration`
+Status: Wayne authorized isolated integration from current `main`, a scoped commit and a fresh non-production preview; no branch push, PR or production deploy is approved
 
 ## 1. Purpose
 
 This manifest defines the intended file scope for:
 
-`secondary-page-shell-consistency`
+`current-main-building-analyst-integration`
 
-The live audit after the Building Analyst release showed `who-its-for.html` and `privacy.html` still used the older site shell while Home and Building Analyst used the approved zip-style redesign shell. This candidate brings those secondary pages into the same top-level visual system without rewriting their content.
+This candidate integrates the approved interactive Building Analyst homepage work from commit `f55da55` onto current `main` commit `26bf51d`, preserving the later live-site secondary-page, QA, security and release-document improvements.
 
-This candidate:
+This candidate preserves the earlier local redesign and:
+
+- uses two equal-status surveyors, both carrying subtly engraved iPads with no visible or invented app UI
+- adds two unnumbered hero issue points with attached hover/focus/click reveals
+- adds a separate low-rise building explorer with one synchronized issue-list/photo-marker numbering system from 1–6
+- keeps Building Analyst illustrative and in development, with qualified professionals responsible for evaluation and approval
+- preserves the existing decorative globe, real BuildScan proof, privacy and email-first boundaries
+
+The current dirty-file sections and staging command are authoritative for this integration candidate.
+
+Preserved current-main details:
 
 - updates `who-its-for.html` and `privacy.html` to use the zip-style icon wordmark, Home/Product/Pricing/About navigation, header email, blue "See What We Do" CTA and zip-style footer
 - preserves existing Who It Is For and Privacy page content, privacy wording, cautious product maturity boundaries, no-form contact posture and optional analytics wording
@@ -34,14 +44,13 @@ Do not run `git add .` for this candidate.
 
 ## 2. Approval Boundary
 
-Wayne approved this secondary-page candidate for exact-path staging, commit, branch push, Netlify preview deploy and deployed preview-gate validation by choosing option `1` on 2026-07-08.
+Wayne approved isolated worktree creation from current `main`, integration of the approved interactive candidate, exact-path staging, a scoped local commit, a fresh non-production Netlify preview and deployed preview-gate validation.
 
-Wayne approved production deployment and production-gate verification by choosing option `1` after the deployed preview gate passed.
+Wayne must approve before Codex performs any of these actions:
 
-Wayne must approve before Codex performs any future instances of these actions:
-
-- running another production deploy
-- rolling back production
+- branch push or GitHub PR
+- production deployment or production verification
+- rollback
 
 Still out of scope without a separate approval:
 
@@ -54,17 +63,23 @@ Still out of scope without a separate approval:
 
 ## 3. Current Source-Control Scope
 
-Current secondary-page shell candidate state:
+Current integration candidate state:
 
-- Base branch: `codex/live-globe-loader-fix` at `8c595f6`
-- Working branch: `codex/live-globe-loader-fix`
-- Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
-- Commit `8c595f6` is the current live production source state before this local follow-up candidate.
-- 15 modified tracked files.
-- 0 untracked candidate files.
-- Total dirty candidate files: 15.
+- Base branch: `main` at `26bf51d`.
+- Working branch: `codex/current-main-building-analyst-integration`.
+- Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`.
+- Approved source change: `f55da55`, applied without committing and resolved against current `main`.
+- 12 modified tracked files.
+- 4 untracked candidate files.
+- Total dirty candidate files: 16.
 
 Current validation evidence:
+
+- Current-main preservation check passed: `building-analyst.html`, `who-its-for.html`, `privacy.html`, `404.html` and `holding.html` have no diff from current `main` commit `26bf51d`.
+- Targeted product/design, keyboard, responsive and rendered smoke tests passed; the rendered homepage shows one synchronized 1-6 issue-list/photo-marker system with every marker on the matching physical feature.
+- Full `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-11T20-52-37-663Z/release-local-gate.json`.
+- Measurement evidence passed with Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40s; axe reported zero violations across six checked routes. Artifact: `output/measurement/evidence-2026-07-11T20-54-27-650Z`.
+- Release inventory found zero secret findings and zero external GLB URI references. Production dependencies have zero vulnerabilities; 17 moderate dev/release-tooling advisories and unavailable local Firefox/WebKit binaries remain warning-only residuals.
 
 - Live current-state audit before the fix found no 4xx/5xx resources, no failed navigation and no page-level horizontal overflow, but identified the Who/Privacy pages as visually inconsistent with the approved zip-style Home/Building Analyst shell. Artifact: `output/playwright/current-site-quality-audit-2026-07-08T05-40-09-880Z/summary.json`.
 - `npx --no-install html-validate --rule doctype-style:off --rule void-style:off who-its-for.html privacy.html` passed.
@@ -96,32 +111,31 @@ This local candidate currently modifies:
 
 ```text
 docs/codex/RELEASE_STAGING_MANIFEST.md
-docs/codex/RELEASE_APPROVAL_PACKET.md
-docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md
-docs/codex/GOAL_COMPLETION_AUDIT.md
-docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md
-docs/codex/PUBLISH_READINESS_AUDIT.md
 docs/codex/TRACKER.md
-404.html
-building-analyst.html
-holding.html
 index.html
-privacy.html
+script.js
+scripts/keyboard-release-smoke.mjs
+scripts/measurement-smoke.mjs
+scripts/product-design-acceptance-smoke.mjs
+scripts/release-candidate-inventory.mjs
+scripts/release-security-smoke.mjs
 scripts/rendered-release-smoke.mjs
+scripts/responsive-route-smoke.mjs
 styles.css
-who-its-for.html
 ```
 
 ## 5. Untracked Candidate Files
 
-No untracked files are expected in this candidate.
-
 ```text
+assets/showcase/building-analyst-leisure-centre-explorer.webp
+assets/showcase/robson-ai-building-surveying-interactive-hero-v5.webp
+assets/showcase/robson-ai-building-surveying-ipad-hero-v4.webp
+design-qa.md
 ```
 
 ## 6. Asset Size Watch
 
-No binary public assets are changed in this candidate.
+Three WebP assets are added in this candidate. The homepage references the integrated hero and explorer assets; the prior approved iPad hero is retained as design-history evidence.
 
 Existing watched release assets remain governed by `npm run qa:release-inventory`, including:
 
@@ -150,25 +164,26 @@ secrets, credentials, keys, certificates, profiles, or generated screenshots
 
 ## 8. Staging Command After Approval Only
 
-Wayne approved exact-path staging on 2026-07-08. Use this explicit path list rather than `git add .`.
+Wayne approved exact-path staging for this integration on 2026-07-11. Use this explicit path list rather than `git add .`.
 
 ```bash
 git add -- \
-  404.html \
-  building-analyst.html \
-  docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md \
-  docs/codex/GOAL_COMPLETION_AUDIT.md \
-  docs/codex/PUBLISH_READINESS_AUDIT.md \
-  docs/codex/RELEASE_APPROVAL_PACKET.md \
+  assets/showcase/building-analyst-leisure-centre-explorer.webp \
+  assets/showcase/robson-ai-building-surveying-interactive-hero-v5.webp \
+  assets/showcase/robson-ai-building-surveying-ipad-hero-v4.webp \
+  design-qa.md \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
-  docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md \
-  holding.html \
   index.html \
-  privacy.html \
+  script.js \
+  scripts/keyboard-release-smoke.mjs \
+  scripts/measurement-smoke.mjs \
+  scripts/product-design-acceptance-smoke.mjs \
+  scripts/release-candidate-inventory.mjs \
+  scripts/release-security-smoke.mjs \
   scripts/rendered-release-smoke.mjs \
-  styles.css \
-  who-its-for.html
+  scripts/responsive-route-smoke.mjs \
+  styles.css
 ```
 
 ## 9. Required Checks Before Commit
@@ -193,74 +208,26 @@ Then confirm the staged file set matches this manifest before committing.
 
 ## 10. Checks After Preview Deploy
 
-Required after an approved Netlify preview deploy:
+Required after the authorized fresh Netlify preview deploy:
 
 ```bash
 QA_BASE_URL="<cache-bust-preview-url>" npm run qa:release:preview
 ```
 
-- Preview deploy: `https://secondary-page-shell-preview--robson-ai-website.netlify.app`.
-- Netlify deploy id: `6a4e942228cf55b0c6ea142a`.
-- Preview gate artifact: `output/release-preview-gate/gate-2026-07-08T18-18-45-862Z/release-preview-gate.json`.
-- Result: pass, 14 steps.
+- Fresh integration preview: pending.
+- Fresh deployed preview gate: pending.
 
 ## 11. Checks After Production Deploy
 
-Required after production deployment:
+No production deployment is approved. If Wayne later approves production, use the validated integrated commit and recheck the current rollback target first.
 
 ```bash
 QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
 ```
 
-- Production URL: `https://robsonai.co.uk`
-- Previous production deploy before this candidate: `6a4d6ccccf0a8038379c9abb` for commit `8c595f6`.
-- Candidate production deploy: `6a4fd1b93f48c01f6255327c`
-- Production URL: `https://robsonai.co.uk`
-- Unique deploy URL: `https://6a4fd1b93f48c01f6255327c--robson-ai-website.netlify.app`
-- Deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a4fd1b93f48c01f6255327c`
-- Production gate artifact: `output/release-production-gate/gate-2026-07-09T16-53-04-204Z/release-preview-gate.json`
-- Fresh continuation production gate artifact: `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json`
-- Result: pass, 14 steps on both production gates.
-- Production gate notes: release inventory dirtyCount 2 from local post-preview docs-only evidence notes; zero secret findings; GLB external URI references 0; deployed headers/source-deny, BuildScan viewer, keyboard, semantic/SEO, product/design, responsive, visual polish, rendered screenshot and measurement smokes passed.
-- Warning-only residuals: dev/release tooling dependency advisories remain at 17 moderate findings with production dependency footprint 0 vulnerabilities; local Firefox/WebKit Playwright binaries are unavailable, while Chromium passed.
+- Current production URL: `https://robsonai.co.uk`.
+- Current production deploy before this candidate: `6a4fdd21720e0b000807443c` for GitHub `main` commit `26bf51d`.
 
 ## 12. Rollback Path
 
-If this candidate causes a live regression after deployment, restore the previous production deploy `6a4d6ccccf0a8038379c9abb` unless Wayne confirms a different rollback target first. If a local/docs regression is found before deployment, restore the affected manifest-approved files to the prior committed state and rerun the relevant checks before another decision.
-
-## 13. Previous Production Baseline
-
-The previous completed Building Analyst homepage-design alignment remains live at production before this candidate:
-
-- Final source commit: `8c595f6`
-- Production deploy: `6a4d6ccccf0a8038379c9abb`
-- Production gate: `output/release-production-gate/gate-2026-07-07T21-17-25-642Z/release-preview-gate.json`
-- Live route verification: `/building-analyst` and `/building-analyst.html` served the new homepage-style Building Analyst page with no old lens UI.
-
-## 14. Source-Control And Docs Closeout Plan
-
-This is the remaining closeout after the production-gated public website release.
-
-Current state:
-
-- Live production source commit: `58a46ff`.
-- Live production deploy: `6a4fd1b93f48c01f6255327c`.
-- Live production URL: `https://robsonai.co.uk`.
-- Default branch remote: `origin/main` at `8c595f6`.
-- `origin/main` is an ancestor of `58a46ff`, so the live branch is one commit ahead and can be fast-forwarded.
-- Local docs-only closeout files currently dirty: `docs/codex/TRACKER.md`, `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/GOAL_COMPLETION_AUDIT.md`, and `docs/codex/PUBLISH_READINESS_AUDIT.md`.
-- Docs-only closeout release inventory passed with artifact `output/release-inventory/inventory-2026-07-09T17-16-11-796Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings, GLB external URI references 0.
-
-Recommended approval-gated closeout sequence:
-
-1. Stage only the four docs-only closeout files listed above.
-2. Commit them on `codex/live-globe-loader-fix` as final evidence preservation.
-3. Push `codex/live-globe-loader-fix`.
-4. Fast-forward `main` to the approved live branch tip.
-5. Push `main`.
-6. If Netlify creates a new production deploy from the `main` push, verify it is the same site state plus docs-only evidence and run `QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production`.
-7. Update the tracker with the final main/source-control closeout evidence.
-
-This closeout must not include unrelated edits, dependency remediation, DNS/domain changes, analytics/forms/customer-data handling, external messages, rollback, or new production features.
-
-Wayne approved this `source-control-docs-closeout` sequence by choosing option `1` on 2026-07-09 at 18:37 BST.
+If this candidate causes a live regression after a separately approved production deployment, restore the production deploy that is live immediately before that action; currently `6a4fdd21720e0b000807443c`, subject to recheck. If a local regression is found before deployment, abandon the isolated worktree or restore only its manifest-approved files and rerun validation. Do not alter the dirty primary checkout.

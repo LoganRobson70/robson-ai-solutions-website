@@ -1,9 +1,9 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-09 18:37 BST
+Last updated: 2026-07-11 21:55 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Current branch: `codex/live-globe-loader-fix` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
+Current branch: `codex/current-main-building-analyst-integration` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 
 ## 1. Current Objective
 
@@ -11,14 +11,14 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- The latest approved website release is live at `https://robsonai.co.uk` from commit `58a46ff` as Netlify production deploy `6a4fd1b93f48c01f6255327c`.
-- Fresh production verification passed on 2026-07-09 with artifact `output/release-production-gate/gate-2026-07-09T17-03-13-825Z/release-preview-gate.json`.
-- The remaining active tranche is `source-control-docs-closeout`: preserve the final evidence docs and align `origin/main` with the live commit so future main-based Netlify deploys do not regress the secondary-page shell consistency work.
-- `origin/main` is an ancestor of the live branch and is one commit behind at `8c595f6`; the live branch `origin/codex/live-globe-loader-fix` is at `58a46ff`.
-- Local uncommitted work is docs-only closeout evidence in `docs/codex/TRACKER.md`, `docs/codex/RELEASE_STAGING_MANIFEST.md`, `docs/codex/GOAL_COMPLETION_AUDIT.md`, and `docs/codex/PUBLISH_READINESS_AUDIT.md`.
-- Docs-only closeout release inventory passed with artifact `output/release-inventory/inventory-2026-07-09T17-16-11-796Z/release-candidate-inventory.json`; dirtyCount 4, zero secret findings, GLB external URI references 0.
-- Wayne approved option `1`, `source-control-docs-closeout`, on 2026-07-09 at 18:37 BST. Approval covers committing the four evidence docs, pushing `codex/live-globe-loader-fix`, fast-forwarding and pushing `main`, allowing the expected Netlify deploy if triggered, and running production verification again.
-- Further production deploys after this closeout, rollback, PR changes, DNS/domain changes, analytics/forms changes, customer-data handling and external messages remain approval-gated.
+- Execute the authorized `current-main-building-analyst-integration` tranche from current `main` commit `26bf51d`, preserving all later live-site improvements.
+- Present Building Analyst, BuildScan and Property Operations truthfully: they are separate directions today; Building Analyst is in development, BuildScan is a working local product, and Property Operations is future exploration.
+- Use no invented app screenshots, maps, floor plans or integration visuals. The hero building image is labelled marketing imagery; BuildScan uses the real Ludgershall model proof.
+- Preserve the restored spinning Robson AI globe as a decorative brand/technology element, not a GIS or connected-product claim.
+- Use the approved two-surveyor hero direction: two professionals of different ethnic backgrounds are shown at equal status, both carrying dark iPads with subtle monochrome engraved Robson AI V3 marks and no visible or invented UI.
+- Keep the hero interaction quick and unnumbered. Use one synchronized 1–6 numbering system only in the detailed Building Analyst explorer, with every image marker placed directly on the physical feature named by its matching issue-list control.
+- Resolve the approved interactive commit `f55da55` onto current `main`, run the full local gate, create a fresh non-production preview and run the deployed preview gate.
+- No branch push, PR or production deploy is approved.
 
 Success means:
 
@@ -34,6 +34,41 @@ Success means:
 - Luffu/Steno/Unfold motion references are captured as `docs/codex/MOTION_REFERENCE_BRIEF.md`; they are not approved implementation scope unless Wayne chooses the motion-polish alternative.
 - Completion status is audited in `docs/codex/GOAL_COMPLETION_AUDIT.md`; the public website release is live and production-gated, but the full goal remains active until source-control/docs closeout is complete.
 - Production release execution is defined in `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the 2026-06-28 publish was executed after Wayne approved option `1`.
+
+## 1A. Active Integration Tranche
+
+Tranche name: `current-main-building-analyst-integration`
+Status: integrated and locally release-gated in an isolated worktree; scoped commit and fresh non-production preview pending; current `main` preserved; no push or production deploy approved
+Started: 2026-07-11 21:31 BST
+
+Scope:
+
+- Start from current `main` commit `26bf51d`.
+- Integrate the approved interactive homepage change from commit `f55da55` while preserving later secondary-page, QA, security and release-document improvements.
+- Preserve the two-surveyor hero, unnumbered quick hero issues, synchronized 1–6 Building Analyst explorer, professional-review boundaries, decorative globe and real BuildScan proof.
+- Run the complete local release gate, create a scoped integration commit, deploy a fresh non-production Netlify preview and run the deployed preview gate.
+
+Permission envelope:
+
+- Approved: isolated worktree/branch, scoped local edits and conflict resolution, local validation, exact-path staging, one integration commit, fresh non-production preview and deployed preview validation.
+- Not approved: branch push, PR, production deploy or verification, rollback, DNS/domain changes, analytics/forms changes, customer-data handling, dependency installation/remediation, external messages or destructive Git actions.
+
+Done criteria:
+
+- No current-`main` secondary-page or release-safety regression.
+- Integrated homepage and explorer match the approved visual and interaction contract.
+- Local 37-step gate passes from the isolated worktree.
+- Fresh deployed preview gate passes all 14 steps.
+- Tracker records the integration commit, preview, evidence, residual risks and production-readiness decision.
+
+Local integration evidence:
+
+- The approved `f55da55` change was resolved onto current `main` commit `26bf51d` without changing `building-analyst.html`, `who-its-for.html`, `privacy.html`, `404.html` or `holding.html` relative to current `main`.
+- Conflict-marker scan, `git diff --check`, JavaScript syntax checks and HTML validation passed.
+- Targeted product/design, keyboard, responsive and rendered smoke tests passed; rendered evidence confirms the synchronized issue-list/photo-marker numbering and the preserved current-main secondary pages.
+- Full `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-11T20-52-37-663Z/release-local-gate.json`.
+- Local measurement evidence passed with Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40s; axe reported zero violations across six checked routes. Artifact: `output/measurement/evidence-2026-07-11T20-54-27-650Z`.
+- Release inventory found zero secret findings and zero external GLB URI references. Production dependency footprint is zero vulnerabilities. Known warning-only residuals are 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries; neither changes the deployed static production dependency footprint.
 
 ## 2. Completed Secondary-Page Shell Candidate
 
@@ -357,6 +392,82 @@ Recommended next decision:
 3. Leave PR #3 open as a source-control alignment hold while production deploy `6a4a38a0eef7cd2aee692a52` remains live.
 
 ## 3. Completed Globe Loader Production Tranche
+
+Tranche name: `building-analyst-interactive-advertising-local`
+Status: complete locally; design and interaction QA passed; Wayne authorized a scoped commit and non-production preview on 2026-07-11; no push or production deploy is approved
+Started: 2026-07-11
+
+Scope:
+
+- Replace the prior one-surveyor hero with an advertising-led scene showing two equal-status surveying professionals, both carrying subtly engraved iPads.
+- Lead with the proposition that complex buildings still need qualified people and that Robson AI supports clarity, coordination and confidence.
+- Add two unnumbered quick hero issue points with attached hover/focus/click reveals.
+- Add a separate low-rise public-estate-style Building Analyst explorer with six visible example conditions.
+- Render the issue list and photo markers from one shared 1–6 data source; keep workflow stages unnumbered.
+- Keep evidence capture, professional evaluation, review and reporting connected without claiming automatic diagnosis, automatic reporting or replacement of professional judgement.
+- Validate visual placement, synchronized interaction, keyboard use, responsive behaviour, product claims and measurement locally.
+
+Permission envelope:
+
+- Allowed: local source, asset, test, tracker and QA-report changes; local servers; local browser/Playwright validation; stage the exact manifest scope; create the scoped candidate commit; deploy that committed candidate to a non-production Netlify preview; run deployed preview validation.
+- Not approved: branch push, PR, production deploy, DNS/domain change, analytics enablement, form/customer-data capture, external messages, destructive Git actions, or dependency installation/remediation.
+
+Done criteria:
+
+- The hero uses the approved two-surveyor image and contains no visible or invented app UI.
+- Hero issue points are unnumbered and their reveals point directly to the selected feature.
+- The detailed explorer has exactly six list controls and six matching photo markers, numbered 1–6 with no competing numbering system.
+- Every detailed marker sits directly on its named feature and list/marker/panel state remains synchronized.
+- Desktop, mobile, keyboard, product-design, measurement and rendered-route QA pass; `design-qa.md` ends `final result: passed`.
+
+Product-truth decisions:
+
+- Building Analyst and BuildScan do not connect today. A connected evidence ecosystem may be explored later but is not presented as a current capability.
+- Building Analyst public workflow is grounded in the current Field Workbench direction: set up, capture evidence, analyse and discuss, professional review, report and export.
+- BuildScan public proof is grounded in the current local macOS product: import/process drone media, inspect models and export outputs. The Ludgershall model image and opt-in GLB viewer are the only product proof used on the homepage.
+- Property Operations remains text-only future exploration around attention, ownership, blockers and next action. No maps, floor plans or live customer-system connections are claimed.
+- Unfinished Building Analyst and BuildScan app screenshots were reviewed for product understanding but are not used as public marketing screenshots.
+- Wayne requested the spinning globe back. The existing renderer and local country atlas were restored as an explicitly decorative hero overlay.
+- The current hero asset is `assets/showcase/robson-ai-building-surveying-interactive-hero-v5.webp`: two equal-status surveyors, both carrying dark iPads with subtle engraved V3 icon marks. The screens are not visible and no product UI is invented.
+- The detailed explorer asset is `assets/showcase/building-analyst-leisure-centre-explorer.webp`. Its six physical features are gutter/downpipe junction, masonry crack, glazing perimeter, entrance threshold, cladding joint and service penetration.
+- Hero points are intentionally unnumbered. The detailed explorer uses exactly one numbering system, with list issue and photo marker pairs 1–6 generated from the same issue data. Workflow labels are not numbered.
+- Explorer copy is illustrative and preserves professional responsibility: Building Analyst supports capture, evaluation, review and reporting; a qualified professional evaluates and approves the finding.
+
+Validation evidence:
+
+- `node --check` passed for `script.js` and the updated smoke scripts; `html-validate`, `git diff --check`, responsive, keyboard, product-design, semantic/SEO and measurement checks passed.
+- Responsive route smoke passed 21 checks: `output/responsive-route/smoke-2026-07-10T21-57-42-316Z/responsive-route-smoke.json`.
+- Keyboard smoke passed: `output/playwright/keyboard-release-smoke-2026-07-10T21-57-42-316Z`.
+- Product/design acceptance passed across seven public routes: `output/product-design-acceptance/smoke-2026-07-10T22-01-09-836Z/product-design-acceptance-smoke.json`.
+- BuildScan direct and embedded viewer smoke passed, including keyboard controls and interactive-ready state: `output/buildscan-viewer/smoke-2026-07-10T22-01-50-966Z`.
+- Measurement smoke passed route, consent, mailto, copy-email and analytics-event checks: `output/measurement/smoke-2026-07-10T22-01-50-966Z`.
+- Semantic/SEO smoke passed seven pages: `output/semantic-seo/smoke-2026-07-10T22-01-50-966Z/semantic-seo-smoke.json`.
+- Rendered route smoke passed desktop/mobile homepage, BuildScan states and supporting public routes: `output/playwright/rendered-release-smoke-2026-07-10T22-03-24-210Z`.
+- Side-by-side visual evidence: `output/design-qa-2026-07-10/reference-vs-implementation-final.png`; focused hero comparison: `output/design-qa-2026-07-10/hero-focus-comparison.png`.
+- `design-qa.md` records the Product Design comparison history and `final result: passed`.
+- Building-surveying hero follow-up passed fresh desktop 1440 × 1024 and mobile 390 × 844 browser captures with the surveyor and globe visible, no horizontal overflow and no console warnings/errors: `output/design-qa-2026-07-11/desktop-surveying-hero.png` and `output/design-qa-2026-07-11/mobile-surveying-hero-figure-v2.png`.
+- Fresh rendered-route smoke passed after the iPad replacement: `output/playwright/rendered-release-smoke-2026-07-11T06-26-13-692Z`.
+- Fresh responsive smoke passed 21 checks: `output/responsive-route/smoke-2026-07-11T06-26-13-692Z/responsive-route-smoke.json`.
+- Fresh Product Design acceptance passed seven public routes: `output/product-design-acceptance/smoke-2026-07-11T06-26-13-692Z/product-design-acceptance-smoke.json`.
+- Focused iPad detail and final desktop/mobile evidence: `output/design-qa-2026-07-11/ipad-detail.png`, `output/design-qa-2026-07-11/desktop-surveying-ipad-hero.png`, and `output/design-qa-2026-07-11/mobile-surveying-ipad-hero-figure.png`.
+- Interactive hero and explorer source, copy, shared numbering and accessibility checks passed `node --check`, `html-validate` and `git diff --check`.
+- Product/design acceptance passed across six public routes and now enforces exactly six issue-list controls and six matching image markers: `output/product-design-acceptance/smoke-2026-07-11T17-52-48-552Z/product-design-acceptance-smoke.json`.
+- Responsive route smoke passed 21 checks: `output/responsive-route/smoke-2026-07-11T17-52-07-475Z/responsive-route-smoke.json`.
+- Keyboard smoke passed the hero CTA, one-to-one explorer count, Arrow-key selection, synchronized list/marker/panel state, marker activation and existing public journeys: `output/playwright/keyboard-release-smoke-2026-07-11T17-57-18-445Z`.
+- Rendered route smoke passed desktop/mobile homepage, BuildScan states and supporting public routes: `output/playwright/rendered-release-smoke-2026-07-11T17-57-18-445Z`.
+- Measurement smoke passed routes, consent, mailto/copy, analytics contract and proof-interaction events: `output/measurement/smoke-2026-07-11T17-57-18-445Z`.
+- Direct in-app browser inspection confirmed the tooltip attaches to its hero marker and detailed marker placement matches the gutter/downpipe junction, crack, glazing perimeter, threshold, cladding joint and service penetration.
+- The approved hero photograph was exported at a web-sized 1200 × 800 and 98.6 KB, and the first-screen reveal delay was removed so the headline renders immediately; the agreed composition and marker coordinates are unchanged.
+- Final full local release gate passed all 37 steps: `output/release-local-gate/gate-2026-07-11T18-15-37-643Z/release-local-gate.json`.
+- Final measurement evidence reported zero axe violations across six routes and Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, LCP about 2.40 seconds and CLS 0: `output/measurement/evidence-2026-07-11T18-17-30-208Z`.
+- Final rendered evidence: `output/playwright/rendered-release-smoke-2026-07-11T18-17-09-865Z`; final explorer keyboard evidence: `output/playwright/keyboard-release-smoke-2026-07-11T18-15-55-090Z`.
+- Advisory only: Chromium passed; local Firefox and WebKit binaries remain unavailable. Production dependencies have zero known vulnerabilities; dev/release tooling retains 17 moderate advisories.
+
+Next recommended decision:
+
+- Complete the authorized commit and non-production preview audit. If all deployed gates pass, present Wayne with an evidence-backed production recommendation and an explicit production-approval phrase; do not deploy production without that approval.
+
+## 2A. Previous Completed Tranche
 
 Tranche name: `globe-loader-hero-integration`
 Status: completed for production; atlas-detail Globe Loader polish, Globe Loader reference imports, compact atlas asset and privacy service disclosure baseline are live on `https://robsonai.co.uk` from commit `db3922c` as Netlify production deploy `6a4a38a0eef7cd2aee692a52`; production release gate passed
