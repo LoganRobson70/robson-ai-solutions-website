@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-11 21:55 BST
+Last updated: 2026-07-11 22:00 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/current-main-building-analyst-integration` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
@@ -38,7 +38,7 @@ Success means:
 ## 1A. Active Integration Tranche
 
 Tranche name: `current-main-building-analyst-integration`
-Status: integrated and locally release-gated in an isolated worktree; scoped commit and fresh non-production preview pending; current `main` preserved; no push or production deploy approved
+Status: completed in an isolated worktree; integration commit `366a713` created; fresh non-production preview deploy `6a52adffe734989d860e7768` and its 14-step gate passed; current `main` and production preserved; no push or production deploy approved
 Started: 2026-07-11 21:31 BST
 
 Scope:
@@ -69,6 +69,10 @@ Local integration evidence:
 - Full `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-11T20-52-37-663Z/release-local-gate.json`.
 - Local measurement evidence passed with Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40s; axe reported zero violations across six checked routes. Artifact: `output/measurement/evidence-2026-07-11T20-54-27-650Z`.
 - Release inventory found zero secret findings and zero external GLB URI references. Production dependency footprint is zero vulnerabilities. Known warning-only residuals are 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries; neither changes the deployed static production dependency footprint.
+- Scoped integration commit created: `366a713` (`Integrate interactive Building Analyst experience on current main`); no branch push or PR was performed.
+- Fresh non-production Netlify preview deploy `6a52adffe734989d860e7768` passed all 14 deployed release-gate steps. Preview: `https://6a52adffe734989d860e7768--robson-ai-website.netlify.app`. Artifact: `output/release-preview-gate/gate-2026-07-11T20-56-43-179Z/release-preview-gate.json`.
+- Deployed visual evidence confirms the desktop and mobile hero, the unnumbered quick hero issue points and the synchronized detailed 1-6 explorer render as approved. No production deployment or verification was performed.
+- Release decision: technically ready for Wayne's preview review and a separate production-deploy decision. Production remains explicitly approval-gated.
 
 ## 2. Completed Secondary-Page Shell Candidate
 

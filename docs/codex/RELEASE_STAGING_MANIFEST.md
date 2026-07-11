@@ -1,11 +1,11 @@
 # Release Staging Manifest - Current Main Building Analyst Integration
 
-Last updated: 2026-07-11 21:55 BST
+Last updated: 2026-07-11 22:00 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 Branch: `codex/current-main-building-analyst-integration`
-Status: Wayne authorized isolated integration from current `main`, a scoped commit and a fresh non-production preview; no branch push, PR or production deploy is approved
+Status: integration commit `366a713` created and fresh non-production preview deploy `6a52adffe734989d860e7768` passed its 14-step gate; no branch push, PR or production deploy is approved
 
 ## 1. Purpose
 
@@ -80,6 +80,9 @@ Current validation evidence:
 - Full `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-11T20-52-37-663Z/release-local-gate.json`.
 - Measurement evidence passed with Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40s; axe reported zero violations across six checked routes. Artifact: `output/measurement/evidence-2026-07-11T20-54-27-650Z`.
 - Release inventory found zero secret findings and zero external GLB URI references. Production dependencies have zero vulnerabilities; 17 moderate dev/release-tooling advisories and unavailable local Firefox/WebKit binaries remain warning-only residuals.
+- Scoped commit created: `366a713` (`Integrate interactive Building Analyst experience on current main`); the branch was not pushed.
+- Fresh non-production preview deploy `6a52adffe734989d860e7768` passed all 14 deployed release-gate steps. Preview: `https://6a52adffe734989d860e7768--robson-ai-website.netlify.app`. Artifact: `output/release-preview-gate/gate-2026-07-11T20-56-43-179Z/release-preview-gate.json`.
+- Deployed screenshots confirm the approved desktop/mobile hero and exact synchronized 1-6 explorer marker mapping. Production was not deployed or verified.
 
 - Live current-state audit before the fix found no 4xx/5xx resources, no failed navigation and no page-level horizontal overflow, but identified the Who/Privacy pages as visually inconsistent with the approved zip-style Home/Building Analyst shell. Artifact: `output/playwright/current-site-quality-audit-2026-07-08T05-40-09-880Z/summary.json`.
 - `npx --no-install html-validate --rule doctype-style:off --rule void-style:off who-its-for.html privacy.html` passed.
