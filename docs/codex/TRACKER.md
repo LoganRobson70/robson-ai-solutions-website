@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-11 22:46 BST
+Last updated: 2026-07-11 22:51 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/current-main-building-analyst-integration` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
@@ -77,7 +77,7 @@ Local integration evidence:
 ## 1B. Owner Preview Refinement
 
 Tranche name: `hero-brand-and-globe-separation`
-Status: completed and fully release-gated locally following Wayne's preview review; exact-path commit and refreshed non-production preview approved; no branch push, PR or production deploy approved
+Status: completed; refinement commit `7a88c7c` and refreshed non-production preview deploy `6a52b99946672b8654dd6a8d` passed; no branch push, PR or production deploy approved
 
 Scope:
 
@@ -99,6 +99,10 @@ Validation evidence:
 - Full `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-11T21-41-49-802Z/release-local-gate.json`.
 - Measurement evidence passed with Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.41s; axe reported zero violations across six checked routes. Artifact: `output/measurement/evidence-2026-07-11T21-43-51-811Z`.
 - Known warning-only residuals remain the dev/release-tooling dependency advisory and unavailable local Firefox/WebKit binaries; the production dependency footprint remains zero vulnerabilities.
+- Scoped refinement commit created: `7a88c7c` (`Separate hero branding from inspection markers`); no branch push or PR was performed.
+- Refreshed non-production Netlify preview deploy `6a52b99946672b8654dd6a8d` passed all 14 deployed release-gate steps. Preview: `https://6a52b99946672b8654dd6a8d--robson-ai-website.netlify.app`. Artifact: `output/release-preview-gate/gate-2026-07-11T21-46-23-052Z/release-preview-gate.json`.
+- Final in-app Browser check on the deployed preview confirmed the duplicate header text is absent, the globe overlaps neither marker, the masonry marker opens its correct tooltip and the console has no warnings or errors.
+- Production remains unchanged and requires a separate explicit approval.
 
 ## 2. Completed Secondary-Page Shell Candidate
 

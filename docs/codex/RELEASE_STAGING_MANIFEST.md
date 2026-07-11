@@ -1,11 +1,11 @@
 # Release Staging Manifest - Hero Brand And Globe Separation
 
-Last updated: 2026-07-11 22:46 BST
+Last updated: 2026-07-11 22:51 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 Branch: `codex/current-main-building-analyst-integration`
-Status: Wayne approved an exact-path commit and refreshed non-production preview for the locally validated hero refinement; no branch push, PR or production deploy is approved
+Status: refinement commit `7a88c7c` created; refreshed non-production preview deploy `6a52b99946672b8654dd6a8d` passed all 14 deployed checks; no branch push, PR or production deploy is approved
 
 ## 1. Purpose
 
@@ -198,8 +198,8 @@ Required after the authorized fresh Netlify preview deploy:
 QA_BASE_URL="<cache-bust-preview-url>" npm run qa:release:preview
 ```
 
-- Fresh integration preview: pending.
-- Fresh deployed preview gate: pending.
+- Refreshed hero-refinement preview: `https://6a52b99946672b8654dd6a8d--robson-ai-website.netlify.app` (deploy `6a52b99946672b8654dd6a8d`).
+- Deployed preview gate: passed all 14 steps with artifact `output/release-preview-gate/gate-2026-07-11T21-46-23-052Z/release-preview-gate.json`.
 
 ## 11. Checks After Production Deploy
 
