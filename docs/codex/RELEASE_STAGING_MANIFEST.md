@@ -1,19 +1,19 @@
-# Release Staging Manifest - Current Main Building Analyst Integration
+# Release Staging Manifest - Hero Brand And Globe Separation
 
-Last updated: 2026-07-11 22:00 BST
+Last updated: 2026-07-11 22:46 BST
 Owner: Wayne Robson / Robson AI Solutions
 Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 Branch: `codex/current-main-building-analyst-integration`
-Status: integration commit `366a713` created and fresh non-production preview deploy `6a52adffe734989d860e7768` passed its 14-step gate; no branch push, PR or production deploy is approved
+Status: Wayne approved an exact-path commit and refreshed non-production preview for the locally validated hero refinement; no branch push, PR or production deploy is approved
 
 ## 1. Purpose
 
 This manifest defines the intended file scope for:
 
-`current-main-building-analyst-integration`
+`hero-brand-and-globe-separation`
 
-This candidate integrates the approved interactive Building Analyst homepage work from commit `f55da55` onto current `main` commit `26bf51d`, preserving the later live-site secondary-page, QA, security and release-document improvements.
+This candidate refines the validated current-main Building Analyst integration after Wayne's preview review. It removes the duplicate desktop text wordmark while retaining the Robson icon and accessible home label, and moves the decorative globe into open sky so it no longer overlaps an inspection marker.
 
 This candidate preserves the earlier local redesign and:
 
@@ -23,7 +23,7 @@ This candidate preserves the earlier local redesign and:
 - keeps Building Analyst illustrative and in development, with qualified professionals responsible for evaluation and approval
 - preserves the existing decorative globe, real BuildScan proof, privacy and email-first boundaries
 
-The current dirty-file sections and staging command are authoritative for this integration candidate.
+The current dirty-file sections and staging command are authoritative for this refinement candidate.
 
 Preserved current-main details:
 
@@ -44,7 +44,7 @@ Do not run `git add .` for this candidate.
 
 ## 2. Approval Boundary
 
-Wayne approved isolated worktree creation from current `main`, integration of the approved interactive candidate, exact-path staging, a scoped local commit, a fresh non-production Netlify preview and deployed preview-gate validation.
+Wayne approved exact-path staging, a scoped local commit, a refreshed non-production Netlify preview and deployed preview-gate validation for this hero refinement.
 
 Wayne must approve before Codex performs any of these actions:
 
@@ -63,17 +63,22 @@ Still out of scope without a separate approval:
 
 ## 3. Current Source-Control Scope
 
-Current integration candidate state:
+Current refinement candidate state:
 
 - Base branch: `main` at `26bf51d`.
 - Working branch: `codex/current-main-building-analyst-integration`.
 - Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`.
-- Approved source change: `f55da55`, applied without committing and resolved against current `main`.
-- 12 modified tracked files.
-- 4 untracked candidate files.
-- Total dirty candidate files: 16.
+- Parent integration commits: `366a713` and evidence commit `946a6b7`.
+- Approved source change: remove the homepage header text wordmark, reduce and relocate the decorative hero globe, and record the scoped release evidence.
+- 4 modified tracked files.
+- 0 untracked candidate files.
+- Total dirty candidate files: 4.
 
 Current validation evidence:
+
+- Full `npm run qa:release:local` passed all 37 steps for this four-file refinement with artifact `output/release-local-gate/gate-2026-07-11T21-41-49-802Z/release-local-gate.json`.
+- Measurement evidence passed with Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.41s; axe reported zero violations across six checked routes. Artifact: `output/measurement/evidence-2026-07-11T21-43-51-811Z`.
+- Known warning-only residuals remain the dev/release-tooling dependency advisory and unavailable local Firefox/WebKit binaries; production dependencies remain at zero vulnerabilities.
 
 - Current-main preservation check passed: `building-analyst.html`, `who-its-for.html`, `privacy.html`, `404.html` and `holding.html` have no diff from current `main` commit `26bf51d`.
 - Targeted product/design, keyboard, responsive and rendered smoke tests passed; the rendered homepage shows one synchronized 1-6 issue-list/photo-marker system with every marker on the matching physical feature.
@@ -116,29 +121,17 @@ This local candidate currently modifies:
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
 index.html
-script.js
-scripts/keyboard-release-smoke.mjs
-scripts/measurement-smoke.mjs
-scripts/product-design-acceptance-smoke.mjs
-scripts/release-candidate-inventory.mjs
-scripts/release-security-smoke.mjs
-scripts/rendered-release-smoke.mjs
-scripts/responsive-route-smoke.mjs
 styles.css
 ```
 
 ## 5. Untracked Candidate Files
 
 ```text
-assets/showcase/building-analyst-leisure-centre-explorer.webp
-assets/showcase/robson-ai-building-surveying-interactive-hero-v5.webp
-assets/showcase/robson-ai-building-surveying-ipad-hero-v4.webp
-design-qa.md
 ```
 
 ## 6. Asset Size Watch
 
-Three WebP assets are added in this candidate. The homepage references the integrated hero and explorer assets; the prior approved iPad hero is retained as design-history evidence.
+No assets are added or changed in this refinement. Existing watched release assets remain governed by `npm run qa:release-inventory`.
 
 Existing watched release assets remain governed by `npm run qa:release-inventory`, including:
 
@@ -167,25 +160,13 @@ secrets, credentials, keys, certificates, profiles, or generated screenshots
 
 ## 8. Staging Command After Approval Only
 
-Wayne approved exact-path staging for this integration on 2026-07-11. Use this explicit path list rather than `git add .`.
+Wayne approved exact-path staging for this refinement on 2026-07-11. Use this explicit path list rather than `git add .`.
 
 ```bash
 git add -- \
-  assets/showcase/building-analyst-leisure-centre-explorer.webp \
-  assets/showcase/robson-ai-building-surveying-interactive-hero-v5.webp \
-  assets/showcase/robson-ai-building-surveying-ipad-hero-v4.webp \
-  design-qa.md \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
   index.html \
-  script.js \
-  scripts/keyboard-release-smoke.mjs \
-  scripts/measurement-smoke.mjs \
-  scripts/product-design-acceptance-smoke.mjs \
-  scripts/release-candidate-inventory.mjs \
-  scripts/release-security-smoke.mjs \
-  scripts/rendered-release-smoke.mjs \
-  scripts/responsive-route-smoke.mjs \
   styles.css
 ```
 

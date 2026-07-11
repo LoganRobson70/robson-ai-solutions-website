@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-11 22:00 BST
+Last updated: 2026-07-11 22:46 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/current-main-building-analyst-integration` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
@@ -73,6 +73,32 @@ Local integration evidence:
 - Fresh non-production Netlify preview deploy `6a52adffe734989d860e7768` passed all 14 deployed release-gate steps. Preview: `https://6a52adffe734989d860e7768--robson-ai-website.netlify.app`. Artifact: `output/release-preview-gate/gate-2026-07-11T20-56-43-179Z/release-preview-gate.json`.
 - Deployed visual evidence confirms the desktop and mobile hero, the unnumbered quick hero issue points and the synchronized detailed 1-6 explorer render as approved. No production deployment or verification was performed.
 - Release decision: technically ready for Wayne's preview review and a separate production-deploy decision. Production remains explicitly approval-gated.
+
+## 1B. Owner Preview Refinement
+
+Tranche name: `hero-brand-and-globe-separation`
+Status: completed and fully release-gated locally following Wayne's preview review; exact-path commit and refreshed non-production preview approved; no branch push, PR or production deploy approved
+
+Scope:
+
+- Remove the duplicate desktop `Robson AI Solutions` text from the homepage header while retaining the Robson icon and accessible home label.
+- Move and reduce the decorative spinning globe so it occupies the open-sky area at the upper-left of the hero photograph and does not overlap either inspection marker.
+- Preserve the inspection-marker positions because they identify the actual building features and must not be moved merely to accommodate decoration.
+- Validate desktop and mobile rendering, marker interaction, console health and release safety before requesting any further release action.
+
+Validation evidence:
+
+- In-app Browser desktop geometry check confirmed the relocated globe overlaps neither hero inspection marker; the lower masonry control remained pinned to the correct window/masonry feature and its tooltip opened successfully.
+- In-app Browser console check reported no warnings or errors. The homepage header no longer contains `.studio-wordmark-text`; the icon link and accessible `Robson AI Solutions home` label remain.
+- Mobile Browser check confirmed the decorative globe remains hidden, the text wordmark is absent and there is no horizontal overflow.
+- `npx --no-install html-validate --rule doctype-style:off --rule void-style:off index.html` passed.
+- `npm run qa:release-security` passed with artifact `output/release-security/smoke-2026-07-11T21-28-16-648Z/release-security-smoke.json`.
+- `npm run qa:product-design` passed with artifact `output/product-design-acceptance/smoke-2026-07-11T21-28-17-001Z/product-design-acceptance-smoke.json`.
+- `npm run qa:responsive` passed 21 checks with artifact `output/responsive-route/smoke-2026-07-11T21-28-17-001Z/responsive-route-smoke.json`.
+- `npm run qa:keyboard` and `npm run qa:rendered` passed with screenshots in `output/playwright/keyboard-release-smoke-2026-07-11T21-28-17-001Z` and `output/playwright/rendered-release-smoke-2026-07-11T21-28-17-001Z`.
+- Full `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-11T21-41-49-802Z/release-local-gate.json`.
+- Measurement evidence passed with Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.41s; axe reported zero violations across six checked routes. Artifact: `output/measurement/evidence-2026-07-11T21-43-51-811Z`.
+- Known warning-only residuals remain the dev/release-tooling dependency advisory and unavailable local Firefox/WebKit binaries; the production dependency footprint remains zero vulnerabilities.
 
 ## 2. Completed Secondary-Page Shell Candidate
 
