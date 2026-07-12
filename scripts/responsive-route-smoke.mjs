@@ -6,17 +6,20 @@ import { startStaticServer } from "./lib/static-server.mjs";
 
 const ROUTES = [
   "/",
-  "/building-analyst.html",
-  "/who-its-for.html",
-  "/privacy.html",
+  "/building-analyst",
+  "/who-its-for",
+  "/privacy",
   "/404.html",
   "/holding.html",
   "/buildscan-viewer.html"
 ];
 
 const VIEWPORTS = [
+  { name: "small-mobile", width: 320, height: 760, isMobile: true },
   { name: "mobile", width: 390, height: 844, isMobile: true },
   { name: "tablet", width: 768, height: 1024, isMobile: true },
+  { name: "small-desktop", width: 1024, height: 900, isMobile: false },
+  { name: "reference-desktop", width: 1363, height: 936, isMobile: false },
   { name: "desktop", width: 1440, height: 1000, isMobile: false }
 ];
 
@@ -227,36 +230,36 @@ async function assertRouteSpecific(page, route) {
 
   if (route === "/") {
     await page.locator("h1").first().waitFor({ state: "visible", timeout: 10000 });
-    assert(/Better tools for building professionals/i.test(bodyText), "Homepage should keep the approved professional proposition visible.");
-    assert(/Clearer decisions for the people who rely on them/i.test(bodyText), "Homepage should keep the approved client outcome visible.");
-    assert(/Discuss a Workflow/i.test(bodyText), "Homepage should keep a primary workflow CTA.");
-    assert(/Explore how Building Analyst works/i.test(bodyText), "Homepage should keep the Building Analyst explorer CTA.");
+    assert(/Keep building evidence, professional review and reporting connected/i.test(bodyText), "Homepage should keep the approved connected-evidence proposition visible.");
+    assert(/surveying practices, in-house estates teams and organisations that commission building advice/i.test(bodyText), "Homepage should name professional and buyer audiences.");
+    assert(/Discuss a Building Analyst workflow/i.test(bodyText), "Homepage should keep the primary Building Analyst CTA.");
+    assert(/View BuildScan proof/i.test(bodyText), "Homepage should keep the secondary BuildScan proof CTA.");
     assert(/Guided professional review/i.test(bodyText), "Homepage should keep the detailed Building Analyst explorer.");
     assert(/BuildScan/i.test(bodyText), "Homepage should expose the BuildScan workstream.");
     assert(/Property operations/i.test(bodyText), "Homepage should expose property operations.");
     assert(/Professional expertise stays central/i.test(bodyText), "Homepage should keep the professional judgement boundary visible.");
   }
 
-  if (route === "/building-analyst.html") {
-    assert(/Assessment capture and report-ready evidence/i.test(bodyText), "Building Analyst page should keep the assessment proposition.");
-    assert(/Email the Assessment Workflow/i.test(bodyText), "Building Analyst page should keep its contact CTA.");
+  if (route === "/building-analyst") {
+    assert(/Keep building evidence/i.test(bodyText) && /ready for professional review/i.test(bodyText), "Building Analyst page should keep the evidence-review proposition.");
+    assert(/Discuss a Building Analyst workflow/i.test(bodyText), "Building Analyst page should keep its primary contact CTA.");
   }
 
-  if (route === "/who-its-for.html") {
+  if (route === "/who-its-for") {
     assert(/Organisations commissioning building advice/i.test(bodyText), "Who It Fits page should include commissioning organisations.");
     assert(/In-house property and estates teams/i.test(bodyText), "Who It Fits page should include in-house professional teams.");
     assert(/Surveying practices and consultants/i.test(bodyText), "Who It Fits page should include professional practices.");
-    assert(/Email the Workflow/i.test(bodyText), "Who It Fits page should keep contact CTA.");
+    assert(/Discuss a Building Analyst workflow/i.test(bodyText), "Who It Fits page should keep the primary contact CTA.");
   }
 
-  if (route === "/privacy.html") {
+  if (route === "/privacy") {
     assert(/optional analytics/i.test(bodyText), "Privacy page should keep optional analytics wording.");
     assert(/Back to contact/i.test(bodyText), "Privacy page should route visitors back to contact.");
   }
 
   if (route === "/404.html") {
     assert(/This page is not available/i.test(bodyText), "404 page should keep recovery heading.");
-    assert(/Start a conversation/i.test(bodyText), "404 page should include contact recovery.");
+    assert(/Discuss a Building Analyst workflow/i.test(bodyText), "404 page should include contact recovery.");
   }
 
   if (route === "/holding.html") {
@@ -306,6 +309,26 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
     assert(response?.status() === 200, `${route} should return HTTP 200 at ${viewport.name}.`);
     await assertRouteSpecific(page, route);
 
+    if (route === "/" && viewport.width <= 1040) {
+      await page.locator("[data-nav-toggle]").click();
+      const mobileCta = page.locator(".studio-nav-mobile-cta");
+      await mobileCta.waitFor({ state: "visible" });
+      const mobileCtaBox = await mobileCta.boundingBox();
+      assert(/Discuss a Building Analyst workflow/i.test(await mobileCta.innerText()), "Mobile menu should expose the primary Building Analyst CTA.");
+      assert((mobileCtaBox?.height || 0) >= 44, `Mobile menu CTA should be at least 44px high; actual ${mobileCtaBox?.height || 0}.`);
+      await page.locator("[data-nav-toggle]").click();
+
+      const explorerOrder = await page.evaluate(() => {
+        const top = (selector) => document.querySelector(selector)?.getBoundingClientRect().top ?? -1;
+        return {
+          selector: top(".studio-explorer-issue-nav"),
+          image: top(".studio-explorer-figure"),
+          result: top(".studio-explorer-panel")
+        };
+      });
+      assert(explorerOrder.selector < explorerOrder.image && explorerOrder.image < explorerOrder.result, `Mobile Building Analyst explorer should read selector, image, result: ${JSON.stringify(explorerOrder)}.`);
+    }
+
     const routeState = await readRouteState(page, route);
     const metrics = await readResponsiveMetrics(page);
     const blockingConsoleMessages = getBlockingConsoleMessages(diagnostics);
@@ -348,8 +371,9 @@ export async function runResponsiveRouteSmoke({
 
   try {
     const checks = [];
+    const checkedRoutes = mode === "preview" ? ROUTES.filter((route) => route !== "/holding.html") : ROUTES;
 
-    for (const route of ROUTES) {
+    for (const route of checkedRoutes) {
       for (const viewport of VIEWPORTS) {
         checks.push(await inspectRoute(browser, resolvedBaseUrl, route, viewport));
       }
@@ -360,7 +384,7 @@ export async function runResponsiveRouteSmoke({
       status: "pass",
       mode,
       baseUrl: resolvedBaseUrl,
-      checkedRoutes: ROUTES,
+      checkedRoutes,
       checkedViewports: VIEWPORTS.map(({ name, width, height }) => ({ name, width, height })),
       checkCount: checks.length,
       checks

@@ -14,20 +14,20 @@ const PUBLIC_PAGES = [
     titlePattern: /Robson AI/i
   },
   {
-    path: "/building-analyst.html",
-    canonical: "https://robsonai.co.uk/building-analyst.html",
+    path: "/building-analyst",
+    canonical: "https://robsonai.co.uk/building-analyst",
     minDescriptionLength: 80,
     titlePattern: /Building Analyst/i
   },
   {
-    path: "/who-its-for.html",
-    canonical: "https://robsonai.co.uk/who-its-for.html",
+    path: "/who-its-for",
+    canonical: "https://robsonai.co.uk/who-its-for",
     minDescriptionLength: 80,
     titlePattern: /Who It Is For/i
   },
   {
-    path: "/privacy.html",
-    canonical: "https://robsonai.co.uk/privacy.html",
+    path: "/privacy",
+    canonical: "https://robsonai.co.uk/privacy",
     minDescriptionLength: 80,
     titlePattern: /Privacy Notice/i
   }
@@ -243,9 +243,24 @@ function assertNoindexPageSemantics(result, pageSpec) {
 function assertHomepageJsonLd(result) {
   assert(result.jsonLd.length === 1, "Homepage should include one JSON-LD block.");
   const parsed = JSON.parse(result.jsonLd[0]);
-  assert(parsed["@type"] === "Organization", `Homepage JSON-LD should describe the organization; actual type ${parsed["@type"]}.`);
-  assert(parsed.name === "Robson AI Solutions", `Homepage JSON-LD name should be Robson AI Solutions; actual ${parsed.name}.`);
-  assert(parsed.url === "https://robsonai.co.uk/", `Homepage JSON-LD URL should be canonical root; actual ${parsed.url}.`);
+  const graph = parsed["@graph"] || [];
+  const organization = graph.find((entry) => entry["@type"] === "Organization");
+  const website = graph.find((entry) => entry["@type"] === "WebSite");
+  assert(organization, "Homepage JSON-LD should describe the organization.");
+  assert(website, "Homepage JSON-LD should describe the website.");
+  assert(organization.name === "Robson AI Solutions", `Homepage JSON-LD name should be Robson AI Solutions; actual ${organization.name}.`);
+  assert(organization.url === "https://robsonai.co.uk/", `Homepage JSON-LD organization URL should be canonical root; actual ${organization.url}.`);
+  assert(website.url === "https://robsonai.co.uk/", `Homepage JSON-LD website URL should be canonical root; actual ${website.url}.`);
+}
+
+function assertSecondaryJsonLd(result, pageSpec) {
+  assert(result.jsonLd.length === 1, `${pageSpec.path} should include one JSON-LD block.`);
+  const parsed = JSON.parse(result.jsonLd[0]);
+  const graph = parsed["@graph"] || [];
+  const webPage = graph.find((entry) => entry["@type"] === "WebPage");
+  const breadcrumb = graph.find((entry) => entry["@type"] === "BreadcrumbList");
+  assert(webPage?.url === pageSpec.canonical, `${pageSpec.path} WebPage schema should use its canonical URL.`);
+  assert(breadcrumb?.itemListElement?.length === 2, `${pageSpec.path} should include a two-level breadcrumb schema.`);
 }
 
 async function validatePage(browser, baseUrl, pageSpec, mode) {
@@ -262,6 +277,8 @@ async function validatePage(browser, baseUrl, pageSpec, mode) {
 
       if (pageSpec.path === "/") {
         assertHomepageJsonLd(semantics);
+      } else {
+        assertSecondaryJsonLd(semantics, pageSpec);
       }
     } else {
       assertNoindexPageSemantics(semantics, pageSpec);
@@ -341,8 +358,12 @@ export async function runSemanticSeoSmoke({
 
   try {
     const pages = [];
+    const pageSpecs = [
+      ...PUBLIC_PAGES,
+      ...(mode === "preview" ? NOINDEX_PAGES.filter((page) => page.path !== "/holding.html") : NOINDEX_PAGES)
+    ];
 
-    for (const pageSpec of [...PUBLIC_PAGES, ...NOINDEX_PAGES]) {
+    for (const pageSpec of pageSpecs) {
       pages.push(await validatePage(browser, baseUrl, pageSpec, mode));
     }
 

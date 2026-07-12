@@ -139,7 +139,7 @@ function filterBlockingFailures(diagnostics) {
     const isRequiredSiteAsset =
       pathname === "/" ||
       pathname === "/index.html" ||
-      pathname === "/building-analyst.html" ||
+      pathname === "/building-analyst" ||
       pathname === "/buildscan-viewer.html" ||
       pathname === "/styles.css" ||
       pathname === "/script.js" ||
@@ -189,17 +189,16 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
     const bannerVisible = await page.locator("[data-consent-banner]").evaluate((banner) => !banner.hidden);
     assert(!bannerVisible, "Consent banner should stay hidden on first load while GA4 measurement is unset.");
 
-    await page.locator('.studio-nav a[href="#product"]').focus();
+    await page.locator('[data-analytics-id="nav-products"]').focus();
     const productNavFocus = await getActiveElementState(page);
-    assert(productNavFocus?.href === "#product" && /Product/i.test(productNavFocus?.text || ""), `Product nav link should be keyboard focusable: ${JSON.stringify(productNavFocus)}.`);
+    assert(productNavFocus?.href === "/#products" && /Product/i.test(productNavFocus?.text || ""), `Product nav link should be keyboard focusable: ${JSON.stringify(productNavFocus)}.`);
     await activateFocusedElement(page);
-    await page.waitForFunction(() => window.location.hash === "#product");
+    await page.waitForFunction(() => window.location.hash === "#products");
 
-    await page.locator('[data-analytics-id="hero-explore-building-analyst"]').focus();
+    await page.locator('[data-analytics-id="hero-discuss-building-analyst"]').focus();
     const explorerCtaFocus = await getActiveElementState(page);
-    assert(explorerCtaFocus?.href === "#building-analyst-explorer" && /Explore how Building Analyst works/i.test(explorerCtaFocus?.text || ""), `Hero explorer CTA should be keyboard focusable: ${JSON.stringify(explorerCtaFocus)}.`);
-    await activateFocusedElement(page);
-    await page.waitForFunction(() => window.location.hash === "#building-analyst-explorer");
+    assert(explorerCtaFocus?.href?.startsWith("mailto:hello@robsonai.co.uk") && /Discuss a Building Analyst workflow/i.test(explorerCtaFocus?.text || ""), `Hero Building Analyst CTA should be keyboard focusable: ${JSON.stringify(explorerCtaFocus)}.`);
+    await page.locator("#building-analyst-explorer").scrollIntoViewIfNeeded();
 
     const explorerCounts = {
       list: await page.locator("[data-explorer-list] .studio-explorer-issue-button").count(),
@@ -232,11 +231,10 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
       path: path.join(artifactDir, "building-analyst-explorer-keyboard.png")
     });
 
-    await page.locator('[data-analytics-id="hero-discuss-workflow"]').focus();
+    await page.locator('[data-analytics-id="contact-email"]').focus();
     const aboutCtaFocus = await getActiveElementState(page);
-    assert(aboutCtaFocus?.href === "#contact" && /Discuss a workflow/i.test(aboutCtaFocus?.text || ""), `Hero workflow CTA should be keyboard focusable: ${JSON.stringify(aboutCtaFocus)}.`);
-    await activateFocusedElement(page);
-    await page.waitForFunction(() => window.location.hash === "#contact");
+    assert(aboutCtaFocus?.href?.startsWith("mailto:hello@robsonai.co.uk") && /Discuss a Building Analyst workflow/i.test(aboutCtaFocus?.text || ""), `Building Analyst contact CTA should be keyboard focusable: ${JSON.stringify(aboutCtaFocus)}.`);
+    await page.locator("#contact").scrollIntoViewIfNeeded();
 
     await page.locator("[data-copy-email]").first().focus();
     const copyFocus = await getActiveElementState(page);
@@ -247,7 +245,7 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
 
     await page.locator("[data-buildscan-load-model]").focus();
     const buildScanFocus = await getActiveElementState(page);
-    assert(/Load interactive 3D model/i.test(buildScanFocus?.text || ""), `BuildScan load button should be keyboard focusable: ${JSON.stringify(buildScanFocus)}.`);
+    assert(/Load 10.77 MB interactive model/i.test(buildScanFocus?.text || ""), `BuildScan load button should be keyboard focusable: ${JSON.stringify(buildScanFocus)}.`);
     await activateFocusedElement(page);
     await page
       .waitForFunction(() => {
@@ -301,20 +299,19 @@ async function runBuildingAnalystKeyboardJourney(browser, baseUrl, artifactDir) 
   const diagnostics = captureDiagnostics(page);
 
   try {
-    const response = await page.goto(new URL("/building-analyst.html#workflow-proof", baseUrl).toString(), { waitUntil: "networkidle" });
+    const response = await page.goto(new URL("/building-analyst#workflow", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "Building Analyst keyboard journey should load HTTP 200.");
 
-    await page.locator('[data-analytics-id="building-nav-how"]').focus();
+    await page.locator('[data-analytics-id="nav-how-it-works"]').focus();
     const howItWorksNavFocus = await getActiveElementState(page);
-    assert(howItWorksNavFocus?.href === "#workflow-proof" && /How it works/i.test(howItWorksNavFocus?.text || ""), `Building Analyst How it works nav link should be keyboard focusable: ${JSON.stringify(howItWorksNavFocus)}.`);
+    assert(howItWorksNavFocus?.href === "/building-analyst#workflow" && /How it works/i.test(howItWorksNavFocus?.text || ""), `Building Analyst How it works nav link should be keyboard focusable: ${JSON.stringify(howItWorksNavFocus)}.`);
     await activateFocusedElement(page);
-    await page.waitForFunction(() => window.location.hash === "#workflow-proof");
+    await page.waitForFunction(() => window.location.hash === "#workflow");
 
-    await page.locator('[data-analytics-id="building-nav-discuss-workflow"]').focus();
+    await page.locator('[data-analytics-id="nav-building-analyst-workflow"]').focus();
     const contactNavFocus = await getActiveElementState(page);
-    assert(contactNavFocus?.href === "#contact" && /Discuss a workflow/i.test(contactNavFocus?.text || ""), `Building Analyst workflow CTA should be keyboard focusable: ${JSON.stringify(contactNavFocus)}.`);
-    await activateFocusedElement(page);
-    await page.waitForFunction(() => window.location.hash === "#contact");
+    assert(contactNavFocus?.href?.startsWith("mailto:hello@robsonai.co.uk") && /Discuss a Building Analyst workflow/i.test(contactNavFocus?.text || ""), `Building Analyst workflow CTA should be keyboard focusable: ${JSON.stringify(contactNavFocus)}.`);
+    await page.locator("#contact").scrollIntoViewIfNeeded();
 
     await page.locator("[data-copy-email]").first().focus();
     await activateFocusedElement(page);

@@ -4,7 +4,7 @@ import { chromium } from "playwright";
 
 import { startStaticServer } from "./lib/static-server.mjs";
 
-const PUBLIC_ROUTES = ["/", "/building-analyst.html", "/who-its-for.html", "/privacy.html", "/404.html", "/holding.html"];
+const PUBLIC_ROUTES = ["/", "/building-analyst", "/who-its-for", "/privacy", "/404.html", "/holding.html"];
 
 function parseArgs(argv) {
   const parsed = {};
@@ -208,13 +208,13 @@ function assertNoBlockingDiagnostics(routeResult) {
 
 function assertFirstViewport(home) {
   assert(includesAll(home.viewportText, [
-    "Robson AI",
-    "Practical software for building professionals",
-    "Better tools for building professionals",
-    "Clearer decisions for the people who rely on them",
-    "commissioning organisations greater clarity and confidence",
-    "Explore how Building Analyst works",
-    "Discuss a workflow",
+    "Robson AI Solutions",
+    "Surveying-led software for building professionals",
+    "Keep building evidence, professional review and reporting connected",
+    "organisations that commission building advice",
+    "Building Analyst is our flagship product in development",
+    "Discuss a Building Analyst workflow",
+    "View BuildScan proof",
     "Software supports the process. Qualified professionals make the decisions"
   ]), `Homepage first viewport should explain the professional proposition and next actions. Actual viewport text: ${home.viewportText}`);
 }
@@ -225,8 +225,8 @@ function assertProofStatus(home, buildingAnalyst) {
     "BuildScan",
     "Property operations",
     "In development",
-    "Working local product",
-    "Future exploration",
+    "Working product proof",
+    "Roadmap exploration",
     "Professional expertise stays central",
     "without replacing qualified judgement",
     "Guided professional review",
@@ -239,10 +239,10 @@ function assertProofStatus(home, buildingAnalyst) {
   ]), "Homepage should separate the three workstreams, label maturity and use real BuildScan proof without implying an integration.");
 
   assert(includesAll(buildingAnalyst.text, [
-    "early professional product direction",
-    "Not a finished product screenshot",
-    "Not autonomous diagnosis",
-    "not a substitute for professional judgement"
+    "Flagship product — in development",
+    "not a finished app screenshot or launch promise",
+    "does not claim App Store availability, autonomous diagnosis or a finished user interface",
+    "professional remains responsible"
   ]), "Building Analyst should label maturity, example status and judgement boundaries.");
 }
 
@@ -268,8 +268,8 @@ function assertExplorerCorrespondence(home) {
 
 function assertReleaseStageClaims(allText) {
   const requiredCaution = [
-    "early",
-    "exploration",
+    "in development",
+    "roadmap exploration",
     "opt-in viewer",
     "no integration between them is implied",
     "no current product or live system integration",
@@ -304,31 +304,29 @@ function assertAudiencePaths(home, who) {
   assert(includesAll(linkText, [
     "Explore Building Analyst",
     "View the interactive proof",
-    "Email the workflow"
+    "Discuss a Building Analyst workflow"
   ]), "Homepage/Who It Fits should provide one-click paths for Building Analyst, real BuildScan proof and workflow conversations.");
 }
 
 function assertCtaHierarchy(home, buildingAnalyst, who, privacy, notFound, holding) {
-  const routes = [home, buildingAnalyst, who, privacy, notFound, holding];
+  const routes = [home, buildingAnalyst, who, privacy, notFound, holding].filter(Boolean);
   const allLinks = routes.flatMap((route) => route.controls.links.map((link) => ({ ...link, route: route.route })));
   const allButtons = routes.flatMap((route) => route.controls.buttons.map((button) => ({ ...button, route: route.route })));
 
   assert(allLinks.some((link) => link.href.startsWith("mailto:hello@robsonai.co.uk")), "Public routes should include an email-first contact route.");
   assert(allButtons.some((button) => /copy email/i.test(button.text)), "Public routes should include a copy-email fallback.");
-  assert(allLinks.some((link) => /privacy/i.test(link.text) || link.href.includes("privacy.html")), "Public routes should expose the privacy notice.");
+  assert(allLinks.some((link) => /privacy/i.test(link.text) || link.href === "/privacy"), "Public routes should expose the privacy notice.");
 
-  ["/", "/building-analyst.html", "/who-its-for.html", "/privacy.html", "/404.html", "/holding.html"].forEach((route) => {
+  routes.map((result) => result.route).forEach((route) => {
     const routeLinks = allLinks.filter((link) => link.route === route);
     const hasContactPath = routeLinks.some((link) => link.href.includes("#contact") || link.href.startsWith("mailto:hello@robsonai.co.uk"));
     assert(hasContactPath, `${route} should not dead-end; it needs a contact path.`);
   });
 
-  const segmentedSubjects = allLinks
+  const buildingAnalystSubjects = allLinks
     .filter((link) => link.href.startsWith("mailto:hello@robsonai.co.uk"))
     .map((link) => decodeURIComponent(link.href).toLowerCase());
-  ["assessment", "buildscan", "property operations", "inspection"].forEach((subject) => {
-    assert(segmentedSubjects.some((href) => href.includes(subject)), `Contact routes should include a segmented ${subject} mailto path.`);
-  });
+  assert(buildingAnalystSubjects.some((href) => href.includes("building analyst workflow")), "Contact routes should use the single Building Analyst conversion subject.");
 }
 
 function assertTrustProof(home, privacy, who) {
@@ -339,7 +337,7 @@ function assertTrustProof(home, privacy, who) {
     "qualified professionals make the decisions",
     "no integration between them is implied",
     "early-stage",
-    "optional analytics",
+    "analytics is currently inactive",
     "No contact form is used",
     "real BuildScan application view"
   ]), "Public copy should expose professional context, judgement boundaries, maturity boundaries and privacy posture before contact.");
@@ -347,7 +345,7 @@ function assertTrustProof(home, privacy, who) {
 
 function assertMotionAndInteraction(stylesText, home) {
   assert(stylesText.includes("prefers-reduced-motion"), "Stylesheet should include reduced-motion support.");
-  assert(includesAll(home.text, ["opt-in viewer", "static image is a real BuildScan application view", "Load interactive 3D model"]), "BuildScan interactive proof should remain opt-in with real-product static fallback language.");
+  assert(includesAll(home.text, ["opt-in viewer", "static image is a real BuildScan application view", "Load 10.77 MB interactive model"]), "BuildScan interactive proof should remain opt-in with real-product static fallback language and a disclosed download size.");
 }
 
 async function writeJson(filePath, value) {
@@ -365,7 +363,8 @@ export async function runProductDesignAcceptanceSmoke({
 
   try {
     const results = {};
-    for (const route of PUBLIC_ROUTES) {
+    const checkedRoutes = mode === "preview" ? PUBLIC_ROUTES.filter((route) => route !== "/holding.html") : PUBLIC_ROUTES;
+    for (const route of checkedRoutes) {
       results[route] = await collectRoute(browser, resolvedBaseUrl, route);
       assertNoBlockingDiagnostics(results[route]);
     }
@@ -374,19 +373,19 @@ export async function runProductDesignAcceptanceSmoke({
     const allText = Object.values(results).map((result) => result.text).join(" ");
 
     assertFirstViewport(results["/"]);
-    assertProofStatus(results["/"], results["/building-analyst.html"]);
+    assertProofStatus(results["/"], results["/building-analyst"]);
     assertExplorerCorrespondence(results["/"]);
     assertReleaseStageClaims(allText);
-    assertAudiencePaths(results["/"], results["/who-its-for.html"]);
+    assertAudiencePaths(results["/"], results["/who-its-for"]);
     assertCtaHierarchy(
       results["/"],
-      results["/building-analyst.html"],
-      results["/who-its-for.html"],
-      results["/privacy.html"],
+      results["/building-analyst"],
+      results["/who-its-for"],
+      results["/privacy"],
       results["/404.html"],
       results["/holding.html"]
     );
-    assertTrustProof(results["/"], results["/privacy.html"], results["/who-its-for.html"]);
+    assertTrustProof(results["/"], results["/privacy"], results["/who-its-for"]);
     assertMotionAndInteraction(stylesText, results["/"]);
 
     await mkdir(artifactDir, { recursive: true });
@@ -394,7 +393,7 @@ export async function runProductDesignAcceptanceSmoke({
       status: "pass",
       mode,
       baseUrl: resolvedBaseUrl,
-      checkedRoutes: PUBLIC_ROUTES,
+      checkedRoutes,
       acceptanceChecks: [
         "first viewport",
         "proof status",

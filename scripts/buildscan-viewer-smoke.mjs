@@ -256,7 +256,7 @@ async function runEmbeddedViewerCheck(browser, baseUrl, artifactDir) {
 
   try {
     return await capturePageDiagnostics(page, async ({ requests }) => {
-      const response = await page.goto(new URL("/index.html#buildscan-model-view", baseUrl).toString(), {
+      const response = await page.goto(new URL("/index.html#buildscan-proof", baseUrl).toString(), {
         waitUntil: "networkidle"
       });
       await page.locator("[data-buildscan-interactive]").scrollIntoViewIfNeeded();
@@ -275,6 +275,15 @@ async function runEmbeddedViewerCheck(browser, baseUrl, artifactDir) {
         };
       });
       const requestsBeforeClick = [...requests];
+
+      const spoofIgnored = await page.evaluate(() => {
+        window.dispatchEvent(new MessageEvent("message", {
+          data: { source: "buildscan-viewer", state: "ready" },
+          origin: window.location.origin,
+          source: window
+        }));
+        return !document.querySelector("[data-buildscan-interactive]")?.classList.contains("is-loaded");
+      });
 
       await page.screenshot({
         path: path.join(artifactDir, "embedded-before-click.png"),
@@ -317,6 +326,7 @@ async function runEmbeddedViewerCheck(browser, baseUrl, artifactDir) {
 
       assert(response?.status() === 200, "Homepage should return HTTP 200.");
       assert(!before.frameHasSrc, "Embedded viewer iframe should not have src before click.");
+      assert(spoofIgnored, "Parent should ignore a same-origin ready message that does not come from the expected iframe window.");
       assert(!requestsBeforeClick.some((url) => url.includes("buildscan-ludgershall-public.glb")), "GLB should not load before click.");
       assert(!before.overflowX, "Homepage should not overflow horizontally before click.");
       assert(after.loaded, "Embedded viewer should mark loaded only after model-ready signal.");
@@ -330,9 +340,35 @@ async function runEmbeddedViewerCheck(browser, baseUrl, artifactDir) {
       return {
         responseStatus: response?.status(),
         before,
-        after
+        after,
+        spoofIgnored
       };
     });
+  } finally {
+    await page.close();
+  }
+}
+
+async function runFallbackCheck(browser, baseUrl) {
+  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  await page.route("**/buildscan-ludgershall-public.glb", (route) => route.abort("failed"));
+  try {
+    await page.goto(new URL("/#buildscan-proof", baseUrl).toString(), { waitUntil: "networkidle" });
+    await page.locator("[data-buildscan-load-model]").click();
+    await page.waitForFunction(() => document.querySelector("[data-buildscan-interactive]")?.classList.contains("is-error"), null, { timeout: 15000 });
+    const state = await page.evaluate(() => {
+      const viewer = document.querySelector("[data-buildscan-interactive]");
+      return {
+        error: viewer?.classList.contains("is-error") || false,
+        loaded: viewer?.classList.contains("is-loaded") || false,
+        imageStillAvailable: viewer?.querySelector(".buildscan-model-image")?.getAttribute("aria-hidden") !== "true",
+        retryLabel: viewer?.querySelector("[data-buildscan-load-model]")?.textContent?.trim() || ""
+      };
+    });
+    assert(state.error && !state.loaded, `Failed GLB should enter a recoverable error state: ${JSON.stringify(state)}.`);
+    assert(state.imageStillAvailable, "Failed GLB should keep the static BuildScan image available.");
+    assert(/Retry interactive model/i.test(state.retryLabel), "Failed GLB should offer a retry control.");
+    return state;
   } finally {
     await page.close();
   }
@@ -360,13 +396,15 @@ export async function runBuildScanViewerSmoke({
   try {
     const direct = await runDirectViewerCheck(browser, baseUrl, artifactDir);
     const embedded = await runEmbeddedViewerCheck(browser, baseUrl, artifactDir);
+    const fallback = await runFallbackCheck(browser, baseUrl);
 
     const summary = {
       artifactDir,
       baseUrl,
       mode,
       direct,
-      embedded
+      embedded,
+      fallback
     };
     const directBlockingFailures = getBlockingFailures(direct, direct.state.ready);
     const embeddedBlockingFailures = getBlockingFailures(embedded, embedded.after.childReady);

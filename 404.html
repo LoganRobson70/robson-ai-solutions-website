@@ -30,28 +30,28 @@
     <link rel="preload" href="./assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="./styles.css?v=20260708a">
+    <link rel="stylesheet" href="/styles-production.css?v=20260712a">
   </head>
-  <body>
+  <body class="studio-shell" data-page-type="not-found">
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <header class="site-header">
-      <div class="container topbar">
-        <a class="brand brand-lockup-link" href="/" aria-label="Robson AI home">
-          <span class="brand-icon-only" aria-hidden="true">
-            <img class="brand-logo" src="./assets/robson-ai-icon-v3-128.webp?v=20260627" width="48" height="48" alt="" decoding="async">
-          </span>
-          <span class="brand-lockup-text" aria-hidden="true">
-            <span>Robson AI</span>
-            <small>Page not found</small>
-          </span>
+    <header class="site-header studio-header">
+      <div class="container studio-header-inner">
+        <a class="studio-wordmark" href="/" aria-label="Robson AI Solutions home">
+          <img class="studio-wordmark-icon" src="/assets/robson-ai-icon-v3-transparent-320.webp?v=20260627" width="320" height="320" alt="" decoding="async" fetchpriority="high">
+          <span class="studio-wordmark-text"><strong>Robson AI</strong><span>Solutions</span></span>
         </a>
-
-        <nav class="site-nav" aria-label="Primary">
-          <a href="/" data-analytics-id="not-found-nav-home">Home</a>
-          <a href="/#work" data-analytics-id="not-found-nav-work">Work in progress</a>
-          <a href="./who-its-for.html" data-analytics-id="not-found-nav-who">Who it fits</a>
-          <a href="/#contact" data-analytics-id="not-found-nav-contact">Start a conversation</a>
+        <button class="studio-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>Menu</button>
+        <nav class="site-nav studio-nav" id="primary-navigation" aria-label="Primary" data-primary-nav>
+          <a href="/#products" data-analytics-id="nav-products">Products</a>
+          <a href="/who-its-for" data-analytics-id="nav-who-its-for">Who it's for</a>
+          <a href="/building-analyst#workflow" data-analytics-id="nav-how-it-works">How it works</a>
+          <a href="/#about" data-analytics-id="nav-about">About</a>
+          <a class="studio-nav-mobile-cta" href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20workflow&body=Hi%20Wayne%2C%0A%0AI%20would%20like%20to%20discuss%20a%20Building%20Analyst%20workflow.%0A%0AOrganisation%20or%20role%3A%0AWorkflow%20or%20problem%3A%0AUseful%20context%3A%0A%0AThanks%2C" data-analytics-id="nav-mobile-building-analyst" data-cta-location="mobile-menu">Discuss a Building Analyst workflow <span aria-hidden="true">&rarr;</span></a>
         </nav>
+        <div class="studio-header-actions">
+          <a class="studio-header-cta" href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20workflow&body=Hi%20Wayne%2C%0A%0AI%20would%20like%20to%20discuss%20a%20Building%20Analyst%20workflow.%0A%0AOrganisation%20or%20role%3A%0AWorkflow%20or%20problem%3A%0AUseful%20context%3A%0A%0AThanks%2C" data-analytics-id="nav-building-analyst-workflow" data-cta-location="header">Discuss a Building Analyst workflow <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
     </header>
 
@@ -76,58 +76,57 @@
             <article class="page-list-item">
               <h2>Building Analyst</h2>
               <p>Review the assessment capture and report-ready evidence direction for professional surveying workflows.</p>
-              <p><a class="text-link" href="./building-analyst.html" data-analytics-id="not-found-building-analyst-link" data-cta-location="not-found">Open Building Analyst</a></p>
+              <p><a class="text-link" href="/building-analyst" data-analytics-id="not-found-building-analyst-link" data-cta-location="not-found">Open Building Analyst</a></p>
             </article>
 
             <article class="page-list-item">
               <h2>Who it fits</h2>
               <p>See whether the current direction matches building surveying, property operations, compliance or external capture work.</p>
-              <p><a class="text-link" href="./who-its-for.html" data-analytics-id="not-found-who-link" data-cta-location="not-found">See who it fits</a></p>
+              <p><a class="text-link" href="/who-its-for" data-analytics-id="not-found-who-link" data-cta-location="not-found">See who it fits</a></p>
             </article>
           </div>
         </div>
 
         <div class="container page-actions">
           <a class="btn btn-primary" href="/" data-analytics-id="not-found-home-cta" data-cta-location="not-found">Return to Robson AI Solutions</a>
-          <a class="btn btn-outline" href="/#contact" data-analytics-id="not-found-contact-cta" data-cta-location="not-found">Start a conversation</a>
+          <a class="btn btn-outline" href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20workflow" data-analytics-id="not-found-contact-cta" data-cta-location="not-found">Discuss a Building Analyst workflow</a>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
+    <footer class="site-footer studio-footer">
+      <div class="container footer-grid studio-footer-grid">
         <div class="footer-brand-block">
-          <a class="brand footer-brand" href="/" aria-label="Robson AI home">
-            <span class="brand-wordmark" aria-hidden="true">
-              <span>Robson</span>
-              <span class="brand-wordmark-ai">A<span class="brand-wordmark-i"><span class="brand-i-stem"></span></span></span>
-            </span>
+          <a class="studio-wordmark studio-footer-wordmark" href="/" aria-label="Robson AI Solutions home">
+            <img class="studio-wordmark-icon" src="/assets/robson-ai-icon-v3-transparent-320.webp?v=20260627" width="320" height="320" alt="" loading="lazy" decoding="async">
+            <span class="studio-wordmark-text"><strong>Robson AI</strong><span>Solutions</span></span>
           </a>
-          <p class="footer-copy">Surveying knowledge, professional software and building intelligence for building-related work.</p>
+          <p class="footer-copy">Surveying-led software for connected evidence, professional review and clearer building decisions.</p>
         </div>
-
         <div class="footer-nav-group">
           <p class="footer-heading">Explore</p>
           <div class="footer-links">
             <a href="/">Home</a>
-            <a href="/#work">Work in progress</a>
-            <a href="./who-its-for.html">Who it is for</a>
-            <a href="./privacy.html">Privacy notice</a>
+            <a href="/#products">Products</a>
+            <a href="/who-its-for">Who it's for</a>
+            <a href="/building-analyst#workflow">How it works</a>
+            <a href="/#buildscan-proof">BuildScan proof</a>
+            <a href="/#about">About</a>
+            <a href="/privacy">Privacy Notice</a>
           </div>
         </div>
-
         <div class="footer-nav-group">
-          <p class="footer-heading">Start a conversation</p>
+          <p class="footer-heading">Contact</p>
           <div class="footer-links">
-            <a href="/#contact" data-analytics-id="not-found-footer-contact" data-cta-location="footer">Start a conversation</a>
-            <a href="mailto:hello@robsonai.co.uk" data-analytics-id="not-found-footer-mailto" data-cta-location="footer">hello@robsonai.co.uk</a>
+            <a href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20workflow&body=Hi%20Wayne%2C%0A%0AI%20would%20like%20to%20discuss%20a%20Building%20Analyst%20workflow.%0A%0AOrganisation%20or%20role%3A%0AWorkflow%20or%20problem%3A%0AUseful%20context%3A%0A%0AThanks%2C" data-analytics-id="footer-building-analyst-workflow" data-cta-location="footer">Discuss a Building Analyst workflow</a>
+            <a href="mailto:hello@robsonai.co.uk" data-analytics-id="footer-mailto-link" data-cta-location="footer">hello@robsonai.co.uk</a>
+            <button class="footer-link-button" type="button" data-open-consent>Privacy and analytics</button>
           </div>
         </div>
       </div>
-
       <div class="container footer-meta">
-        <p>&copy; 2026 Robson AI Solutions. Page not found.</p>
-        <p>This noindex page points visitors back to the current public site.</p>
+        <p>&copy; 2026 Robson AI Solutions. Early-stage product site.</p>
+        <p>Building Analyst is in development. BuildScan is working product proof.</p>
       </div>
     </footer>
   </body>

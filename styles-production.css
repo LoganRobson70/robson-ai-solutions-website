@@ -1,0 +1,98 @@
+/* Production-readiness pass: shared shell, hierarchy, readable type and mobile task order. */
+html,
+body { overflow-x: clip; }
+.studio-nav-mobile-cta { display: none !important; }
+[hidden] { display: none !important; }
+
+body.studio-shell .studio-wordmark { gap: 0.65rem; }
+body.studio-shell .studio-wordmark-text { display: grid; line-height: 1; text-transform: uppercase; }
+body.studio-shell .studio-wordmark-text strong,
+body.studio-home .studio-wordmark-text strong { font-size: 0.95rem; }
+body.studio-shell .studio-wordmark-text span,
+body.studio-home .studio-wordmark-text span { margin-top: 0.2rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; }
+
+body.studio-home .studio-nav a,
+body.studio-shell .studio-nav a,
+body.studio-home .studio-header-cta,
+body.studio-shell .studio-header-cta,
+body.studio-home .studio-button { font-size: 0.875rem; }
+
+body.studio-home .studio-kicker,
+body.studio-home .studio-status,
+body.studio-home .studio-explorer-issue-nav > p,
+body.studio-home .studio-explorer-panel-label { font-size: 0.875rem; }
+
+body.studio-home .studio-principle,
+body.studio-home .studio-hero-visual figcaption,
+body.studio-home .studio-truth-inner p,
+body.studio-home .studio-explorer-intro > p:last-child,
+body.studio-home .studio-explorer-issue-button,
+body.studio-home .studio-explorer-observation,
+body.studio-home .studio-explorer-workflow dt,
+body.studio-home .studio-explorer-workflow dd,
+body.studio-home .studio-explorer-boundary,
+body.studio-home .studio-explorer-figure figcaption,
+body.studio-home .studio-product > p:not(.studio-status):not(.studio-future-note),
+body.studio-home .studio-stage-list strong,
+body.studio-home .studio-stage-list small,
+body.studio-home .studio-text-link,
+body.studio-home .studio-buildscan-proof figcaption,
+body.studio-home .studio-interactive-proof figcaption,
+body.studio-home .studio-operations-list dt,
+body.studio-home .studio-operations-list dd,
+body.studio-home .studio-future-note,
+body.studio-home .studio-audience-list p,
+body.studio-home .studio-proof-list,
+body.studio-audience-page .audience-section-intro > p:last-child,
+body.studio-audience-page .audience-path-list article > div > p,
+body.studio-audience-page .audience-path-list .audience-outcome,
+body.studio-audience-page .audience-relationship-flow p,
+body.studio-audience-page .audience-product-list article > p:not(.studio-status) { font-size: 0.875rem; }
+
+body.studio-home .studio-product-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 0.8fr); }
+body.studio-home .studio-product-analyst { background: linear-gradient(145deg, rgba(10, 91, 245, 0.06), transparent 70%); }
+body.studio-home .studio-products-intro { display: grid; max-width: 58rem; gap: 0.8rem; padding-top: 4.5rem; padding-bottom: 2rem; }
+body.studio-home .studio-products-intro h2 { font-size: clamp(2.3rem, 4vw, 4.2rem); line-height: 1; letter-spacing: -0.05em; }
+body.studio-home .studio-products-intro > p:last-child { color: var(--studio-muted); font-size: 1rem; line-height: 1.65; }
+body.studio-home .studio-explorer-image-shell picture { display: block; width: 100%; height: 100%; }
+body.studio-home .studio-explorer-image-shell picture > img { width: 100%; height: 100%; object-fit: cover; }
+body.studio-home .studio-product > p:not(.studio-status):not(.studio-future-note),
+body.studio-home .studio-audience-list p,
+body.studio-home .studio-buildscan-section p,
+body.studio-home .studio-contact p,
+body.studio-audience-page .audience-hero-intro p,
+body.studio-audience-page .audience-path-list article > div > p,
+body.studio-audience-page .audience-section-intro > p:last-child,
+body.studio-audience-page .audience-product-list article > p:not(.studio-status) { font-size: 1rem; }
+
+body.building-analyst-zip-page .zip-hero-lead,
+body.building-analyst-zip-page .zip-section-head > p,
+body.building-analyst-zip-page .zip-product-card p,
+body.building-analyst-zip-page .zip-proof-steps p,
+body.building-analyst-zip-page .zip-buildscan-notes p,
+body.building-analyst-zip-page .zip-price-card p,
+body.building-analyst-zip-page .zip-contact-panel p { font-size: 1rem; }
+
+.zip-faq-list { display: grid; max-width: 60rem; margin-top: 2.5rem; border-top: 1px solid var(--line, #dbe2ec); }
+.zip-faq-list details { padding: 1.2rem 0; border-bottom: 1px solid var(--line, #dbe2ec); }
+.zip-faq-list summary { min-height: 44px; cursor: pointer; font-size: 1rem; font-weight: 800; }
+.zip-faq-list p { max-width: 50rem; margin-top: 0.6rem; font-size: 1rem; line-height: 1.65; }
+body[data-page-type="building-analyst"] .zip-hero h1 { font-size: clamp(3.3rem, 4.8vw, 4.6rem); }
+
+@media (max-width: 1040px) {
+  .studio-nav-mobile-cta { display: flex !important; margin-top: 0.5rem; padding: 0.75rem 1rem !important; border: 0 !important; border-radius: 6px; background: #0a5bf5; color: #ffffff !important; }
+  body.studio-home .studio-explorer-issue-nav { grid-row: 1; }
+  body.studio-home .studio-explorer-figure { grid-row: 2; }
+  body.studio-home .studio-explorer-panel { grid-row: 3; }
+}
+
+@media (max-width: 560px) {
+  body.studio-home .studio-wordmark-text,
+  body.studio-shell .studio-wordmark-text { display: grid; }
+  body.studio-home .studio-wordmark-text strong,
+  body.studio-shell .studio-wordmark-text strong { font-size: 0.82rem; }
+  body.studio-home .studio-wordmark-text span,
+  body.studio-shell .studio-wordmark-text span { font-size: 0.68rem; }
+  body.studio-home .studio-explorer-issue-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body[data-page-type="building-analyst"] .zip-hero h1 { font-size: clamp(2.7rem, 12vw, 3.4rem); }
+}

@@ -75,7 +75,7 @@ function compressionForRequest(request, contentType) {
 
 export async function startStaticServer(rootDir) {
   const server = http.createServer(async (request, response) => {
-    const filePath = resolveRequestPath(rootDir, request.url);
+    let filePath = resolveRequestPath(rootDir, request.url);
 
     if (!filePath) {
       response.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
@@ -84,7 +84,17 @@ export async function startStaticServer(rootDir) {
     }
 
     try {
-      await access(filePath);
+      try {
+        await access(filePath);
+      } catch {
+        if (!path.extname(filePath)) {
+          const htmlCandidate = `${filePath}.html`;
+          await access(htmlCandidate);
+          filePath = htmlCandidate;
+        } else {
+          throw new Error("Not found");
+        }
+      }
       const extension = path.extname(filePath).toLowerCase();
       const contentType = MIME_TYPES[extension] || "application/octet-stream";
       const compression = compressionForRequest(request, contentType);

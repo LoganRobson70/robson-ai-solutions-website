@@ -216,6 +216,70 @@ Validation evidence:
 - Publish readiness for the corrective placement is 100%. Existing warning-only residuals remain 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries; production dependencies remain at zero vulnerabilities and Chromium passed.
 - These post-production evidence notes are local and not included in `01c8cdf`; no second evidence commit was performed.
 
+## 1F. Complete Production-Readiness Improvement Pass
+
+Tranche name: `complete-production-readiness-improvement-pass`
+Status: local implementation and complete 41-step local gate passed; owner privacy/founder decisions supplied and incorporated; Wayne approved exact-candidate staging, commit and a fresh non-production preview; push and production deployment remain unapproved
+Started: 2026-07-12
+
+Objective:
+
+- Implement the owner-supplied P1/P2 production-readiness brief against current commit `da78e54` without framework migration or fabricated proof.
+- Preserve the working Building Analyst issue explorer, opt-in BuildScan/static fallback, professional-review boundary, illustrative-image disclosure, consent-first analytics posture and current security headers.
+- Establish one generated shared navigation/footer source, clean extensionless canonical URLs, one maturity system, one Building Analyst conversion objective, a shorter product-led Building Analyst page, stronger truthful trust/status content, improved mobile task flow, BuildScan accessibility/containment hardening, accurate metadata/schema and expanded release QA.
+- Complete all implementation that does not require unknown legal or commercial facts, then present Wayne with the exact unresolved factual decisions.
+
+Owner decisions confirmed on 2026-07-12:
+
+- Controller: Wayne Robson, sole trader trading as Robson AI Solutions in the United Kingdom.
+- Public privacy contact: `hello@robsonai.co.uk`; no private/home address is to be published in this tranche.
+- Lawful bases: legitimate interests for ordinary enquiries/security; contract for requested pre-contract steps or contract performance; legal obligation for required business/tax records.
+- Retention: 24 months for ordinary non-client enquiries; applicable statutory periods for transaction/tax records; provider-controlled infrastructure/security-log schedules.
+- Service providers: Netlify hosting/security and Microsoft 365 email, with applicable provider transfer safeguards.
+- Founder content: retain only the restrained founder/sole-trader identification already approved; Wayne does not want a fuller biography or invented credentials.
+
+Permission envelope:
+
+- Approved: local inspection, scoped implementation, tracker/docs updates, local builds, security/interaction/browser QA, specialist read-only agents, exact-manifest staging, one candidate commit and a fresh non-production Netlify preview.
+- Not approved: push, PR, production deployment, Search Console submission, DNS/DMARC changes, analytics enablement, external messages, dependency installation/upgrades or destructive Git actions.
+
+Implementation completed:
+
+- One generated shared navigation/footer source now drives Home, Building Analyst, Who it's for, Privacy and 404. It uses visible `Robson AI Solutions` branding, one How-it-works destination, one mobile CTA and no stale Pricing/work anchors.
+- Canonical public routes are `/`, `/building-analyst`, `/who-its-for` and `/privacy`; old `.html` routes and the holding route have explicit 301 redirects.
+- Homepage positioning now leads with connected evidence, professional review and reporting for professional users and buyer organisations. Maturity labels are fixed as `Flagship product — in development`, `Working product proof` and `Roadmap exploration`.
+- The primary conversion objective is consistently `Discuss a Building Analyst workflow`; BuildScan remains a secondary proof route.
+- Building Analyst was shortened, its hero reduced so the proposition and actions fit the first desktop viewport, and a six-topic factual FAQ was added covering availability, platforms, AI assistance, professional approval, data handling and the BuildScan boundary.
+- Mobile QA now verifies 320, 390, 768, 1024, 1363 and 1440 widths, the menu CTA, 44 px controls and the explorer order `selector → image → result`.
+- The BuildScan viewer discloses the 10.77 MB download, keeps pre-opt-in loading, provides 44 px keyboard-operable toolbar controls, ignores spoofed ready messages and preserves the static image/retry route after a forced GLB failure.
+- Analytics is explicitly inactive while the Measurement ID is empty. No prospective choice is stored, stale legacy choices are cleared and denied local storage fails safely.
+- Netlify now builds an allowlisted `dist/` public directory instead of publishing the repository root. Global CSP no longer pre-authorises analytics, WebAssembly, blobs or arbitrary inline scripts; viewer-only capabilities are scoped to the viewer route.
+- Metadata includes canonical clean URLs, Open Graph image dimensions/type/alt, Twitter image alt text, Organization/WebSite/WebPage schema and correct page-type data.
+- Shared production-readiness CSS was separated into `styles-production.css`; legacy CSS remains intact to reduce regression risk.
+- BuildScan viewer boundary and pinned Three.js `0.164.1` review triggers are documented in `docs/codex/BUILD_SCAN_VIEWER_SECURITY.md`. The owner-supplied controller, contact, lawful-basis, retention, processor and founder decisions are incorporated in the Privacy Notice and recorded in `docs/codex/PRIVACY_FACTS_REQUIRED.md`.
+
+Validation evidence:
+
+- The exact staged 41-file snapshot passed all 41 local release steps after the owner-confirmed Privacy Notice update: `output/release-local-gate/gate-2026-07-12T20-01-38-368Z/release-local-gate.json`.
+- Responsive QA passed 42 route/viewport checks including 320 px, 1024 px and 1363 px: `output/responsive-route/smoke-2026-07-12T20-02-23-357Z/responsive-route-smoke.json`.
+- BuildScan proof passed direct, embedded, keyboard, spoofed-message and forced-fallback checks during the final gate.
+- Rendered screenshots passed, including the owner-confirmed Privacy Notice and explicit loaded-state proof for the homepage hero image: `output/playwright/rendered-release-smoke-2026-07-12T20-03-40-072Z`.
+- Measurement evidence passed with zero axe violations on six routes, median Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40 seconds: `output/measurement/evidence-2026-07-12T20-03-59-851Z`.
+- In-app Browser review confirmed the new Home and Building Analyst heroes, visible shared brand, clean Building Analyst canonical, no horizontal overflow and zero warning/error console messages.
+- Release inventory and staging-manifest reconciliation passed for 41 candidate paths (28 modified and 13 untracked) with zero secret findings and zero external GLB URIs. Production dependencies remain at zero vulnerabilities.
+- Warning-only residuals: 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries; Chromium and the production dependency footprint passed.
+
+Readiness decision:
+
+- Technical local-candidate readiness: 100%.
+- Release decision: the local candidate is ready for an approved commit and non-production preview. Production remains gated on deployed-preview QA and separate production approval.
+- Wayne approved exact-manifest staging, one candidate commit and a fresh non-production preview. Push and production deployment remain outside the permission envelope; completion evidence will be recorded in the next tracker checkpoint.
+- Commit `534aaae` was created locally and remained unpushed. Draft deploy `6a53f40b7f415aad7bcede1c` was created, but its deployed-preview gate stopped at the header check because the route-specific BuildScan viewer CSP did not explicitly repeat `frame-src`. Production was not touched. The narrow correction adds `frame-src 'self'` to that viewer-only policy; the approved commit will be amended so the tranche remains a single candidate commit before replacement-preview validation.
+- Amended commit `8a284b9` and replacement draft deploy `6a53f4c766e0748ca7534650` passed the `frame-src` check, then stopped because the viewer policy also omitted explicit `form-action`. The policy now adds `form-action 'self' mailto:` and the local header smoke is expanded to validate the complete viewer-specific CSP before any further deploy. Production remains unchanged.
+- Amended commit `18abe1b` and draft deploy `6a53f598fd98e0b44ee31f57` passed the complete CSP check, then exposed a stale validator assumption: deployed `/holding.html` is intentionally a 301 to Home, while its unreachable source document retains `noindex,nofollow`. The deployed-header test now verifies the 301 and destination; source-level noindex remains covered by the release-security smoke. Production remains unchanged.
+- Amended commit `d40902a` and draft deploy `6a53f65d7f3f19a6c8aacc83` passed deployed headers, BuildScan and keyboard checks, then found the same stale holding-page assumption in semantic SEO. All deployed browser matrices now omit the redirected historical document, while the header gate verifies its 301 and the source-security gate verifies its retained `noindex,nofollow`. Local mode continues rendering and checking the fallback file directly. Production remains unchanged.
+- After reconciling the redirected holding route across semantic, product/design, responsive, visual, browser-coverage and rendered-preview checks, the complete 14-step deployed-preview gate passed against draft deploy `6a53f65d7f3f19a6c8aacc83`: `output/release-preview-gate/gate-2026-07-12T20-23-21-397Z/release-preview-gate.json`. The rendered-smoke console summary was also corrected to list only screenshots actually produced in its current mode. These QA-only corrections will be included in the final amended candidate and exact-hash replacement preview. Production remains unchanged.
+
 ## 2. Completed Secondary-Page Shell Candidate
 
 Tranche name: `secondary-page-shell-consistency`
@@ -1684,7 +1748,7 @@ Follow-on tranche:
 
 ### Next
 
-- `buyer-and-practitioner-positioning-alignment` is implemented locally after Wayne approved positioning and implementation option 1: "Better tools for building professionals. Clearer decisions for the people who rely on them." The homepage now addresses professional users and employing/commissioning organisations; `who-its-for.html` is rebuilt in the current product-studio design system; Homepage, Building Analyst, Who it's for and Privacy share `Products / Who it's for / How it works / About / Discuss a workflow` navigation; the compact menu begins at 1040 px to avoid the reported clipping; and internal-sounding footer/product-relationship wording is replaced by buyer-facing professional and product-stage language. Targeted HTML, semantic/SEO, product-design and responsive gates pass. Fresh rendered QA also passes after updating its approved-copy and shared-wordmark assertions. This remains local and uncommitted pending Wayne's visual approval; no commit, push, preview deploy, or production deploy is approved.
+- `buyer-and-practitioner-positioning-alignment` is complete in production after Wayne approved positioning, implementation, preview and explicit production deployment of commit `da78e54` (`Align website messaging for buyers and professionals`). The complete 37-step local gate passed with summary `output/release-local-gate/gate-2026-07-12T12-58-06-835Z/release-local-gate.json`; axe reported zero violations and Lighthouse scored performance 96, accessibility 100, best practices 100 and SEO 100. Netlify draft deploy `6a539060ddc5f61505ed7b79` passed the complete 14-step preview gate at `output/release-preview-gate/gate-2026-07-12T13-02-48-294Z/release-preview-gate.json`. Previous production deploy `6a5377f98005fcdc6ff9037a` was confirmed as the rollback target immediately before release. Clean-archive production deploy `6a53b157d6c68db39daba82a` is live at `https://robsonai.co.uk`; the complete 14-step production gate passed with summary `output/release-production-gate/gate-2026-07-12T15-23-26-741Z/release-preview-gate.json`. Final live Browser verification confirmed the approved homepage and audience-page headlines, unified navigation, no stale Pricing route, no horizontal overflow and zero warnings or errors. No branch push or pull request was performed.
 - Recommended first gate for the website-excellence programme: approve a non-production release-candidate path for the hardened interactive BuildScan GLB candidate and the completed local proof/performance bundle before production. Recommended option 1 is commit the scoped changes, push a branch, create/verify a Netlify deploy-preview, then make the separate production publish decision from live-preview evidence.
 - Wayne visual/public-release decision for the interactive BuildScan model remains required before production. Do not publish if the optimised Ludgershall GLB is not acceptable for public viewing as a small, low-detail preview asset.
 - After the preview gate, required validation is `QA_BASE_URL=<preview> npm run qa:release-headers:preview`, `QA_BASE_URL=<preview> npm run qa:buildscan-viewer:preview`, `QA_BASE_URL=<preview> npm run qa:measurement:preview`, plus a rendered mobile/desktop Browser pass before any production decision.
@@ -1703,8 +1767,8 @@ Follow-on tranche:
 - Decide whether the public website keeps its Manrope/Fraunces editorial type system as a marketing-site exception or migrates later toward the Inter-only product design-system rule.
 - Prepare a GA4 enablement pack only after Wayne approves a real Measurement ID and analytics governance.
 - Add CI or pre-handoff hooks for measurement smoke, HTML validation, accessibility, and tracker update checks.
-- Migrate Netlify publishing from repo root to an allowlisted `public/` or generated `dist/` output after the current release candidate is safely resolved.
-- Run a full browser/mobile QA and visual polish pass before public launch.
+- Review the generated `dist/` allowlist after any future public-file addition so new assets are not silently omitted.
+- Install local Firefox/WebKit browser binaries only in a separately approved tooling tranche if cross-browser local execution becomes a priority.
 
 ### Post-PRD full app review task series
 
@@ -1732,6 +1796,7 @@ Run this only after the relevant current-state PRD is complete and accepted. For
 | --- | --- | --- | --- | --- |
 | 2026-05-30 | Embedded contact form or booked intro CTA | UI/UX review | later | Useful conversion improvement, but not part of documentation baseline. Requires privacy, spam, and Netlify Forms or backend decision. |
 | 2026-05-30 | Production GA4 Measurement ID enablement | Existing QA docs | later | Analytics is currently intentionally inert. Needs explicit approval and privacy check. |
+| 2026-07-12 | DMARC/domain-email posture check | Production-readiness pass | later | External DNS/email governance check. Requires explicit approval before any DNS query follow-up that leads to a change; no DNS change is part of this tranche. |
 | 2026-05-30 | Public launch of fuller website | Release handover | next | Plan exists in `docs/codex/PUBLIC_FULL_SITE_LAUNCH_PLAN.md`; execution should wait until iOS app/screenshot/advertising readiness is approved. |
 | 2026-05-30 | Secret rotation and env-var based preview auth | Codex audit | done | Edge Function now reads Netlify env vars; password was rotated into Keychain; Netlify vars are set for `production`, `deploy-preview`, and `branch-deploy`; live alias preview verified. |
 | 2026-05-30 | Weekly website health automation | Capability checklist | later | Could run smoke/QA reminders, but only after the QA command is back to passing. |

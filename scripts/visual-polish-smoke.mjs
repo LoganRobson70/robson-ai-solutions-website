@@ -6,9 +6,9 @@ import { startStaticServer } from "./lib/static-server.mjs";
 
 const ROUTES = [
   "/",
-  "/building-analyst.html",
-  "/who-its-for.html",
-  "/privacy.html",
+  "/building-analyst",
+  "/who-its-for",
+  "/privacy",
   "/404.html",
   "/holding.html",
   "/buildscan-viewer.html"
@@ -310,8 +310,9 @@ export async function runVisualPolishSmoke({
 
   try {
     const checks = [];
+    const checkedRoutes = mode === "preview" ? ROUTES.filter((route) => route !== "/holding.html") : ROUTES;
 
-    for (const route of ROUTES) {
+    for (const route of checkedRoutes) {
       for (const viewport of VIEWPORTS) {
         checks.push(await inspectRoute(browser, resolvedBaseUrl, route, viewport));
       }
@@ -322,7 +323,7 @@ export async function runVisualPolishSmoke({
       status: "pass",
       mode,
       baseUrl: resolvedBaseUrl,
-      checkedRoutes: ROUTES,
+      checkedRoutes,
       checkedViewports: VIEWPORTS,
       checkCount: checks.length,
       rule: "No large rendered text blocks may carry high-opacity text-level backgrounds unless they are explicit controls, labels, tokens or status elements.",

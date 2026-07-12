@@ -1,5 +1,48 @@
 [build]
-  publish = "."
+  command = "npm run build:site"
+  publish = "dist"
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/assets/robson-ai-icon-v3-32.png"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/building-analyst.html"
+  to = "/building-analyst"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/who-its-for.html"
+  to = "/who-its-for"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/holding.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/holding"
+  to = "/"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/docs/*"
@@ -85,9 +128,16 @@
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "SAMEORIGIN"
     Strict-Transport-Security = "max-age=31536000"
-    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.google-analytics.com; font-src 'self'; connect-src 'self' blob: https://www.google-analytics.com https://region1.google-analytics.com; worker-src 'self' blob:; frame-src 'self'; form-action 'self' mailto:; frame-ancestors 'self'"
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-zwiZF2DmeEKggDDET8GWbhBJRAveFu3UcDFAn0jqqfc=' 'sha256-fu4ZQx/0sc4RdMfnexO7wUecsPna2GmzArgYVgPLtFs=' 'sha256-WTZJacnatS3fa5dMjTIaOwmI1RQdDCUEBTMRCn1R9fM=' 'sha256-nBTxNAdnQxIZ4xWmmOEBq7FGbjn8L9e0e/BQrMFjNkc='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'self'; frame-src 'self'; form-action 'self' mailto:; frame-ancestors 'self'"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), geolocation=(), microphone=()"
+    Cross-Origin-Resource-Policy = "same-origin"
+
+[[headers]]
+  for = "/buildscan-viewer.html"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; worker-src 'self' blob:; frame-src 'self'; form-action 'self' mailto:; frame-ancestors 'self'"
+    Cache-Control = "public, max-age=3600"
 
 [[headers]]
   for = "/assets/vendor/three-0.164.1/*"
@@ -127,6 +177,11 @@
 
 [[headers]]
   for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/styles-production.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 

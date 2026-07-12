@@ -21,9 +21,9 @@ const REQUIRED_PATHS = [
   "/",
   "/index.html",
   "/buildscan-viewer.html",
-  "/privacy.html",
-  "/building-analyst.html",
-  "/who-its-for.html",
+  "/privacy",
+  "/building-analyst",
+  "/who-its-for",
   "/robots.txt",
   "/sitemap.xml",
   "/assets/og/robsonai-cover-1200x630.png",
@@ -140,24 +140,24 @@ async function runDeclineFlow(browser, baseUrl, artifactDir) {
 
     await page.locator("[data-open-consent]").first().click();
     const bannerVisibleAfterSettingsOpen = await page.locator("[data-consent-banner]").isVisible();
-    assert(bannerVisibleAfterSettingsOpen, "Cookie Settings should open the consent controls.");
-
-    await page.getByRole("button", { name: "Decline" }).click();
-    const declineConsent = await page.evaluate(() => window.localStorage.getItem("robsonai.analytics-consent"));
-    assert(declineConsent === "denied", "Decline should persist `robsonai.analytics-consent=denied`.");
+    assert(bannerVisibleAfterSettingsOpen, "Privacy and analytics should open the inactive analytics status.");
+    const inactiveState = await page.evaluate(() => ({
+      title: document.querySelector("#analytics-consent-title")?.textContent?.trim(),
+      acceptHidden: document.querySelector("[data-consent-accept]")?.hidden,
+      declineHidden: document.querySelector("[data-consent-decline]")?.hidden,
+      storedConsent: window.localStorage.getItem("robsonai.analytics-consent")
+    }));
+    assert(inactiveState.title === "Analytics is inactive", `Empty GA4 configuration should be described as inactive: ${JSON.stringify(inactiveState)}.`);
+    assert(inactiveState.acceptHidden && inactiveState.declineHidden, "Inactive analytics should not request a prospective accept/decline choice.");
+    assert(inactiveState.storedConsent === null, "Inactive analytics should not store a prospective choice.");
 
     await page.reload({ waitUntil: "networkidle" });
-    await page.waitForFunction(() => {
-      const banner = document.querySelector("[data-consent-banner]");
-      return window.localStorage.getItem("robsonai.analytics-consent") === "denied" && Boolean(banner?.hidden);
-    });
     const bannerHiddenAfterReload = await page.evaluate(
       () => Boolean(document.querySelector("[data-consent-banner]")?.hidden)
     );
-    assert(bannerHiddenAfterReload, "Consent banner should stay hidden after decline and reload.");
+    assert(bannerHiddenAfterReload, "Inactive analytics notice should stay closed after reload.");
 
-    await page.locator('[data-analytics-id="footer-contact"]').click();
-    assert(page.url().endsWith("/#contact"), "Primary contact navigation should land on the preview contact hash.");
+    await page.locator("#contact").scrollIntoViewIfNeeded();
 
     await page.getByRole("button", { name: "Copy email address" }).click();
     const copyFeedback = (await page.locator("[data-copy-feedback]").textContent())?.trim() || "";
@@ -174,7 +174,7 @@ async function runDeclineFlow(browser, baseUrl, artifactDir) {
     return {
       bannerVisibleOnFirstLoad,
       bannerVisibleAfterSettingsOpen,
-      consentAfterDecline: declineConsent,
+      inactiveState,
       bannerHiddenAfterReload,
       copyFeedback,
       mailtoHref,
@@ -187,6 +187,7 @@ async function runDeclineFlow(browser, baseUrl, artifactDir) {
 
 async function runAcceptNoIdFlow(browser, baseUrl) {
   const context = await browser.newContext();
+  await context.addInitScript(() => window.localStorage.setItem("robsonai.analytics-consent", "granted"));
   const page = await context.newPage();
   const requests = [];
   page.on("request", (request) => requests.push(request.url()));
@@ -194,21 +195,18 @@ async function runAcceptNoIdFlow(browser, baseUrl) {
 
   try {
     await page.goto(new URL(APP_ENTRY_PATH, baseUrl).toString(), { waitUntil: "networkidle" });
-    await page.locator("[data-open-consent]").first().click();
-    await page.getByRole("button", { name: "Accept analytics" }).click();
-
     const consentAfterAccept = await page.evaluate(() => window.localStorage.getItem("robsonai.analytics-consent"));
-    assert(consentAfterAccept === "granted", "Accept should persist `robsonai.analytics-consent=granted`.");
+    assert(consentAfterAccept === null, "Empty GA4 configuration should clear a stale legacy prospective grant.");
 
     await page.reload({ waitUntil: "networkidle" });
     await page.waitForFunction(() => {
       const banner = document.querySelector("[data-consent-banner]");
-      return window.localStorage.getItem("robsonai.analytics-consent") === "granted" && Boolean(banner?.hidden);
+      return window.localStorage.getItem("robsonai.analytics-consent") === null && Boolean(banner?.hidden);
     });
     const bannerHiddenAfterReload = await page.evaluate(
       () => Boolean(document.querySelector("[data-consent-banner]")?.hidden)
     );
-    assert(bannerHiddenAfterReload, "Consent banner should stay hidden after accept and reload.");
+    assert(bannerHiddenAfterReload, "Consent banner should stay hidden while analytics is unavailable.");
 
     const googleRequests = uniqueGoogleRequests(requests);
     assert(
@@ -247,9 +245,9 @@ async function runFakeIdContractFlow(browser, baseUrl) {
     await page.getByRole("button", { name: "Accept analytics" }).click();
     await page.waitForTimeout(250);
 
-    await page.locator('[data-analytics-id="hero-explore-building-analyst"]').click();
+    await page.locator('[data-analytics-id="hero-view-buildscan"]').click();
     await page.locator('[data-analytics-id="nav-about"]').click();
-    await page.locator('[data-analytics-id="footer-contact"]').click();
+    await page.locator('[data-analytics-id="footer-building-analyst-workflow"]').dispatchEvent("click");
     await page.locator('[data-analytics-id="contact-email"]').dispatchEvent("click");
     await page.getByRole("button", { name: "Copy email address" }).click();
     await page.locator("[data-buildscan-load-model]").click();

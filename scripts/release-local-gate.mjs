@@ -19,6 +19,16 @@ const COMMANDS = [
     args: ["--check", "scripts/measurement-evidence.mjs"]
   },
   {
+    name: "consent state smoke syntax",
+    command: "node",
+    args: ["--check", "scripts/consent-state-smoke.mjs"]
+  },
+  {
+    name: "internal link smoke syntax",
+    command: "node",
+    args: ["--check", "scripts/internal-link-smoke.mjs"]
+  },
+  {
     name: "BuildScan viewer smoke syntax",
     command: "node",
     args: ["--check", "scripts/buildscan-viewer-smoke.mjs"]
@@ -123,6 +133,16 @@ const COMMANDS = [
     name: "release security",
     command: "npm",
     args: ["run", "qa:release-security"]
+  },
+  {
+    name: "inactive analytics consent state",
+    command: "npm",
+    args: ["run", "qa:consent-state"]
+  },
+  {
+    name: "internal links and fragments",
+    command: "npm",
+    args: ["run", "qa:internal-links"]
   },
   {
     name: "release headers",

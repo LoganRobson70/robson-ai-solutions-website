@@ -3,7 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "sync:site-shell": "node scripts/sync-site-shell.mjs",
+    "build:site": "npm run sync:site-shell && node scripts/build-public-site.mjs",
     "qa:preview-auth": "node --test scripts/preview-auth-smoke.mjs",
+    "qa:consent-state": "node scripts/consent-state-smoke.mjs",
+    "qa:internal-links": "node scripts/internal-link-smoke.mjs",
     "qa:buildscan-viewer": "node scripts/buildscan-viewer-smoke.mjs",
     "qa:buildscan-viewer:preview": "node scripts/buildscan-viewer-smoke.mjs --mode=preview --base-url=\"$QA_BASE_URL\"",
     "qa:keyboard": "node scripts/keyboard-release-smoke.mjs",

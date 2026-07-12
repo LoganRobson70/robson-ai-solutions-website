@@ -304,7 +304,7 @@ function setupMobileNav() {
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 900) {
+    if (window.innerWidth > 1040) {
       closeNav();
     }
   });
@@ -321,12 +321,49 @@ function setupQaMode() {
 
 function createAnalytics() {
   const consentKey = "robsonai.analytics-consent";
+  const consentVersion = 1;
+  const consentLifetimeMs = 180 * 24 * 60 * 60 * 1000;
   const gaId = document.querySelector('meta[name="ga4-measurement-id"]')?.content.trim() ?? "";
   const hasMeasurementId = /^G-[A-Z0-9]+$/i.test(gaId);
   const pageType = document.body.dataset.pageType || "website";
 
+  const readConsent = () => {
+    try {
+      const stored = window.localStorage.getItem(consentKey);
+      if (!stored) return null;
+      const parsed = JSON.parse(stored);
+      if (parsed.version !== consentVersion || !["granted", "denied"].includes(parsed.state)) return null;
+      if (!Number.isFinite(parsed.expiresAt) || parsed.expiresAt <= Date.now()) return null;
+      return parsed.state;
+    } catch {
+      return null;
+    }
+  };
+
+  const writeConsent = (state) => {
+    try {
+      window.localStorage.setItem(consentKey, JSON.stringify({
+        version: consentVersion,
+        state,
+        decidedAt: Date.now(),
+        expiresAt: Date.now() + consentLifetimeMs
+      }));
+    } catch {
+      // Consent remains session-only when browser storage is unavailable.
+    }
+  };
+
+  const clearConsent = () => {
+    try {
+      window.localStorage.removeItem(consentKey);
+    } catch {
+      // No stored choice is available to clear.
+    }
+  };
+
   let analyticsLoaded = false;
-  let consentState = window.localStorage.getItem(consentKey);
+  let consentState = hasMeasurementId ? readConsent() : null;
+  if (!hasMeasurementId) clearConsent();
   let queuedEvents = [];
 
   const getPagePath = () => `${window.location.pathname}${window.location.hash}`;
@@ -439,12 +476,13 @@ function createAnalytics() {
       return consentState;
     },
     async grantConsent() {
-      consentState = "granted";
-      window.localStorage.setItem(consentKey, consentState);
-
       if (!hasMeasurementId) {
+        consentState = null;
+        clearConsent();
         return { active: false };
       }
+      consentState = "granted";
+      writeConsent(consentState);
 
       await loadAnalytics();
       flushQueue();
@@ -452,7 +490,7 @@ function createAnalytics() {
     },
     denyConsent() {
       consentState = "denied";
-      window.localStorage.setItem(consentKey, consentState);
+      writeConsent(consentState);
       applyConsent("denied");
     },
     async restoreConsent() {
@@ -491,6 +529,8 @@ function setupConsentBanner(analytics) {
   const declineButton = document.querySelector("[data-consent-decline]");
   const openButtons = document.querySelectorAll("[data-open-consent]");
   const status = document.querySelector("[data-consent-status]");
+  const title = document.querySelector("#analytics-consent-title");
+  const consentText = banner?.querySelector(".consent-text");
 
   if (!banner || !acceptButton || !declineButton || !status) {
     analytics.restoreConsent();
@@ -543,6 +583,15 @@ function setupConsentBanner(analytics) {
 
   openButtons.forEach((button) => {
     button.addEventListener("click", () => {
+      if (!analytics.hasMeasurementId) {
+        if (title) title.textContent = "Analytics is inactive";
+        if (consentText) consentText.textContent = "No analytics Measurement ID is configured, so this site is not sending analytics data or storing an analytics preference.";
+        acceptButton.hidden = true;
+        declineButton.hidden = true;
+        openBanner();
+        setStatus("No action is required.");
+        return;
+      }
       openBanner();
       setStatus("Update your analytics preference.");
     });
@@ -858,6 +907,14 @@ function setupNavState() {
 
     if (path.endsWith("/index.html")) {
       path = path.slice(0, -"/index.html".length) || "/";
+    }
+
+    if (path.endsWith(".html")) {
+      path = path.slice(0, -".html".length) || "/";
+    }
+
+    if (path.length > 1 && path.endsWith("/")) {
+      path = path.slice(0, -1);
     }
 
     return path || "/";

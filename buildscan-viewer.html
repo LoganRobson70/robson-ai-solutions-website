@@ -114,15 +114,15 @@
       }
 
       button {
-        min-width: 34px;
-        min-height: 28px;
+        min-width: 44px;
+        min-height: 44px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 7px;
         background: rgba(255, 255, 255, 0.09);
         color: var(--text);
         cursor: pointer;
         font: inherit;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 760;
       }
 
@@ -146,7 +146,7 @@
         border-radius: 8px;
         background: rgba(0, 0, 0, 0.62);
         color: var(--text);
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 660;
         line-height: 1.3;
       }
@@ -167,7 +167,7 @@
         }
 
         button {
-          min-width: 42px;
+          min-width: 44px;
         }
       }
     </style>
@@ -176,14 +176,14 @@
     <main class="viewer-shell" aria-label="BuildScan interactive model viewer">
       <h1 class="sr-only">BuildScan interactive model viewer</h1>
       <div class="viewer-toolbar" role="toolbar" aria-label="BuildScan model viewer controls">
-        <div class="viewer-group">
+        <div class="viewer-group" role="group" aria-label="Navigation mode">
           <span>Navigate</span>
           <div class="button-row">
             <button type="button" data-tool="orbit" aria-pressed="true">Orbit</button>
             <button type="button" data-tool="pan" aria-pressed="false">Pan</button>
           </div>
         </div>
-        <div class="viewer-group">
+        <div class="viewer-group" role="group" aria-label="Preset views">
           <span>View</span>
           <div class="button-row">
             <button type="button" data-view="top" aria-pressed="false">Top</button>
@@ -193,7 +193,7 @@
             <button type="button" data-action="spin" aria-pressed="false">Spin</button>
           </div>
         </div>
-        <div class="viewer-group">
+        <div class="viewer-group" role="group" aria-label="Zoom and reset">
           <span>Zoom</span>
           <div class="button-row">
             <button type="button" data-action="zoom-in">In</button>
@@ -220,6 +220,8 @@
       const toolButtons = Array.from(document.querySelectorAll("[data-tool]"));
       const spinButton = document.querySelector('[data-action="spin"]');
       const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const toolbar = document.querySelector(".viewer-toolbar");
+      const toolbarButtons = Array.from(toolbar.querySelectorAll("button"));
 
       let loadedModel = null;
       let currentTool = "orbit";
@@ -331,6 +333,19 @@
       document.querySelector('[data-action="reset"]').addEventListener("click", () => {
         setSpin(false);
         setViewPreset("iso");
+      });
+
+      toolbar.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        const currentIndex = toolbarButtons.indexOf(document.activeElement);
+        if (currentIndex < 0) return;
+        event.preventDefault();
+        const nextIndex = event.key === "Home"
+          ? 0
+          : event.key === "End"
+            ? toolbarButtons.length - 1
+            : (currentIndex + (event.key === "ArrowRight" ? 1 : -1) + toolbarButtons.length) % toolbarButtons.length;
+        toolbarButtons[nextIndex].focus();
       });
 
       renderer.domElement.addEventListener("pointerdown", () => {

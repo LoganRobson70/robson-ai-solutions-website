@@ -1,81 +1,64 @@
-# Release Staging Manifest - Buyer and Practitioner Positioning Alignment
+# Release Staging Manifest - Complete Production-Readiness Pass
 
 Last updated: 2026-07-12
 Owner: Wayne Robson / Robson AI Solutions
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 Branch: `codex/current-main-building-analyst-integration`
-Status: Wayne approved one scoped commit and a fresh non-production preview; production deployment is not approved
+Status: local candidate validated through the complete 41-step release gate; exact staging, one commit and a fresh non-production preview approved; push and production deployment not approved
 
-## 1. Purpose
+## Purpose
 
-This manifest defines the exact candidate for `buyer-and-practitioner-positioning-alignment`.
+This manifest defines the local candidate for `complete-production-readiness-improvement-pass` against live baseline commit `da78e54`.
 
-The candidate:
+The candidate introduces a generated shared navigation/footer source, extensionless canonical URLs, a safer `dist/` deployment allowlist, one Building Analyst conversion objective, clearer product maturity labels, a shorter Building Analyst page with FAQ, responsive task-order and typography improvements, BuildScan accessibility/CSP hardening, inactive-analytics consent behaviour, metadata/schema improvements and expanded QA.
 
-- uses the approved proposition: "Better tools for building professionals. Clearer decisions for the people who rely on them."
-- addresses organisations employing or commissioning qualified building professionals as well as the professional users
-- rebuilds `who-its-for.html` in the current homepage product-studio design system
-- unifies the primary navigation on Homepage, Building Analyst, Who it's for and Privacy
-- removes the stale Pricing route from those public navigation paths
-- switches to the compact navigation below 1040 px to prevent the reported clipping
-- replaces internal-sounding product-relationship wording with buyer-facing professional and product-stage boundaries
-- updates the affected product-design, responsive and rendered QA assertions
-- retains Building Analyst and BuildScan as separate products and does not claim a current integration
+The candidate does not invent founder credentials, customer proof or product capability. Wayne's confirmed sole-trader identity, public contact, lawful-basis, retention, processor and restrained founder-content decisions are recorded in `docs/codex/PRIVACY_FACTS_REQUIRED.md` and incorporated in the Privacy Notice.
 
 Do not run `git add .`.
 
-## 2. Approval Boundary
+## Approval boundary
 
-Wayne selected positioning option 1, approved the exact copy/layout proposal, approved local implementation, and then selected option 1 for a scoped commit and non-production preview.
+Approved: local implementation, documentation, validation, exact-manifest staging, one candidate commit and a fresh non-production Netlify preview.
 
-Approved:
+Not approved: push, PR, production deploy, analytics enablement, DNS/DMARC changes or external messages.
 
-- exact-path staging of the eleven files below
-- one scoped local commit
-- one fresh Netlify non-production preview
-- complete deployed-preview validation and browser review
+## Candidate inventory
 
-Not approved:
-
-- production deployment
-- production verification with confirmation
-- branch push or pull request
-- DNS/domain changes
-- destructive Git actions
-- unrelated website changes
-
-## 3. Current Source-Control Scope
-
-- Working branch: `codex/current-main-building-analyst-integration`.
-- Parent commit: `01c8cdf` (`Correct hero globe white-space placement`).
-- 11 modified tracked files.
-- 0 untracked candidate files.
-- Total dirty candidate files: 11.
-
-Targeted validation already completed:
-
-- HTML validation passed for the four affected public pages.
-- `npm run qa:semantic-seo` passed.
-- `npm run qa:product-design` passed across six routes.
-- `npm run qa:responsive` passed 21 checks.
-- `npm run qa:rendered` passed with desktop/mobile screenshot evidence.
-- In-app Browser review found the approved copy, correct CTA journey, consistent navigation, no horizontal overflow and no console warnings/errors.
-- `git diff --check` passed.
-
-The complete local release gate must pass on the exact staged snapshot before the commit.
+- 28 modified tracked files.
+- 13 untracked candidate files.
+- 41 dirty candidate files.
+- Generated `dist/` output is ignored and must not be staged.
+- Existing real product assets and the 10.77 MB Ludgershall GLB are unchanged.
 
 ## 4. Modified Tracked Files
 
 ```text
+.gitignore
+404.html
 building-analyst.html
+buildscan-viewer.html
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
 index.html
+netlify.toml
+package.json
 privacy.html
+script.js
+scripts/browser-coverage-smoke.mjs
+scripts/buildscan-viewer-smoke.mjs
+scripts/keyboard-release-smoke.mjs
+scripts/lib/static-server.mjs
+scripts/measurement-evidence.mjs
+scripts/measurement-smoke.mjs
 scripts/product-design-acceptance-smoke.mjs
+scripts/release-candidate-inventory.mjs
+scripts/release-header-smoke.mjs
+scripts/release-local-gate.mjs
 scripts/rendered-release-smoke.mjs
 scripts/responsive-route-smoke.mjs
-scripts/keyboard-release-smoke.mjs
+scripts/semantic-seo-smoke.mjs
+scripts/visual-polish-smoke.mjs
+sitemap.xml
 styles.css
 who-its-for.html
 ```
@@ -83,63 +66,81 @@ who-its-for.html
 ## 5. Untracked Candidate Files
 
 ```text
-```
-
-## 6. Asset Size Watch
-
-No image, GLB, vendor, JavaScript runtime or dependency asset changes are included. The candidate changes HTML, CSS, release documentation and existing QA assertions only.
-
-## 7. Files That Must Not Be Staged
-
-```text
-output/
-.env*
-.netlify/
-node_modules/
-.DS_Store
-.git/
-temporary screenshots
-secrets, credentials, keys, certificates, profiles, or unrelated files
+assets/showcase/building-analyst-leisure-centre-explorer-1280.webp
+assets/showcase/building-analyst-leisure-centre-explorer-640.webp
+assets/showcase/building-analyst-leisure-centre-explorer-960.webp
+assets/showcase/robson-ai-building-surveying-interactive-hero-v5-640.webp
+assets/showcase/robson-ai-building-surveying-interactive-hero-v5-960.webp
+docs/codex/BUILD_SCAN_VIEWER_SECURITY.md
+docs/codex/PRIVACY_FACTS_REQUIRED.md
+scripts/build-public-site.mjs
+scripts/consent-state-smoke.mjs
+scripts/internal-link-smoke.mjs
+scripts/site-shell-source.mjs
+scripts/sync-site-shell.mjs
+styles-production.css
 ```
 
 ## 8. Staging Command After Approval Only
 
+Wayne must approve before Codex performs any of these actions: staging, commit, push, preview deployment or production deployment.
+
 ```bash
 git add -- \
+  .gitignore \
+  404.html \
   building-analyst.html \
+  buildscan-viewer.html \
+  assets/showcase/building-analyst-leisure-centre-explorer-1280.webp \
+  assets/showcase/building-analyst-leisure-centre-explorer-640.webp \
+  assets/showcase/building-analyst-leisure-centre-explorer-960.webp \
+  assets/showcase/robson-ai-building-surveying-interactive-hero-v5-640.webp \
+  assets/showcase/robson-ai-building-surveying-interactive-hero-v5-960.webp \
+  docs/codex/BUILD_SCAN_VIEWER_SECURITY.md \
+  docs/codex/PRIVACY_FACTS_REQUIRED.md \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
   index.html \
+  netlify.toml \
+  package.json \
   privacy.html \
+  script.js \
+  scripts/browser-coverage-smoke.mjs \
+  scripts/build-public-site.mjs \
+  scripts/buildscan-viewer-smoke.mjs \
+  scripts/consent-state-smoke.mjs \
+  scripts/internal-link-smoke.mjs \
+  scripts/keyboard-release-smoke.mjs \
+  scripts/lib/static-server.mjs \
+  scripts/measurement-evidence.mjs \
+  scripts/measurement-smoke.mjs \
   scripts/product-design-acceptance-smoke.mjs \
+  scripts/release-candidate-inventory.mjs \
+  scripts/release-header-smoke.mjs \
+  scripts/release-local-gate.mjs \
   scripts/rendered-release-smoke.mjs \
   scripts/responsive-route-smoke.mjs \
-  scripts/keyboard-release-smoke.mjs \
+  scripts/semantic-seo-smoke.mjs \
+  scripts/site-shell-source.mjs \
+  scripts/sync-site-shell.mjs \
+  scripts/visual-polish-smoke.mjs \
+  sitemap.xml \
   styles.css \
+  styles-production.css \
   who-its-for.html
 ```
 
-## 9. Required Checks Before Commit
+## Required checks before any commit decision
 
 ```bash
-git status --short --branch
-git diff --cached --check
+npm run build:site
 npm run qa:release-staging-manifest
 npm run qa:release:local
+git diff --check
 ```
 
-## 10. Checks After Preview Deploy
+After those checks pass, Wayne must review the local desktop/mobile result before deciding whether a non-production preview is appropriate. The privacy/founder decisions are now resolved for this candidate.
 
-```bash
-QA_BASE_URL="<preview-url>" npm run qa:release:preview
-```
+## Rollback path
 
-Complete a fresh desktop/mobile browser review after the deployed preview gate passes.
-
-## 11. Production Boundary
-
-Production remains `https://robsonai.co.uk`. Do not use `--prod`, do not alias this preview to production, and do not run production verification with confirmation without a separate explicit approval from Wayne after preview review.
-
-## 12. Rollback Path
-
-This tranche is preview-only. If the deployed preview fails materially, retain production unchanged, preserve the preview evidence, and correct or abandon the candidate. No production rollback is required because production is outside the approved scope.
+No rollback action is needed for local uncommitted work. If a future preview or release is approved, retain production deploy `6a53b157d6c68db39daba82a` as the current known-good live baseline until a new production verification gate passes.

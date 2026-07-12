@@ -14,12 +14,12 @@ const CSP_REQUIREMENTS = {
   "default-src": ["'self'"],
   "base-uri": ["'self'"],
   "object-src": ["'none'"],
-  "script-src": ["'self'", "'wasm-unsafe-eval'", "https://www.googletagmanager.com"],
+  "script-src": ["'self'"],
   "style-src": ["'self'"],
-  "img-src": ["'self'", "data:", "blob:", "https://www.google-analytics.com"],
+  "img-src": ["'self'", "data:"],
   "font-src": ["'self'"],
-  "connect-src": ["'self'", "blob:", "https://www.google-analytics.com", "https://region1.google-analytics.com"],
-  "worker-src": ["'self'", "blob:"],
+  "connect-src": ["'self'"],
+  "worker-src": ["'self'"],
   "frame-src": ["'self'"],
   "form-action": ["'self'", "mailto:"],
   "frame-ancestors": ["'self'"]
@@ -72,6 +72,11 @@ const CACHE_REQUIREMENTS = [
     requiredIncludes: ["public", "max-age=31536000", "immutable"]
   },
   {
+    blockFor: "/styles-production.css",
+    header: "Cache-Control",
+    requiredIncludes: ["public", "max-age=31536000", "immutable"]
+  },
+  {
     blockFor: "/script.js",
     header: "Cache-Control",
     requiredIncludes: ["public", "max-age=31536000", "immutable"]
@@ -79,6 +84,12 @@ const CACHE_REQUIREMENTS = [
 ];
 
 const REDIRECT_REQUIREMENTS = [
+  { from: "/index.html", to: "/", status: "301", force: "true" },
+  { from: "/favicon.ico", to: "/assets/robson-ai-icon-v3-32.png", status: "301", force: "true" },
+  { from: "/building-analyst.html", to: "/building-analyst", status: "301", force: "true" },
+  { from: "/who-its-for.html", to: "/who-its-for", status: "301", force: "true" },
+  { from: "/privacy.html", to: "/privacy", status: "301", force: "true" },
+  { from: "/holding.html", to: "/", status: "301", force: "true" },
   {
     from: "/docs/*",
     to: "/404.html",
@@ -312,8 +323,11 @@ async function validateNetlifyConfig({ netlifyTomlPath = "netlify.toml" } = {}) 
   const blocks = extractHeaderBlocks(toml);
   const redirectBlocks = extractRedirectBlocks(toml);
   const globalBlock = blocks.find((block) => extractForValue(block) === "/*");
+  const viewerBlock = blocks.find((block) => extractForValue(block) === "/buildscan-viewer.html");
 
   assert(globalBlock, "netlify.toml should define a global /* headers block.");
+  assert(viewerBlock, "netlify.toml should define a route-specific BuildScan viewer headers block.");
+  assert(/publish\s*=\s*"dist"/.test(toml), "Netlify should publish the generated dist allowlist rather than the repository root.");
 
   for (const [header, expected] of Object.entries(GLOBAL_HEADER_REQUIREMENTS)) {
     const actual = extractHeaderValue(globalBlock, header);
@@ -323,6 +337,12 @@ async function validateNetlifyConfig({ netlifyTomlPath = "netlify.toml" } = {}) 
   const csp = extractHeaderValue(globalBlock, "Content-Security-Policy");
   assert(csp, "Global Content-Security-Policy header is missing.");
   validateCsp(csp, "netlify.toml global");
+  assert(!/googletagmanager|google-analytics|wasm-unsafe-eval|'unsafe-inline'/.test(csp), "Global CSP should not pre-authorise inactive analytics, arbitrary inline scripts or viewer-only WebAssembly capabilities.");
+
+  const viewerCsp = extractHeaderValue(viewerBlock, "Content-Security-Policy");
+  assert(viewerCsp, "BuildScan viewer Content-Security-Policy header is missing.");
+  validateCsp(viewerCsp, "netlify.toml BuildScan viewer");
+  assert(/wasm-unsafe-eval/.test(viewerCsp) && /blob:/.test(viewerCsp), "BuildScan viewer CSP should explicitly retain its scoped WebAssembly and blob capabilities.");
 
   const cacheResults = CACHE_REQUIREMENTS.map((requirement) => {
     const block = blocks.find((candidate) => extractForValue(candidate) === requirement.blockFor);
@@ -366,6 +386,7 @@ async function validateNetlifyConfig({ netlifyTomlPath = "netlify.toml" } = {}) 
       Object.keys(GLOBAL_HEADER_REQUIREMENTS).map((header) => [header, extractHeaderValue(globalBlock, header)])
     ),
     cspDirectives: Object.keys(parseCsp(csp)).sort(),
+    viewerCspDirectives: Object.keys(parseCsp(viewerCsp)).sort(),
     cacheResults,
     redirectResults,
     previewAuthMapped: /\[\[edge_functions\]\]/.test(toml)
@@ -442,12 +463,10 @@ async function validateDeployedHeaders(baseUrl) {
   const previewLocation = readResponseHeader(previewRedirect.headers, "location");
   assert.equal(new URL(previewLocation, baseUrl).pathname, "/", "/preview.html should redirect to /.");
 
-  const holding = await fetchText(new URL("/holding.html", baseUrl).toString());
-  assert.equal(holding.status, 200, "/holding.html should return 200.");
-  assert(
-    /<meta\s+name="robots"\s+content="noindex,\s*nofollow"/i.test(holding.text),
-    "/holding.html should remain noindex,nofollow."
-  );
+  const holdingRedirect = await fetchHeaders(new URL("/holding.html", baseUrl).toString());
+  assert.equal(holdingRedirect.status, 301, "/holding.html should redirect with 301.");
+  const holdingLocation = readResponseHeader(holdingRedirect.headers, "location");
+  assert.equal(new URL(holdingLocation, baseUrl).pathname, "/", "/holding.html should redirect to /.");
 
   return {
     mode: "deployed",
@@ -461,8 +480,9 @@ async function validateDeployedHeaders(baseUrl) {
     },
     holding: {
       path: "/holding.html",
-      status: holding.status,
-      noindex: true
+      status: holdingRedirect.status,
+      location: holdingLocation,
+      sourceNoindexCheckedByReleaseSecurity: true
     }
   };
 }

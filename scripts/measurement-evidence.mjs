@@ -19,7 +19,7 @@ const HTML_FILES = [
   "who-its-for.html",
   "buildscan-viewer.html"
 ];
-const A11Y_PATHS = ["/", "/index.html", "/privacy.html", "/building-analyst.html", "/who-its-for.html", "/buildscan-viewer.html"];
+const A11Y_PATHS = ["/", "/index.html", "/privacy", "/building-analyst", "/who-its-for", "/buildscan-viewer.html"];
 const LIGHTHOUSE_BUDGETS = {
   accessibilityMin: 95,
   bestPracticesMin: 100,

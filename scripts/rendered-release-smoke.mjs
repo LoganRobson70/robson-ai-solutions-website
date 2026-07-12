@@ -237,15 +237,14 @@ async function runDesktopHomepage(browser, baseUrl, artifactDir) {
     assert(response?.status() === 200, "Homepage should return HTTP 200.");
     await expectVisible(page, "h1", "Homepage H1");
     await expectVisible(page, "#building-analyst-explorer", "Building Analyst explorer");
-    await expectVisible(page, "#product", "Product section");
+    await expectVisible(page, "#products", "Product section");
     await expectVisible(page, "#buildscan-proof", "BuildScan model section");
     await expectVisible(page, "#audience", "Audience section");
     await expectVisible(page, "#about", "About section");
     await expectVisible(page, "#contact", "Contact section");
 
     const heroText = (await page.locator("h1").first().textContent())?.trim() || "";
-    assert(/Better tools for building professionals/i.test(heroText), `Homepage H1 should carry the approved professional proposition; actual: ${heroText}`);
-    assert(/Clearer decisions for the people who rely on them/i.test(heroText), `Homepage H1 should carry the approved client outcome; actual: ${heroText}`);
+    assert(/Keep building evidence, professional review and reporting connected/i.test(heroText), `Homepage H1 should carry the approved connected-evidence proposition; actual: ${heroText}`);
 
     const issueListCount = await page.locator("[data-explorer-list] .studio-explorer-issue-button").count();
     const markerCount = await page.locator("[data-explorer-markers] .studio-explorer-marker").count();
@@ -271,6 +270,21 @@ async function runDesktopHomepage(browser, baseUrl, artifactDir) {
     const copyFeedback = (await page.locator("[data-copy-feedback]").first().textContent())?.trim() || "";
     assert(copyFeedback === "Email address copied.", "Homepage copy-email action should show success feedback.");
 
+    const heroImage = page.locator(".studio-hero-image-shell img").first();
+    await page.waitForFunction(() => {
+      const image = document.querySelector(".studio-hero-image-shell img");
+      return image?.complete && image.naturalWidth > 0;
+    });
+    const heroImageState = await heroImage.evaluate((image) => ({
+      complete: image.complete,
+      naturalWidth: image.naturalWidth,
+      naturalHeight: image.naturalHeight,
+      currentSrc: image.currentSrc
+    }));
+    assert(heroImageState.complete && heroImageState.naturalWidth > 0, "Homepage hero image should be loaded before screenshot capture.");
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await page.waitForTimeout(200);
+
     await page.screenshot({
       path: path.join(artifactDir, "desktop-homepage.png"),
       fullPage: true
@@ -278,6 +292,7 @@ async function runDesktopHomepage(browser, baseUrl, artifactDir) {
 
     return {
       metrics: await assertNoPageRegression(page, "Desktop homepage"),
+      heroImageState,
       imageState,
       copyFeedback,
       diagnostics
@@ -400,28 +415,28 @@ async function runBuildScanInteractive(browser, baseUrl, artifactDir) {
   }
 }
 
-async function runSupportingPages(browser, baseUrl, artifactDir) {
+async function runSupportingPages(browser, baseUrl, artifactDir, mode) {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
   await setConsentDenied(context);
   const page = await context.newPage();
   const diagnostics = captureDiagnostics(page);
   const pages = [
     {
-      path: "/building-analyst.html#workflow-proof",
+      path: "/building-analyst#workflow",
       screenshot: "desktop-building-analyst-proof.png",
-      requiredSelector: "#workflow-proof",
+      requiredSelector: "#workflow",
       wordmarkText: "Robson AI",
       label: "Building Analyst proof"
     },
     {
-      path: "/who-its-for.html",
+      path: "/who-its-for",
       screenshot: "desktop-who-its-for.png",
       requiredSelector: "main",
       wordmarkText: "Robson AI",
       label: "Who it fits"
     },
     {
-      path: "/privacy.html",
+      path: "/privacy",
       screenshot: "desktop-privacy.png",
       requiredSelector: "main",
       wordmarkText: "Robson AI",
@@ -441,9 +456,10 @@ async function runSupportingPages(browser, baseUrl, artifactDir) {
     }
   ];
   const results = [];
+  const checkedPages = mode === "preview" ? pages.filter((pageSpec) => pageSpec.path !== "/holding.html") : pages;
 
   try {
-    for (const pageSpec of pages) {
+    for (const pageSpec of checkedPages) {
       const response = await page.goto(new URL(pageSpec.path, baseUrl).toString(), { waitUntil: "networkidle" });
       assert(response?.status() === 200, `${pageSpec.label} should return HTTP 200.`);
       await expectVisible(page, pageSpec.requiredSelector, pageSpec.label);
@@ -576,7 +592,7 @@ export async function runRenderedReleaseSmoke({
       desktopHomepage: await runDesktopHomepage(browser, baseUrl, artifactDir),
       mobileHomepage: await runMobileHomepage(browser, baseUrl, artifactDir),
       buildscanInteractive: await runBuildScanInteractive(browser, baseUrl, artifactDir),
-      supportingPages: await runSupportingPages(browser, baseUrl, artifactDir)
+      supportingPages: await runSupportingPages(browser, baseUrl, artifactDir, mode)
     };
 
     assertNoDiagnosticsFailures(summary);
@@ -610,11 +626,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
           "mobile-homepage-first-load.png",
           "mobile-buildscan-before-load.png",
           "desktop-buildscan-interactive-loaded.png",
-          "desktop-building-analyst-proof.png",
-          "desktop-who-its-for.png",
-          "desktop-privacy.png",
-          "desktop-404.png",
-          "desktop-holding-fallback.png"
+          ...summary.supportingPages.pages.map((page) => page.screenshot)
         ]
       }, null, 2));
     })

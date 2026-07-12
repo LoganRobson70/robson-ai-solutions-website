@@ -20,9 +20,9 @@ const BROWSERS = [
 
 const ROUTES = [
   "/",
-  "/building-analyst.html",
-  "/who-its-for.html",
-  "/privacy.html",
+  "/building-analyst",
+  "/who-its-for",
+  "/privacy",
   "/404.html",
   "/holding.html",
   "/buildscan-viewer.html"
@@ -162,7 +162,7 @@ async function inspectRoute(page, baseUrl, route) {
   };
 }
 
-async function inspectBrowser({ name, browserType, launchOptions }, baseUrl) {
+async function inspectBrowser({ name, browserType, launchOptions }, baseUrl, routes) {
   let browser;
 
   try {
@@ -178,7 +178,7 @@ async function inspectBrowser({ name, browserType, launchOptions }, baseUrl) {
   try {
     const routeResults = [];
 
-    for (const route of ROUTES) {
+    for (const route of routes) {
       const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
       try {
         routeResults.push(await inspectRoute(page, baseUrl, route));
@@ -216,12 +216,13 @@ export async function runBrowserCoverageSmoke({
 } = {}) {
   const server = mode === "local" ? await startStaticServer(process.cwd()) : null;
   const resolvedBaseUrl = mode === "local" ? server.baseUrl : resolvePreviewUrl(baseUrl);
+  const checkedRoutes = mode === "preview" ? ROUTES.filter((route) => route !== "/holding.html") : ROUTES;
 
   try {
     const browsers = [];
 
     for (const browserConfig of BROWSERS) {
-      browsers.push(await inspectBrowser(browserConfig, resolvedBaseUrl));
+      browsers.push(await inspectBrowser(browserConfig, resolvedBaseUrl, checkedRoutes));
     }
 
     const unavailable = browsers.filter((browser) => browser.status === "unavailable");
@@ -236,7 +237,7 @@ export async function runBrowserCoverageSmoke({
       mode,
       strict,
       baseUrl: resolvedBaseUrl,
-      checkedRoutes: ROUTES,
+      checkedRoutes,
       browserCounts: {
         pass: passed.length,
         unavailable: unavailable.length,
