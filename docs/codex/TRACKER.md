@@ -175,7 +175,7 @@ Validation evidence:
 ## 1E. Hero Globe White-Space Relocation
 
 Tranche name: `hero-globe-white-space-relocation`
-Status: Wayne approved `go live`; exact-path staging, one scoped local commit, clean-archive production deployment and production verification are in progress; no branch push or PR approved
+Status: Wayne approved the visually reviewed local correction for production deployment; exact-path staging, one corrective commit, clean-archive deployment and production verification are in progress; no branch push or PR approved
 
 Scope:
 
@@ -197,6 +197,16 @@ Validation evidence:
 - In-app Browser confirmed `studio-globe-shadow-drift` is active at 4.8 seconds, the computed shadow changed across the cycle, header clearance remained 8 px, the rainwater marker still opened with `aria-pressed="true"`, and warning/error console logs remained empty.
 - Reduced-motion behaviour is preserved: the existing `prefers-reduced-motion` rule disables animations while retaining the static inset and cast-shadow depth treatment.
 - Final post-shadow checks passed: responsive artifact `output/responsive-route/smoke-2026-07-12T10-07-45-203Z/responsive-route-smoke.json`; rendered artifact `output/playwright/rendered-release-smoke-2026-07-12T10-07-45-203Z`; product/design artifact `output/product-design-acceptance/smoke-2026-07-12T10-07-45-203Z/product-design-acceptance-smoke.json`; targeted HTML validation and `git diff --check` also passed.
+- The exact three-file candidate passed the complete 37-step local release gate with artifact `output/release-local-gate/gate-2026-07-12T10-29-05-046Z/release-local-gate.json`; axe reported zero violations and the median Lighthouse run scored performance 96, accessibility 100, best practices 100 and SEO 100.
+- Commit `7ce7e71` (`Refine hero globe depth and position`) was created locally. No branch push or pull request was performed.
+- Immediately before deployment, Netlify production deploy `6a535bbc785c30887120a2b3` was confirmed as the rollback target.
+- Production was deployed from a clean `git archive` of commit `7ce7e71`. New production deploy: `6a536d6dbbb3f8c28bf4036e`; unique deploy URL: `https://6a536d6dbbb3f8c28bf4036e--robson-ai-website.netlify.app`; public URL: `https://robsonai.co.uk`.
+- The complete 14-step production gate passed with artifact `output/release-production-gate/gate-2026-07-12T10-33-51-174Z/release-preview-gate.json`. Live public routes, headers, source-path denies, BuildScan, keyboard, semantic/SEO, product/design, responsive, visual, rendered and measurement checks passed.
+- Final live-browser verification at 1280x720 confirmed the globe remains 8 px below the menu, the 4.8-second shadow animation is active, neither hero issue marker overlaps the globe, the rainwater issue opens its correct explanation with `aria-pressed="true"`, horizontal overflow is absent and the console has zero warnings/errors.
+- Publish readiness for this globe adjustment is 100%. The known warning-only residuals remain 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries; production dependencies remain at zero vulnerabilities and Chromium passed.
+- These post-production evidence notes are local and not included in `7ce7e71`; no second evidence commit was performed.
+- Wayne's live review found that the globe still appeared predominantly over the photograph and therefore did not match the annotated target. The deployed `left: -2.5rem` offset moved it only 40 px left of the figure boundary. The local corrective candidate uses `left: -7.5rem` so the globe sits almost entirely in the white space immediately left of the photograph while retaining the validated vertical menu clearance. This correction is local only pending visual approval.
+- Wayne reviewed the corrected local placement and explicitly approved deployment to live. Because the stylesheet has a one-year immutable cache policy, the corrective release also changes the homepage stylesheet version key from `20260711c` to `20260712a` so browsers receive the approved position immediately.
 
 ## 2. Completed Secondary-Page Shell Candidate
 

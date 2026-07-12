@@ -11322,7 +11322,7 @@ body.studio-home .studio-hero-hotspot.is-pinned .studio-hero-hotspot-card {
 body.studio-home .studio-globe-loader {
   position: absolute;
   top: -1.5rem;
-  left: -2.5rem;
+  left: -7.5rem;
   z-index: 2;
   width: 8.25rem;
   height: 8.25rem;

@@ -1,34 +1,34 @@
-# Release Staging Manifest - Hero Globe Depth And Position
+# Release Staging Manifest - Hero Globe White-Space Correction
 
 Last updated: 2026-07-12
 Owner: Wayne Robson / Robson AI Solutions
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 Branch: `codex/current-main-building-analyst-integration`
-Status: Wayne approved exact-path staging, one scoped commit and direct production deployment; no branch push or PR approved
+Status: Wayne approved the visually reviewed local correction for direct production deployment; no branch push or PR approved
 
 ## 1. Purpose
 
 This manifest defines the exact candidate for `hero-globe-white-space-relocation`.
 
-The candidate:
+The corrective candidate:
 
-- moves the decorative globe into the white-space/photograph boundary requested by Wayne
+- moves the decorative globe materially farther left so it sits almost entirely in Wayne's marked white area
 - preserves an 8 px measured gap below the sticky menu bar at the validated desktop viewport
-- adds layered 3D inset shading and a slow directional cast-shadow drift
-- keeps the globe position fixed while only the shadow changes
+- preserves the approved 3D inset shading and slow directional cast-shadow drift
+- changes the homepage stylesheet version key so browsers do not retain the previous one-year-cached placement
 - preserves both inspection markers and their interactions
 - retains the safer tablet position and existing phone-hidden behaviour
-- records the completed BuildScan production evidence that preceded this adjustment
+- records the production evidence and corrective review that preceded this adjustment
 
 Do not run `git add .`.
 
 ## 2. Approval Boundary
 
-Wayne approved `go live` on 2026-07-12 after reviewing the local globe position and shadow effect.
+Wayne approved deployment to live on 2026-07-12 after reviewing the corrected local globe placement.
 
 Approved:
 
-- exact-path staging of the three files below
+- exact-path staging of the four files below
 - one scoped local commit
 - clean-archive Netlify production deployment
 - complete production verification
@@ -44,26 +44,28 @@ Not approved:
 ## 3. Current Source-Control Scope
 
 - Working branch: `codex/current-main-building-analyst-integration`.
-- Parent release commit: `f392a99` (`Upgrade BuildScan product proof`).
-- 3 modified tracked files.
+- Parent release commit: `7ce7e71` (`Refine hero globe depth and position`).
+- 4 modified tracked files.
 - 0 untracked candidate files.
-- Total dirty candidate files: 3.
+- Total dirty candidate files: 4.
 
-Local validation already completed:
+Corrective local validation already completed:
 
-- Browser geometry: 8 px menu clearance, 108 px photograph overlap and zero marker overlaps.
-- Browser interaction: rainwater marker opened and reported `aria-pressed="true"`.
-- Browser motion: computed cast shadow changed across the 4.8-second cycle while the globe position remained fixed.
-- Mobile 390x844: globe hidden, no horizontal overflow and no console warnings/errors.
-- Responsive, rendered, product/design, HTML and whitespace checks passed.
+- Browser screenshot: globe sits almost entirely in the white area immediately left of the photograph and remains below the menu.
+- Browser interaction: rainwater marker opened and reported pressed state with the correct tooltip.
+- Browser console: zero warnings or errors.
+- `npm run qa:responsive` passed 21 checks.
+- `npm run qa:rendered` passed and captured the corrected homepage.
+- `git diff --check` passed.
 
-The complete local gate must pass again on the exact staged snapshot before commit.
+The complete local gate must pass on the exact staged snapshot before the corrective commit.
 
 ## 4. Modified Tracked Files
 
 ```text
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
+index.html
 styles.css
 ```
 
@@ -97,6 +99,7 @@ Wayne approved this exact command under `approved go live` on 2026-07-12.
 git add -- \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
+  index.html \
   styles.css
 ```
 
@@ -121,4 +124,4 @@ QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true 
 
 ## 12. Rollback Path
 
-Recheck the current Netlify production deploy immediately before release and record it as the rollback target. Deploy only a clean archive of the scoped commit. If production verification fails materially, stop, preserve the evidence and report before any rollback action.
+Recheck the current Netlify production deploy immediately before release and record it as the rollback target. Deploy only a clean `git archive` of the corrective commit. If production verification fails materially, stop, preserve the evidence and report before any rollback action.
