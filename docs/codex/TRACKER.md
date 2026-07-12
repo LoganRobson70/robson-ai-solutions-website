@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-12 09:50 BST
+Last updated: 2026-07-12 11:08 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/current-main-building-analyst-integration` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
@@ -133,7 +133,7 @@ Validation evidence:
 ## 1D. Real BuildScan Image And Higher-Quality Web Model
 
 Tranche name: `buildscan-real-product-proof-upgrade`
-Status: Wayne approved option 1 for exact-path staging, one scoped local commit and a refreshed non-production preview; execution in progress; no branch push, PR or production deploy approved
+Status: live in production under Wayne's explicit 2026-07-12 approval; commit `f392a99`, preview deploy `6a5355f61b9df16eef4cbddf` and production deploy `6a535bbc785c30887120a2b3` passed their gates; no branch push or PR performed
 
 Scope:
 
@@ -159,6 +159,44 @@ Validation evidence:
 - Final measurement evidence passed with Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40 seconds; axe reported zero violations across all six checked routes including the direct BuildScan viewer. Artifact: `output/measurement/evidence-2026-07-12T00-04-11-776Z`.
 - Warning-only residuals remain 17 moderate dev/release-tooling dependency findings and unavailable local Firefox/WebKit binaries. The production dependency footprint has zero vulnerabilities and Chromium passed.
 - After Wayne's option-1 approval, the exact fifteen-file candidate was staged and the staged snapshot passed the complete 37-step local release gate with artifact `output/release-local-gate/gate-2026-07-12T08-46-42-631Z/release-local-gate.json`. Fresh measurement evidence is `output/measurement/evidence-2026-07-12T08-48-45-501Z`, again with zero axe violations.
+- Scoped local commit created: `f392a99` (`Upgrade BuildScan product proof`). The branch was not pushed and no PR was opened.
+- Fresh Netlify draft deploy `6a5355f61b9df16eef4cbddf` is available at `https://6a5355f61b9df16eef4cbddf--robson-ai-website.netlify.app`. Production remains unchanged.
+- The deployed 14-step preview gate passed with artifact `output/release-preview-gate/gate-2026-07-12T08-54-28-479Z/release-preview-gate.json`. Deployed inventory was clean, the GLB and responsive screenshot assets returned HTTP 200, and product/design, responsive, visual, keyboard, semantic, rendered, headers, security and measurement checks passed.
+- Final in-app Browser verification on the deployed preview loaded the opt-in model with active view `iso`, camera side `top`, and no warning/error console messages. The preview tab was left open for Wayne's review.
+- These post-preview evidence notes are local and are not included in commit `f392a99`; creating a second evidence commit requires separate approval.
+- Wayne explicitly approved deployment to the live production site on 2026-07-12 after reviewing the preview.
+- Immediately before deployment, Netlify production was rechecked as deploy `6a4fdd21720e0b000807443c`; this remains the immediate rollback target. Secondary rollback deploy is `6a4fd1b93f48c01f6255327c`.
+- Production was deployed from a clean `git archive` of commit `f392a99`, excluding local post-preview evidence notes. New production deploy: `6a535bbc785c30887120a2b3`; unique deploy URL: `https://6a535bbc785c30887120a2b3--robson-ai-website.netlify.app`; public URL: `https://robsonai.co.uk`.
+- The complete 14-step production gate passed with artifact `output/release-production-gate/gate-2026-07-12T09-18-25-908Z/release-preview-gate.json`. Live GLB, responsive images, public routes, security headers, source-path denies, keyboard, semantic/SEO, product/design, responsive, visual, rendered and measurement checks passed.
+- Final in-app Browser verification on `https://robsonai.co.uk/#buildscan-proof` loaded the real model with active view `iso`, camera side `top`, and no warning/error console messages. The live production tab was left open for Wayne.
+- Publish readiness for this BuildScan proof upgrade is 100%. Warning-only residuals remain the existing 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries; production dependencies remain at zero vulnerabilities and Chromium passed.
+- Production closeout evidence notes are local and not included in `f392a99`; no second evidence commit, branch push or PR was performed.
+
+## 1E. Hero Globe White-Space Relocation
+
+Tranche name: `hero-globe-white-space-relocation`
+Status: Wayne approved `go live`; exact-path staging, one scoped local commit, clean-archive production deployment and production verification are in progress; no branch push or PR approved
+
+Scope:
+
+- Move the decorative spinning globe from inside the photograph into the white-space area immediately above and left of the photograph.
+- Keep the globe entirely below the sticky menu bar.
+- Preserve both issue-marker positions and interactions.
+- Retain the existing safer in-image globe position at tablet widths and hide it on phones as before.
+
+Validation evidence:
+
+- Desktop placement uses `top: -1.5rem` and `left: -2.5rem` relative to the hero photograph. At the Browser viewport of 1280x720, measured globe top was 87 px and sticky-header bottom was 79 px, leaving an explicit 8 px clear gap below the menu bar.
+- The globe overlaps the photograph by 108 px, overlaps neither inspection marker, and occupies the white-space/photograph boundary indicated in Wayne's reference.
+- In-app Browser desktop screenshot and direct geometry checks passed with no warning/error console messages. The rainwater issue control remained unique, opened successfully and reported `aria-pressed="true"`.
+- At 390x844, the decorative globe remained hidden, the sticky header rendered correctly, horizontal overflow was false and the console remained clear.
+- `npm run qa:responsive` passed 21 checks with artifact `output/responsive-route/smoke-2026-07-12T09-45-20-649Z/responsive-route-smoke.json`.
+- `npm run qa:rendered` passed with artifact `output/playwright/rendered-release-smoke-2026-07-12T09-45-20-649Z`; `desktop-homepage.png` confirms the relocated globe in the complete homepage composition.
+- `npm run qa:product-design`, targeted HTML validation and `git diff --check` passed.
+- Wayne requested additional 3D and motion depth after approving the position. The globe now uses layered inset highlights/shading plus a directional cast shadow; only the shadow strength and offset drift over a slow 4.8-second cycle, so the globe's approved position and menu clearance do not move.
+- In-app Browser confirmed `studio-globe-shadow-drift` is active at 4.8 seconds, the computed shadow changed across the cycle, header clearance remained 8 px, the rainwater marker still opened with `aria-pressed="true"`, and warning/error console logs remained empty.
+- Reduced-motion behaviour is preserved: the existing `prefers-reduced-motion` rule disables animations while retaining the static inset and cast-shadow depth treatment.
+- Final post-shadow checks passed: responsive artifact `output/responsive-route/smoke-2026-07-12T10-07-45-203Z/responsive-route-smoke.json`; rendered artifact `output/playwright/rendered-release-smoke-2026-07-12T10-07-45-203Z`; product/design artifact `output/product-design-acceptance/smoke-2026-07-12T10-07-45-203Z/product-design-acceptance-smoke.json`; targeted HTML validation and `git diff --check` also passed.
 
 ## 2. Completed Secondary-Page Shell Candidate
 

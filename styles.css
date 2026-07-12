@@ -11321,8 +11321,8 @@ body.studio-home .studio-hero-hotspot.is-pinned .studio-hero-hotspot-card {
 
 body.studio-home .studio-globe-loader {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: -1.5rem;
+  left: -2.5rem;
   z-index: 2;
   width: 8.25rem;
   height: 8.25rem;
@@ -11332,8 +11332,12 @@ body.studio-home .studio-globe-loader {
   border: 1px solid rgba(7, 21, 47, 0.14);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 18px 48px rgba(7, 21, 47, 0.18);
+  box-shadow:
+    inset 10px 8px 18px rgba(255, 255, 255, 0.9),
+    inset -14px -18px 24px rgba(7, 21, 47, 0.12),
+    0 12px 26px rgba(7, 21, 47, 0.14);
   backdrop-filter: blur(12px);
+  filter: drop-shadow(12px 18px 16px rgba(7, 21, 47, 0.2));
 }
 
 body.studio-home .studio-globe-loader-canvas {
@@ -11341,6 +11345,23 @@ body.studio-home .studio-globe-loader-canvas {
   height: 7.25rem;
   display: block;
   filter: drop-shadow(0 14px 24px rgba(7, 21, 47, 0.16));
+}
+
+@keyframes studio-globe-shadow-drift {
+  0%,
+  100% {
+    filter: drop-shadow(10px 16px 14px rgba(7, 21, 47, 0.18));
+  }
+
+  50% {
+    filter: drop-shadow(16px 22px 19px rgba(7, 21, 47, 0.24));
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.studio-home .studio-globe-loader {
+    animation: studio-globe-shadow-drift 4.8s ease-in-out infinite;
+  }
 }
 
 body.studio-home .studio-hero-visual figcaption {
@@ -12058,6 +12079,11 @@ body.studio-home .studio-footer .footer-meta {
 
   body.studio-home .studio-hero-visual img {
     height: 100%;
+  }
+
+  body.studio-home .studio-globe-loader {
+    top: 0.75rem;
+    left: 0.75rem;
   }
 
   body.studio-home .studio-explorer-grid {
