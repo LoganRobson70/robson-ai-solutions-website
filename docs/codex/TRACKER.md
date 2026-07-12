@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-11 22:51 BST
+Last updated: 2026-07-12 09:50 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/current-main-building-analyst-integration` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
@@ -103,6 +103,62 @@ Validation evidence:
 - Refreshed non-production Netlify preview deploy `6a52b99946672b8654dd6a8d` passed all 14 deployed release-gate steps. Preview: `https://6a52b99946672b8654dd6a8d--robson-ai-website.netlify.app`. Artifact: `output/release-preview-gate/gate-2026-07-11T21-46-23-052Z/release-preview-gate.json`.
 - Final in-app Browser check on the deployed preview confirmed the duplicate header text is absent, the globe overlaps neither marker, the masonry marker opens its correct tooltip and the console has no warnings or errors.
 - Production remains unchanged and requires a separate explicit approval.
+
+## 1C. BuildScan Default Camera Refinement
+
+Tranche name: `buildscan-upright-construction-site-view`
+Status: corrected and validated locally following Wayne's review; no commit, push, preview update or production deploy approved
+
+Scope:
+
+- Correct the model-axis interpretation: the Ludgershall photogrammetry model uses Z as its vertical axis, so the earlier Y-up presets could present the construction site from beneath.
+- Use an elevated `Iso` view as the initial loaded view so the central construction plot, surrounding houses and roads read as a site viewed from above.
+- Make Reset return to the same upright `Iso` view so the selected toolbar state and visible model remain consistent.
+- Preserve Top, Right, Iso, Orbit, Pan, Spin and zoom controls.
+- Extend the BuildScan smoke test to assert the initial and reset view explicitly.
+- Validate the direct viewer and embedded homepage viewer visually and functionally before requesting further release approval.
+
+Validation evidence:
+
+- Wayne correctly identified that the previous view still read as the underside of a housing construction-site model. Inspection confirmed the GLB's true up axis is Z rather than Y; the preset axis mapping was corrected instead of disguising the problem with target or lens offsets.
+- The initial and Reset positions now use an elevated, closer `Iso` camera on the positive-Z side. The construction plot fills the frame while roads, houses and surrounding context remain visible.
+- Final `npm run qa:buildscan-viewer` passed with initial view `iso`, camera side `top`, Reset view `iso`, Reset camera side `top`, working keyboard controls, loaded direct and embedded WebGL canvases, and artifact `output/buildscan-viewer/smoke-2026-07-11T23-35-38-356Z`.
+- Final direct-viewer evidence `output/buildscan-viewer/smoke-2026-07-11T23-35-38-356Z/direct-viewer.png` shows the site from above at an elevated oblique angle, with the central plot and surrounding built context filling the viewer.
+- The smoke test now fails explicitly if initial load or Reset reports the `underside` camera side, guarding against recurrence.
+- In-app Browser verification passed for both the direct viewer and embedded homepage flow: the active preset is `iso`, `data-camera-side` reports `top`, the corrected upright site view rendered, and the browser console reported no messages.
+- `npm run qa:release-security` passed with artifact `output/release-security/smoke-2026-07-11T23-34-02-233Z/release-security-smoke.json`.
+- `npm run qa:responsive` passed 21 checks with artifact `output/responsive-route/smoke-2026-07-11T23-34-02-451Z/responsive-route-smoke.json`.
+- `npm run qa:rendered` passed with artifact `output/playwright/rendered-release-smoke-2026-07-11T23-34-02-451Z`; `desktop-buildscan-interactive-loaded.png` confirms the final upright site framing in the full homepage section.
+
+## 1D. Real BuildScan Image And Higher-Quality Web Model
+
+Tranche name: `buildscan-real-product-proof-upgrade`
+Status: Wayne approved option 1 for exact-path staging, one scoped local commit and a refreshed non-production preview; execution in progress; no branch push, PR or production deploy approved
+
+Scope:
+
+- Use Wayne's real BuildScan screenshot as the static website proof image, including the genuine application interface and the correctly presented Ludgershall housing site.
+- Replace the former 1.3 MB public demonstration GLB with the exact 10 MB `Ludgershall 20032026 SharePoint.glb` export shown in the approved BuildScan screenshot.
+- Keep the GLB opt-in so the larger model is not downloaded until the visitor selects `Load interactive 3D model`.
+- Match the website viewer's starting position to the approved BuildScan reference: site upright, road across the foreground, open plot centred and surrounding houses visible.
+- Keep the public web viewer simpler than BuildScan and state that distinction explicitly.
+
+Validation evidence:
+
+- The real BuildScan screenshot was converted into responsive 420, 840 and 1600 pixel WebP assets at approximately 13 KB, 40 KB and 119 KB. Both homepage BuildScan proof locations now use the real product image with accurate alternative text and captions.
+- Release inventory passed with artifact `output/release-inventory/inventory-2026-07-11T23-51-58-813Z/release-candidate-inventory.json`: GLB 10,769,764 bytes, one mesh, one material, one embedded image, zero external URIs and zero secret findings.
+- Focused BuildScan viewer smoke passed with artifact `output/buildscan-viewer/smoke-2026-07-11T23-51-59-126Z`: initial and Reset views are `iso`, camera side is `top`, direct and embedded WebGL canvases load, keyboard controls work and console messages are empty.
+- Responsive QA passed 21 checks with artifact `output/responsive-route/smoke-2026-07-11T23-51-59-126Z/responsive-route-smoke.json`.
+- Rendered-page QA passed with artifact `output/playwright/rendered-release-smoke-2026-07-11T23-51-59-126Z`; `desktop-buildscan-interactive-loaded.png` shows the higher-quality upright model in the full homepage section.
+- In-app Browser validation confirmed the real BuildScan screenshot before opt-in and the embedded higher-quality model after opt-in. The embedded viewer reports active `iso`, camera side `top`, and no browser console messages.
+- JavaScript syntax, HTML validation and `git diff --check` passed.
+- The approved BuildScan screenshot is now the presentation reference for future Ludgershall model framing.
+- The first complete local-gate attempt stopped at the release staging manifest because it still described the earlier four-file refinement. The manifest was rewritten to the exact fifteen-file candidate and its approval boundary; manifest smoke then passed with 12 modified tracked files, 3 untracked candidate files and 15 explicit staging paths.
+- The next local-gate attempt identified product/design assertions that still required the retired `Real BuildScan model view` and `static model image remains available` copy. Those assertions now require the truthful real-application-image wording and focused product/design QA passes.
+- Final `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-12T00-01-59-917Z/release-local-gate.json`.
+- Final measurement evidence passed with Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40 seconds; axe reported zero violations across all six checked routes including the direct BuildScan viewer. Artifact: `output/measurement/evidence-2026-07-12T00-04-11-776Z`.
+- Warning-only residuals remain 17 moderate dev/release-tooling dependency findings and unavailable local Firefox/WebKit binaries. The production dependency footprint has zero vulnerabilities and Chromium passed.
+- After Wayne's option-1 approval, the exact fifteen-file candidate was staged and the staged snapshot passed the complete 37-step local release gate with artifact `output/release-local-gate/gate-2026-07-12T08-46-42-631Z/release-local-gate.json`. Fresh measurement evidence is `output/measurement/evidence-2026-07-12T08-48-45-501Z`, again with zero axe violations.
 
 ## 2. Completed Secondary-Page Shell Candidate
 

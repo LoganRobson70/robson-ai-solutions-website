@@ -155,6 +155,8 @@ async function runDirectViewerCheck(browser, baseUrl, artifactDir) {
         ready: window.__buildscanViewerReady === true,
         error: window.__buildscanViewerError || null,
         statusText: document.querySelector("#viewerStatus")?.textContent || "",
+        activeView: document.querySelector('[data-view][aria-pressed="true"]')?.getAttribute("data-view") || null,
+        cameraSide: document.querySelector(".viewer-shell")?.getAttribute("data-camera-side") || null,
         webglAvailable: (() => {
           const canvas = document.createElement("canvas");
           return Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl"));
@@ -171,6 +173,8 @@ async function runDirectViewerCheck(browser, baseUrl, artifactDir) {
       assert(state.canvasPresent, "Direct viewer should render a canvas.");
       assert(state.ready, `Direct viewer should report ready. Status: ${state.statusText}`);
       assert(!state.error, `Direct viewer should not report an error: ${state.error}`);
+      assert(state.activeView === "iso", `Direct viewer should open in the professional elevated Iso view; actual: ${state.activeView}.`);
+      assert(state.cameraSide === "top", `Direct viewer should show the surveyed top surface, not the underside; actual: ${state.cameraSide}.`);
 
       const keyboardInteraction = await runDirectViewerKeyboardCheck(page);
 
@@ -230,10 +234,12 @@ async function runDirectViewerKeyboardCheck(page) {
   const resetState = await page.evaluate(() => ({
     action: document.activeElement?.getAttribute("data-action"),
     activeView: document.querySelector('[data-view][aria-pressed="true"]')?.getAttribute("data-view"),
+    cameraSide: document.querySelector(".viewer-shell")?.getAttribute("data-camera-side"),
     statusText: document.querySelector("#viewerStatus")?.textContent || ""
   }));
   assert(resetState.action === "reset", `Keyboard should reach Reset after zoom controls; actual: ${JSON.stringify(resetState)}.`);
   assert(resetState.activeView === "iso", `Reset keyboard activation should restore Iso view; actual: ${JSON.stringify(resetState)}.`);
+  assert(resetState.cameraSide === "top", `Reset should restore the surveyed top surface; actual: ${JSON.stringify(resetState)}.`);
 
   return {
     firstFocus,

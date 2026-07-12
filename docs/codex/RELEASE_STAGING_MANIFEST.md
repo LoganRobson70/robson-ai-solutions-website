@@ -1,150 +1,102 @@
-# Release Staging Manifest - Hero Brand And Globe Separation
+# Release Staging Manifest - Real BuildScan Product Proof Upgrade
 
-Last updated: 2026-07-11 22:51 BST
+Last updated: 2026-07-12 09:50 BST
 Owner: Wayne Robson / Robson AI Solutions
-Repo: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 Branch: `codex/current-main-building-analyst-integration`
-Status: refinement commit `7a88c7c` created; refreshed non-production preview deploy `6a52b99946672b8654dd6a8d` passed all 14 deployed checks; no branch push, PR or production deploy is approved
+Status: Wayne approved exact-path staging, one scoped local commit and a refreshed non-production preview; no branch push, PR or production deploy approved
 
 ## 1. Purpose
 
-This manifest defines the intended file scope for:
+This manifest defines the exact local candidate for `buildscan-real-product-proof-upgrade`.
 
-`hero-brand-and-globe-separation`
+The candidate:
 
-This candidate refines the validated current-main Building Analyst integration after Wayne's preview review. It removes the duplicate desktop text wordmark while retaining the Robson icon and accessible home label, and moves the decorative globe into open sky so it no longer overlaps an inspection marker.
+- uses Wayne's real BuildScan screenshot as the responsive static proof image
+- replaces the former 1.3 MB demonstration GLB with the exact 10 MB `Ludgershall 20032026 SharePoint.glb` export shown in that screenshot
+- keeps the larger GLB opt-in so it does not download until the visitor selects `Load interactive 3D model`
+- starts and resets the website viewer at a professional above-ground angle matching the BuildScan reference
+- keeps the public web controls intentionally simpler than the BuildScan application
+- updates release checks and product-proof documentation for the new assets
 
-This candidate preserves the earlier local redesign and:
-
-- uses two equal-status surveyors, both carrying subtly engraved iPads with no visible or invented app UI
-- adds two unnumbered hero issue points with attached hover/focus/click reveals
-- adds a separate low-rise building explorer with one synchronized issue-list/photo-marker numbering system from 1–6
-- keeps Building Analyst illustrative and in development, with qualified professionals responsible for evaluation and approval
-- preserves the existing decorative globe, real BuildScan proof, privacy and email-first boundaries
-
-The current dirty-file sections and staging command are authoritative for this refinement candidate.
-
-Preserved current-main details:
-
-- updates `who-its-for.html` and `privacy.html` to use the zip-style icon wordmark, Home/Product/Pricing/About navigation, header email, blue "See What We Do" CTA and zip-style footer
-- preserves existing Who It Is For and Privacy page content, privacy wording, cautious product maturity boundaries, no-form contact posture and optional analytics wording
-- adds a scoped `.zip-secondary-page` CSS layer so reused zip shell components render correctly outside `body[data-page-type="preview"]`
-- aligns the privacy notice intro to the top of its card stack so the desktop page no longer opens with a large empty left column
-- bumps the public stylesheet cache key on the public HTML pages so the changed stylesheet is fetched after deployment instead of being hidden by immutable browser cache
-- updates `scripts/rendered-release-smoke.mjs` so Who/Privacy rendered checks assert the new zip wordmark instead of the removed old `.brand-lockup-text small` strapline
-- updates `docs/codex/RELEASE_APPROVAL_PACKET.md` so the approval packet describes this candidate instead of the historical BuildScan preview candidate
-- updates `docs/codex/FINAL_WEBSITE_APPROVAL_HANDOFF.md` and `docs/codex/GOAL_COMPLETION_AUDIT.md` so handoff/completion docs no longer imply the older completed releases are the current approval state
-- updates `docs/codex/WEBSITE_APPROVAL_REVIEW_CHECKLIST.md` and `docs/codex/PUBLISH_READINESS_AUDIT.md` so owner-review and publish-readiness docs point to the current candidate rather than the older Globe Loader/privacy release
-- keeps the already-live Building Analyst page alignment and deployed smoke hardening intact
-
-It does not change privacy policy wording, pricing, analytics config, forms, DNS, Netlify settings, BuildScan assets, customer-data handling, product claims or external integrations.
+The existing Building Analyst integration, hero, issue markers, decorative globe, secondary pages, privacy posture and production site remain outside this change.
 
 Do not run `git add .` for this candidate.
 
 ## 2. Approval Boundary
 
-Wayne approved exact-path staging, a scoped local commit, a refreshed non-production Netlify preview and deployed preview-gate validation for this hero refinement.
+Wayne approved option 1 on 2026-07-12: exact-path staging, one scoped local commit and a refreshed non-production preview with deployed validation.
 
 Wayne must approve before Codex performs any of these actions:
 
-- branch push or GitHub PR
-- production deployment or production verification
-- rollback
+- push a branch or open a pull request
+- deploy or verify production
+- rollback or perform destructive Git actions
 
-Still out of scope without a separate approval:
-
-- rollback
-- DNS/domain changes
-- analytics/forms/customer-data handling
-- external messages
-- destructive git actions
-- unrelated website redesign
+No production deployment is approved.
 
 ## 3. Current Source-Control Scope
 
-Current refinement candidate state:
-
-- Base branch: `main` at `26bf51d`.
+- Base production reference: GitHub `main` commit `26bf51d`.
 - Working branch: `codex/current-main-building-analyst-integration`.
-- Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`.
-- Parent integration commits: `366a713` and evidence commit `946a6b7`.
-- Approved source change: remove the homepage header text wordmark, reduce and relocate the decorative hero globe, and record the scoped release evidence.
-- 4 modified tracked files.
-- 0 untracked candidate files.
-- Total dirty candidate files: 4.
+- 12 modified tracked files.
+- 3 untracked candidate files.
+- Total dirty candidate files: 15.
+- All fifteen files belong to the scoped BuildScan proof upgrade and its release evidence.
 
-Current validation evidence:
+Validation completed before this manifest refresh:
 
-- Full `npm run qa:release:local` passed all 37 steps for this four-file refinement with artifact `output/release-local-gate/gate-2026-07-11T21-41-49-802Z/release-local-gate.json`.
-- Measurement evidence passed with Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.41s; axe reported zero violations across six checked routes. Artifact: `output/measurement/evidence-2026-07-11T21-43-51-811Z`.
-- Known warning-only residuals remain the dev/release-tooling dependency advisory and unavailable local Firefox/WebKit binaries; production dependencies remain at zero vulnerabilities.
+- release inventory passed with zero secret findings and zero external GLB URIs
+- focused BuildScan viewer smoke passed with initial and Reset views on camera side `top`
+- responsive QA passed 21 checks
+- rendered-page QA passed
+- in-app Browser validation passed before and after model opt-in with no console messages
+- JavaScript syntax, HTML validation and `git diff --check` passed
 
-- Current-main preservation check passed: `building-analyst.html`, `who-its-for.html`, `privacy.html`, `404.html` and `holding.html` have no diff from current `main` commit `26bf51d`.
-- Targeted product/design, keyboard, responsive and rendered smoke tests passed; the rendered homepage shows one synchronized 1-6 issue-list/photo-marker system with every marker on the matching physical feature.
-- Full `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-11T20-52-37-663Z/release-local-gate.json`.
-- Measurement evidence passed with Lighthouse performance 98, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40s; axe reported zero violations across six checked routes. Artifact: `output/measurement/evidence-2026-07-11T20-54-27-650Z`.
-- Release inventory found zero secret findings and zero external GLB URI references. Production dependencies have zero vulnerabilities; 17 moderate dev/release-tooling advisories and unavailable local Firefox/WebKit binaries remain warning-only residuals.
-- Scoped commit created: `366a713` (`Integrate interactive Building Analyst experience on current main`); the branch was not pushed.
-- Fresh non-production preview deploy `6a52adffe734989d860e7768` passed all 14 deployed release-gate steps. Preview: `https://6a52adffe734989d860e7768--robson-ai-website.netlify.app`. Artifact: `output/release-preview-gate/gate-2026-07-11T20-56-43-179Z/release-preview-gate.json`.
-- Deployed screenshots confirm the approved desktop/mobile hero and exact synchronized 1-6 explorer marker mapping. Production was not deployed or verified.
+Final local validation:
 
-- Live current-state audit before the fix found no 4xx/5xx resources, no failed navigation and no page-level horizontal overflow, but identified the Who/Privacy pages as visually inconsistent with the approved zip-style Home/Building Analyst shell. Artifact: `output/playwright/current-site-quality-audit-2026-07-08T05-40-09-880Z/summary.json`.
-- `npx --no-install html-validate --rule doctype-style:off --rule void-style:off who-its-for.html privacy.html` passed.
-- `node --check scripts/rendered-release-smoke.mjs` passed.
-- `git diff --check` passed.
-- `npm run qa:responsive` passed with artifact `output/responsive-route/smoke-2026-07-08T05-59-17-525Z/responsive-route-smoke.json`.
-- `npm run qa:visual-polish` passed with artifact `output/visual-polish/smoke-2026-07-08T05-50-22-443Z/visual-polish-smoke.json`.
-- `npm run qa:product-design` passed with artifact `output/product-design-acceptance/smoke-2026-07-08T05-51-07-573Z/product-design-acceptance-smoke.json`.
-- `npm run qa:semantic-seo` passed with artifact `output/semantic-seo/smoke-2026-07-08T05-51-07-721Z/semantic-seo-smoke.json`.
-- `npm run qa:keyboard` passed with artifact `output/playwright/keyboard-release-smoke-2026-07-08T05-51-07-733Z`.
-- `npm run qa:rendered` passed with screenshots in `output/playwright/rendered-release-smoke-2026-07-08T05-57-56-810Z`; `desktop-who-its-for.png` and `desktop-privacy.png` show the updated shell.
-- Focused mobile screenshot check passed for `/who-its-for.html` and `/privacy.html`: no horizontal overflow, no console messages, no failed requests, and header CTA computed as white text on `rgb(54, 91, 217)`. Artifact: `output/playwright/secondary-shell-local-check-2026-07-08T06-01-48-965Z/summary.json`.
-- `npm run qa:release-staging-manifest` passed for the fifteen-file candidate inside the refreshed full local gate with artifact `output/release-staging-manifest/smoke-2026-07-08T07-18-26-105Z/release-staging-manifest-smoke.json`; modifiedTracked 15, untrackedCandidate 0, totalDirtyCandidate 15, stagingCommandPaths 15, approvalBoundaryChecked true.
-- Full `npm run qa:release:local` passed for the fifteen-file cache-key candidate with artifact `output/release-local-gate/gate-2026-07-08T07-18-19-608Z/release-local-gate.json`; 37 steps. The gate reported the known warning-only dev/release tooling dependency advisory and warning-only unavailable local Firefox/WebKit browser binaries, with production dependency footprint 0 vulnerabilities and all site checks passing.
-- Building Analyst production completion remains recorded in `docs/codex/TRACKER.md`: final source commit `8c595f6` is live as Netlify production deploy `6a4d6ccccf0a8038379c9abb`, and the clean production gate passed with artifact `output/release-production-gate/gate-2026-07-07T21-17-25-642Z/release-preview-gate.json`.
-
-The release inventory gate enforces:
-
-- no forbidden dirty paths such as `.env*`, `.netlify/`, `node_modules/`, `output/`, `.git/`, `.DS_Store`, or key/certificate files
-- explicit allowed dirty path patterns
-- file-size budgets for release assets
-- BuildScan GLB binary glTF 2.0 structure
-- zero external URI references inside the public-preview GLB
-- secret-like string scan across candidate files
+- `npm run qa:release:local` passed all 37 steps with artifact `output/release-local-gate/gate-2026-07-12T00-01-59-917Z/release-local-gate.json`.
+- Measurement evidence passed with Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40 seconds; axe found zero violations on all six checked routes. Artifact: `output/measurement/evidence-2026-07-12T00-04-11-776Z`.
+- Warning-only residuals are the existing 17 moderate dev/release-tooling dependency findings and unavailable local Firefox/WebKit binaries. Production dependencies remain at zero vulnerabilities and Chromium passed.
+- The staged fifteen-file snapshot passed the complete 37-step gate with artifact `output/release-local-gate/gate-2026-07-12T08-46-42-631Z/release-local-gate.json`; fresh measurement evidence is `output/measurement/evidence-2026-07-12T08-48-45-501Z` with zero axe violations.
 
 ## 4. Modified Tracked Files
 
-This local candidate currently modifies:
-
 ```text
+assets/showcase/buildscan-ludgershall-public.glb
+buildscan-viewer.html
+docs/codex/PRODUCT_IA_PROOF_MAP.md
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
 index.html
-styles.css
+scripts/buildscan-viewer-smoke.mjs
+scripts/measurement-smoke.mjs
+scripts/product-design-acceptance-smoke.mjs
+scripts/release-candidate-inventory.mjs
+scripts/release-header-smoke.mjs
+scripts/rendered-release-smoke.mjs
 ```
 
 ## 5. Untracked Candidate Files
 
 ```text
+assets/showcase/buildscan-ludgershall-buildscan-view-1600.webp
+assets/showcase/buildscan-ludgershall-buildscan-view-420.webp
+assets/showcase/buildscan-ludgershall-buildscan-view-840.webp
 ```
 
 ## 6. Asset Size Watch
 
-No assets are added or changed in this refinement. Existing watched release assets remain governed by `npm run qa:release-inventory`.
-
-Existing watched release assets remain governed by `npm run qa:release-inventory`, including:
-
 ```text
-assets/globe-loader/world-countries-lite.json              65.7K
-assets/robson-ai-icon-v3-transparent-320.webp               6.0K
-assets/showcase/buildscan-ludgershall-public.glb            1.3M
-assets/vendor/three-0.164.1/build/three.module.js           1.2M
+assets/showcase/buildscan-ludgershall-buildscan-view-420.webp      approximately 13 KB
+assets/showcase/buildscan-ludgershall-buildscan-view-840.webp      approximately 40 KB
+assets/showcase/buildscan-ludgershall-buildscan-view-1600.webp    approximately 119 KB
+assets/showcase/buildscan-ludgershall-public.glb                  10,769,764 bytes
 ```
 
-## 7. Files That Must Not Be Staged
+The GLB is accepted as an opt-in browser asset only. It contains one mesh, one material, one embedded image and no external URI references. The three screenshot assets are responsive WebP derivatives of Wayne's supplied real BuildScan image.
 
-Do not stage:
+## 7. Files That Must Not Be Staged
 
 ```text
 output/
@@ -153,65 +105,64 @@ output/
 node_modules/
 .DS_Store
 .git/
-local prototype folders
-raw 125 MB Ludgershall GLB source files
-secrets, credentials, keys, certificates, profiles, or generated screenshots
+raw 32 MB, 125 MB or 132 MB Ludgershall source models
+the temporary clipboard PNG source
+secrets, credentials, keys, certificates, profiles, or unrelated files
 ```
 
 ## 8. Staging Command After Approval Only
 
-Wayne approved exact-path staging for this refinement on 2026-07-11. Use this explicit path list rather than `git add .`.
+Wayne approved this exact-path staging command under option 1 on 2026-07-12.
 
 ```bash
 git add -- \
+  assets/showcase/buildscan-ludgershall-public.glb \
+  assets/showcase/buildscan-ludgershall-buildscan-view-1600.webp \
+  assets/showcase/buildscan-ludgershall-buildscan-view-420.webp \
+  assets/showcase/buildscan-ludgershall-buildscan-view-840.webp \
+  buildscan-viewer.html \
+  docs/codex/PRODUCT_IA_PROOF_MAP.md \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
   index.html \
-  styles.css
+  scripts/buildscan-viewer-smoke.mjs \
+  scripts/measurement-smoke.mjs \
+  scripts/product-design-acceptance-smoke.mjs \
+  scripts/release-candidate-inventory.mjs \
+  scripts/release-header-smoke.mjs \
+  scripts/rendered-release-smoke.mjs
 ```
 
 ## 9. Required Checks Before Commit
 
-Run these after staging and before commit:
+After Wayne approves staging:
 
 ```bash
 git status --short --branch
 git diff --cached --check
-npx --no-install html-validate --rule doctype-style:off --rule void-style:off 404.html index.html building-analyst.html who-its-for.html privacy.html holding.html
+npx --no-install html-validate --rule doctype-style:off --rule void-style:off index.html buildscan-viewer.html
+node --check scripts/buildscan-viewer-smoke.mjs
 node --check scripts/rendered-release-smoke.mjs
 npm run qa:release-staging-manifest
-npm run qa:responsive
-npm run qa:visual-polish
-npm run qa:product-design
-npm run qa:semantic-seo
-npm run qa:keyboard
-npm run qa:rendered
+npm run qa:release:local
 ```
-
-Then confirm the staged file set matches this manifest before committing.
 
 ## 10. Checks After Preview Deploy
 
-Required after the authorized fresh Netlify preview deploy:
+A refreshed non-production preview requires separate approval. After approval and deployment:
 
 ```bash
-QA_BASE_URL="<cache-bust-preview-url>" npm run qa:release:preview
+QA_BASE_URL="<fresh-preview-url>" npm run qa:release:preview
 ```
-
-- Refreshed hero-refinement preview: `https://6a52b99946672b8654dd6a8d--robson-ai-website.netlify.app` (deploy `6a52b99946672b8654dd6a8d`).
-- Deployed preview gate: passed all 14 steps with artifact `output/release-preview-gate/gate-2026-07-11T21-46-23-052Z/release-preview-gate.json`.
 
 ## 11. Checks After Production Deploy
 
-No production deployment is approved. If Wayne later approves production, use the validated integrated commit and recheck the current rollback target first.
+No production deployment is approved. If Wayne later approves production, recheck the live rollback target and run:
 
 ```bash
 QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
 ```
 
-- Current production URL: `https://robsonai.co.uk`.
-- Current production deploy before this candidate: `6a4fdd21720e0b000807443c` for GitHub `main` commit `26bf51d`.
-
 ## 12. Rollback Path
 
-If this candidate causes a live regression after a separately approved production deployment, restore the production deploy that is live immediately before that action; currently `6a4fdd21720e0b000807443c`, subject to recheck. If a local regression is found before deployment, abandon the isolated worktree or restore only its manifest-approved files and rerun validation. Do not alter the dirty primary checkout.
+Before commit or deployment, abandon only these fifteen candidate paths or discard the isolated worktree after Wayne's approval. After any separately approved production deployment, restore the production deploy that was live immediately before that action. Never alter the dirty primary checkout and never use a destructive Git command without explicit approval.

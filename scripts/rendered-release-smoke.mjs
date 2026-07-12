@@ -263,7 +263,7 @@ async function runDesktopHomepage(browser, baseUrl, artifactDir) {
       currentSrc: image.currentSrc
     }));
     assert(imageState.complete && imageState.naturalWidth > 0, "BuildScan static image should load before interactive opt-in.");
-    assert(/buildscan-ludgershall-model-view-840\.webp|buildscan-ludgershall-model-view\.png/.test(imageState.currentSrc), `Desktop BuildScan image should use an expected asset; actual: ${imageState.currentSrc}`);
+    assert(/buildscan-ludgershall-buildscan-view-(840|1600)\.webp/.test(imageState.currentSrc), `Desktop BuildScan image should use the real BuildScan application image; actual: ${imageState.currentSrc}`);
 
     await page.locator("#contact").scrollIntoViewIfNeeded();
     await page.getByRole("button", { name: /Copy email address/i }).click();

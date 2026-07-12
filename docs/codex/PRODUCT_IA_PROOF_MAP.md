@@ -148,8 +148,8 @@ Routing fixes applied locally:
 | Building Analyst workflow model | `building-analyst.html` | Live | Good product-thinking proof; not a final app screenshot |
 | Building Analyst illustrative assessment record | `building-analyst.html#example-output` | Live | Keep clearly illustrative; do not imply customer data |
 | Building Analyst final screenshots/video/App Store link | `building-analyst.html#workflow-proof` | Pending | Add only after app release readiness |
-| BuildScan Ludgershall PNG model view | `assets/showcase/buildscan-ludgershall-model-view.png` | Live | Approved public proof image |
-| BuildScan optimised GLB | `assets/showcase/buildscan-ludgershall-public.glb` | Local candidate | Needs public-release sign-off and preview gate |
+| Real BuildScan Ludgershall application view | `assets/showcase/buildscan-ludgershall-buildscan-view-1600.webp` | Local candidate | Wayne-approved real product image; needs preview validation before production |
+| BuildScan Ludgershall browser-ready GLB | `assets/showcase/buildscan-ludgershall-public.glb` | Local candidate | Exact SharePoint export selected by Wayne; needs preview validation before production |
 | WAIS/property operations proof | Homepage `#property-operations` and `who-its-for.html` route link | Local candidate | Needs preview validation before production |
 | Founder/professional credibility | Homepage credibility copy | Light | Needs a stronger trust module |
 | Customer logos/testimonials | None | Not available | Do not invent |

@@ -232,7 +232,7 @@ function assertProofStatus(home, buildingAnalyst) {
     "Roof drainage",
     "Service penetration",
     "Building Analyst supports the workflow. A qualified professional evaluates and approves the finding",
-    "Real BuildScan model view",
+    "Real BuildScan application view",
     "No maps, floor plans or connected customer systems are claimed"
   ]), "Homepage should separate the three workstreams, label maturity and use real BuildScan proof without implying an integration.");
 
@@ -339,13 +339,13 @@ function assertTrustProof(home, privacy, who) {
     "early-stage",
     "optional analytics",
     "No contact form is used",
-    "real BuildScan model view"
+    "real BuildScan application view"
   ]), "Public copy should expose professional context, judgement boundaries, maturity boundaries and privacy posture before contact.");
 }
 
 function assertMotionAndInteraction(stylesText, home) {
   assert(stylesText.includes("prefers-reduced-motion"), "Stylesheet should include reduced-motion support.");
-  assert(includesAll(home.text, ["opt-in viewer", "static model image remains available", "Load interactive 3D model"]), "BuildScan interactive proof should remain opt-in with static fallback language.");
+  assert(includesAll(home.text, ["opt-in viewer", "static image is a real BuildScan application view", "Load interactive 3D model"]), "BuildScan interactive proof should remain opt-in with real-product static fallback language.");
 }
 
 async function writeJson(filePath, value) {

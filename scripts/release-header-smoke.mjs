@@ -193,7 +193,7 @@ const DEPLOYED_PATHS = [
     }
   },
   {
-    path: "/assets/showcase/buildscan-ludgershall-model-view-840.webp",
+    path: "/assets/showcase/buildscan-ludgershall-buildscan-view-840.webp",
     expectedHeaders: {
       "Cache-Control": "public",
       "X-Content-Type-Options": "nosniff"
