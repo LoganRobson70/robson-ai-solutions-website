@@ -209,12 +209,13 @@ function assertNoBlockingDiagnostics(routeResult) {
 function assertFirstViewport(home) {
   assert(includesAll(home.viewportText, [
     "Robson AI",
-    "Practical software for building surveying",
-    "Complex buildings still need qualified people",
-    "greater clarity, coordination and confidence",
+    "Practical software for building professionals",
+    "Better tools for building professionals",
+    "Clearer decisions for the people who rely on them",
+    "commissioning organisations greater clarity and confidence",
     "Explore how Building Analyst works",
     "Discuss a workflow",
-    "Software supports the process. Professionals make the decisions"
+    "Software supports the process. Qualified professionals make the decisions"
   ]), `Homepage first viewport should explain the professional proposition and next actions. Actual viewport text: ${home.viewportText}`);
 }
 
@@ -226,7 +227,8 @@ function assertProofStatus(home, buildingAnalyst) {
     "In development",
     "Working local product",
     "Future exploration",
-    "A connected evidence ecosystem is a future possibility, not a current capability",
+    "Professional expertise stays central",
+    "without replacing qualified judgement",
     "Guided professional review",
     "Select an issue",
     "Roof drainage",
@@ -269,9 +271,9 @@ function assertReleaseStageClaims(allText) {
     "early",
     "exploration",
     "opt-in viewer",
-    "not a current capability",
+    "no integration between them is implied",
     "no current product or live system integration",
-    "professionals make the decisions",
+    "qualified professionals make the decisions",
     "no contact form"
   ];
 
@@ -334,8 +336,8 @@ function assertTrustProof(home, privacy, who) {
   assert(includesAll(combined, [
     "surveying practice",
     "professionals make the decisions",
-    "separate product directions today",
-    "not a current capability",
+    "qualified professionals make the decisions",
+    "no integration between them is implied",
     "early-stage",
     "optional analytics",
     "No contact form is used",

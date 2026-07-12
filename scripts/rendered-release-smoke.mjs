@@ -244,7 +244,8 @@ async function runDesktopHomepage(browser, baseUrl, artifactDir) {
     await expectVisible(page, "#contact", "Contact section");
 
     const heroText = (await page.locator("h1").first().textContent())?.trim() || "";
-    assert(/Complex buildings still need qualified people/i.test(heroText), `Homepage H1 should carry the current Robson AI proposition; actual: ${heroText}`);
+    assert(/Better tools for building professionals/i.test(heroText), `Homepage H1 should carry the approved professional proposition; actual: ${heroText}`);
+    assert(/Clearer decisions for the people who rely on them/i.test(heroText), `Homepage H1 should carry the approved client outcome; actual: ${heroText}`);
 
     const issueListCount = await page.locator("[data-explorer-list] .studio-explorer-issue-button").count();
     const markerCount = await page.locator("[data-explorer-markers] .studio-explorer-marker").count();
@@ -454,10 +455,15 @@ async function runSupportingPages(browser, baseUrl, artifactDir) {
         );
       }
       if (pageSpec.wordmarkText) {
-        const wordmarkText = (await page.locator(".zip-wordmark-text").first().textContent())?.trim() || "";
+        const wordmark = page.locator(".studio-wordmark, .zip-wordmark").first();
+        await expectVisible(page, ".studio-wordmark, .zip-wordmark", `${pageSpec.label} wordmark`);
+        const wordmarkText = [
+          (await wordmark.textContent())?.trim() || "",
+          (await wordmark.getAttribute("aria-label"))?.trim() || ""
+        ].join(" ");
         assert(
-          wordmarkText === pageSpec.wordmarkText,
-          `${pageSpec.label} wordmark should be "${pageSpec.wordmarkText}", got "${wordmarkText}".`
+          wordmarkText.includes(pageSpec.wordmarkText),
+          `${pageSpec.label} wordmark should identify "${pageSpec.wordmarkText}", got "${wordmarkText}".`
         );
       }
       const metrics = await assertNoPageRegression(page, pageSpec.label);

@@ -304,15 +304,15 @@ async function runBuildingAnalystKeyboardJourney(browser, baseUrl, artifactDir) 
     const response = await page.goto(new URL("/building-analyst.html#workflow-proof", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "Building Analyst keyboard journey should load HTTP 200.");
 
-    await page.locator('.zip-site-nav a[href="#product"]').focus();
-    const productNavFocus = await getActiveElementState(page);
-    assert(productNavFocus?.href === "#product" && /Product/i.test(productNavFocus?.text || ""), `Building Analyst Product nav link should be keyboard focusable: ${JSON.stringify(productNavFocus)}.`);
+    await page.locator('[data-analytics-id="building-nav-how"]').focus();
+    const howItWorksNavFocus = await getActiveElementState(page);
+    assert(howItWorksNavFocus?.href === "#workflow-proof" && /How it works/i.test(howItWorksNavFocus?.text || ""), `Building Analyst How it works nav link should be keyboard focusable: ${JSON.stringify(howItWorksNavFocus)}.`);
     await activateFocusedElement(page);
-    await page.waitForFunction(() => window.location.hash === "#product");
+    await page.waitForFunction(() => window.location.hash === "#workflow-proof");
 
-    await page.locator('.zip-site-nav a[href="#contact"]').focus();
+    await page.locator('[data-analytics-id="building-nav-discuss-workflow"]').focus();
     const contactNavFocus = await getActiveElementState(page);
-    assert(contactNavFocus?.href === "#contact" && /Contact/i.test(contactNavFocus?.text || ""), `Building Analyst Contact nav link should be keyboard focusable: ${JSON.stringify(contactNavFocus)}.`);
+    assert(contactNavFocus?.href === "#contact" && /Discuss a workflow/i.test(contactNavFocus?.text || ""), `Building Analyst workflow CTA should be keyboard focusable: ${JSON.stringify(contactNavFocus)}.`);
     await activateFocusedElement(page);
     await page.waitForFunction(() => window.location.hash === "#contact");
 
@@ -330,7 +330,7 @@ async function runBuildingAnalystKeyboardJourney(browser, baseUrl, artifactDir) 
       contactNavFocus,
       copyFeedback,
       diagnostics,
-      productNavFocus
+      howItWorksNavFocus
     };
   } finally {
     await context.close();

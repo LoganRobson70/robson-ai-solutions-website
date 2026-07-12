@@ -1,72 +1,83 @@
-# Release Staging Manifest - Hero Globe White-Space Correction
+# Release Staging Manifest - Buyer and Practitioner Positioning Alignment
 
 Last updated: 2026-07-12
 Owner: Wayne Robson / Robson AI Solutions
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 Branch: `codex/current-main-building-analyst-integration`
-Status: Wayne approved the visually reviewed local correction for direct production deployment; no branch push or PR approved
+Status: Wayne approved one scoped commit and a fresh non-production preview; production deployment is not approved
 
 ## 1. Purpose
 
-This manifest defines the exact candidate for `hero-globe-white-space-relocation`.
+This manifest defines the exact candidate for `buyer-and-practitioner-positioning-alignment`.
 
-The corrective candidate:
+The candidate:
 
-- moves the decorative globe materially farther left so it sits almost entirely in Wayne's marked white area
-- preserves an 8 px measured gap below the sticky menu bar at the validated desktop viewport
-- preserves the approved 3D inset shading and slow directional cast-shadow drift
-- changes the homepage stylesheet version key so browsers do not retain the previous one-year-cached placement
-- preserves both inspection markers and their interactions
-- retains the safer tablet position and existing phone-hidden behaviour
-- records the production evidence and corrective review that preceded this adjustment
+- uses the approved proposition: "Better tools for building professionals. Clearer decisions for the people who rely on them."
+- addresses organisations employing or commissioning qualified building professionals as well as the professional users
+- rebuilds `who-its-for.html` in the current homepage product-studio design system
+- unifies the primary navigation on Homepage, Building Analyst, Who it's for and Privacy
+- removes the stale Pricing route from those public navigation paths
+- switches to the compact navigation below 1040 px to prevent the reported clipping
+- replaces internal-sounding product-relationship wording with buyer-facing professional and product-stage boundaries
+- updates the affected product-design, responsive and rendered QA assertions
+- retains Building Analyst and BuildScan as separate products and does not claim a current integration
 
 Do not run `git add .`.
 
 ## 2. Approval Boundary
 
-Wayne approved deployment to live on 2026-07-12 after reviewing the corrected local globe placement.
+Wayne selected positioning option 1, approved the exact copy/layout proposal, approved local implementation, and then selected option 1 for a scoped commit and non-production preview.
 
 Approved:
 
-- exact-path staging of the four files below
+- exact-path staging of the eleven files below
 - one scoped local commit
-- clean-archive Netlify production deployment
-- complete production verification
+- one fresh Netlify non-production preview
+- complete deployed-preview validation and browser review
 
 Not approved:
 
+- production deployment
+- production verification with confirmation
 - branch push or pull request
 - DNS/domain changes
-- rollback unless the production gate fails and Wayne is informed
 - destructive Git actions
 - unrelated website changes
 
 ## 3. Current Source-Control Scope
 
 - Working branch: `codex/current-main-building-analyst-integration`.
-- Parent release commit: `7ce7e71` (`Refine hero globe depth and position`).
-- 4 modified tracked files.
+- Parent commit: `01c8cdf` (`Correct hero globe white-space placement`).
+- 11 modified tracked files.
 - 0 untracked candidate files.
-- Total dirty candidate files: 4.
+- Total dirty candidate files: 11.
 
-Corrective local validation already completed:
+Targeted validation already completed:
 
-- Browser screenshot: globe sits almost entirely in the white area immediately left of the photograph and remains below the menu.
-- Browser interaction: rainwater marker opened and reported pressed state with the correct tooltip.
-- Browser console: zero warnings or errors.
+- HTML validation passed for the four affected public pages.
+- `npm run qa:semantic-seo` passed.
+- `npm run qa:product-design` passed across six routes.
 - `npm run qa:responsive` passed 21 checks.
-- `npm run qa:rendered` passed and captured the corrected homepage.
+- `npm run qa:rendered` passed with desktop/mobile screenshot evidence.
+- In-app Browser review found the approved copy, correct CTA journey, consistent navigation, no horizontal overflow and no console warnings/errors.
 - `git diff --check` passed.
 
-The complete local gate must pass on the exact staged snapshot before the corrective commit.
+The complete local release gate must pass on the exact staged snapshot before the commit.
 
 ## 4. Modified Tracked Files
 
 ```text
+building-analyst.html
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
 index.html
+privacy.html
+scripts/product-design-acceptance-smoke.mjs
+scripts/rendered-release-smoke.mjs
+scripts/responsive-route-smoke.mjs
+scripts/keyboard-release-smoke.mjs
 styles.css
+who-its-for.html
 ```
 
 ## 5. Untracked Candidate Files
@@ -76,7 +87,7 @@ styles.css
 
 ## 6. Asset Size Watch
 
-No image, GLB, JavaScript or dependency asset changes are included. The candidate changes CSS and release evidence only.
+No image, GLB, vendor, JavaScript runtime or dependency asset changes are included. The candidate changes HTML, CSS, release documentation and existing QA assertions only.
 
 ## 7. Files That Must Not Be Staged
 
@@ -93,14 +104,19 @@ secrets, credentials, keys, certificates, profiles, or unrelated files
 
 ## 8. Staging Command After Approval Only
 
-Wayne approved this exact command under `approved go live` on 2026-07-12.
-
 ```bash
 git add -- \
+  building-analyst.html \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
   index.html \
-  styles.css
+  privacy.html \
+  scripts/product-design-acceptance-smoke.mjs \
+  scripts/rendered-release-smoke.mjs \
+  scripts/responsive-route-smoke.mjs \
+  scripts/keyboard-release-smoke.mjs \
+  styles.css \
+  who-its-for.html
 ```
 
 ## 9. Required Checks Before Commit
@@ -114,14 +130,16 @@ npm run qa:release:local
 
 ## 10. Checks After Preview Deploy
 
-Wayne approved direct production after local visual review; no additional preview is required for this three-file adjustment.
-
-## 11. Checks After Production Deploy
-
 ```bash
-QA_PRODUCTION_URL="https://robsonai.co.uk" CONFIRM_PRODUCTION_VERIFICATION=true npm run qa:release:production
+QA_BASE_URL="<preview-url>" npm run qa:release:preview
 ```
+
+Complete a fresh desktop/mobile browser review after the deployed preview gate passes.
+
+## 11. Production Boundary
+
+Production remains `https://robsonai.co.uk`. Do not use `--prod`, do not alias this preview to production, and do not run production verification with confirmation without a separate explicit approval from Wayne after preview review.
 
 ## 12. Rollback Path
 
-Recheck the current Netlify production deploy immediately before release and record it as the rollback target. Deploy only a clean `git archive` of the corrective commit. If production verification fails materially, stop, preserve the evidence and report before any rollback action.
+This tranche is preview-only. If the deployed preview fails materially, retain production unchanged, preserve the preview evidence, and correct or abandon the candidate. No production rollback is required because production is outside the approved scope.

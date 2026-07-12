@@ -30,16 +30,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/robson-ai-icon-v3-32.png?v=20260627">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/robson-ai-icon-v3-180.png?v=20260627">
     <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="./styles.css?v=20260708a">
+    <link rel="stylesheet" href="./styles.css?v=20260712b">
   </head>
-  <body data-page-type="preview" class="zip-page building-analyst-zip-page">
+  <body data-page-type="preview" class="zip-page building-analyst-zip-page studio-shell">
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <header class="site-header zip-site-header">
-      <div class="container topbar zip-topbar">
-        <a class="zip-wordmark" href="/" aria-label="Robson AI home">
+    <header class="site-header studio-header">
+      <div class="container studio-header-inner">
+        <a class="studio-wordmark" href="/" aria-label="Robson AI Solutions home">
           <img
-            class="zip-wordmark-icon"
+            class="studio-wordmark-icon"
             src="./assets/robson-ai-icon-v3-transparent-320.webp?v=20260627"
             width="320"
             height="320"
@@ -47,20 +47,20 @@
             decoding="async"
             fetchpriority="high"
           >
-          <span class="zip-wordmark-text">Robson AI</span>
         </a>
 
-        <nav class="site-nav zip-site-nav" aria-label="Primary">
-          <a href="/" data-analytics-id="building-nav-home">Home</a>
-          <a href="#product" data-analytics-id="building-nav-product">Product</a>
-          <a href="#workflow-proof" data-analytics-id="building-nav-proof">Proof</a>
-          <a href="#fit-boundaries" data-analytics-id="building-nav-fit">Fit</a>
-          <a href="#contact" data-analytics-id="building-nav-contact">Contact</a>
+        <button class="studio-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>Menu</button>
+
+        <nav class="site-nav studio-nav" id="primary-navigation" aria-label="Primary" data-primary-nav>
+          <a href="/#product" data-analytics-id="building-nav-products">Products</a>
+          <a href="./who-its-for.html" data-analytics-id="building-nav-who">Who it's for</a>
+          <a href="#workflow-proof" aria-current="location" data-analytics-id="building-nav-how">How it works</a>
+          <a href="/#about" data-analytics-id="building-nav-about">About</a>
         </nav>
 
-        <div class="zip-header-actions">
-          <a class="zip-header-email" href="mailto:hello@robsonai.co.uk" data-analytics-id="building-nav-email" data-cta-location="header">hello@robsonai.co.uk</a>
-          <a class="zip-header-cta" href="#contact" data-analytics-id="building-nav-discuss-workflow" data-cta-location="header">Discuss Workflow <span aria-hidden="true">&rarr;</span></a>
+        <div class="studio-header-actions">
+          <a class="studio-header-email" href="mailto:hello@robsonai.co.uk" data-analytics-id="building-nav-email" data-cta-location="header">hello@robsonai.co.uk</a>
+          <a class="studio-header-cta" href="#contact" data-analytics-id="building-nav-discuss-workflow" data-cta-location="header">Discuss a workflow <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </header>

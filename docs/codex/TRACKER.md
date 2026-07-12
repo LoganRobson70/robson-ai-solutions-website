@@ -175,7 +175,7 @@ Validation evidence:
 ## 1E. Hero Globe White-Space Relocation
 
 Tranche name: `hero-globe-white-space-relocation`
-Status: Wayne approved the visually reviewed local correction for production deployment; exact-path staging, one corrective commit, clean-archive deployment and production verification are in progress; no branch push or PR approved
+Status: corrected and completed in production under Wayne's explicit approval; corrective commit `01c8cdf` is live as Netlify production deploy `6a5377f98005fcdc6ff9037a`; production verification passed; no branch push or PR performed
 
 Scope:
 
@@ -207,6 +207,14 @@ Validation evidence:
 - These post-production evidence notes are local and not included in `7ce7e71`; no second evidence commit was performed.
 - Wayne's live review found that the globe still appeared predominantly over the photograph and therefore did not match the annotated target. The deployed `left: -2.5rem` offset moved it only 40 px left of the figure boundary. The local corrective candidate uses `left: -7.5rem` so the globe sits almost entirely in the white space immediately left of the photograph while retaining the validated vertical menu clearance. This correction is local only pending visual approval.
 - Wayne reviewed the corrected local placement and explicitly approved deployment to live. Because the stylesheet has a one-year immutable cache policy, the corrective release also changes the homepage stylesheet version key from `20260711c` to `20260712a` so browsers receive the approved position immediately.
+- The exact four-file corrective candidate passed the complete 37-step local release gate with artifact `output/release-local-gate/gate-2026-07-12T11-14-04-549Z/release-local-gate.json`; axe reported zero violations and Lighthouse scored performance 96, accessibility 100, best practices 100 and SEO 100.
+- Corrective commit `01c8cdf` (`Correct hero globe white-space placement`) was created locally. No branch push or pull request was performed.
+- Immediately before deployment, Netlify production deploy `6a536d6dbbb3f8c28bf4036e` was confirmed as the rollback target.
+- Production was deployed from a clean `git archive` of corrective commit `01c8cdf`. New production deploy: `6a5377f98005fcdc6ff9037a`; unique deploy URL: `https://6a5377f98005fcdc6ff9037a--robson-ai-website.netlify.app`; public URL: `https://robsonai.co.uk`.
+- The complete 14-step production gate passed with artifact `output/release-production-gate/gate-2026-07-12T11-18-55-227Z/release-preview-gate.json`.
+- Final live Browser verification confirmed the globe is materially farther into the marked white area and below the menu, the new cache key is live, the rainwater marker opens its correct tooltip with pressed state, and the console has zero warnings/errors.
+- Publish readiness for the corrective placement is 100%. Existing warning-only residuals remain 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries; production dependencies remain at zero vulnerabilities and Chromium passed.
+- These post-production evidence notes are local and not included in `01c8cdf`; no second evidence commit was performed.
 
 ## 2. Completed Secondary-Page Shell Candidate
 
@@ -1676,6 +1684,7 @@ Follow-on tranche:
 
 ### Next
 
+- `buyer-and-practitioner-positioning-alignment` is implemented locally after Wayne approved positioning and implementation option 1: "Better tools for building professionals. Clearer decisions for the people who rely on them." The homepage now addresses professional users and employing/commissioning organisations; `who-its-for.html` is rebuilt in the current product-studio design system; Homepage, Building Analyst, Who it's for and Privacy share `Products / Who it's for / How it works / About / Discuss a workflow` navigation; the compact menu begins at 1040 px to avoid the reported clipping; and internal-sounding footer/product-relationship wording is replaced by buyer-facing professional and product-stage language. Targeted HTML, semantic/SEO, product-design and responsive gates pass. Fresh rendered QA also passes after updating its approved-copy and shared-wordmark assertions. This remains local and uncommitted pending Wayne's visual approval; no commit, push, preview deploy, or production deploy is approved.
 - Recommended first gate for the website-excellence programme: approve a non-production release-candidate path for the hardened interactive BuildScan GLB candidate and the completed local proof/performance bundle before production. Recommended option 1 is commit the scoped changes, push a branch, create/verify a Netlify deploy-preview, then make the separate production publish decision from live-preview evidence.
 - Wayne visual/public-release decision for the interactive BuildScan model remains required before production. Do not publish if the optimised Ludgershall GLB is not acceptable for public viewing as a small, low-detail preview asset.
 - After the preview gate, required validation is `QA_BASE_URL=<preview> npm run qa:release-headers:preview`, `QA_BASE_URL=<preview> npm run qa:buildscan-viewer:preview`, `QA_BASE_URL=<preview> npm run qa:measurement:preview`, plus a rendered mobile/desktop Browser pass before any production decision.

@@ -227,13 +227,14 @@ async function assertRouteSpecific(page, route) {
 
   if (route === "/") {
     await page.locator("h1").first().waitFor({ state: "visible", timeout: 10000 });
-    assert(/Complex buildings still need qualified people/i.test(bodyText), "Homepage should keep the main proposition visible.");
+    assert(/Better tools for building professionals/i.test(bodyText), "Homepage should keep the approved professional proposition visible.");
+    assert(/Clearer decisions for the people who rely on them/i.test(bodyText), "Homepage should keep the approved client outcome visible.");
     assert(/Discuss a Workflow/i.test(bodyText), "Homepage should keep a primary workflow CTA.");
     assert(/Explore how Building Analyst works/i.test(bodyText), "Homepage should keep the Building Analyst explorer CTA.");
     assert(/Guided professional review/i.test(bodyText), "Homepage should keep the detailed Building Analyst explorer.");
     assert(/BuildScan/i.test(bodyText), "Homepage should expose the BuildScan workstream.");
     assert(/Property operations/i.test(bodyText), "Homepage should expose property operations.");
-    assert(/Separate product directions today/i.test(bodyText), "Homepage should state that current product directions are separate.");
+    assert(/Professional expertise stays central/i.test(bodyText), "Homepage should keep the professional judgement boundary visible.");
   }
 
   if (route === "/building-analyst.html") {
@@ -242,8 +243,9 @@ async function assertRouteSpecific(page, route) {
   }
 
   if (route === "/who-its-for.html") {
-    assert(/Building surveying and estates/i.test(bodyText), "Who It Fits page should keep building surveying audience path.");
-    assert(/Drone and 3D capture/i.test(bodyText), "Who It Fits page should keep drone/3D audience path.");
+    assert(/Organisations commissioning building advice/i.test(bodyText), "Who It Fits page should include commissioning organisations.");
+    assert(/In-house property and estates teams/i.test(bodyText), "Who It Fits page should include in-house professional teams.");
+    assert(/Surveying practices and consultants/i.test(bodyText), "Who It Fits page should include professional practices.");
     assert(/Email the Workflow/i.test(bodyText), "Who It Fits page should keep contact CTA.");
   }
 
