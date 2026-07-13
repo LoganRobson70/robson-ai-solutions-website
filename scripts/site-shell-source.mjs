@@ -11,9 +11,9 @@ export function siteHeader(page) {
         </a>
         <button class="studio-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>Menu</button>
         <nav class="site-nav studio-nav" id="primary-navigation" aria-label="Primary" data-primary-nav>
-          <a href="/#products"${current(page, "products")} data-analytics-id="nav-products">Products</a>
+          <a href="/#products" data-analytics-id="nav-products">Products</a>
           <a href="/who-its-for"${current(page, "who")} data-analytics-id="nav-who-its-for">Who it's for</a>
-          <a href="/building-analyst#workflow"${current(page, "building-analyst")} data-analytics-id="nav-how-it-works">How it works</a>
+          <a href="/building-analyst"${current(page, "building-analyst")} data-analytics-id="nav-building-analyst">Building Analyst</a>
           <a href="/#about" data-analytics-id="nav-about">About</a>
           <a class="studio-nav-mobile-cta" href="${workflowMailto}" data-analytics-id="nav-mobile-building-analyst" data-cta-location="mobile-menu">Discuss a Building Analyst workflow <span aria-hidden="true">&rarr;</span></a>
         </nav>
@@ -40,7 +40,7 @@ export function siteFooter() {
             <a href="/">Home</a>
             <a href="/#products">Products</a>
             <a href="/who-its-for">Who it's for</a>
-            <a href="/building-analyst#workflow">How it works</a>
+            <a href="/building-analyst">Building Analyst</a>
             <a href="/#buildscan-proof">BuildScan proof</a>
             <a href="/#about">About</a>
             <a href="/privacy">Privacy Notice</a>

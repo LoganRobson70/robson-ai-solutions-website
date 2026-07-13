@@ -180,6 +180,9 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
     const response = await page.goto(new URL("/", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "Homepage keyboard journey should load HTTP 200.");
 
+    const initialCurrentNavCount = await page.locator(".site-nav a[aria-current]").count();
+    assert(initialCurrentNavCount === 0, `Homepage hero should not mark a section link as current; actual count: ${initialCurrentNavCount}.`);
+
     await page.keyboard.press("Tab");
     const skipFocus = await getActiveElementState(page);
     assert(skipFocus?.href === "#main-content", `First Tab should reach the skip link: ${JSON.stringify(skipFocus)}.`);
@@ -194,6 +197,15 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
     assert(productNavFocus?.href === "/#products" && /Product/i.test(productNavFocus?.text || ""), `Product nav link should be keyboard focusable: ${JSON.stringify(productNavFocus)}.`);
     await activateFocusedElement(page);
     await page.waitForFunction(() => window.location.hash === "#products");
+    assert(await page.locator('[data-analytics-id="nav-products"]').getAttribute("aria-current") === "location", "Products should be the current homepage section after keyboard activation.");
+
+    await page.locator('[data-analytics-id="nav-about"]').focus();
+    const aboutNavFocus = await getActiveElementState(page);
+    assert(aboutNavFocus?.href === "/#about" && /About/i.test(aboutNavFocus?.text || ""), `About nav link should be keyboard focusable: ${JSON.stringify(aboutNavFocus)}.`);
+    await activateFocusedElement(page);
+    await page.waitForFunction(() => window.location.hash === "#about");
+    assert(await page.locator('[data-analytics-id="nav-about"]').getAttribute("aria-current") === "location", "About should be the current homepage section after keyboard activation.");
+    assert(await page.locator('[data-analytics-id="nav-products"]').getAttribute("aria-current") === null, "Products should not remain current after About is activated.");
 
     await page.locator('[data-analytics-id="hero-discuss-building-analyst"]').focus();
     const explorerCtaFocus = await getActiveElementState(page);
@@ -275,6 +287,7 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
 
     return {
       aboutCtaFocus,
+      aboutNavFocus,
       bannerVisible,
       buildScanState,
       copyFeedback,
@@ -299,12 +312,19 @@ async function runBuildingAnalystKeyboardJourney(browser, baseUrl, artifactDir) 
   const diagnostics = captureDiagnostics(page);
 
   try {
-    const response = await page.goto(new URL("/building-analyst#workflow", baseUrl).toString(), { waitUntil: "networkidle" });
+    const response = await page.goto(new URL("/building-analyst", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "Building Analyst keyboard journey should load HTTP 200.");
 
-    await page.locator('[data-analytics-id="nav-how-it-works"]').focus();
-    const howItWorksNavFocus = await getActiveElementState(page);
-    assert(howItWorksNavFocus?.href === "/building-analyst#workflow" && /How it works/i.test(howItWorksNavFocus?.text || ""), `Building Analyst How it works nav link should be keyboard focusable: ${JSON.stringify(howItWorksNavFocus)}.`);
+    await page.locator('[data-analytics-id="nav-building-analyst"]').focus();
+    const buildingAnalystNavFocus = await getActiveElementState(page);
+    assert(buildingAnalystNavFocus?.href === "/building-analyst" && /Building Analyst/i.test(buildingAnalystNavFocus?.text || ""), `Building Analyst nav link should be keyboard focusable: ${JSON.stringify(buildingAnalystNavFocus)}.`);
+    assert(await page.locator('[data-analytics-id="nav-building-analyst"]').getAttribute("aria-current") === "page", "Building Analyst should be the current page in the primary navigation.");
+    await activateFocusedElement(page);
+    await page.waitForFunction(() => window.location.pathname === "/building-analyst" && window.location.hash === "");
+
+    await page.locator('[data-analytics-id="building-hero-see-workflow"]').focus();
+    const seeWorkflowFocus = await getActiveElementState(page);
+    assert(seeWorkflowFocus?.href === "#workflow" && /See how it works/i.test(seeWorkflowFocus?.text || ""), `Building Analyst local workflow link should be keyboard focusable: ${JSON.stringify(seeWorkflowFocus)}.`);
     await activateFocusedElement(page);
     await page.waitForFunction(() => window.location.hash === "#workflow");
 
@@ -327,7 +347,8 @@ async function runBuildingAnalystKeyboardJourney(browser, baseUrl, artifactDir) 
       contactNavFocus,
       copyFeedback,
       diagnostics,
-      howItWorksNavFocus
+      buildingAnalystNavFocus,
+      seeWorkflowFocus
     };
   } finally {
     await context.close();

@@ -1,136 +1,79 @@
-# Release Staging Manifest - Complete Production-Readiness Pass
+# Release Staging Manifest - Navigation And Typography Consistency
 
-Last updated: 2026-07-12
+Last updated: 2026-07-13
 Owner: Wayne Robson / Robson AI Solutions
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 Branch: `codex/current-main-building-analyst-integration`
-Status: local candidate validated through the complete 41-step release gate; exact staging, one commit and a fresh non-production preview approved; push and production deployment not approved
+Baseline commit: `1305571`
+Status: exact staging, one scoped commit and one fresh non-production preview approved; push and production deployment not approved
 
 ## Purpose
 
-This manifest defines the local candidate for `complete-production-readiness-improvement-pass` against live baseline commit `da78e54`.
+This manifest defines the exact local candidate for the `navigation-and-typography-consistency` tranche. It corrects global navigation destinations and current-state behaviour, introduces a shared role-based typography scale, fixes homepage product-card heading hierarchy, makes the shared mobile menu a reliable one-column flow, and enables that menu on the 404 page.
 
-The candidate introduces a generated shared navigation/footer source, extensionless canonical URLs, a safer `dist/` deployment allowlist, one Building Analyst conversion objective, clearer product maturity labels, a shorter Building Analyst page with FAQ, responsive task-order and typography improvements, BuildScan accessibility/CSP hardening, inactive-analytics consent behaviour, metadata/schema improvements and expanded QA.
-
-The candidate does not invent founder credentials, customer proof or product capability. Wayne's confirmed sole-trader identity, public contact, lawful-basis, retention, processor and restrained founder-content decisions are recorded in `docs/codex/PRIVACY_FACTS_REQUIRED.md` and incorporated in the Privacy Notice.
+The candidate preserves the approved Robson AI positioning, product maturity labels, Building Analyst workflow, BuildScan proof, privacy posture and production infrastructure. It does not change analytics, forms, DNS, customer data, dependencies or product claims.
 
 Do not run `git add .`.
 
 ## Approval boundary
 
-Approved: local implementation, documentation, validation, exact-manifest staging, one candidate commit and a fresh non-production Netlify preview.
+Wayne must approve before Codex performs any of these actions: staging, commit, push, preview deployment or production deployment.
 
-Not approved: push, PR, production deploy, analytics enablement, DNS/DMARC changes or external messages.
+Wayne approved exact staging, one scoped commit and a fresh non-production Netlify preview by selecting option `1` on 2026-07-13.
+
+Not approved: branch push, PR, production deploy or verification, analytics enablement, DNS/domain changes, dependency changes, external messages or destructive Git actions.
 
 ## Candidate inventory
 
-- 28 modified tracked files.
-- 13 untracked candidate files.
-- 41 dirty candidate files.
+- 13 modified tracked files.
+- 0 untracked candidate files.
+- 13 dirty candidate files.
 - Generated `dist/` output is ignored and must not be staged.
-- Existing real product assets and the 10.77 MB Ludgershall GLB are unchanged.
+- Existing imagery, BuildScan GLB, fonts and vendor files are unchanged.
 
 ## 4. Modified Tracked Files
 
 ```text
-.gitignore
 404.html
 building-analyst.html
-buildscan-viewer.html
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
 index.html
-netlify.toml
-package.json
 privacy.html
 script.js
-scripts/browser-coverage-smoke.mjs
-scripts/buildscan-viewer-smoke.mjs
 scripts/keyboard-release-smoke.mjs
-scripts/lib/static-server.mjs
-scripts/measurement-evidence.mjs
-scripts/measurement-smoke.mjs
-scripts/product-design-acceptance-smoke.mjs
-scripts/release-candidate-inventory.mjs
-scripts/release-header-smoke.mjs
-scripts/release-local-gate.mjs
-scripts/rendered-release-smoke.mjs
+scripts/release-security-smoke.mjs
 scripts/responsive-route-smoke.mjs
-scripts/semantic-seo-smoke.mjs
-scripts/visual-polish-smoke.mjs
-sitemap.xml
-styles.css
+scripts/site-shell-source.mjs
+styles-production.css
 who-its-for.html
 ```
 
 ## 5. Untracked Candidate Files
 
 ```text
-assets/showcase/building-analyst-leisure-centre-explorer-1280.webp
-assets/showcase/building-analyst-leisure-centre-explorer-640.webp
-assets/showcase/building-analyst-leisure-centre-explorer-960.webp
-assets/showcase/robson-ai-building-surveying-interactive-hero-v5-640.webp
-assets/showcase/robson-ai-building-surveying-interactive-hero-v5-960.webp
-docs/codex/BUILD_SCAN_VIEWER_SECURITY.md
-docs/codex/PRIVACY_FACTS_REQUIRED.md
-scripts/build-public-site.mjs
-scripts/consent-state-smoke.mjs
-scripts/internal-link-smoke.mjs
-scripts/site-shell-source.mjs
-scripts/sync-site-shell.mjs
-styles-production.css
 ```
 
 ## 8. Staging Command After Approval Only
 
-Wayne must approve before Codex performs any of these actions: staging, commit, push, preview deployment or production deployment.
-
 ```bash
 git add -- \
-  .gitignore \
   404.html \
   building-analyst.html \
-  buildscan-viewer.html \
-  assets/showcase/building-analyst-leisure-centre-explorer-1280.webp \
-  assets/showcase/building-analyst-leisure-centre-explorer-640.webp \
-  assets/showcase/building-analyst-leisure-centre-explorer-960.webp \
-  assets/showcase/robson-ai-building-surveying-interactive-hero-v5-640.webp \
-  assets/showcase/robson-ai-building-surveying-interactive-hero-v5-960.webp \
-  docs/codex/BUILD_SCAN_VIEWER_SECURITY.md \
-  docs/codex/PRIVACY_FACTS_REQUIRED.md \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
   index.html \
-  netlify.toml \
-  package.json \
   privacy.html \
   script.js \
-  scripts/browser-coverage-smoke.mjs \
-  scripts/build-public-site.mjs \
-  scripts/buildscan-viewer-smoke.mjs \
-  scripts/consent-state-smoke.mjs \
-  scripts/internal-link-smoke.mjs \
   scripts/keyboard-release-smoke.mjs \
-  scripts/lib/static-server.mjs \
-  scripts/measurement-evidence.mjs \
-  scripts/measurement-smoke.mjs \
-  scripts/product-design-acceptance-smoke.mjs \
-  scripts/release-candidate-inventory.mjs \
-  scripts/release-header-smoke.mjs \
-  scripts/release-local-gate.mjs \
-  scripts/rendered-release-smoke.mjs \
+  scripts/release-security-smoke.mjs \
   scripts/responsive-route-smoke.mjs \
-  scripts/semantic-seo-smoke.mjs \
   scripts/site-shell-source.mjs \
-  scripts/sync-site-shell.mjs \
-  scripts/visual-polish-smoke.mjs \
-  sitemap.xml \
-  styles.css \
   styles-production.css \
   who-its-for.html
 ```
 
-## Required checks before any commit decision
+## Required checks before commit
 
 ```bash
 npm run build:site
@@ -139,8 +82,8 @@ npm run qa:release:local
 git diff --check
 ```
 
-After those checks pass, Wayne must review the local desktop/mobile result before deciding whether a non-production preview is appropriate. The privacy/founder decisions are now resolved for this candidate.
+After the exact commit is created, deploy a clean archive of that commit to a Netlify draft URL and run `QA_BASE_URL=<preview> npm run qa:release:preview`. The command must reject production and must not fall back to another URL.
 
 ## Rollback path
 
-No rollback action is needed for local uncommitted work. If a future preview or release is approved, retain production deploy `6a53b157d6c68db39daba82a` as the current known-good live baseline until a new production verification gate passes.
+No production rollback is needed for a draft preview. Production deploy `6a53b157d6c68db39daba82a` remains the known-good live baseline and must not be changed without separate explicit approval.

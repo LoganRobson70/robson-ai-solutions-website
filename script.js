@@ -920,10 +920,10 @@ function setupNavState() {
     return path || "/";
   };
 
-  const setCurrent = (activeLink) => {
+  const setCurrent = (activeLink, value = "location") => {
     navLinks.forEach((link) => {
       if (link === activeLink) {
-        link.setAttribute("aria-current", "location");
+        link.setAttribute("aria-current", value);
       } else {
         link.removeAttribute("aria-current");
       }
@@ -931,29 +931,43 @@ function setupNavState() {
   };
 
   const currentPath = normalizePath(window.location.href);
-  const samePageLink = navLinks.find((link) => {
-    const href = link.getAttribute("href");
-
-    if (!href || href.startsWith("#")) {
-      return false;
-    }
-
-    return normalizePath(href) === currentPath;
-  });
-
-  if (samePageLink) {
-    setCurrent(samePageLink);
-  }
-
-  const sectionLinks = navLinks
+  const localLinks = navLinks
     .map((link) => {
-      const href = link.getAttribute("href") || "";
+      const href = link.getAttribute("href");
 
-      if (!href.startsWith("#")) {
+      if (!href) {
         return null;
       }
 
-      const target = document.querySelector(href);
+      const url = new URL(href, window.location.href);
+
+      if (url.origin !== window.location.origin || !["http:", "https:"].includes(url.protocol)) {
+        return null;
+      }
+
+      return {
+        link,
+        path: normalizePath(url.href),
+        hash: url.hash
+      };
+    })
+    .filter(Boolean);
+
+  const routeLink = localLinks.find(({ path, hash }) => path === currentPath && !hash)?.link || null;
+
+  if (routeLink) {
+    setCurrent(routeLink, "page");
+  } else {
+    setCurrent(null);
+  }
+
+  const sectionLinks = localLinks
+    .map(({ link, path, hash }) => {
+      if (path !== currentPath || !hash) {
+        return null;
+      }
+
+      const target = document.getElementById(decodeURIComponent(hash.slice(1)));
 
       if (!target) {
         return null;
@@ -967,22 +981,24 @@ function setupNavState() {
     return;
   }
 
-  let currentSectionId = window.location.hash || `#${sectionLinks[0].target.id}`;
+  let currentSectionId = "";
 
   const updateCurrentSection = (nextHash) => {
     const match = sectionLinks.find(({ target }) => `#${target.id}` === nextHash);
 
     if (!match) {
-      return;
+      currentSectionId = "";
+      setCurrent(routeLink, routeLink ? "page" : "location");
+      return false;
     }
 
     currentSectionId = nextHash;
-    setCurrent(match.link);
+    setCurrent(match.link, "location");
+    return true;
   };
 
-  if (window.location.hash) {
-    updateCurrentSection(window.location.hash);
-  }
+  updateCurrentSection(window.location.hash);
+  window.addEventListener("hashchange", () => updateCurrentSection(window.location.hash));
 
   const visibleSections = new Map();
   const observer = new IntersectionObserver(
@@ -998,6 +1014,9 @@ function setupNavState() {
       });
 
       if (!visibleSections.size) {
+        if (currentSectionId) {
+          updateCurrentSection("");
+        }
         return;
       }
 

@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-12 11:08 BST
+Last updated: 2026-07-13 18:53 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/current-main-building-analyst-integration` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
@@ -219,7 +219,7 @@ Validation evidence:
 ## 1F. Complete Production-Readiness Improvement Pass
 
 Tranche name: `complete-production-readiness-improvement-pass`
-Status: local implementation and complete 41-step local gate passed; owner privacy/founder decisions supplied and incorporated; Wayne approved exact-candidate staging, commit and a fresh non-production preview; push and production deployment remain unapproved
+Status: committed locally as `1305571`; exact-hash non-production preview deploy `6a53f90beea6c07990fff035` passed the complete 14-step deployed-preview gate and is open for Wayne's review; branch remains unpushed and production deployment remains unapproved
 Started: 2026-07-12
 
 Objective:
@@ -279,6 +279,44 @@ Readiness decision:
 - Amended commit `18abe1b` and draft deploy `6a53f598fd98e0b44ee31f57` passed the complete CSP check, then exposed a stale validator assumption: deployed `/holding.html` is intentionally a 301 to Home, while its unreachable source document retains `noindex,nofollow`. The deployed-header test now verifies the 301 and destination; source-level noindex remains covered by the release-security smoke. Production remains unchanged.
 - Amended commit `d40902a` and draft deploy `6a53f65d7f3f19a6c8aacc83` passed deployed headers, BuildScan and keyboard checks, then found the same stale holding-page assumption in semantic SEO. All deployed browser matrices now omit the redirected historical document, while the header gate verifies its 301 and the source-security gate verifies its retained `noindex,nofollow`. Local mode continues rendering and checking the fallback file directly. Production remains unchanged.
 - After reconciling the redirected holding route across semantic, product/design, responsive, visual, browser-coverage and rendered-preview checks, the complete 14-step deployed-preview gate passed against draft deploy `6a53f65d7f3f19a6c8aacc83`: `output/release-preview-gate/gate-2026-07-12T20-23-21-397Z/release-preview-gate.json`. The rendered-smoke console summary was also corrected to list only screenshots actually produced in its current mode. These QA-only corrections will be included in the final amended candidate and exact-hash replacement preview. Production remains unchanged.
+- Final local commit `1305571` remains unpushed. Exact-hash draft deploy `6a53f90beea6c07990fff035` passed all 14 deployed-preview steps: `output/release-preview-gate/gate-2026-07-12T20-29-46-464Z/release-preview-gate.json`. The gate verified clean release inventory, zero secret findings, zero production dependency vulnerabilities, deployed security headers/source-path denies, BuildScan direct/embedded/fallback behaviour, keyboard use, semantic SEO, product/design acceptance, 36 responsive route/viewport checks, 18 visual-polish checks, rendered screenshots and measurement behaviour. Warning-only residuals remain 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries; Chromium passed. Production deploy `6a53b157d6c68db39daba82a` remains unchanged and is the rollback baseline. This post-preview tracker checkpoint is intentionally uncommitted because Wayne approved only the single candidate commit.
+
+## 1G. Navigation Flow And Typography Consistency Correction
+
+Tranche name: `navigation-and-typography-consistency`
+Status: owner-approved for exact staging, one scoped commit and a fresh non-production preview; complete 41-step local release gate passed; exact staging and committed-snapshot validation pending; push and production deployment remain unapproved
+Started: 2026-07-13
+
+Scope and decisions:
+
+- Use one global navigation sequence: `Products`, `Who it's for`, `Building Analyst`, `About`, then the existing Building Analyst workflow CTA.
+- Make `Building Analyst` a page-level destination at `/building-analyst`; keep the page's local `See how it works` control as the route to `#workflow`.
+- Mark `Who it's for` and `Building Analyst` with `aria-current="page"`; mark Products and About only while their matching homepage sections are active; show no false current item at the homepage hero.
+- Replace the inconsistent page-by-page type sizes with a role-based scale for navigation, labels, body/lead text, card titles, major section titles and page titles. Preserve the existing Robson AI colours, layouts and product-truth content.
+- Correct homepage product-card heading hierarchy from `h2` to `h3` beneath the Products section heading.
+- Make the shared phone/tablet menu one full-width row per destination. Browser QA exposed and corrected a legacy three-column secondary-page rule that clipped the longer Building Analyst label. Add the shared script to 404 so its mobile menu works like the other public pages.
+
+Validation evidence:
+
+- JavaScript syntax, five-page HTML validation, public-site build, 261-reference internal-link validation and `git diff --check` passed.
+- Keyboard navigation passed: `output/playwright/keyboard-release-smoke-2026-07-13T17-50-19-239Z`.
+- Responsive QA passed 42 route/viewport checks, now including one-column, five-control, 44 px mobile-menu geometry on every shared-shell route: `output/responsive-route/smoke-2026-07-13T17-50-27-038Z/responsive-route-smoke.json`.
+- Product/design acceptance passed all six local routes: `output/product-design-acceptance/smoke-2026-07-13T17-51-15-052Z/product-design-acceptance-smoke.json`.
+- Rendered-page QA passed: `output/playwright/rendered-release-smoke-2026-07-13T17-51-21-536Z`.
+- Semantic/SEO QA passed seven pages: `output/semantic-seo/smoke-2026-07-13T17-51-33-931Z/semantic-seo-smoke.json`.
+- Visual-polish QA passed 21 checks: `output/visual-polish/smoke-2026-07-13T17-52-01-560Z/visual-polish-smoke.json`.
+- In-app Browser verification confirmed correct Products/About section states, page-level Who/Building Analyst states, top-of-page Building Analyst landing, 15 px navigation, consistent computed page/section/card type roles, no horizontal overflow and a five-row mobile menu with 44 px full-width controls.
+- Final complete local release gate passed all 41 steps: `output/release-local-gate/gate-2026-07-13T18-49-36-226Z/release-local-gate.json`.
+- Final release inventory recorded 13 exact candidate files, 119 scanned files, zero secret findings and zero external GLB URIs: `output/release-inventory/inventory-2026-07-13T18-49-49-109Z/release-candidate-inventory.json`.
+- Final measurement evidence reported zero axe violations across six routes, median Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40 seconds: `output/measurement/evidence-2026-07-13T18-52-10-453Z`.
+- Warning-only residuals remain 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries. Production dependencies have zero vulnerabilities and Chromium passed.
+
+Permission boundary and next gate:
+
+- Wayne approved exact staging, one scoped commit and a fresh non-production preview by selecting option `1` on 2026-07-13.
+- Push, PR, production deployment and production verification remain outside the permission envelope.
+- The first full local-gate attempt stopped at release security because the exact new cache-busted self-hosted script URL was not yet in the validator allowlist. The validator now recognises `./script.js?v=20260713a` without relaxing any origin or security rule.
+- The reconciled exact 13-file candidate is recorded in `docs/codex/RELEASE_STAGING_MANIFEST.md`; the full local release gate must pass before the commit, and the exact committed snapshot must pass the deployed-preview gate before owner review.
 
 ## 2. Completed Secondary-Page Shell Candidate
 

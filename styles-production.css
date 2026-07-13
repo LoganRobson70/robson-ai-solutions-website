@@ -1,4 +1,15 @@
 /* Production-readiness pass: shared shell, hierarchy, readable type and mobile task order. */
+:root {
+  --type-navigation: 0.9375rem;
+  --type-label: 0.8125rem;
+  --type-supporting: 0.875rem;
+  --type-body: 1rem;
+  --type-lead: clamp(1.125rem, 1.35vw, 1.25rem);
+  --type-card-title: clamp(1.5rem, 2vw, 1.75rem);
+  --type-section-title: clamp(2.75rem, 3.65vw, 3.5rem);
+  --type-page-title: clamp(3.5rem, 4.4vw, 4rem);
+}
+
 html,
 body { overflow-x: clip; }
 .studio-nav-mobile-cta { display: none !important; }
@@ -15,12 +26,26 @@ body.studio-home .studio-nav a,
 body.studio-shell .studio-nav a,
 body.studio-home .studio-header-cta,
 body.studio-shell .studio-header-cta,
-body.studio-home .studio-button { font-size: 0.875rem; }
+body.studio-home .studio-button,
+body.studio-shell .studio-button,
+body.building-analyst-zip-page .zip-button { font-size: var(--type-navigation); }
+
+body.studio-home .studio-nav a,
+body.studio-shell .studio-nav a { padding-block: 0.55rem; line-height: 1.25; }
+
+body.studio-home .studio-nav a[aria-current]::after,
+body.studio-shell .studio-nav a[aria-current]::after { transform: scaleX(1); }
 
 body.studio-home .studio-kicker,
 body.studio-home .studio-status,
 body.studio-home .studio-explorer-issue-nav > p,
-body.studio-home .studio-explorer-panel-label { font-size: 0.875rem; }
+body.studio-home .studio-explorer-panel-label,
+body.studio-audience-page .studio-kicker,
+body.studio-audience-page .studio-status,
+body.studio-audience-page .audience-path-number,
+body.building-analyst-zip-page .zip-kicker,
+body.building-analyst-zip-page .zip-section-label,
+body[data-page-type="privacy"] .section-label { font-size: var(--type-label); }
 
 body.studio-home .studio-principle,
 body.studio-home .studio-hero-visual figcaption,
@@ -73,13 +98,69 @@ body.building-analyst-zip-page .zip-buildscan-notes p,
 body.building-analyst-zip-page .zip-price-card p,
 body.building-analyst-zip-page .zip-contact-panel p { font-size: 1rem; }
 
+body.studio-home .studio-hero h1,
+body.building-analyst-zip-page .zip-hero h1,
+body.studio-audience-page .audience-hero h1,
+body[data-page-type="privacy"] .section-title {
+  font-family: var(--font-body);
+  font-size: var(--type-page-title);
+  font-weight: 850;
+  line-height: 0.98;
+  letter-spacing: -0.052em;
+}
+
+body.studio-home .studio-explorer-intro h2,
+body.studio-home .studio-products-intro h2,
+body.studio-home .studio-section-grid h2,
+body.studio-home .studio-contact-grid h2,
+body.building-analyst-zip-page .zip-section-head h2,
+body.studio-audience-page .audience-section-intro h2,
+body.studio-audience-page .audience-relationship h2,
+body.studio-audience-page .studio-contact-grid h2 {
+  font-size: var(--type-section-title);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+body.studio-home .studio-product h3,
+body.studio-home .studio-explorer-panel h3,
+body.building-analyst-zip-page .zip-product-card h3,
+body.building-analyst-zip-page .zip-proof-copy h3,
+body.studio-audience-page .audience-path-list h3,
+body.studio-audience-page .audience-product-list h3,
+body[data-page-type="privacy"] .page-list-item h2 {
+  font-size: var(--type-card-title);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+body.studio-home .studio-hero-lead,
+body.building-analyst-zip-page .zip-hero-lead,
+body.studio-audience-page .audience-hero-intro > p:first-child,
+body[data-page-type="privacy"] .section-intro {
+  font-size: var(--type-lead);
+}
+
 .zip-faq-list { display: grid; max-width: 60rem; margin-top: 2.5rem; border-top: 1px solid var(--line, #dbe2ec); }
 .zip-faq-list details { padding: 1.2rem 0; border-bottom: 1px solid var(--line, #dbe2ec); }
 .zip-faq-list summary { min-height: 44px; cursor: pointer; font-size: 1rem; font-weight: 800; }
 .zip-faq-list p { max-width: 50rem; margin-top: 0.6rem; font-size: 1rem; line-height: 1.65; }
-body[data-page-type="building-analyst"] .zip-hero h1 { font-size: clamp(3.3rem, 4.8vw, 4.6rem); }
-
 @media (max-width: 1040px) {
+  body.studio-home .studio-nav.is-open,
+  body.studio-shell .studio-nav.is-open {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    overflow: visible;
+  }
+
+  body.studio-home .studio-nav.is-open a,
+  body.studio-shell .studio-nav.is-open a {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 1rem;
+    white-space: normal;
+  }
+
   .studio-nav-mobile-cta { display: flex !important; margin-top: 0.5rem; padding: 0.75rem 1rem !important; border: 0 !important; border-radius: 6px; background: #0a5bf5; color: #ffffff !important; }
   body.studio-home .studio-explorer-issue-nav { grid-row: 1; }
   body.studio-home .studio-explorer-figure { grid-row: 2; }
@@ -87,6 +168,14 @@ body[data-page-type="building-analyst"] .zip-hero h1 { font-size: clamp(3.3rem, 
 }
 
 @media (max-width: 560px) {
+  :root {
+    --type-navigation: 0.9375rem;
+    --type-lead: 1.0625rem;
+    --type-card-title: clamp(1.375rem, 6vw, 1.625rem);
+    --type-section-title: clamp(2rem, 9vw, 2.5rem);
+    --type-page-title: clamp(2.625rem, 12vw, 3rem);
+  }
+
   body.studio-home .studio-wordmark-text,
   body.studio-shell .studio-wordmark-text { display: grid; }
   body.studio-home .studio-wordmark-text strong,
@@ -94,5 +183,4 @@ body[data-page-type="building-analyst"] .zip-hero h1 { font-size: clamp(3.3rem, 
   body.studio-home .studio-wordmark-text span,
   body.studio-shell .studio-wordmark-text span { font-size: 0.68rem; }
   body.studio-home .studio-explorer-issue-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  body[data-page-type="building-analyst"] .zip-hero h1 { font-size: clamp(2.7rem, 12vw, 3.4rem); }
 }

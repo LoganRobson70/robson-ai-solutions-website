@@ -309,15 +309,47 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
     assert(response?.status() === 200, `${route} should return HTTP 200 at ${viewport.name}.`);
     await assertRouteSpecific(page, route);
 
-    if (route === "/" && viewport.width <= 1040) {
+    const hasSharedMobileMenu = !["/holding.html", "/buildscan-viewer.html"].includes(route);
+
+    if (hasSharedMobileMenu && viewport.width <= 1040) {
       await page.locator("[data-nav-toggle]").click();
       const mobileCta = page.locator(".studio-nav-mobile-cta");
       await mobileCta.waitFor({ state: "visible" });
       const mobileCtaBox = await mobileCta.boundingBox();
       assert(/Discuss a Building Analyst workflow/i.test(await mobileCta.innerText()), "Mobile menu should expose the primary Building Analyst CTA.");
       assert((mobileCtaBox?.height || 0) >= 44, `Mobile menu CTA should be at least 44px high; actual ${mobileCtaBox?.height || 0}.`);
-      await page.locator("[data-nav-toggle]").click();
 
+      const mobileMenuLayout = await page.evaluate(() => {
+        const nav = document.querySelector(".studio-nav");
+        const links = [...(nav?.querySelectorAll("a") || [])];
+        const navRect = nav?.getBoundingClientRect();
+
+        return {
+          columnCount: getComputedStyle(nav).gridTemplateColumns.split(" ").filter(Boolean).length,
+          linkCount: links.length,
+          links: links.map((link) => {
+            const rect = link.getBoundingClientRect();
+            return {
+              height: rect.height,
+              left: rect.left,
+              right: rect.right,
+              top: rect.top,
+              width: rect.width
+            };
+          }),
+          navLeft: navRect?.left || 0,
+          navRight: navRect?.right || 0
+        };
+      });
+      assert(mobileMenuLayout.columnCount === 1, `Mobile menu should use one column: ${JSON.stringify(mobileMenuLayout)}.`);
+      assert(mobileMenuLayout.linkCount === 5, `Mobile menu should expose four destinations and one CTA: ${JSON.stringify(mobileMenuLayout)}.`);
+      assert(mobileMenuLayout.links.every((link) => link.height >= 44), `Every mobile menu control should be at least 44px high: ${JSON.stringify(mobileMenuLayout)}.`);
+      assert(mobileMenuLayout.links.every((link) => link.left >= mobileMenuLayout.navLeft && link.right <= mobileMenuLayout.navRight), `Mobile menu links should stay inside the menu: ${JSON.stringify(mobileMenuLayout)}.`);
+      assert(mobileMenuLayout.links.every((link, index, links) => index === 0 || link.top >= links[index - 1].top + links[index - 1].height), `Mobile menu links should form separate vertical rows: ${JSON.stringify(mobileMenuLayout)}.`);
+      await page.locator("[data-nav-toggle]").click();
+    }
+
+    if (route === "/" && viewport.width <= 1040) {
       const explorerOrder = await page.evaluate(() => {
         const top = (selector) => document.querySelector(selector)?.getBoundingClientRect().top ?? -1;
         return {
