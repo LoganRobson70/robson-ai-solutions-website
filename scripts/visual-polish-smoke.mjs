@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { chromium } from "playwright";
 
@@ -232,6 +232,37 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
       };
     });
 
+    const globeMetrics = await page.evaluate(() => {
+      const loader = document.querySelector("[data-globe-loader]");
+      const canvas = loader?.querySelector("canvas");
+
+      if (!loader || !canvas) {
+        return null;
+      }
+
+      const loaderStyle = window.getComputedStyle(loader);
+      const canvasStyle = window.getComputedStyle(canvas);
+      const canvasRect = canvas.getBoundingClientRect();
+
+      return {
+        ready: loader.classList.contains("is-map-ready"),
+        loading: loader.classList.contains("is-map-loading"),
+        unavailable: loader.classList.contains("is-map-unavailable"),
+        invalidSize: loader.classList.contains("is-size-invalid"),
+        visible:
+          loaderStyle.visibility !== "hidden" &&
+          loaderStyle.display !== "none" &&
+          canvasStyle.visibility !== "hidden" &&
+          canvasStyle.display !== "none" &&
+          canvasRect.width > 2 &&
+          canvasRect.height > 2,
+        cssWidth: Math.round(canvasRect.width),
+        cssHeight: Math.round(canvasRect.height),
+        bufferWidth: canvas.width,
+        bufferHeight: canvas.height
+      };
+    });
+
     const blockingFailedRequests = diagnostics.failedRequests.filter((failure) => {
       let pathname = "";
       try {
@@ -278,6 +309,13 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
         assert(Math.abs(heroLogoMetrics.frameToBoardRight) <= 40, `${route} ${viewport.name} hero logo should stay anchored to the product board, not the viewport edge: ${JSON.stringify(heroLogoMetrics)}.`);
       }
     }
+    if ((route === "/" || route === "/building-analyst") && viewport.name !== "mobile") {
+      assert(globeMetrics?.ready, `${route} ${viewport.name} globe should wait for the approved detailed world map: ${JSON.stringify(globeMetrics)}.`);
+      assert(globeMetrics.visible, `${route} ${viewport.name} globe should be visible after its map and icon assets are ready: ${JSON.stringify(globeMetrics)}.`);
+      assert(!globeMetrics.invalidSize, `${route} ${viewport.name} globe should reject an unsafe canvas size: ${JSON.stringify(globeMetrics)}.`);
+      assert(globeMetrics.cssWidth <= 520 && globeMetrics.cssHeight <= 520, `${route} ${viewport.name} globe CSS size should remain bounded: ${JSON.stringify(globeMetrics)}.`);
+      assert(globeMetrics.bufferWidth <= 1040 && globeMetrics.bufferHeight <= 1040, `${route} ${viewport.name} globe render buffer should remain bounded: ${JSON.stringify(globeMetrics)}.`);
+    }
 
     return {
       route,
@@ -285,8 +323,58 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
       surfaceFindings,
       contrastAndLayout,
       heroLogoMetrics,
+      globeMetrics,
       diagnostics
     };
+  } finally {
+    await page.close();
+  }
+}
+
+async function inspectStaleBuildingAnalystStylesheet(browser, baseUrl) {
+  const currentStyles = await readFile("styles.css", "utf8");
+  const staleStyles = currentStyles
+    .replaceAll("body.building-analyst-zip-page .zip-hero-globe-loader", 'body[data-page-type="preview"] .zip-hero-globe-loader')
+    .replaceAll("body.building-analyst-zip-page .zip-globe-loader-canvas", 'body[data-page-type="preview"] .zip-globe-loader-canvas');
+  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+
+  await page.route("**/styles.css*", (route) => route.fulfill({
+    status: 200,
+    contentType: "text/css; charset=utf-8",
+    body: staleStyles
+  }));
+
+  try {
+    const response = await page.goto(new URL("/building-analyst", baseUrl).toString(), { waitUntil: "networkidle" });
+    assert(response?.status() === 200, "Building Analyst stale-stylesheet regression route should return HTTP 200.");
+
+    const state = await page.evaluate(() => {
+      const hero = document.querySelector(".zip-hero");
+      const heading = document.querySelector(".zip-hero h1");
+      const loader = document.querySelector("[data-globe-loader]");
+      const canvas = loader?.querySelector("canvas");
+      const heroRect = hero?.getBoundingClientRect();
+      const headingRect = heading?.getBoundingClientRect();
+      const loaderStyle = loader ? window.getComputedStyle(loader) : null;
+
+      return {
+        heroHeight: Math.round(heroRect?.height || 0),
+        headingTop: Math.round(headingRect?.top || 0),
+        loaderClassName: loader?.className || "",
+        loaderDisplay: loaderStyle?.display || "",
+        loaderVisibility: loaderStyle?.visibility || "",
+        canvasBufferWidth: canvas?.width || 0,
+        canvasBufferHeight: canvas?.height || 0
+      };
+    });
+
+    assert(state.loaderClassName.includes("is-size-invalid"), `Stale Building Analyst CSS should trigger the defensive globe-size guard: ${JSON.stringify(state)}.`);
+    assert(state.loaderDisplay === "none", `The unsafe globe should be removed from layout when stale CSS omits its sizing rule: ${JSON.stringify(state)}.`);
+    assert(state.canvasBufferWidth <= 420 && state.canvasBufferHeight <= 420, `The stale-CSS globe buffer should never grow beyond its safe initial size: ${JSON.stringify(state)}.`);
+    assert(state.heroHeight > 0 && state.heroHeight < 1000, `Stale Building Analyst CSS should not create a runaway hero: ${JSON.stringify(state)}.`);
+    assert(state.headingTop >= 0 && state.headingTop < 400, `Stale Building Analyst CSS should keep the main heading in the first viewport: ${JSON.stringify(state)}.`);
+
+    return state;
   } finally {
     await page.close();
   }
@@ -318,6 +406,8 @@ export async function runVisualPolishSmoke({
       }
     }
 
+    const staleStylesheetRegression = await inspectStaleBuildingAnalystStylesheet(browser, resolvedBaseUrl);
+
     await mkdir(artifactDir, { recursive: true });
     const summary = {
       status: "pass",
@@ -327,6 +417,7 @@ export async function runVisualPolishSmoke({
       checkedViewports: VIEWPORTS,
       checkCount: checks.length,
       rule: "No large rendered text blocks may carry high-opacity text-level backgrounds unless they are explicit controls, labels, tokens or status elements.",
+      staleStylesheetRegression,
       checks
     };
     const summaryPath = path.join(artifactDir, "visual-polish-smoke.json");

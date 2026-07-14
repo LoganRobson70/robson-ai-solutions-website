@@ -192,20 +192,50 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
     const bannerVisible = await page.locator("[data-consent-banner]").evaluate((banner) => !banner.hidden);
     assert(!bannerVisible, "Consent banner should stay hidden on first load while GA4 measurement is unset.");
 
+    const productToggle = page.locator("[data-product-nav-toggle]");
+    await productToggle.focus();
+    await activateFocusedElement(page);
+    await page.locator("[data-product-nav-menu]").waitFor({ state: "visible" });
+    const productMenuState = {
+      expanded: await productToggle.getAttribute("aria-expanded"),
+      linkCount: await page.locator("[data-product-nav-menu] a").count(),
+      buildingAnalystLabel: (await page.locator('[data-analytics-id="nav-building-analyst"] strong').textContent())?.trim() || ""
+    };
+    assert(productMenuState.expanded === "true" && productMenuState.linkCount === 4 && productMenuState.buildingAnalystLabel === "Building Analyst", `Products disclosure should expose the four product destinations: ${JSON.stringify(productMenuState)}.`);
+    await page.keyboard.press("Escape");
+    await page.locator("[data-product-nav-menu]").waitFor({ state: "hidden" });
+    assert(await productToggle.getAttribute("aria-expanded") === "false", "Escape should close the Products disclosure.");
+
     await page.locator('[data-analytics-id="nav-products"]').focus();
     const productNavFocus = await getActiveElementState(page);
     assert(productNavFocus?.href === "/#products" && /Product/i.test(productNavFocus?.text || ""), `Product nav link should be keyboard focusable: ${JSON.stringify(productNavFocus)}.`);
     await activateFocusedElement(page);
-    await page.waitForFunction(() => window.location.hash === "#products");
-    assert(await page.locator('[data-analytics-id="nav-products"]').getAttribute("aria-current") === "location", "Products should be the current homepage section after keyboard activation.");
+    await page.waitForFunction(() => window.location.hash === "#products").catch(() => {
+      throw new Error("Products parent link should navigate to the product overview section.");
+    });
+    await page.waitForFunction(() => document.querySelector('[data-product-nav]')?.getAttribute("data-current-product") === "true").catch(async () => {
+      const state = await page.evaluate(() => ({
+        current: [...document.querySelectorAll(".site-nav a[aria-current]")].map((link) => ({ id: link.dataset.analyticsId, value: link.getAttribute("aria-current") })),
+        hash: window.location.hash,
+        productsTop: document.querySelector("#products")?.getBoundingClientRect().top
+      }));
+      throw new Error(`Products parent link should become the current homepage section: ${JSON.stringify(state)}.`);
+    });
+    assert(await page.locator("[data-product-nav]").getAttribute("data-current-product") === "true", "Products should be visibly current when a product overview or product child section is active.");
 
     await page.locator('[data-analytics-id="nav-about"]').focus();
     const aboutNavFocus = await getActiveElementState(page);
     assert(aboutNavFocus?.href === "/#about" && /About/i.test(aboutNavFocus?.text || ""), `About nav link should be keyboard focusable: ${JSON.stringify(aboutNavFocus)}.`);
     await activateFocusedElement(page);
-    await page.waitForFunction(() => window.location.hash === "#about");
+    await page.waitForFunction(() => window.location.hash === "#about").catch(() => {
+      throw new Error("About link should navigate to the About section.");
+    });
+    await page.waitForFunction(() => document.querySelector('[data-analytics-id="nav-about"]')?.getAttribute("aria-current") === "location").catch(() => {
+      throw new Error("About link should become the current homepage section.");
+    });
     assert(await page.locator('[data-analytics-id="nav-about"]').getAttribute("aria-current") === "location", "About should be the current homepage section after keyboard activation.");
     assert(await page.locator('[data-analytics-id="nav-products"]').getAttribute("aria-current") === null, "Products should not remain current after About is activated.");
+    assert(await page.locator("[data-product-nav]").getAttribute("data-current-product") === null, "Products parent should not remain visually current after About is activated.");
 
     await page.locator('[data-analytics-id="hero-discuss-building-analyst"]').focus();
     const explorerCtaFocus = await getActiveElementState(page);
@@ -295,6 +325,7 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
       explorerCounts,
       explorerCtaFocus,
       masonryState,
+      productMenuState,
       productNavFocus,
       serviceState,
       skipFocus
@@ -315,6 +346,9 @@ async function runBuildingAnalystKeyboardJourney(browser, baseUrl, artifactDir) 
     const response = await page.goto(new URL("/building-analyst", baseUrl).toString(), { waitUntil: "networkidle" });
     assert(response?.status() === 200, "Building Analyst keyboard journey should load HTTP 200.");
 
+    await page.locator("[data-product-nav-toggle]").focus();
+    await activateFocusedElement(page);
+    await page.locator("[data-product-nav-menu]").waitFor({ state: "visible" });
     await page.locator('[data-analytics-id="nav-building-analyst"]').focus();
     const buildingAnalystNavFocus = await getActiveElementState(page);
     assert(buildingAnalystNavFocus?.href === "/building-analyst" && /Building Analyst/i.test(buildingAnalystNavFocus?.text || ""), `Building Analyst nav link should be keyboard focusable: ${JSON.stringify(buildingAnalystNavFocus)}.`);

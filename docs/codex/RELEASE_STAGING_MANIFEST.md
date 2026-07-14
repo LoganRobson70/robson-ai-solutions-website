@@ -1,15 +1,15 @@
-# Release Staging Manifest - Navigation And Typography Consistency
+# Release Staging Manifest - Building Analyst Globe And Products Navigation
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 Owner: Wayne Robson / Robson AI Solutions
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
 Branch: `codex/current-main-building-analyst-integration`
-Baseline commit: `1305571`
+Baseline commit: `b59ffe4`
 Status: exact staging, one scoped commit and one fresh non-production preview approved; push and production deployment not approved
 
 ## Purpose
 
-This manifest defines the exact local candidate for the `navigation-and-typography-consistency` tranche. It corrects global navigation destinations and current-state behaviour, introduces a shared role-based typography scale, fixes homepage product-card heading hierarchy, makes the shared mobile menu a reliable one-column flow, and enables that menu on the 404 page.
+This manifest defines the exact combined local candidate for the approved `building-analyst-cached-hero-layout-defect` and `products-parent-navigation` tranches. It prevents stale styles from producing a runaway Building Analyst globe, waits for the approved detailed world-map treatment, and makes Products the clear parent of Building Analyst, BuildScan and Property Operations.
 
 The candidate preserves the approved Robson AI positioning, product maturity labels, Building Analyst workflow, BuildScan proof, privacy posture and production infrastructure. It does not change analytics, forms, DNS, customer data, dependencies or product claims.
 
@@ -19,16 +19,17 @@ Do not run `git add .`.
 
 Wayne must approve before Codex performs any of these actions: staging, commit, push, preview deployment or production deployment.
 
-Wayne approved exact staging, one scoped commit and a fresh non-production Netlify preview by selecting option `1` on 2026-07-13.
+Wayne approved exact staging, one scoped commit and a fresh non-production Netlify preview by selecting option `1` on 2026-07-14 after visually approving the Products navigation.
 
 Not approved: branch push, PR, production deploy or verification, analytics enablement, DNS/domain changes, dependency changes, external messages or destructive Git actions.
 
 ## Candidate inventory
 
-- 13 modified tracked files.
+- 15 modified tracked files.
 - 0 untracked candidate files.
-- 13 dirty candidate files.
+- 15 dirty candidate files.
 - Generated `dist/` output is ignored and must not be staged.
+- The unrelated untracked `docs/codex/RELEASE_STAGING_MANIFEST 2.md` is explicitly excluded and must remain untouched.
 - Existing imagery, BuildScan GLB, fonts and vendor files are unchanged.
 
 ## 4. Modified Tracked Files
@@ -38,6 +39,7 @@ Not approved: branch push, PR, production deploy or verification, analytics enab
 building-analyst.html
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
+holding.html
 index.html
 privacy.html
 script.js
@@ -45,6 +47,7 @@ scripts/keyboard-release-smoke.mjs
 scripts/release-security-smoke.mjs
 scripts/responsive-route-smoke.mjs
 scripts/site-shell-source.mjs
+scripts/visual-polish-smoke.mjs
 styles-production.css
 who-its-for.html
 ```
@@ -62,6 +65,7 @@ git add -- \
   building-analyst.html \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
+  holding.html \
   index.html \
   privacy.html \
   script.js \
@@ -69,6 +73,7 @@ git add -- \
   scripts/release-security-smoke.mjs \
   scripts/responsive-route-smoke.mjs \
   scripts/site-shell-source.mjs \
+  scripts/visual-polish-smoke.mjs \
   styles-production.css \
   who-its-for.html
 ```

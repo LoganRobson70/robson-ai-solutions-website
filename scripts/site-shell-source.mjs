@@ -11,9 +11,33 @@ export function siteHeader(page) {
         </a>
         <button class="studio-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>Menu</button>
         <nav class="site-nav studio-nav" id="primary-navigation" aria-label="Primary" data-primary-nav>
-          <a href="/#products" data-analytics-id="nav-products">Products</a>
+          <div class="studio-nav-products" data-product-nav${page === "building-analyst" ? ' data-current-product="true"' : ""}>
+            <div class="studio-nav-products-trigger">
+              <a href="/#products" data-analytics-id="nav-products">Products</a>
+              <button class="studio-nav-products-toggle" type="button" aria-expanded="false" aria-controls="product-navigation" aria-label="Show product links" data-product-nav-toggle>
+                <span aria-hidden="true">&#9662;</span>
+              </button>
+            </div>
+            <div class="studio-nav-products-menu" id="product-navigation" data-product-nav-menu hidden>
+              <a href="/#products" data-analytics-id="nav-product-overview">
+                <strong>Product overview</strong>
+                <span>See all three product directions</span>
+              </a>
+              <a href="/building-analyst"${current(page, "building-analyst")} data-analytics-id="nav-building-analyst">
+                <strong>Building Analyst</strong>
+                <span>Flagship product &mdash; in development</span>
+              </a>
+              <a href="/#buildscan-proof" data-analytics-id="nav-buildscan">
+                <strong>BuildScan</strong>
+                <span>Working product proof</span>
+              </a>
+              <a href="/#product-property-operations" data-analytics-id="nav-property-operations">
+                <strong>Property Operations</strong>
+                <span>Roadmap exploration</span>
+              </a>
+            </div>
+          </div>
           <a href="/who-its-for"${current(page, "who")} data-analytics-id="nav-who-its-for">Who it's for</a>
-          <a href="/building-analyst"${current(page, "building-analyst")} data-analytics-id="nav-building-analyst">Building Analyst</a>
           <a href="/#about" data-analytics-id="nav-about">About</a>
           <a class="studio-nav-mobile-cta" href="${workflowMailto}" data-analytics-id="nav-mobile-building-analyst" data-cta-location="mobile-menu">Discuss a Building Analyst workflow <span aria-hidden="true">&rarr;</span></a>
         </nav>
@@ -41,7 +65,8 @@ export function siteFooter() {
             <a href="/#products">Products</a>
             <a href="/who-its-for">Who it's for</a>
             <a href="/building-analyst">Building Analyst</a>
-            <a href="/#buildscan-proof">BuildScan proof</a>
+            <a href="/#buildscan-proof">BuildScan</a>
+            <a href="/#product-property-operations">Property Operations</a>
             <a href="/#about">About</a>
             <a href="/privacy">Privacy Notice</a>
           </div>

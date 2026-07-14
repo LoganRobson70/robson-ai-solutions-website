@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-13 18:53 BST
+Last updated: 2026-07-14 17:35 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/current-main-building-analyst-integration` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
@@ -284,7 +284,7 @@ Readiness decision:
 ## 1G. Navigation Flow And Typography Consistency Correction
 
 Tranche name: `navigation-and-typography-consistency`
-Status: owner-approved for exact staging, one scoped commit and a fresh non-production preview; complete 41-step local release gate passed; exact staging and committed-snapshot validation pending; push and production deployment remain unapproved
+Status: completed for production; exact commit `b59ffe4` was deployed from a clean Git archive as Netlify production deploy `6a553b4d3445da41e59efc9a`; the complete 14-step production gate and final live-browser smoke passed; branch remains unpushed
 Started: 2026-07-13
 
 Scope and decisions:
@@ -309,14 +309,124 @@ Validation evidence:
 - Final complete local release gate passed all 41 steps: `output/release-local-gate/gate-2026-07-13T18-49-36-226Z/release-local-gate.json`.
 - Final release inventory recorded 13 exact candidate files, 119 scanned files, zero secret findings and zero external GLB URIs: `output/release-inventory/inventory-2026-07-13T18-49-49-109Z/release-candidate-inventory.json`.
 - Final measurement evidence reported zero axe violations across six routes, median Lighthouse performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40 seconds: `output/measurement/evidence-2026-07-13T18-52-10-453Z`.
+- The exact staged 13-file snapshot passed all 41 local release steps before commit: `output/release-local-gate/gate-2026-07-13T18-54-24-024Z/release-local-gate.json`.
+- Local commit `b59ffe4` (`Align site navigation and typography`) was created from that exact staged snapshot and remains unpushed.
+- Exact-hash draft deploy `6a55360b3d76a40d9d7b2196` passed all 14 deployed-preview steps: `output/release-preview-gate/gate-2026-07-13T19-02-11-369Z/release-preview-gate.json`. The gate verified clean release inventory, zero secret findings, zero production dependency vulnerabilities, deployed security headers/source-path denies, BuildScan direct/embedded/fallback behaviour, keyboard use, semantic SEO, product/design acceptance, 36 responsive route/viewport checks, 18 visual-polish checks, rendered screenshots and measurement behaviour.
+- Preview for owner review: `https://6a55360b3d76a40d9d7b2196--robson-ai-website.netlify.app`. Netlify deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a55360b3d76a40d9d7b2196`.
+- Final owner-readiness review on 2026-07-13 confirmed the visible homepage-to-`Who it's for` navigation journey, the correct page-level current state, 15 px shared navigation type, consistent role-based page/section typography, no horizontal overflow and zero browser warning/error messages. The exact preview-gate desktop screenshots for Home, Who it's for and Building Analyst were also reviewed with no new release blocker found.
+- Before production approval, deploy `6a53b157d6c68db39daba82a` remained unchanged and was recorded as the rollback baseline. The post-preview tracker checkpoint stayed intentionally uncommitted because Wayne had approved only one scoped code commit.
+- Wayne then approved recommended option `1`, explicitly authorising production deployment of exact commit `b59ffe4`. A clean `git archive` excluded all local tracker evidence and the unrelated duplicate manifest from the deployed source.
+- Netlify production deploy `6a553b4d3445da41e59efc9a` published successfully at `https://robsonai.co.uk`; deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a553b4d3445da41e59efc9a`.
+- The complete 14-step production gate passed against the live domain: `output/release-production-gate/gate-2026-07-13T19-27-35-798Z/release-preview-gate.json`. It confirmed a clean 119-file inventory, zero secret findings, zero production dependency vulnerabilities, production headers and source-path denies, BuildScan direct/embedded/fallback behaviour, keyboard navigation, semantic SEO, product/design acceptance, 36 responsive checks, 18 visual-polish checks, rendered screenshots, measurement behaviour and clean whitespace.
+- Final live-browser verification confirmed the production cache keys `styles-production.css?v=20260713a` and `script.js?v=20260713a`, the expected homepage proposition and global navigation, no horizontal overflow, correct `Who it's for` current-page state, 15 px shared navigation type and zero warning/error console messages.
+- Rollback remains Netlify production deploy `6a53b157d6c68db39daba82a`. No rollback was required. No branch push or PR was performed.
 - Warning-only residuals remain 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit binaries. Production dependencies have zero vulnerabilities and Chromium passed.
 
 Permission boundary and next gate:
 
 - Wayne approved exact staging, one scoped commit and a fresh non-production preview by selecting option `1` on 2026-07-13.
-- Push, PR, production deployment and production verification remain outside the permission envelope.
+- Push and PR remain outside the permission envelope. Production deployment and read-only production verification were separately approved and completed for exact commit `b59ffe4`.
 - The first full local-gate attempt stopped at release security because the exact new cache-busted self-hosted script URL was not yet in the validator allowlist. The validator now recognises `./script.js?v=20260713a` without relaxing any origin or security rule.
 - The reconciled exact 13-file candidate is recorded in `docs/codex/RELEASE_STAGING_MANIFEST.md`; the full local release gate must pass before the commit, and the exact committed snapshot must pass the deployed-preview gate before owner review.
+- The approved commit, preview review, production deployment and production verification are complete.
+- Wayne completed the visual review and selected recommended option `1`, which explicitly approved production deployment of exact commit `b59ffe4`. The deployment used a clean Git archive so the uncommitted tracker checkpoint and unrelated duplicate manifest were excluded, then passed `npm run qa:release:production` against `https://robsonai.co.uk`.
+
+## 1H. Building Analyst Returning-Browser Hero Defect Review
+
+Tranche name: `building-analyst-cached-hero-layout-defect`
+Status: P0 correction implemented locally; draft deploy `6a55575043a9357b4c012d13` passed the complete 14-step deployed-preview gate and final in-app Browser verification; ready for Wayne's review; no production deployment approved
+Started: 2026-07-13
+
+Findings and evidence:
+
+- Wayne's live branded-domain browser state reproduced the reported oversized icon and unfinished first viewport. The hero was about 18,602 px high, the globe canvas had expanded to 13,440 px square and the headline was pushed roughly 18,362 px below the top of the page.
+- The same exact production deploy rendered correctly from a fresh Netlify deploy origin: the hero was about 823 px high, the globe was about 243 px square and the headline, product boundary and actions were visible.
+- Root cause is a stale immutable stylesheet cache rather than the intended page design. `styles.css?v=20260712b` is cached for one year as immutable; its content changed without a new public version key. The returning browser retained the older selector set, so the Building Analyst globe wrapper sizing rule was absent.
+- Without that sizing rule, the globe canvas falls back to its intrinsic size and its resize/render path repeatedly increases the pixel buffer. This creates both a catastrophic layout failure and a performance/accessibility risk.
+- The product explanation and issue-model sections were separately reviewed in the fresh exact-deploy state and are coherent and substantially finished. The unfinished impression is concentrated in the broken first viewport.
+- Wayne identified that the fresh comparison screenshot still showed the incorrect faceted fallback globe. Source review confirmed this was the coarse temporary land-shape fallback displayed before the detailed country-map atlas loaded, not the approved Robson AI world-map treatment. The P0 correction therefore also prevents that fallback from being displayed and exposes the globe only after the detailed map and approved V3 icon are ready.
+- Audit and screenshots: `output/product-design-audit/building-analyst-live-2026-07-13/audit.md`, `01-first-viewport.png`, `03-fresh-production-deploy.png`, `04-product-section.png`, and `05-issue-model-section.png`.
+
+Recommended correction order:
+
+1. P0: bump the shared `styles.css` cache key across every public reference and validate a fresh non-production preview.
+2. P0: add defensive globe sizing so the renderer refuses missing or implausible wrapper dimensions and caps its render buffer.
+3. P1: replace manually mutable immutable asset URLs with content hashes or add a release check that requires the referenced asset version to change whenever the CSS or JavaScript changes.
+4. P2: only after the functional defect is corrected, consider reducing the decorative globe by about 15–20% and shortening the hero so both actions remain visible at a common 720 px desktop height.
+
+Permission boundary:
+
+- This tranche was review-only. No website source, commit, push, preview deploy or production deploy was performed.
+- The unrelated untracked `docs/codex/RELEASE_STAGING_MANIFEST 2.md` remains untouched.
+- Wayne then selected recommended option `1`, approving the tightly scoped cache-key, defensive globe-sizing and correct-map-first implementation plus a fresh non-production preview. Production remains unapproved.
+
+Implementation and local validation:
+
+- Bumped every public shared stylesheet reference to `styles.css?v=20260713b`, every active production override reference to `styles-production.css?v=20260713b`, and every active shared script reference to `script.js?v=20260713b` so returning browsers cannot retain the incompatible asset combination.
+- Removed the visible coarse polygon fallback. The globe now remains hidden until the real country-map atlas and the approved Robson AI V3 icon have both loaded; an unavailable asset fails closed without showing an incorrect substitute.
+- Added defensive canvas sizing: the Building Analyst globe requires its expected CSS sizing contract, both globe variants reject implausible CSS dimensions, and the high-density render buffer is capped at 1,040 px per axis. An invalid globe is removed from layout instead of pushing page content away.
+- Added an automated stale-stylesheet regression to `qa:visual-polish`. It deliberately serves the former Building Analyst selector state and proves the globe becomes `is-size-invalid`, is removed from layout, retains its 420 x 420 initial buffer, keeps the hero at 823 px and the heading at 222 px rather than reproducing the 18,602 px runaway layout.
+- Targeted syntax, six-page HTML validation, `git diff --check`, release security, 261-reference internal-link validation and release-header configuration checks passed.
+- Visual-polish QA passed 21 route/viewport checks plus the new stale-stylesheet regression: `output/visual-polish/smoke-2026-07-13T21-19-45-464Z/visual-polish-smoke.json`.
+- Rendered-page QA passed: `output/playwright/rendered-release-smoke-2026-07-13T21-13-28-202Z`.
+- Responsive QA passed 42 route/viewport checks: `output/responsive-route/smoke-2026-07-13T21-21-29-287Z/responsive-route-smoke.json`.
+- Product/design acceptance passed all six local routes: `output/product-design-acceptance/smoke-2026-07-13T21-21-29-287Z/product-design-acceptance-smoke.json`.
+- Measurement smoke passed all required routes/assets and consent/analytics contracts: `output/measurement/smoke-2026-07-13T21-21-29-287Z`.
+- In-app Browser validation at 1280 x 800 confirmed the approved detailed world-map globe, 243 x 243 CSS size, 486 x 486 high-density buffer, 823 px hero, visible heading at 222 px, no horizontal overflow, zero warning/error messages and a working `See how it works` journey to `#workflow`.
+- Approved fresh draft deploy `6a55575043a9357b4c012d13` is available at `https://6a55575043a9357b4c012d13--robson-ai-website.netlify.app`; deploy logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a55575043a9357b4c012d13`.
+- The complete 14-step deployed-preview gate passed: `output/release-preview-gate/gate-2026-07-13T21-24-03-645Z/release-preview-gate.json`. It confirmed a 120-file inventory with zero secret findings and zero external GLB URIs, zero production dependency vulnerabilities, deployed headers/source-path denies, BuildScan viewer behaviour, keyboard journeys, semantic SEO, product/design acceptance, 36 responsive checks, 18 visual-polish checks plus the stale-stylesheet regression, rendered screenshots, measurement behaviour and clean whitespace.
+- Final in-app Browser verification on the deployed preview confirmed the detailed world-map globe rather than the rejected faceted fallback, the new `20260713b` stylesheet/production-style/script keys, 243 x 243 CSS size, 486 x 486 buffer, 823 px hero, heading at 224 px, no horizontal overflow, zero warning/error messages and a working `See how it works` journey.
+- Warning-only residuals remain 17 moderate dev/release-tooling advisories and unavailable local Firefox/WebKit binaries; Chromium and the production dependency footprint passed.
+- No commit, branch push, PR or production deployment was performed. Production remains unchanged and separately approval-gated.
+
+## 1I. Products Information Architecture Correction
+
+Tranche name: `products-parent-navigation`
+Status: visually approved by Wayne; exact commit and fresh non-production preview approved and in progress; no push, pull request or production deploy approved
+Started: 2026-07-14
+
+Decision:
+
+- Wayne confirmed that Building Analyst is logically a product and selected recommended option `1`.
+- Replace the flat `Products / Who it's for / Building Analyst / About` hierarchy with a shorter primary navigation in which `Products` is the parent of `Building Analyst`, `BuildScan` and `Property Operations`.
+- Keep the existing Building Analyst workflow CTA prominent because Building Analyst remains the flagship product in development and the primary conversation path.
+- Preserve truthful maturity labels: Building Analyst is in development, BuildScan is working product proof and Property Operations is roadmap exploration.
+
+Scope and approval boundary:
+
+- Approved: scoped local information-architecture implementation, shared-shell generation, accessibility and responsive validation, tracker updates.
+- Approved after Wayne selected option `1`: exact-path staging, one combined scoped commit containing the already-approved P0 globe/cache correction and Products navigation, one fresh non-production Netlify preview, and the complete deployed-preview gate.
+- Not approved: branch push, pull request, production deploy or verification, DNS/domain changes, analytics/forms changes, customer-data handling, dependency remediation or external messages.
+- Preserve the unrelated untracked `docs/codex/RELEASE_STAGING_MANIFEST 2.md` and all existing P0 Building Analyst globe/cache corrections.
+
+Implementation:
+
+- The shared top navigation is now `Products / Who it's for / About`, followed by the existing Building Analyst workflow CTA.
+- `Products` remains a direct link to the homepage product overview and now has a separate accessible disclosure control containing `Product overview`, `Building Analyst`, `BuildScan` and `Property Operations`.
+- The submenu includes truthful maturity context: Building Analyst is the flagship product in development, BuildScan is working product proof and Property Operations is roadmap exploration.
+- Building Analyst receives `aria-current="page"` inside the product menu, while the visible Products parent remains highlighted when any product route or product section is current. This prevents the hierarchy from disappearing when the submenu is closed.
+- Desktop disclosure, outside-click close, Escape close/focus return, Down-arrow entry, mobile containment and mobile menu close behaviour are implemented in the shared script.
+- Product-card anchors and footer links now provide direct destinations for all three product directions. The generated shared shell updated Home, Building Analyst, Who it's for, Privacy and 404 consistently.
+
+Validation evidence:
+
+- `npm run build:site`, JavaScript syntax checks, five-page HTML validation and `git diff --check` passed.
+- Keyboard QA passed, including Products disclosure open/close, four menu destinations, current-parent state and Building Analyst child-current state: `output/playwright/keyboard-release-smoke-2026-07-14T16-25-08-508Z`.
+- Responsive QA passed 42 route/viewport checks, including nine visible mobile menu controls, four product submenu links, minimum 44 px targets, containment and no horizontal overflow: `output/responsive-route/smoke-2026-07-14T16-25-51-354Z/responsive-route-smoke.json`.
+- Product/design acceptance passed all six local routes: `output/product-design-acceptance/smoke-2026-07-14T16-26-39-088Z/product-design-acceptance-smoke.json`.
+- Internal links passed 297 references; semantic/SEO QA passed seven pages: `output/semantic-seo/smoke-2026-07-14T16-26-46-010Z/semantic-seo-smoke.json`.
+- Rendered QA passed: `output/playwright/rendered-release-smoke-2026-07-14T16-32-13-269Z`. Visual-polish QA passed 21 checks: `output/visual-polish/smoke-2026-07-14T16-32-29-807Z/visual-polish-smoke.json`.
+- Release security and header configuration checks passed: `output/release-security/smoke-2026-07-14T16-32-54-098Z/release-security-smoke.json` and `output/release-headers/smoke-2026-07-14T16-32-54-207Z/release-header-smoke.json`.
+- Measurement smoke passed all required routes and analytics/privacy contracts: `output/measurement/smoke-2026-07-14T16-33-28-504Z`.
+- Release inventory passed with 15 dirty files, 120 scanned files, zero secret findings and zero external GLB URIs: `output/release-inventory/inventory-2026-07-14T16-33-44-832Z/release-candidate-inventory.json`.
+- In-app Browser verification at 1280 x 800 and 390 x 844 confirmed the shorter header, four-destination Products panel, visible Products parent state on Building Analyst, 44 px mobile parent controls, 58 px submenu controls, no horizontal overflow and zero warning/error console messages. Screenshots: `/tmp/robson-ai-products-navigation-desktop-building-analyst.png` and `/tmp/robson-ai-products-navigation-mobile-building-analyst.png`.
+
+Residual risks and next gate:
+
+- Local implementation and targeted QA are complete. Wayne visually approved the result and authorised the exact commit plus fresh non-production preview. Publish-readiness will be recalculated after the local and deployed-preview gates.
+- The release staging manifest now defines the approved combined P0 globe/cache and Products-navigation candidate. The unrelated duplicate manifest remains explicitly excluded.
+- Firefox and WebKit remain unavailable locally; Chromium and the in-app Browser passed.
+- Rollback is file-level before commit. No external state changed and production remains unchanged.
 
 ## 2. Completed Secondary-Page Shell Candidate
 

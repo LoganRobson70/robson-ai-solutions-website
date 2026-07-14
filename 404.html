@@ -29,8 +29,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/robson-ai-icon-v3-180.png?v=20260627">
     <link rel="preload" href="./assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="./styles.css?v=20260708a">
-    <link rel="stylesheet" href="/styles-production.css?v=20260713a">
+    <link rel="stylesheet" href="./styles.css?v=20260713b">
+    <link rel="stylesheet" href="/styles-production.css?v=20260713b">
   </head>
   <body class="studio-shell" data-page-type="not-found">
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -43,9 +43,33 @@
         </a>
         <button class="studio-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>Menu</button>
         <nav class="site-nav studio-nav" id="primary-navigation" aria-label="Primary" data-primary-nav>
-          <a href="/#products" data-analytics-id="nav-products">Products</a>
+          <div class="studio-nav-products" data-product-nav>
+            <div class="studio-nav-products-trigger">
+              <a href="/#products" data-analytics-id="nav-products">Products</a>
+              <button class="studio-nav-products-toggle" type="button" aria-expanded="false" aria-controls="product-navigation" aria-label="Show product links" data-product-nav-toggle>
+                <span aria-hidden="true">&#9662;</span>
+              </button>
+            </div>
+            <div class="studio-nav-products-menu" id="product-navigation" data-product-nav-menu hidden>
+              <a href="/#products" data-analytics-id="nav-product-overview">
+                <strong>Product overview</strong>
+                <span>See all three product directions</span>
+              </a>
+              <a href="/building-analyst" data-analytics-id="nav-building-analyst">
+                <strong>Building Analyst</strong>
+                <span>Flagship product &mdash; in development</span>
+              </a>
+              <a href="/#buildscan-proof" data-analytics-id="nav-buildscan">
+                <strong>BuildScan</strong>
+                <span>Working product proof</span>
+              </a>
+              <a href="/#product-property-operations" data-analytics-id="nav-property-operations">
+                <strong>Property Operations</strong>
+                <span>Roadmap exploration</span>
+              </a>
+            </div>
+          </div>
           <a href="/who-its-for" data-analytics-id="nav-who-its-for">Who it's for</a>
-          <a href="/building-analyst" data-analytics-id="nav-building-analyst">Building Analyst</a>
           <a href="/#about" data-analytics-id="nav-about">About</a>
           <a class="studio-nav-mobile-cta" href="mailto:hello@robsonai.co.uk?subject=Building%20Analyst%20workflow&body=Hi%20Wayne%2C%0A%0AI%20would%20like%20to%20discuss%20a%20Building%20Analyst%20workflow.%0A%0AOrganisation%20or%20role%3A%0AWorkflow%20or%20problem%3A%0AUseful%20context%3A%0A%0AThanks%2C" data-analytics-id="nav-mobile-building-analyst" data-cta-location="mobile-menu">Discuss a Building Analyst workflow <span aria-hidden="true">&rarr;</span></a>
         </nav>
@@ -110,7 +134,8 @@
             <a href="/#products">Products</a>
             <a href="/who-its-for">Who it's for</a>
             <a href="/building-analyst">Building Analyst</a>
-            <a href="/#buildscan-proof">BuildScan proof</a>
+            <a href="/#buildscan-proof">BuildScan</a>
+            <a href="/#product-property-operations">Property Operations</a>
             <a href="/#about">About</a>
             <a href="/privacy">Privacy Notice</a>
           </div>
@@ -129,6 +154,6 @@
         <p>Building Analyst is in development. BuildScan is working product proof.</p>
       </div>
     </footer>
-    <script src="./script.js?v=20260713a"></script>
+    <script src="./script.js?v=20260713b"></script>
   </body>
 </html>

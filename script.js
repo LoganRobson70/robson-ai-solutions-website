@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupInteractionTracking(analytics);
   setupInteractivePanels();
   setupBuildScanInteractiveModel(analytics);
+  setupProductNavigation();
   setupMobileNav();
   setupNavState();
   setupPrivacyNotice();
@@ -280,6 +281,17 @@ function setupMobileNav() {
     toggle.setAttribute("aria-expanded", "false");
     nav.classList.remove("is-open");
 
+    const productToggle = nav.querySelector("[data-product-nav-toggle]");
+    const productMenu = nav.querySelector("[data-product-nav-menu]");
+    const productNav = nav.querySelector("[data-product-nav]");
+
+    if (productToggle && productMenu && productNav) {
+      productToggle.setAttribute("aria-expanded", "false");
+      productToggle.setAttribute("aria-label", "Show product links");
+      productMenu.hidden = true;
+      productNav.classList.remove("is-open");
+    }
+
     if (returnFocus) {
       toggle.focus();
     }
@@ -298,7 +310,7 @@ function setupMobileNav() {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && nav.classList.contains("is-open")) {
+    if (!event.defaultPrevented && event.key === "Escape" && nav.classList.contains("is-open")) {
       closeNav(true);
     }
   });
@@ -306,6 +318,76 @@ function setupMobileNav() {
   window.addEventListener("resize", () => {
     if (window.innerWidth > 1040) {
       closeNav();
+    }
+  });
+}
+
+function setupProductNavigation() {
+  const productNav = document.querySelector("[data-product-nav]");
+  const toggle = productNav?.querySelector("[data-product-nav-toggle]");
+  const menu = productNav?.querySelector("[data-product-nav-menu]");
+
+  if (!productNav || !toggle || !menu) {
+    return;
+  }
+
+  const menuLinks = [...menu.querySelectorAll("a")];
+
+  const openMenu = (focusFirst = false) => {
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Hide product links");
+    menu.hidden = false;
+    productNav.classList.add("is-open");
+
+    if (focusFirst) {
+      menuLinks[0]?.focus();
+    }
+  };
+
+  const closeMenu = (returnFocus = false) => {
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Show product links");
+    menu.hidden = true;
+    productNav.classList.remove("is-open");
+
+    if (returnFocus) {
+      toggle.focus();
+    }
+  };
+
+  toggle.addEventListener("click", () => {
+    const shouldOpen = toggle.getAttribute("aria-expanded") !== "true";
+
+    if (shouldOpen) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  toggle.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      openMenu(true);
+    }
+  });
+
+  menu.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("pointerdown", (event) => {
+    if (!productNav.contains(event.target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+      event.preventDefault();
+      closeMenu(true);
     }
   });
 }
@@ -928,6 +1010,19 @@ function setupNavState() {
         link.removeAttribute("aria-current");
       }
     });
+
+    const productNav = document.querySelector("[data-product-nav]");
+
+    if (productNav) {
+      const activeProduct = Boolean(activeLink && productNav.contains(activeLink));
+      const onBuildingAnalystPage = currentPath === "/building-analyst";
+
+      if (activeProduct || onBuildingAnalystPage) {
+        productNav.dataset.currentProduct = "true";
+      } else {
+        delete productNav.dataset.currentProduct;
+      }
+    }
   };
 
   const currentPath = normalizePath(window.location.href);
@@ -1525,14 +1620,15 @@ function setupGlobeLoader() {
   const icon = new Image();
   icon.decoding = "async";
   icon.src = "./assets/robson-ai-icon-v3-transparent-320.webp?v=20260627";
+  const iconPromise = new Promise((resolve) => {
+    if (icon.complete) {
+      resolve(icon.naturalWidth > 0);
+      return;
+    }
 
-  const fallbackLandShapes = [
-    [[-128, 50], [-110, 60], [-88, 56], [-64, 43], [-78, 21], [-104, 19], [-126, 34]],
-    [[-84, 12], [-60, 7], [-47, -20], [-66, -52], [-79, -32], [-88, -6]],
-    [[-12, 35], [18, 37], [34, 12], [26, -33], [4, -31], [-10, -5]],
-    [[-9, 59], [22, 66], [58, 56], [92, 46], [123, 24], [105, 7], [62, 8], [28, 27], [5, 48]],
-    [[112, -11], [146, -18], [151, -36], [126, -41], [112, -27]]
-  ];
+    icon.addEventListener("load", () => resolve(icon.naturalWidth > 0), { once: true });
+    icon.addEventListener("error", () => resolve(false), { once: true });
+  });
   const atlasPromise = window.fetch
     ? window.fetch("./assets/globe-loader/world-countries-lite.json?v=20260705", { cache: "force-cache" })
       .then((response) => (response.ok ? response.json() : null))
@@ -1557,26 +1653,65 @@ function setupGlobeLoader() {
     const context = canvas?.getContext("2d", { alpha: true });
 
     if (!canvas || !context) {
+      loader.classList.add("is-map-unavailable");
       return;
     }
+
+    loader.classList.add("is-map-loading");
+    loader.classList.remove("is-map-ready", "is-map-unavailable", "is-size-invalid");
 
     let width = 0;
     let height = 0;
     let dpr = 1;
     let animationFrame = 0;
     let visible = true;
-    let landShapes = fallbackLandShapes;
+    let landShapes = [];
     let detailedAtlasLoaded = false;
+    let assetsReady = false;
 
     const resize = () => {
+      if (!assetsReady) {
+        return false;
+      }
+
       const rect = canvas.getBoundingClientRect();
+      const loaderStyle = window.getComputedStyle(loader);
+      const canvasStyle = window.getComputedStyle(canvas);
+      const intentionallyHidden = loaderStyle.display === "none" || canvasStyle.display === "none";
+
+      if (intentionallyHidden) {
+        loader.classList.remove("is-size-invalid");
+        return false;
+      }
+
+      const requiresZipSizing = canvas.classList.contains("zip-globe-loader-canvas");
+      const zipSizingApplied = loaderStyle.getPropertyValue("--zip-globe-loader-size").trim();
+      const maximumCssSize = requiresZipSizing ? 520 : 320;
+      const validSize =
+        (!requiresZipSizing || Boolean(zipSizingApplied)) &&
+        Number.isFinite(rect.width) &&
+        Number.isFinite(rect.height) &&
+        rect.width >= 48 &&
+        rect.height >= 48 &&
+        rect.width <= maximumCssSize &&
+        rect.height <= maximumCssSize;
+
+      if (!validSize) {
+        loader.classList.add("is-size-invalid");
+        loader.classList.remove("is-map-ready");
+        stop();
+        return false;
+      }
+
+      loader.classList.remove("is-size-invalid");
       width = Math.max(1, Math.round(rect.width));
       height = Math.max(1, Math.round(rect.height));
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 2, 1040 / width, 1040 / height);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
       draw(performance.now());
+      return true;
     };
 
     const strokePath = (points, strokeStyle, lineWidth, closePath = false, fillStyle = "") => {
@@ -1799,25 +1934,30 @@ function setupGlobeLoader() {
     };
 
     const start = () => {
-      if (!shouldAnimate || !visible || animationFrame) {
+      if (!assetsReady || !shouldAnimate || !visible || animationFrame) {
         return;
       }
 
       animationFrame = window.requestAnimationFrame(tick);
     };
 
-    icon.addEventListener("load", () => draw(performance.now()), { once: true });
-    atlasPromise.then((rings) => {
-      if (!rings) {
+    Promise.all([atlasPromise, iconPromise]).then(([rings, iconReady]) => {
+      if (!rings || !iconReady) {
+        loader.classList.remove("is-map-loading", "is-map-ready");
+        loader.classList.add("is-map-unavailable");
         return;
       }
 
       landShapes = rings;
       detailedAtlasLoaded = true;
-      draw(performance.now());
+      assetsReady = true;
+      loader.classList.remove("is-map-loading", "is-map-unavailable");
+      loader.classList.add("is-map-ready");
+
+      if (resize()) {
+        start();
+      }
     });
-    resize();
-    start();
     window.addEventListener("resize", resize, { passive: true });
 
     if (shouldAnimate && "IntersectionObserver" in window) {

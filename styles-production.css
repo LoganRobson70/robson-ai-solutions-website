@@ -15,6 +15,16 @@ body { overflow-x: clip; }
 .studio-nav-mobile-cta { display: none !important; }
 [hidden] { display: none !important; }
 
+[data-globe-loader].is-map-loading {
+  visibility: hidden;
+  opacity: 0 !important;
+}
+
+[data-globe-loader].is-map-unavailable,
+[data-globe-loader].is-size-invalid {
+  display: none !important;
+}
+
 body.studio-shell .studio-wordmark { gap: 0.65rem; }
 body.studio-shell .studio-wordmark-text { display: grid; line-height: 1; text-transform: uppercase; }
 body.studio-shell .studio-wordmark-text strong,
@@ -24,6 +34,8 @@ body.studio-home .studio-wordmark-text span { margin-top: 0.2rem; font-size: 0.7
 
 body.studio-home .studio-nav a,
 body.studio-shell .studio-nav a,
+body.studio-home .studio-nav-products-toggle,
+body.studio-shell .studio-nav-products-toggle,
 body.studio-home .studio-header-cta,
 body.studio-shell .studio-header-cta,
 body.studio-home .studio-button,
@@ -32,6 +44,108 @@ body.building-analyst-zip-page .zip-button { font-size: var(--type-navigation); 
 
 body.studio-home .studio-nav a,
 body.studio-shell .studio-nav a { padding-block: 0.55rem; line-height: 1.25; }
+
+.studio-nav-products {
+  position: relative;
+}
+
+.studio-nav-products-trigger {
+  display: flex;
+  align-items: center;
+}
+
+body.studio-home .studio-nav-products-toggle,
+body.studio-shell .studio-nav-products-toggle {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.15rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--studio-navy, #07152f);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+body.studio-home .studio-nav-products-toggle:hover,
+body.studio-shell .studio-nav-products-toggle:hover,
+body.studio-home .studio-nav-products-toggle:focus-visible,
+body.studio-shell .studio-nav-products-toggle:focus-visible {
+  background: #edf3ff;
+}
+
+body.studio-home .studio-nav-products-toggle:focus-visible,
+body.studio-shell .studio-nav-products-toggle:focus-visible {
+  outline: 2px solid #0a5bf5;
+  outline-offset: 2px;
+}
+
+.studio-nav-products-toggle span {
+  transform: translateY(-1px);
+  transition: transform 160ms ease;
+}
+
+.studio-nav-products-toggle[aria-expanded="true"] span {
+  transform: translateY(1px) rotate(180deg);
+}
+
+.studio-nav-products-menu {
+  position: absolute;
+  z-index: 180;
+  top: calc(100% + 0.8rem);
+  left: 50%;
+  display: grid;
+  width: min(22rem, calc(100vw - 2rem));
+  padding: 0.5rem;
+  border: 1px solid #dbe2ec;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 20px 48px rgba(7, 21, 47, 0.16);
+  transform: translateX(-50%);
+}
+
+body.studio-home .studio-nav .studio-nav-products-menu a,
+body.studio-shell .studio-nav .studio-nav-products-menu a {
+  display: grid;
+  gap: 0.18rem;
+  min-height: 58px;
+  padding: 0.7rem 0.8rem;
+  border-radius: 6px;
+  white-space: normal;
+}
+
+body.studio-home .studio-nav .studio-nav-products-menu a::after,
+body.studio-shell .studio-nav .studio-nav-products-menu a::after {
+  display: none;
+}
+
+body.studio-home .studio-nav .studio-nav-products-menu a:hover,
+body.studio-home .studio-nav .studio-nav-products-menu a:focus-visible,
+body.studio-shell .studio-nav .studio-nav-products-menu a:hover,
+body.studio-shell .studio-nav .studio-nav-products-menu a:focus-visible {
+  background: #edf3ff;
+}
+
+.studio-nav-products-menu strong {
+  color: #07152f;
+  font-size: 0.9375rem;
+}
+
+.studio-nav-products-menu span {
+  color: #526078;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.studio-nav-products[data-current-product="true"] .studio-nav-products-trigger > a::after {
+  transform: scaleX(1);
+}
 
 body.studio-home .studio-nav a[aria-current]::after,
 body.studio-shell .studio-nav a[aria-current]::after { transform: scaleX(1); }
@@ -159,6 +273,54 @@ body[data-page-type="privacy"] .section-intro {
     min-width: 0;
     padding-inline: 1rem;
     white-space: normal;
+  }
+
+  body.studio-home .studio-nav.is-open,
+  body.studio-shell .studio-nav.is-open {
+    max-height: calc(100vh - 68px);
+    overflow-y: auto;
+  }
+
+  .studio-nav-products,
+  .studio-nav-products-trigger {
+    width: 100%;
+  }
+
+  .studio-nav-products-trigger {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    border-bottom: 1px solid #dbe2ec;
+  }
+
+  body.studio-home .studio-nav.is-open .studio-nav-products-trigger > a,
+  body.studio-shell .studio-nav.is-open .studio-nav-products-trigger > a {
+    border-bottom: 0;
+  }
+
+  body.studio-home .studio-nav-products-toggle,
+  body.studio-shell .studio-nav-products-toggle {
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    border-radius: 6px;
+  }
+
+  .studio-nav-products-menu {
+    position: static;
+    width: 100%;
+    padding: 0.35rem 0 0.55rem 0.75rem;
+    border: 0;
+    border-bottom: 1px solid #dbe2ec;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+
+  body.studio-home .studio-nav .studio-nav-products-menu a,
+  body.studio-shell .studio-nav .studio-nav-products-menu a {
+    min-height: 52px;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 0;
   }
 
   .studio-nav-mobile-cta { display: flex !important; margin-top: 0.5rem; padding: 0.75rem 1rem !important; border: 0 !important; border-radius: 6px; background: #0a5bf5; color: #ffffff !important; }
