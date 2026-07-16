@@ -3,7 +3,7 @@
 Last updated: 2026-07-16 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Current branch: `codex/building-analyst-marketing-live-20260716` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
+Current branch: `codex/brand-contrast-system-20260716` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
 
 ## 1. Current Objective
 
@@ -11,11 +11,10 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Publish the three approved Building Analyst marketing compositions on the public Building Analyst page.
-- Use live production commit `475e383` as the release base so the newer globe, product navigation and homepage work are preserved.
-- Keep the visuals explicitly labelled as marketing compositions grounded in current screens and behaviour; do not imply autonomous diagnosis, final authority, App Store availability or a finished interface.
-- Use `Riverside Library` consistently and exclude the rejected `AI Proof Property` wording.
-- Wayne explicitly approved commit, push and production deployment on 2026-07-16 and asked for the live URL after verification.
+- Remove the recurring blue-on-blue brand-legibility problem from the two dark Building Analyst marketing compositions.
+- Establish one reusable soft-halo brand treatment, semantic tokens, implementation contract and rendered release guard for future website releases.
+- Preserve the approved Robson mark, Building Analyst wording, composition content, product claims and light-background third visual.
+- Prepare and validate a local release candidate; commit, push, preview and production deployment require a separate explicit approval.
 - DNS/domain changes, analytics/forms changes, customer-data handling, dependency remediation, external messages, rollback and unrelated redesign remain out of scope.
 
 Success means:
@@ -36,7 +35,7 @@ Success means:
 ## 1.1 Active Building Analyst Marketing Gallery Tranche
 
 Tranche name: `building-analyst-marketing-gallery-live`
-Status: release commit `6b9a2d4` is live as Netlify production deploy `6a58c32d977afb000808d15c`; all production checks through visual polish passed, and a release-tooling-only CSP fix is in progress before the final production gate rerun
+Status: completed; release commit `6b9a2d4` and QA-only CSP fix `cbfb61d` are live, and the final production gate passed
 Started: 2026-07-16 BST
 
 Scope:
@@ -70,6 +69,49 @@ Local validation evidence:
 - Netlify production deploy `6a58c32d977afb000808d15c` published commit `6b9a2d4` to `https://robsonai.co.uk`; Netlify reported no secret-scan matches.
 - The first production gate passed clean-source inventory, source security, deployed headers, BuildScan, keyboard, semantic/SEO, product/design, responsive and visual-polish checks. It then stopped at the rendered smoke because a QA-only inline style injection was correctly blocked by the live `style-src 'self'` CSP; the public site and gallery were already serving correctly.
 - Release-control follow-up: remove the unnecessary inline screenshot style, preserve the strict CSP and rerun deployed rendered and production validation.
+
+## 1.2 Active Brand Contrast System Tranche
+
+Tranche name: `brand-contrast-system`
+Status: Wayne-selected rotated blue shadow implemented, visually matched and fully validated locally; exact-path staging, scoped commit, branch push and a fresh non-production preview were explicitly approved by Wayne on 2026-07-16 and are in progress; production deployment is not approved
+Started: 2026-07-16 BST
+
+Scope:
+
+- Replace the blue-on-navy presentation in both dark Building Analyst marketing compositions with Wayne's selected Version 3 mark and soft light-blue, slightly rotated shadow treatment.
+- Add semantic brand-contrast tokens and a documented treatment matrix for light, dark and complex website surfaces.
+- Extend product-design and rendered visual-polish checks so future dark marketing surfaces cannot ship without the approved treatment.
+- Preserve the third light-background composition and all current product-claim boundaries.
+
+Rollback:
+
+- Remove the two decorative shadow elements and `assets/robson-ai-icon-v3-rotated-blue-shadow.webp`, then revert the scoped CSS, QA and standard-document changes; the underlying approved marketing image assets remain unchanged.
+
+Done criteria:
+
+- Both dark compositions show the full mark and Building Analyst lockup with clear separation at mobile, tablet and desktop sizes.
+- Product-design, visual-polish, rendered, responsive, accessibility/security and relevant release checks pass locally.
+- Browser evidence confirms the treatment does not cover the marketing headline or introduce overflow.
+- Tracker records changed files, validation evidence, residual risks, rollback and the next production gate.
+
+Local validation evidence:
+
+- Canva read-only brand lookup confirmed the dedicated `Robson AI Solutions Colour Palette` brand kit. Creative Production source-preservation and exact-content rules kept the approved source mark and composition intact, using deterministic website treatment rather than regenerating the logo or text.
+- Superseded design history: Wayne rejected the first opaque-card direction as too heavy, then identified that the first soft-halo implementation duplicated the baked logo with a second icon. He subsequently rejected the non-image radial-halo composition as visually unacceptable. Neither rejected treatment remains in the current candidate.
+- A separate Canva review canvas was created from the exact public Version 3 icon, verified byte-for-byte against `assets/robson-ai-icon-v3-transparent.png`, on a solid Robson navy `#06133D` 1600 x 900 background with no halo, card, wordmark or marketing text. Canva design: `DAHPjcImMEg`; edit URL: `https://www.canva.com/design/DAHPjcImMEg/U6XYBdNTo8wnJKfqVQIY4Q/edit?continue_in_browser=true`. The website implementation was not changed during this manual exploration step.
+- Wayne clarified that his saved Canva treatment uses a light-blue, slightly rotated shadow behind the unchanged Version 3 icon. Canva inspection confirmed one 382 x 414 icon layer at x 609, y 243 on a 1600 x 900 navy background and a visible soft blue edge/glow. The read-only inspection transaction was cancelled without changing his design.
+- The selected treatment is implemented as one reusable transparent composite asset, `assets/robson-ai-icon-v3-rotated-blue-shadow.webp` (820 x 920), precisely aligned over the baked icon in both dark compositions. This preserves the mark while exposing only the selected blue shadow edge.
+- Product-design and visual-polish regression checks now require exactly one approved composite asset on each declared dark surface, verify its source and decoded dimensions and enforce tightly localised containment.
+- In-app Browser checks at 1440 x 1000 and 390 x 844 show the selected shadow on both dark compositions, no double logo, no headline or wordmark obstruction and no horizontal overflow. All three marketing images and both shadow assets decode. Evidence: `/Users/wayne/.codex/visualizations/2026/07/15/019f67a5-7496-7730-9f41-711b88b47162/rotated-shadow-implementation/desktop-refined.png`, `/Users/wayne/.codex/visualizations/2026/07/15/019f67a5-7496-7730-9f41-711b88b47162/rotated-shadow-implementation/desktop-gallery.png` and `/Users/wayne/.codex/visualizations/2026/07/15/019f67a5-7496-7730-9f41-711b88b47162/rotated-shadow-implementation/mobile-featured.png`.
+- Focused comparison against the saved Canva preview shows the same unchanged Version 3 mark with a soft azure edge/glow; evidence: `/Users/wayne/.codex/visualizations/2026/07/15/019f67a5-7496-7730-9f41-711b88b47162/rotated-shadow-implementation/canva-vs-desktop-refined-focus.png`.
+- The local `See how it works` journey reaches `#workflow`; in-app Browser diagnostics reported no warnings or errors.
+- Anchor follow-up on 2026-07-16 reproduced a true fresh direct entry to `building-analyst.html#product-visuals` after all three marketing images decoded. The `Product visuals` label rendered at 249 px with the sticky header ending at 69 px, so the anchor is already clear by about 180 px. The earlier apparent obstruction was caused by the manually scrolled audit position, not the website's hash behaviour; no anchor CSS change was made.
+- Product-design acceptance passes across six routes. Responsive QA passes 42 checks. Visual-polish passes 21 route/viewport checks and enforces exactly one approved rotated-shadow composite, its source, decoded dimensions and tightly localised containment. Rendered and keyboard browser smokes pass.
+- The refreshed full `npm run qa:release:local` passes all 41 steps with artifact `output/release-local-gate/gate-2026-07-16T13-39-40-195Z/release-local-gate.json`.
+- Axe reports zero violations across six checked routes. Lighthouse passes with performance 96, accessibility 100, best practices 100, SEO 100, CLS 0 and median LCP about 2.40 seconds. Evidence: `output/measurement/evidence-2026-07-16T13-42-05-227Z`.
+- The stylesheet cache key on Building Analyst is advanced to `styles.css?v=20260716e` so returning browsers cannot retain the rejected halo treatment.
+- Known warning-only residuals remain 17 moderate dev/release-tooling dependency findings and unavailable local Firefox/WebKit Playwright binaries; production dependencies remain at zero vulnerabilities and Chromium passed.
+- Release decision: Wayne explicitly approved exact-path staging, a scoped commit, branch push and a fresh non-production preview on 2026-07-16. Production remains a separate explicit approval gate after deployed-preview validation.
 
 ## 1A. Active Integration Tranche
 

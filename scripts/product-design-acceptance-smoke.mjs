@@ -119,8 +119,18 @@ async function readLinksAndControls(page) {
       src: image.getAttribute("src") || "",
       srcset: image.getAttribute("srcset") || ""
     }));
+    const darkBrandSurfaces = [...document.querySelectorAll('[data-brand-surface="dark"]')].map((surface) => {
+      const shadow = surface.querySelector('[data-brand-contrast="rotated-blue-shadow"]');
+      const shadowImage = shadow?.querySelector("img");
 
-    return { links, buttons, marketingVisuals };
+      return {
+        hasShadow: Boolean(shadow),
+        nestedImageCount: shadow?.querySelectorAll("img").length || 0,
+        shadowSource: shadowImage?.getAttribute("src") || ""
+      };
+    });
+
+    return { links, buttons, marketingVisuals, darkBrandSurfaces };
   });
 }
 
@@ -259,6 +269,12 @@ function assertProofStatus(home, buildingAnalyst) {
     assert(visual.alt.length > 30, `Building Analyst marketing visual should have useful alt text: ${JSON.stringify(visual)}.`);
     assert(visual.src.includes("-840.webp"), `Building Analyst marketing visual should use the compact default source: ${JSON.stringify(visual)}.`);
     assert(visual.srcset.includes("-1600.webp 1600w"), `Building Analyst marketing visual should expose a high-resolution source: ${JSON.stringify(visual)}.`);
+  });
+  assert(buildingAnalyst.controls.darkBrandSurfaces.length === 2, `Building Analyst should identify both dark marketing compositions as protected brand surfaces; actual: ${buildingAnalyst.controls.darkBrandSurfaces.length}.`);
+  buildingAnalyst.controls.darkBrandSurfaces.forEach((surface) => {
+    assert(surface.hasShadow, `Every dark marketing composition should use Wayne's approved rotated blue shadow: ${JSON.stringify(surface)}.`);
+    assert(surface.nestedImageCount === 1, `Each rotated blue shadow treatment must use exactly one composite icon asset: ${JSON.stringify(surface)}.`);
+    assert(surface.shadowSource.includes("robson-ai-icon-v3-rotated-blue-shadow.webp"), `Brand contrast treatments must use the approved Version 3 shadow asset: ${JSON.stringify(surface)}.`);
   });
 }
 

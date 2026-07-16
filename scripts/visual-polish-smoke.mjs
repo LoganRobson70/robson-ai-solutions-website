@@ -263,6 +263,29 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
       };
     });
 
+    const brandContrastMetrics = await page.evaluate(() => {
+      return [...document.querySelectorAll('[data-brand-surface="dark"]')].map((surface) => {
+        const shadow = surface.querySelector('[data-brand-contrast="rotated-blue-shadow"]');
+        const shadowImage = shadow?.querySelector("img");
+        const surfaceRect = surface.getBoundingClientRect();
+        const shadowRect = shadow?.getBoundingClientRect();
+
+        return {
+          hasShadow: Boolean(shadow),
+          visible: Boolean(shadowRect && shadowRect.width > 2 && shadowRect.height > 2),
+          nestedImageCount: shadow?.querySelectorAll("img").length || 0,
+          shadowSource: shadowImage?.getAttribute("src") || "",
+          shadowDecoded: Boolean(shadowImage?.complete && shadowImage.naturalWidth > 0),
+          shadowNaturalWidth: shadowImage?.naturalWidth || 0,
+          shadowNaturalHeight: shadowImage?.naturalHeight || 0,
+          leftPercent: shadowRect ? Number((((shadowRect.left - surfaceRect.left) / surfaceRect.width) * 100).toFixed(1)) : null,
+          topPercent: shadowRect ? Number((((shadowRect.top - surfaceRect.top) / surfaceRect.height) * 100).toFixed(1)) : null,
+          rightPercent: shadowRect ? Number((((shadowRect.right - surfaceRect.left) / surfaceRect.width) * 100).toFixed(1)) : null,
+          bottomPercent: shadowRect ? Number((((shadowRect.bottom - surfaceRect.top) / surfaceRect.height) * 100).toFixed(1)) : null
+        };
+      });
+    });
+
     const blockingFailedRequests = diagnostics.failedRequests.filter((failure) => {
       let pathname = "";
       try {
@@ -316,6 +339,17 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
       assert(globeMetrics.cssWidth <= 520 && globeMetrics.cssHeight <= 520, `${route} ${viewport.name} globe CSS size should remain bounded: ${JSON.stringify(globeMetrics)}.`);
       assert(globeMetrics.bufferWidth <= 1040 && globeMetrics.bufferHeight <= 1040, `${route} ${viewport.name} globe render buffer should remain bounded: ${JSON.stringify(globeMetrics)}.`);
     }
+    if (route === "/building-analyst") {
+      assert(brandContrastMetrics.length === 2, `${route} ${viewport.name} should identify both dark marketing compositions as protected brand surfaces: ${JSON.stringify(brandContrastMetrics)}.`);
+      brandContrastMetrics.forEach((metric) => {
+        assert(metric.hasShadow && metric.visible, `${route} ${viewport.name} dark brand surfaces should render Wayne's approved rotated blue shadow: ${JSON.stringify(metric)}.`);
+        assert(metric.nestedImageCount === 1, `${route} ${viewport.name} rotated blue shadows must use exactly one composite asset: ${JSON.stringify(metric)}.`);
+        assert(metric.shadowSource.includes("robson-ai-icon-v3-rotated-blue-shadow.webp"), `${route} ${viewport.name} must use the approved Version 3 shadow asset: ${JSON.stringify(metric)}.`);
+        assert(metric.shadowDecoded && metric.shadowNaturalWidth === 820 && metric.shadowNaturalHeight === 920, `${route} ${viewport.name} shadow assets should decode at their approved dimensions: ${JSON.stringify(metric)}.`);
+        assert(metric.leftPercent >= 2 && metric.topPercent >= 2, `${route} ${viewport.name} rotated blue shadows should remain inset within their image frames: ${JSON.stringify(metric)}.`);
+        assert(metric.rightPercent <= 18 && metric.bottomPercent <= 30, `${route} ${viewport.name} rotated blue shadows should stay tightly localised to the mark and clear of the marketing headline: ${JSON.stringify(metric)}.`);
+      });
+    }
 
     return {
       route,
@@ -324,6 +358,7 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
       contrastAndLayout,
       heroLogoMetrics,
       globeMetrics,
+      brandContrastMetrics,
       diagnostics
     };
   } finally {
