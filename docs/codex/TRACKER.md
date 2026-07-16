@@ -36,7 +36,7 @@ Success means:
 ## 1.1 Active Building Analyst Marketing Gallery Tranche
 
 Tranche name: `building-analyst-marketing-gallery-live`
-Status: local candidate passed the complete 41-step release gate from live source commit `475e383`; commit, push, production deployment and verification are in progress under Wayne's 2026-07-16 approval
+Status: release commit `6b9a2d4` is live as Netlify production deploy `6a58c32d977afb000808d15c`; all production checks through visual polish passed, and a release-tooling-only CSP fix is in progress before the final production gate rerun
 Started: 2026-07-16 BST
 
 Scope:
@@ -66,6 +66,10 @@ Local validation evidence:
 - Rendered browser proof passed and asserts all three marketing images are decoded before capture. Screenshot: `output/playwright/rendered-release-smoke-2026-07-16T11-37-31-740Z/desktop-building-analyst-proof.png`.
 - Axe reported zero violations across six checked routes. Lighthouse passed with performance 98, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40 seconds.
 - Production dependency footprint remains zero vulnerabilities. Known warning-only residuals remain 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit Playwright binaries; Chromium passed.
+- Release commit `6b9a2d4` (`Add Building Analyst marketing gallery`) was pushed to `codex/building-analyst-marketing-live-20260716` and fast-forwarded to `main` without rewriting history.
+- Netlify production deploy `6a58c32d977afb000808d15c` published commit `6b9a2d4` to `https://robsonai.co.uk`; Netlify reported no secret-scan matches.
+- The first production gate passed clean-source inventory, source security, deployed headers, BuildScan, keyboard, semantic/SEO, product/design, responsive and visual-polish checks. It then stopped at the rendered smoke because a QA-only inline style injection was correctly blocked by the live `style-src 'self'` CSP; the public site and gallery were already serving correctly.
+- Release-control follow-up: remove the unnecessary inline screenshot style, preserve the strict CSP and rerun deployed rendered and production validation.
 
 ## 1A. Active Integration Tranche
 

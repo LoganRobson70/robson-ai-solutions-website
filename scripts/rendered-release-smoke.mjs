@@ -501,7 +501,6 @@ async function runSupportingPages(browser, baseUrl, artifactDir, mode) {
           const images = [...document.querySelectorAll("[data-building-analyst-marketing-visual]")];
           return images.length === 3 && images.every((image) => image.complete && image.naturalWidth > 0);
         });
-        await page.addStyleTag({ content: ".studio-header { position: static !important; }" });
         await page.waitForTimeout(250);
       }
 
