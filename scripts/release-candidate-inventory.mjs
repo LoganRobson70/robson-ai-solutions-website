@@ -34,6 +34,7 @@ const ALLOWED_DIRTY_PATTERNS = [
   /^assets\/robson-ai-icon-v3-.*\.(png|webp)$/,
   /^assets\/showcase\/buildscan-ludgershall-(model-view-\d+\.webp|buildscan-view-\d+\.webp|public\.glb)$/,
   /^assets\/showcase\/building-analyst-leisure-centre-explorer(?:-(640|960|1280))?\.webp$/,
+  /^assets\/showcase\/building-analyst-marketing-(professional-review|evidence-to-report|structured-draft)-(840|1600)\.webp$/,
   /^assets\/showcase\/robson-ai-building-surveying-(ipad-hero-v4|interactive-hero-v5(?:-(640|960))?)\.webp$/,
   /^assets\/vendor\/three-0\.164\.1\/(LICENSE|build\/three\.module\.js|examples\/jsm\/(controls\/OrbitControls\.js|libs\/meshopt_decoder\.module\.js|loaders\/GLTFLoader\.js|utils\/BufferGeometryUtils\.js))$/
 ];
@@ -64,6 +65,12 @@ const FILE_BUDGETS = [
   { path: "assets/showcase/building-analyst-leisure-centre-explorer-640.webp", maxBytes: 60_000 },
   { path: "assets/showcase/building-analyst-leisure-centre-explorer-960.webp", maxBytes: 110_000 },
   { path: "assets/showcase/building-analyst-leisure-centre-explorer-1280.webp", maxBytes: 180_000 },
+  { path: "assets/showcase/building-analyst-marketing-professional-review-840.webp", maxBytes: 125_000 },
+  { path: "assets/showcase/building-analyst-marketing-professional-review-1600.webp", maxBytes: 250_000 },
+  { path: "assets/showcase/building-analyst-marketing-evidence-to-report-840.webp", maxBytes: 125_000 },
+  { path: "assets/showcase/building-analyst-marketing-evidence-to-report-1600.webp", maxBytes: 250_000 },
+  { path: "assets/showcase/building-analyst-marketing-structured-draft-840.webp", maxBytes: 125_000 },
+  { path: "assets/showcase/building-analyst-marketing-structured-draft-1600.webp", maxBytes: 250_000 },
   { path: "assets/showcase/robson-ai-building-surveying-ipad-hero-v4.webp", maxBytes: 400_000 },
   { path: "assets/showcase/robson-ai-building-surveying-interactive-hero-v5.webp", maxBytes: 400_000 },
   { path: "assets/showcase/robson-ai-building-surveying-interactive-hero-v5-640.webp", maxBytes: 70_000 },

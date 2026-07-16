@@ -114,8 +114,13 @@ async function readLinksAndControls(page) {
       ariaLabel: button.getAttribute("aria-label") || "",
       issueId: button.getAttribute("data-issue-id") || ""
     }));
+    const marketingVisuals = [...document.querySelectorAll("[data-building-analyst-marketing-visual]")].map((image) => ({
+      alt: image.getAttribute("alt") || "",
+      src: image.getAttribute("src") || "",
+      srcset: image.getAttribute("srcset") || ""
+    }));
 
-    return { links, buttons };
+    return { links, buttons, marketingVisuals };
   });
 }
 
@@ -242,8 +247,19 @@ function assertProofStatus(home, buildingAnalyst) {
     "Flagship product — in development",
     "not a finished app screenshot or launch promise",
     "does not claim App Store availability, autonomous diagnosis or a finished user interface",
-    "professional remains responsible"
+    "professional remains responsible",
+    "Product visuals",
+    "current Building Analyst screens and product behaviour",
+    "without presenting AI as autonomous diagnosis or final authority"
   ]), "Building Analyst should label maturity, example status and judgement boundaries.");
+
+  assert(buildingAnalyst.controls.marketingVisuals.length === 3, `Building Analyst should show exactly three marketing visuals; actual: ${buildingAnalyst.controls.marketingVisuals.length}.`);
+  assert(includesAll(buildingAnalyst.controls.marketingVisuals.map((visual) => visual.alt).join(" "), ["Riverside Library"]), "Building Analyst marketing visual descriptions should use the approved Riverside Library example name.");
+  buildingAnalyst.controls.marketingVisuals.forEach((visual) => {
+    assert(visual.alt.length > 30, `Building Analyst marketing visual should have useful alt text: ${JSON.stringify(visual)}.`);
+    assert(visual.src.includes("-840.webp"), `Building Analyst marketing visual should use the compact default source: ${JSON.stringify(visual)}.`);
+    assert(visual.srcset.includes("-1600.webp 1600w"), `Building Analyst marketing visual should expose a high-resolution source: ${JSON.stringify(visual)}.`);
+  });
 }
 
 function assertExplorerCorrespondence(home) {

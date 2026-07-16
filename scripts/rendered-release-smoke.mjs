@@ -493,6 +493,18 @@ async function runSupportingPages(browser, baseUrl, artifactDir, mode) {
         await assertHoldingFallbackCurrentState(page);
       }
 
+      if (pageSpec.path === "/building-analyst#workflow") {
+        const marketingVisuals = page.locator("[data-building-analyst-marketing-visual]");
+        assert(await marketingVisuals.count() === 3, "Building Analyst rendered proof should include exactly three marketing visuals.");
+        await marketingVisuals.first().scrollIntoViewIfNeeded();
+        await page.waitForFunction(() => {
+          const images = [...document.querySelectorAll("[data-building-analyst-marketing-visual]")];
+          return images.length === 3 && images.every((image) => image.complete && image.naturalWidth > 0);
+        });
+        await page.addStyleTag({ content: ".studio-header { position: static !important; }" });
+        await page.waitForTimeout(250);
+      }
+
       await page.screenshot({
         path: path.join(artifactDir, pageSpec.screenshot),
         fullPage: pageSpec.path !== "/404.html"

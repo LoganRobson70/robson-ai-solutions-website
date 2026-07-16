@@ -1,9 +1,9 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-14 17:35 BST
+Last updated: 2026-07-16 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
-Current branch: `codex/current-main-building-analyst-integration` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.current-main-integration`
+Current branch: `codex/building-analyst-marketing-live-20260716` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
 
 ## 1. Current Objective
 
@@ -11,14 +11,12 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Execute the authorized `current-main-building-analyst-integration` tranche from current `main` commit `26bf51d`, preserving all later live-site improvements.
-- Present Building Analyst, BuildScan and Property Operations truthfully: they are separate directions today; Building Analyst is in development, BuildScan is a working local product, and Property Operations is future exploration.
-- Use no invented app screenshots, maps, floor plans or integration visuals. The hero building image is labelled marketing imagery; BuildScan uses the real Ludgershall model proof.
-- Preserve the restored spinning Robson AI globe as a decorative brand/technology element, not a GIS or connected-product claim.
-- Use the approved two-surveyor hero direction: two professionals of different ethnic backgrounds are shown at equal status, both carrying dark iPads with subtle monochrome engraved Robson AI V3 marks and no visible or invented UI.
-- Keep the hero interaction quick and unnumbered. Use one synchronized 1–6 numbering system only in the detailed Building Analyst explorer, with every image marker placed directly on the physical feature named by its matching issue-list control.
-- Resolve the approved interactive commit `f55da55` onto current `main`, run the full local gate, create a fresh non-production preview and run the deployed preview gate.
-- No branch push, PR or production deploy is approved.
+- Publish the three approved Building Analyst marketing compositions on the public Building Analyst page.
+- Use live production commit `475e383` as the release base so the newer globe, product navigation and homepage work are preserved.
+- Keep the visuals explicitly labelled as marketing compositions grounded in current screens and behaviour; do not imply autonomous diagnosis, final authority, App Store availability or a finished interface.
+- Use `Riverside Library` consistently and exclude the rejected `AI Proof Property` wording.
+- Wayne explicitly approved commit, push and production deployment on 2026-07-16 and asked for the live URL after verification.
+- DNS/domain changes, analytics/forms changes, customer-data handling, dependency remediation, external messages, rollback and unrelated redesign remain out of scope.
 
 Success means:
 
@@ -34,6 +32,40 @@ Success means:
 - Luffu/Steno/Unfold motion references are captured as `docs/codex/MOTION_REFERENCE_BRIEF.md`; they are not approved implementation scope unless Wayne chooses the motion-polish alternative.
 - Completion status is audited in `docs/codex/GOAL_COMPLETION_AUDIT.md`; the public website release is live and production-gated, but the full goal remains active until source-control/docs closeout is complete.
 - Production release execution is defined in `docs/codex/PRODUCTION_RELEASE_RUNBOOK.md`; the 2026-06-28 publish was executed after Wayne approved option `1`.
+
+## 1.1 Active Building Analyst Marketing Gallery Tranche
+
+Tranche name: `building-analyst-marketing-gallery-live`
+Status: local candidate passed the complete 41-step release gate from live source commit `475e383`; commit, push, production deployment and verification are in progress under Wayne's 2026-07-16 approval
+Started: 2026-07-16 BST
+
+Scope:
+
+- Add one featured and two supporting Building Analyst marketing compositions to `/building-analyst`.
+- Serve responsive 840px and 1600px WebP variants with explicit dimensions, lazy loading and useful alternative text.
+- Preserve the current product maturity and professional-review boundaries.
+- Extend release inventory budgets and product/design QA so all three visuals and their claim boundaries are enforced.
+- Run the local release gate, commit the candidate, align the approved branch and `main`, deploy to Netlify production, and run the production gate.
+
+Rollback:
+
+- Publish the previous clean production source commit `475e383` if production validation exposes a material regression.
+
+Done criteria:
+
+- The full local release gate passes from the isolated release worktree.
+- The scoped release commit is pushed and GitHub `main` contains the live-source history without regression.
+- Netlify production is ready and the production release gate passes against `https://robsonai.co.uk`.
+- The public `/building-analyst` route shows exactly three approved marketing visuals and no `AI Proof Property` wording.
+
+Local validation evidence:
+
+- Full `npm run qa:release:local` passed all 41 steps with artifact `output/release-local-gate/gate-2026-07-16T11-35-32-755Z/release-local-gate.json`.
+- Release inventory passed with 13 candidate files, 32 budgeted assets, zero secret findings and zero external GLB URI references.
+- Product/design acceptance passed across six routes; responsive QA passed 42 checks; visual polish passed 21 checks; semantic/SEO passed seven pages.
+- Rendered browser proof passed and asserts all three marketing images are decoded before capture. Screenshot: `output/playwright/rendered-release-smoke-2026-07-16T11-37-31-740Z/desktop-building-analyst-proof.png`.
+- Axe reported zero violations across six checked routes. Lighthouse passed with performance 98, accessibility 100, best practices 100, SEO 100, CLS 0 and LCP about 2.40 seconds.
+- Production dependency footprint remains zero vulnerabilities. Known warning-only residuals remain 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit Playwright binaries; Chromium passed.
 
 ## 1A. Active Integration Tranche
 
