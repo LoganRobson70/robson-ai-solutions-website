@@ -14,7 +14,7 @@ Current focus:
 - Remove the recurring blue-on-blue brand-legibility problem from the two dark Building Analyst marketing compositions.
 - Establish one reusable soft-halo brand treatment, semantic tokens, implementation contract and rendered release guard for future website releases.
 - Preserve the approved Robson mark, Building Analyst wording, composition content, product claims and light-background third visual.
-- Prepare and validate a local release candidate; commit, push, preview and production deployment require a separate explicit approval.
+- Preserve the completed production release evidence for the live brand-contrast system; any follow-up commit, branch integration or further live change requires a separate explicit approval.
 - DNS/domain changes, analytics/forms changes, customer-data handling, dependency remediation, external messages, rollback and unrelated redesign remain out of scope.
 
 Success means:
@@ -73,7 +73,7 @@ Local validation evidence:
 ## 1.2 Active Brand Contrast System Tranche
 
 Tranche name: `brand-contrast-system`
-Status: Wayne-selected rotated blue shadow implemented, visually matched and fully validated locally; exact-path staging, scoped commit, branch push and a fresh non-production preview were explicitly approved by Wayne on 2026-07-16 and are in progress; production deployment is not approved
+Status: completed in production and source-control closeout under Wayne's explicit approvals; scoped commit `66e1c4d`, preview deploy `6a59442eb5288e43b7a7ebe4` and production deploy `6a5947bd0536804a8682a822` passed their release gates, and GitHub `main` was fast-forwarded to the live source before the tracker-only closeout commit; no pull request or history rewrite performed
 Started: 2026-07-16 BST
 
 Scope:
@@ -85,7 +85,8 @@ Scope:
 
 Rollback:
 
-- Remove the two decorative shadow elements and `assets/robson-ai-icon-v3-rotated-blue-shadow.webp`, then revert the scoped CSS, QA and standard-document changes; the underlying approved marketing image assets remain unchanged.
+- Immediate Netlify rollback target: production deploy `6a58c44c91338f000801f7dc`, which published source commit `cbfb61d1b28d9fe58c3701175c58e9ea40c6da6d` before this release.
+- Source rollback alternative: remove the two decorative shadow elements and `assets/robson-ai-icon-v3-rotated-blue-shadow.webp`, then revert the scoped CSS, QA and standard-document changes; the underlying approved marketing image assets remain unchanged.
 
 Done criteria:
 
@@ -112,6 +113,21 @@ Local validation evidence:
 - The stylesheet cache key on Building Analyst is advanced to `styles.css?v=20260716e` so returning browsers cannot retain the rejected halo treatment.
 - Known warning-only residuals remain 17 moderate dev/release-tooling dependency findings and unavailable local Firefox/WebKit Playwright binaries; production dependencies remain at zero vulnerabilities and Chromium passed.
 - Release decision: Wayne explicitly approved exact-path staging, a scoped commit, branch push and a fresh non-production preview on 2026-07-16. Production remains a separate explicit approval gate after deployed-preview validation.
+- Release execution: exactly the nine manifest files were committed as `66e1c4d43df85142a517ced455702c10e47331e5` (`Add rotated blue shadow brand contrast system`) and pushed to `origin/codex/brand-contrast-system-20260716`; no pull request was opened.
+- The final pre-commit `npm run qa:release:local` passed all 41 steps with artifact `output/release-local-gate/gate-2026-07-16T20-07-40-135Z/release-local-gate.json`; its evidence pack at `output/measurement/evidence-2026-07-16T20-10-29-439Z` records zero axe violations across six routes and Lighthouse scores of 96 performance, 100 accessibility, 100 best practices and 100 SEO, with CLS 0 and median LCP about 2.40 seconds.
+- Clean committed source was built from a `git archive` of `66e1c4d43df85142a517ced455702c10e47331e5` and published as non-production Netlify draft deploy `6a59442eb5288e43b7a7ebe4` at `https://6a59442eb5288e43b7a7ebe4--robson-ai-website.netlify.app`.
+- The deployed preview gate passed all 14 stages with artifact `output/release-preview-gate/gate-2026-07-16T20-52-40-629Z/release-preview-gate.json`; deployed product/design, responsive, visual-polish, rendered, headers, BuildScan, keyboard, semantic/SEO and measurement checks passed. The advisory remains limited to 17 moderate development/release-tooling findings and unavailable local Firefox/WebKit binaries; production dependencies remain at zero vulnerabilities and Chromium passed.
+- Final in-app Browser verification on the deployed `/building-analyst#product-visuals` route at 1280 x 720 confirmed the correct page identity, visible `Product visuals` label and heading, both dark surfaces using exactly one decoded 820 x 920 approved shadow asset, no horizontal overflow and no warning/error console messages. The deployed rendered evidence is `output/playwright/rendered-release-smoke-2026-07-16T20-55-25-187Z/desktop-building-analyst-proof.png`.
+- Release decision after preview validation: Wayne explicitly approved production deployment on 2026-07-16.
+- Immediately before deployment, Netlify production was verified as deploy `6a58c44c91338f000801f7dc` at commit `cbfb61d1b28d9fe58c3701175c58e9ea40c6da6d`; this is the immediate rollback target.
+- Production was deployed from the same clean `git archive` of commit `66e1c4d43df85142a517ced455702c10e47331e5` that passed preview validation, excluding the local post-preview tracker evidence. New production deploy: `6a5947bd0536804a8682a822`; unique deploy URL: `https://6a5947bd0536804a8682a822--robson-ai-website.netlify.app`; public URL: `https://robsonai.co.uk`.
+- The complete 14-step production gate passed with artifact `output/release-production-gate/gate-2026-07-16T21-06-21-498Z/release-preview-gate.json`. Live headers, denied source paths, security, BuildScan, keyboard, semantic/SEO, product/design, responsive, visual-polish, rendered and measurement checks passed. Responsive QA passed 36 checks and visual-polish QA passed 18 checks.
+- Production rendered evidence is `output/playwright/rendered-release-smoke-2026-07-16T21-08-03-236Z/desktop-building-analyst-proof.png`; its run recorded zero console messages and zero failed requests.
+- Final in-app Browser verification on `https://robsonai.co.uk/building-analyst#product-visuals` confirmed the correct page identity and `styles.css?v=20260716e`, two dark surfaces with exactly one decoded 820 x 920 rotated-shadow treatment each, tightly contained treatments and no horizontal overflow. The live production tab was left open for Wayne.
+- Publish readiness for the brand-contrast system is 100%. Warning-only residuals remain 17 moderate dev/release-tooling findings and unavailable local Firefox/WebKit Playwright binaries; production dependencies remain at zero vulnerabilities and Chromium passed.
+- Source-control closeout decision: Wayne approved option `1` on 2026-07-16 to align the live release and its tracker evidence with GitHub `main`.
+- GitHub `main` was re-fetched and confirmed at the immediate pre-release source `cbfb61d1b28d9fe58c3701175c58e9ea40c6da6d`; `66e1c4d43df85142a517ced455702c10e47331e5` was proven to be a one-commit descendant and pushed as a normal fast-forward with no rewrite.
+- Production closeout evidence is preserved in a separate tracker-only commit on `codex/brand-contrast-system-20260716` and `main`; no pull request or merge commit was created.
 
 ## 1A. Active Integration Tranche
 
