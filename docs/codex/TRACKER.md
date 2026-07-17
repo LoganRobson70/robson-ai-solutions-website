@@ -1,6 +1,6 @@
 # Codex Tracker - Robson AI Solutions Website
 
-Last updated: 2026-07-16 BST
+Last updated: 2026-07-17 BST
 Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/brand-contrast-system-20260716` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
@@ -11,11 +11,11 @@ Maintain the production-grade Robson AI Solutions website so it continues to emb
 
 Current focus:
 
-- Remove the recurring blue-on-blue brand-legibility problem from the two dark Building Analyst marketing compositions.
-- Establish one reusable soft-halo brand treatment, semantic tokens, implementation contract and rendered release guard for future website releases.
-- Preserve the approved Robson mark, Building Analyst wording, composition content, product claims and light-background third visual.
-- Preserve the completed production release evidence for the live brand-contrast system; any follow-up commit, branch integration or further live change requires a separate explicit approval.
-- DNS/domain changes, analytics/forms changes, customer-data handling, dependency remediation, external messages, rollback and unrelated redesign remain out of scope.
+- Correct the public maturity model so Building Analyst is the flagship product in development, BuildScan is also in development and not released, and Property Operations remains roadmap exploration.
+- Put the existing Building Analyst product-visuals gallery immediately after the Building Analyst hero so flagship proof leads the page.
+- Preserve the approved gallery assets, brand-contrast treatment, professional-review boundaries, navigation and existing product behaviour.
+- Validate the correction locally; staging, commit, push, preview and production deployment require separate explicit approval.
+- DNS/domain changes, analytics/forms changes, customer-data handling, dependency remediation, external messages, rollback execution and unrelated redesign remain out of scope.
 
 Success means:
 
@@ -128,6 +128,55 @@ Local validation evidence:
 - Source-control closeout decision: Wayne approved option `1` on 2026-07-16 to align the live release and its tracker evidence with GitHub `main`.
 - GitHub `main` was re-fetched and confirmed at the immediate pre-release source `cbfb61d1b28d9fe58c3701175c58e9ea40c6da6d`; `66e1c4d43df85142a517ced455702c10e47331e5` was proven to be a one-commit descendant and pushed as a normal fast-forward with no rewrite.
 - Production closeout evidence is preserved in a separate tracker-only commit on `codex/brand-contrast-system-20260716` and `main`; no pull request or merge commit was created.
+
+## 1.3 Active Product Maturity And Flagship Visual Priority Tranche
+
+Tranche name: `product-maturity-and-flagship-visual-priority`
+Status: release preparation explicitly approved by Wayne on 2026-07-17; exact manifest alignment and the first complete local release gate passed; exact-candidate gate refresh, commit/push and non-production preview are in progress; live production remains unchanged and production deployment is not approved
+Started: 2026-07-17 BST
+
+Scope:
+
+- Replace `Working product proof` and `What is available today` wording with explicit development-stage language.
+- State that Building Analyst is the flagship product in development, BuildScan is also in development, neither has been released through the App Store, and Property Operations remains roadmap exploration.
+- Keep real BuildScan evidence visible as development-stage proof without presenting it as a released product.
+- Move the existing three-image Building Analyst product-visuals gallery intact to immediately after the Building Analyst hero.
+- Extend automated product/design QA so future changes fail if the gallery is no longer the first post-hero section or if the corrected maturity language drifts.
+
+Files changed locally:
+
+- `index.html`
+- `building-analyst.html`
+- `who-its-for.html`
+- `privacy.html`
+- `404.html`
+- `scripts/site-shell-source.mjs`
+- `scripts/product-design-acceptance-smoke.mjs`
+- `scripts/responsive-route-smoke.mjs`
+- `docs/codex/TRACKER.md`
+
+Validation evidence:
+
+- JavaScript syntax checks passed for the three changed shell/QA scripts; HTML validation passed for all five changed public pages; `git diff --check` passed.
+- Product/design acceptance passed across six local routes and now asserts that `#product-visuals` is immediately after the Building Analyst hero. Artifact: `output/product-design-acceptance/smoke-2026-07-17T07-50-18-458Z/product-design-acceptance-smoke.json`.
+- Responsive QA passed 42 checks. Artifact: `output/responsive-route/smoke-2026-07-17T07-49-06-982Z/responsive-route-smoke.json`.
+- Visual-polish QA passed 21 checks, including the approved dark-surface brand treatment. Artifact: `output/visual-polish/smoke-2026-07-17T07-50-25-511Z/visual-polish-smoke.json`.
+- Rendered release smoke passed with the flagship gallery visibly first after the hero. Evidence: `output/playwright/rendered-release-smoke-2026-07-17T07-50-48-680Z/desktop-building-analyst-proof.png` and `output/playwright/rendered-release-smoke-2026-07-17T07-50-48-680Z/desktop-homepage.png`.
+- Final in-app Browser verification on `http://127.0.0.1:4178/building-analyst.html#top` confirmed `#product-visuals` is the second main section immediately after the hero, precedes `#product`, has no horizontal overflow and records no warning/error console messages. The homepage Browser check confirmed both products are labelled as in development and not App Store released, Property Operations remains roadmap exploration, and the global footer carries the corrected maturity statement.
+- Semantic/SEO smoke passed seven pages. Artifact: `output/semantic-seo/smoke-2026-07-17T07-51-01-463Z/semantic-seo-smoke.json`.
+- Keyboard journeys passed for the homepage and Building Analyst. Artifact: `output/playwright/keyboard-release-smoke-2026-07-17T07-52-29-397Z`.
+- Local measurement smoke passed all public routes and required assets with consent, contact and analytics-event contracts intact. Artifact: `output/measurement/smoke-2026-07-17T07-52-36-861Z`.
+- The first complete 41-step local release gate passed. Artifact: `output/release-local-gate/gate-2026-07-17T08-43-27-342Z/release-local-gate.json`. The evidence pack at `output/measurement/evidence-2026-07-17T08-46-15-855Z` records zero axe violations across six routes and Lighthouse scores of 96 performance, 100 accessibility, 100 best practices and 100 SEO, with CLS 0 and median LCP about 2.40 seconds. Release inventory recorded ten dirty manifest-approved files, zero secret findings and zero external GLB URIs. Production dependencies report zero vulnerabilities; the existing 17 moderate development/release-tooling findings and unavailable local Firefox/WebKit binaries remain warning-only.
+
+Rollback:
+
+- Revert only the nine scoped local files above. The approved marketing images and rotated-shadow asset are unchanged, and production has not been modified.
+
+Release gate:
+
+- Wayne explicitly approved release preparation on 2026-07-17: exact-path staging, scoped commit, branch push, a fresh non-production Netlify preview and deployed-preview verification. Production deployment remains separately approval-gated.
+- The release manifest now defines the exact ten-file candidate, including the manifest itself, from baseline commit `52e6253`.
+- Publish readiness is 85%: the design/content correction, focused QA, exact manifest and first complete local release gate are complete; the exact-candidate gate refresh, commit/push, Netlify preview and deployed-preview QA remain in progress. Production approval remains a separate gate.
 
 ## 1A. Active Integration Tranche
 

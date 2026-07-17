@@ -129,8 +129,12 @@ async function readLinksAndControls(page) {
         shadowSource: shadowImage?.getAttribute("src") || ""
       };
     });
+    const mainSections = [...document.querySelectorAll("main > section")].map((section) => ({
+      id: section.id || "",
+      section: section.getAttribute("data-section") || ""
+    }));
 
-    return { links, buttons, marketingVisuals, darkBrandSurfaces };
+    return { links, buttons, marketingVisuals, darkBrandSurfaces, mainSections };
   });
 }
 
@@ -228,8 +232,10 @@ function assertFirstViewport(home) {
     "Keep building evidence, professional review and reporting connected",
     "organisations that commission building advice",
     "Building Analyst is our flagship product in development",
+    "BuildScan is also in development",
+    "Neither product has been released through the App Store",
     "Discuss a Building Analyst workflow",
-    "View BuildScan proof",
+    "View BuildScan development proof",
     "Software supports the process. Qualified professionals make the decisions"
   ]), `Homepage first viewport should explain the professional proposition and next actions. Actual viewport text: ${home.viewportText}`);
 }
@@ -240,7 +246,7 @@ function assertProofStatus(home, buildingAnalyst) {
     "BuildScan",
     "Property operations",
     "In development",
-    "Working product proof",
+    "In development — not released",
     "Roadmap exploration",
     "Professional expertise stays central",
     "without replacing qualified judgement",
@@ -249,6 +255,7 @@ function assertProofStatus(home, buildingAnalyst) {
     "Roof drainage",
     "Service penetration",
     "Building Analyst supports the workflow. A qualified professional evaluates and approves the finding",
+    "Development-stage product proof",
     "Real BuildScan application view",
     "No maps, floor plans or connected customer systems are claimed"
   ]), "Homepage should separate the three workstreams, label maturity and use real BuildScan proof without implying an integration.");
@@ -276,6 +283,13 @@ function assertProofStatus(home, buildingAnalyst) {
     assert(surface.nestedImageCount === 1, `Each rotated blue shadow treatment must use exactly one composite icon asset: ${JSON.stringify(surface)}.`);
     assert(surface.shadowSource.includes("robson-ai-icon-v3-rotated-blue-shadow.webp"), `Brand contrast treatments must use the approved Version 3 shadow asset: ${JSON.stringify(surface)}.`);
   });
+}
+
+function assertFlagshipVisualPriority(buildingAnalyst) {
+  const [hero, productVisuals] = buildingAnalyst.controls.mainSections;
+
+  assert(hero?.section === "building-analyst-hero", `Building Analyst should begin with its hero section; actual: ${JSON.stringify(hero)}.`);
+  assert(productVisuals?.id === "product-visuals" && productVisuals?.section === "product-visuals", `Building Analyst product visuals should sit immediately after the hero; actual first sections: ${JSON.stringify(buildingAnalyst.controls.mainSections.slice(0, 3))}.`);
 }
 
 function assertExplorerCorrespondence(home) {
@@ -335,7 +349,7 @@ function assertAudiencePaths(home, who) {
 
   assert(includesAll(linkText, [
     "Explore Building Analyst",
-    "View the interactive proof",
+    "View the development proof",
     "Discuss a Building Analyst workflow"
   ]), "Homepage/Who It Fits should provide one-click paths for Building Analyst, real BuildScan proof and workflow conversations.");
 }
@@ -406,6 +420,7 @@ export async function runProductDesignAcceptanceSmoke({
 
     assertFirstViewport(results["/"]);
     assertProofStatus(results["/"], results["/building-analyst"]);
+    assertFlagshipVisualPriority(results["/building-analyst"]);
     assertExplorerCorrespondence(results["/"]);
     assertReleaseStageClaims(allText);
     assertAudiencePaths(results["/"], results["/who-its-for"]);
@@ -429,6 +444,7 @@ export async function runProductDesignAcceptanceSmoke({
       acceptanceChecks: [
         "first viewport",
         "proof status",
+        "flagship visual priority",
         "one-to-one explorer issue correspondence",
         "release-stage claims",
         "audience paths",

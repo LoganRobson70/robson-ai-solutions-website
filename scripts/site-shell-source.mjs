@@ -29,7 +29,7 @@ export function siteHeader(page) {
               </a>
               <a href="/#buildscan-proof" data-analytics-id="nav-buildscan">
                 <strong>BuildScan</strong>
-                <span>Working product proof</span>
+                <span>In development &mdash; not released</span>
               </a>
               <a href="/#product-property-operations" data-analytics-id="nav-property-operations">
                 <strong>Property Operations</strong>
@@ -82,7 +82,7 @@ export function siteFooter() {
       </div>
       <div class="container footer-meta">
         <p>&copy; 2026 Robson AI Solutions. Early-stage product site.</p>
-        <p>Building Analyst is in development. BuildScan is working product proof.</p>
+        <p>Building Analyst and BuildScan are in development and have not been released.</p>
       </div>
     </footer>`;
 }

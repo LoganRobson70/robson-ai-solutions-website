@@ -233,7 +233,7 @@ async function assertRouteSpecific(page, route) {
     assert(/Keep building evidence, professional review and reporting connected/i.test(bodyText), "Homepage should keep the approved connected-evidence proposition visible.");
     assert(/surveying practices, in-house estates teams and organisations that commission building advice/i.test(bodyText), "Homepage should name professional and buyer audiences.");
     assert(/Discuss a Building Analyst workflow/i.test(bodyText), "Homepage should keep the primary Building Analyst CTA.");
-    assert(/View BuildScan proof/i.test(bodyText), "Homepage should keep the secondary BuildScan proof CTA.");
+    assert(/View BuildScan development proof/i.test(bodyText), "Homepage should keep the secondary BuildScan development-proof CTA.");
     assert(/Guided professional review/i.test(bodyText), "Homepage should keep the detailed Building Analyst explorer.");
     assert(/BuildScan/i.test(bodyText), "Homepage should expose the BuildScan workstream.");
     assert(/Property operations/i.test(bodyText), "Homepage should expose property operations.");
