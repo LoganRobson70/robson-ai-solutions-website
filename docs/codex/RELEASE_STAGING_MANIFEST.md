@@ -1,31 +1,31 @@
-# Release Staging Manifest - Building Analyst App Privacy Route Reconciliation
+# Release Staging Manifest - Website/App Privacy Cross-Link Reconciliation
 
 Last updated: 2026-07-17
 Owner: Wayne Robson / Robson AI Solutions
 Worktree: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
 Branch: `codex/brand-contrast-system-20260716`
-Baseline commit: `1878a53`
-Status: exact-path staging, a scoped reconciliation commit, branch push and a refreshed non-production Netlify preview were explicitly approved by Wayne on 2026-07-17; production deployment is not approved
+Baseline commit: `35846ce`
+Status: local-only reconciliation after concurrent production deploy `6a5a39988351f4bd95f27bf9`; no new staging, commit, push, preview deploy or production deploy is approved
 
 ## Purpose
 
-This manifest defines the narrow reconciliation required after the Building Analyst app privacy notice was published to production as an untracked one-off file. It preserves the live privacy wording and makes `/building-analyst-privacy` a first-class website route that is copied by the normal public build and covered by release inventory, HTML, internal-link, security, route, accessibility and responsive checks.
+This manifest preserves the legitimate cross-link introduced by the concurrent live privacy deployment without copying that deployment's older June privacy page shell over the validated current website. The candidate adds one direct `/building-analyst-privacy` link to the current website privacy notice, advances its visible update date to 17 July 2026 and adds an automated product/design assertion for the cross-link.
 
-The only page-level integration adjustments are clean internal URLs, current stylesheet/script cache keys and moving the existing one-rule layout style into `styles.css` so it remains compatible with the website's stricter Content Security Policy. The validated product-maturity and flagship-gallery changes in commit `1878a53`, the privacy wording, marketing assets, BuildScan model, analytics, forms, dependencies, DNS and customer-data behaviour are otherwise unchanged.
+The current navigation, complete website privacy wording, analytics posture, product-maturity wording, Building Analyst gallery, app privacy notice, marketing assets, BuildScan model, styles, scripts, dependencies, DNS and customer-data behaviour are otherwise unchanged.
 
 Do not run `git add .`.
 
 ## Approval boundary
 
-Wayne must approve before Codex performs any of these actions: staging, commit, push, preview deployment or production deployment. On 2026-07-17, Wayne selected option `1`, explicitly approving this exact privacy-route reconciliation, scoped commit, branch push, refreshed non-production preview and deployed-preview verification.
+Wayne must approve before Codex performs any of these actions: staging, commit, push, preview deployment or production deployment. Wayne's earlier production approval named exact commit `35846ce` and rollback deploy `6a59edaeb162561cffa6210c`; the subsequent concurrent production deploy changed those preconditions, so that approval was paused before any Git write.
 
-Production deployment remains separately approval-gated. Also not approved: DNS/domain changes, analytics/forms changes, dependency changes, customer-data handling, external messages, destructive Git actions, unrelated redesign or rollback unless preview validation requires the documented recovery path.
+Also not approved: force-push, destructive Git actions, DNS/domain changes, analytics/forms changes, dependency changes, customer-data handling, external messages, unrelated redesign or production rollback.
 
 ## Candidate inventory
 
-- 12 modified tracked files.
-- 1 untracked candidate files.
-- 13 dirty candidate files.
+- 4 modified tracked files.
+- 0 untracked candidate files.
+- 4 dirty candidate files.
 - Generated `dist/` and `output/` content is ignored and must not be staged.
 
 ## 4. Modified Tracked Files
@@ -33,63 +33,46 @@ Production deployment remains separately approval-gated. Also not approved: DNS/
 ```text
 docs/codex/RELEASE_STAGING_MANIFEST.md
 docs/codex/TRACKER.md
-scripts/build-public-site.mjs
-scripts/internal-link-smoke.mjs
-scripts/measurement-evidence.mjs
-scripts/measurement-smoke.mjs
-scripts/release-candidate-inventory.mjs
-scripts/release-local-gate.mjs
-scripts/release-security-smoke.mjs
-scripts/responsive-route-smoke.mjs
-sitemap.xml
-styles.css
+privacy.html
+scripts/product-design-acceptance-smoke.mjs
 ```
 
 ## 5. Untracked Candidate Files
 
 ```text
-building-analyst-privacy.html
 ```
 
 ## 8. Staging Command After Approval Only
 
 ```bash
 git add -- \
-  building-analyst-privacy.html \
   docs/codex/RELEASE_STAGING_MANIFEST.md \
   docs/codex/TRACKER.md \
-  scripts/build-public-site.mjs \
-  scripts/internal-link-smoke.mjs \
-  scripts/measurement-evidence.mjs \
-  scripts/measurement-smoke.mjs \
-  scripts/release-candidate-inventory.mjs \
-  scripts/release-local-gate.mjs \
-  scripts/release-security-smoke.mjs \
-  scripts/responsive-route-smoke.mjs \
-  sitemap.xml \
-  styles.css
+  privacy.html \
+  scripts/product-design-acceptance-smoke.mjs
 ```
 
 ## Required checks before commit
 
 ```bash
 git diff --check
-node --check scripts/build-public-site.mjs
-node --check scripts/internal-link-smoke.mjs
-node --check scripts/measurement-evidence.mjs
-node --check scripts/measurement-smoke.mjs
-node --check scripts/release-candidate-inventory.mjs
-node --check scripts/release-local-gate.mjs
-node --check scripts/release-security-smoke.mjs
-node --check scripts/responsive-route-smoke.mjs
+node --check scripts/product-design-acceptance-smoke.mjs
+npx html-validate --rule doctype-style:off --rule void-style:off privacy.html
+npm run qa:internal-links
+npm run qa:product-design
 npm run qa:release-staging-manifest
 npm run qa:release:local
 ```
 
-The complete 41-step local release gate passed on this 13-file candidate. Evidence: `output/release-local-gate/gate-2026-07-17T09-14-24-023Z/release-local-gate.json`; measurement pack: `output/measurement/evidence-2026-07-17T09-16-59-143Z`. The new app-privacy route returned HTTP 200, passed responsive checks and had zero axe violations. Lighthouse passed at 96 performance, 100 accessibility, 100 best practices and 100 SEO, with CLS 0 and median LCP about 2.40 seconds. Production dependencies have zero vulnerabilities; the existing 17 moderate development/release-tooling findings and unavailable local Firefox/WebKit binaries remain warning-only.
+## Local validation evidence
 
-After the exact reconciliation commit is created and pushed, publish a refreshed non-production Netlify preview and run `QA_BASE_URL=<preview-url> npm run qa:release:preview`. The deployed-preview gate and final Browser check must include `/building-analyst-privacy` before production approval is requested.
+- The exact four-file local candidate passed the complete 41-step release gate. Artifact: `output/release-local-gate/gate-2026-07-17T16-15-51-648Z/release-local-gate.json`.
+- Evidence pack: `output/measurement/evidence-2026-07-17T16-19-01-137Z`. It records zero axe violations across seven routes and Lighthouse scores of 96 performance, 100 accessibility, 100 best practices and 100 SEO, with CLS 0 and median LCP about 2.41 seconds.
+- Responsive testing passed 48 checks, product/design acceptance passed on six routes including `/privacy`, all 23 measured public routes/assets returned HTTP 200 and release inventory reported zero secret findings and zero external GLB URIs.
+- Production dependencies report zero vulnerabilities. The existing 17 moderate development/release-tooling findings and unavailable local Firefox/WebKit binaries remain warning-only; Chromium passed.
+
+After a new exact reconciliation commit is approved, created and pushed, publish a fresh non-production Netlify preview and run `QA_BASE_URL=<preview-url> npm run qa:release:preview`. A new production approval must name the new commit and the then-current production rollback deploy.
 
 ## Rollback path
 
-Before production deployment, return only these thirteen scoped files to baseline commit `1878a53` and discard the refreshed non-production preview. Current production deploy `6a59edaeb162561cffa6210c`, including its app privacy route, remains unchanged by this reconciliation work.
+Before any remote action, return only these four scoped files to baseline commit `35846ce`. Current production deploy `6a5a39988351f4bd95f27bf9` remains unchanged by this local reconciliation work.

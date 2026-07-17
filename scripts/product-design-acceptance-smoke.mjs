@@ -362,6 +362,7 @@ function assertCtaHierarchy(home, buildingAnalyst, who, privacy, notFound, holdi
   assert(allLinks.some((link) => link.href.startsWith("mailto:hello@robsonai.co.uk")), "Public routes should include an email-first contact route.");
   assert(allButtons.some((button) => /copy email/i.test(button.text)), "Public routes should include a copy-email fallback.");
   assert(allLinks.some((link) => /privacy/i.test(link.text) || link.href === "/privacy"), "Public routes should expose the privacy notice.");
+  assert(privacy.controls.links.some((link) => link.href === "/building-analyst-privacy" && /Building Analyst app privacy notice/i.test(link.text)), "Website privacy should link directly to the separate Building Analyst app privacy notice.");
 
   routes.map((result) => result.route).forEach((route) => {
     const routeLinks = allLinks.filter((link) => link.route === route);
