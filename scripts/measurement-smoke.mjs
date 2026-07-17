@@ -21,6 +21,7 @@ const REQUIRED_PATHS = [
   "/",
   "/index.html",
   "/buildscan-viewer.html",
+  "/building-analyst-privacy",
   "/privacy",
   "/building-analyst",
   "/who-its-for",

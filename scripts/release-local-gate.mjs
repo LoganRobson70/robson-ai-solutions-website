@@ -113,6 +113,7 @@ const COMMANDS = [
       "index.html",
       "buildscan-viewer.html",
       "building-analyst.html",
+      "building-analyst-privacy.html",
       "who-its-for.html",
       "privacy.html",
       "holding.html",

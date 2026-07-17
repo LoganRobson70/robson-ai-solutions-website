@@ -7,6 +7,7 @@ import { startStaticServer } from "./lib/static-server.mjs";
 const ROUTES = [
   "/",
   "/building-analyst",
+  "/building-analyst-privacy",
   "/who-its-for",
   "/privacy",
   "/404.html",
@@ -245,6 +246,12 @@ async function assertRouteSpecific(page, route) {
     assert(/Discuss a Building Analyst workflow/i.test(bodyText), "Building Analyst page should keep its primary contact CTA.");
   }
 
+  if (route === "/building-analyst-privacy") {
+    assert(/App privacy notice/i.test(bodyText), "Building Analyst app privacy page should keep its primary heading.");
+    assert(/Last updated: 17 July 2026/i.test(bodyText), "Building Analyst app privacy page should keep its current effective date.");
+    assert(/does not include advertising SDKs, third-party analytics SDKs or cross-app tracking/i.test(bodyText), "Building Analyst app privacy page should keep its analytics and tracking disclosure.");
+  }
+
   if (route === "/who-its-for") {
     assert(/Organisations commissioning building advice/i.test(bodyText), "Who It Fits page should include commissioning organisations.");
     assert(/In-house property and estates teams/i.test(bodyText), "Who It Fits page should include in-house professional teams.");
@@ -309,7 +316,7 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
     assert(response?.status() === 200, `${route} should return HTTP 200 at ${viewport.name}.`);
     await assertRouteSpecific(page, route);
 
-    const hasSharedMobileMenu = !["/holding.html", "/buildscan-viewer.html"].includes(route);
+    const hasSharedMobileMenu = !["/building-analyst-privacy", "/holding.html", "/buildscan-viewer.html"].includes(route);
 
     if (hasSharedMobileMenu && viewport.width <= 1040) {
       await page.locator("[data-nav-toggle]").click();

@@ -6,6 +6,8 @@ const pages = new Map([
   ["/index.html", "index.html"],
   ["/building-analyst", "building-analyst.html"],
   ["/building-analyst.html", "building-analyst.html"],
+  ["/building-analyst-privacy", "building-analyst-privacy.html"],
+  ["/building-analyst-privacy.html", "building-analyst-privacy.html"],
   ["/who-its-for", "who-its-for.html"],
   ["/who-its-for.html", "who-its-for.html"],
   ["/privacy", "privacy.html"],

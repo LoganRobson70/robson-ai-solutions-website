@@ -348,6 +348,10 @@ dl {
   align-content: start;
 }
 
+.app-privacy-grid {
+  align-items: start;
+}
+
 .eyebrow,
 .section-label {
   display: inline-flex;

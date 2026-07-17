@@ -13,6 +13,7 @@ const ALLOWED_DIRTY_PATTERNS = [
   /^AGENTS\.md$/,
   /^README\.md$/,
   /^building-analyst\.html$/,
+  /^building-analyst-privacy\.html$/,
   /^buildscan-viewer\.html$/,
   /^design-qa\.md$/,
   /^docs\/codex\/reference\/globe-loader(?:\/.*|-imports\/.*)$/,

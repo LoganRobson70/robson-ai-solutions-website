@@ -132,7 +132,7 @@ Local validation evidence:
 ## 1.3 Active Product Maturity And Flagship Visual Priority Tranche
 
 Tranche name: `product-maturity-and-flagship-visual-priority`
-Status: release preparation explicitly approved by Wayne on 2026-07-17; exact manifest alignment and the first complete local release gate passed; exact-candidate gate refresh, commit/push and non-production preview are in progress; live production remains unchanged and production deployment is not approved
+Status: Wayne approved option `1` on 2026-07-17; the concurrently published Building Analyst app privacy route is now integrated locally as a first-class build/QA route; exact manifest and full release-gate validation are in progress; production deployment is not approved
 Started: 2026-07-17 BST
 
 Scope:
@@ -167,6 +167,12 @@ Validation evidence:
 - Keyboard journeys passed for the homepage and Building Analyst. Artifact: `output/playwright/keyboard-release-smoke-2026-07-17T07-52-29-397Z`.
 - Local measurement smoke passed all public routes and required assets with consent, contact and analytics-event contracts intact. Artifact: `output/measurement/smoke-2026-07-17T07-52-36-861Z`.
 - The first complete 41-step local release gate passed. Artifact: `output/release-local-gate/gate-2026-07-17T08-43-27-342Z/release-local-gate.json`. The evidence pack at `output/measurement/evidence-2026-07-17T08-46-15-855Z` records zero axe violations across six routes and Lighthouse scores of 96 performance, 100 accessibility, 100 best practices and 100 SEO, with CLS 0 and median LCP about 2.40 seconds. Release inventory recorded ten dirty manifest-approved files, zero secret findings and zero external GLB URIs. Production dependencies report zero vulnerabilities; the existing 17 moderate development/release-tooling findings and unavailable local Firefox/WebKit binaries remain warning-only.
+- The exact ten-file candidate passed the refreshed complete 41-step local gate immediately before commit. Artifact: `output/release-local-gate/gate-2026-07-17T08-48-09-586Z/release-local-gate.json`. Its evidence pack is `output/measurement/evidence-2026-07-17T08-51-16-586Z`.
+- Scoped commit `1878a53` (`Clarify product maturity and prioritize flagship visuals`) was created and pushed normally to `origin/codex/brand-contrast-system-20260716`; local and remote branch hashes match exactly.
+- Netlify non-production branch deploy `6a59ed983a2d9c17cd3b19b1` is ready at `https://product-maturity-visuals-0717--robson-ai-website.netlify.app`; logs: `https://app.netlify.com/projects/robson-ai-website/deploys/6a59ed983a2d9c17cd3b19b1`.
+- The complete 14-step deployed-preview gate passed against the immutable deploy URL `https://6a59ed983a2d9c17cd3b19b1--robson-ai-website.netlify.app`. Artifact: `output/release-preview-gate/gate-2026-07-17T08-54-17-270Z/release-preview-gate.json`. The gate recorded a clean release inventory, zero secret findings, zero production dependency vulnerabilities, deployed headers/source-path denies, BuildScan, keyboard, semantic/SEO, product/design, 36 responsive, 18 visual-polish, rendered and measurement passes. Chromium passed; the unavailable local Firefox/WebKit binaries and 17 moderate development/release-tooling findings remain warning-only.
+- Final in-app Browser verification on the friendly preview confirmed the corrected homepage maturity wording, `#product-visuals` immediately after the Building Analyst hero, three decoded marketing visuals, two decoded 820 x 920 rotated-shadow assets, no horizontal overflow and no warning/error console messages. The validated preview tab was left open for Wayne.
+- A concurrent production-context deploy `6a59edaeb162561cffa6210c` titled `Publish Building Analyst app privacy notice 20260717` appeared independently during preview validation. It did not publish this tranche: the live homepage and Building Analyst page still match the prior production content, while the new live `/building-analyst-privacy` route returns 200 and is absent from commit `1878a53`. Production deployment of this tranche must not proceed until that live privacy route is reconciled into the candidate or Wayne explicitly chooses another preservation path.
 
 Rollback:
 
@@ -176,7 +182,20 @@ Release gate:
 
 - Wayne explicitly approved release preparation on 2026-07-17: exact-path staging, scoped commit, branch push, a fresh non-production Netlify preview and deployed-preview verification. Production deployment remains separately approval-gated.
 - The release manifest now defines the exact ten-file candidate, including the manifest itself, from baseline commit `52e6253`.
-- Publish readiness is 85%: the design/content correction, focused QA, exact manifest and first complete local release gate are complete; the exact-candidate gate refresh, commit/push, Netlify preview and deployed-preview QA remain in progress. Production approval remains a separate gate.
+- Preview readiness is 100%: the exact candidate is committed, pushed, deployed and has passed the complete local and deployed-preview gates.
+- Production readiness is 90%: this tranche itself is validated, but the concurrently published live Building Analyst app privacy route is not present in commit `1878a53`. A narrow reconciliation and refreshed preview proof are required before production approval can safely be requested.
+- Recommended next decision: Wayne reviews the validated preview and, if the product wording and hierarchy are approved, authorises a narrow privacy-route reconciliation so the next production candidate preserves the full current live site.
+
+Privacy-route reconciliation approved 2026-07-17:
+
+- Preserve the wording of the live `/building-analyst-privacy` notice sourced from the isolated production-deploy worktree, while using clean internal links, current asset cache keys and an external CSP-compatible layout rule.
+- Add the page to the normal `dist/` build so every subsequent preview or production archive contains it.
+- Add first-class inventory, HTML, internal-link, security, route-status, accessibility and responsive checks so a future release cannot silently omit or break the page.
+- Scoped reconciliation files: `building-analyst-privacy.html`, `styles.css`, `sitemap.xml`, `scripts/build-public-site.mjs`, `scripts/internal-link-smoke.mjs`, `scripts/measurement-evidence.mjs`, `scripts/measurement-smoke.mjs`, `scripts/release-candidate-inventory.mjs`, `scripts/release-local-gate.mjs`, `scripts/release-security-smoke.mjs`, `scripts/responsive-route-smoke.mjs`, `docs/codex/RELEASE_STAGING_MANIFEST.md` and `docs/codex/TRACKER.md`.
+- Initial targeted checks passed: the page is present in `dist/`; HTML validation passed; internal-link smoke passed 347 references across 13 page routes; release security passed nine HTML pages; local measurement returned HTTP 200 for `/building-analyst-privacy`; responsive QA passed 48 route/viewport checks.
+- The complete 41-step local release gate passed on the 13-file reconciliation candidate. Artifact: `output/release-local-gate/gate-2026-07-17T09-14-24-023Z/release-local-gate.json`. Evidence pack `output/measurement/evidence-2026-07-17T09-16-59-143Z` records zero axe violations on seven routes including `/building-analyst-privacy` and Lighthouse scores of 96 performance, 100 accessibility, 100 best practices and 100 SEO, with CLS 0 and median LCP about 2.40 seconds.
+- Release inventory records 13 manifest-approved files, zero secret findings and zero external GLB URIs. Production dependencies remain at zero vulnerabilities; the existing 17 moderate development/release-tooling findings and unavailable local Firefox/WebKit binaries remain warning-only.
+- Production remains unchanged at concurrent deploy `6a59edaeb162561cffa6210c`. The next safe gate is a final exact-candidate local pass, followed by the approved scoped commit, normal branch push and refreshed non-production preview.
 
 ## 1A. Active Integration Tranche
 

@@ -12,6 +12,7 @@ const PAGES_WITH_CONSENT = [
 
 const HTML_PAGES = [
   ...PAGES_WITH_CONSENT,
+  "building-analyst-privacy.html",
   "404.html",
   "preview.html",
   "buildscan-viewer.html"
