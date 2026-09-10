@@ -12,7 +12,7 @@ export function siteHeader(page) {
         <button class="studio-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>Menu</button>
         <nav class="site-nav studio-nav" id="primary-navigation" aria-label="Primary" data-primary-nav>
           <a href="/building-analyst"${current(page, "building-analyst")} data-analytics-id="nav-flagship">Building Analyst</a>
-          <div class="studio-nav-products" data-product-nav${page === "building-analyst" ? ' data-current-product="true"' : ""}>
+          <div class="studio-nav-products" data-product-nav>
             <div class="studio-nav-products-trigger">
               <a href="/#products" data-analytics-id="nav-products">Products</a>
               <button class="studio-nav-products-toggle" type="button" aria-expanded="false" aria-controls="product-navigation" aria-label="Show product links" data-product-nav-toggle>
