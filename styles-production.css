@@ -380,3 +380,9 @@ body.studio-audience-page .audience-hero h1 { max-width: 14ch; line-height: 1.06
 @media (prefers-reduced-motion: reduce) {
   .zip-hero-product-preview { animation: none; transform: none; }
 }
+
+/* Founder photograph supplied by Wayne; headshot only. */
+.studio-founder-portrait { margin: 2rem 0 0; max-width: 16rem; }
+.studio-founder-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 12px; }
+.studio-founder-portrait figcaption { margin-top: 0.8rem; font-size: 1rem; font-weight: 700; color: #07152f; }
+.studio-founder-portrait figcaption span { display: block; margin-top: 0.25rem; font-size: 0.875rem; font-weight: 500; color: #526078; }
