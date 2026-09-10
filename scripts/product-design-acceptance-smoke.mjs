@@ -254,12 +254,12 @@ function assertProofStatus(home, buildingAnalyst) {
     "Development-stage product proof",
     "Real BuildScan application view",
     "Neither product has been released through the App Store"
-  ]), "Homepage should separate the three workstreams, label maturity and use real BuildScan proof without implying an integration.");
+  ]), "Homepage should prioritise the two product workstreams, label maturity and use real BuildScan proof without implying an integration.");
 
   assert(includesAll(buildingAnalyst.text, [
     "Flagship product — in development",
     "not a finished app screenshot or launch promise",
-    "does not claim App Store availability, autonomous diagnosis or a finished user interface",
+    "Building Analyst has not been released",
     "professional remains responsible",
     "Product visuals",
     "current Building Analyst screens",
