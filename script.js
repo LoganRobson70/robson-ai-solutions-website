@@ -30,8 +30,8 @@ const BUILDING_ANALYST_ISSUES = [
     observation: "Light staining is visible below the gutter-to-downpipe junction.",
     capture: "Record the junction, staining, surrounding fabric, location and visit context.",
     evaluation: "A qualified surveyor records the likely cause, extent, significance and priority.",
-    review: "Evidence and draft findings are checked before the appropriate action is agreed.",
-    report: "The approved finding carries into a structured client report and action output."
+    review: "Check the evidence and agree the next action.",
+    report: "Carry the approved finding into the report and action list."
   },
   {
     id: "masonry",
@@ -42,8 +42,8 @@ const BUILDING_ANALYST_ISSUES = [
     observation: "A short local crack and failed pointing are visible in the brickwork.",
     capture: "Photograph the crack, adjacent joints and wider elevation with a clear location reference.",
     evaluation: "The surveyor records pattern, extent, potential movement indicators and urgency.",
-    review: "The evidence and proposed next action are checked against the wider building context.",
-    report: "The reviewed condition and recommendation are included in the client output."
+    review: "Check the evidence and agree the next action.",
+    report: "Carry the approved finding into the report and action list."
   },
   {
     id: "glazing-sealant",
@@ -54,8 +54,8 @@ const BUILDING_ANALYST_ISSUES = [
     observation: "A local failed sealant section is visible at the glazing-to-façade joint.",
     capture: "Record close and contextual photographs of the frame perimeter and surrounding fabric.",
     evaluation: "The surveyor considers exposure, water path, extent and the need for further access.",
-    review: "The proposed finding and repair approach are checked before approval.",
-    report: "The approved finding is carried into the relevant report section and action list."
+    review: "Check the evidence and agree the next action.",
+    report: "Carry the approved finding into the report and action list."
   },
   {
     id: "entrance-threshold",
@@ -66,8 +66,8 @@ const BUILDING_ANALYST_ISSUES = [
     observation: "The main entrance threshold shows a small area of wear and deterioration.",
     capture: "Record the threshold, door operation, adjacent paving and relevant dimensions or notes.",
     evaluation: "The surveyor considers condition, access implications, risk and suitable priority.",
-    review: "The evidence and recommended action are reviewed in the context of the occupied building.",
-    report: "The approved issue is documented with a clear action and client-facing wording."
+    review: "Check the evidence and agree the next action.",
+    report: "Carry the approved finding into the report and action list."
   },
   {
     id: "cladding-joint",
@@ -78,8 +78,8 @@ const BUILDING_ANALYST_ISSUES = [
     observation: "A vertical joint between cladding panels appears open or locally misaligned.",
     capture: "Record the joint, panel alignment, fixings and its position on the elevation.",
     evaluation: "The surveyor records extent, exposure, potential moisture risk and investigation needs.",
-    review: "The evidence and draft recommendation are checked before the finding is approved.",
-    report: "The reviewed conclusion is included in the client report and action output."
+    review: "Check the evidence and agree the next action.",
+    report: "Carry the approved finding into the report and action list."
   },
   {
     id: "service-penetration",
@@ -90,8 +90,8 @@ const BUILDING_ANALYST_ISSUES = [
     observation: "Local staining is visible around a small service penetration through the rendered wall.",
     capture: "Record the penetration, seal, staining and the surrounding wall in context.",
     evaluation: "The surveyor considers the water path, seal condition, consequence and priority.",
-    review: "The finding and proposed action are checked before they are accepted into the record.",
-    report: "The approved evidence and recommendation are carried into the client deliverable."
+    review: "Check the evidence and agree the next action.",
+    report: "Carry the approved finding into the report and action list."
   }
 ];
 

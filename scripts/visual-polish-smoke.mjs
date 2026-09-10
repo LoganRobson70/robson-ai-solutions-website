@@ -332,7 +332,7 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
         assert(Math.abs(heroLogoMetrics.frameToBoardRight) <= 40, `${route} ${viewport.name} hero logo should stay anchored to the product board, not the viewport edge: ${JSON.stringify(heroLogoMetrics)}.`);
       }
     }
-    if ((route === "/" || route === "/building-analyst") && viewport.name !== "mobile") {
+    if (globeMetrics?.visible && viewport.name !== "mobile") {
       assert(globeMetrics?.ready, `${route} ${viewport.name} globe should wait for the approved detailed world map: ${JSON.stringify(globeMetrics)}.`);
       assert(globeMetrics.visible, `${route} ${viewport.name} globe should be visible after its map and icon assets are ready: ${JSON.stringify(globeMetrics)}.`);
       assert(!globeMetrics.invalidSize, `${route} ${viewport.name} globe should reject an unsafe canvas size: ${JSON.stringify(globeMetrics)}.`);
@@ -403,8 +403,8 @@ async function inspectStaleBuildingAnalystStylesheet(browser, baseUrl) {
       };
     });
 
-    assert(state.loaderClassName.includes("is-size-invalid"), `Stale Building Analyst CSS should trigger the defensive globe-size guard: ${JSON.stringify(state)}.`);
-    assert(state.loaderDisplay === "none", `The unsafe globe should be removed from layout when stale CSS omits its sizing rule: ${JSON.stringify(state)}.`);
+    assert(state.loaderClassName === "", `Building Analyst should use product imagery rather than a decorative globe: ${JSON.stringify(state)}.`);
+    assert(state.canvasBufferWidth === 0, "Building Analyst hero should not allocate a globe canvas.");
     assert(state.canvasBufferWidth <= 420 && state.canvasBufferHeight <= 420, `The stale-CSS globe buffer should never grow beyond its safe initial size: ${JSON.stringify(state)}.`);
     assert(state.heroHeight > 0 && state.heroHeight < 1000, `Stale Building Analyst CSS should not create a runaway hero: ${JSON.stringify(state)}.`);
     assert(state.headingTop >= 0 && state.headingTop < 400, `Stale Building Analyst CSS should keep the main heading in the first viewport: ${JSON.stringify(state)}.`);

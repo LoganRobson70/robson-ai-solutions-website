@@ -11,7 +11,8 @@ export function siteHeader(page) {
         </a>
         <button class="studio-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>Menu</button>
         <nav class="site-nav studio-nav" id="primary-navigation" aria-label="Primary" data-primary-nav>
-          <div class="studio-nav-products" data-product-nav${page === "building-analyst" ? ' data-current-product="true"' : ""}>
+          <a href="/building-analyst"${current(page, "building-analyst")} data-analytics-id="nav-flagship">Building Analyst</a>
+          <div class="studio-nav-products" data-product-nav>
             <div class="studio-nav-products-trigger">
               <a href="/#products" data-analytics-id="nav-products">Products</a>
               <button class="studio-nav-products-toggle" type="button" aria-expanded="false" aria-controls="product-navigation" aria-label="Show product links" data-product-nav-toggle>
@@ -21,7 +22,7 @@ export function siteHeader(page) {
             <div class="studio-nav-products-menu" id="product-navigation" data-product-nav-menu hidden>
               <a href="/#products" data-analytics-id="nav-product-overview">
                 <strong>Product overview</strong>
-                <span>See all three product directions</span>
+                <span>Assessment and 3D modelling</span>
               </a>
               <a href="/building-analyst"${current(page, "building-analyst")} data-analytics-id="nav-building-analyst">
                 <strong>Building Analyst</strong>
@@ -31,18 +32,14 @@ export function siteHeader(page) {
                 <strong>BuildScan</strong>
                 <span>In development &mdash; not released</span>
               </a>
-              <a href="/#product-property-operations" data-analytics-id="nav-property-operations">
-                <strong>Property Operations</strong>
-                <span>Roadmap exploration</span>
-              </a>
             </div>
           </div>
           <a href="/who-its-for"${current(page, "who")} data-analytics-id="nav-who-its-for">Who it's for</a>
           <a href="/#about" data-analytics-id="nav-about">About</a>
-          <a class="studio-nav-mobile-cta" href="${workflowMailto}" data-analytics-id="nav-mobile-building-analyst" data-cta-location="mobile-menu">Discuss a Building Analyst workflow <span aria-hidden="true">&rarr;</span></a>
+          <a class="studio-nav-mobile-cta" href="${workflowMailto}" data-analytics-id="nav-mobile-building-analyst" data-cta-location="mobile-menu">Discuss your workflow <span aria-hidden="true">&rarr;</span></a>
         </nav>
         <div class="studio-header-actions">
-          <a class="studio-header-cta" href="${workflowMailto}" data-analytics-id="nav-building-analyst-workflow" data-cta-location="header">Discuss a Building Analyst workflow <span aria-hidden="true">&rarr;</span></a>
+          <a class="studio-header-cta" href="${workflowMailto}" data-analytics-id="nav-building-analyst-workflow" data-cta-location="header">Discuss your workflow <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </header>`;
@@ -66,7 +63,6 @@ export function siteFooter() {
             <a href="/who-its-for">Who it's for</a>
             <a href="/building-analyst">Building Analyst</a>
             <a href="/#buildscan-proof">BuildScan</a>
-            <a href="/#product-property-operations">Property Operations</a>
             <a href="/#about">About</a>
             <a href="/privacy">Privacy Notice</a>
           </div>
@@ -74,7 +70,7 @@ export function siteFooter() {
         <div class="footer-nav-group">
           <p class="footer-heading">Contact</p>
           <div class="footer-links">
-            <a href="${workflowMailto}" data-analytics-id="footer-building-analyst-workflow" data-cta-location="footer">Discuss a Building Analyst workflow</a>
+            <a href="${workflowMailto}" data-analytics-id="footer-building-analyst-workflow" data-cta-location="footer">Discuss your workflow</a>
             <a href="mailto:hello@robsonai.co.uk" data-analytics-id="footer-mailto-link" data-cta-location="footer">hello@robsonai.co.uk</a>
             <button class="footer-link-button" type="button" data-open-consent>Privacy and analytics</button>
           </div>

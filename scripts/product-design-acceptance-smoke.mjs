@@ -228,14 +228,12 @@ function assertNoBlockingDiagnostics(routeResult) {
 function assertFirstViewport(home) {
   assert(includesAll(home.viewportText, [
     "Robson AI Solutions",
-    "Surveying-led software for building professionals",
-    "Keep building evidence, professional review and reporting connected",
-    "organisations that commission building advice",
-    "Building Analyst is our flagship product in development",
-    "BuildScan is also in development",
-    "Neither product has been released through the App Store",
-    "Discuss a Building Analyst workflow",
-    "View BuildScan development proof",
+    "Building Analyst for building surveyors",
+    "From site evidence to clearer reports",
+    "inspection photos, notes and findings",
+    "flagship product in development",
+    "Discuss your workflow",
+    "Explore Building Analyst",
     "Software supports the process. Qualified professionals make the decisions"
   ]), `Homepage first viewport should explain the professional proposition and next actions. Actual viewport text: ${home.viewportText}`);
 }
@@ -244,12 +242,10 @@ function assertProofStatus(home, buildingAnalyst) {
   assert(includesAll(home.text, [
     "Building Analyst",
     "BuildScan",
-    "Property operations",
     "In development",
     "In development — not released",
-    "Roadmap exploration",
-    "Professional expertise stays central",
-    "without replacing qualified judgement",
+    "Qualified professionals make the decisions",
+    "Software supports the process",
     "Guided professional review",
     "Select an issue",
     "Roof drainage",
@@ -257,17 +253,17 @@ function assertProofStatus(home, buildingAnalyst) {
     "Building Analyst supports the workflow. A qualified professional evaluates and approves the finding",
     "Development-stage product proof",
     "Real BuildScan application view",
-    "No maps, floor plans or connected customer systems are claimed"
-  ]), "Homepage should separate the three workstreams, label maturity and use real BuildScan proof without implying an integration.");
+    "Neither product has been released through the App Store"
+  ]), "Homepage should prioritise the two product workstreams, label maturity and use real BuildScan proof without implying an integration.");
 
   assert(includesAll(buildingAnalyst.text, [
     "Flagship product — in development",
     "not a finished app screenshot or launch promise",
-    "does not claim App Store availability, autonomous diagnosis or a finished user interface",
+    "Building Analyst has not been released",
     "professional remains responsible",
     "Product visuals",
-    "current Building Analyst screens and product behaviour",
-    "without presenting AI as autonomous diagnosis or final authority"
+    "current Building Analyst screens",
+    "professionally reviewed"
   ]), "Building Analyst should label maturity, example status and judgement boundaries.");
 
   assert(buildingAnalyst.controls.marketingVisuals.length === 3, `Building Analyst should show exactly three marketing visuals; actual: ${buildingAnalyst.controls.marketingVisuals.length}.`);
@@ -316,7 +312,7 @@ function assertReleaseStageClaims(allText) {
   const requiredCaution = [
     "in development",
     "roadmap exploration",
-    "opt-in viewer",
+    "opt-in",
     "no integration between them is implied",
     "no current product or live system integration",
     "qualified professionals make the decisions",
@@ -350,7 +346,7 @@ function assertAudiencePaths(home, who) {
   assert(includesAll(linkText, [
     "Explore Building Analyst",
     "View the development proof",
-    "Discuss a Building Analyst workflow"
+    "Discuss your workflow"
   ]), "Homepage/Who It Fits should provide one-click paths for Building Analyst, real BuildScan proof and workflow conversations.");
 }
 
@@ -392,7 +388,7 @@ function assertTrustProof(home, privacy, who) {
 
 function assertMotionAndInteraction(stylesText, home) {
   assert(stylesText.includes("prefers-reduced-motion"), "Stylesheet should include reduced-motion support.");
-  assert(includesAll(home.text, ["opt-in viewer", "static image is a real BuildScan application view", "Load 10.77 MB interactive model"]), "BuildScan interactive proof should remain opt-in with real-product static fallback language and a disclosed download size.");
+  assert(includesAll(home.text, ["opt-in", "static image is a real BuildScan application view", "Load 10.77 MB interactive model"]), "BuildScan interactive proof should remain opt-in with real-product static fallback language and a disclosed download size.");
 }
 
 async function writeJson(filePath, value) {

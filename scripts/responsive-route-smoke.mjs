@@ -231,19 +231,18 @@ async function assertRouteSpecific(page, route) {
 
   if (route === "/") {
     await page.locator("h1").first().waitFor({ state: "visible", timeout: 10000 });
-    assert(/Keep building evidence, professional review and reporting connected/i.test(bodyText), "Homepage should keep the approved connected-evidence proposition visible.");
-    assert(/surveying practices, in-house estates teams and organisations that commission building advice/i.test(bodyText), "Homepage should name professional and buyer audiences.");
-    assert(/Discuss a Building Analyst workflow/i.test(bodyText), "Homepage should keep the primary Building Analyst CTA.");
-    assert(/View BuildScan development proof/i.test(bodyText), "Homepage should keep the secondary BuildScan development-proof CTA.");
+    assert(/From site evidence to clearer reports/i.test(bodyText), "Homepage should keep the approved connected-evidence proposition visible.");
+    assert(/Building Analyst for building surveyors/i.test(bodyText), "Homepage should name professional and buyer audiences.");
+    assert(/Discuss your workflow/i.test(bodyText), "Homepage should keep the primary Building Analyst CTA.");
+    assert(/Explore Building Analyst/i.test(bodyText), "Homepage should keep the secondary BuildScan development-proof CTA.");
     assert(/Guided professional review/i.test(bodyText), "Homepage should keep the detailed Building Analyst explorer.");
     assert(/BuildScan/i.test(bodyText), "Homepage should expose the BuildScan workstream.");
-    assert(/Property operations/i.test(bodyText), "Homepage should expose property operations.");
-    assert(/Professional expertise stays central/i.test(bodyText), "Homepage should keep the professional judgement boundary visible.");
+    assert(/Qualified professionals make the decisions/i.test(bodyText), "Homepage should keep the professional judgement boundary visible.");
   }
 
   if (route === "/building-analyst") {
-    assert(/Keep building evidence/i.test(bodyText) && /ready for professional review/i.test(bodyText), "Building Analyst page should keep the evidence-review proposition.");
-    assert(/Discuss a Building Analyst workflow/i.test(bodyText), "Building Analyst page should keep its primary contact CTA.");
+    assert(/Your evidence/i.test(bodyText) && /A clearer report/i.test(bodyText), "Building Analyst page should keep the evidence-review proposition.");
+    assert(/Discuss your workflow/i.test(bodyText), "Building Analyst page should keep its primary contact CTA.");
   }
 
   if (route === "/building-analyst-privacy") {
@@ -256,7 +255,7 @@ async function assertRouteSpecific(page, route) {
     assert(/Organisations commissioning building advice/i.test(bodyText), "Who It Fits page should include commissioning organisations.");
     assert(/In-house property and estates teams/i.test(bodyText), "Who It Fits page should include in-house professional teams.");
     assert(/Surveying practices and consultants/i.test(bodyText), "Who It Fits page should include professional practices.");
-    assert(/Discuss a Building Analyst workflow/i.test(bodyText), "Who It Fits page should keep the primary contact CTA.");
+    assert(/Discuss your workflow/i.test(bodyText), "Who It Fits page should keep the primary contact CTA.");
   }
 
   if (route === "/privacy") {
@@ -266,7 +265,7 @@ async function assertRouteSpecific(page, route) {
 
   if (route === "/404.html") {
     assert(/This page is not available/i.test(bodyText), "404 page should keep recovery heading.");
-    assert(/Discuss a Building Analyst workflow/i.test(bodyText), "404 page should include contact recovery.");
+    assert(/Discuss your workflow/i.test(bodyText), "404 page should include contact recovery.");
   }
 
   if (route === "/holding.html") {
@@ -323,7 +322,7 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
       const mobileCta = page.locator(".studio-nav-mobile-cta");
       await mobileCta.waitFor({ state: "visible" });
       const mobileCtaBox = await mobileCta.boundingBox();
-      assert(/Discuss a Building Analyst workflow/i.test(await mobileCta.innerText()), "Mobile menu should expose the primary Building Analyst CTA.");
+      assert(/Discuss your workflow/i.test(await mobileCta.innerText()), "Mobile menu should expose the primary Building Analyst CTA.");
       assert((mobileCtaBox?.height || 0) >= 44, `Mobile menu CTA should be at least 44px high; actual ${mobileCtaBox?.height || 0}.`);
       await page.locator("[data-product-nav-toggle]").click();
       await page.locator("[data-product-nav-menu]").waitFor({ state: "visible" });
