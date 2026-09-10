@@ -346,3 +346,37 @@ body[data-page-type="privacy"] .section-intro {
   body.studio-shell .studio-wordmark-text span { font-size: 0.68rem; }
   body.studio-home .studio-explorer-issue-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* September design review: benefit-led heroes and clear product priority. */
+body.studio-home .studio-hero h1 { max-width: 12ch; line-height: 1.06; }
+body.studio-home .studio-hero-lead { max-width: 39rem; }
+body.studio-home .studio-hero-copy > .studio-status { margin: 1.25rem 0; color: #345078; }
+body.studio-home .studio-product-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+body.studio-home .studio-product-analyst { border-top: 4px solid #0a5bf5; }
+body.studio-home .studio-product-operations { grid-column: 1 / -1; padding-block: 1.75rem; border-top: 1px solid #dbe2ec; }
+body.studio-home .studio-product-operations h3 { font-size: 1.4rem; }
+body.studio-home .studio-product-operations > p:last-child { max-width: 52rem; }
+body.studio-home .studio-buildscan-load-panel { max-width: min(21rem, calc(100% - 2rem)); padding: 0.8rem; }
+body.studio-home .studio-buildscan-load-panel p { margin-top: 0.4rem; font-size: 0.8125rem; line-height: 1.4; }
+body.studio-home .studio-interactive-proof figcaption { color: #c3cee0; }
+body.building-analyst-zip-page .zip-hero { min-height: 0; background: #081638; }
+body.building-analyst-zip-page .zip-hero-inner { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 3rem; min-height: 0; padding-block: 5rem; }
+body.building-analyst-zip-page .zip-hero-copy { min-width: 0; max-width: none; }
+body.building-analyst-zip-page .zip-hero h1 { font-size: clamp(2.75rem, 4.4vw, 4rem); line-height: 1.07; }
+body.building-analyst-zip-page .zip-hero-product-preview { min-width: 0; margin: 0; }
+body.building-analyst-zip-page .zip-hero-product-preview img { display: block; width: 100%; height: auto; border-radius: 10px; }
+body.building-analyst-zip-page .zip-hero-product-preview figcaption { margin-top: 0.8rem; color: #c3cee0; font-size: 0.8125rem; line-height: 1.5; }
+body.studio-audience-page .audience-hero h1 { max-width: 14ch; line-height: 1.06; }
+@media (max-width: 1040px) {
+  body.building-analyst-zip-page .zip-hero-inner { grid-template-columns: minmax(0, 1fr); padding-block: 3rem; gap: 2.5rem; }
+  body.studio-home .studio-explorer-grid { grid-template-columns: minmax(0, 1fr); }
+  body.studio-home .studio-explorer-workflow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+}
+@media (max-width: 700px) {
+  body.studio-home .studio-product-grid { grid-template-columns: minmax(0, 1fr); }
+  body.studio-home .studio-product-operations { grid-column: auto; }
+  body.studio-home .studio-explorer-workflow { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zip-hero-product-preview { animation: none; transform: none; }
+}

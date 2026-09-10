@@ -11,6 +11,7 @@ export function siteHeader(page) {
         </a>
         <button class="studio-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>Menu</button>
         <nav class="site-nav studio-nav" id="primary-navigation" aria-label="Primary" data-primary-nav>
+          <a href="/building-analyst"${current(page, "building-analyst")} data-analytics-id="nav-flagship">Building Analyst</a>
           <div class="studio-nav-products" data-product-nav${page === "building-analyst" ? ' data-current-product="true"' : ""}>
             <div class="studio-nav-products-trigger">
               <a href="/#products" data-analytics-id="nav-products">Products</a>
@@ -39,10 +40,10 @@ export function siteHeader(page) {
           </div>
           <a href="/who-its-for"${current(page, "who")} data-analytics-id="nav-who-its-for">Who it's for</a>
           <a href="/#about" data-analytics-id="nav-about">About</a>
-          <a class="studio-nav-mobile-cta" href="${workflowMailto}" data-analytics-id="nav-mobile-building-analyst" data-cta-location="mobile-menu">Discuss a Building Analyst workflow <span aria-hidden="true">&rarr;</span></a>
+          <a class="studio-nav-mobile-cta" href="${workflowMailto}" data-analytics-id="nav-mobile-building-analyst" data-cta-location="mobile-menu">Discuss your workflow <span aria-hidden="true">&rarr;</span></a>
         </nav>
         <div class="studio-header-actions">
-          <a class="studio-header-cta" href="${workflowMailto}" data-analytics-id="nav-building-analyst-workflow" data-cta-location="header">Discuss a Building Analyst workflow <span aria-hidden="true">&rarr;</span></a>
+          <a class="studio-header-cta" href="${workflowMailto}" data-analytics-id="nav-building-analyst-workflow" data-cta-location="header">Discuss your workflow <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </header>`;
@@ -74,7 +75,7 @@ export function siteFooter() {
         <div class="footer-nav-group">
           <p class="footer-heading">Contact</p>
           <div class="footer-links">
-            <a href="${workflowMailto}" data-analytics-id="footer-building-analyst-workflow" data-cta-location="footer">Discuss a Building Analyst workflow</a>
+            <a href="${workflowMailto}" data-analytics-id="footer-building-analyst-workflow" data-cta-location="footer">Discuss your workflow</a>
             <a href="mailto:hello@robsonai.co.uk" data-analytics-id="footer-mailto-link" data-cta-location="footer">hello@robsonai.co.uk</a>
             <button class="footer-link-button" type="button" data-open-consent>Privacy and analytics</button>
           </div>
