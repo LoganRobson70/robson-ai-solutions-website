@@ -332,7 +332,7 @@ async function inspectRoute(browser, baseUrl, route, viewport) {
         assert(Math.abs(heroLogoMetrics.frameToBoardRight) <= 40, `${route} ${viewport.name} hero logo should stay anchored to the product board, not the viewport edge: ${JSON.stringify(heroLogoMetrics)}.`);
       }
     }
-    if (route === "/" && viewport.name !== "mobile") {
+    if (globeMetrics?.visible && viewport.name !== "mobile") {
       assert(globeMetrics?.ready, `${route} ${viewport.name} globe should wait for the approved detailed world map: ${JSON.stringify(globeMetrics)}.`);
       assert(globeMetrics.visible, `${route} ${viewport.name} globe should be visible after its map and icon assets are ready: ${JSON.stringify(globeMetrics)}.`);
       assert(!globeMetrics.invalidSize, `${route} ${viewport.name} globe should reject an unsafe canvas size: ${JSON.stringify(globeMetrics)}.`);

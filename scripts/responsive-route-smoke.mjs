@@ -232,12 +232,11 @@ async function assertRouteSpecific(page, route) {
   if (route === "/") {
     await page.locator("h1").first().waitFor({ state: "visible", timeout: 10000 });
     assert(/From site evidence to clearer reports/i.test(bodyText), "Homepage should keep the approved connected-evidence proposition visible.");
-    assert(/surveyors and estates teams/i.test(bodyText), "Homepage should name professional and buyer audiences.");
+    assert(/Building Analyst for building surveyors/i.test(bodyText), "Homepage should name professional and buyer audiences.");
     assert(/Discuss your workflow/i.test(bodyText), "Homepage should keep the primary Building Analyst CTA.");
     assert(/Explore Building Analyst/i.test(bodyText), "Homepage should keep the secondary BuildScan development-proof CTA.");
     assert(/Guided professional review/i.test(bodyText), "Homepage should keep the detailed Building Analyst explorer.");
     assert(/BuildScan/i.test(bodyText), "Homepage should expose the BuildScan workstream.");
-    assert(/Property operations/i.test(bodyText), "Homepage should expose property operations.");
     assert(/Qualified professionals make the decisions/i.test(bodyText), "Homepage should keep the professional judgement boundary visible.");
   }
 

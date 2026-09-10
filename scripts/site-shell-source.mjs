@@ -22,7 +22,7 @@ export function siteHeader(page) {
             <div class="studio-nav-products-menu" id="product-navigation" data-product-nav-menu hidden>
               <a href="/#products" data-analytics-id="nav-product-overview">
                 <strong>Product overview</strong>
-                <span>See all three product directions</span>
+                <span>Assessment and 3D modelling</span>
               </a>
               <a href="/building-analyst"${current(page, "building-analyst")} data-analytics-id="nav-building-analyst">
                 <strong>Building Analyst</strong>
@@ -31,10 +31,6 @@ export function siteHeader(page) {
               <a href="/#buildscan-proof" data-analytics-id="nav-buildscan">
                 <strong>BuildScan</strong>
                 <span>In development &mdash; not released</span>
-              </a>
-              <a href="/#product-property-operations" data-analytics-id="nav-property-operations">
-                <strong>Property Operations</strong>
-                <span>Roadmap exploration</span>
               </a>
             </div>
           </div>
@@ -67,7 +63,6 @@ export function siteFooter() {
             <a href="/who-its-for">Who it's for</a>
             <a href="/building-analyst">Building Analyst</a>
             <a href="/#buildscan-proof">BuildScan</a>
-            <a href="/#product-property-operations">Property Operations</a>
             <a href="/#about">About</a>
             <a href="/privacy">Privacy Notice</a>
           </div>

@@ -228,9 +228,9 @@ function assertNoBlockingDiagnostics(routeResult) {
 function assertFirstViewport(home) {
   assert(includesAll(home.viewportText, [
     "Robson AI Solutions",
-    "Surveying-led software for building professionals",
+    "Building Analyst for building surveyors",
     "From site evidence to clearer reports",
-    "surveyors and estates teams",
+    "inspection photos, notes and findings",
     "flagship product in development",
     "Discuss your workflow",
     "Explore Building Analyst",
@@ -242,10 +242,8 @@ function assertProofStatus(home, buildingAnalyst) {
   assert(includesAll(home.text, [
     "Building Analyst",
     "BuildScan",
-    "Property operations",
     "In development",
     "In development — not released",
-    "Roadmap exploration",
     "Qualified professionals make the decisions",
     "Software supports the process",
     "Guided professional review",
@@ -255,7 +253,7 @@ function assertProofStatus(home, buildingAnalyst) {
     "Building Analyst supports the workflow. A qualified professional evaluates and approves the finding",
     "Development-stage product proof",
     "Real BuildScan application view",
-    "There is no current product or live system integration"
+    "Neither product has been released through the App Store"
   ]), "Homepage should separate the three workstreams, label maturity and use real BuildScan proof without implying an integration.");
 
   assert(includesAll(buildingAnalyst.text, [
