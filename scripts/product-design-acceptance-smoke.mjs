@@ -258,8 +258,8 @@ function assertProofStatus(home, buildingAnalyst) {
 
   assert(includesAll(buildingAnalyst.text, [
     "Flagship product — in development",
-    "not a finished app screenshot or launch promise",
-    "Building Analyst has not been released",
+    "The workflow being developed",
+    "Product marketing composition",
     "professional remains responsible",
     "Product visuals",
     "current Building Analyst screens",

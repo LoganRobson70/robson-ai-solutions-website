@@ -1015,9 +1015,8 @@ function setupNavState() {
 
     if (productNav) {
       const activeProduct = Boolean(activeLink && productNav.contains(activeLink));
-      const onBuildingAnalystPage = currentPath === "/building-analyst";
 
-      if (activeProduct || onBuildingAnalystPage) {
+      if (activeProduct && currentPath !== "/building-analyst") {
         productNav.dataset.currentProduct = "true";
       } else {
         delete productNav.dataset.currentProduct;

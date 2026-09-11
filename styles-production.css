@@ -398,3 +398,25 @@ body.studio-audience-page .audience-hero h1 { max-width: 14ch; line-height: 1.06
 .studio-faq summary:focus-visible { outline: 3px solid #1763d8; outline-offset: 5px; border-radius: 3px; }
 .zip-price-card-dark .studio-text-link { color: #fff; }
 @media (max-width: 700px) { .studio-benefit-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+/* September refinement: shared controls and compact founder presentation. */
+body.building-analyst-zip-page .zip-button-primary { background: #0958f5; border-color: #0958f5; border-radius: 6px; color: #fff; box-shadow: 0 8px 20px rgb(9 88 245 / 18%); }
+body.building-analyst-zip-page .zip-button-primary:hover { background: #0645c0; border-color: #0645c0; }
+body.building-analyst-zip-page .zip-button { border-radius: 6px; min-height: 44px; }
+body.studio-home .studio-founder-grid { display: grid; grid-template-columns: 220px minmax(0,1fr); gap: clamp(2rem,5vw,4rem); align-items: center; }
+body.studio-home .studio-founder-portrait { margin: 0; max-width: 220px; }
+body.studio-home .studio-about h2 { max-width: none; margin-bottom: 1.25rem; font-size: clamp(1.8rem,3.3vw,2.8rem); }
+body.studio-home .studio-about-copy { max-width: 48rem; }
+body.studio-home .studio-about-copy .studio-text-link { display: inline-flex; }
+body.studio-home .studio-about { padding-block: clamp(3rem,5vw,4rem); }
+body.building-analyst-zip-page .zip-contact-panel { grid-template-columns: minmax(0,1fr); max-width: 64rem; }
+.studio-contact-address { color: #fff; text-decoration: underline; text-underline-offset: .2em; overflow-wrap: anywhere; }
+.marketing-image-link { display: inline-block; margin-top: .8rem; color: inherit; text-decoration: underline; text-underline-offset: .2em; min-height: 44px; }
+#product, #issue-model { scroll-margin-top: 110px; }
+@media (max-width: 600px) {
+ body.studio-home .studio-founder-grid { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
+ body.studio-home .studio-founder-portrait { max-width: 180px; }
+}
+
+body.building-analyst-zip-page .zip-product-card-dark > span { background: #dce7ff; color: #123575; }
+body.building-analyst-zip-page .zip-product-card-dark p { color: #d4deef; }
