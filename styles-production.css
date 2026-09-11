@@ -417,3 +417,6 @@ body.building-analyst-zip-page .zip-contact-panel { grid-template-columns: minma
  body.studio-home .studio-founder-grid { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
  body.studio-home .studio-founder-portrait { max-width: 180px; }
 }
+
+body.building-analyst-zip-page .zip-product-card-dark > span { background: #dce7ff; color: #123575; }
+body.building-analyst-zip-page .zip-product-card-dark p { color: #d4deef; }
