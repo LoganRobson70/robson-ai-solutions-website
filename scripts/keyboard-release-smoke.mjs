@@ -239,7 +239,7 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
 
     await page.locator('[data-analytics-id="hero-discuss-building-analyst"]').focus();
     const explorerCtaFocus = await getActiveElementState(page);
-    assert(explorerCtaFocus?.href?.startsWith("mailto:hello@robsonai.co.uk") && /Discuss a Building Analyst workflow/i.test(explorerCtaFocus?.text || ""), `Hero Building Analyst CTA should be keyboard focusable: ${JSON.stringify(explorerCtaFocus)}.`);
+    assert(explorerCtaFocus?.href?.startsWith("mailto:hello@robsonai.co.uk") && /Discuss your workflow/i.test(explorerCtaFocus?.text || ""), `Hero Building Analyst CTA should be keyboard focusable: ${JSON.stringify(explorerCtaFocus)}.`);
     await page.locator("#building-analyst-explorer").scrollIntoViewIfNeeded();
 
     const explorerCounts = {
@@ -275,7 +275,7 @@ async function runHomepageKeyboardJourney(browser, baseUrl, artifactDir) {
 
     await page.locator('[data-analytics-id="contact-email"]').focus();
     const aboutCtaFocus = await getActiveElementState(page);
-    assert(aboutCtaFocus?.href?.startsWith("mailto:hello@robsonai.co.uk") && /Discuss a Building Analyst workflow/i.test(aboutCtaFocus?.text || ""), `Building Analyst contact CTA should be keyboard focusable: ${JSON.stringify(aboutCtaFocus)}.`);
+    assert(aboutCtaFocus?.href?.startsWith("mailto:hello@robsonai.co.uk") && /Discuss your workflow/i.test(aboutCtaFocus?.text || ""), `Building Analyst contact CTA should be keyboard focusable: ${JSON.stringify(aboutCtaFocus)}.`);
     await page.locator("#contact").scrollIntoViewIfNeeded();
 
     await page.locator("[data-copy-email]").first().focus();
@@ -364,7 +364,7 @@ async function runBuildingAnalystKeyboardJourney(browser, baseUrl, artifactDir) 
 
     await page.locator('[data-analytics-id="nav-building-analyst-workflow"]').focus();
     const contactNavFocus = await getActiveElementState(page);
-    assert(contactNavFocus?.href?.startsWith("mailto:hello@robsonai.co.uk") && /Discuss a Building Analyst workflow/i.test(contactNavFocus?.text || ""), `Building Analyst workflow CTA should be keyboard focusable: ${JSON.stringify(contactNavFocus)}.`);
+    assert(contactNavFocus?.href?.startsWith("mailto:hello@robsonai.co.uk") && /Discuss your workflow/i.test(contactNavFocus?.text || ""), `Building Analyst workflow CTA should be keyboard focusable: ${JSON.stringify(contactNavFocus)}.`);
     await page.locator("#contact").scrollIntoViewIfNeeded();
 
     await page.locator("[data-copy-email]").first().focus();

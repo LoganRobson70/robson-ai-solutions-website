@@ -27,7 +27,7 @@ const APPROVED_SCRIPT_SOURCES = [
   "./script.js?v=20260711b",
   "./script.js?v=20260713a",
   "./script.js?v=20260713b",
-  "./script.js?v=20260910a"
+  "./script.js?v=20260911a"
 ];
 
 const HOLDING_FORBIDDEN_COPY_PATTERNS = [
