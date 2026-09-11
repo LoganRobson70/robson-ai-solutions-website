@@ -420,3 +420,19 @@ body.building-analyst-zip-page .zip-contact-panel { grid-template-columns: minma
 
 body.building-analyst-zip-page .zip-product-card-dark > span { background: #dce7ff; color: #123575; }
 body.building-analyst-zip-page .zip-product-card-dark p { color: #d4deef; }
+
+/* Usability pass: a solid two-colour focus indicator works on light and dark surfaces. */
+body :is(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid #fff !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 6px #1746a2 !important;
+}
+body.building-analyst-zip-page .zip-product-line,
+body.building-analyst-zip-page .zip-product-line strong { color: #d4deef; }
+body :is(a, button, summary, [tabindex]) { scroll-margin-block: 110px 24px; }
+@media (forced-colors: active) {
+  body :is(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+    box-shadow: none !important;
+  }
+}
