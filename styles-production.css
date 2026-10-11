@@ -436,3 +436,47 @@ body :is(a, button, summary, [tabindex]) { scroll-margin-block: 110px 24px; }
     box-shadow: none !important;
   }
 }
+
+/* Robson Blue section surfaces — approved 11 October 2026. */
+body.studio-home :is(.studio-buildscan-section, .studio-contact),
+body.studio-audience-page .audience-relationship,
+body.building-analyst-zip-page :is(.zip-hero, .zip-buildscan-section, .zip-about-section, .zip-product-card-dark, .zip-price-card-dark) {
+  background: var(--robson-blue);
+  color: #fff;
+}
+
+/* Fully opaque white preserves 5.20:1 contrast on the signature blue. */
+body.studio-home :is(.studio-buildscan-section, .studio-contact) :is(p, li, figcaption, .studio-kicker-light, .studio-proof-list),
+body.studio-home .studio-contact-routes a,
+body.studio-audience-page .audience-relationship-flow :is(p, li > span),
+body.building-analyst-zip-page .zip-hero :is(.zip-kicker, .zip-kicker b, .zip-hero-lead, h1 span, figcaption),
+body.building-analyst-zip-page :is(.zip-buildscan-section, .zip-about-section) .zip-section-head p,
+body.building-analyst-zip-page :is(.zip-buildscan-section, .zip-about-section) :is(.zip-section-label, .zip-buildscan-notes p, figcaption),
+body.building-analyst-zip-page :is(.zip-product-card-dark, .zip-price-card-dark) p {
+  color: #fff;
+}
+
+body.building-analyst-zip-page .zip-hero::after {
+  background: none;
+}
+
+/* Separate blue buttons from blue section backgrounds. */
+body.studio-home .studio-contact .studio-button-primary,
+body.building-analyst-zip-page :is(.zip-hero, .zip-buildscan-section, .zip-about-section) .zip-button-primary {
+  background: #fff;
+  border-color: #fff;
+  color: var(--robson-blue);
+}
+
+body.studio-home .studio-contact .studio-button-primary:hover,
+body.building-analyst-zip-page :is(.zip-hero, .zip-buildscan-section, .zip-about-section) .zip-button-primary:hover {
+  background: #fff;
+  color: var(--robson-blue-hover);
+}
+
+body.studio-home :is(.studio-buildscan-section, .studio-contact) :focus-visible,
+body.studio-audience-page .audience-relationship :focus-visible,
+body.building-analyst-zip-page :is(.zip-hero, .zip-buildscan-section, .zip-about-section) :focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}

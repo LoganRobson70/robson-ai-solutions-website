@@ -7,7 +7,11 @@ Current branch: `codex/brand-contrast-system-20260716` in worktree `/Users/wayne
 
 ## Robson Blue website tranche — 11 October 2026
 
-User approved applying Robson Blue (#3E6EAD) to the website. Scoped local work: central signature token, primary UI accents and colour-derived shadows, stylesheet cache keys and brand documentation. Wayne explicitly approved review and live upload on 11 October 2026. Build, internal links (346 references across 13 pages), release security and whitespace checks passed. Robson Blue/white contrast is 5.20:1 (AA normal text); light site surfaces range from 4.84:1 to 4.93:1. Browser QA remains unverified because dependency installation was interrupted. Source and Netlify production publication pending.
+User approved applying Robson Blue (#3E6EAD) to the website. Scoped local work: central signature token, primary UI accents and colour-derived shadows, stylesheet cache keys and brand documentation. Wayne explicitly approved review and live upload on 11 October 2026. Build, internal links (346 references across 13 pages), release security and whitespace checks passed. Robson Blue/white contrast is 5.20:1 (AA normal text); light site surfaces range from 4.84:1 to 4.93:1. Browser QA remains unverified because dependency installation was interrupted. Source update uploaded to GitHub main as 2c0f8cd872a7c07d44adb4642d3b525c13afcdf8. Netlify automatically published production deploy 6acbf86e088aa40008dd5130 from that exact commit. Verified ready, context production, published at https://robsonai.co.uk, with zero secret-scan findings. Build, internal links, preview-auth and security/header checks passed. Publish readiness: 100% deployed; browser-based visual regression remains unverified. Recommended next action: review the live colours.
+
+## Robson Blue section surfaces — 11 October 2026
+
+User requested replacing navy section backgrounds with Robson Blue, continuing the authorised live website update. Scoped surfaces: homepage BuildScan/contact, audience relationship and Building Analyst hero/dark product cards (plus retained dark section styles). White text and inverted white CTAs preserve contrast. Existing marketing image pixels and logos are retained. Build, internal-link validation (346 references / 13 pages), release security and whitespace checks passed. Opaque white on Robson Blue contrast is 5.20:1. Browser visual QA is unavailable in this session. Publishing via GitHub main and Netlify under the existing live-upload authorisation.
 
 ## 1. Current Objective
 
