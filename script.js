@@ -1808,7 +1808,7 @@ function setupGlobeLoader() {
           iconSize
         );
       } else {
-        context.fillStyle = "#0b1a4a";
+        context.fillStyle = "#3e6ead";
         context.font = `700 ${Math.round(size * 0.62)}px system-ui, sans-serif`;
         context.textAlign = "center";
         context.textBaseline = "middle";
