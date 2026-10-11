@@ -81,7 +81,7 @@ body.studio-shell .studio-nav-products-toggle:focus-visible {
 
 body.studio-home .studio-nav-products-toggle:focus-visible,
 body.studio-shell .studio-nav-products-toggle:focus-visible {
-  outline: 2px solid #0a5bf5;
+  outline: 2px solid var(--robson-blue);
   outline-offset: 2px;
 }
 
@@ -323,7 +323,7 @@ body[data-page-type="privacy"] .section-intro {
     border-bottom: 0;
   }
 
-  .studio-nav-mobile-cta { display: flex !important; margin-top: 0.5rem; padding: 0.75rem 1rem !important; border: 0 !important; border-radius: 6px; background: #0a5bf5; color: #ffffff !important; }
+  .studio-nav-mobile-cta { display: flex !important; margin-top: 0.5rem; padding: 0.75rem 1rem !important; border: 0 !important; border-radius: 6px; background: var(--robson-blue); color: #ffffff !important; }
   body.studio-home .studio-explorer-issue-nav { grid-row: 1; }
   body.studio-home .studio-explorer-figure { grid-row: 2; }
   body.studio-home .studio-explorer-panel { grid-row: 3; }
@@ -352,7 +352,7 @@ body.studio-home .studio-hero h1 { max-width: 12ch; line-height: 1.06; }
 body.studio-home .studio-hero-lead { max-width: 39rem; }
 body.studio-home .studio-hero-copy > .studio-status { margin: 1.25rem 0; color: #345078; }
 body.studio-home .studio-product-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
-body.studio-home .studio-product-analyst { border-top: 4px solid #0a5bf5; }
+body.studio-home .studio-product-analyst { border-top: 4px solid var(--robson-blue); }
 body.studio-home .studio-product-operations { grid-column: 1 / -1; padding-block: 1.75rem; border-top: 1px solid #dbe2ec; }
 body.studio-home .studio-product-operations h3 { font-size: 1.4rem; }
 body.studio-home .studio-product-operations > p:last-child { max-width: 52rem; }
@@ -395,13 +395,13 @@ body.studio-audience-page .audience-hero h1 { max-width: 14ch; line-height: 1.06
 .studio-benefit-grid h3 { margin-bottom: .75rem; font-size: 1.2rem; }
 .studio-benefit-grid p, .studio-faq p { color: var(--studio-muted, #475569); line-height: 1.65; }
 .studio-faq .zip-faq-list { margin-left: 0; }
-.studio-faq summary:focus-visible { outline: 3px solid #1763d8; outline-offset: 5px; border-radius: 3px; }
+.studio-faq summary:focus-visible { outline: 3px solid var(--robson-blue); outline-offset: 5px; border-radius: 3px; }
 .zip-price-card-dark .studio-text-link { color: #fff; }
 @media (max-width: 700px) { .studio-benefit-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
 
 /* September refinement: shared controls and compact founder presentation. */
-body.building-analyst-zip-page .zip-button-primary { background: #0958f5; border-color: #0958f5; border-radius: 6px; color: #fff; box-shadow: 0 8px 20px rgb(9 88 245 / 18%); }
-body.building-analyst-zip-page .zip-button-primary:hover { background: #0645c0; border-color: #0645c0; }
+body.building-analyst-zip-page .zip-button-primary { background: var(--robson-blue); border-color: var(--robson-blue); border-radius: 6px; color: #fff; box-shadow: 0 8px 20px rgb(62 110 173 / 18%); }
+body.building-analyst-zip-page .zip-button-primary:hover { background: var(--robson-blue-hover); border-color: var(--robson-blue-hover); }
 body.building-analyst-zip-page .zip-button { border-radius: 6px; min-height: 44px; }
 body.studio-home .studio-founder-grid { display: grid; grid-template-columns: 220px minmax(0,1fr); gap: clamp(2rem,5vw,4rem); align-items: center; }
 body.studio-home .studio-founder-portrait { margin: 0; max-width: 220px; }

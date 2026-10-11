@@ -5,6 +5,10 @@ Project owner: Wayne Robson / Robson AI Solutions
 Primary repo/path: `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website`
 Current branch: `codex/brand-contrast-system-20260716` in worktree `/Users/wayne/Documents/RobsonAI/Codex App/Robson AI Solutions Website.release-worktree`
 
+## Robson Blue website tranche — 11 October 2026
+
+User approved applying Robson Blue (#3E6EAD) to the website. Scoped local work: central signature token, primary UI accents and colour-derived shadows, stylesheet cache keys and brand documentation. Wayne explicitly approved review and live upload on 11 October 2026. Build, internal links (346 references across 13 pages), release security and whitespace checks passed. Robson Blue/white contrast is 5.20:1 (AA normal text); light site surfaces range from 4.84:1 to 4.93:1. Browser QA remains unverified because dependency installation was interrupted. Source and Netlify production publication pending.
+
 ## 1. Current Objective
 
 Maintain the production-grade Robson AI Solutions website so it continues to embody professional building intelligence and the current product direction. The live site should present Building Analyst for assessment capture and report-ready evidence, BuildScan for external modelling and visual context, and property operations thinking for CAFM-style workflows. It should show a practical loop of capturing evidence, structuring assessment records, analysing patterns, and supporting clearer client understanding while preserving professional boundaries, proof over claims, cautious Apple-native intelligence language, and email-first contact with no form data collection.

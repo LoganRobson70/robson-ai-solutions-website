@@ -40,3 +40,7 @@ This is a brand-legibility standard. Logos are not assessed as normal body text 
 2. Apply the treatment matrix above before export or add the approved composite asset at implementation time.
 3. Check the smallest rendered breakpoint, not only the full-size source artwork.
 4. Run the product-design and visual-polish checks before any preview or production release.
+
+## Robson Blue signature colour (11 October 2026)
+
+The approved digital signature colour is **Robson Blue**, sRGB **#3E6EAD** / **RGB 62, 110, 173**. Website buttons, links and primary accents use `--robson-blue`; existing accent tokens resolve to it. The darker hover variation is #335B90. Light-blue accents on dark surfaces and the approved logo/shadow assets remain separate contrast treatments. No Pantone or print equivalence is claimed.
