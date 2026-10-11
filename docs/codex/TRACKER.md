@@ -11,7 +11,11 @@ User approved applying Robson Blue (#3E6EAD) to the website. Scoped local work: 
 
 ## Robson Blue section surfaces — 11 October 2026
 
-User requested replacing navy section backgrounds with Robson Blue, continuing the authorised live website update. Scoped surfaces: homepage BuildScan/contact, audience relationship and Building Analyst hero/dark product cards (plus retained dark section styles). White text and inverted white CTAs preserve contrast. Existing marketing image pixels and logos are retained. Build, internal-link validation (346 references / 13 pages), release security and whitespace checks passed. Opaque white on Robson Blue contrast is 5.20:1. Browser visual QA is unavailable in this session. Publishing via GitHub main and Netlify under the existing live-upload authorisation.
+User requested replacing navy section backgrounds with Robson Blue, continuing the authorised live website update. Scoped surfaces: homepage BuildScan/contact, audience relationship and Building Analyst hero/dark product cards (plus retained dark section styles). White text and inverted white CTAs preserve contrast. Existing marketing image pixels and logos are retained. Build, internal-link validation (346 references / 13 pages), release security and whitespace checks passed. Opaque white on Robson Blue contrast is 5.20:1. Browser visual QA is unavailable in this session. Published GitHub main commit 14e348fe238fc9239f8254f7367090a5eae01f46 via Netlify production deploy 6acbf97b1fcbcb0007d678fa under the existing live-upload authorisation. Netlify confirms ready and the exact source commit at https://robsonai.co.uk. Publish readiness: 100% deployed; browser visual QA remains unverified. Recommended next action: review the refreshed live sections.
+
+## Robson Blue remaining website colours — 11 October 2026
+
+User requested replacing all remaining navy elements. Website CSS navy tokens, text, borders, backgrounds, gradients and matching RGB shadows now resolve to Robson Blue; pale translucent white text is opaque for readability. User explicitly selected preserving product screenshots/logos and replacing all website colours. Build, link (346 references), security and whitespace checks passed. Browser visual QA remains unavailable. Publishing under existing live-update authorisation.
 
 ## 1. Current Objective
 
